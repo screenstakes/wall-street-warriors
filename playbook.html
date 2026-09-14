@@ -143,7 +143,8 @@
   .pb-form .fields > .field:nth-child(3){order:4}
   .pb-form .field.half{grid-column:1 / -1}
   .pb-form .field input,.pb-form .field select{min-height:46px;min-width:0}
-  .pb-form .field input[type=date]{display:block}
+  /* Date and Side share a row: one fixed height so the boxes line up (iOS draws the date field taller) */
+  .pb-form .field input[type=date],.pb-form .field select{height:46px;box-sizing:border-box;padding-block:0}
   .pb-form .field textarea{min-height:96px}
   .pb-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .pb-actions .btn{justify-content:center;min-height:44px;padding-inline:8px}
