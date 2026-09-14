@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Playbook · Wall Street Warriors</title>
@@ -82,6 +83,80 @@
 .pb-draft-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line);background:var(--well)}
 .pb-draft-head h3{font-size:14px;font-weight:700;color:var(--ink)}
 @media (max-width:520px){.pb-drafts li{grid-template-columns:1fr}.pb-drafts .pb-b{justify-content:flex-start}}
+
+/* ---------- phone (≤ 700px) ---------- */
+@media (max-width:700px){
+  /* 1. pull quote: smaller type so the numbers share the first screen */
+  .pb-standard .card-body{padding:13px 14px 12px 34px}
+  .pb-standard .pb-mark{left:8px;top:6px;font-size:42px}
+  .pb-standard .pb-pull{font-size:17px;line-height:1.38}
+  .pb-standard .pb-who{margin-top:6px;font-size:11px;letter-spacing:.05em}
+
+  /* 2. by the numbers: dot + label on top, number and sub full width, numbers line up */
+  .pb-numbers{gap:6px}
+  .pb-numbers .kicker{gap:0 8px;font-size:10.5px}
+  .pb-numbers .tile{display:grid;grid-template-columns:24px minmax(0,1fr);gap:0 8px;align-items:center;padding:9px 12px}
+  .pb-numbers .tile > div{display:contents}
+  .pb-numbers .tile .dot{width:24px;height:24px}
+  .pb-numbers .tile .dot svg{width:13px;height:13px}
+  .pb-numbers .tile .k{display:flex;align-items:center;min-height:2.4em;line-height:1.2}
+  .pb-numbers .tile .v{grid-column:1 / -1;margin-top:5px;font-size:21px}
+  .pb-numbers .tile .sub{grid-column:1 / -1;margin-top:0;line-height:1.4}
+
+  /* 3. eight things: circle + title on one line, description full width under */
+  #pb-insights{gap:10px}
+  .pb-insight{grid-template-columns:28px minmax(0,1fr);gap:6px 10px;padding:12px;align-items:center}
+  .pb-insight > div{display:contents}
+  .pb-insight .pb-rank{width:28px;height:28px;font-size:13px}
+  .pb-insight h3{font-size:14.5px;line-height:1.3}
+  .pb-insight p{grid-column:1 / -1;margin-top:0;font-size:13px;line-height:1.5}
+
+  /* 4. judge quotes */
+  .pb-quotes{grid-template-columns:1fr;gap:10px}
+  .pb-quotes blockquote{padding:12px 14px;font-size:14.5px;gap:6px}
+
+  /* 5. deliverable plan as cards: name, the two dates side by side, owner + days */
+  table.m-stack.pb-plan tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+  table.m-stack.pb-plan td + td{margin-top:0}
+  table.m-stack.pb-plan td.key{grid-column:1 / -1;font:700 15px/1.3 var(--ui)}
+  .pb-plan td.mono{font-size:13.5px}
+  .pb-plan td .sub{white-space:normal;font-size:11.5px}
+  .pb-plan td.pb-owner{font-size:13.5px;line-height:1.4}
+  .pb-plan td.pb-days .sub{display:inline;margin-left:6px}
+
+  /* 6. report structure */
+  .pb-ol li{grid-template-columns:16px minmax(0,1fr);gap:10px;padding:10px 14px}
+  .pb-ol li > div{gap:2px}
+  .pb-ol span{font-size:13px}
+
+  /* 7. weekly rhythm: one column; two columns would squeeze each description to ~130px */
+  .pb-week{gap:10px}
+  .pb-week > div{padding:12px 14px;gap:2px}
+  .pb-week p{font-size:13px;margin-top:2px}
+
+  /* 8. trade note builder: Date + Side, Ticker + Company, Shares + Price, long fields full width */
+  .pb-form .fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
+  .pb-form .fields > .field{order:5}
+  .pb-form .fields > .field:nth-child(1){order:1}
+  .pb-form .fields > .field:nth-child(4){order:2}
+  .pb-form .fields > .field:nth-child(2){order:3}
+  .pb-form .fields > .field:nth-child(3){order:4}
+  .pb-form .field.half{grid-column:1 / -1}
+  .pb-form .field input,.pb-form .field select{min-height:46px;min-width:0}
+  .pb-form .field input[type=date]{display:block}
+  .pb-form .field textarea{min-height:96px}
+  .pb-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .pb-actions .btn{justify-content:center;min-height:44px;padding-inline:8px}
+  .pb-actions .note{grid-column:1 / -1}
+  .pb-draft-head{padding:10px 14px}
+  .pb-drafts li{grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;padding:12px 14px}
+  .pb-drafts .pb-d{grid-column:1;grid-row:1;align-self:center}
+  .pb-drafts .pb-b{grid-column:2;grid-row:1;gap:8px}
+  .pb-drafts .pb-b .btn{min-width:68px;justify-content:center}
+  .pb-drafts .pb-t{grid-column:1 / -1;min-width:0}
+  .pb-drafts .pb-t span{font-size:13px}
+  .pb-drafts li.pb-empty{display:block;padding:14px}
+}
 </style>
 </head>
 <body>
@@ -161,7 +236,7 @@
       <div class="card-head"><span class="ic" data-icon="flag"></span><h2 id="pb-plan-h">Deliverable plan</h2><span class="spacer"></span><span class="meta">internal drafts one week early</span></div>
       <div class="card-body tight">
         <div class="table-wrap">
-          <table class="pb-plan">
+          <table class="pb-plan m-stack">
             <thead><tr><th>Deliverable</th><th>Internal draft</th><th>Wharton deadline</th><th>Owner</th><th>Days left</th></tr></thead>
             <tbody id="pb-plan"></tbody>
           </table>
@@ -268,16 +343,18 @@
   /* 5. deliverable plan */
   var OWNER = { roster: ["lead"], notes: ["trader"], ips: ["lead", "client"], report: ["writer"] };
   function roleTitle(id) { for (var i = 0; i < D.roles.length; i++) if (D.roles[i].id === id) return D.roles[i].title; return id; }
+  /* non-breaking spaces inside each time, so a narrow phone column breaks only between ET and CT (desktop stays nowrap) */
+  function times(iso) { return W.fmtTimes(iso).split(" · ").map(function (t) { return t.replace(/ /g, " "); }).join(" · "); }
   $("pb-plan").innerHTML = D.deliverables.map(function (d) {
     var int = W.eventById(d.id + "-int");
     var n = W.daysUntil(d.due);
     var owners = (OWNER[d.id] || []).map(roleTitle).join(" with ");
     return "<tr>" +
       '<td class="key"><a href="rules.html#tab=deliverables">' + esc(d.name) + "</a></td>" +
-      '<td class="mono">' + (int ? W.fmtDate(int.date, { weekday: true }) + '<span class="sub">' + W.fmtTimes(int.date) + "</span>" : "TBD") + "</td>" +
-      '<td class="mono">' + W.fmtDate(d.due, { weekday: true }) + '<span class="sub">' + W.fmtTimes(d.due) + "</span></td>" +
-      "<td>" + esc(owners) + "</td>" +
-      '<td><span class="pb-left' + (n <= 7 ? " soon" : "") + '">' + n + '</span><span class="sub">' + W.relative(n) + "</span></td>" +
+      '<td class="mono" data-label="Internal draft">' + (int ? W.fmtDate(int.date, { weekday: true }) + '<span class="sub">' + times(int.date) + "</span>" : "TBD") + "</td>" +
+      '<td class="mono" data-label="Wharton deadline">' + W.fmtDate(d.due, { weekday: true }) + '<span class="sub">' + times(d.due) + "</span></td>" +
+      '<td class="pb-owner" data-label="Owner">' + esc(owners) + "</td>" +
+      '<td class="pb-days" data-label="Days left"><span class="pb-left' + (n <= 7 ? " soon" : "") + '">' + n + '</span><span class="sub">' + W.relative(n) + "</span></td>" +
       "</tr>";
   }).join("");
 

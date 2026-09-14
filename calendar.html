@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Calendar · Wall Street Warriors</title>
@@ -78,14 +79,108 @@
 .cal-dl dd{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink)}
 .cal-dl dd.cal-big{font:700 18px/1.2 var(--mono);color:var(--navy)}
 
-@media (max-width:640px){
-  .cal-month td,.cal-mcard.is-busy .cal-month td{height:52px;padding:4px 3px}
-  .cal-dnum{min-width:20px;height:20px;font-size:11px}
-  .cal-pills{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:3px}
-  .cal-pill{width:14px;height:14px;padding:0;border-radius:50%}
-  .cal-pill .cal-pt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .cal-cnt{display:inline;font:600 10px/1 var(--mono);color:var(--ink-3)}
-  .cal-tbd .list .when{max-width:120px}
+/* phone-only pieces (up next, compact month grid, agenda); rendered always, shown at ≤700px */
+.cal-next,.cal-mg,.cal-agenda{display:none}
+
+/* ---------- MOBILE (≤ 700px) ---------- */
+@media (max-width:700px){
+  main.shell{display:flex;flex-direction:column;gap:14px}
+  main.shell > *{margin:0}
+  .cal-legend{order:1}
+  .cal-months,#cal-tbd,.cal-all{order:2}
+  #cal-tbd:empty{display:none}
+
+  /* header buttons: stacked, full width, one line each */
+  .page-title .right{grid-auto-flow:row}
+  .page-title .right .btn{white-space:nowrap;font-size:13px}
+
+  .cal-tz{max-width:none}
+
+  /* up next + month agendas */
+  .cal-next{display:block}
+  .cal-agenda{display:block;list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .cal-next .cal-agenda{border-top:0}
+  .cal-agenda > li + li{border-top:1px solid var(--line-2)}
+  .cal-arow{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:start;width:100%;min-height:60px;padding:12px 14px;border:0;background:none;text-align:left;cursor:pointer;color:var(--ink);-webkit-tap-highlight-color:transparent}
+  .cal-arow:active{background:var(--well)}
+  .cal-arow:focus-visible{outline-offset:-3px}
+  .cal-abadge{display:grid;justify-items:center;align-content:center;gap:3px;height:48px;border-radius:5px;background:var(--well);border:1px solid var(--line-2);border-left:3px solid var(--slate)}
+  .cal-abadge small{font:700 10px/1 var(--ui);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+  .cal-abadge b{font:700 18px/1 var(--mono);color:var(--navy)}
+  .cal-arow.k-deliverable .cal-abadge{border-left-color:var(--navy)}
+  .cal-arow.k-release .cal-abadge,.cal-arow.k-practice .cal-abadge,.cal-arow.k-trading .cal-abadge{border-left-color:var(--blue)}
+  .cal-arow.k-internal .cal-abadge{border-left-color:var(--plum)}
+  .cal-arow.k-internal.is-tent .cal-abadge{border-left-style:dashed}
+  .cal-amain{display:grid;gap:3px;min-width:0}
+  .cal-at{font:600 14px/1.35 var(--ui);color:var(--ink)}
+  .cal-aend,.cal-atime{font:500 12px/1.4 var(--mono);color:var(--ink-2)}
+  .cal-ameta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:3px}
+  .cal-arel{font:600 12px/1 var(--mono);color:var(--ink-2);white-space:nowrap}
+  .cal-arel.soon{color:var(--bad)}
+  .cal-arel.today{color:var(--orange-deep);font-weight:700}
+  .cal-arow.is-past .cal-at,.cal-arow.is-past .cal-abadge b,.cal-arow.is-past .cal-atime,.cal-arow.is-past .cal-arel{color:var(--ink-3)}
+  .cal-arow.is-past .cal-abadge,.cal-arow.is-past .chip{opacity:.65}
+
+  /* compact month grid */
+  .cal-months{gap:14px}
+  .cal-month{display:none}
+  .cal-mg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px 0;padding:4px 6px 8px}
+  .cal-mgw{font:700 10px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:center;padding:8px 0 6px}
+  .cal-dc{display:grid;grid-template-rows:26px 7px;justify-items:center;align-content:center;gap:3px;height:44px;width:100%;margin:0;padding:0;border:0;border-radius:6px;background:none;font:500 13px/1 var(--mono);color:var(--ink-2);-webkit-tap-highlight-color:transparent}
+  .cal-dc.is-wknd{background:var(--well)}
+  .cal-dc.is-out{background:none}
+  .cal-dn{display:grid;place-items:center;min-width:26px;height:26px;border-radius:13px}
+  .cal-dc.has-ev{cursor:pointer;color:var(--ink);font-weight:700}
+  .cal-dc.has-ev:active{background:var(--info-soft)}
+  .cal-dc:focus-visible{outline-offset:-2px}
+  .cal-dc.is-today .cal-dn{box-shadow:inset 0 0 0 2px var(--orange-deep);color:var(--ink);font-weight:700}
+  .cal-dots{display:flex;gap:3px}
+  .cal-dot{width:7px;height:7px;border-radius:50%;background:var(--slate)}
+  .cal-dot.k-deliverable{background:var(--navy)}
+  .cal-dot.k-release,.cal-dot.k-practice,.cal-dot.k-trading{background:var(--blue)}
+  .cal-dot.k-internal{background:var(--plum)}
+  .cal-dot.k-internal.is-tent{background:none;box-shadow:inset 0 0 0 1.5px var(--plum)}
+  .cal-dot.is-past{opacity:.45}
+
+  /* legend: two columns, circles to match the dots */
+  .cal-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;padding:0 2px;font-size:12.5px;line-height:1.3}
+  .cal-legend span{display:flex;align-items:center;min-width:0}
+  .cal-sw{flex:none;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:0}
+  .cal-sw.k-internal{background:var(--plum)}
+  .cal-sw.k-internal.is-tent{background:none;border:1.5px solid var(--plum)}
+  .cal-sw.is-today{background:none;border:2px solid var(--orange-deep)}
+  .cal-sw.is-wknd{width:14px;border-radius:3px;background:var(--line-2);border:1px solid var(--line)}
+  /* deliverables are squares, so they read apart from the blue release dots at 7px */
+  .cal-sw.k-deliverable,.cal-dot.k-deliverable{border-radius:2px}
+
+  /* unscheduled: the window sits on its own line above the title */
+  .cal-tbd .list > li{grid-template-columns:minmax(0,1fr);gap:4px}
+  .cal-tbd .list .when{max-width:none;font-size:12px}
+  .cal-tbd .list .when small{display:inline;font-size:12px}
+  .cal-tbd .list .when small::before{content:" · "}
+  .cal-tbd .list .cnt{grid-column:1;margin-top:4px}
+
+  /* all dates: compact stacked rows (date + days / what / time + type) */
+  .cal-table.m-stack td[data-label]::before{display:none}
+  .cal-table.m-stack tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center}
+  .cal-table.m-stack td + td{margin-top:0}
+  .cal-table.m-stack td:first-child{border-left:0}
+  .cal-table.m-stack tr.is-int{box-shadow:inset 3px 0 0 var(--plum-soft);box-shadow:inset 3px 0 0 color-mix(in srgb,var(--plum) 40%,var(--card))}
+  .cal-table.m-stack td:nth-child(1){grid-column:1;grid-row:1;font:600 12.5px/1.35 var(--mono);color:var(--navy)}
+  .cal-table.m-stack td:nth-child(5){grid-column:2;grid-row:1;text-align:right;font-size:12px}
+  .cal-table.m-stack td:nth-child(3){grid-column:1 / -1;grid-row:2}
+  .cal-table.m-stack td:nth-child(2){grid-column:1;grid-row:3;font-size:12px;color:var(--ink-2)}
+  .cal-table.m-stack td:nth-child(4){grid-column:2;grid-row:3;text-align:right}
+  .cal-table.m-stack tr.is-past td{color:var(--ink-3)}
+  .cal-table .note{white-space:normal;max-width:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:12.5px}
+  .cal-tbtn{display:block;width:100%;font-size:14.5px;padding-block:9px;margin-block:-9px}
+
+  /* event sheet */
+  .cal-drawer .card-head{flex-wrap:nowrap}
+  .cal-drawer .body{min-height:0;overscroll-behavior:contain}
+  .cal-dr-t{font-size:17px}
+  .cal-drawer .foot{flex-wrap:nowrap;gap:8px}
+  .cal-drawer .foot .btn{flex:1 1 0;min-width:0;min-height:44px;padding-inline:8px;gap:6px;white-space:nowrap}
 }
 @media (prefers-reduced-motion:reduce){.cal-drawer:not(.is-open){transition:none}.cal-pill{transition:none}}
 </style>
@@ -128,6 +223,10 @@
       <button type="button" class="btn ghost" id="cal-dl-all"><span data-icon="users"></span>Include team dates</button>
     </div>
   </div>
+  <section class="card cal-next" id="cal-next" aria-labelledby="cal-next-h">
+    <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="cal-next-h">Up next</h2><span class="spacer"></span><span class="meta" id="cal-next-meta"></span></div>
+    <ul class="cal-agenda" id="cal-next-list"></ul>
+  </section>
   <p class="note cal-tz">Wharton's deadlines are 5:00 p.m. Eastern, which is 4:00 p.m. in Texas, during school. Internal deadlines are one week earlier so nothing is submitted from a phone at 3:55.</p>
 
   <div class="tiles cal-tiles reveal">
@@ -155,7 +254,7 @@
     <div class="card-head"><span class="ic" data-icon="list"></span><h2>All dates</h2><span class="spacer"></span><span class="meta" id="cal-all-meta"></span></div>
     <div class="card-body tight">
       <div class="table-wrap">
-        <table class="cal-table">
+        <table class="cal-table m-stack">
           <thead><tr><th scope="col">Date</th><th scope="col">Time</th><th scope="col">What</th><th scope="col">Type</th><th scope="col">Days</th></tr></thead>
           <tbody id="cal-all-rows"></tbody>
         </table>
@@ -267,13 +366,42 @@
     if (evs.length > 1) out += '<span class="cal-cnt" aria-hidden="true">' + evs.length + "</span>";
     return out + "</div>";
   }
+  /* phone: compact grid (tappable event days) and an agenda list; hidden on desktop by CSS */
+  function agendaRow(e) {
+    var n = W.daysUntil(e.date), d = new Date(e.date);
+    var rc = n === 0 ? " today" : n > 0 && n <= 7 ? " soon" : "";
+    return '<li><button type="button" class="cal-arow k-' + e.kind + (e.tentative ? " is-tent" : "") + (n < 0 ? " is-past" : "") + '" data-open="' + esc(e.id) + '">' +
+      '<span class="cal-abadge" aria-hidden="true"><small>' + d.toLocaleDateString("en-US", { weekday: "short" }) + "</small><b>" + d.getDate() + "</b></span>" +
+      '<span class="cal-amain"><b class="cal-at">' + esc(e.title) + "</b>" +
+      '<span class="sr">' + esc(whenText(e, true)) + ". </span>" +
+      (e.end ? '<span class="cal-aend">Through ' + esc(W.fmtDate(e.end, { weekday: true })) + "</span>" : "") +
+      '<span class="cal-atime">' + esc(W.fmtTimes(e.date)) + "</span>" +
+      '<span class="cal-ameta">' + kindChip(e) + '<span class="cal-arel' + rc + '">' + W.relative(n) + "</span></span></span></button></li>";
+  }
+  function mobileMonth(y, m, lead, dim, evsInMonth) {
+    var h = '<div class="cal-mg">' + DOWS.map(function (w) { return '<span class="cal-mgw" aria-hidden="true">' + w[0] + "</span>"; }).join("");
+    for (var i = 0; i < lead; i++) h += '<span class="cal-dc is-out" aria-hidden="true"></span>';
+    for (var day = 1; day <= dim; day++) {
+      var d = new Date(y, m, day), k = W.dayKey(d);
+      var wk = d.getDay() === 0 || d.getDay() === 6, today = k === todayKey, evs = byDay[k] || [];
+      var cls = "cal-dc" + (wk ? " is-wknd" : "") + (today ? " is-today" : "");
+      if (!evs.length) { h += '<span class="' + cls + '" aria-hidden="true"><span class="cal-dn">' + day + "</span></span>"; continue; }
+      var dots = evs.map(function (e) { return '<i class="cal-dot k-' + e.kind + (e.tentative ? " is-tent" : "") + (W.daysUntil(e.end || e.date) < 0 ? " is-past" : "") + '"></i>'; }).join("");
+      var label = d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }) + (today ? ", today" : "") + ": " + evs.map(function (e) { return e.title; }).join("; ");
+      h += '<button type="button" class="' + cls + ' has-ev" data-open="' + esc(evs[0].id) + '"' + (evs.length > 1 ? ' data-also="' + esc(evs.slice(1).map(function (e) { return e.id; }).join(",")) + '"' : "") +
+        ' aria-label="' + esc(label) + '"><span class="cal-dn">' + day + '</span><span class="cal-dots" aria-hidden="true">' + dots + "</span></button>";
+    }
+    for (var t = (lead + dim) % 7; t && t < 7; t++) h += '<span class="cal-dc is-out" aria-hidden="true"></span>';
+    return h + "</div>" + (evsInMonth.length ? '<ul class="cal-agenda">' + evsInMonth.map(agendaRow).join("") + "</ul>" : "");
+  }
   function renderMonth(ym) {
     var y = Math.floor(ym / 12), m = ym % 12;
     var first = new Date(y, m, 1), dim = new Date(y, m + 1, 0).getDate(), lead = first.getDay();
     var cells = Math.ceil((lead + dim) / 7) * 7;
     var name = first.toLocaleDateString("en-US", { month: "long", year: "numeric" });
     var id = "cal-m-" + y + "-" + (m + 1);
-    var count = dated.filter(function (e) { var d = new Date(e.date); return d.getFullYear() === y && d.getMonth() === m; }).length;
+    var inMonth = dated.filter(function (e) { var d = new Date(e.date); return d.getFullYear() === y && d.getMonth() === m; });
+    var count = inMonth.length;
     var rows = "";
     for (var i = 0; i < cells; i++) {
       if (i % 7 === 0) rows += "<tr>";
@@ -289,7 +417,7 @@
       '<div class="card-head"><span class="ic" data-icon="calendar"></span><h2 id="' + id + '">' + name + '</h2><span class="spacer"></span><span class="meta">' + plural(count, "event") + "</span></div>" +
       '<table class="cal-month" aria-labelledby="' + id + '"><thead><tr>' +
       DOWS.map(function (w) { return '<th scope="col" abbr="' + w[1] + '">' + w[0] + "</th>"; }).join("") +
-      "</tr></thead><tbody>" + rows + "</tbody></table></section>";
+      "</tr></thead><tbody>" + rows + "</tbody></table>" + mobileMonth(y, m, lead, dim, inMonth) + "</section>";
   }
   function renderTbd() {
     if (!tbd.length) return "";
@@ -303,6 +431,9 @@
       '<div class="card-foot">These come from the Sep 15 materials and Wharton’s announcements. Windows are last season’s timing until then.</div></section>';
   }
   $("cal-months").innerHTML = keys.map(renderMonth).join("");
+  var soonest = W.upcoming(), left = soonest.length;
+  $("cal-next-meta").textContent = left ? plural(left, "date") + " left" : "";
+  $("cal-next-list").innerHTML = left ? soonest.slice(0, 3).map(agendaRow).join("") : '<li class="cal-arow">Season complete</li>';
   $("cal-tbd").innerHTML = renderTbd();
 
   /* ---------- all dates ---------- */
@@ -311,11 +442,11 @@
     var n = W.daysUntil(e.date);
     var dcls = "mono cal-days" + (n === 0 ? " today" : n > 0 && n <= 7 ? " soon" : "");
     return '<tr class="' + (e.kind === "internal" ? "is-int" : "") + (n < 0 ? " is-past" : "") + '">' +
-      '<td class="mono">' + esc(whenText(e, true, " –\n")).replace("\n", "<br>") + "</td>" +
-      '<td class="mono">' + esc(W.fmtTimes(e.date)) + "</td>" +
-      '<td><button type="button" class="cal-tbtn" data-open="' + esc(e.id) + '">' + esc(e.title) + '</button><div class="note">' + esc(e.detail || "") + "</div></td>" +
-      "<td>" + kindChip(e) + "</td>" +
-      '<td class="' + dcls + '">' + countdown(n) + "</td></tr>";
+      '<td class="mono" data-label="Date">' + esc(whenText(e, true, " –\n")).replace("\n", "<br>") + "</td>" +
+      '<td class="mono" data-label="Time">' + esc(W.fmtTimes(e.date)) + "</td>" +
+      '<td data-label="What"><button type="button" class="cal-tbtn" data-open="' + esc(e.id) + '">' + esc(e.title) + '</button><div class="note">' + esc(e.detail || "") + "</div></td>" +
+      '<td data-label="Type">' + kindChip(e) + "</td>" +
+      '<td class="' + dcls + '" data-label="Days">' + countdown(n) + "</td></tr>";
   }).join("");
 
   /* ---------- drawer ---------- */
@@ -323,6 +454,8 @@
   var current = null, opener = null;
   function setHash(h) { try { history.replaceState(null, "", h || location.pathname + location.search); } catch (err) {} }
   function openEvent(e, from) {
+    var also = from && from.getAttribute("data-also");
+    if (from && drawer.contains(from)) from = opener; /* hopping between same-day events keeps the original opener */
     current = e; opener = from || null;
     var n = W.daysUntil(e.date);
     $("cal-dr-m").textContent = W.fmtDate(e.date).toUpperCase();
@@ -332,6 +465,7 @@
       '<div><dt class="kicker">Countdown</dt><dd class="cal-big">' + esc(countdown(n)) + "</dd></div>" +
       '<div><dt class="kicker">Details</dt><dd>' + esc(e.detail || "") + "</dd></div>" +
       (e.action ? '<div><dt class="kicker">What we do</dt><dd>' + esc(e.action) + "</dd></div>" : "") +
+      (also ? '<div><dt class="kicker">Same day</dt><dd>' + also.split(",").map(function (id) { var o = W.eventById(id); return o ? '<button type="button" class="btn ghost sm" data-open="' + esc(o.id) + '">' + esc(o.title) + "</button>" : ""; }).join(" ") + "</dd></div>" : "") +
       "</dl>";
     drawer.removeAttribute("inert"); drawer.setAttribute("aria-hidden", "false");
     drawer.classList.add("is-open"); scrim.classList.add("is-open");
@@ -381,7 +515,13 @@
     if (!m) return;
     var e = W.eventById(m[1]);
     if (!e || e.tbd) return;
-    var b = document.querySelector('.cal-pill[data-open="' + m[1] + '"]') || document.querySelector('.cal-tbtn[data-open="' + m[1] + '"]');
+    /* first visible target: the grid pill on desktop, the month agenda row on a phone */
+    var b = null;
+    [".cal-pill", ".cal-months .cal-arow", ".cal-tbtn"].some(function (sel) {
+      var el = document.querySelector(sel + '[data-open="' + m[1] + '"]');
+      if (el && el.getClientRects().length) { b = el; return true; }
+      return false;
+    });
     if (b) b.scrollIntoView({ block: "center" });
     openEvent(e, b);
   }

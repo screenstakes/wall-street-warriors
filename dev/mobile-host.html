@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile harness</title>
+<style>
+  body{margin:0;background:#888;font:11px/1.4 monospace;color:#fff}
+  .bar{height:20px;padding:3px 10px;box-sizing:border-box;background:#222;white-space:nowrap;overflow:hidden}
+  iframe{display:block;width:390px;border:0;background:#fff;margin:0 10px}
+  pre#probe{white-space:pre-wrap;background:#111;color:#9f9;padding:8px 10px;margin:0}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<iframe id="f"></iframe>
+<pre id="probe">probe: waiting</pre>
+<script>
+  /* ?page=index.html&hash=e=roster&h=844&mode=screen|full */
+  var q = new URLSearchParams(location.search);
+  var page = q.get("page") || "index.html", hash = q.get("hash") || "", h = parseInt(q.get("h") || "844", 10), mode = q.get("mode") || "full";
+  var f = document.getElementById("f");
+  f.style.height = h + "px";
+  f.setAttribute("scrolling", mode === "screen" ? "yes" : "no");
+  document.getElementById("bar").textContent = "390×" + h + " " + mode + " · " + page + (hash ? " #" + hash : "");
+  f.src = "../" + page + (hash ? "#" + hash : "");
+  window.addEventListener("message", function (ev) {
+    if (ev.data && ev.data.wswProbe) document.getElementById("probe").textContent = "probe: " + ev.data.wswProbe;
+  });
+</script>
+</body>
+</html>

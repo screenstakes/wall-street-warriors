@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Rules · Wall Street Warriors</title>
@@ -42,6 +43,56 @@
 .rules-ol li:first-child{border-top:0;padding-top:0}
 .rules-ol li::before{content:counter(dq,decimal-leading-zero);font:700 13px/1.6 var(--mono);color:var(--orange-deep)}
 .rules-sources{margin-top:20px}
+@media (max-width:700px){
+  /* tab bar: scrolls inside the card, fades at whichever edge has more tabs */
+  .rules-tabbar{position:relative;overflow:hidden;padding-inline:0}
+  .rules-tabbar .tabs{margin-inline:0;padding-inline:4px;scroll-padding-inline:28px}
+  .rules-tabbar .tab{min-height:48px;padding-inline:11px}
+  .rules-tabbar .tab::after{left:11px;right:11px}
+  .rules-tabbar::before,.rules-tabbar::after{content:"";position:absolute;top:0;bottom:0;width:30px;pointer-events:none;z-index:1;transition:opacity .2s}
+  .rules-tabbar::before{left:0;background:linear-gradient(90deg,var(--card),rgba(255,255,255,0));opacity:0}
+  .rules-tabbar::after{right:0;background:linear-gradient(270deg,var(--card),rgba(255,255,255,0))}
+  .rules-tabbar.is-scrolled::before{opacity:1}
+  .rules-tabbar.at-end::after{opacity:0}
+  .rules-panels{margin-top:14px}
+  .rules-panels [role=tabpanel]{gap:14px}
+  .rules-note{padding:12px 14px}
+
+  /* trading rules: one card per rule */
+  .rules-table.m-stack tr{padding:13px 14px}
+  .rules-table.m-stack td.key{min-width:0;font:600 15px/1.35 var(--ui);color:var(--ink)}
+  .rules-table.m-stack td.val{font-size:14px;line-height:1.5;color:var(--ink)}
+  .rules-table.m-stack td.key::before,.rules-table.m-stack td.val::before,.rules-table.m-stack td.stat::before{display:none}
+  .rules-table.m-stack td.stat,.rules-table.m-stack td.mono{display:inline-block;vertical-align:middle;margin-top:9px}
+  .rules-table.m-stack td.mono{margin-left:10px;font-size:12.5px;white-space:nowrap}
+  .rules-table.m-stack td.mono::before{display:inline;margin:0 5px 0 0;font-size:10px}
+
+  /* team rules */
+  .rules-dl > div{padding:12px 14px;gap:3px}
+  .rules-dl dt{padding-top:0}
+  .rules-dl dd{font-size:14.5px;line-height:1.5}
+
+  /* deliverables */
+  .rules-del .card-head{flex-wrap:nowrap}
+  .rules-del .card-head h2{flex:1 1 0;min-width:0}
+  .rules-del .card-head .spacer{display:none}
+  .rules-del .card-head .meta{margin-left:auto;white-space:nowrap}
+  .rules-del .card-body{gap:10px;font-size:14px;line-height:1.5}
+  .rules-when{gap:8px 10px}
+  .rules-build{font-size:14px}
+  .rules-del .card-foot{padding:0 14px}
+  .rules-submit{display:flex;width:100%;min-height:50px;font-size:14px}
+  .rules-submit input{width:20px;height:20px}
+
+  /* AI policy, disqualifiers */
+  .rules-ai p{font-size:14.5px}
+  .rules-ai .lede{font-size:15.5px}
+  .rules-ol li{grid-template-columns:28px minmax(0,1fr);gap:10px;padding:11px 0;font-size:14.5px}
+  .rules-sources{margin-top:16px}
+}
+@media (max-width:700px) and (prefers-reduced-motion:reduce){
+  .rules-tabbar::before,.rules-tabbar::after{transition:none}
+}
 </style>
 </head>
 <body>
@@ -101,7 +152,7 @@
         <div class="card-body tight">
           <p class="note rules-note" id="rules-trading-note"></p>
           <div class="table-wrap">
-            <table class="rules-table">
+            <table class="rules-table m-stack">
               <thead><tr><th scope="col">Rule</th><th scope="col">What we know</th><th scope="col">Status</th><th scope="col">Season</th></tr></thead>
               <tbody id="rules-trading-body"></tbody>
             </table>
@@ -194,6 +245,24 @@
   /* ---------- tabs ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".tabs [role=tab]"));
   var panels = tabs.map(function (t) { return byId(t.getAttribute("aria-controls")); });
+  /* when the tab bar overflows (phones), keep the active tab in view and mark which edges have more tabs */
+  var tablist = document.querySelector(".rules-tabbar .tabs"), tabbar = tablist.parentNode;
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function edges() {
+    var max = tablist.scrollWidth - tablist.clientWidth;
+    tabbar.classList.toggle("is-scrolled", max > 1 && tablist.scrollLeft > 2);
+    tabbar.classList.toggle("at-end", max <= 1 || tablist.scrollLeft >= max - 2);
+  }
+  function reveal(t, smooth) {
+    if (tablist.scrollWidth <= tablist.clientWidth + 1) { edges(); return; }
+    var br = tablist.getBoundingClientRect(), tr = t.getBoundingClientRect();
+    var left = tablist.scrollLeft + (tr.left - br.left) - (br.width - tr.width) / 2;
+    left = Math.max(0, Math.min(left, tablist.scrollWidth - tablist.clientWidth));
+    try { tablist.scrollTo({ left: left, behavior: smooth && !calm ? "smooth" : "auto" }); } catch (e) { tablist.scrollLeft = left; }
+    edges();
+  }
+  tablist.addEventListener("scroll", edges, { passive: true });
+  window.addEventListener("resize", function () { var a = tablist.querySelector(".is-active"); if (a) reveal(a, false); });
   function hasTab(id) { return tabs.some(function (t) { return t.getAttribute("data-tab") === id; }); }
   function select(id, focus, remember) {
     tabs.forEach(function (t, i) {
@@ -203,6 +272,7 @@
       t.tabIndex = on ? 0 : -1;
       panels[i].hidden = !on;
       if (on && focus) t.focus();
+      if (on) reveal(t, remember);
     });
     if (remember) {
       W.store.set("rules-tab", id);
@@ -226,11 +296,12 @@
   var saved = W.store.get("rules-tab", null);
   select(fromHash() || (hasTab(saved) ? saved : "trading"), false, false);
   window.addEventListener("hashchange", function () { var id = fromHash(); if (id) select(id, false, true); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { var a = tablist.querySelector(".is-active"); if (a) reveal(a, false); });
 
   /* ---------- 1. trading rules ---------- */
   byId("rules-trading-note").textContent = "Wharton releases this year's trading requirements " + W.fmtDate(release.date, { weekday: true }) + ". Rows marked Last season are the 2025–26 rules and can change. Rows marked Verify get answered on the Verify tab.";
   byId("rules-trading-body").innerHTML = D.tradingRules.map(function (r) {
-    return "<tr><td class=\"key\">" + esc(r.rule) + "</td><td>" + esc(r.value) + "</td><td>" + chip(r.status) + "</td><td class=\"mono\">" + esc(r.season) + "</td></tr>";
+    return "<tr><td class=\"key\" data-label=\"Rule\">" + esc(r.rule) + "</td><td class=\"val\" data-label=\"What we know\">" + esc(r.value) + "</td><td class=\"stat\" data-label=\"Status\">" + chip(r.status) + "</td><td class=\"mono\" data-label=\"Season\">" + esc(r.season) + "</td></tr>";
   }).join("");
   var counts = { official: 0, last: 0, verify: 0 };
   D.tradingRules.forEach(function (r) { if (counts[r.status] !== undefined) counts[r.status]++; });

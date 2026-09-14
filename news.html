@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Newsroom · Wall Street Warriors</title>
@@ -39,6 +40,61 @@
 .news-senders b{font:600 13px/1.4 var(--mono);color:var(--ink);overflow-wrap:anywhere}
 .news-sources{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-2);display:grid;gap:6px}
 .news-sources a{font-weight:600}
+
+/* ---------- phone ---------- */
+.news-more{display:none}
+@media (max-width:700px){
+  /* order: team announcements, then the time-sensitive safe senders, then the feeds and reference links */
+  .grid.main-rail > .stack,#news-links{display:contents}
+  .grid.main-rail section{order:10}
+  .grid.main-rail section[aria-labelledby="news-ann-h"]{order:1}
+  .grid.main-rail section[aria-labelledby="news-safe-h"]{order:2}
+  .grid.main-rail section[aria-labelledby="news-comp-h"]{order:3}
+  .grid.main-rail section[aria-labelledby="news-read-h"]{order:4}
+  #news-links section{order:5}
+  #sources{order:6}
+  section[aria-labelledby="news-champs-h"]{margin-top:14px!important}
+
+  /* news rows: date (and chip) on a small line above, the title full width */
+  .news-list > li{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:12px 14px;align-items:center}
+  .news-list .when{grid-column:1;grid-row:1;font:600 11.5px/1.3 var(--mono);color:var(--ink-3);letter-spacing:.02em}
+  .news-list .when small{display:inline;margin-left:6px;font-size:11px}
+  .news-list .cnt{grid-column:2;grid-row:1;margin:0;text-align:right}
+  .news-list > li > span:last-child:not(.cnt){display:none}
+  .news-list .what{grid-column:1 / -1;grid-row:2}
+  .news-list .what b{font-size:14.5px;line-height:1.35}
+  .news-list .what > span{font-size:13px;line-height:1.5;margin-top:3px}
+  .news-empty{padding:14px}
+
+  /* rail links: the whole row is the tap target */
+  .news-links li{position:relative;padding:11px 14px;min-height:52px;font-size:13px;line-height:1.45}
+  .news-links li:active{background:var(--well)}
+  .news-links a{font-size:14.5px;margin-bottom:1px}
+  .news-links a.num{font-size:13px}
+  .news-links a::after{content:"";position:absolute;inset:0}
+  .news-links a:focus-visible{outline:0}
+  .news-links a:focus-visible::after{outline:2px solid var(--orange);outline-offset:-3px}
+
+  /* safe senders: address and Copy on one line, every row the same */
+  .news-senders li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:10px 14px}
+  .news-senders b{font-size:12.5px}
+  .news-senders .btn{min-width:84px;justify-content:center}
+  .news-sources{gap:8px}
+
+  /* champions archive: stacked cards, the latest four first */
+  .news-champs th:nth-child(1),.news-champs td:nth-child(1){width:auto}
+  .news-champs td:nth-child(4){min-width:0}
+  .news-champs td.mono{font:700 13px/1.3 var(--mono);color:var(--navy)}
+  .news-champs td.mono::before{display:none!important}
+  .news-champs td.key{font-size:14.5px}
+  .news-champs .chip{margin-left:6px}
+  .news-more{display:block;padding:12px 14px;border-top:1px solid var(--line-2)}
+  .news-more[hidden]{display:none}
+  .news-more summary{list-style:none;display:flex;width:100%;justify-content:center}
+  .news-more summary::-webkit-details-marker{display:none}
+  .news-more[open] .news-more-closed,.news-more:not([open]) .news-more-open{display:none}
+  section[aria-labelledby="news-champs-h"]:has(.news-more:not([open]):not([hidden])) #news-champs tr:nth-child(n+5){display:none}
+}
 </style>
 </head>
 <body>
@@ -134,12 +190,14 @@
     <div class="card-head"><span class="ic" data-icon="trophy"></span><h2 id="news-champs-h">Champions archive</h2><span class="spacer"></span><span class="meta" id="news-champs-n"></span></div>
     <div class="card-body tight">
       <div class="table-wrap">
-        <table class="news-champs">
+        <table class="news-champs m-stack">
           <thead><tr><th>Season</th><th>Champion</th><th>Runner-up</th><th>Client</th></tr></thead>
           <tbody id="news-champs"></tbody>
         </table>
       </div>
     </div>
+    <!-- phone only: the archive opens on the latest four seasons; this native toggle shows the rest (hidden on desktop) -->
+    <details class="news-more" id="news-more"><summary class="btn ghost"><span class="news-more-closed">Show all <span id="news-more-n"></span>seasons</span><span class="news-more-open">Show the latest four</span></summary></details>
     <div class="card-foot">Every one of these teams won on the IPS and the final report, not on portfolio returns.</div>
   </section>
 </main>
@@ -188,11 +246,14 @@
   var champs = (D.champions || []).slice().sort(function (a, b) { return (b.year || 0) - (a.year || 0) || String(b.season).localeCompare(String(a.season)); });
   $("news-champs").innerHTML = champs.length ? champs.map(function (c) {
     var chip = c.confidence === "likely" ? '<span class="chip verify">likely</span>' : c.confidence === "unconfirmed" ? '<span class="chip tbd">unconfirmed</span>' : "";
-    if (!c.champion && !c.runnerUp && !c.client) return '<tr><td class="mono">' + esc(c.season) + '</td><td class="news-gap" colspan="3">No results post found for this season.' + chip + "</td></tr>";
+    if (!c.champion && !c.runnerUp && !c.client) return '<tr><td class="mono" data-label="Season">' + esc(c.season) + '</td><td class="news-gap" colspan="3">No results post found for this season.' + chip + "</td></tr>";
     var name = c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.champion || "TBD") + "</a>" : esc(c.champion || "TBD");
-    return '<tr><td class="mono">' + esc(c.season) + '</td><td class="key">' + name + chip + (c.school ? '<span class="sub">' + esc(c.school) + "</span>" : "") + "</td><td>" + esc(c.runnerUp || "TBD") + "</td><td>" + esc(c.client || "TBD") + "</td></tr>";
+    return '<tr><td class="mono" data-label="Season">' + esc(c.season) + '</td><td class="key" data-label="Champion">' + name + chip + (c.school ? '<span class="sub">' + esc(c.school) + "</span>" : "") + '</td><td data-label="Runner-up">' + esc(c.runnerUp || "TBD") + '</td><td data-label="Client">' + esc(c.client || "TBD") + "</td></tr>";
   }).join("") : '<tr><td class="news-empty" colspan="4">Being added.</td></tr>';
   $("news-champs-n").textContent = champs.length ? champs.length + " seasons" : "";
+  /* phone toggle: only worth showing when there are more than four seasons */
+  $("news-more-n").textContent = champs.length + " ";
+  $("news-more").hidden = champs.length <= 4;
 
   /* 5. official links grouped */
   var GROUPS = [["Competition", "flag"], ["Simulator", "chart"], ["Learn", "book"], ["Contact", "mail"]];

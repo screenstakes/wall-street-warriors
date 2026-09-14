@@ -90,7 +90,9 @@
     x: '<path d="M6 6l12 12M18 6L6 18"/>',
     edit: '<path d="M4 20h4l10-10-4-4L4 16z"/><path d="M12 8l4 4"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
-    star: '<path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.5 6.4 20.4l1.1-6.3L3 9.7l6.2-.9z"/>'
+    star: '<path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.5 6.4 20.4l1.1-6.3L3 9.7l6.2-.9z"/>',
+    home: '<path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/>',
+    more: '<circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/>'
   };
   W.icon = function (name) { return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[name] || "") + "</svg>"; };
   function fillIcons(root) {
@@ -169,6 +171,57 @@
     function fallback() { var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (e) {} ta.remove(); }
   };
 
+  /* ---------- mobile shell: bottom tab bar, "More" sheet, compact date + phase in the header ---------- */
+  function mobileShell(here) {
+    var tabs = [["index.html", "Home", "home"], ["calendar.html", "Calendar", "calendar"], ["case.html", "Case", "book"], ["rules.html", "Rules", "shield"]];
+    var more = [["playbook.html", "Playbook", "How teams advance, trade notes", "star"], ["team.html", "Team", "Roster, roles, first meeting", "users"], ["news.html", "Newsroom", "Champions, reading list, links", "news"]];
+    if (here === "") here = "index.html";
+    var inMore = more.some(function (m) { return m[0] === here; });
+
+    var bar = document.createElement("nav");
+    bar.className = "mbar"; bar.setAttribute("aria-label", "Pages");
+    bar.innerHTML = tabs.map(function (t) {
+      var on = t[0] === here;
+      return '<a href="' + t[0] + '"' + (on ? ' class="is-active" aria-current="page"' : "") + ">" + W.icon(t[2]) + "<span>" + t[1] + "</span></a>";
+    }).join("") + '<button type="button" class="mbar-more' + (inMore ? " is-active" : "") + '" aria-expanded="false" aria-controls="msheet">' + W.icon("more") + "<span>More</span></button>";
+
+    var sheet = document.createElement("div");
+    sheet.className = "msheet"; sheet.id = "msheet";
+    sheet.setAttribute("role", "dialog"); sheet.setAttribute("aria-modal", "true"); sheet.setAttribute("aria-label", "More pages");
+    function row(href, title, sub, icon, ext, on) {
+      return '<a class="msheet-row' + (on ? " is-active" : "") + '" href="' + href + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + (on ? ' aria-current="page"' : "") +
+        '><span class="msheet-ic">' + W.icon(icon) + "</span><span><b>" + title + "</b><small>" + sub + "</small></span></a>";
+    }
+    sheet.innerHTML = '<div class="msheet-grab" aria-hidden="true"></div><div class="msheet-k">More pages</div>' +
+      more.map(function (m) { return row(m[0], m[1], m[2], m[3], false, m[0] === here); }).join("") +
+      '<div class="msheet-k">Quick links</div>' +
+      row(D.team.simulator.url, "Open WInS", "The simulator, one shared team login", "chart", true) +
+      row(D.team.portal.url, "SurveyMonkey Apply", "Case study and every submission", "link", true);
+
+    var scrim = document.createElement("div");
+    scrim.className = "mscrim";
+    document.body.appendChild(scrim); document.body.appendChild(sheet); document.body.appendChild(bar);
+
+    var btn = bar.querySelector(".mbar-more");
+    function setOpen(open) {
+      sheet.classList.toggle("is-open", open); scrim.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) { var first = sheet.querySelector("a"); if (first) first.focus({ preventScroll: true }); }
+      else if (sheet.contains(document.activeElement)) btn.focus({ preventScroll: true });
+    }
+    btn.addEventListener("click", function () { setOpen(!sheet.classList.contains("is-open")); });
+    scrim.addEventListener("click", function () { setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && sheet.classList.contains("is-open")) setOpen(false); });
+
+    var head = document.querySelector(".brandbar .shell");
+    if (head) {
+      var mp = document.createElement("span");
+      mp.className = "mphase";
+      mp.innerHTML = "<b>" + W.now().toLocaleDateString("en-US", { month: "short", day: "numeric" }) + "</b><i>" + W.phase().label + "</i>";
+      head.appendChild(mp);
+    }
+  }
+
   /* ---------- shell ---------- */
   function initShell() {
     var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
@@ -181,8 +234,26 @@
     var ph = document.querySelector("[data-phase]");
     if (ph) ph.textContent = W.phase().label;
     renderStrip();
+    mobileShell(here);
     fillIcons(document);
     Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (el, i) { if (!el.style.getPropertyValue("--i")) el.style.setProperty("--i", Math.min(i, 8)); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initShell); else initShell();
+
+  /* In-page anchors (#notes, #sources): the browser jumps before page scripts render the sections above
+     the target, so the jump lands short. Re-scroll once everything has rendered. Parameter hashes like
+     #tab=… and #e=… are handled by their own pages and never match an id. */
+  function settleAnchor() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    if (!id || id.indexOf("=") !== -1) return;
+    var el = document.getElementById(id);
+    /* "instant" overrides html{scroll-behavior:smooth}, which otherwise turns this into an animation that
+       the load-time layout shifts interrupt */
+    if (el) el.scrollIntoView({ block: "start", behavior: "instant" });
+  }
+  window.addEventListener("load", function () {
+    requestAnimationFrame(function () { setTimeout(settleAnchor, 50); });
+    /* web fonts change line wrapping and page height; settle again once they're in */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(settleAnchor, 50); });
+  });
 })(window.WSW);

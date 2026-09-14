@@ -271,3 +271,147 @@ footer.site a{color:var(--ink-2)}
 /* toast */
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--strip);color:#fff;font:600 13px/1 var(--ui);padding:12px 16px;border-radius:6px;opacity:0;transition:opacity .2s,transform .25s var(--ease);z-index:60;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* =====================================================================
+   MOBILE (≤ 700px)
+   Everything below is phone-only. Desktop is untouched.
+   Shared pieces: bottom tab bar (.mbar), "More" sheet (.msheet), compact header (.mphase),
+   2-column tiles, tighter cards, 16px form controls (no iOS zoom), drawers as bottom sheets,
+   and table.m-stack: add the class plus data-label on each <td> to turn rows into cards.
+   ===================================================================== */
+
+/* injected by app.js; hidden until the breakpoint */
+.mbar,.msheet,.mscrim,.mphase{display:none}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:48;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--strip);border-top:1px solid #1B2D5C;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -6px 20px -10px rgba(11,23,55,.5)}
+.mbar a,.mbar button{position:relative;display:grid;justify-items:center;align-content:center;gap:4px;min-height:58px;padding:6px 2px;background:none;border:0;color:#9FB0CF;text-decoration:none;font:600 10.5px/1 var(--ui);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mbar svg{width:22px;height:22px}
+.mbar .is-active{color:#fff}
+.mbar .is-active::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--orange)}
+.mbar a:focus-visible,.mbar button:focus-visible{outline-offset:-4px}
+
+.msheet{position:fixed;left:0;right:0;bottom:0;z-index:47;background:var(--card);border-radius:16px 16px 0 0;box-shadow:0 -12px 32px -12px rgba(11,23,55,.35);padding:4px 0 calc(66px + env(safe-area-inset-bottom));transform:translateY(104%);visibility:hidden;transition:transform .28s var(--ease),visibility 0s linear .28s}
+.msheet.is-open{transform:none;visibility:visible;transition:transform .28s var(--ease)}
+.msheet-grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:8px auto 6px}
+.msheet-k{font:700 10.5px/1.3 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:12px 18px 4px}
+.msheet-row{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;padding:9px 18px;min-height:56px;text-decoration:none;color:var(--ink)}
+.msheet-row:hover,.msheet-row:active{background:var(--well)}
+.msheet-row.is-active b{color:var(--blue)}
+.msheet-ic{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.msheet-ic svg{width:17px;height:17px}
+.msheet-row b{display:block;font:600 15px/1.3 var(--ui)}
+.msheet-row small{display:block;font-size:12.5px;color:var(--ink-2);margin-top:1px}
+.mscrim{position:fixed;inset:0;z-index:46;background:rgba(11,23,55,.4);opacity:0;pointer-events:none;transition:opacity .25s}
+.mscrim.is-open{opacity:1;pointer-events:auto}
+
+.mphase{flex-direction:column;align-items:flex-end;gap:4px;margin-left:auto;text-align:right;flex:none}
+.mphase b{font:700 12px/1 var(--mono);color:#fff}
+.mphase i{font:700 10px/1 var(--ui);font-style:normal;letter-spacing:.07em;text-transform:uppercase;color:#1F1300;background:var(--orange);padding:3px 6px;border-radius:3px;white-space:nowrap}
+
+@media (max-width:700px){
+  body{font-size:15px;padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+  .mbar{display:grid}
+  .msheet,.mscrim{display:block}
+  .mphase{display:flex}
+
+  /* header: one compact band + the ticker */
+  .util{display:none}
+  .brandbar .shell{min-height:56px;padding-block:8px;flex-wrap:nowrap;gap:12px}
+  .brand{gap:10px;min-width:0}
+  .brand .mark{width:34px;height:34px;border-radius:7px}
+  .brand .mark svg{width:24px;height:24px}
+  .brand .t{font-size:17px;white-space:nowrap}
+  .brand .s{display:none}
+  .nav{display:none}
+  .strip li{padding:8px 14px;gap:8px}
+  .strip .k{font-size:10px;letter-spacing:.07em}
+  .strip .v{font-size:13px}
+  .strip .d{font-size:11px}
+  .strip .d svg{width:12px;height:12px}
+
+  /* page frame */
+  main{padding-block:16px 28px}
+  .page-title{margin-bottom:16px;padding-bottom:12px;gap:12px}
+  .page-title h1{font-size:22px}
+  .page-title p{font-size:13.5px;line-height:1.5}
+  .page-title .right{width:100%;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
+  .page-title .right .btn{justify-content:center;min-height:44px;padding-inline:10px;font-size:12.5px}
+  .grid,.stack,.cols-2,.cols-3{gap:14px}
+  .lede{font-size:15.5px}
+  .note{font-size:13px}
+
+  /* tiles: two columns; an odd last tile spans the row */
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .tiles > .tile:last-child:nth-child(odd){grid-column:1 / -1}
+  .tile{padding:11px 12px;gap:10px;align-items:flex-start}
+  .tile .dot{width:30px;height:30px}
+  .tile .dot svg{width:15px;height:15px}
+  .tile .k{font-size:10px;letter-spacing:.06em}
+  .tile .v{font-size:18px;white-space:normal}
+  .tile .v small{font-size:11px;margin-left:3px}
+  .tile .sub{font-size:11.5px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+  /* cards */
+  .card-head{min-height:48px;padding:9px 14px;gap:10px;flex-wrap:wrap}
+  .card-head .ic{width:28px;height:28px}
+  .card-head .ic svg{width:15px;height:15px}
+  .card-head h2,.card-head h3{font-size:15px}
+  .card-head .sep{display:none}
+  .card-head .meta{font-size:11.5px}
+  .card-head .spacer{flex:1 0 auto}
+  .card-body{padding:14px}
+  .card-foot{padding:10px 14px;font-size:12.5px}
+
+  /* lists, checklists */
+  .list > li{grid-template-columns:52px minmax(0,1fr);gap:2px 12px;padding:12px 14px}
+  .list .when{min-width:0;font-size:12px}
+  .list .what b{font-size:14px}
+  .list .what > span{font-size:12.5px}
+  .list .cnt{grid-column:2;text-align:left;font-size:12px;margin-top:2px}
+  .checks label{padding:12px 14px;min-height:48px;gap:12px}
+  .checks input{width:20px;height:20px;margin-top:1px}
+  .checks b{font-size:14.5px}
+  .checks small{font-size:13px}
+
+  /* controls: thumb-sized, and 16px so iOS doesn't zoom */
+  .btn{min-height:42px}
+  .btn.sm{min-height:36px}
+  .chip{padding:5px 7px;font-size:10px}
+  .tabs{margin-inline:-16px;padding-inline:12px;scroll-snap-type:x proximity}
+  .tab{padding:14px 12px;scroll-snap-align:start}
+  .field input,.field select,.field textarea{font-size:16px;padding:11px 12px}
+  .fields{grid-template-columns:1fr}
+
+  /* tables: scroll by default; table.m-stack turns rows into cards */
+  table{font-size:13.5px}
+  th,td{padding:10px 12px}
+  table.m-stack{min-width:0}
+  table.m-stack thead{display:none}
+  table.m-stack,table.m-stack tbody,table.m-stack tr,table.m-stack td{display:block;width:auto}
+  table.m-stack tr{padding:12px 14px;border-top:1px solid var(--line-2)}
+  table.m-stack tbody tr:first-child{border-top:0}
+  table.m-stack td{border:0;padding:0;white-space:normal}
+  table.m-stack td + td{margin-top:6px}
+  table.m-stack td[data-label]::before{content:attr(data-label);display:block;font:700 10px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:2px}
+  table.m-stack tbody tr:hover td{background:none}
+
+  /* season bar: labels live in the legend */
+  .season .seg span{display:none}
+  .season .axis span.mid{display:none}
+
+  /* drawers become bottom sheets */
+  .drawer{top:auto;left:0;right:0;bottom:0;width:100%;max-height:86vh;border-left:0;border-radius:16px 16px 0 0;transform:translateY(104%);padding-bottom:env(safe-area-inset-bottom)}
+  .drawer.is-open{transform:none}
+  .drawer .card-head{border-radius:16px 16px 0 0}
+  .drawer .body{padding:14px}
+  .drawer .foot{padding:10px 14px;flex-wrap:wrap}
+  .drawer .foot .btn{flex:1;justify-content:center}
+  .scrim{z-index:49}
+  .drawer{z-index:50}
+
+  .toast{bottom:calc(74px + env(safe-area-inset-bottom));max-width:calc(100% - 32px);text-align:center}
+  footer.site{padding-block:16px;font-size:12px}
+  footer.site .shell{flex-direction:column;gap:6px}
+}
+@media (max-width:700px) and (prefers-reduced-motion:reduce){
+  .msheet,.mscrim{transition:none}
+}

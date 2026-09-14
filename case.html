@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Case Study · Wall Street Warriors</title>
@@ -59,6 +60,68 @@
 .case-ips textarea{min-height:110px}
 .case-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .case-foot .note{margin-left:auto}
+/* phone-only pieces: hidden on desktop */
+.case-mjump,.case-ml,.case-more{display:none}
+@media (max-width:700px){
+  /* one column in a deliberate order: client, calculator, pattern, past clients, what we build first, IPS builder */
+  main{display:flex;flex-direction:column;gap:14px}
+  main > .page-title{margin-bottom:2px}
+  .grid.main-rail,.grid.main-rail > .stack{display:contents}
+  .case-o-client{order:1}.case-o-calc{order:2}.case-o-pattern{order:3}.case-o-past{order:4}.case-o-build{order:5}.case-o-ips{order:6}
+  .case-section{margin-top:12px}
+  .case-mjump{display:inline-flex}
+  .page-title .right .btn{white-space:nowrap;gap:6px;padding-inline:6px;font-size:12px}
+  #case-calc-card{scroll-margin-top:12px}
+
+  .case-body{gap:14px}
+  .case-placeholder{padding:14px;gap:8px}
+  .case-placeholder h3{font-size:16px}
+  .case-placeholder .when{font-size:13px}
+
+  /* worksheet: name and cash full width, each goal 2-up with its year */
+  .case-ws{grid-template-columns:minmax(0,1fr) 104px;gap:12px 10px}
+  .case-ws > .field:nth-child(1),.case-ws > .field:nth-child(2){grid-column:1 / -1}
+  .case-ws label{white-space:nowrap}
+
+  /* calculator: 2-up numeric fields, one-line labels */
+  .case-calc{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
+  .case-calc label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .case-dl{display:none}
+  .case-ml{display:inline}
+  .case-out{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .case-stat{padding:12px;display:flex;flex-direction:column}
+  .case-stat .kicker{display:block;font-size:10px;letter-spacing:.07em;min-height:2.6em}
+  .case-stat .v{font-size:27px;margin:4px 0}
+  .case-stat .s{font-size:12px;line-height:1.4}
+  .case-chart{height:236px}
+
+  .case-pattern li{padding:10px 14px}
+
+  /* past clients: compact cards, three newest shown, the rest one tap away */
+  .case-past .card-body{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;line-height:1.5}
+  .case-past .card-body > *{flex:1 1 100%;min-width:0;order:2}
+  .case-past .card-body > .eyebrow{flex:1 1 auto;order:0}
+  .case-past .card-body > .chip{flex:0 0 auto;order:1}
+  .case-past h3{font-size:15px;margin-top:0}
+  .case-past .card-body > .note{font-size:13px;line-height:1.45;margin-top:-4px}
+  .case-past .case-tl{margin:2px 4px 0;height:62px}
+  .case-past .case-tl .pt .l{font-size:12px}
+  #case-past > .card:nth-child(n+4){display:none}
+  .case-more{display:block;margin-top:14px}
+  .case-more > summary{list-style:none;display:flex;justify-content:center;width:100%;min-height:46px}
+  .case-more > summary::-webkit-details-marker{display:none}
+  .case-more .when-open,.case-more[open] .when-closed{display:none}
+  .case-more[open] .when-open{display:inline}
+  .case-more > .case-past{margin-top:14px}
+
+  /* IPS builder */
+  .case-ips{gap:14px}
+  .case-ips .hint{line-height:1.45}
+  .case-ips textarea{min-height:104px}
+  .case-foot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .case-foot .btn{justify-content:center;min-height:44px}
+  .case-foot .note{grid-column:1 / -1;margin-left:0}
+}
 </style>
 </head>
 <body>
@@ -96,13 +159,14 @@
     </div>
     <div class="right">
       <a class="btn ghost sm" href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener"><span data-icon="link"></span>SurveyMonkey Apply</a>
+      <a class="btn sm case-mjump" href="#case-calc-card"><span data-icon="target"></span>Return calculator</a>
     </div>
   </div>
 
   <div class="grid main-rail">
     <div class="stack">
 
-      <article class="card reveal">
+      <article class="card reveal case-o-client">
         <div class="card-head"><span class="ic" data-icon="users"></span><h2>This year's client</h2><span class="spacer"></span><span class="meta" id="case-client-meta"></span></div>
         <div class="card-body case-body">
           <div class="case-placeholder" id="case-placeholder"></div>
@@ -121,7 +185,7 @@
         </div>
       </article>
 
-      <article class="card reveal">
+      <article class="card reveal case-o-calc" id="case-calc-card">
         <div class="card-head"><span class="ic" data-icon="target"></span><h2>Required return</h2><span class="spacer"></span><span class="meta">annual, compounded</span></div>
         <div class="card-body case-body">
           <div class="case-calc">
@@ -129,7 +193,7 @@
             <div class="field"><label for="calc-goal">Goal</label><input id="calc-goal" class="num" type="number" min="1" step="1000" inputmode="numeric"></div>
             <div class="field"><label for="calc-years">Years</label><input id="calc-years" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
             <div class="field"><label for="calc-payout">Yearly payout</label><input id="calc-payout" class="num" type="number" min="0" step="500" inputmode="numeric"></div>
-            <div class="field"><label for="calc-paystart">Payouts start in year</label><input id="calc-paystart" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
+            <div class="field"><label for="calc-paystart"><span class="case-dl">Payouts start in year</span><span class="case-ml">Payouts from year</span></label><input id="calc-paystart" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
           </div>
           <p class="note" id="case-calc-note"></p>
           <div class="case-out">
@@ -144,13 +208,13 @@
     </div>
 
     <div class="stack">
-      <article class="card reveal">
+      <article class="card reveal case-o-pattern">
         <div class="card-head"><span class="ic" data-icon="list"></span><h2>The pattern</h2></div>
         <div class="card-body tight"><ul class="case-pattern" id="case-pattern"></ul></div>
         <div class="card-foot">Seven seasons of cases, one shape.</div>
       </article>
 
-      <article class="card reveal">
+      <article class="card reveal case-o-build">
         <div class="card-head"><span class="ic" data-icon="edit"></span><h2>What we build first</h2></div>
         <div class="card-body case-build">
           <div><span class="kicker">IPS outline</span>
@@ -173,13 +237,17 @@
     </div>
   </div>
 
-  <section class="case-section" aria-labelledby="case-past-h">
+  <section class="case-section case-o-past" aria-labelledby="case-past-h">
     <h2 id="case-past-h">Past clients</h2>
     <p class="note">Newest first. The starting cash, the goals and the twist are what to read the new case for.</p>
     <div class="cols-3 case-past" id="case-past"></div>
+    <details class="case-more" id="case-more">
+      <summary class="btn ghost"><span class="when-closed">Show all seasons</span><span class="when-open">Hide older seasons</span></summary>
+      <div class="cols-3 case-past" id="case-past-more"></div>
+    </details>
   </section>
 
-  <section class="case-section" aria-labelledby="case-ips-h">
+  <section class="case-section case-o-ips" aria-labelledby="case-ips-h">
     <article class="card reveal">
       <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="case-ips-h">IPS builder</h2><span class="spacer"></span><span class="meta" id="case-ips-meta"></span></div>
       <div class="card-body"><div class="case-ips" id="case-ips"></div></div>
@@ -308,6 +376,7 @@
     });
     /* x labels */
     var every = N <= 12 ? 1 : N <= 24 ? 2 : 5;
+    while (pw * every / N < 26 && every < N) every = every === 1 ? 2 : every === 2 ? 5 : every * 2; /* thin ticks on narrow charts */
     ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "center";
     for (var y = 0; y <= N; y += every) ctx.fillText(String(y), X(y), h - B + 14);
     ctx.font = "600 10px " + ui; ctx.fillText("YEAR", L + pw / 2, h - 8);
@@ -349,7 +418,7 @@
     }).join("") + "</div>";
   }
   var past = D.pastCases.slice().sort(function (a, b) { return b.season.localeCompare(a.season); });
-  byId("case-past").innerHTML = past.map(function (c) {
+  function pastCard(c) {
     return '<article class="card reveal"><div class="card-body">' +
       '<span class="eyebrow">' + esc(c.season) + "</span>" +
       "<h3>" + esc(c.client) + "</h3>" +
@@ -360,7 +429,11 @@
       timeline(c) +
       "<small>Source: " + esc(c.source) + "</small>" +
     "</div></article>";
-  }).join("");
+  }
+  byId("case-past").innerHTML = past.map(pastCard).join("");
+  /* phone: the three newest show above; the older seasons render again inside a <details> that CSS hides on desktop */
+  byId("case-past-more").innerHTML = past.slice(3).map(pastCard).join("");
+  if (/past=all/.test(location.hash || "")) byId("case-more").open = true;
 
   /* ---------- 6. IPS builder ---------- */
   var IPS = [

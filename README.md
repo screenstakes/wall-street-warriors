@@ -25,6 +25,20 @@ Everything the site shows lives in **`assets/data.js`**. Edit that file, not the
 
 Checkboxes, role picks, the IPS draft and trade-note drafts save in each person's own browser (localStorage). The shared versions live in the team doc.
 
+## Phones
+
+Everything under 700px wide gets the phone layout: a bottom tab bar (Home, Calendar, Case, Rules, More), a compact header, stacked cards instead of tables, a month-grid-plus-agenda calendar, and bottom sheets. The phone rules live in the `@media (max-width:700px)` blocks: the shared layer at the bottom of `assets/site.css`, and page-specific rules in each page's `<style>`. Desktop never sees them.
+
+To check a page at a true 390px phone width (headless Chrome can't size a window that narrow, so the page renders inside a 390px iframe):
+
+```
+bash dev/mobile-check.sh index.html              # probe + screenshots in dev/out/
+bash dev/mobile-check.sh calendar.html e=roster  # with a hash, e.g. an open event sheet
+bash dev/mobile-check.sh rules.html tab=deliverables
+```
+
+The probe fails on horizontal overflow or form fields under 16px (iOS zooms them) and warns on tap targets under 36px or text under 10px. Every page should end `RESULT OK overflow=0 zoom=0 tap<36=0 tiny<10=0`.
+
 ## Hosting
 
 Static files; any host works. Open `index.html` directly to preview.
