@@ -19,9 +19,9 @@
 .dash-next .ring circle{fill:none;stroke-width:9}
 .dash-next .ring .bg{stroke:var(--line-2)}
 .dash-next .ring .fg{stroke:var(--orange);stroke-linecap:round;transition:stroke-dashoffset 1s var(--ease)}
-.dash-next .ring .n{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
-.dash-next .ring .n b{font:700 34px/1 var(--mono);color:var(--navy);display:block}
-.dash-next .ring .n span{font:700 10px/1.2 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;display:block}
+.dash-next .ring .n{position:absolute;inset:14px;display:grid;place-items:center;text-align:center}
+.dash-next .ring .n b{font:700 32px/1 var(--mono);color:var(--navy);display:block}
+.dash-next .ring .n span{font:700 9px/1.2 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;display:block}
 .dash-next h3{font-size:19px;font-weight:700;color:var(--ink);margin-bottom:6px}
 .dash-next .meta{font:600 13px/1.5 var(--mono);color:var(--ink-2)}
 .dash-next .meta .chip{margin-left:8px;vertical-align:1px}
@@ -220,7 +220,12 @@
   var nextDeliv = D.deliverables.filter(function (d) { return !subs[d.id]; })[0];
 
   var SHORT = { release: "Case study drops, Sep 15", "practice-end": "Practice wiped, Sep 25", trading: "Trading begins, Sep 28", roster: "Roster due, Oct 9", notes: "Trading Notes, Oct 23", ips: "IPS due, Nov 6", report: "Final report, Dec 4", finale: "Global Finale, Apr 29" };
-  if (next) { var n = W.daysUntil(next.date); W.countUp($("t-next"), n, 700); $("t-next-u").textContent = n === 1 ? "day" : "days"; $("t-next-s").textContent = SHORT[next.id] || next.title.split(";")[0]; }
+  if (next) {
+    var n = W.daysUntil(next.date);
+    if (n <= 1) { $("t-next").textContent = n === 0 ? "Today" : "Tomorrow"; $("t-next-u").textContent = ""; }
+    else { W.countUp($("t-next"), n, 700); $("t-next-u").textContent = "days"; }
+    $("t-next-s").textContent = SHORT[next.id] || next.title.split(";")[0];
+  }
   W.countUp($("t-trade"), Math.max(0, W.daysUntil(W.eventById("trading").date)), 700);
   W.countUp($("t-final"), Math.max(0, W.daysUntil(W.eventById("report").date)), 700);
   $("t-deliv").textContent = done;
@@ -231,11 +236,14 @@
   /* up next: the next official event, with a ring that fills as the day approaches (window = 14 days) */
   if (next) {
     var days = W.daysUntil(next.date), win = 14, r = 50, C = 2 * Math.PI * r;
-    var frac = Math.max(0, Math.min(1, 1 - days / win));
+    /* the ring fills as the date approaches; inside a day it closes completely so there's no stray gap */
+    var frac = days <= 1 ? 1 : Math.max(0, Math.min(1, 1 - days / win));
+    var big = days === 0 ? "Today" : days === 1 ? "1" : String(days);
+    var lbl = days === 0 ? "9:30 a.m. ET" : days === 1 ? "Tomorrow" : "days";
     $("next-meta").textContent = W.fmtDate(next.date, { weekday: true });
     $("next").innerHTML =
       '<div class="ring"><svg viewBox="0 0 118 118" aria-hidden="true"><circle class="bg" cx="59" cy="59" r="' + r + '"/><circle class="fg" cx="59" cy="59" r="' + r + '" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '"/></svg>' +
-      '<div class="n"><b>' + days + "</b><span>" + (days === 1 ? "day" : "days") + "</span></div></div>" +
+      '<div class="n"><b' + (days === 0 ? ' style="font-size:22px"' : "") + ">" + big + "</b><span>" + lbl + "</span></div></div>" +
       "<div><h3>" + esc(next.title) + '</h3><div class="meta">' + W.fmtDate(next.date, { weekday: true, year: true }) + " · " + W.fmtTimes(next.date) + chipFor(next) + "</div>" +
       '<p class="d">' + esc(next.detail) + "</p>" + (next.action ? '<p class="d"><b>What we do:</b> ' + esc(next.action) + "</p>" : "") +
       '<div class="act"><a class="btn sm" href="calendar.html#e=' + next.id + '">Open in calendar</a></div></div>';
