@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Wall Street Warriors Season Brief</title>
+<meta name="description" content="Our season plan for the 2026–27 Wharton Global High School Investment Competition: dates, rules, past case studies and how teams advance.">
+<meta property="og:title" content="Wall Street Warriors Season Brief">
+<meta property="og:description" content="Dates, rules, past case studies and how teams advance in the 2026–27 Wharton Investment Competition.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2313294B'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23E9C57A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ground:#F2F4F7; --surface:#FFFFFF; --ink:#12213D; --ink-2:#4A556B; --rule:#D8DDE6;
+  --band:#13294B; --band-ink:#E6ECF6; --band-dim:#A9B8D2; --band-line:rgba(230,236,246,.16); --band-field:rgba(230,236,246,.08); --band-edge:rgba(230,236,246,.24);
+  --gold:#8F6A1E; --gold-strong:#B88A2E; --gold-bright:#E9C57A; --head:#E9EDF3;
+  --ok:#1B7549; --ok-soft:#E1F1E8; --warn:#955800; --warn-soft:#FAEED8;
+  --bad:#AD2A20; --bad-soft:#FAE5E2; --info:#2D5395; --info-soft:#E5EBF6; --track:#E6E9EF;
+  --serif:"Iowan Old Style","Charter","Georgia","Noto Serif","Tinos","Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+a{color:var(--info);text-underline-offset:2px}
+a:focus-visible,input:focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.01em}
+p{margin:0}
+.eyebrow{font:600 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+
+.mast{display:grid;gap:10px;padding-block:8px 20px}
+.mast h1{font-size:clamp(40px,7vw,64px);font-weight:700}
+.mast .sub{color:var(--ink-2);font-size:16px;max-width:62ch}
+.nav{display:flex;flex-wrap:wrap;gap:6px 18px;font:500 14px/1.4 var(--sans);padding-top:4px}
+.nav a{color:var(--ink-2);text-decoration:none}
+.nav a:hover{color:var(--ink);text-decoration:underline}
+
+.ticker{background:var(--band);color:var(--band-ink);border-radius:6px;overflow-x:auto}
+.ticker ol{list-style:none;margin:0;padding:0;display:flex;min-width:max-content}
+.ticker li{display:grid;gap:2px;padding:12px 20px;border-right:1px solid var(--band-line)}
+.ticker li:last-child{border-right:0}
+.ticker .k{font:500 11px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--band-dim)}
+.ticker .v{font:700 16px/1.2 var(--mono);color:var(--gold-bright)}
+
+section{padding-top:44px;display:grid;gap:18px}
+section > h2{font-size:clamp(28px,4vw,36px);font-weight:700}
+.lede{font-size:19px;max-width:64ch}
+.note{color:var(--ink-2);font-size:15px;max-width:70ch}
+.h3{font-size:22px;font-weight:700}
+
+.verdict{display:grid;gap:14px;padding-top:36px}
+.verdict h2{font-size:clamp(34px,5.4vw,50px);font-weight:700;max-width:20ch}
+.verdict h2 em{font-style:normal;color:var(--ok)}
+
+.board{background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+.row{display:grid;grid-template-columns:minmax(150px,210px) 1fr auto;gap:6px 22px;align-items:start;padding:16px 20px;border-top:1px solid var(--rule)}
+.row:first-child{border-top:0}
+.row h3{font:600 16px/1.35 var(--sans);letter-spacing:0}
+.row p{color:var(--ink-2);font-size:16px;max-width:60ch}
+.chip{font:700 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:4px;white-space:nowrap;justify-self:end}
+.chip.done{color:var(--ok);background:var(--ok-soft)}
+.chip.check{color:var(--warn);background:var(--warn-soft)}
+.chip.decide{color:var(--bad);background:var(--bad-soft)}
+.chip.info{color:var(--info);background:var(--info-soft)}
+@media (max-width:640px){.row{grid-template-columns:1fr auto}.row p{grid-column:1 / -1}}
+
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.checks li{background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+.checks label{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:14px 18px;cursor:pointer;align-items:start}
+.checks input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--ok)}
+.checks strong{font-weight:600}
+.checks .sub{display:block;color:var(--ink-2);font-size:15px;margin-top:2px}
+.checks input:checked + span{opacity:.55}
+.checks input:checked + span strong{text-decoration:line-through}
+
+.strip{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px 14px;display:grid;gap:10px}
+.track{position:relative;height:30px;border-radius:3px;background:var(--track)}
+.seg{position:absolute;top:0;bottom:0;border-radius:3px}
+.seg.practice{left:1.23%;width:12.35%;background:var(--info)}
+.seg.trade{left:17.28%;width:48.15%;background:var(--gold-strong)}
+.seg.write{left:65.43%;width:34.57%;background:var(--ink-2)}
+.tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.axis{position:relative;height:18px;font:500 11px/1 var(--mono);color:var(--ink-2)}
+.axis span{position:absolute;top:2px;transform:translateX(-50%);white-space:nowrap}
+.axis span.start{transform:none}
+.axis span.end{transform:translateX(-100%)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--ink-2)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+@media (max-width:560px){.axis .mid{display:none}}
+
+.tl{list-style:none;margin:0;padding:0;display:grid}
+.tl li{display:grid;grid-template-columns:150px 1fr;gap:4px 22px;padding:14px 0;border-top:1px solid var(--rule)}
+.tl li:first-child{border-top:0}
+.tl .d{font:700 15px/1.35 var(--mono);color:var(--ink)}
+.tl .d small{display:block;font-weight:400;font-size:12px;color:var(--ink-2)}
+.tl h3{font:600 17px/1.35 var(--sans);letter-spacing:0}
+.tl p{color:var(--ink-2);font-size:15px;max-width:62ch}
+.tl li.key .d{color:var(--gold)}
+.tl li.soft .d,.tl li.soft h3{color:var(--ink-2)}
+.tag{font:700 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;border-radius:3px;margin-left:8px;vertical-align:2px;color:var(--warn);background:var(--warn-soft)}
+@media (max-width:560px){.tl li{grid-template-columns:1fr}}
+
+.fixes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.fix{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;display:grid;gap:8px;align-content:start}
+.fix .when{font:700 12px/1.2 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--bad)}
+.fix.later .when{color:var(--ink-2)}
+.fix h3{font-size:22px;font-weight:700}
+.fix p{color:var(--ink-2);font-size:15.5px}
+
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:12px 16px;border-top:1px solid var(--rule)}
+thead th{border-top:0;font:700 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--head)}
+td:first-child{font-weight:600;white-space:nowrap}
+td.src{font:500 12px/1.4 var(--mono);color:var(--ink-2);white-space:nowrap}
+td.src.off{color:var(--ok)}
+td.src.last{color:var(--warn)}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:20px;display:grid;gap:12px;align-content:start}
+.panel h3{font-size:22px;font-weight:700}
+.panel ul{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--ink-2);font-size:15.5px}
+.panel ul strong{color:var(--ink);font-weight:600}
+
+.calc{background:var(--band);color:var(--band-ink);border-radius:8px;padding:22px;display:grid;gap:16px}
+.calc h3{font-size:24px;font-weight:700;color:var(--band-ink)}
+.calc p{color:var(--band-dim);font-size:15px;max-width:64ch}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.fields label{display:grid;gap:5px;font:600 12px/1.2 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--band-dim)}
+.fields input{font:700 17px/1.2 var(--mono);color:var(--band-ink);background:var(--band-field);border:1px solid var(--band-edge);border-radius:5px;padding:9px 10px;width:100%;font-variant-numeric:tabular-nums}
+.out{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;border-top:1px solid var(--band-line);padding-top:14px}
+.out .big{font:700 44px/1 var(--mono);color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.out .lbl{font-size:14px;color:var(--band-dim)}
+.out .alt{font:600 15px/1.4 var(--mono);color:var(--band-ink)}
+
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+blockquote{margin:0;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;display:grid;gap:10px;align-content:space-between}
+blockquote p{font:500 19px/1.4 var(--serif)}
+blockquote cite{font:500 13px/1.4 var(--sans);font-style:normal;color:var(--ink-2)}
+.pull{font:600 clamp(22px,3vw,28px)/1.3 var(--serif);max-width:40ch;border-left:3px solid var(--gold-strong);padding-left:18px}
+
+.odds{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+.odds div{padding:16px 18px;border-left:1px solid var(--rule);display:grid;gap:4px}
+.odds div:first-child{border-left:0}
+.odds b{font:700 30px/1 var(--mono);font-variant-numeric:tabular-nums}
+.odds span{font-size:14px;color:var(--ink-2)}
+@media (max-width:640px){.odds{grid-template-columns:1fr 1fr}.odds div:nth-child(3){border-left:0}.odds div:nth-child(n+3){border-top:1px solid var(--rule)}}
+
+.dq{margin:0;padding-left:20px;display:grid;gap:8px;max-width:72ch}
+footer{padding-top:44px;display:grid;gap:14px}
+footer h2{font-size:24px;font-weight:700}
+.sources{font-size:14px;color:var(--ink-2);display:grid;gap:6px;padding:0;list-style:none;margin:0}
+@media (prefers-reduced-motion:no-preference){.checks span{transition:opacity .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Wharton Global High School Investment Competition · 2026–27</p>
+  <h1>Wall Street Warriors</h1>
+  <p class="sub">Our season plan. Every date and rule here was checked against Wharton's official competition pages on Sep 14, 2026.</p>
+  <nav class="nav" aria-label="Sections">
+    <a href="#status">Status</a><a href="#week">This week</a><a href="#season">Season</a><a href="#playbook">How we play it</a><a href="#case">The case</a><a href="#rules">Trading rules</a><a href="#judging">How teams advance</a><a href="#dq">Disqualifiers</a>
+  </nav>
+</header>
+
+<div class="ticker" role="region" aria-label="Key dates">
+  <ol>
+    <li><span class="k">Case + practice</span><span class="v">SEP 15</span></li>
+    <li><span class="k">Practice wiped</span><span class="v">SEP 25</span></li>
+    <li><span class="k">Trading begins</span><span class="v">SEP 28</span></li>
+    <li><span class="k">Roster due</span><span class="v">OCT 09</span></li>
+    <li><span class="k">Trading notes</span><span class="v">OCT 23</span></li>
+    <li><span class="k">IPS · trading ends</span><span class="v">NOV 06</span></li>
+    <li><span class="k">Final report</span><span class="v">DEC 04</span></li>
+    <li><span class="k">Global Finale</span><span class="v">APR 29–30</span></li>
+  </ol>
+</div>
+
+<div class="verdict">
+  <h2>We're registered and <em>ready to go.</em></h2>
+  <p class="lede">Coach P registered the team, and Michael is team leader. This year's client case study comes out <strong>Tuesday, Sep 15</strong>. Practice trading runs Sep 15–25. <strong>The real competition starts Sep 28.</strong></p>
+</div>
+
+<section id="status" aria-labelledby="status-h">
+  <h2 id="status-h">Where we stand</h2>
+  <div class="board">
+    <div class="row">
+      <h3>Team registered</h3>
+      <p>Coach P registered Wall Street Warriors before registration closed on Sep 11.</p>
+      <span class="chip done">Done</span>
+    </div>
+    <div class="row">
+      <h3>Trading account</h3>
+      <p>We have one shared login on the Wharton Investment Simulator (WInS). Wharton says not to make separate accounts, so get the login from Michael.</p>
+      <span class="chip done">Done</span>
+    </div>
+    <div class="row">
+      <h3>Team leader</h3>
+      <p>Michael. The leader gets the official emails and submits everything for the team.</p>
+      <span class="chip done">Done</span>
+    </div>
+    <div class="row">
+      <h3>Roster</h3>
+      <p>Michael, Caleb, Dylan and Joe, with Federico as a maybe. We need at least 4 the entire competition, and 5 gives us a cushion. The official roster is due Oct 9.</p>
+      <span class="chip decide">Finalizing</span>
+    </div>
+    <div class="row">
+      <h3>Client case study</h3>
+      <p>Wharton sends it to Michael on Sep 15. He'll post it in the team chat.</p>
+      <span class="chip check">Sep 15</span>
+    </div>
+    <div class="row">
+      <h3>The $300,000</h3>
+      <p>That's the practice portfolio. It gets wiped Sep 25, so experiment all you want. Real starting cash is announced Sep 15. Last season it was $500,000.</p>
+      <span class="chip info">Practice</span>
+    </div>
+  </div>
+</section>
+
+<section id="week" aria-labelledby="week-h">
+  <h2 id="week-h">This week, for everyone</h2>
+  <ul class="checks">
+    <li><label for="c1"><input type="checkbox" id="c1"><span><strong>Read the client case study.</strong><span class="sub">Michael posts it in the chat once it comes out Tuesday. Read it before the meeting.</span></span></label></li>
+    <li><label for="c2"><input type="checkbox" id="c2"><span><strong>Try the practice simulator.</strong><span class="sub">Opens Sep 15 at 9:30 a.m. ET. Place a buy, a sell and a foreign stock so you know how it works. It all resets Sep 25.</span></span></label></li>
+    <li><label for="c3"><input type="checkbox" id="c3"><span><strong>Skim the trading rules below.</strong><span class="sub">Especially the $5 minimum share price and the 200-trade cap.</span></span></label></li>
+    <li><label for="c4"><input type="checkbox" id="c4"><span><strong>Read Part Seven of Michael's notes.</strong><span class="sub">Essentials of Finance, Part Seven: CAPM, DDM and DCF. It's how we'll value stocks.</span></span></label></li>
+    <li><label for="c5"><input type="checkbox" id="c5"><span><strong>Come to the team meeting.</strong><span class="sub">Time goes in the chat. Agenda: the case, roles, and how we'll pick stocks.</span></span></label></li>
+  </ul>
+</section>
+
+<section id="season" aria-labelledby="season-h">
+  <h2 id="season-h">The season</h2>
+  <div class="strip" role="img" aria-label="Season to scale from Sep 14 to Dec 4: practice Sep 15 to 25, trading Sep 28 to Nov 6, final report writing Nov 6 to Dec 4, with roster due Oct 9 and trading notes due Oct 23.">
+    <div class="track">
+      <div class="seg practice"></div>
+      <div class="seg trade"></div>
+      <div class="seg write"></div>
+      <div class="tick" style="left:30.86%"></div>
+      <div class="tick" style="left:48.15%"></div>
+    </div>
+    <div class="axis">
+      <span class="start" style="left:0">SEP 14</span>
+      <span class="mid" style="left:17.28%">SEP 28</span>
+      <span class="mid" style="left:30.86%">OCT 9</span>
+      <span class="mid" style="left:48.15%">OCT 23</span>
+      <span class="mid" style="left:65.43%">NOV 6</span>
+      <span class="end" style="left:100%">DEC 4</span>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--info)"></i>Practice (wiped)</span>
+      <span><i style="background:var(--gold-strong)"></i>Competition trading · 6 weeks</span>
+      <span><i style="background:var(--ink-2)"></i>Final report · 4 weeks</span>
+      <span><i style="background:var(--ink);width:3px"></i>Roster, trading notes</span>
+    </div>
+  </div>
+
+  <ol class="tl">
+    <li class="key"><div class="d">SEP 15<small>Tuesday</small></div><div><h3>Case study and instructions released; practice opens</h3><p>Sent to Michael through SurveyMonkey Apply, Wharton's competition portal. Practice trading starts at 9:30 a.m. ET.</p></div></li>
+    <li><div class="d">SEP 25<small>Fri · 4:00 p.m. ET</small></div><div><h3>Practice ends</h3><p>All practice portfolios are removed. Nothing carries over.</p></div></li>
+    <li class="key"><div class="d">SEP 28<small>Monday</small></div><div><h3>Competition trading begins</h3><p>From here on the team has to stay at 4 to 6 members.</p></div></li>
+    <li class="soft"><div class="d">EARLY OCT<small>date comes Sep 15</small></div><div><h3>First-trade deadline <span class="tag">Last season</span></h3><p>Last season teams had to make at least one trade by Oct 10. This year's date is in the Sep 15 materials.</p></div></li>
+    <li class="key"><div class="d">OCT 9<small>Fri · 5:00 p.m. ET</small></div><div><h3>Official team roster due</h3><p>No one can be added after it's submitted.</p></div></li>
+    <li><div class="d">OCT 23<small>Fri · 5:00 p.m. ET</small></div><div><h3>Trading Notes Analysis due</h3><p>New this season. Our trades get reviewed, so we log the reasoning behind every one from day one.</p></div></li>
+    <li><div class="d">NOV 6<small>Fri · 5:00 p.m. ET</small></div><div><h3>Investment Policy Statement due, and trading ends</h3><p>Wharton's competition portal lists both on the same day.</p></div></li>
+    <li class="key"><div class="d">DEC 4<small>Fri · 5:00 p.m. ET</small></div><div><h3>Final report and school documentation due</h3><p>Semifinalists are chosen from the IPS and this report.</p></div></li>
+    <li class="soft"><div class="d">TBD<small>last season: Jan</small></div><div><h3>Top 50 semifinalists announced</h3><p>Semifinalists need a signed consent and waiver (parent signature if under 18) and a letter on school letterhead.</p></div></li>
+    <li class="soft"><div class="d">TBD<small>last season: wk of Mar 9</small></div><div><h3>Virtual semifinals</h3><p>A short video-call presentation. Every team member has to take part.</p></div></li>
+    <li class="soft"><div class="d">APR 29–30<small>2027 · Thu–Fri</small></div><div><h3>Learning Day and Global Finale, Philadelphia</h3><p>Top 10 teams, live or by video. Travel costs are on the team.</p></div></li>
+  </ol>
+</section>
+
+<section id="playbook" aria-labelledby="playbook-h">
+  <h2 id="playbook-h">How we play it</h2>
+  <div class="fixes">
+    <article class="fix">
+      <span class="when">Sep 15–25</span>
+      <h3>Practice the platform, not the portfolio</h3>
+      <p>Everything in practice is deleted on Sep 25. Use it to learn order entry, how foreign stocks and currency show up, what commissions cost, and what the Rules tab blocks.</p>
+    </article>
+    <article class="fix">
+      <span class="when">Before Sep 28</span>
+      <h3>Write the plan before the first real trade</h3>
+      <p>Judges score how well our strategy fits the client. We keep a shared trade journal from trade one: date, ticker, the reason, which client goal it serves, and the risk. That journal becomes the Oct 23 Trading Notes Analysis.</p>
+    </article>
+    <article class="fix">
+      <span class="when">Sep 28 on</span>
+      <h3>Nobody drops out</h3>
+      <p>If the team falls below 4 members at any point, the whole team is disqualified. If you're not sure you can commit, tell Michael before Sep 25.</p>
+    </article>
+    <article class="fix later">
+      <span class="when">All season</span>
+      <h3>Every word we submit is ours</h3>
+      <p>Wharton allows AI tools for brainstorming, but anything AI-generated in a report has to be cited, and plagiarism gets teams dismissed. We write the IPS and final report ourselves.</p>
+    </article>
+    <article class="fix later">
+      <span class="when">All season</span>
+      <h3>Everyone owns a piece</h3>
+      <p>Wharton requires every member to contribute, and everyone presents at the semifinals. Each person gets a named role (see the role split below).</p>
+    </article>
+    <article class="fix later">
+      <span class="when">All season</span>
+      <h3>No paid help</h3>
+      <p>Paid tutors, education consultants, or outside courses that claim to teach the competition mean automatic disqualification.</p>
+    </article>
+  </div>
+</section>
+
+<section id="case" aria-labelledby="case-h">
+  <h2 id="case-h">What the case study will look like</h2>
+  <p class="lede">Every recent case follows the same pattern. A real Wharton alum is the client, but the money situation is made up for the competition. Our team plays analysts trying to win them as a client.</p>
+
+  <div class="split">
+    <div class="panel">
+      <h3>The pattern</h3>
+      <ul>
+        <li><strong>A dated medium-term goal</strong> in dollars, usually 3 to 5 years out.</li>
+        <li><strong>A long goal</strong> 10 to 15 years out.</li>
+        <li><strong>An impact or values angle</strong> in every case since 2020–21: a foundation, community housing, sustainability.</li>
+        <li><strong>A tension to resolve</strong>, like growing the money while paying some of it out.</li>
+        <li><strong>No contacting the client.</strong> It's an explicit rule.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>What we build first</h3>
+      <ul>
+        <li><strong>IPS outline:</strong> return goal, risk (ability vs. willingness), time horizon for each goal, cash needs and payouts, taxes and legal, the client's values.</li>
+        <li><strong>Trade note template:</strong> thesis, client goal served, key numbers (beta, P/E), risk, exit plan.</li>
+        <li><strong>Two buckets:</strong> a safer one for the near-term goal and a growth one for the long goal. Both past reports we found used this.</li>
+        <li><strong>Michael's notes:</strong> Part Two (growing annuities) covers payout math; Part Seven covers valuing stocks.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Season</th><th>Client</th><th>The scenario</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>2025–26</td><td>Connor Barwin, former NFL player, founder of the Make the World Better foundation, Philadelphia</td><td>Grow $500,000 to at least $1.5M by 2036 while paying community grants starting in 2029, to fund upgraded courts, fields and facilities. First case built around a foundation.</td><td class="src">client: official<br>numbers: case copy</td></tr>
+        <tr><td>2024–25</td><td>Ladi Ayoola, 32, Visa, Atlanta</td><td>$100,000 for a three-phase housing and community hub in Abuja, Nigeria: at least five $10,000 housing units by 2030, then a $50,000 youth training center by 2040.</td><td class="src">official case page</td></tr>
+        <tr><td>2023–24</td><td>Hilary Ash, 32, ex-BCG, LA 2028 Olympics</td><td>$100,000 to renovate a South American property within 5 years and start a women-owned sports consulting firm within 15.</td><td class="src">secondary</td></tr>
+        <tr><td>2022–23</td><td>Peter Wang Hjemdahl, 25, co-founder of rePurpose Global</td><td>$20,000 must earn at least $10,000 in 5 years to fund startup grants; a Miami wellness center in 15 years; cares about ocean sustainability.</td><td class="src">official case page</td></tr>
+        <tr><td>2021–22</td><td>Nichole Jordan, SVP at Via, San Francisco</td><td>A $5,000-a-year scholarship for at least 10 years, and generational wealth for six nieces and nephews.</td><td class="src">official case page</td></tr>
+        <tr><td>2020–21</td><td>Florian Hagenbuch, co-CEO of Loft, São Paulo</td><td>At least $10,000 profit in 10 weeks toward a Palmeiras football club buy-in, with at least 20% in companies matching his values.</td><td class="src">official case page</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="calc">
+    <h3>Required return</h3>
+    <p>The yearly return a client's goal needs, which is the first number in our IPS. Plug in this year's client numbers. The example is last season's case; the $10,000 yearly payout is a stand-in, since the case said grants start in year three and can rise above $10,000.</p>
+    <div class="fields">
+      <label for="f-start">Starting money<input id="f-start" type="number" inputmode="decimal" value="500000" min="1" step="1000"></label>
+      <label for="f-target">Goal<input id="f-target" type="number" inputmode="decimal" value="1500000" min="1" step="1000"></label>
+      <label for="f-years">Years<input id="f-years" type="number" inputmode="numeric" value="10" min="1" max="60" step="1"></label>
+      <label for="f-pay">Yearly payout<input id="f-pay" type="number" inputmode="decimal" value="10000" min="0" step="1000"></label>
+      <label for="f-paystart">Payouts start in year<input id="f-paystart" type="number" inputmode="numeric" value="3" min="1" max="60" step="1"></label>
+    </div>
+    <div class="out" aria-live="polite">
+      <div><div class="big" id="r-main">12.5%</div><div class="lbl">per year, with payouts</div></div>
+      <div><div class="alt" id="r-base">11.6%</div><div class="lbl">per year if nothing is paid out</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="rules" aria-labelledby="rules-h">
+  <h2 id="rules-h">Trading rules</h2>
+  <p class="note">This year's trading requirements come out Sep 15. The rows marked last season are the 2025–26 rules, which are the best guide until then.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Rule</th><th>What we know</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Rankings</td><td>"Your team's standings on WInS have little to do with the final outcome."</td><td class="src off">Official · this season</td></tr>
+        <tr><td>Practice</td><td>Sep 15–25, ends 4:00 p.m. ET; all practice portfolios removed</td><td class="src off">Official · this season</td></tr>
+        <tr><td>International</td><td>Domestic and international stocks allowed; currency converts automatically</td><td class="src off">Official</td></tr>
+        <tr><td>Hours</td><td>9:30 a.m.–4:00 p.m. ET weekdays; after-hours U.S. orders fill at the next open</td><td class="src off">Official</td></tr>
+        <tr><td>Starting cash</td><td>$500,000 last season, $100,000 every year before that. The $300,000 on our dashboard is practice.</td><td class="src last">Last season</td></tr>
+        <tr><td>What we can buy</td><td>Any stock priced $5 or more on any exchange; ETFs from Wharton's approved list (at least one required); Treasuries from the approved list (optional)</td><td class="src last">Last season</td></tr>
+        <tr><td>Trade cap</td><td>200 trades; each buy or sell counts as one</td><td class="src last">Last season</td></tr>
+        <tr><td>Commissions</td><td>$25 per stock trade, $10 per Treasury trade</td><td class="src last">Last season</td></tr>
+        <tr><td>Short selling, margin</td><td>Not allowed</td><td class="src last">2023–24</td></tr>
+        <tr><td>First trade</td><td>At least one trade by early October (Oct 10 last season)</td><td class="src last">Last season</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="judging" aria-labelledby="judging-h">
+  <h2 id="judging-h">How teams actually advance</h2>
+  <p class="pull">"Success is not determined by portfolio performance. Teams are evaluated on the quality of their investment strategy, how well it aligns with their client's objectives, the strength of their research and analysis, and their ability to clearly communicate and defend their recommendations."</p>
+  <p class="note">From the official competition page. The top 50 are picked from the IPS and final report, which were read last season by Wharton student evaluators and asset managers from Aberdeen Investments.</p>
+
+  <div class="quotes">
+    <blockquote><p>"The one thing that stood out to me was the ability to connect the client's objectives to an investment strategy."</p><cite>Joshua Tam, 2024 semifinal judge</cite></blockquote>
+    <blockquote><p>"Less is more, and having an explainable strategy."</p><cite>DMV's Finest, Thomas Jefferson HS, 2023 champions</cite></blockquote>
+    <blockquote><p>"Efficient frontier, cross correlations, diversification or portfolio theory… That differentiated better performances."</p><cite>Vikas Keswani, 2024 finals judge</cite></blockquote>
+  </div>
+
+  <h3 class="h3">2025–26, by the numbers</h3>
+  <div class="odds">
+    <div><b>6,300+</b><span>teams registered</span></div>
+    <div><b>~2,300</b><span>turned in a final report</span></div>
+    <div><b>50</b><span>semifinalists</span></div>
+    <div><b>11</b><span>finalists</span></div>
+  </div>
+  <p class="note">Nearly two out of three registered teams never turn in a final report. Finishing every deliverable on time already puts us in roughly the top third.</p>
+
+  <h3 class="h3">Role split</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Role</th><th>Who</th><th>Owns</th></tr></thead>
+      <tbody>
+        <tr><td>Leader + strategy</td><td>Michael</td><td>The plan, the IPS draft, every submission to Wharton</td></tr>
+        <tr><td>Analysis</td><td>Joe</td><td>Required-return math, correlations, diversification and risk numbers in a shared sheet</td></tr>
+        <tr><td>Client lead</td><td>Pick at the meeting</td><td>Knows the case cold; asks "does this fit the client?" on every pick</td></tr>
+        <tr><td>Trader + journal</td><td>Pick at the meeting</td><td>Places only team-approved trades and logs the reasoning for Trading Notes</td></tr>
+        <tr><td>Writer + editor</td><td>Pick at the meeting</td><td>One voice across Trading Notes, the IPS and the final report; citations</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">On top of their role, each person covers one sector. Weekly rhythm: one hour of sector pitches tied back to the client, a vote, then a journal entry.</p>
+</section>
+
+<section id="dq" aria-labelledby="dq-h">
+  <h2 id="dq-h">Ways to get disqualified</h2>
+  <ol class="dq">
+    <li>Falling below 4 or going above 6 members at any point in the competition.</li>
+    <li>Adding members after the official roster is submitted.</li>
+    <li>Missing deadlines, which makes the team ineligible for the semifinals.</li>
+    <li>Paid advisors, education consultants, or a non-Wharton course that claims to teach the competition.</li>
+    <li>Members from another school, or a student on two teams.</li>
+    <li>Plagiarism, including AI-written work passed off as your own.</li>
+    <li>The advisor making decisions for the team. Coach P can guide, not decide.</li>
+    <li>Contacting the case study client.</li>
+  </ol>
+</section>
+
+<footer>
+  <h2>Sources</h2>
+  <ul class="sources">
+    <li><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/">Competition home: dates and judging</a> · <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/faq/">FAQ</a> · <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/">Rules &amp; roles</a> · <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/deliverables/">Deliverables</a></li>
+    <li><a href="https://globalyouth.wharton.upenn.edu/news/a-winning-season-thousands-of-teams-bigger-stakes-and-the-top-50-2026-investment-competition-teams-revealed/">2026 Top 50: last season's case, $500K, team counts</a> · <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/archive/">Archive of past clients and winners</a> · <a href="https://globalyouth.wharton.upenn.edu/investment-competition/previous-winners/case-study-for-2024-2025/">2024–25 case</a></li>
+    <li><a href="https://globalyouth.wharton.upenn.edu/essential-educator-blog/the-essential-educator-10-tips-for-teaching-the-wharton-investment-competition/">10 tips for the competition (best single read)</a> · <a href="https://globalyouth.wharton.upenn.edu/news/wharton-investment-competition-tales-from-the-2023-teams/">Tales from the 2023 teams</a> · <a href="https://globalyouth.wharton.upenn.edu/glossary/">Wharton video glossary</a></li>
+    <li>Last season's trading rules come from copies of the 2025–26 welcome email and rules. Treat them as a guide until the Sep 15 materials confirm them.</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY="wsw-brief-checks", saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+  var boxes=document.querySelectorAll(".checks input");
+  for(var i=0;i<boxes.length;i++){(function(box){
+    if(saved[box.id]) box.checked=true;
+    box.addEventListener("change",function(){
+      saved[box.id]=box.checked;
+      try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+    });
+  })(boxes[i]);}
+
+  function $(id){return document.getElementById(id)}
+  function endBalance(r,start,years,pay,payStart){
+    var b=start;
+    for(var y=1;y<=years;y++){ b=b*(1+r); if(pay>0&&y>=payStart) b-=pay; }
+    return b;
+  }
+  function solve(start,target,years,pay,payStart){
+    var lo=-0.99,hi=5;
+    if(endBalance(hi,start,years,pay,payStart)<target) return null;
+    for(var i=0;i<200;i++){
+      var mid=(lo+hi)/2;
+      if(endBalance(mid,start,years,pay,payStart)<target) lo=mid; else hi=mid;
+    }
+    return (lo+hi)/2;
+  }
+  function pct(r){return r===null?"n/a":(r*100).toFixed(1)+"%"}
+  function run(){
+    var start=+$("f-start").value, target=+$("f-target").value, years=Math.round(+$("f-years").value);
+    var pay=+$("f-pay").value||0, payStart=Math.round(+$("f-paystart").value)||1;
+    if(!(start>0&&target>0&&years>0)){ $("r-main").textContent="–"; $("r-base").textContent="–"; return; }
+    $("r-main").textContent=pct(solve(start,target,years,pay,payStart));
+    $("r-base").textContent=pct(Math.pow(target/start,1/years)-1);
+  }
+  var ids=["f-start","f-target","f-years","f-pay","f-paystart"];
+  for(var j=0;j<ids.length;j++) $(ids[j]).addEventListener("input",run);
+  run();
+})();
+</script>
+</body>
+</html>
