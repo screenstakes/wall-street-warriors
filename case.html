@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Case Study · Wall Street Warriors</title>
+<meta name="description" content="This year's client, the pattern behind every Wharton case, the past clients, and the required-return math for day one.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.case-body{display:grid;gap:16px}
+.case-placeholder{border:2px dashed var(--line);border-radius:var(--r);background:var(--well);padding:22px 20px;display:grid;gap:8px;justify-items:start}
+.case-placeholder h3{font-size:17px;color:var(--navy)}
+.case-placeholder .when{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font:600 13.5px/1.3 var(--mono);color:var(--ink-2)}
+.case-h3{font-size:15px;color:var(--navy);margin-top:4px}
+.case-ws{display:grid;grid-template-columns:3fr 1fr;gap:12px}
+.case-full{grid-column:1/-1}
+.case-calc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.case-calc{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.case-calc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.case-out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:520px){.case-out{grid-template-columns:1fr}}
+.case-stat{background:var(--well);border:1px solid var(--line-2);border-radius:var(--r);padding:14px 16px}
+.case-stat .v{display:block;font:700 34px/1.1 var(--mono);color:var(--navy);margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.case-stat.primary .v{color:var(--blue)}
+.case-stat .s{font-size:12.5px;color:var(--ink-3)}
+.case-chart{display:block;width:100%;height:260px}
+.case-pattern{list-style:none;margin:0;padding:0}
+.case-pattern li{padding:11px 18px;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.case-pattern li:first-child{border-top:0}
+.case-pattern b{display:block;font:600 14px/1.35 var(--ui);color:var(--ink);margin-bottom:1px}
+.case-build{display:grid;gap:14px;font-size:14px}
+.case-build ol{margin:4px 0 0;padding-left:20px;color:var(--ink-2)}
+.case-build ol li{margin-top:3px}
+.case-build .kicker{display:block;margin-bottom:2px}
+.case-section{margin-top:28px}
+.case-section > h2{font-size:18px;color:var(--navy);margin-bottom:4px}
+.case-section > p{margin-bottom:14px}
+.case-past .card-body{display:grid;gap:10px;font-size:14px}
+.case-past h3{font-size:16px;color:var(--ink);margin-top:2px}
+.case-past .chip{justify-self:start}
+.case-past small{font-size:12px;color:var(--ink-3)}
+.case-tl{position:relative;height:64px;margin:6px 4px 0}
+.case-tl .line{position:absolute;left:0;right:0;top:30px;height:2px;background:var(--line)}
+.case-tl .pt{position:absolute;top:0;width:0}
+.case-tl .pt i{position:absolute;left:-5px;top:25px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 1px var(--blue)}
+.case-tl .pt .y{position:absolute;top:2px;font:700 11px/1.2 var(--mono);color:var(--navy);white-space:nowrap}
+.case-tl .pt .l{position:absolute;top:42px;font-size:11.5px;line-height:1.2;color:var(--ink-2);white-space:nowrap}
+.case-tl .pt.mid .y,.case-tl .pt.mid .l{transform:translateX(-50%)}
+.case-tl .pt.end .y,.case-tl .pt.end .l{transform:translateX(-100%)}
+.case-ips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:700px){.case-ips{grid-template-columns:1fr}}
+.case-ips .hint{font-size:12.5px;color:var(--ink-3);margin-top:-2px}
+.case-ips textarea{min-height:110px}
+.case-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.case-foot .note{margin-left:auto}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="rules.html">Rules</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>Case Study</h1>
+      <p>The 2026–27 client arrives Sep 15. Until then: the pattern, the past clients, and the math we need on day one.</p>
+    </div>
+    <div class="right">
+      <a class="btn ghost sm" href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener"><span data-icon="link"></span>SurveyMonkey Apply</a>
+    </div>
+  </div>
+
+  <div class="grid main-rail">
+    <div class="stack">
+
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="users"></span><h2>This year's client</h2><span class="spacer"></span><span class="meta" id="case-client-meta"></span></div>
+        <div class="card-body case-body">
+          <div class="case-placeholder" id="case-placeholder"></div>
+          <h3 class="case-h3">Client brief worksheet</h3>
+          <div class="case-ws" id="case-ws">
+            <div class="field"><label for="client-name">Client name</label><input id="client-name" type="text" autocomplete="off" placeholder="Announced Sep 15"></div>
+            <div class="field"><label for="client-cash">Starting cash</label><input id="client-cash" class="num" type="number" min="0" step="1000" inputmode="numeric" placeholder="in dollars"></div>
+            <div class="field"><label for="client-goal1">Goal 1</label><input id="client-goal1" type="text" autocomplete="off" placeholder="The dated dollar goal"></div>
+            <div class="field"><label for="client-goal1-year">Target year</label><input id="client-goal1-year" class="num" type="number" min="2026" max="2100" step="1" inputmode="numeric" placeholder="YYYY"></div>
+            <div class="field"><label for="client-goal2">Goal 2</label><input id="client-goal2" type="text" autocomplete="off" placeholder="The long goal"></div>
+            <div class="field"><label for="client-goal2-year">Target year</label><input id="client-goal2-year" class="num" type="number" min="2026" max="2100" step="1" inputmode="numeric" placeholder="YYYY"></div>
+            <div class="field case-full"><label for="client-values">Values and impact preferences</label><textarea id="client-values" placeholder="What the client cares about, in the case's own words"></textarea></div>
+            <div class="field case-full"><label for="client-constraints">Constraints</label><textarea id="client-constraints" placeholder="Liquidity, payouts, exclusions, anything the case rules out"></textarea></div>
+          </div>
+          <p class="note">Saved in this browser only. Once the case is out, the real numbers go into the site's data file so everyone sees them.</p>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="target"></span><h2>Required return</h2><span class="spacer"></span><span class="meta">annual, compounded</span></div>
+        <div class="card-body case-body">
+          <div class="case-calc">
+            <div class="field"><label for="calc-start">Starting money</label><input id="calc-start" class="num" type="number" min="1" step="1000" inputmode="numeric"></div>
+            <div class="field"><label for="calc-goal">Goal</label><input id="calc-goal" class="num" type="number" min="1" step="1000" inputmode="numeric"></div>
+            <div class="field"><label for="calc-years">Years</label><input id="calc-years" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
+            <div class="field"><label for="calc-payout">Yearly payout</label><input id="calc-payout" class="num" type="number" min="0" step="500" inputmode="numeric"></div>
+            <div class="field"><label for="calc-paystart">Payouts start in year</label><input id="calc-paystart" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
+          </div>
+          <p class="note" id="case-calc-note"></p>
+          <div class="case-out">
+            <div class="case-stat primary"><span class="kicker">Required return with payouts</span><span class="v num" id="case-req">—</span><span class="s" id="case-req-sub"></span></div>
+            <div class="case-stat"><span class="kicker">No-payout CAGR</span><span class="v num" id="case-cagr">—</span><span class="s">(goal ÷ start)<sup>1/years</sup> − 1</span></div>
+          </div>
+          <canvas class="case-chart" id="case-chart" role="img" aria-label="Balance by year at the required return"></canvas>
+          <p class="note">Balance at the end of each year at the required return. Dashed line is the goal. Shaded years have a payout. The blue path lands on the goal by construction; the question is whether the rate is realistic for the risk the client can take.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="stack">
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="list"></span><h2>The pattern</h2></div>
+        <div class="card-body tight"><ul class="case-pattern" id="case-pattern"></ul></div>
+        <div class="card-foot">Seven seasons of cases, one shape.</div>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="edit"></span><h2>What we build first</h2></div>
+        <div class="card-body case-build">
+          <div><span class="kicker">IPS outline</span>
+            <ol>
+              <li>Return objective</li>
+              <li>Risk: ability vs. willingness</li>
+              <li>Time horizon per goal</li>
+              <li>Liquidity and payouts</li>
+              <li>Taxes and legal</li>
+              <li>Unique circumstances and values</li>
+              <li>Target allocation</li>
+              <li>Monitoring</li>
+            </ol>
+          </div>
+          <div><span class="kicker">Trade-note template</span>One note per trade from trade one. The template is in the <a href="playbook.html#notes">Playbook</a>.</div>
+          <div><span class="kicker">Two buckets</span>A near bucket that has to be there on the goal date, and a growth bucket for the long goal. Each holding lives in one of them.</div>
+          <div><span class="kicker">Reference</span>Michael's Essentials of Finance notes, shared in the team chat. Part Two covers growing annuities and payouts. Part Seven covers CAPM, DDM and DCF.</div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <section class="case-section" aria-labelledby="case-past-h">
+    <h2 id="case-past-h">Past clients</h2>
+    <p class="note">Newest first. The starting cash, the goals and the twist are what to read the new case for.</p>
+    <div class="cols-3 case-past" id="case-past"></div>
+  </section>
+
+  <section class="case-section" aria-labelledby="case-ips-h">
+    <article class="card reveal">
+      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="case-ips-h">IPS builder</h2><span class="spacer"></span><span class="meta" id="case-ips-meta"></span></div>
+      <div class="card-body"><div class="case-ips" id="case-ips"></div></div>
+      <div class="card-foot case-foot">
+        <button class="btn orange" type="button" id="case-ips-copy"><span data-icon="copy"></span>Copy as text</button>
+        <button class="btn ghost" type="button" id="case-ips-clear"><span data-icon="x"></span>Clear draft</button>
+        <span class="note">Private to this browser. The shared draft lives in the team doc.</span>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
+    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function (W) {
+  var D = W.data;
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function byId(id) { return document.getElementById(id); }
+  function num(el) { var v = parseFloat(el.value); return isFinite(v) ? v : NaN; }
+  var css = getComputedStyle(document.documentElement);
+  function tok(name) { return css.getPropertyValue(name).trim(); }
+  function rgba(hex, a) { var n = parseInt(hex.slice(1), 16); return "rgba(" + (n >> 16 & 255) + "," + (n >> 8 & 255) + "," + (n & 255) + "," + a + ")"; }
+  var thisYear = W.now().getFullYear();
+
+  /* ---------- 1. this year's client ---------- */
+  var release = W.eventById("release");
+  var n = W.daysUntil(release.date);
+  byId("case-client-meta").textContent = n >= 0 ? "TBD" : "released " + W.fmtDate(release.date);
+  byId("case-placeholder").innerHTML =
+    '<span class="chip ' + (n <= 7 && n >= 0 ? "decide" : n < 0 ? "tbd" : "watch") + '">' + esc(W.relative(n)) + "</span>" +
+    "<h3>" + (n >= 0 ? "Released " : "Was released ") + esc(W.fmtDate(release.date, { weekday: true })) + " through " + esc(D.team.portal.name) + "</h3>" +
+    '<span class="when"><span>' + esc(W.fmtTimes(release.date)) + "</span></span>" +
+    '<p class="note">' + esc(D.team.portal.note) + " " + (n >= 0 ? "The moment the invite lands, the case goes in the team chat and the numbers below get filled in." : "If this card still says TBD, the case has not been added to the data file yet.") + "</p>" +
+    '<a class="btn sm" href="' + esc(D.team.portal.url) + '" target="_blank" rel="noopener"><span data-icon="link"></span>Open the portal</a>';
+
+  var WS = ["name", "cash", "goal1", "goal1-year", "goal2", "goal2-year", "values", "constraints"];
+  var client = W.store.get("client", {});
+  WS.forEach(function (k) { var el = byId("client-" + k); if (client[k] !== undefined && client[k] !== null) el.value = client[k]; });
+  byId("case-ws").addEventListener("input", function (e) {
+    WS.forEach(function (k) { var el = byId("client-" + k); client[k] = el.type === "number" ? (isFinite(num(el)) ? num(el) : "") : el.value; });
+    W.store.set("client", client);
+    if (e.target.id === "client-cash" && client.cash > 0) { byId("calc-start").value = client.cash; calc(); }
+    if (e.target.id === "client-goal1-year" && client["goal1-year"] > thisYear) { byId("calc-years").value = client["goal1-year"] - thisYear; calc(); }
+  });
+
+  /* ---------- 2. required return ---------- */
+  var last = D.pastCases[0];
+  var defaults = { start: last.cash, goal: 1500000, years: 10, payout: 10000, paystart: 3 };
+  var prefilled = [];
+  if (client.cash > 0) { defaults.start = client.cash; prefilled.push("starting cash"); }
+  if (client["goal1-year"] > thisYear) { defaults.years = client["goal1-year"] - thisYear; prefilled.push("years to Goal 1"); }
+  Object.keys(defaults).forEach(function (k) { byId("calc-" + k).value = defaults[k]; });
+  byId("case-calc-note").textContent = (prefilled.length ? "Prefilled from the worksheet (" + prefilled.join(", ") + "); the rest is " : "Prefilled with ") +
+    "last season's case: " + W.money(last.cash) + " to " + W.money(1500000) + " in ten years. The $10,000 yearly payout is a stand-in. That case said grants start in year three and can rise above $10,000.";
+
+  function path(start, r, years, payout, payStart) {
+    var b = start, out = [start];
+    for (var y = 1; y <= years; y++) { b = b * (1 + r); if (payout > 0 && y >= payStart) b -= payout; out.push(b); }
+    return out;
+  }
+  function solve(start, goal, years, payout, payStart) {
+    function f(r) { var p = path(start, r, years, payout, payStart); return p[p.length - 1] - goal; }
+    var lo = -0.99, hi = 5;
+    if (f(hi) < 0) return NaN;
+    if (f(lo) > 0) return lo;
+    for (var i = 0; i < 200; i++) { var mid = (lo + hi) / 2; if (f(mid) >= 0) hi = mid; else lo = mid; }
+    return (lo + hi) / 2;
+  }
+  var state = null;
+  function calc() {
+    var start = num(byId("calc-start")), goal = num(byId("calc-goal")), years = Math.round(num(byId("calc-years")));
+    var payout = num(byId("calc-payout")), payStart = Math.round(num(byId("calc-paystart")));
+    if (!(payout >= 0)) payout = 0;
+    if (!(payStart >= 1)) payStart = 1;
+    var ok = start > 0 && goal > 0 && years >= 1 && years <= 60;
+    var r = ok ? solve(start, goal, years, payout, payStart) : NaN;
+    var cagr = ok ? Math.pow(goal / start, 1 / years) - 1 : NaN;
+    byId("case-req").textContent = isFinite(r) ? W.pct(r, 2) : "—";
+    byId("case-cagr").textContent = isFinite(cagr) ? W.pct(cagr, 2) : "—";
+    var paid = ok && payout > 0 && payStart <= years ? (years - payStart + 1) * payout : 0;
+    byId("case-req-sub").textContent = !ok ? "Enter a start, a goal and at least one year." : !isFinite(r) ? "No rate under 500% reaches this goal with those payouts." :
+      paid > 0 ? W.money(paid) + " paid out over " + (years - payStart + 1) + " years, " + W.money(payout) + " each" : "No payouts, so this equals the CAGR";
+    state = ok && isFinite(r) ? { start: start, goal: goal, years: years, payout: payout, payStart: payStart, r: r, path: path(start, r, years, payout, payStart) } : null;
+    draw();
+  }
+  ["start", "goal", "years", "payout", "paystart"].forEach(function (k) { byId("calc-" + k).addEventListener("input", calc); });
+
+  var canvas = byId("case-chart"), ctx = canvas.getContext("2d");
+  var mono = tok("--mono"), ui = tok("--ui");
+  function kfmt(v) { return "$" + Math.round(v / 1000).toLocaleString("en-US") + "K"; }
+  function niceStep(raw) { var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), q = raw / mag; return (q < 1.5 ? 1 : q < 3 ? 2 : q < 7 ? 5 : 10) * mag; }
+  function draw() {
+    var w = canvas.clientWidth || 600, h = canvas.clientHeight || 260, dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = tok("--card"); ctx.fillRect(0, 0, w, h);
+    ctx.font = "600 11px " + mono; ctx.textBaseline = "middle";
+    if (!state) { ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "center"; ctx.fillText("Nothing to chart yet", w / 2, h / 2); return; }
+    var s = state, N = s.years;
+    var yMin = Math.min(0, Math.min.apply(null, s.path)), yMax = Math.max(s.goal, Math.max.apply(null, s.path)) * 1.1;
+    var step = niceStep((yMax - yMin) / 4), ticks = [];
+    for (var t = Math.ceil(yMin / step) * step; t <= yMax; t += step) ticks.push(t);
+    var labW = 0; ticks.forEach(function (t) { labW = Math.max(labW, ctx.measureText(kfmt(t)).width); });
+    var L = Math.ceil(labW) + 14, R = 14, T = 18, B = 36;
+    var pw = w - L - R, ph = h - T - B;
+    function X(y) { return L + pw * y / N; }
+    function Y(v) { return T + ph * (1 - (v - yMin) / (yMax - yMin)); }
+    /* payout band */
+    if (s.payout > 0 && s.payStart <= N) {
+      ctx.fillStyle = tok("--warn-soft"); ctx.fillRect(X(s.payStart - 1), T, X(N) - X(s.payStart - 1), ph);
+      var ly = Math.abs(Y(s.goal) - (T + 9)) < 14 ? Y(s.goal) + 13 : T + 9;
+      ctx.fillStyle = tok("--warn"); ctx.textAlign = "left"; ctx.fillText("payouts", X(s.payStart - 1) + 6, ly);
+    }
+    /* grid + y labels */
+    ticks.forEach(function (t) {
+      ctx.strokeStyle = tok("--line-2"); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, Y(t) + .5); ctx.lineTo(w - R, Y(t) + .5); ctx.stroke();
+      ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "right"; ctx.fillText(kfmt(t), L - 8, Y(t));
+    });
+    /* x labels */
+    var every = N <= 12 ? 1 : N <= 24 ? 2 : 5;
+    ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "center";
+    for (var y = 0; y <= N; y += every) ctx.fillText(String(y), X(y), h - B + 14);
+    ctx.font = "600 10px " + ui; ctx.fillText("YEAR", L + pw / 2, h - 8);
+    ctx.font = "600 11px " + mono;
+    /* area + line */
+    var base = Y(Math.max(yMin, 0));
+    ctx.beginPath(); ctx.moveTo(X(0), base);
+    s.path.forEach(function (v, i) { ctx.lineTo(X(i), Y(v)); });
+    ctx.lineTo(X(N), base); ctx.closePath(); ctx.fillStyle = rgba(tok("--blue"), .14); ctx.fill();
+    ctx.beginPath(); s.path.forEach(function (v, i) { if (i) ctx.lineTo(X(i), Y(v)); else ctx.moveTo(X(i), Y(v)); });
+    ctx.strokeStyle = tok("--blue"); ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.stroke();
+    if (N <= 25) s.path.forEach(function (v, i) { ctx.beginPath(); ctx.arc(X(i), Y(v), 3, 0, Math.PI * 2); ctx.fillStyle = "#fff"; ctx.fill(); ctx.strokeStyle = tok("--blue"); ctx.lineWidth = 1.5; ctx.stroke(); });
+    /* goal line */
+    ctx.setLineDash([5, 4]); ctx.strokeStyle = tok("--orange-deep"); ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(L, Y(s.goal)); ctx.lineTo(w - R, Y(s.goal)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = tok("--orange-ink"); ctx.textAlign = "right"; ctx.fillText("goal " + kfmt(s.goal), w - R - 4, Y(s.goal) - 9);
+    /* start label, unless a tick already says it */
+    var onTick = ticks.some(function (t) { return Math.abs(Y(t) - Y(s.start)) < 6; });
+    if (!onTick) { ctx.fillStyle = tok("--navy"); ctx.textAlign = "left"; ctx.fillText(kfmt(s.start), X(0) + 6, Y(s.start) - 10); }
+  }
+  var raf = null;
+  function redraw() { if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { raf = null; draw(); }); }
+  if (window.ResizeObserver) new ResizeObserver(redraw).observe(canvas.parentNode); else window.addEventListener("resize", redraw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+  calc();
+
+  /* ---------- 3. the pattern ---------- */
+  byId("case-pattern").innerHTML = D.casePattern.map(function (p) { return "<li><b>" + esc(p.t) + "</b>" + esc(p.d) + "</li>"; }).join("");
+
+  /* ---------- 5. past clients ---------- */
+  function timeline(c) {
+    var startYear = parseInt(c.season.slice(0, 4), 10);
+    var years = c.goals.map(function (g) { return g.year; });
+    var endYear = Math.max.apply(null, years.concat([startYear + 1]));
+    var span = endYear - startYear;
+    return '<div class="case-tl" aria-label="Goal years">' + '<div class="line"></div>' + c.goals.map(function (g) {
+      var p = (g.year - startYear) / span, cls = p < .18 ? "start" : p > .82 ? "end" : "mid";
+      return '<div class="pt ' + cls + '" style="left:' + (p * 100).toFixed(1) + '%"><span class="y">' + esc(g.year) + "</span><i></i><span class=\"l\">" + esc(g.label) + "</span></div>";
+    }).join("") + "</div>";
+  }
+  var past = D.pastCases.slice().sort(function (a, b) { return b.season.localeCompare(a.season); });
+  byId("case-past").innerHTML = past.map(function (c) {
+    return '<article class="card reveal"><div class="card-body">' +
+      '<span class="eyebrow">' + esc(c.season) + "</span>" +
+      "<h3>" + esc(c.client) + "</h3>" +
+      '<p class="note">' + esc(c.who) + "</p>" +
+      '<span class="chip tbd">' + esc(W.money(c.cash)) + " to start</span>" +
+      "<p>" + esc(c.scenario) + "</p>" +
+      "<p><b>The twist:</b> " + esc(c.twist) + "</p>" +
+      timeline(c) +
+      "<small>Source: " + esc(c.source) + "</small>" +
+    "</div></article>";
+  }).join("");
+
+  /* ---------- 6. IPS builder ---------- */
+  var IPS = [
+    { id: "summary", t: "Client summary", h: "Who the client is, what the money is for, and the dates that matter." },
+    { id: "return", t: "Return objective", h: "The required annual return from the calculator, and whether it is realistic for the risk." },
+    { id: "ability", t: "Risk tolerance: ability", h: "What the client can afford to lose given the timeline, income and other assets." },
+    { id: "willingness", t: "Risk tolerance: willingness", h: "How the client feels about swings, in the case's own words." },
+    { id: "horizon", t: "Time horizon and goal buckets", h: "One bucket per dated goal, with the years to each." },
+    { id: "liquidity", t: "Liquidity and payout schedule", h: "When cash leaves the portfolio and what it has to be held in until then." },
+    { id: "unique", t: "Taxes, legal and unique circumstances", h: "Foundation status, exclusions, values screens, anything the case rules out." },
+    { id: "allocation", t: "Target allocation and monitoring", h: "Percent by asset class and sector, the rebalancing rule, and what triggers a review." }
+  ];
+  var ips = W.store.get("ips", {});
+  var ipsRoot = byId("case-ips");
+  ipsRoot.innerHTML = IPS.map(function (s, i) {
+    return '<div class="field"><label for="ips-' + s.id + '">' + (i + 1) + ". " + esc(s.t) + '</label><span class="hint">' + esc(s.h) + '</span><textarea id="ips-' + s.id + '" data-ips="' + s.id + '"></textarea></div>';
+  }).join("");
+  var areas = Array.prototype.slice.call(ipsRoot.querySelectorAll("[data-ips]"));
+  function ipsMeta() { var n = areas.filter(function (a) { return a.value.trim(); }).length; byId("case-ips-meta").textContent = n + " / " + IPS.length + " sections started"; }
+  areas.forEach(function (a) {
+    if (ips[a.getAttribute("data-ips")]) a.value = ips[a.getAttribute("data-ips")];
+    a.addEventListener("input", function () { ips[a.getAttribute("data-ips")] = a.value; W.store.set("ips", ips); ipsMeta(); });
+  });
+  ipsMeta();
+  byId("case-ips-copy").addEventListener("click", function () {
+    var out = ["Investment Policy Statement: " + D.team.name + " draft", "Saved " + W.fmtDate(W.now(), { weekday: true, year: true }), ""];
+    IPS.forEach(function (s, i) { out.push((i + 1) + ". " + s.t, (ips[s.id] || "").trim() || "(not written yet)", ""); });
+    W.copy(out.join("\n"), "IPS draft copied");
+  });
+  byId("case-ips-clear").addEventListener("click", function () {
+    if (!confirm("Clear the IPS draft saved in this browser?")) return;
+    ips = {}; W.store.set("ips", ips); areas.forEach(function (a) { a.value = ""; }); ipsMeta(); W.toast("Draft cleared");
+  });
+
+  W.fillIcons(document);
+})(window.WSW);
+</script>
+</body>
+</html>

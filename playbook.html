@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Playbook · Wall Street Warriors</title>
+<meta name="description" content="How teams advance in the Wharton investment competition, and how Wall Street Warriors runs the season.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* judging standard: navy pull-quote card */
+.pb-standard{background:var(--navy);color:#fff;border-color:var(--strip)}
+.pb-standard .card-body{position:relative;padding:34px 40px 28px 64px}
+.pb-standard .pb-mark{position:absolute;left:22px;top:14px;font:700 84px/1 var(--ui);color:var(--gold);pointer-events:none}
+.pb-standard .pb-pull{font:600 clamp(18px,2.4vw,24px)/1.4 var(--ui);color:#fff;max-width:60ch;text-wrap:pretty}
+.pb-standard .pb-who{margin-top:16px;font:600 12.5px/1.4 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:#C9D8F2}
+.pb-standard .pb-who a{color:var(--gold)}
+@media (max-width:600px){.pb-standard .card-body{padding:30px 20px 22px 44px}.pb-standard .pb-mark{left:12px;font-size:64px}}
+
+/* by the numbers */
+.pb-numbers{display:grid;gap:12px}
+.pb-numbers .kicker{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* eight things */
+.pb-insight{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--well)}
+.pb-insight .pb-rank{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 15px/1 var(--mono)}
+.pb-insight h3{font-size:15px;font-weight:700;color:var(--ink)}
+.pb-insight p{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+
+/* judge quotes */
+.pb-quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb-quotes blockquote{margin:0;padding:16px 18px 16px 20px;border-left:3px solid var(--orange);background:var(--well);border-radius:0 var(--r) var(--r) 0;font-size:15px;line-height:1.5;color:var(--ink);display:grid;gap:10px;align-content:start}
+.pb-quotes cite{font:600 12px/1.4 var(--ui);color:var(--ink-2);font-style:normal}
+.pb-quotes cite a{color:var(--blue);text-decoration:none}
+.pb-quotes cite a:hover{text-decoration:underline}
+
+/* deliverable plan */
+.pb-plan td .sub{display:block;font:500 12px/1.4 var(--mono);color:var(--ink-3);white-space:nowrap}
+.pb-plan td.key a{color:var(--navy);text-decoration:none}
+.pb-plan td.key a:hover{text-decoration:underline}
+.pb-plan .pb-left{font:700 13px/1 var(--mono);white-space:nowrap}
+.pb-plan .pb-left.soon{color:var(--bad)}
+
+/* report structure */
+.pb-ol{margin:0;padding:0;list-style:none;counter-reset:pb}
+.pb-ol li{counter-increment:pb;display:grid;grid-template-columns:28px 1fr;gap:12px;padding:11px 18px;border-top:1px solid var(--line-2);align-items:start}
+.pb-ol li:first-child{border-top:0}
+.pb-ol li::before{content:counter(pb);font:700 13px/1.5 var(--mono);color:var(--orange-deep)}
+.pb-ol li > div{display:grid;grid-template-columns:minmax(200px,260px) 1fr;gap:4px 20px;align-items:baseline}
+.pb-ol b{font:600 14.5px/1.4 var(--ui);color:var(--ink)}
+.pb-ol span{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:640px){.pb-ol li > div{grid-template-columns:1fr}}
+
+/* weekly rhythm */
+.pb-week{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.pb-week > div{padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--well);display:grid;gap:6px;align-content:start}
+.pb-week h3{font-size:15px;font-weight:700}
+.pb-week p{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:900px){.pb-week{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.pb-week{grid-template-columns:1fr}}
+
+/* trade note builder */
+.pb-form{display:grid;gap:14px}
+.pb-form .fields{grid-template-columns:repeat(6,minmax(0,1fr))}
+.pb-form .field.wide{grid-column:1 / -1}
+.pb-form .field.half{grid-column:span 3}
+@media (max-width:900px){.pb-form .fields{grid-template-columns:repeat(3,minmax(0,1fr))}.pb-form .field.half{grid-column:1 / -1}}
+@media (max-width:560px){.pb-form .fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pb-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pb-drafts{list-style:none;margin:0;padding:0}
+.pb-drafts li{display:grid;grid-template-columns:auto 1fr auto;gap:6px 16px;align-items:center;padding:12px 18px;border-top:1px solid var(--line-2)}
+.pb-drafts .pb-d{font:700 12.5px/1.3 var(--mono);color:var(--navy);white-space:nowrap}
+.pb-drafts .pb-t b{display:block;font:600 14.5px/1.35 var(--ui);color:var(--ink)}
+.pb-drafts .pb-t span{display:block;font-size:13.5px;color:var(--ink-2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pb-drafts .pb-b{display:flex;gap:6px}
+.pb-empty{padding:18px;font-size:14px;color:var(--ink-2)}
+.pb-draft-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line);background:var(--well)}
+.pb-draft-head h3{font-size:14px;font-weight:700;color:var(--ink)}
+@media (max-width:520px){.pb-drafts li{grid-template-columns:1fr}.pb-drafts .pb-b{justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="rules.html">Rules</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>Playbook</h1>
+      <p>How teams actually advance, and how we run the season.</p>
+    </div>
+    <div class="right"><a class="btn ghost" href="#notes"><span data-icon="edit"></span>Trade note builder</a></div>
+  </div>
+
+  <div class="stack">
+
+    <!-- 1. the judging standard -->
+    <section class="card pb-standard reveal" aria-labelledby="pb-standard-h">
+      <div class="card-body">
+        <span class="pb-mark" aria-hidden="true">&ldquo;</span>
+        <h2 id="pb-standard-h" class="sr">The judging standard</h2>
+        <p class="pb-pull" id="pb-pull"></p>
+        <p class="pb-who" id="pb-who"></p>
+      </div>
+    </section>
+
+    <!-- 2. by the numbers -->
+    <section class="pb-numbers reveal" aria-labelledby="pb-numbers-h">
+      <div class="kicker"><span id="pb-numbers-h">By the numbers · <span id="pb-season"></span> season</span><span>Last season's field</span></div>
+      <div class="tiles">
+        <div class="tile"><span class="dot c-blue" data-icon="users"></span><div><div class="k">Teams registered</div><div class="v" id="pb-n-registered">0</div><div class="sub" id="pb-sub-1"></div></div></div>
+        <div class="tile"><span class="dot c-orange" data-icon="book"></span><div><div class="k">Turned in a final report</div><div class="v" id="pb-n-reports">0</div><div class="sub" id="pb-sub-2"></div></div></div>
+        <div class="tile"><span class="dot c-green" data-icon="target"></span><div><div class="k">Semifinalists</div><div class="v" id="pb-n-semis">0</div><div class="sub" id="pb-sub-3"></div></div></div>
+        <div class="tile"><span class="dot c-purple" data-icon="trophy"></span><div><div class="k">Finalists</div><div class="v" id="pb-n-finals">0</div><div class="sub" id="pb-sub-4"></div></div></div>
+      </div>
+      <p class="note">Nearly two of three registered teams never turn in a final report. Every deliverable on time puts us ahead of most of the field.</p>
+    </section>
+
+    <!-- 3. eight things that matter -->
+    <section class="card reveal" aria-labelledby="pb-insights-h">
+      <div class="card-head"><span class="ic" data-icon="star"></span><h2 id="pb-insights-h">Eight things that matter</h2><span class="spacer"></span><span class="meta">ranked by impact</span></div>
+      <div class="card-body"><div class="cols-2" id="pb-insights"></div></div>
+    </section>
+
+    <!-- 4. what judges said -->
+    <section class="card reveal" aria-labelledby="pb-judges-h">
+      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="pb-judges-h">What judges said</h2></div>
+      <div class="card-body"><div class="pb-quotes" id="pb-quotes"></div></div>
+    </section>
+
+    <!-- 5. deliverable plan -->
+    <section class="card reveal" aria-labelledby="pb-plan-h">
+      <div class="card-head"><span class="ic" data-icon="flag"></span><h2 id="pb-plan-h">Deliverable plan</h2><span class="spacer"></span><span class="meta">internal drafts one week early</span></div>
+      <div class="card-body tight">
+        <div class="table-wrap">
+          <table class="pb-plan">
+            <thead><tr><th>Deliverable</th><th>Internal draft</th><th>Wharton deadline</th><th>Owner</th><th>Days left</th></tr></thead>
+            <tbody id="pb-plan"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-foot">Every row opens the deliverable detail on the <a href="rules.html#tab=deliverables">Rules page</a>. Internal dates are ours; Wharton's are official.</div>
+    </section>
+
+    <!-- 6. final report structure -->
+    <section class="card reveal" aria-labelledby="pb-report-h">
+      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pb-report-h">Final report structure</h2><span class="spacer"></span><span class="meta">in order</span></div>
+      <div class="card-body tight"><ol class="pb-ol" id="pb-report"></ol></div>
+      <div class="card-foot">Sections in the order past reports used them. Wharton's own template comes Sep 15.</div>
+    </section>
+
+    <!-- 7. weekly rhythm -->
+    <section class="card reveal" aria-labelledby="pb-week-h">
+      <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="pb-week-h">Weekly rhythm</h2></div>
+      <div class="card-body"><div class="pb-week" id="pb-week"></div></div>
+      <div class="card-foot">Thursday is open. Use it to catch up if a trade needs more work.</div>
+    </section>
+
+    <!-- 8. trade note builder -->
+    <section class="card reveal" id="notes" aria-labelledby="pb-notes-h">
+      <div class="card-head"><span class="ic" data-icon="edit"></span><h2 id="pb-notes-h">Trade note builder</h2><span class="spacer"></span><span class="meta">one note per trade</span></div>
+      <div class="card-body">
+        <form class="pb-form" id="pb-form" autocomplete="off">
+          <div class="fields">
+            <div class="field"><label for="pb-date">Date</label><input class="num" type="date" id="pb-date"></div>
+            <div class="field"><label for="pb-ticker">Ticker</label><input class="num" type="text" id="pb-ticker" placeholder="MSFT" maxlength="12"></div>
+            <div class="field"><label for="pb-company">Company</label><input type="text" id="pb-company" placeholder="Microsoft"></div>
+            <div class="field"><label for="pb-side">Side</label><select id="pb-side"><option value="Buy">Buy</option><option value="Sell">Sell</option></select></div>
+            <div class="field"><label for="pb-shares">Shares</label><input class="num" type="number" id="pb-shares" min="1" step="1" placeholder="100"></div>
+            <div class="field"><label for="pb-price">Price</label><input class="num" type="number" id="pb-price" min="0" step="0.01" placeholder="0.00"></div>
+            <div class="field wide"><label for="pb-thesis">Thesis</label><textarea id="pb-thesis" placeholder="Why this, why now."></textarea></div>
+            <div class="field half"><label for="pb-goal">Client goal it serves</label><input type="text" id="pb-goal" placeholder="Which stated goal this position works toward"></div>
+            <div class="field half"><label for="pb-numbers">Key numbers</label><input type="text" id="pb-numbers" placeholder="Beta, P/E, yield, correlation with holdings"></div>
+            <div class="field wide"><label for="pb-risk">Risk</label><textarea id="pb-risk" placeholder="What could go wrong, and how much it would cost the client."></textarea></div>
+            <div class="field wide"><label for="pb-exit">Exit plan</label><input type="text" id="pb-exit" placeholder="The condition that makes us sell, or hold to the end"></div>
+          </div>
+          <div class="pb-actions">
+            <button type="submit" class="btn orange"><span data-icon="check"></span>Add note</button>
+            <button type="button" class="btn ghost" id="pb-copy-one"><span data-icon="copy"></span>Copy this note</button>
+            <span class="note">The shared journal is the team doc. Draft here, paste there.</span>
+          </div>
+        </form>
+      </div>
+      <div class="pb-draft-head"><h3>Draft notes in this browser</h3><button type="button" class="btn ghost sm" id="pb-copy-all"><span data-icon="copy"></span>Copy all</button></div>
+      <ul class="pb-drafts" id="pb-drafts"></ul>
+      <div class="card-foot">Drafts live in this browser only. The shared journal is the team doc, and the Trading Notes Analysis is built from it.</div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
+    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function (W) {
+  var D = W.data;
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function link(url, text) { return '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(text) + "</a>"; }
+
+  /* 1. judging standard */
+  var q0 = D.quotes[0];
+  $("pb-pull").textContent = q0.q;
+  $("pb-who").innerHTML = link(q0.url, q0.who);
+
+  /* 2. numbers: count up through W.countUp, formatted with a prefix/suffix */
+  var N = D.numbers;
+  $("pb-season").textContent = N.season;
+  ["pb-sub-1", "pb-sub-2", "pb-sub-3", "pb-sub-4"].forEach(function (id) { $(id).textContent = N.season + " season"; });
+  function count(el, to, prefix, suffix, ms) {
+    var proxy = {};
+    Object.defineProperty(proxy, "textContent", { set: function (v) {
+      var n = Number(v);
+      el.textContent = prefix + n.toLocaleString("en-US") + (n >= to ? suffix : "");
+    } });
+    W.countUp(proxy, to, ms);
+  }
+  count($("pb-n-registered"), N.registered, "", "+", 900);
+  count($("pb-n-reports"), N.reports, "~", "", 900);
+  count($("pb-n-semis"), N.semifinalists, "", "", 700);
+  count($("pb-n-finals"), N.finalists, "", "", 600);
+
+  /* 3. insights */
+  $("pb-insights").innerHTML = D.insights.map(function (i) {
+    return '<div class="pb-insight"><span class="pb-rank">' + i.n + '</span><div><h3>' + esc(i.t) + "</h3><p>" + esc(i.d) + "</p></div></div>";
+  }).join("");
+
+  /* 4. judge quotes */
+  $("pb-quotes").innerHTML = D.quotes.slice(1).map(function (q) {
+    return "<blockquote><span>" + esc(q.q) + "</span><cite>" + link(q.url, q.who) + "</cite></blockquote>";
+  }).join("");
+
+  /* 5. deliverable plan */
+  var OWNER = { roster: ["lead"], notes: ["trader"], ips: ["lead", "client"], report: ["writer"] };
+  function roleTitle(id) { for (var i = 0; i < D.roles.length; i++) if (D.roles[i].id === id) return D.roles[i].title; return id; }
+  $("pb-plan").innerHTML = D.deliverables.map(function (d) {
+    var int = W.eventById(d.id + "-int");
+    var n = W.daysUntil(d.due);
+    var owners = (OWNER[d.id] || []).map(roleTitle).join(" with ");
+    return "<tr>" +
+      '<td class="key"><a href="rules.html#tab=deliverables">' + esc(d.name) + "</a></td>" +
+      '<td class="mono">' + (int ? W.fmtDate(int.date, { weekday: true }) + '<span class="sub">' + W.fmtTimes(int.date) + "</span>" : "TBD") + "</td>" +
+      '<td class="mono">' + W.fmtDate(d.due, { weekday: true }) + '<span class="sub">' + W.fmtTimes(d.due) + "</span></td>" +
+      "<td>" + esc(owners) + "</td>" +
+      '<td><span class="pb-left' + (n <= 7 ? " soon" : "") + '">' + n + '</span><span class="sub">' + W.relative(n) + "</span></td>" +
+      "</tr>";
+  }).join("");
+
+  /* 6. report structure */
+  $("pb-report").innerHTML = D.reportStructure.map(function (s) { return "<li><div><b>" + esc(s.s) + "</b><span>" + esc(s.d) + "</span></div></li>"; }).join("");
+
+  /* 7. weekly rhythm */
+  $("pb-week").innerHTML = D.weekly.map(function (w) { return '<div><span class="eyebrow">' + esc(w.d) + "</span><h3>" + esc(w.t) + "</h3><p>" + esc(w.s) + "</p></div>"; }).join("");
+
+  /* 8. trade note builder */
+  var KEY = "notes";
+  var FIELDS = ["date", "ticker", "company", "side", "shares", "price", "thesis", "goal", "numbers", "risk", "exit"];
+  function todayISO() { var d = W.now(), p = function (n) { return (n < 10 ? "0" : "") + n; }; return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
+  $("pb-date").value = todayISO();
+  function read() { var o = {}; FIELDS.forEach(function (f) { o[f] = $("pb-" + f).value.trim(); }); o.ticker = o.ticker.toUpperCase(); return o; }
+  function firstLine(s) { return (s || "").split(/\n/)[0]; }
+  function headline(n) { return n.side + " " + (n.shares ? n.shares + " " : "") + n.ticker + (n.price ? " @ " + n.price : ""); }
+  function text(n) {
+    return ["Trade note · " + n.date, "Ticker: " + n.ticker + (n.company ? " (" + n.company + ")" : ""), "Side: " + headline(n),
+      "Thesis: " + n.thesis, "Client goal: " + n.goal, "Key numbers: " + n.numbers, "Risk: " + n.risk, "Exit plan: " + n.exit].join("\n");
+  }
+  function drafts() { var v = W.store.get(KEY, []); return Array.isArray(v) ? v : []; }
+  function render() {
+    var list = drafts(), ul = $("pb-drafts");
+    if (!list.length) { ul.innerHTML = '<li class="pb-empty">No draft notes yet. The first real trade is Sep 28.</li>'; return; }
+    ul.innerHTML = list.map(function (n, i) {
+      return '<li><span class="pb-d">' + esc(n.date) + '</span><div class="pb-t"><b>' + esc(headline(n)) + "</b><span>" + esc(firstLine(n.thesis) || "No thesis yet") + "</span></div>" +
+        '<div class="pb-b"><button type="button" class="btn ghost sm" data-copy="' + i + '">Copy</button><button type="button" class="btn ghost sm" data-del="' + i + '">Delete</button></div></li>';
+    }).join("");
+  }
+  $("pb-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var n = read();
+    if (!n.ticker) { W.toast("Add a ticker first"); $("pb-ticker").focus(); return; }
+    var list = drafts(); list.unshift(n); W.store.set(KEY, list); render();
+    ["ticker", "company", "shares", "price", "thesis", "goal", "numbers", "risk", "exit"].forEach(function (f) { $("pb-" + f).value = ""; });
+    W.toast("Note saved in this browser");
+  });
+  $("pb-copy-one").addEventListener("click", function () { W.copy(text(read()), "Note copied"); });
+  $("pb-copy-all").addEventListener("click", function () {
+    var list = drafts(); if (!list.length) { W.toast("Nothing to copy yet"); return; }
+    W.copy(list.map(text).join("\n\n"), list.length + (list.length === 1 ? " note copied" : " notes copied"));
+  });
+  $("pb-drafts").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    var list = drafts();
+    if (b.hasAttribute("data-copy")) W.copy(text(list[+b.getAttribute("data-copy")]), "Note copied");
+    if (b.hasAttribute("data-del")) { list.splice(+b.getAttribute("data-del"), 1); W.store.set(KEY, list); render(); W.toast("Draft deleted"); }
+  });
+  render();
+})(window.WSW);
+</script>
+</body>
+</html>

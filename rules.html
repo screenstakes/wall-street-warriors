@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Rules · Wall Street Warriors</title>
+<meta name="description" content="Trading rules, team rules, deliverables, the AI policy, disqualifiers and what the team verifies on Sep 15.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.rules-tabbar{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding-inline:8px}
+.rules-tabbar .tabs{border-bottom:0}
+.rules-panels{margin-top:20px}
+.rules-panels [role=tabpanel]{display:grid;gap:20px}
+.rules-panels [role=tabpanel][hidden]{display:none}
+.rules-note{padding:14px 18px;border-bottom:1px solid var(--line-2);background:var(--well)}
+.rules-table td.key{white-space:normal;min-width:150px}
+.rules-table td.mono{color:var(--ink-2);font-size:13px}
+.rules-dl{margin:0;display:grid}
+.rules-dl > div{display:grid;grid-template-columns:170px minmax(0,1fr);gap:6px 20px;padding:13px 18px;border-top:1px solid var(--line-2)}
+.rules-dl > div:first-child{border-top:0}
+.rules-dl dt{padding-top:3px}
+.rules-dl dd{margin:0;font-size:14.5px;line-height:1.55}
+@media (max-width:560px){.rules-dl > div{grid-template-columns:1fr}}
+.rules-del{display:flex;flex-direction:column}
+.rules-del .card-body{flex:1;display:grid;gap:12px;font-size:14.5px;align-content:start}
+.rules-when{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rules-when .num{font-weight:600;font-size:13.5px;color:var(--navy)}
+.rules-build{margin:6px 0 0;padding-left:20px;font-size:14px;color:var(--ink-2)}
+.rules-build li{margin-top:4px}
+.rules-del .kicker{display:block;margin-bottom:2px}
+.rules-submit{display:inline-flex;align-items:center;gap:10px;font:600 13.5px/1 var(--ui);color:var(--ink);cursor:pointer}
+.rules-submit input{width:18px;height:18px;margin:0;accent-color:var(--green-deep)}
+.rules-ai p{font-size:15px;line-height:1.55}
+.rules-ol{list-style:none;counter-reset:dq;margin:0;padding:0;max-width:72ch}
+.rules-ol li{counter-increment:dq;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:11px 0;border-top:1px solid var(--line-2);font-size:15px;line-height:1.5}
+.rules-ol li:first-child{border-top:0;padding-top:0}
+.rules-ol li::before{content:counter(dq,decimal-leading-zero);font:700 13px/1.6 var(--mono);color:var(--orange-deep)}
+.rules-sources{margin-top:20px}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="rules.html">Rules</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>Rules</h1>
+      <p>What Wharton has published for 2026–27, what last season's rules said, and what we verify on Sep 15.</p>
+    </div>
+    <div class="right">
+      <a class="btn ghost sm" href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/" target="_blank" rel="noopener"><span data-icon="link"></span>Rules &amp; Roles</a>
+    </div>
+  </div>
+
+  <div class="rules-tabbar reveal">
+    <div class="tabs" role="tablist" aria-label="Rule sections">
+      <button class="tab" role="tab" id="tab-trading" data-tab="trading" aria-controls="panel-trading" aria-selected="false" tabindex="-1">Trading rules</button>
+      <button class="tab" role="tab" id="tab-team" data-tab="team" aria-controls="panel-team" aria-selected="false" tabindex="-1">Team rules</button>
+      <button class="tab" role="tab" id="tab-deliverables" data-tab="deliverables" aria-controls="panel-deliverables" aria-selected="false" tabindex="-1">Deliverables</button>
+      <button class="tab" role="tab" id="tab-ai" data-tab="ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1">AI policy</button>
+      <button class="tab" role="tab" id="tab-disqualifiers" data-tab="disqualifiers" aria-controls="panel-disqualifiers" aria-selected="false" tabindex="-1">Disqualifiers</button>
+      <button class="tab" role="tab" id="tab-verify" data-tab="verify" aria-controls="panel-verify" aria-selected="false" tabindex="-1">Verify on Sep 15</button>
+    </div>
+  </div>
+
+  <div class="rules-panels">
+
+    <section id="panel-trading" role="tabpanel" aria-labelledby="tab-trading" hidden>
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="chart"></span><h2>Trading rules</h2><span class="spacer"></span><span class="meta" id="rules-trading-count"></span></div>
+        <div class="card-body tight">
+          <p class="note rules-note" id="rules-trading-note"></p>
+          <div class="table-wrap">
+            <table class="rules-table">
+              <thead><tr><th scope="col">Rule</th><th scope="col">What we know</th><th scope="col">Status</th><th scope="col">Season</th></tr></thead>
+              <tbody id="rules-trading-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="panel-team" role="tabpanel" aria-labelledby="tab-team" hidden>
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="users"></span><h2>Team rules</h2></div>
+        <div class="card-body tight">
+          <dl class="rules-dl" id="rules-team-list"></dl>
+        </div>
+        <div class="card-foot">Official for 2026–27. From Wharton's Rules &amp; Roles and FAQ pages.</div>
+      </article>
+    </section>
+
+    <section id="panel-deliverables" role="tabpanel" aria-labelledby="tab-deliverables" hidden>
+      <div class="cols-2" id="rules-deliverables"></div>
+      <p class="note">Every deliverable is submitted by the team leader in <a href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener">SurveyMonkey Apply</a>. Missing one makes the team ineligible for the semifinals. Internal drafts are one week ahead so Coach P can read them.</p>
+    </section>
+
+    <section id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
+      <div class="cols-3 rules-ai">
+        <article class="card reveal">
+          <div class="card-head"><span class="ic" data-icon="check"></span><h2>Allowed</h2></div>
+          <div class="card-body"><p id="rules-ai-allowed"></p></div>
+        </article>
+        <article class="card reveal">
+          <div class="card-head"><span class="ic" data-icon="edit"></span><h2>Must be cited</h2></div>
+          <div class="card-body"><p id="rules-ai-required"></p></div>
+        </article>
+        <article class="card reveal">
+          <div class="card-head"><span class="ic" data-icon="x"></span><h2>Not allowed</h2></div>
+          <div class="card-body"><p id="rules-ai-banned"></p></div>
+        </article>
+      </div>
+      <article class="card reveal rules-ai">
+        <div class="card-head"><span class="ic" data-icon="shield"></span><h2>How we use it</h2></div>
+        <div class="card-body"><p class="lede" id="rules-ai-ours"></p></div>
+        <div class="card-foot">Wharton's wording is on the official <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/" target="_blank" rel="noopener">Rules &amp; Roles</a> page. Anything AI-generated that makes it into a report goes in the works cited.</div>
+      </article>
+    </section>
+
+    <section id="panel-disqualifiers" role="tabpanel" aria-labelledby="tab-disqualifiers" hidden>
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="shield"></span><h2>Disqualifiers</h2><span class="spacer"></span><span class="meta" id="rules-dq-count"></span></div>
+        <div class="card-body">
+          <ol class="rules-ol" id="rules-dq-list"></ol>
+        </div>
+        <div class="card-foot">Numbered the way Wharton lists them. Any one of these ends the season.</div>
+      </article>
+    </section>
+
+    <section id="panel-verify" role="tabpanel" aria-labelledby="tab-verify" hidden>
+      <article class="card reveal">
+        <div class="card-head"><span class="ic" data-icon="check"></span><h2>Verify on Sep 15</h2><span class="spacer"></span><span class="meta" id="rules-verify-count"></span></div>
+        <div class="card-body tight">
+          <p class="note rules-note">Each item gets checked against the Rules tab in WInS and the trading requirements in SurveyMonkey Apply once the materials land. Answers go into the data file so the Trading rules tab stops saying "verify".</p>
+          <ul class="checks" id="rules-verify-list"></ul>
+        </div>
+        <div class="card-foot">Checked items are saved in this browser only.</div>
+      </article>
+    </section>
+
+  </div>
+
+  <p class="note rules-sources" id="rules-sources">Sources: Wharton's <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/faq/" target="_blank" rel="noopener">FAQ</a>, <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/" target="_blank" rel="noopener">Rules &amp; Roles</a> and <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/deliverables/" target="_blank" rel="noopener">Deliverables</a> pages, checked <span id="rules-checked"></span>. Last season's trading rules come from the 2025–26 materials and are marked as such.</p>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
+    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function (W) {
+  var D = W.data;
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function byId(id) { return document.getElementById(id); }
+  var release = W.eventById("release");
+  var STATUS = { official: ["official", "Official"], last: ["last", "Last season"], verify: ["verify", "Verify Sep 15"] };
+  function chip(status) { var s = STATUS[status] || ["tbd", status]; return '<span class="chip ' + s[0] + '">' + esc(s[1]) + "</span>"; }
+
+  /* ---------- tabs ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tabs [role=tab]"));
+  var panels = tabs.map(function (t) { return byId(t.getAttribute("aria-controls")); });
+  function hasTab(id) { return tabs.some(function (t) { return t.getAttribute("data-tab") === id; }); }
+  function select(id, focus, remember) {
+    tabs.forEach(function (t, i) {
+      var on = t.getAttribute("data-tab") === id;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+      if (on && focus) t.focus();
+    });
+    if (remember) {
+      W.store.set("rules-tab", id);
+      try { history.replaceState(null, "", "#tab=" + id); } catch (e) {}
+    }
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { select(t.getAttribute("data-tab"), false, true); });
+    t.addEventListener("keydown", function (e) {
+      var j = i;
+      if (e.key === "ArrowRight") j = (i + 1) % tabs.length;
+      else if (e.key === "ArrowLeft") j = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === "Home") j = 0;
+      else if (e.key === "End") j = tabs.length - 1;
+      else return;
+      e.preventDefault();
+      select(tabs[j].getAttribute("data-tab"), true, true);
+    });
+  });
+  function fromHash() { var m = /tab=([\w-]+)/.exec(location.hash || ""); return m && hasTab(m[1]) ? m[1] : null; }
+  var saved = W.store.get("rules-tab", null);
+  select(fromHash() || (hasTab(saved) ? saved : "trading"), false, false);
+  window.addEventListener("hashchange", function () { var id = fromHash(); if (id) select(id, false, true); });
+
+  /* ---------- 1. trading rules ---------- */
+  byId("rules-trading-note").textContent = "Wharton releases this year's trading requirements " + W.fmtDate(release.date, { weekday: true }) + ". Rows marked Last season are the 2025–26 rules and can change. Rows marked Verify get answered on the Verify tab.";
+  byId("rules-trading-body").innerHTML = D.tradingRules.map(function (r) {
+    return "<tr><td class=\"key\">" + esc(r.rule) + "</td><td>" + esc(r.value) + "</td><td>" + chip(r.status) + "</td><td class=\"mono\">" + esc(r.season) + "</td></tr>";
+  }).join("");
+  var counts = { official: 0, last: 0, verify: 0 };
+  D.tradingRules.forEach(function (r) { if (counts[r.status] !== undefined) counts[r.status]++; });
+  byId("rules-trading-count").textContent = counts.official + " official · " + counts.last + " last season · " + counts.verify + " verify";
+
+  /* ---------- 2. team rules ---------- */
+  byId("rules-team-list").innerHTML = D.teamRules.map(function (r) {
+    return "<div><dt class=\"kicker\">" + esc(r.rule) + "</dt><dd>" + esc(r.value) + "</dd></div>";
+  }).join("");
+
+  /* ---------- 3. deliverables ---------- */
+  var submitted = W.store.get("deliverables", {});
+  function countdown(d) {
+    if (submitted[d.id]) return '<span class="chip done">Submitted</span>';
+    var n = W.daysUntil(d.due);
+    return '<span class="chip ' + (n <= 7 ? "decide" : "watch") + '">' + esc(W.relative(n)) + "</span>";
+  }
+  var delRoot = byId("rules-deliverables");
+  delRoot.innerHTML = D.deliverables.map(function (d) {
+    var draft = W.eventById(d.id + "-int");
+    return '<article class="card reveal rules-del" id="del-' + esc(d.id) + '">' +
+      '<div class="card-head"><span class="ic" data-icon="flag"></span><h2>' + esc(d.name) + '</h2><span class="spacer"></span><span class="meta">' + esc(W.fmtDate(d.due, { weekday: true })) + "</span></div>" +
+      '<div class="card-body">' +
+        '<div class="rules-when"><span class="num">' + esc(W.fmtTimes(d.due)) + '</span><span data-countdown="' + esc(d.id) + '">' + countdown(d) + "</span></div>" +
+        "<p>" + esc(d.what) + "</p>" +
+        '<div><span class="kicker">Why it matters</span>' + esc(d.why) + "</div>" +
+        '<div><span class="kicker">What we build</span><ul class="rules-build">' + d.build.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ul></div>" +
+        '<p class="note">' + esc(d.tips) + "</p>" +
+        (draft ? '<p class="note">Internal draft: <b>' + esc(W.fmtDate(draft.date, { weekday: true })) + "</b> (" + esc(W.relative(W.daysUntil(draft.date))) + ")</p>" : "") +
+      "</div>" +
+      '<div class="card-foot"><label class="rules-submit"><input type="checkbox" data-submit="' + esc(d.id) + '"' + (submitted[d.id] ? " checked" : "") + "> Mark submitted</label></div>" +
+    "</article>";
+  }).join("");
+  Array.prototype.forEach.call(delRoot.querySelectorAll("[data-submit]"), function (box) {
+    box.addEventListener("change", function () {
+      var id = box.getAttribute("data-submit");
+      if (box.checked) submitted[id] = true; else delete submitted[id];
+      W.store.set("deliverables", submitted);
+      var d = D.deliverables.filter(function (x) { return x.id === id; })[0];
+      delRoot.querySelector('[data-countdown="' + id + '"]').innerHTML = countdown(d);
+      W.toast(box.checked ? d.name + " marked submitted" : d.name + " reopened");
+    });
+  });
+
+  /* ---------- 4. AI policy ---------- */
+  byId("rules-ai-allowed").textContent = D.aiPolicy.allowed;
+  byId("rules-ai-required").textContent = D.aiPolicy.required;
+  byId("rules-ai-banned").textContent = D.aiPolicy.banned;
+  byId("rules-ai-ours").textContent = D.aiPolicy.ours;
+
+  /* ---------- 5. disqualifiers ---------- */
+  byId("rules-dq-list").innerHTML = D.disqualifiers.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
+  byId("rules-dq-count").textContent = D.disqualifiers.length + " ways out";
+
+  /* ---------- 6. verify checklist ---------- */
+  var verifyRoot = byId("rules-verify-list");
+  verifyRoot.innerHTML = D.verifyChecklist.map(function (t, i) {
+    return '<li><label for="verify-' + (i + 1) + '"><input type="checkbox" id="verify-' + (i + 1) + '"><span><b>' + esc(t) + "</b></span></label></li>";
+  }).join("");
+  W.bindChecks(verifyRoot, "verify");
+  function verifyCount() {
+    var boxes = verifyRoot.querySelectorAll("input"), n = 0;
+    Array.prototype.forEach.call(boxes, function (b) { if (b.checked) n++; });
+    byId("rules-verify-count").textContent = n + " / " + boxes.length + " checked";
+  }
+  verifyCount();
+  verifyRoot.addEventListener("change", verifyCount);
+
+  byId("rules-checked").textContent = W.fmtDate(D.checkedOn + "T12:00:00", { year: true });
+  W.fillIcons(document);
+})(window.WSW);
+</script>
+</body>
+</html>

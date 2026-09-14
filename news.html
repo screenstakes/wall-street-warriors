@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Newsroom · Wall Street Warriors</title>
+<meta name="description" content="Competition announcements, Wharton Global Youth posts worth reading, and every official link for the 2026–27 season.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.news-list .when{min-width:96px}
+.news-list .what b a{color:var(--ink);text-decoration:none}
+.news-list .what b a:hover{color:var(--blue);text-decoration:underline}
+.news-empty{padding:18px;font-size:14px;color:var(--ink-2)}
+.news-champs td .sub{display:block;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.news-champs td.key a{color:var(--ink);text-decoration:none}
+.news-champs td.key a:hover{color:var(--blue);text-decoration:underline}
+.news-champs .chip{margin-left:8px;vertical-align:middle}
+.news-champs td.news-gap{color:var(--ink-3);font-style:italic}
+.news-champs th:nth-child(1),.news-champs td:nth-child(1){white-space:nowrap;width:1%}
+.news-champs th:nth-child(2),.news-champs th:nth-child(3){width:34%}
+.news-champs td:nth-child(4){min-width:160px}
+
+/* rail */
+.news-links{list-style:none;margin:0;padding:0}
+.news-links li{padding:10px 18px;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2)}
+.news-links li:first-child{border-top:0}
+.news-links a{display:block;font:600 14px/1.35 var(--ui);color:var(--blue);text-decoration:none;overflow-wrap:anywhere}
+.news-links a:hover{text-decoration:underline}
+.news-links a.num{font:600 13px/1.4 var(--mono)}
+.news-senders{list-style:none;margin:0;padding:0}
+.news-senders li{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 10px;padding:10px 18px;border-top:1px solid var(--line-2)}
+.news-senders li:first-child{border-top:0}
+.news-senders b{font:600 13px/1.4 var(--mono);color:var(--ink);overflow-wrap:anywhere}
+.news-sources{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-2);display:grid;gap:6px}
+.news-sources a{font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="rules.html">Rules</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>Newsroom</h1>
+      <p>Competition announcements, Wharton Global Youth posts worth reading, and every official link.</p>
+    </div>
+    <div class="right"><a class="btn ghost" href="#sources"><span data-icon="book"></span>Sources</a></div>
+  </div>
+
+  <div class="grid main-rail">
+    <div class="stack">
+
+      <!-- 1. team announcements -->
+      <section class="card green reveal" aria-labelledby="news-ann-h">
+        <div class="card-head"><span class="ic" data-icon="bell"></span><h2 id="news-ann-h">Team announcements</h2></div>
+        <div class="card-body" id="news-ann"></div>
+      </section>
+
+      <!-- 2. competition news -->
+      <section class="card reveal" aria-labelledby="news-comp-h">
+        <div class="card-head"><span class="ic" data-icon="news"></span><h2 id="news-comp-h">Competition news</h2><span class="spacer"></span><span class="meta" id="news-comp-n"></span></div>
+        <div class="card-body tight"><ul class="list news-list" id="news-comp"></ul></div>
+      </section>
+
+      <!-- 3. reading list -->
+      <section class="card reveal" aria-labelledby="news-read-h">
+        <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="news-read-h">Reading list</h2><span class="spacer"></span><span class="meta" id="news-read-n"></span></div>
+        <div class="card-body tight"><ul class="list news-list" id="news-read"></ul></div>
+      </section>
+
+    </div>
+    <div class="stack">
+
+      <!-- 5. official links -->
+      <div id="news-links" class="stack"></div>
+
+      <!-- 6. safe senders -->
+      <section class="card reveal" aria-labelledby="news-safe-h">
+        <div class="card-head"><span class="ic" data-icon="mail"></span><h2 id="news-safe-h">Safe senders</h2></div>
+        <div class="card-body tight"><ul class="news-senders" id="news-safe"></ul></div>
+        <div class="card-foot">Add both so the Sep 15 invite doesn't land in spam.</div>
+      </section>
+
+      <!-- 7. sources -->
+      <section class="card reveal" id="sources" aria-labelledby="news-sources-h">
+        <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="news-sources-h">Sources</h2></div>
+        <div class="card-body">
+          <ol class="news-sources">
+            <li><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/" target="_blank" rel="noopener">Competition home</a>, Wharton Global Youth Program: season dates, team size, and the deliverable list.</li>
+            <li><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/faq/" target="_blank" rel="noopener">FAQ</a>: registration, advisors, the simulator, and eligibility.</li>
+            <li><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/" target="_blank" rel="noopener">Rules &amp; Roles</a>: team rules, the advisor's limits, and the AI policy.</li>
+            <li><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/deliverables/" target="_blank" rel="noopener">Deliverables</a>: the four required deliverables and their dates.</li>
+            <li><a href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener">SurveyMonkey Apply portal</a>: where the case study, trading requirements, and every submission live.</li>
+          </ol>
+          <p class="note" style="margin-top:14px">Last season's trading rules come from copies of the 2025–26 welcome email and rules, and are marked "Last season" throughout the site. The Sep 15 materials replace them.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- 4. champions archive, full width so the table has room -->
+  <section class="card reveal" aria-labelledby="news-champs-h" style="margin-top:20px">
+    <div class="card-head"><span class="ic" data-icon="trophy"></span><h2 id="news-champs-h">Champions archive</h2><span class="spacer"></span><span class="meta" id="news-champs-n"></span></div>
+    <div class="card-body tight">
+      <div class="table-wrap">
+        <table class="news-champs">
+          <thead><tr><th>Season</th><th>Champion</th><th>Runner-up</th><th>Client</th></tr></thead>
+          <tbody id="news-champs"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-foot">Every one of these teams won on the IPS and the final report, not on portfolio returns.</div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
+    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function (W) {
+  var D = W.data;
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  /* date-only strings parse as UTC midnight, which shows as the day before in Central time; pin them to noon */
+  function day(iso) { return /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + "T12:00:00" : iso; }
+  function newest(a, b) { return new Date(day(b.date)) - new Date(day(a.date)); }
+  var EMPTY = '<li class="news-empty">Being added.</li>';
+
+  /* 1. announcements */
+  var ann = (D.announcements || []).slice().sort(newest);
+  $("news-ann").innerHTML = ann.length ? ann.map(function (a) {
+    return '<div class="ann"><time datetime="' + esc(a.date) + '">' + W.fmtDate(day(a.date), { weekday: true }) + "</time>" + esc(a.text) + "</div>";
+  }).join("") : '<div class="ann">Nothing posted yet.</div>';
+
+  /* 2 + 3. competition news and reading list */
+  var KIND = { article: "Article", educator: "Educator blog" };
+  function item(n, chip) {
+    var t = n.url ? '<a href="' + esc(n.url) + '" target="_blank" rel="noopener">' + esc(n.title) + "</a>" : esc(n.title);
+    return '<li><span class="when">' + W.fmtDate(day(n.date), { year: true }) + (n.dateApprox ? "<small>approx.</small>" : "") + '</span><div class="what"><b>' + t + "</b>" +
+      (n.summary ? "<span>" + esc(n.summary) + "</span>" : "") + "</div>" + (chip ? '<span class="cnt"><span class="chip tbd">' + esc(chip) + "</span></span>" : "<span></span>") + "</li>";
+  }
+  var news = (D.news || []).slice().sort(newest);
+  var comp = news.filter(function (n) { return n.kind === "competition"; });
+  var read = news.filter(function (n) { return n.kind === "article" || n.kind === "educator"; });
+  $("news-comp").innerHTML = comp.length ? comp.map(function (n) { return item(n); }).join("") : EMPTY;
+  $("news-comp-n").textContent = comp.length ? comp.length + (comp.length === 1 ? " post" : " posts") : "";
+  $("news-read").innerHTML = read.length ? read.map(function (n) { return item(n, KIND[n.kind] || n.kind); }).join("") : EMPTY;
+  $("news-read-n").textContent = read.length ? read.length + (read.length === 1 ? " post" : " posts") : "";
+
+  /* 4. champions archive: flat strings per season, newest first */
+  var champs = (D.champions || []).slice().sort(function (a, b) { return (b.year || 0) - (a.year || 0) || String(b.season).localeCompare(String(a.season)); });
+  $("news-champs").innerHTML = champs.length ? champs.map(function (c) {
+    var chip = c.confidence === "likely" ? '<span class="chip verify">likely</span>' : c.confidence === "unconfirmed" ? '<span class="chip tbd">unconfirmed</span>' : "";
+    if (!c.champion && !c.runnerUp && !c.client) return '<tr><td class="mono">' + esc(c.season) + '</td><td class="news-gap" colspan="3">No results post found for this season.' + chip + "</td></tr>";
+    var name = c.url ? '<a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.champion || "TBD") + "</a>" : esc(c.champion || "TBD");
+    return '<tr><td class="mono">' + esc(c.season) + '</td><td class="key">' + name + chip + (c.school ? '<span class="sub">' + esc(c.school) + "</span>" : "") + "</td><td>" + esc(c.runnerUp || "TBD") + "</td><td>" + esc(c.client || "TBD") + "</td></tr>";
+  }).join("") : '<tr><td class="news-empty" colspan="4">Being added.</td></tr>';
+  $("news-champs-n").textContent = champs.length ? champs.length + " seasons" : "";
+
+  /* 5. official links grouped */
+  var GROUPS = [["Competition", "flag"], ["Simulator", "chart"], ["Learn", "book"], ["Contact", "mail"]];
+  var res = D.resources || [];
+  var cards = GROUPS.map(function (g) {
+    var rows = res.filter(function (r) { return r.group === g[0]; });
+    if (!rows.length) return "";
+    return '<section class="card reveal" aria-label="' + g[0] + ' links"><div class="card-head"><span class="ic" data-icon="' + g[1] + '"></span><h2>' + g[0] + "</h2></div><div class=\"card-body tight\"><ul class=\"news-links\">" +
+      rows.map(function (r) {
+        var mail = /^mailto:/i.test(r.url || "");
+        var label = r.title || r.label || r.name || r.url;
+        return "<li><a" + (mail ? ' class="num"' : "") + ' href="' + esc(r.url) + '"' + (mail ? "" : ' target="_blank" rel="noopener"') + ">" + esc(label) + "</a>" + (r.note ? esc(r.note) : "") + "</li>";
+      }).join("") + "</ul></div></section>";
+  }).join("");
+  $("news-links").innerHTML = cards || '<section class="card reveal" aria-label="Official links"><div class="card-head"><span class="ic" data-icon="link"></span><h2>Official links</h2></div><div class="card-body news-empty">Being added.</div></section>';
+
+  /* 6. safe senders */
+  $("news-safe").innerHTML = D.team.safeSenders.map(function (e) {
+    return "<li><b>" + esc(e) + '</b><button type="button" class="btn ghost sm" data-copy="' + esc(e) + '"><span data-icon="copy"></span>Copy</button></li>';
+  }).join("");
+  $("news-safe").addEventListener("click", function (e) { var b = e.target.closest("[data-copy]"); if (b) W.copy(b.getAttribute("data-copy"), "Address copied"); });
+})(window.WSW);
+</script>
+</body>
+</html>

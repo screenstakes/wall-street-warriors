@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Team · Wall Street Warriors</title>
+<meta name="description" content="Who's on Wall Street Warriors, who owns what, and the rules that keep the team eligible.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* roster meter */
+.team-meter{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px 32px;align-items:center}
+.team-meter .team-big{font:700 44px/1 var(--mono);color:var(--navy);font-variant-numeric:tabular-nums}
+.team-meter .team-big small{display:block;font:700 10.5px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-top:6px}
+.team-bar{position:relative;height:26px;border-radius:4px;background:var(--line-2);margin:18px 0 22px}
+.team-bar .team-fill{position:absolute;top:0;bottom:0;left:0;border-radius:4px 0 0 4px;background:var(--navy)}
+.team-bar .team-maybe{position:absolute;top:0;bottom:0;background:var(--warn-soft);border:1px dashed var(--orange-deep);border-left:0}
+.team-bar .team-mark{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
+.team-bar .team-mark span{position:absolute;top:100%;margin-top:4px;font:700 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap;transform:translateX(-50%)}
+.team-bar .team-mark.max span{transform:translateX(-100%)}
+.team-meter-text{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap;font-size:14.5px}
+.team-meter-text b{font-family:var(--mono)}
+.team-meter .note{margin-top:8px}
+@media (max-width:560px){.team-meter{grid-template-columns:1fr}}
+
+/* members */
+.team-member{border:1px solid var(--line);border-radius:var(--r);background:var(--well);padding:16px;display:grid;gap:10px;align-content:start}
+.team-member .team-top{display:flex;align-items:center;gap:12px}
+.team-member .team-initial{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 17px/1 var(--ui);flex:none}
+.team-member h3{font-size:16px;font-weight:700}
+.team-member .team-chips{display:flex;gap:6px;flex-wrap:wrap}
+.team-member p{font-size:13.5px;color:var(--ink-2)}
+.team-member .team-roles{font:600 12.5px/1.5 var(--ui);color:var(--ink)}
+.team-member .team-roles .kicker{display:block;margin-bottom:2px}
+.team-member .team-roles em{font-style:normal;color:var(--ink-3);font-weight:500}
+
+/* roles table */
+.team-select{font:500 14px/1.3 var(--body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:4px;padding:7px 9px;width:100%;min-width:130px;max-width:200px}
+.team-select:disabled{color:var(--ink-2);background:var(--well)}
+.team-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,75,149,.15);outline:none}
+.team-roles-table td.key{white-space:normal}
+
+/* advisor */
+.team-advisor{display:grid;gap:14px}
+.team-advisor .team-who{display:flex;align-items:center;gap:12px}
+.team-advisor .team-who .team-initial{width:40px;height:40px;border-radius:50%;background:var(--orange);color:#1F1300;display:grid;place-items:center;font:700 15px/1 var(--ui);flex:none}
+.team-advisor .team-who b{font:700 16px/1.2 var(--ui);display:block}
+.team-advisor .team-who small{font-size:12.5px;color:var(--ink-2)}
+.team-may{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.team-may > div{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;background:var(--well)}
+.team-may ul{margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink)}
+.team-may li{margin:3px 0}
+.team-may .kicker.ok{color:var(--ok)}
+.team-may .kicker.no{color:var(--bad)}
+.team-advisor blockquote{margin:0;padding:12px 14px;border-left:3px solid var(--orange);background:var(--well);font-size:13.5px;color:var(--ink-2);border-radius:0 var(--r) var(--r) 0}
+@media (max-width:420px){.team-may{grid-template-columns:1fr}}
+
+/* where we work */
+.team-work .what b.num{font-size:13.5px;word-break:break-all}
+
+/* team rules */
+.team-rules{list-style:none;margin:0;padding:0}
+.team-rules li{padding:11px 18px;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2)}
+.team-rules li:first-child{border-top:0}
+.team-rules b{display:block;font:600 14px/1.4 var(--ui);color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="rules.html">Rules</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>Team</h1>
+      <p>Who's on Wall Street Warriors, who owns what, and the rules that keep us eligible.</p>
+    </div>
+    <div class="right"><a class="btn ghost" href="rules.html#tab=team"><span data-icon="shield"></span>Team rules</a></div>
+  </div>
+
+  <div class="stack">
+
+    <!-- 1. roster meter -->
+    <section class="card reveal" aria-labelledby="team-meter-h">
+      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="team-meter-h">Roster</h2><span class="spacer"></span><span class="meta" id="team-window"></span></div>
+      <div class="card-body">
+        <div class="team-meter">
+          <div class="team-big"><span id="team-count">0</span><small>confirmed</small></div>
+          <div>
+            <div class="team-bar" id="team-bar" role="img" aria-label="Roster meter"></div>
+            <div class="team-meter-text" id="team-text"></div>
+            <p class="note" id="team-warn"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid main-rail">
+      <div class="stack">
+
+        <!-- 2. members -->
+        <section class="card reveal" aria-labelledby="team-members-h">
+          <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="team-members-h">Members</h2></div>
+          <div class="card-body"><div class="cols-3" id="team-members"></div></div>
+        </section>
+
+        <!-- 3. roles -->
+        <section class="card reveal" aria-labelledby="team-roles-h">
+          <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="team-roles-h">Roles</h2><span class="spacer"></span><span class="meta">saved in this browser</span></div>
+          <div class="card-body tight">
+            <div class="table-wrap">
+              <table class="team-roles-table">
+                <thead><tr><th>Role</th><th>Owner</th><th>Owns</th></tr></thead>
+                <tbody id="team-roles"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-foot">Everyone also covers one sector on top of their role.</div>
+        </section>
+
+        <!-- 5. where we work -->
+        <section class="card reveal team-work" aria-labelledby="team-work-h">
+          <div class="card-head"><span class="ic" data-icon="link"></span><h2 id="team-work-h">Where we work</h2></div>
+          <div class="card-body tight"><ul class="list" id="team-work"></ul></div>
+        </section>
+
+      </div>
+      <div class="stack">
+
+        <!-- 4. advisor -->
+        <section class="card reveal" aria-labelledby="team-advisor-h">
+          <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="team-advisor-h">Advisor</h2></div>
+          <div class="card-body team-advisor">
+            <div class="team-who"><span class="team-initial" id="team-adv-initial"></span><div><b id="team-adv-name"></b><small id="team-adv-full"></small></div></div>
+            <div class="team-may">
+              <div><span class="kicker ok">May</span><ul><li>Guide the team</li><li>Give feedback on drafts</li><li>Sign off on the roster</li></ul></div>
+              <div><span class="kicker no">May not</span><ul><li>Make decisions</li><li>Trade</li><li>Write any deliverable</li></ul></div>
+            </div>
+            <blockquote id="team-adv-rule"></blockquote>
+          </div>
+        </section>
+
+        <!-- 6. first meeting agenda -->
+        <section class="card reveal" aria-labelledby="team-agenda-h">
+          <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="team-agenda-h">First meeting agenda</h2></div>
+          <div class="card-body tight">
+            <ul class="checks" id="team-agenda">
+              <li><label><input type="checkbox" id="ag-read"><span><b>Read the case study out loud</b><small>One section per person.</small></span></label></li>
+              <li><label><input type="checkbox" id="ag-questions"><span><b>Answer three questions</b><small>What does the client need by when, what do they value, what's the tension.</small></span></label></li>
+              <li><label><input type="checkbox" id="ag-roles"><span><b>Assign the five roles and one sector each</b></span></label></li>
+              <li><label><input type="checkbox" id="ag-practice"><span><b>Decide what each person tests in the practice simulator</b></span></label></li>
+              <li><label><input type="checkbox" id="ag-time"><span><b>Set the weekly meeting time</b></span></label></li>
+              <li><label><input type="checkbox" id="ag-docs"><span><b>Pick the shared doc and sheet</b><small>For the journal and the IPS.</small></span></label></li>
+            </ul>
+          </div>
+          <div class="card-foot">This week, once the case is out. Checks are saved in this browser.</div>
+        </section>
+
+        <!-- 7. team rules -->
+        <section class="card reveal" aria-labelledby="team-rules-h">
+          <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="team-rules-h">Team rules</h2></div>
+          <div class="card-body tight"><ul class="team-rules" id="team-rules"></ul></div>
+          <div class="card-foot">All eight rules, the AI policy and the disqualifier list are on the <a href="rules.html#tab=team">Rules page</a>.</div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
+    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function (W) {
+  var D = W.data, T = D.team;
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  var members = T.members;
+  var confirmed = members.filter(function (m) { return m.status === "confirmed"; }).length;
+  var maybe = members.filter(function (m) { return m.status === "maybe"; }).length;
+
+  /* 1. roster meter */
+  $("team-window").textContent = T.min + "–" + T.max + " members";
+  $("team-count").textContent = confirmed;
+  var pc = function (n) { return Math.min(100, n / T.max * 100) + "%"; };
+  $("team-bar").innerHTML =
+    '<div class="team-fill" style="width:' + pc(confirmed) + '"></div>' +
+    (maybe ? '<div class="team-maybe" style="left:' + pc(confirmed) + ';width:' + (Math.min(100, (confirmed + maybe) / T.max * 100) - Math.min(100, confirmed / T.max * 100)) + '%"></div>' : "") +
+    '<div class="team-mark" style="left:' + pc(T.min) + '"><span>min ' + T.min + "</span></div>" +
+    '<div class="team-mark max" style="left:' + pc(T.max) + '"><span>max ' + T.max + "</span></div>";
+  $("team-text").innerHTML = "<b>" + confirmed + "</b> confirmed · <b>" + maybe + "</b> maybe" +
+    (confirmed === T.min ? ' <span class="chip decide">At the minimum</span>' : "") +
+    (confirmed < T.min ? ' <span class="chip decide">Below the minimum</span>' : "") +
+    (confirmed > T.max ? ' <span class="chip decide">Over the maximum</span>' : "");
+  $("team-warn").textContent = confirmed === T.min
+    ? "One dropout after Sep 28 disqualifies the team. A fifth member is the cushion."
+    : confirmed < T.min ? "Below " + T.min + " the team can't compete. Confirm members before Sep 28."
+    : "Roster locks at the Oct 9 submission. Nobody can be added after that.";
+
+  /* 3. roles: selection map persisted per browser */
+  var KEY = "roles";
+  var saved = W.store.get(KEY, {}); if (!saved || typeof saved !== "object") saved = {};
+  function ownerOf(role) { if (role.fixed) return role.fixed; if (saved[role.id] !== undefined) return saved[role.id]; return role.suggest || ""; }
+  function rolesFor(memberId) { return D.roles.filter(function (r) { return ownerOf(r) === memberId; }); }
+
+  /* 2. members */
+  function renderMembers() {
+    $("team-members").innerHTML = members.map(function (m) {
+      var roles = rolesFor(m.id);
+      return '<div class="team-member"><div class="team-top"><span class="team-initial">' + esc(m.name.charAt(0)) + "</span><h3>" + esc(m.name) + "</h3></div>" +
+        '<div class="team-chips"><span class="chip ' + (m.status === "confirmed" ? 'confirmed">Confirmed' : 'maybe">Maybe') + "</span>" +
+        (m.id === T.leader ? '<span class="chip official">Team leader</span>' : "") + "</div>" +
+        (m.note ? "<p>" + esc(m.note) + "</p>" : "") +
+        '<div class="team-roles"><span class="kicker">Role</span>' + (roles.length ? roles.map(function (r) { return esc(r.title); }).join(" · ") : "<em>Not assigned yet</em>") + "</div></div>";
+    }).join("");
+  }
+  $("team-roles").innerHTML = D.roles.map(function (r) {
+    var cur = ownerOf(r);
+    var opts = '<option value="">Unassigned</option>' + members.map(function (m) { return '<option value="' + m.id + '"' + (m.id === cur ? " selected" : "") + ">" + esc(m.name) + "</option>"; }).join("");
+    return '<tr><td class="key">' + esc(r.title) + '</td><td><select class="team-select" data-role="' + r.id + '" aria-label="Owner of ' + esc(r.title) + '"' + (r.fixed ? " disabled" : "") + ">" + opts + "</select></td><td>" + esc(r.owns) + "</td></tr>";
+  }).join("");
+  $("team-roles").addEventListener("change", function (e) {
+    var s = e.target; if (!s.matches("select[data-role]")) return;
+    saved[s.getAttribute("data-role")] = s.value; W.store.set(KEY, saved); renderMembers();
+    W.toast(s.value ? W.member(s.value).name + " owns " + s.closest("tr").querySelector("td.key").textContent : "Role unassigned");
+  });
+  renderMembers();
+
+  /* 4. advisor */
+  $("team-adv-initial").textContent = T.advisor.name.replace(/^Coach\s+/, "").charAt(0);
+  $("team-adv-name").textContent = T.advisor.name;
+  $("team-adv-full").textContent = T.advisor.fullName ? T.advisor.fullName + " · faculty advisor" : "Faculty advisor";
+  var advRule = D.teamRules.filter(function (r) { return r.rule === "Advisor"; })[0];
+  $("team-adv-rule").textContent = advRule ? advRule.value : "";
+
+  /* 5. where we work */
+  var work = [
+    { k: "Chat", b: T.chat, s: "Announcements, votes, and the case study once it lands." },
+    { k: "WInS", b: T.simulator.name, s: "Account " + T.simulator.account + ". " + T.simulator.note, url: T.simulator.url },
+    { k: "Portal", b: T.portal.name, s: T.portal.note, url: T.portal.url }
+  ];
+  $("team-work").innerHTML = work.map(function (w) {
+    return '<li><span class="when">' + esc(w.k) + '</span><div class="what"><b>' + esc(w.b) + "</b><span>" + esc(w.s) + "</span></div>" +
+      (w.url ? '<a class="btn ghost sm" href="' + esc(w.url) + '" target="_blank" rel="noopener"><span data-icon="link"></span>Open</a>' : "<span></span>") + "</li>";
+  }).join("") + T.safeSenders.map(function (e) {
+    return '<li><span class="when">Email</span><div class="what"><b class="num">' + esc(e) + "</b><span>Safe sender. Add it so Wharton's mail never lands in spam.</span></div>" +
+      '<button type="button" class="btn ghost sm" data-copy="' + esc(e) + '"><span data-icon="copy"></span>Copy</button></li>';
+  }).join("");
+  $("team-work").addEventListener("click", function (e) { var b = e.target.closest("[data-copy]"); if (b) W.copy(b.getAttribute("data-copy"), "Address copied"); });
+
+  /* 6. agenda */
+  W.bindChecks($("team-agenda"), "agenda");
+
+  /* 7. team rules */
+  $("team-rules").innerHTML = D.teamRules.slice(0, 4).map(function (r) { return "<li><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</li>"; }).join("");
+})(window.WSW);
+</script>
+</body>
+</html>
