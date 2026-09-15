@@ -282,7 +282,8 @@
     (maybe ? '<div class="team-maybe" style="left:' + pc(confirmed) + ';width:' + (Math.min(100, (confirmed + maybe) / T.max * 100) - Math.min(100, confirmed / T.max * 100)) + '%"></div>' : "") +
     '<div class="team-mark" style="left:' + pc(T.min) + '"><span>min ' + T.min + "</span></div>" +
     '<div class="team-mark max" style="left:' + pc(T.max) + '"><span>max ' + T.max + "</span></div>";
-  $("team-text").innerHTML = "<b>" + confirmed + "</b> confirmed · <b>" + maybe + "</b> maybe" +
+  $("team-text").innerHTML = "<b>" + confirmed + "</b> confirmed" + (maybe ? " · <b>" + maybe + "</b> maybe" : "") +
+    (confirmed > T.min && confirmed <= T.max ? ' <span class="chip confirmed">Above the minimum</span>' : "") +
     (confirmed === T.min ? ' <span class="chip decide">At the minimum</span>' : "") +
     (confirmed < T.min ? ' <span class="chip decide">Below the minimum</span>' : "") +
     (confirmed > T.max ? ' <span class="chip decide">Over the maximum</span>' : "");
