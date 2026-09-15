@@ -62,7 +62,13 @@
 .dash-pattern ol{margin:0;padding-left:20px;display:grid;gap:5px;font-size:14px;color:var(--ink)}
 
 /* ---------- phone ---------- */
+.dash-m{display:none}
 @media (max-width:700px){
+  /* folded card summaries (phone only; desktop heads are unchanged) */
+  .card-head .dash-m{display:inline;white-space:nowrap}
+  /* "Show all" row inside the green announcements card: match the announcement dividers */
+  #ann > .m-more-row{padding:12px 0 0;margin-top:12px;border-top:1px solid rgba(255,255,255,.22)}
+
   /* title buttons: the visible label drops "Apply" so it stays on one line; screen readers still hear the full name */
   .dash-long{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .page-title .right .btn{white-space:nowrap}
@@ -76,6 +82,8 @@
   .grid.main-rail section[aria-labelledby="up-h"]{order:4}
   .grid.main-rail section[aria-labelledby="status-h"]{order:5}
   .grid.main-rail section[aria-labelledby="season-h"]{order:6}
+  /* Season folds on phones (the phase already shows in the header pill); Calendar is one tap away in the tab bar */
+  section[aria-labelledby="season-h"] > .card-head .btn{display:none}
   .grid.main-rail section[aria-labelledby="gs-h"]{order:7}
   .grid.main-rail section[aria-labelledby="pat-h"]{order:8}
   .grid.main-rail section[aria-labelledby="rq-h"]{order:9}
@@ -168,7 +176,7 @@
         <div class="dash-next" id="next"></div>
       </section>
 
-      <section class="card reveal" style="--i:3" aria-labelledby="season-h">
+      <section class="card reveal" style="--i:3" aria-labelledby="season-h" data-fold="closed">
         <div class="card-head"><span class="ic" data-icon="chart"></span><h2 id="season-h">Season</h2><span class="sep"></span><span class="meta">Sep 14 → Dec 4</span><span class="spacer"></span><a class="btn light sm" href="calendar.html">Full calendar</a></div>
         <div class="dash-phase">
           <div class="now" id="phase-now"></div>
@@ -178,12 +186,12 @@
 
       <section class="card reveal" style="--i:4" aria-labelledby="up-h">
         <div class="card-head"><span class="ic" data-icon="calendar"></span><h2 id="up-h">Coming up</h2><span class="sep"></span><span class="meta">Next 7 dates</span></div>
-        <ol class="list" id="upcoming"></ol>
+        <ol class="list" id="upcoming" data-m-limit="3"></ol>
         <div class="card-foot">Official deadlines are 5:00 p.m. Eastern, which is 4:00 p.m. for us. Team deadlines sit one week earlier.</div>
       </section>
 
-      <section class="card reveal" style="--i:5" aria-labelledby="status-h">
-        <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="status-h">Where we stand</h2></div>
+      <section class="card reveal" style="--i:5" aria-labelledby="status-h" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="status-h">Where we stand</h2><span class="meta dash-m" id="status-m"></span></div>
         <ul class="dash-status">
           <li><b>Registered</b><span>Coach P registered Wall Street Warriors before registration closed on Sep 11.</span><span class="chip done">Done</span></li>
           <li><b>Trading account</b><span>One shared WInS login for the team. Wharton says not to create separate student accounts; get the login from Michael.</span><span class="chip done">Done</span></li>
@@ -213,11 +221,11 @@
 
       <section class="card green reveal" style="--i:2" aria-labelledby="ann-h">
         <div class="card-head"><span class="ic" data-icon="bell"></span><h2 id="ann-h">Announcements</h2></div>
-        <div class="card-body" id="ann"></div>
+        <div class="card-body" id="ann" data-m-limit="1"></div>
       </section>
 
-      <section class="card reveal" style="--i:3" aria-labelledby="gs-h">
-        <div class="card-head"><span class="ic" data-icon="link"></span><h2 id="gs-h">Getting started</h2></div>
+      <section class="card reveal" style="--i:3" aria-labelledby="gs-h" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="link"></span><h2 id="gs-h">Getting started</h2><span class="meta dash-m" id="gs-m"></span></div>
         <ul class="dash-links">
           <li><a href="https://edu.stocktrak.com/wharton/tutorial-videos/" target="_blank" rel="noopener"><span><b>WInS tutorial videos</b><small>Managing the portfolio and placing a trade</small></span><span data-icon="link"></span></a></li>
           <li><a href="https://edu.stocktrak.com/wharton/portfolio-faq/" target="_blank" rel="noopener"><span><b>Portfolio FAQ</b><small>Order types and how trading notes work</small></span><span data-icon="link"></span></a></li>
@@ -227,8 +235,8 @@
         </ul>
       </section>
 
-      <section class="card reveal" style="--i:4" aria-labelledby="pat-h">
-        <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pat-h">The case, before it lands</h2></div>
+      <section class="card reveal" style="--i:4" aria-labelledby="pat-h" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pat-h">The case, before it lands</h2><span class="meta dash-m" id="pat-m"></span></div>
         <div class="dash-pattern">
           <p>Every recent case has the same bones. A real Wharton alum is the client; the money situation is written for the competition.</p>
           <ol id="pattern"></ol>
@@ -236,8 +244,8 @@
         </div>
       </section>
 
-      <section class="card reveal" style="--i:5" aria-labelledby="rq-h">
-        <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="rq-h">Rules at a glance</h2></div>
+      <section class="card reveal" style="--i:5" aria-labelledby="rq-h" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="rq-h">Rules at a glance</h2><span class="meta dash-m" id="rq-m"></span></div>
         <ul class="dash-rules" id="rules"></ul>
         <div class="card-foot"><a href="rules.html">All rules, and what we verify on Sep 15</a></div>
       </section>
@@ -342,10 +350,19 @@
 
   /* pattern + rules */
   $("pattern").innerHTML = D.casePattern.map(function (c) { return "<li>" + esc(c.t) + "</li>"; }).join("");
-  $("rules").innerHTML = D.tradingRules.slice(0, 5).map(function (r) {
+  var quick = D.tradingRules.slice(0, 5);
+  $("rules").innerHTML = quick.map(function (r) {
     var c = r.status === "official" ? '<span class="chip official">Official</span>' : r.status === "last" ? '<span class="chip last">Last season</span>' : '<span class="chip verify">Verify</span>';
     return "<li><div><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</div>" + c + "</li>";
   }).join("");
+
+  /* folded-card summaries, shown in the card head on phones only */
+  function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
+  var chips = document.querySelectorAll(".dash-status li > .chip"), doneN = document.querySelectorAll(".dash-status li > .chip.done").length;
+  $("status-m").textContent = doneN + " of " + chips.length + " done";
+  $("gs-m").textContent = plural(document.querySelectorAll(".dash-links li").length, "link", "links");
+  $("pat-m").textContent = plural(D.casePattern.length, "pattern", "patterns");
+  $("rq-m").textContent = plural(quick.length, "rule", "rules");
 
   W.bindChecks($("week"), "week");
   W.fillIcons(document);

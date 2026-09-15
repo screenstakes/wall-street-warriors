@@ -39,6 +39,15 @@ bash dev/mobile-check.sh rules.html tab=deliverables
 
 The probe fails on horizontal overflow or form fields under 16px (iOS zooms them) and warns on tap targets under 36px or text under 10px. Every page should end `RESULT OK overflow=0 zoom=0 tap<36=0 tiny<10=0`.
 
+### Keeping phone pages short
+
+Phone pages open at 4 screens or less (most at 3), following NN/g, Baymard and GOV.UK guidance: status first, secondary sections folded, long lists cut short.
+
+- `<section class="card" data-fold="closed">` (or `"open"`): on phones the card collapses to its header with a caret; the whole header row toggles; open/closed lasts for the browser session. Put a count in the header's `.meta` ("Competition news · 9"). A link to anything inside a folded card opens it.
+- `data-m-limit="6"` on a list: on phones only the first N items show, then "Show all N". It never hides a single item.
+- Calendar has an Agenda / Month switch on phones; Rules shows its six tabs as stacked sections on phones.
+- Check length with `dev/section-probe.js` (see the section probe command in the build notes) and desktop with `dev/geo-probe.js` + `node dev/geo-compare.js old.json new.json`. Run the desktop comparison with `--force-prefers-reduced-motion` so load animations don't show up as movement.
+
 ## Hosting
 
 Static files; any host works. Open `index.html` directly to preview.

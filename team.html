@@ -71,7 +71,12 @@
 .team-rules b{display:block;font:600 14px/1.4 var(--ui);color:var(--ink)}
 
 /* ---------- phone (≤ 700px) ---------- */
+.team-m{display:none}
 @media (max-width:700px){
+  /* folded card summaries: phone-only text replaces the desktop head note */
+  .card-head .team-m{display:inline;white-space:nowrap}
+  .card-head .team-desk{display:none}
+
   /* order for a teammate this week: roster, then the first-meeting agenda, then who's who */
   .grid.main-rail > .stack{display:contents}
   .grid.main-rail > .stack > section[aria-labelledby="team-agenda-h"]{order:1}
@@ -192,8 +197,8 @@
         </section>
 
         <!-- 3. roles -->
-        <section class="card reveal" aria-labelledby="team-roles-h">
-          <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="team-roles-h">Roles</h2><span class="spacer"></span><span class="meta">saved in this browser</span></div>
+        <section class="card reveal" aria-labelledby="team-roles-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="team-roles-h">Roles</h2><span class="spacer"></span><span class="meta team-desk">saved in this browser</span><span class="meta team-m" id="team-roles-m"></span></div>
           <div class="card-body tight">
             <div class="table-wrap">
               <table class="team-roles-table m-stack">
@@ -206,8 +211,8 @@
         </section>
 
         <!-- 5. where we work -->
-        <section class="card reveal team-work" aria-labelledby="team-work-h">
-          <div class="card-head"><span class="ic" data-icon="link"></span><h2 id="team-work-h">Where we work</h2></div>
+        <section class="card reveal team-work" aria-labelledby="team-work-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="link"></span><h2 id="team-work-h">Where we work</h2><span class="meta team-m" id="team-work-m"></span></div>
           <div class="card-body tight"><ul class="list" id="team-work"></ul></div>
         </section>
 
@@ -215,8 +220,8 @@
       <div class="stack">
 
         <!-- 4. advisor -->
-        <section class="card reveal" aria-labelledby="team-advisor-h">
-          <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="team-advisor-h">Advisor</h2></div>
+        <section class="card reveal" aria-labelledby="team-advisor-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="team-advisor-h">Advisor</h2><span class="meta team-m" id="team-adv-m"></span></div>
           <div class="card-body team-advisor">
             <div class="team-who"><span class="team-initial" id="team-adv-initial"></span><div><b id="team-adv-name"></b><small id="team-adv-full"></small></div></div>
             <div class="team-may">
@@ -244,8 +249,8 @@
         </section>
 
         <!-- 7. team rules -->
-        <section class="card reveal" aria-labelledby="team-rules-h">
-          <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="team-rules-h">Team rules</h2></div>
+        <section class="card reveal" aria-labelledby="team-rules-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="team-rules-h">Team rules</h2><span class="meta team-m" id="team-rules-m"></span></div>
           <div class="card-body tight"><ul class="team-rules" id="team-rules"></ul></div>
           <div class="card-foot">All eight rules, the AI policy and the disqualifier list are on the <a href="rules.html#tab=team">Rules page</a>.</div>
         </section>
@@ -314,9 +319,13 @@
     var opts = '<option value="">Unassigned</option>' + members.map(function (m) { return '<option value="' + m.id + '"' + (m.id === cur ? " selected" : "") + ">" + esc(m.name) + "</option>"; }).join("");
     return '<tr><td class="key">' + esc(r.title) + '</td><td data-label="Owner"><select class="team-select" data-role="' + r.id + '" aria-label="Owner of ' + esc(r.title) + '"' + (r.fixed ? " disabled" : "") + ">" + opts + "</select></td><td class=\"team-owns\">" + esc(r.owns) + "</td></tr>";
   }).join("");
+  /* folded-card summaries (phone only) */
+  function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
+  function rolesMeta() { $("team-roles-m").textContent = plural(D.roles.length, "role", "roles") + " · " + D.roles.filter(function (r) { return ownerOf(r); }).length + " assigned"; }
+  rolesMeta();
   $("team-roles").addEventListener("change", function (e) {
     var s = e.target; if (!s.matches("select[data-role]")) return;
-    saved[s.getAttribute("data-role")] = s.value; W.store.set(KEY, saved); renderMembers();
+    saved[s.getAttribute("data-role")] = s.value; W.store.set(KEY, saved); renderMembers(); rolesMeta();
     W.toast(s.value ? W.member(s.value).name + " owns " + s.closest("tr").querySelector("td.key").textContent : "Role unassigned");
   });
   renderMembers();
@@ -327,6 +336,7 @@
   $("team-adv-full").textContent = T.advisor.fullName ? T.advisor.fullName + " · faculty advisor" : "Faculty advisor";
   var advRule = D.teamRules.filter(function (r) { return r.rule === "Advisor"; })[0];
   $("team-adv-rule").textContent = advRule ? advRule.value : "";
+  $("team-adv-m").textContent = T.advisor.name;
 
   /* 5. where we work */
   var work = [
@@ -342,12 +352,15 @@
       '<button type="button" class="btn ghost sm" data-copy="' + esc(e) + '"><span data-icon="copy"></span>Copy</button></li>';
   }).join("");
   $("team-work").addEventListener("click", function (e) { var b = e.target.closest("[data-copy]"); if (b) W.copy(b.getAttribute("data-copy"), "Address copied"); });
+  $("team-work-m").textContent = plural(work.length + T.safeSenders.length, "link", "links");
 
   /* 6. agenda */
   W.bindChecks($("team-agenda"), "agenda");
 
   /* 7. team rules */
-  $("team-rules").innerHTML = D.teamRules.slice(0, 4).map(function (r) { return "<li><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</li>"; }).join("");
+  var shortRules = D.teamRules.slice(0, 4);
+  $("team-rules").innerHTML = shortRules.map(function (r) { return "<li><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</li>"; }).join("");
+  $("team-rules-m").textContent = plural(shortRules.length, "rule", "rules");
 })(window.WSW);
 </script>
 </body>

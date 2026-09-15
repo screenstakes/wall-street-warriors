@@ -61,19 +61,39 @@
 .case-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .case-foot .note{margin-left:auto}
 /* phone-only pieces: hidden on desktop */
-.case-mjump,.case-ml,.case-more{display:none}
+.case-mjump,.case-ml,.case-more,.case-mmeta,.case-chartd > summary{display:none}
+.case-chartbox{display:grid;gap:16px}
+/* Desktop and tablet: the client status card and the worksheet card draw as the one card they were before the
+   phone split, and Past clients keeps its plain heading. On phones both are real cards so they can fold. */
+@media (min-width:701px){
+  .case-client-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+  .case-client-wrap > .card,.case-pastcard{background:none;border:0;border-radius:0;box-shadow:none}
+  .case-pastcard{overflow:visible}
+  .case-o-client > .card-body{padding-bottom:0}
+  .case-o-ws{display:grid;gap:16px;padding:16px 18px 18px}
+  .case-o-ws > .card-head,.case-o-ws > .card-body{display:contents}
+  .case-o-ws > .card-head > :not(h3),.case-pastcard > .card-head > :not(h2){display:none}
+  .case-o-ws > .card-head > h3{font-size:15px;color:var(--navy);letter-spacing:-.005em;margin-top:4px}
+  .case-pastcard > .card-head{display:block;min-height:0;padding:0;background:none;color:inherit}
+  .case-pastcard > .card-head > h2{font-size:18px;color:var(--navy);letter-spacing:-.005em;margin-bottom:4px}
+}
 @media (max-width:700px){
-  /* one column in a deliberate order: client, calculator, pattern, past clients, what we build first, IPS builder */
+  /* one column, tools first and reference last: client status, worksheet, calculator, IPS builder, what we build first, the pattern, past clients */
   main{display:flex;flex-direction:column;gap:14px}
   main > .page-title{margin-bottom:2px}
-  .grid.main-rail,.grid.main-rail > .stack{display:contents}
-  .case-o-client{order:1}.case-o-calc{order:2}.case-o-pattern{order:3}.case-o-past{order:4}.case-o-build{order:5}.case-o-ips{order:6}
-  .case-section{margin-top:12px}
+  .grid.main-rail,.grid.main-rail > .stack,.case-client-wrap{display:contents}
+  .case-o-client{order:1}.case-o-ws{order:2}.case-o-calc{order:3}.case-o-ips{order:4}.case-o-build{order:5}.case-o-pattern{order:6}.case-o-past{order:7}
+  .case-o-client,.case-o-ws{animation:rise .5s var(--ease) both}
+  .case-section{margin-top:0}
+  #case-past-card{scroll-margin-top:12px}
   .case-mjump{display:inline-flex}
+  .case-mmeta{display:inline}
   .page-title .right .btn{white-space:nowrap;gap:6px;padding-inline:6px;font-size:12px}
   #case-calc-card{scroll-margin-top:12px}
 
   .case-body{gap:14px}
+  .case-chartbox{gap:14px}
+  .case-o-ws > .card-body{display:grid;gap:14px}
   .case-placeholder{padding:14px;gap:8px}
   .case-placeholder h3{font-size:16px}
   .case-placeholder .when{font-size:13px}
@@ -94,10 +114,19 @@
   .case-stat .v{font-size:27px;margin:4px 0}
   .case-stat .s{font-size:12px;line-height:1.4}
   .case-chart{height:236px}
+  /* the chart is one tap away on phones; the two results stay in view */
+  .case-chartd > summary{list-style:none;display:flex;justify-content:center;min-height:44px}
+  .case-chartd > summary::-webkit-details-marker{display:none}
+  .case-chartd .when-open,.case-chartd[open] .when-closed{display:none}
+  .case-chartd[open] .when-open{display:inline}
+  .case-chartd[open] > summary{margin-bottom:14px}
 
   .case-pattern li{padding:10px 14px}
 
-  /* past clients: compact cards, three newest shown, the rest one tap away */
+  /* past clients: a folded card; the three newest as rows, the older seasons behind Show all seasons */
+  .case-pastcard > .note{margin:0;padding:12px 14px}
+  .case-pastcard .case-past{gap:0}
+  .case-pastcard .case-past > .card{border:0;border-top:1px solid var(--line-2);border-radius:0;box-shadow:none}
   .case-past .card-body{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;line-height:1.5}
   .case-past .card-body > *{flex:1 1 100%;min-width:0;order:2}
   .case-past .card-body > .eyebrow{flex:1 1 auto;order:0}
@@ -107,12 +136,11 @@
   .case-past .case-tl{margin:2px 4px 0;height:62px}
   .case-past .case-tl .pt .l{font-size:12px}
   #case-past > .card:nth-child(n+4){display:none}
-  .case-more{display:block;margin-top:14px}
-  .case-more > summary{list-style:none;display:flex;justify-content:center;width:100%;min-height:46px}
+  .case-more{display:block;border-top:1px solid var(--line-2)}
+  .case-more > summary{list-style:none;display:flex;justify-content:center;min-height:46px;margin:12px 14px}
   .case-more > summary::-webkit-details-marker{display:none}
   .case-more .when-open,.case-more[open] .when-closed{display:none}
   .case-more[open] .when-open{display:inline}
-  .case-more > .case-past{margin-top:14px}
 
   /* IPS builder */
   .case-ips{gap:14px}
@@ -121,6 +149,9 @@
   .case-foot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .case-foot .btn{justify-content:center;min-height:44px}
   .case-foot .note{grid-column:1 / -1;margin-left:0}
+}
+@media (max-width:700px) and (prefers-reduced-motion:reduce){
+  .case-o-client,.case-o-ws{animation:none}
 }
 </style>
 </head>
@@ -166,11 +197,16 @@
   <div class="grid main-rail">
     <div class="stack">
 
-      <article class="card reveal case-o-client">
+      <div class="case-client-wrap reveal">
+      <article class="card case-o-client">
         <div class="card-head"><span class="ic" data-icon="users"></span><h2>This year's client</h2><span class="spacer"></span><span class="meta" id="case-client-meta"></span></div>
         <div class="card-body case-body">
           <div class="case-placeholder" id="case-placeholder"></div>
-          <h3 class="case-h3">Client brief worksheet</h3>
+        </div>
+      </article>
+      <section class="card case-o-ws" id="case-ws-card" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="flag"></span><h3>Client brief worksheet</h3><span class="spacer"></span><span class="meta">6 fields</span></div>
+        <div class="card-body">
           <div class="case-ws" id="case-ws">
             <div class="field"><label for="client-name">Client name</label><input id="client-name" type="text" autocomplete="off" placeholder="Announced Sep 15"></div>
             <div class="field"><label for="client-cash">Starting cash</label><input id="client-cash" class="num" type="number" min="0" step="1000" inputmode="numeric" placeholder="in dollars"></div>
@@ -183,7 +219,8 @@
           </div>
           <p class="note">Saved in this browser only. Once the case is out, the real numbers go into the site's data file so everyone sees them.</p>
         </div>
-      </article>
+      </section>
+      </div>
 
       <article class="card reveal case-o-calc" id="case-calc-card">
         <div class="card-head"><span class="ic" data-icon="target"></span><h2>Required return</h2><span class="spacer"></span><span class="meta">annual, compounded</span></div>
@@ -200,22 +237,27 @@
             <div class="case-stat primary"><span class="kicker">Required return with payouts</span><span class="v num" id="case-req">—</span><span class="s" id="case-req-sub"></span></div>
             <div class="case-stat"><span class="kicker">No-payout CAGR</span><span class="v num" id="case-cagr">—</span><span class="s">(goal ÷ start)<sup>1/years</sup> − 1</span></div>
           </div>
-          <canvas class="case-chart" id="case-chart" role="img" aria-label="Balance by year at the required return"></canvas>
-          <p class="note">Balance at the end of each year at the required return. Dashed line is the goal. Shaded years have a payout. The blue path lands on the goal by construction; the question is whether the rate is realistic for the risk the client can take.</p>
+          <details class="case-chartd" id="case-chartd" open>
+            <summary class="btn ghost"><span data-icon="chart"></span><span class="when-closed">Show the chart</span><span class="when-open">Hide the chart</span></summary>
+            <div class="case-chartbox">
+              <canvas class="case-chart" id="case-chart" role="img" aria-label="Balance by year at the required return"></canvas>
+              <p class="note">Balance at the end of each year at the required return. Dashed line is the goal. Shaded years have a payout. The blue path lands on the goal by construction; the question is whether the rate is realistic for the risk the client can take.</p>
+            </div>
+          </details>
         </div>
       </article>
 
     </div>
 
     <div class="stack">
-      <article class="card reveal case-o-pattern">
-        <div class="card-head"><span class="ic" data-icon="list"></span><h2>The pattern</h2></div>
+      <article class="card reveal case-o-pattern" id="case-pattern-card" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="list"></span><h2>The pattern</h2><span class="meta case-mmeta" id="case-pattern-meta"></span></div>
         <div class="card-body tight"><ul class="case-pattern" id="case-pattern"></ul></div>
         <div class="card-foot">Seven seasons of cases, one shape.</div>
       </article>
 
-      <article class="card reveal case-o-build">
-        <div class="card-head"><span class="ic" data-icon="edit"></span><h2>What we build first</h2></div>
+      <article class="card reveal case-o-build" id="case-build-card" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="edit"></span><h2>What we build first</h2><span class="meta case-mmeta">IPS outline</span></div>
         <div class="card-body case-build">
           <div><span class="kicker">IPS outline</span>
             <ol>
@@ -237,8 +279,8 @@
     </div>
   </div>
 
-  <section class="case-section case-o-past" aria-labelledby="case-past-h">
-    <h2 id="case-past-h">Past clients</h2>
+  <section class="case-section case-o-past card case-pastcard" id="case-past-card" data-fold="closed" aria-labelledby="case-past-h">
+    <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="case-past-h">Past clients</h2><span class="spacer"></span><span class="meta" id="case-past-meta"></span></div>
     <p class="note">Newest first. The starting cash, the goals and the twist are what to read the new case for.</p>
     <div class="cols-3 case-past" id="case-past"></div>
     <details class="case-more" id="case-more">
@@ -248,7 +290,7 @@
   </section>
 
   <section class="case-section case-o-ips" aria-labelledby="case-ips-h">
-    <article class="card reveal">
+    <article class="card reveal" id="case-ips-card" data-fold="closed">
       <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="case-ips-h">IPS builder</h2><span class="spacer"></span><span class="meta" id="case-ips-meta"></span></div>
       <div class="card-body"><div class="case-ips" id="case-ips"></div></div>
       <div class="card-foot case-foot">
@@ -401,10 +443,27 @@
   function redraw() { if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { raf = null; draw(); }); }
   if (window.ResizeObserver) new ResizeObserver(redraw).observe(canvas.parentNode); else window.addEventListener("resize", redraw);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+  /* phones: the chart sits in a <details>, closed by default and remembered for the session. Desktop keeps it open
+     with the summary hidden. The canvas is 0 wide while closed, so it redraws whenever it opens. */
+  var PHONE = window.matchMedia ? window.matchMedia("(max-width:700px)") : null;
+  function phone() { return !!(PHONE && PHONE.matches); }
+  var chartBox = byId("case-chartd");
+  function chartMode() {
+    var saved = null;
+    try { saved = sessionStorage.getItem("wsw:case-chart"); } catch (e) {}
+    chartBox.open = !phone() || saved === "open";
+  }
+  chartBox.addEventListener("toggle", function () {
+    if (chartBox.open) redraw();
+    if (phone()) { try { sessionStorage.setItem("wsw:case-chart", chartBox.open ? "open" : "closed"); } catch (e) {} }
+  });
+  chartMode();
+  if (PHONE && PHONE.addEventListener) PHONE.addEventListener("change", chartMode); else if (PHONE && PHONE.addListener) PHONE.addListener(chartMode);
   calc();
 
   /* ---------- 3. the pattern ---------- */
   byId("case-pattern").innerHTML = D.casePattern.map(function (p) { return "<li><b>" + esc(p.t) + "</b>" + esc(p.d) + "</li>"; }).join("");
+  byId("case-pattern-meta").textContent = D.casePattern.length + " things";
 
   /* ---------- 5. past clients ---------- */
   function timeline(c) {
@@ -431,9 +490,27 @@
     "</div></article>";
   }
   byId("case-past").innerHTML = past.map(pastCard).join("");
+  byId("case-past-meta").textContent = past.length + " seasons";
   /* phone: the three newest show above; the older seasons render again inside a <details> that CSS hides on desktop */
   byId("case-past-more").innerHTML = past.slice(3).map(pastCard).join("");
-  if (/past=all/.test(location.hash || "")) byId("case-more").open = true;
+  /* #past=all opens Show all seasons and the folded Past clients card; on a phone it also scrolls there */
+  function pastAll() { return /past=all/.test(location.hash || ""); }
+  function openPast() {
+    if (!pastAll()) return;
+    byId("case-more").open = true;
+    W.unfoldFor(byId("case-past"));
+    if (phone()) byId("case-past-card").scrollIntoView({ block: "start", behavior: "instant" });
+  }
+  if (pastAll()) byId("case-more").open = true;
+  /* the shared fold code folds cards on load before this listener runs; re-settle after layout and web fonts */
+  window.addEventListener("load", function () {
+    if (!pastAll()) return;
+    openPast();
+    if (!phone()) return;
+    requestAnimationFrame(function () { setTimeout(openPast, 60); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(openPast, 60); });
+  });
+  window.addEventListener("hashchange", openPast);
 
   /* ---------- 6. IPS builder ---------- */
   var IPS = [
@@ -452,7 +529,7 @@
     return '<div class="field"><label for="ips-' + s.id + '">' + (i + 1) + ". " + esc(s.t) + '</label><span class="hint">' + esc(s.h) + '</span><textarea id="ips-' + s.id + '" data-ips="' + s.id + '"></textarea></div>';
   }).join("");
   var areas = Array.prototype.slice.call(ipsRoot.querySelectorAll("[data-ips]"));
-  function ipsMeta() { var n = areas.filter(function (a) { return a.value.trim(); }).length; byId("case-ips-meta").textContent = n + " / " + IPS.length + " sections started"; }
+  function ipsMeta() { var n = areas.filter(function (a) { return a.value.trim(); }).length; byId("case-ips-meta").innerHTML = n + " / " + IPS.length + ' <span class="case-dl">sections </span>started'; }
   areas.forEach(function (a) {
     if (ips[a.getAttribute("data-ips")]) a.value = ips[a.getAttribute("data-ips")];
     a.addEventListener("input", function () { ips[a.getAttribute("data-ips")] = a.value; W.store.set("ips", ips); ipsMeta(); });

@@ -79,29 +79,34 @@
 .cal-dl dd{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink)}
 .cal-dl dd.cal-big{font:700 18px/1.2 var(--mono);color:var(--navy)}
 
-/* phone-only pieces (up next, compact month grid, agenda); rendered always, shown at ≤700px */
-.cal-next,.cal-mg,.cal-agenda{display:none}
+/* phone-only pieces (view switch, agenda, compact month grid, month stepper, dot key); rendered always, shown at ≤700px */
+.cal-next,.cal-mg,.cal-agenda,.cal-seg,.cal-ag,.cal-mnav,.cal-key,.cal-tz-short{display:none}
 
 /* ---------- MOBILE (≤ 700px) ---------- */
 @media (max-width:700px){
   main.shell{display:flex;flex-direction:column;gap:14px}
   main.shell > *{margin:0}
-  .cal-legend{order:1}
-  .cal-months,#cal-tbd,.cal-all{order:2}
-  #cal-tbd:empty{display:none}
+  /* title and downloads, view switch, agenda or one month, tiles, time-zone note */
+  .cal-seg{order:1}
+  .cal-mnav{order:2}
+  .cal-ag,.cal-months{order:3}
+  .cal-tiles{order:4}
+  .cal-tz{order:5}
+  /* the Agenda view carries every date, TBD windows and details, so these cards would only repeat it */
+  .cal-next,#cal-tbd,.cal-all,main.shell > .cal-legend{display:none}
 
   /* header buttons: stacked, full width, one line each */
   .page-title .right{grid-auto-flow:row}
   .page-title .right .btn{white-space:nowrap;font-size:13px}
 
   .cal-tz{max-width:none}
+  .cal-tz-full{display:none}
+  .cal-tz-short{display:inline}
 
-  /* up next + month agendas */
-  .cal-next{display:block}
+  /* agenda rows (Agenda view and under each month grid) */
   .cal-agenda{display:block;list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-  .cal-next .cal-agenda{border-top:0}
   .cal-agenda > li + li{border-top:1px solid var(--line-2)}
-  .cal-arow{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:start;width:100%;min-height:60px;padding:12px 14px;border:0;background:none;text-align:left;cursor:pointer;color:var(--ink);-webkit-tap-highlight-color:transparent}
+  .cal-arow{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:start;width:100%;min-height:60px;padding:10px 14px;border:0;background:none;text-align:left;cursor:pointer;color:var(--ink);-webkit-tap-highlight-color:transparent}
   .cal-arow:active{background:var(--well)}
   .cal-arow:focus-visible{outline-offset:-3px}
   .cal-abadge{display:grid;justify-items:center;align-content:center;gap:3px;height:48px;border-radius:5px;background:var(--well);border:1px solid var(--line-2);border-left:3px solid var(--slate)}
@@ -114,7 +119,7 @@
   .cal-amain{display:grid;gap:3px;min-width:0}
   .cal-at{font:600 14px/1.35 var(--ui);color:var(--ink)}
   .cal-aend,.cal-atime{font:500 12px/1.4 var(--mono);color:var(--ink-2)}
-  .cal-ameta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:3px}
+  .cal-ameta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
   .cal-arel{font:600 12px/1 var(--mono);color:var(--ink-2);white-space:nowrap}
   .cal-arel.soon{color:var(--bad)}
   .cal-arel.today{color:var(--orange-deep);font-weight:700}
@@ -153,27 +158,43 @@
   /* deliverables are squares, so they read apart from the blue release dots at 7px */
   .cal-sw.k-deliverable,.cal-dot.k-deliverable{border-radius:2px}
 
-  /* unscheduled: the window sits on its own line above the title */
-  .cal-tbd .list > li{grid-template-columns:minmax(0,1fr);gap:4px}
-  .cal-tbd .list .when{max-width:none;font-size:12px}
-  .cal-tbd .list .when small{display:inline;font-size:12px}
-  .cal-tbd .list .when small::before{content:" · "}
-  .cal-tbd .list .cnt{grid-column:1;margin-top:4px}
+  /* view switch: Agenda | Month, one view at a time */
+  .cal-seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;padding:3px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+  .cal-seg button{min-height:44px;margin:0;border:0;border-radius:6px;background:none;font:700 14px/1 var(--ui);color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .cal-seg button[aria-pressed="true"]{background:var(--navy);color:#fff}
+  .cal-seg button:focus-visible{outline-offset:-2px}
+  main.shell[data-cal-view="agenda"] .cal-months,main.shell[data-cal-view="agenda"] .cal-mnav{display:none}
+  main.shell[data-cal-view="month"] .cal-ag{display:none}
+  main.shell[data-cal-view="month"] .cal-mcard:not(.is-cur){display:none}
+  main.shell[data-cal-view="month"] .cal-mcard{animation:none}
 
-  /* all dates: compact stacked rows (date + days / what / time + type) */
-  .cal-table.m-stack td[data-label]::before{display:none}
-  .cal-table.m-stack tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center}
-  .cal-table.m-stack td + td{margin-top:0}
-  .cal-table.m-stack td:first-child{border-left:0}
-  .cal-table.m-stack tr.is-int{box-shadow:inset 3px 0 0 var(--plum-soft);box-shadow:inset 3px 0 0 color-mix(in srgb,var(--plum) 40%,var(--card))}
-  .cal-table.m-stack td:nth-child(1){grid-column:1;grid-row:1;font:600 12.5px/1.35 var(--mono);color:var(--navy)}
-  .cal-table.m-stack td:nth-child(5){grid-column:2;grid-row:1;text-align:right;font-size:12px}
-  .cal-table.m-stack td:nth-child(3){grid-column:1 / -1;grid-row:2}
-  .cal-table.m-stack td:nth-child(2){grid-column:1;grid-row:3;font-size:12px;color:var(--ink-2)}
-  .cal-table.m-stack td:nth-child(4){grid-column:2;grid-row:3;text-align:right}
-  .cal-table.m-stack tr.is-past td{color:var(--ink-3)}
-  .cal-table .note{white-space:normal;max-width:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:12.5px}
-  .cal-tbtn{display:block;width:100%;font-size:14.5px;padding-block:9px;margin-block:-9px}
+  /* agenda: every date in one list under month headers; past dates behind one button; TBD dates last */
+  .cal-ag{display:block}
+  .cal-ag-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:4px 4px 4px 14px}
+  .cal-ag-count{font:600 12px/1.3 var(--mono);color:var(--ink-2)}
+  .cal-ag .m-more{width:auto;padding-inline:14px}
+  .cal-ag-mh{margin:0;padding:6px 14px;background:var(--well);border-block:1px solid var(--line-2);font:700 10.5px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+  .cal-ag .cal-agenda{border-top:0}
+  .cal-ag:not(.is-past-open) .cal-ag-g.is-allpast,.cal-ag:not(.is-past-open) li.cal-ag-old{display:none}
+  .cal-ag:not(.is-past-open) li.cal-ag-old + li{border-top:0}
+  .cal-arow.k-tbd .cal-abadge{border-left-style:dashed}
+  .cal-arow.k-tbd .cal-abadge b{font-size:13px}
+
+  /* month view: step one month at a time */
+  .cal-mnav{display:flex;justify-content:space-between;gap:8px}
+  .cal-mnav .btn{min-height:44px;padding-inline:10px 14px;background:var(--card);font-size:13px}
+  .cal-mnav .btn + .btn{padding-inline:14px 10px}
+  .cal-mnav .btn:hover{background:var(--well)}
+  .cal-mnav .btn:disabled{visibility:hidden}
+
+  /* what the dots mean: native disclosure under the grid */
+  .cal-key{display:block;border-top:1px solid var(--line-2)}
+  .cal-key > summary{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;font:600 13px/1.2 var(--ui);color:var(--navy);cursor:pointer;list-style:none;-webkit-tap-highlight-color:transparent}
+  .cal-key > summary::-webkit-details-marker{display:none}
+  .cal-key > summary::before{content:"";flex:none;width:6px;height:6px;margin:0 2px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
+  .cal-key[open] > summary::before{transform:rotate(45deg)}
+  .cal-key > summary:focus-visible{outline-offset:-2px}
+  .cal-key .cal-legend{margin:0;padding:2px 14px 14px}
 
   /* event sheet */
   .cal-drawer .card-head{flex-wrap:nowrap}
@@ -181,8 +202,9 @@
   .cal-dr-t{font-size:17px}
   .cal-drawer .foot{flex-wrap:nowrap;gap:8px}
   .cal-drawer .foot .btn{flex:1 1 0;min-width:0;min-height:44px;padding-inline:8px;gap:6px;white-space:nowrap}
+  .cal-drawer.is-tbd #cal-dr-ics{display:none}
 }
-@media (prefers-reduced-motion:reduce){.cal-drawer:not(.is-open){transition:none}.cal-pill{transition:none}}
+@media (prefers-reduced-motion:reduce){.cal-drawer:not(.is-open){transition:none}.cal-pill{transition:none}.cal-key > summary::before{transition:none}}
 </style>
 </head>
 <body>
@@ -223,11 +245,21 @@
       <button type="button" class="btn ghost" id="cal-dl-all"><span data-icon="users"></span>Include team dates</button>
     </div>
   </div>
+  <div class="cal-seg" role="group" aria-label="Calendar view">
+    <button type="button" data-view="agenda" aria-pressed="true" aria-controls="cal-ag">Agenda</button>
+    <button type="button" data-view="month" aria-pressed="false" aria-controls="cal-months">Month</button>
+  </div>
+  <div class="cal-mnav" id="cal-mnav">
+    <button type="button" class="btn ghost" id="cal-mprev"></button>
+    <button type="button" class="btn ghost" id="cal-mnext"></button>
+    <span class="sr" id="cal-mlive" aria-live="polite"></span>
+  </div>
+  <section class="card cal-ag" id="cal-ag" aria-label="Agenda"></section>
   <section class="card cal-next" id="cal-next" aria-labelledby="cal-next-h">
     <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="cal-next-h">Up next</h2><span class="spacer"></span><span class="meta" id="cal-next-meta"></span></div>
     <ul class="cal-agenda" id="cal-next-list"></ul>
   </section>
-  <p class="note cal-tz">Wharton's deadlines are 5:00 p.m. Eastern, which is 4:00 p.m. in Texas, during school. Internal deadlines are one week earlier so nothing is submitted from a phone at 3:55.</p>
+  <p class="note cal-tz"><span class="cal-tz-full">Wharton's deadlines are 5:00 p.m. Eastern, which is 4:00 p.m. in Texas, during school. Internal deadlines are one week earlier so nothing is submitted from a phone at 3:55.</span><span class="cal-tz-short">Wharton's deadlines are 5:00 p.m. Eastern, 4:00 p.m. in Texas, during school. Ours are a week earlier.</span></p>
 
   <div class="tiles cal-tiles reveal">
     <div class="tile"><span class="dot c-orange" data-icon="clock"></span><div class="cal-tile-b"><div class="k">Next deadline</div><div class="v"><span id="cal-t-next">–</span><small id="cal-t-next-u">days</small></div><div class="sub" id="cal-t-next-s">–</div></div></div>
@@ -295,6 +327,7 @@
   var dated = W.dated();
   var tbd = D.events.filter(function (e) { return e.tbd; });
   var todayKey = W.dayKey(W.now());
+  var TBD_NOTE = "These come from the Sep 15 materials and Wharton’s announcements. Windows are last season’s timing until then.";
   var DOWS = [["Sun", "Sunday"], ["Mon", "Monday"], ["Tue", "Tuesday"], ["Wed", "Wednesday"], ["Thu", "Thursday"], ["Fri", "Friday"], ["Sat", "Saturday"]];
 
   function kindLabel(e) { return e.tentative ? "Tentative" : e.official ? "Official" : "Team internal"; }
@@ -367,10 +400,10 @@
     return out + "</div>";
   }
   /* phone: compact grid (tappable event days) and an agenda list; hidden on desktop by CSS */
-  function agendaRow(e) {
+  function agendaRow(e, liCls) {
     var n = W.daysUntil(e.date), d = new Date(e.date);
     var rc = n === 0 ? " today" : n > 0 && n <= 7 ? " soon" : "";
-    return '<li><button type="button" class="cal-arow k-' + e.kind + (e.tentative ? " is-tent" : "") + (n < 0 ? " is-past" : "") + '" data-open="' + esc(e.id) + '">' +
+    return "<li" + (liCls ? ' class="' + liCls + '"' : "") + '><button type="button" class="cal-arow k-' + e.kind + (e.tentative ? " is-tent" : "") + (n < 0 ? " is-past" : "") + '" data-open="' + esc(e.id) + '">' +
       '<span class="cal-abadge" aria-hidden="true"><small>' + d.toLocaleDateString("en-US", { weekday: "short" }) + "</small><b>" + d.getDate() + "</b></span>" +
       '<span class="cal-amain"><b class="cal-at">' + esc(e.title) + "</b>" +
       '<span class="sr">' + esc(whenText(e, true)) + ". </span>" +
@@ -392,7 +425,7 @@
         ' aria-label="' + esc(label) + '"><span class="cal-dn">' + day + '</span><span class="cal-dots" aria-hidden="true">' + dots + "</span></button>";
     }
     for (var t = (lead + dim) % 7; t && t < 7; t++) h += '<span class="cal-dc is-out" aria-hidden="true"></span>';
-    return h + "</div>" + (evsInMonth.length ? '<ul class="cal-agenda">' + evsInMonth.map(agendaRow).join("") + "</ul>" : "");
+    return h + "</div>" + (evsInMonth.length ? '<ul class="cal-agenda">' + evsInMonth.map(function (e) { return agendaRow(e); }).join("") + "</ul>" : "");
   }
   function renderMonth(ym) {
     var y = Math.floor(ym / 12), m = ym % 12;
@@ -428,13 +461,101 @@
     }).join("");
     return '<section class="card reveal cal-tbd" id="unscheduled"><div class="card-head"><span class="ic" data-icon="clock"></span><h2>Unscheduled</h2><span class="spacer"></span><span class="meta">' + plural(tbd.length, "date") + ' TBD</span></div>' +
       '<div class="card-body tight"><ul class="list">' + li + "</ul></div>" +
-      '<div class="card-foot">These come from the Sep 15 materials and Wharton’s announcements. Windows are last season’s timing until then.</div></section>';
+      '<div class="card-foot">' + esc(TBD_NOTE) + "</div></section>";
   }
   $("cal-months").innerHTML = keys.map(renderMonth).join("");
   var soonest = W.upcoming(), left = soonest.length;
   $("cal-next-meta").textContent = left ? plural(left, "date") + " left" : "";
-  $("cal-next-list").innerHTML = left ? soonest.slice(0, 3).map(agendaRow).join("") : '<li class="cal-arow">Season complete</li>';
+  $("cal-next-list").innerHTML = left ? soonest.slice(0, 3).map(function (e) { return agendaRow(e); }).join("") : '<li class="cal-arow">Season complete</li>';
   $("cal-tbd").innerHTML = renderTbd();
+
+  /* ---------- phone views: Agenda (default) or one month at a time; hidden on desktop by CSS ---------- */
+  var PHONE = window.matchMedia ? window.matchMedia("(max-width:700px)") : { matches: false };
+  var mainEl = document.querySelector("main.shell");
+  var pastEvs = dated.filter(function (e) { return W.daysUntil(e.date) < 0; });
+  function ymOf(iso) { var d = new Date(iso); return d.getFullYear() * 12 + d.getMonth(); }
+  function tbdRow(e) {
+    return '<li><button type="button" class="cal-arow k-tbd" data-open="' + esc(e.id) + '">' +
+      '<span class="cal-abadge" aria-hidden="true"><small>Date</small><b>TBD</b></span>' +
+      '<span class="cal-amain"><b class="cal-at">' + esc(e.title) + "</b>" +
+      '<span class="cal-atime">' + esc(e.window || "TBD") + "</span>" +
+      '<span class="cal-ameta"><span class="chip tbd">Date TBD</span>' +
+      (e.lastSeason ? '<span class="cal-aend">Last season: ' + esc(e.lastSeason) + "</span>" : "") + "</span></span></button></li>";
+  }
+  function renderAgenda() {
+    var groups = [], byM = {};
+    dated.forEach(function (e) {
+      var k = ymOf(e.date);
+      if (!byM[k]) { byM[k] = { name: new Date(e.date).toLocaleDateString("en-US", { month: "long", year: "numeric" }), evs: [] }; groups.push(byM[k]); }
+      byM[k].evs.push(e);
+    });
+    var h = '<div class="cal-ag-top"><span class="cal-ag-count">' + (left ? plural(left, "date") + " left" : "Season complete") + "</span>" +
+      (pastEvs.length ? '<button type="button" class="m-more cal-ag-pastbtn" aria-expanded="false" aria-controls="cal-ag-list">Show ' + plural(pastEvs.length, "past date") + "</button>" : "") +
+      '</div><div id="cal-ag-list">';
+    groups.forEach(function (g) {
+      var old = g.evs.map(function (e) { return W.daysUntil(e.date) < 0; });
+      h += '<div class="cal-ag-g' + (old.indexOf(false) === -1 ? " is-allpast" : "") + '"><h2 class="cal-ag-mh">' + esc(g.name) + '</h2><ul class="cal-agenda">' +
+        g.evs.map(function (e, i) { return agendaRow(e, old[i] ? "cal-ag-old" : ""); }).join("") + "</ul></div>";
+    });
+    if (tbd.length) h += '<div class="cal-ag-g"><h2 class="cal-ag-mh">Date TBD</h2><ul class="cal-agenda">' + tbd.map(tbdRow).join("") + "</ul></div>";
+    return h + "</div>";
+  }
+  var ag = $("cal-ag");
+  ag.innerHTML = renderAgenda();
+  var pastBtn = ag.querySelector(".cal-ag-pastbtn");
+  function showPast(open) {
+    ag.classList.toggle("is-past-open", open);
+    if (!pastBtn) return;
+    pastBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    pastBtn.textContent = open ? "Hide past dates" : "Show " + plural(pastEvs.length, "past date");
+  }
+  if (pastBtn) pastBtn.addEventListener("click", function () { showPast(!ag.classList.contains("is-past-open")); });
+
+  /* month view: the existing month cards, one shown at a time, with the dot key folded under the grid */
+  var mcards = Array.prototype.slice.call($("cal-months").querySelectorAll(".cal-mcard"));
+  var legend = document.querySelector(".cal-legend");
+  var dotKey = document.createElement("details");
+  dotKey.className = "cal-key";
+  dotKey.innerHTML = "<summary>What the dots mean</summary>" + (legend ? '<div class="cal-legend">' + legend.innerHTML + "</div>" : "");
+  var CHEV_L = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>', CHEV_R = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+  function monthName(i, withYear) { return new Date(Math.floor(keys[i] / 12), keys[i] % 12, 1).toLocaleDateString("en-US", withYear ? { month: "long", year: "numeric" } : { month: "long" }); }
+  var nextUp = soonest[0], curIdx = keys.length - 1;
+  if (nextUp && keys.indexOf(ymOf(nextUp.date)) !== -1) curIdx = keys.indexOf(ymOf(nextUp.date));
+  function showMonth(i, announce) {
+    if (!mcards.length) return;
+    curIdx = Math.max(0, Math.min(mcards.length - 1, i));
+    mcards.forEach(function (c, k) { c.classList.toggle("is-cur", k === curIdx); });
+    var card = mcards[curIdx], mg = card.querySelector(".cal-mg");
+    if (mg) mg.parentNode.insertBefore(dotKey, mg.nextSibling);
+    [["cal-mprev", curIdx - 1, "Previous month: "], ["cal-mnext", curIdx + 1, "Next month: "]].forEach(function (p, side) {
+      var b = $(p[0]), ok = p[1] >= 0 && p[1] < mcards.length;
+      b.disabled = !ok;
+      if (!ok) { b.innerHTML = ""; b.removeAttribute("aria-label"); return; }
+      var label = esc(monthName(p[1], Math.floor(keys[p[1]] / 12) !== Math.floor(keys[curIdx] / 12)));
+      b.innerHTML = side ? label + CHEV_R : CHEV_L + label;
+      b.setAttribute("aria-label", p[2] + monthName(p[1], true));
+    });
+    if (announce) $("cal-mlive").textContent = card.querySelector(".card-head h2").textContent + ", " + card.querySelector(".card-head .meta").textContent;
+  }
+  [["cal-mprev", -1, "cal-mnext"], ["cal-mnext", 1, "cal-mprev"]].forEach(function (p) {
+    $(p[0]).addEventListener("click", function () {
+      showMonth(curIdx + p[1], true);
+      if (this.disabled) $(p[2]).focus(); /* reached the first or last month: keep focus on a live button */
+    });
+  });
+
+  /* segmented control; the choice lasts for the browser session */
+  var segBtns = Array.prototype.slice.call(document.querySelectorAll(".cal-seg button"));
+  function setView(v, save) {
+    mainEl.setAttribute("data-cal-view", v);
+    segBtns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-view") === v ? "true" : "false"); });
+    if (save) { try { sessionStorage.setItem("wsw:cal-view", v); } catch (err) {} }
+  }
+  segBtns.forEach(function (b) { b.addEventListener("click", function () { setView(b.getAttribute("data-view"), true); }); });
+  var savedView = "agenda";
+  try { if (sessionStorage.getItem("wsw:cal-view") === "month") savedView = "month"; } catch (err) {}
+  setView(savedView, false);
+  showMonth(curIdx, false);
 
   /* ---------- all dates ---------- */
   $("cal-all-meta").textContent = plural(dated.length, "date");
@@ -457,13 +578,18 @@
     var also = from && from.getAttribute("data-also");
     if (from && drawer.contains(from)) from = opener; /* hopping between same-day events keeps the original opener */
     current = e; opener = from || null;
-    var n = W.daysUntil(e.date);
-    $("cal-dr-m").textContent = W.fmtDate(e.date).toUpperCase();
-    body.innerHTML = kindChip(e) + '<h3 class="cal-dr-t">' + esc(e.title) + "</h3>" +
+    /* TBD dates only open from the phone agenda: window and last season instead of a date, no calendar file */
+    var tbdE = !!e.tbd, n = tbdE ? null : W.daysUntil(e.date);
+    drawer.classList.toggle("is-tbd", tbdE);
+    $("cal-dr-m").textContent = tbdE ? "DATE TBD" : W.fmtDate(e.date).toUpperCase();
+    body.innerHTML = (tbdE ? '<span class="chip tbd">Date TBD</span>' : kindChip(e)) + '<h3 class="cal-dr-t">' + esc(e.title) + "</h3>" +
       '<dl class="cal-dl">' +
-      '<div><dt class="kicker">When</dt><dd>' + esc(whenText(e, true)) + '<br><span class="num">' + esc(W.fmtTimes(e.date)) + "</span></dd></div>" +
-      '<div><dt class="kicker">Countdown</dt><dd class="cal-big">' + esc(countdown(n)) + "</dd></div>" +
+      (tbdE
+        ? '<div><dt class="kicker">When</dt><dd>' + esc(e.window || "TBD") + (e.lastSeason ? '<br><span class="num">Last season: ' + esc(e.lastSeason) + "</span>" : "") + "</dd></div>"
+        : '<div><dt class="kicker">When</dt><dd>' + esc(whenText(e, true)) + '<br><span class="num">' + esc(W.fmtTimes(e.date)) + "</span></dd></div>" +
+          '<div><dt class="kicker">Countdown</dt><dd class="cal-big">' + esc(countdown(n)) + "</dd></div>") +
       '<div><dt class="kicker">Details</dt><dd>' + esc(e.detail || "") + "</dd></div>" +
+      (tbdE ? '<div><dt class="kicker">Timing</dt><dd>' + esc(TBD_NOTE) + "</dd></div>" : "") +
       (e.action ? '<div><dt class="kicker">What we do</dt><dd>' + esc(e.action) + "</dd></div>" : "") +
       (also ? '<div><dt class="kicker">Same day</dt><dd>' + also.split(",").map(function (id) { var o = W.eventById(id); return o ? '<button type="button" class="btn ghost sm" data-open="' + esc(o.id) + '">' + esc(o.title) + "</button>" : ""; }).join(" ") + "</dd></div>" : "") +
       "</dl>";
@@ -504,7 +630,7 @@
   $("cal-dr-x").addEventListener("click", closeDrawer);
   $("cal-dr-close").addEventListener("click", closeDrawer);
   $("cal-dr-ics").addEventListener("click", function () {
-    if (!current) return;
+    if (!current || current.tbd) return;
     W.downloadICS([current], "wsw-" + current.id + ".ics");
     W.toast("Calendar file downloaded");
   });
@@ -514,10 +640,12 @@
     var m = /^#e=([\w-]+)$/.exec(location.hash);
     if (!m) return;
     var e = W.eventById(m[1]);
-    if (!e || e.tbd) return;
-    /* first visible target: the grid pill on desktop, the month agenda row on a phone */
+    if (!e || (e.tbd && !PHONE.matches)) return;
+    /* phones: the Agenda view holds every date, TBD included; switch to it and show past dates if the link needs them */
+    if (PHONE.matches) { setView("agenda", false); if (!e.tbd && W.daysUntil(e.date) < 0) showPast(true); }
+    /* first visible target: the grid pill on desktop, the agenda row on a phone */
     var b = null;
-    [".cal-pill", ".cal-months .cal-arow", ".cal-tbtn"].some(function (sel) {
+    [".cal-pill", ".cal-ag .cal-arow", ".cal-months .cal-arow", ".cal-tbtn"].some(function (sel) {
       var el = document.querySelector(sel + '[data-open="' + m[1] + '"]');
       if (el && el.getClientRects().length) { b = el; return true; }
       return false;

@@ -85,7 +85,13 @@
 @media (max-width:520px){.pb-drafts li{grid-template-columns:1fr}.pb-drafts .pb-b{justify-content:flex-start}}
 
 /* ---------- phone (≤ 700px) ---------- */
+.pb-m{display:none}
 @media (max-width:700px){
+  /* folded card summaries: phone-only text replaces the desktop head note */
+  .card-head .pb-m{display:inline;white-space:nowrap}
+  .card-head .pb-desk{display:none}
+  #pb-insights > .m-more-row{padding:0;border-top:0}
+
   /* 1. pull quote: smaller type so the numbers share the first screen */
   .pb-standard .card-body{padding:13px 14px 12px 34px}
   .pb-standard .pb-mark{left:8px;top:6px;font-size:42px}
@@ -223,18 +229,18 @@
     <!-- 3. eight things that matter -->
     <section class="card reveal" aria-labelledby="pb-insights-h">
       <div class="card-head"><span class="ic" data-icon="star"></span><h2 id="pb-insights-h">Eight things that matter</h2><span class="spacer"></span><span class="meta">ranked by impact</span></div>
-      <div class="card-body"><div class="cols-2" id="pb-insights"></div></div>
+      <div class="card-body"><div class="cols-2" id="pb-insights" data-m-limit="3"></div></div>
     </section>
 
     <!-- 4. what judges said -->
-    <section class="card reveal" aria-labelledby="pb-judges-h">
-      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="pb-judges-h">What judges said</h2></div>
+    <section class="card reveal" aria-labelledby="pb-judges-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="pb-judges-h">What judges said</h2><span class="meta pb-m" id="pb-judges-m"></span></div>
       <div class="card-body"><div class="pb-quotes" id="pb-quotes"></div></div>
     </section>
 
     <!-- 5. deliverable plan -->
-    <section class="card reveal" aria-labelledby="pb-plan-h">
-      <div class="card-head"><span class="ic" data-icon="flag"></span><h2 id="pb-plan-h">Deliverable plan</h2><span class="spacer"></span><span class="meta">internal drafts one week early</span></div>
+    <section class="card reveal" aria-labelledby="pb-plan-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="flag"></span><h2 id="pb-plan-h">Deliverable plan</h2><span class="spacer"></span><span class="meta pb-desk">internal drafts one week early</span><span class="meta pb-m" id="pb-plan-m"></span></div>
       <div class="card-body tight">
         <div class="table-wrap">
           <table class="pb-plan m-stack">
@@ -247,22 +253,22 @@
     </section>
 
     <!-- 6. final report structure -->
-    <section class="card reveal" aria-labelledby="pb-report-h">
-      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pb-report-h">Final report structure</h2><span class="spacer"></span><span class="meta">in order</span></div>
+    <section class="card reveal" aria-labelledby="pb-report-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pb-report-h">Final report structure</h2><span class="spacer"></span><span class="meta pb-desk">in order</span><span class="meta pb-m" id="pb-report-m"></span></div>
       <div class="card-body tight"><ol class="pb-ol" id="pb-report"></ol></div>
       <div class="card-foot">Sections in the order past reports used them. Wharton's own template comes Sep 15.</div>
     </section>
 
     <!-- 7. weekly rhythm -->
-    <section class="card reveal" aria-labelledby="pb-week-h">
-      <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="pb-week-h">Weekly rhythm</h2></div>
+    <section class="card reveal" aria-labelledby="pb-week-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="pb-week-h">Weekly rhythm</h2><span class="meta pb-m" id="pb-week-m"></span></div>
       <div class="card-body"><div class="pb-week" id="pb-week"></div></div>
       <div class="card-foot">Thursday is open. Use it to catch up if a trade needs more work.</div>
     </section>
 
     <!-- 8. trade note builder -->
-    <section class="card reveal" id="notes" aria-labelledby="pb-notes-h">
-      <div class="card-head"><span class="ic" data-icon="edit"></span><h2 id="pb-notes-h">Trade note builder</h2><span class="spacer"></span><span class="meta">one note per trade</span></div>
+    <section class="card reveal" id="notes" aria-labelledby="pb-notes-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="edit"></span><h2 id="pb-notes-h">Trade note builder</h2><span class="spacer"></span><span class="meta pb-desk">one note per trade</span><span class="meta pb-m" id="pb-notes-m"></span></div>
       <div class="card-body">
         <form class="pb-form" id="pb-form" autocomplete="off">
           <div class="fields">
@@ -337,9 +343,13 @@
   }).join("");
 
   /* 4. judge quotes */
-  $("pb-quotes").innerHTML = D.quotes.slice(1).map(function (q) {
+  var judgeQuotes = D.quotes.slice(1);
+  $("pb-quotes").innerHTML = judgeQuotes.map(function (q) {
     return "<blockquote><span>" + esc(q.q) + "</span><cite>" + link(q.url, q.who) + "</cite></blockquote>";
   }).join("");
+  /* folded-card summaries (phone only) */
+  function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
+  $("pb-judges-m").textContent = plural(judgeQuotes.length, "quote", "quotes");
 
   /* 5. deliverable plan */
   var OWNER = { roster: ["lead"], notes: ["trader"], ips: ["lead", "client"], report: ["writer"] };
@@ -358,12 +368,18 @@
       '<td class="pb-days" data-label="Days left"><span class="pb-left' + (n <= 7 ? " soon" : "") + '">' + n + '</span><span class="sub">' + W.relative(n) + "</span></td>" +
       "</tr>";
   }).join("");
+  /* phone summary: the next Wharton deadline that hasn't passed, with the short names the countdown strip uses */
+  var SHORT = { roster: "Roster", notes: "Trading Notes", ips: "IPS", report: "Final report" };
+  var nextD = D.deliverables.filter(function (d) { return W.daysUntil(d.due) >= 0; })[0];
+  $("pb-plan-m").textContent = nextD ? "next: " + (SHORT[nextD.id] || nextD.name) + " " + W.fmtDate(nextD.due) : plural(D.deliverables.length, "deliverable", "deliverables");
 
   /* 6. report structure */
   $("pb-report").innerHTML = D.reportStructure.map(function (s) { return "<li><div><b>" + esc(s.s) + "</b><span>" + esc(s.d) + "</span></div></li>"; }).join("");
+  $("pb-report-m").textContent = plural(D.reportStructure.length, "section", "sections");
 
   /* 7. weekly rhythm */
   $("pb-week").innerHTML = D.weekly.map(function (w) { return '<div><span class="eyebrow">' + esc(w.d) + "</span><h3>" + esc(w.t) + "</h3><p>" + esc(w.s) + "</p></div>"; }).join("");
+  $("pb-week-m").textContent = plural(D.weekly.length, "day", "days");
 
   /* 8. trade note builder */
   var KEY = "notes";
@@ -380,6 +396,7 @@
   function drafts() { var v = W.store.get(KEY, []); return Array.isArray(v) ? v : []; }
   function render() {
     var list = drafts(), ul = $("pb-drafts");
+    $("pb-notes-m").textContent = list.length ? plural(list.length, "draft", "drafts") : "one note per trade";
     if (!list.length) { ul.innerHTML = '<li class="pb-empty">No draft notes yet. The first real trade is Sep 28.</li>'; return; }
     ul.innerHTML = list.map(function (n, i) {
       return '<li><span class="pb-d">' + esc(n.date) + '</span><div class="pb-t"><b>' + esc(headline(n)) + "</b><span>" + esc(firstLine(n.thesis) || "No thesis yet") + "</span></div>" +
@@ -406,6 +423,11 @@
     if (b.hasAttribute("data-del")) { list.splice(+b.getAttribute("data-del"), 1); W.store.set(KEY, list); render(); W.toast("Draft deleted"); }
   });
   render();
+  /* the page-title button jumps to the builder: open its phone fold first so the jump lands on the form
+     (runs before the browser scrolls; on desktop the fold class has no visual effect) */
+  document.addEventListener("click", function (e) {
+    if (e.target.closest('a[href="#notes"]') && W.unfoldFor) W.unfoldFor($("notes"));
+  });
 })(window.WSW);
 </script>
 </body>

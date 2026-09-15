@@ -282,6 +282,9 @@ footer.site a{color:var(--ink-2)}
 
 /* injected by app.js; hidden until the breakpoint */
 .mbar,.msheet,.mscrim,.mphase{display:none}
+.fold-btn,.m-more-row{display:none}
+/* outrank component row rules like .list > li{display:grid} so the phone-only "Show all" row never leaks onto desktop */
+.list > li.m-more-row,.checks > li.m-more-row,tbody > tr.m-more-row{display:none}
 .mbar{position:fixed;left:0;right:0;bottom:0;z-index:48;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--strip);border-top:1px solid #1B2D5C;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -6px 20px -10px rgba(11,23,55,.5)}
 .mbar a,.mbar button{position:relative;display:grid;justify-items:center;align-content:center;gap:4px;min-height:58px;padding:6px 2px;background:none;border:0;color:#9FB0CF;text-decoration:none;font:600 10.5px/1 var(--ui);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .mbar svg{width:22px;height:22px}
@@ -412,6 +415,24 @@ footer.site a{color:var(--ink-2)}
   .drawer .foot .btn{flex:1;justify-content:center}
   .scrim{z-index:49}
   .drawer{z-index:50}
+
+  /* folding cards: the head becomes the toggle; everything after it hides when folded */
+  .card[data-fold] > .card-head{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .card[data-fold] > .card-head{flex-wrap:nowrap}
+  .card[data-fold] > .card-head h2,.card[data-fold] > .card-head h3{flex:1 1 auto;min-width:0}
+  .card[data-fold] > .card-head .fold-btn{display:inline-grid;place-items:center;margin-left:auto;flex:none;width:36px;height:36px;padding:0;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
+  .card[data-fold] > .card-head .fold-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transform:rotate(180deg);transition:transform .2s var(--ease)}
+  .card[data-fold].is-folded > .card-head .fold-btn svg{transform:none}
+  .card[data-fold] > .card-head .spacer{display:none}
+  .card[data-fold].is-folded > :not(.card-head){display:none!important}
+  .card.green[data-fold] > .card-head .fold-btn{border-color:rgba(255,255,255,.4)}
+
+  /* "show first N" lists */
+  .m-limited > .m-extra{display:none!important}
+  .m-more-row,.list > li.m-more-row,.checks > li.m-more-row{display:block;list-style:none;padding:10px 14px;border-top:1px solid var(--line-2)}
+  tbody > tr.m-more-row{display:table-row}
+  table.m-stack tbody > tr.m-more-row{display:block}
+  .m-more{width:100%;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--well);color:var(--navy);font:700 13.5px/1 var(--ui);cursor:pointer}
 
   .toast{bottom:calc(74px + env(safe-area-inset-bottom));max-width:calc(100% - 32px);text-align:center}
   footer.site{padding-block:16px;font-size:12px}

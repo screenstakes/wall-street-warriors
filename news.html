@@ -43,7 +43,13 @@
 
 /* ---------- phone ---------- */
 .news-more{display:none}
+.news-m{display:none}
 @media (max-width:700px){
+  /* folded card summaries (phone only; desktop heads are unchanged) */
+  .card-head .news-m{display:inline;white-space:nowrap}
+  /* "Show all" row inside the green announcements card: match the announcement dividers */
+  #news-ann > .m-more-row{padding:12px 0 0;margin-top:12px;border-top:1px solid rgba(255,255,255,.22)}
+
   /* order: team announcements, then the time-sensitive safe senders, then the feeds and reference links */
   .grid.main-rail > .stack,#news-links{display:contents}
   .grid.main-rail section{order:10}
@@ -139,17 +145,17 @@
       <!-- 1. team announcements -->
       <section class="card green reveal" aria-labelledby="news-ann-h">
         <div class="card-head"><span class="ic" data-icon="bell"></span><h2 id="news-ann-h">Team announcements</h2></div>
-        <div class="card-body" id="news-ann"></div>
+        <div class="card-body" id="news-ann" data-m-limit="2"></div>
       </section>
 
       <!-- 2. competition news -->
       <section class="card reveal" aria-labelledby="news-comp-h">
         <div class="card-head"><span class="ic" data-icon="news"></span><h2 id="news-comp-h">Competition news</h2><span class="spacer"></span><span class="meta" id="news-comp-n"></span></div>
-        <div class="card-body tight"><ul class="list news-list" id="news-comp"></ul></div>
+        <div class="card-body tight"><ul class="list news-list" id="news-comp" data-m-limit="6"></ul></div>
       </section>
 
       <!-- 3. reading list -->
-      <section class="card reveal" aria-labelledby="news-read-h">
+      <section class="card reveal" aria-labelledby="news-read-h" data-fold="closed">
         <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="news-read-h">Reading list</h2><span class="spacer"></span><span class="meta" id="news-read-n"></span></div>
         <div class="card-body tight"><ul class="list news-list" id="news-read"></ul></div>
       </section>
@@ -168,8 +174,8 @@
       </section>
 
       <!-- 7. sources -->
-      <section class="card reveal" id="sources" aria-labelledby="news-sources-h">
-        <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="news-sources-h">Sources</h2></div>
+      <section class="card reveal" id="sources" aria-labelledby="news-sources-h" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="news-sources-h">Sources</h2><span class="meta news-m" id="news-sources-m"></span></div>
         <div class="card-body">
           <ol class="news-sources">
             <li><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/" target="_blank" rel="noopener">Competition home</a>, Wharton Global Youth Program: season dates, team size, and the deliverable list.</li>
@@ -186,7 +192,7 @@
   </div>
 
   <!-- 4. champions archive, full width so the table has room -->
-  <section class="card reveal" aria-labelledby="news-champs-h" style="margin-top:20px">
+  <section class="card reveal" aria-labelledby="news-champs-h" style="margin-top:20px" data-fold="closed">
     <div class="card-head"><span class="ic" data-icon="trophy"></span><h2 id="news-champs-h">Champions archive</h2><span class="spacer"></span><span class="meta" id="news-champs-n"></span></div>
     <div class="card-body tight">
       <div class="table-wrap">
@@ -261,7 +267,8 @@
   var cards = GROUPS.map(function (g) {
     var rows = res.filter(function (r) { return r.group === g[0]; });
     if (!rows.length) return "";
-    return '<section class="card reveal" aria-label="' + g[0] + ' links"><div class="card-head"><span class="ic" data-icon="' + g[1] + '"></span><h2>' + g[0] + "</h2></div><div class=\"card-body tight\"><ul class=\"news-links\">" +
+    /* folds closed on phones, with the link count in the head (phone-only span) */
+    return '<section class="card reveal" aria-label="' + g[0] + ' links" data-fold="closed"><div class="card-head"><span class="ic" data-icon="' + g[1] + '"></span><h2>' + g[0] + '</h2><span class="meta news-m">' + rows.length + (rows.length === 1 ? " link" : " links") + "</span></div><div class=\"card-body tight\"><ul class=\"news-links\">" +
       rows.map(function (r) {
         var mail = /^mailto:/i.test(r.url || "");
         var label = r.title || r.label || r.name || r.url;
@@ -275,6 +282,13 @@
     return "<li><b>" + esc(e) + '</b><button type="button" class="btn ghost sm" data-copy="' + esc(e) + '"><span data-icon="copy"></span>Copy</button></li>';
   }).join("");
   $("news-safe").addEventListener("click", function (e) { var b = e.target.closest("[data-copy]"); if (b) W.copy(b.getAttribute("data-copy"), "Address copied"); });
+
+  /* 7. sources: count for the phone fold head; in-page links to #sources open the fold before the browser jumps */
+  var srcN = document.querySelectorAll("#sources .news-sources > li").length;
+  $("news-sources-m").textContent = srcN + (srcN === 1 ? " link" : " links");
+  document.addEventListener("click", function (e) {
+    if (e.target.closest('a[href="#sources"],a[href="news.html#sources"]') && W.unfoldFor) W.unfoldFor($("sources"));
+  });
 })(window.WSW);
 </script>
 </body>

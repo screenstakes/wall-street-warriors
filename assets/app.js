@@ -247,10 +247,83 @@
     var id = decodeURIComponent(location.hash.slice(1));
     if (!id || id.indexOf("=") !== -1) return;
     var el = document.getElementById(id);
+    if (el && W.unfoldFor) W.unfoldFor(el);
     /* "instant" overrides html{scroll-behavior:smooth}, which otherwise turns this into an animation that
        the load-time layout shifts interrupt */
     if (el) el.scrollIntoView({ block: "start", behavior: "instant" });
   }
+  /* ---------- phone folding (≤700px only; desktop never sees any of this) ----------
+     <section class="card" data-fold="closed|open"> : the card collapses to its header on phones. A toggle button is
+       added to the card head; the choice is remembered per page and card. A link to anything inside opens it.
+     <ul|ol|tbody|div data-m-limit="3">              : on phones only the first N children show, plus a "Show all" button.
+     Content is hidden with CSS classes inside the phone media query, so the desktop layout is untouched. */
+  var PHONE = window.matchMedia ? window.matchMedia("(max-width:700px)") : { matches: false, addEventListener: function () {} };
+  var pageKey = (location.pathname.split("/").pop() || "index.html").replace(".html", "") || "index";
+  /* open/closed state lasts for the browser session (GOV.UK accordion behavior), so a fresh visit starts tidy */
+  var session = {
+    get: function (k, fb) { try { var v = sessionStorage.getItem("wsw:" + k); return v === null ? fb : JSON.parse(v); } catch (e) { return fb; } },
+    set: function (k, v) { try { sessionStorage.setItem("wsw:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  function foldKey(card, i) { return "fold:" + pageKey + ":" + (card.id || card.getAttribute("aria-labelledby") || i); }
+  function setFold(card, folded, save) {
+    card.classList.toggle("is-folded", folded);
+    var btn = card.querySelector(":scope > .card-head .fold-btn");
+    if (btn) btn.setAttribute("aria-expanded", folded ? "false" : "true");
+    if (save) { var s = session.get("folds", {}); s[card._foldKey] = folded; session.set("folds", s); }
+  }
+  W.unfoldFor = function (el) {
+    var card = el && el.closest && el.closest(".card[data-fold]");
+    if (card && card.classList.contains("is-folded")) setFold(card, false, true);
+  };
+  function initFolds() {
+    var saved = session.get("folds", {});
+    Array.prototype.forEach.call(document.querySelectorAll(".card[data-fold]"), function (card, i) {
+      var head = card.querySelector(":scope > .card-head");
+      if (!head || card._foldInit) return;
+      card._foldInit = true; card._foldKey = foldKey(card, i);
+      /* one caret button on the right; the whole header row toggles too (NN/g: caret is the safest icon) */
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "fold-btn";
+      btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+      var label = head.querySelector("h2,h3");
+      btn.setAttribute("aria-label", label ? label.textContent.trim() : "Section");
+      head.appendChild(btn);
+      btn.addEventListener("click", function (e) { e.stopPropagation(); setFold(card, !card.classList.contains("is-folded"), true); });
+      /* tapping the title area toggles too, but never hijacks links or other buttons in the head */
+      head.addEventListener("click", function (e) {
+        if (!PHONE.matches || e.target.closest("a,button,select,input,label")) return;
+        setFold(card, !card.classList.contains("is-folded"), true);
+      });
+      var def = card.getAttribute("data-fold") === "closed";
+      setFold(card, Object.prototype.hasOwnProperty.call(saved, card._foldKey) ? saved[card._foldKey] : def, false);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-m-limit]"), function (list) {
+      if (list._limitInit) return;
+      var n = parseInt(list.getAttribute("data-m-limit"), 10) || 3;
+      var items = Array.prototype.filter.call(list.children, function (c) { return !c.classList.contains("m-more-row"); });
+      /* never hide a single item behind a button (Baymard) */
+      if (items.length <= n + 1) return;
+      list._limitInit = true;
+      items.forEach(function (c, k) { c.classList.toggle("m-extra", k >= n); });
+      list.classList.add("m-limited");
+      var more = document.createElement(list.tagName === "TBODY" ? "tr" : list.tagName === "UL" || list.tagName === "OL" ? "li" : "div");
+      more.className = "m-more-row";
+      var inner = '<button type="button" class="m-more" aria-expanded="false">Show all ' + items.length + "</button>";
+      more.innerHTML = list.tagName === "TBODY" ? '<td colspan="99">' + inner + "</td>" : inner;
+      list.appendChild(more);
+      more.querySelector("button").addEventListener("click", function () {
+        var limited = list.classList.toggle("m-limited");
+        this.setAttribute("aria-expanded", limited ? "false" : "true");
+        this.textContent = limited ? "Show all " + items.length : "Show fewer";
+        /* after expanding, move focus to the first newly shown item (BBC GEL load-more pattern), without jumping the page */
+        if (!limited && items[n]) { items[n].setAttribute("tabindex", "-1"); items[n].focus({ preventScroll: true }); }
+      });
+    });
+  }
+  /* pages render cards with JS after app.js loads, so fold once the page script has run */
+  if (document.readyState === "complete") initFolds(); else window.addEventListener("load", initFolds);
+  W.initFolds = initFolds;
+
   window.addEventListener("load", function () {
     requestAnimationFrame(function () { setTimeout(settleAnchor, 50); });
     /* web fonts change line wrapping and page height; settle again once they're in */

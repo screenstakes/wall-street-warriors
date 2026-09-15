@@ -43,20 +43,30 @@
 .rules-ol li:first-child{border-top:0;padding-top:0}
 .rules-ol li::before{content:counter(dq,decimal-leading-zero);font:700 13px/1.6 var(--mono);color:var(--orange-deep)}
 .rules-sources{margin-top:20px}
+/* phone-only pieces. On desktop the fold wrapper around the two multi-card sections draws nothing. */
+.rules-mmeta{display:none}
+.rules-mfold{display:contents}
+.rules-mfold > .card-head{display:none}
 @media (max-width:700px){
-  /* tab bar: scrolls inside the card, fades at whichever edge has more tabs */
-  .rules-tabbar{position:relative;overflow:hidden;padding-inline:0}
-  .rules-tabbar .tabs{margin-inline:0;padding-inline:4px;scroll-padding-inline:28px}
-  .rules-tabbar .tab{min-height:48px;padding-inline:11px}
-  .rules-tabbar .tab::after{left:11px;right:11px}
-  .rules-tabbar::before,.rules-tabbar::after{content:"";position:absolute;top:0;bottom:0;width:30px;pointer-events:none;z-index:1;transition:opacity .2s}
-  .rules-tabbar::before{left:0;background:linear-gradient(90deg,var(--card),rgba(255,255,255,0));opacity:0}
-  .rules-tabbar::after{right:0;background:linear-gradient(270deg,var(--card),rgba(255,255,255,0))}
-  .rules-tabbar.is-scrolled::before{opacity:1}
-  .rules-tabbar.at-end::after{opacity:0}
-  .rules-panels{margin-top:14px}
-  .rules-panels [role=tabpanel]{gap:14px}
+  /* phones: no tab bar (horizontal tabs get missed); the six sections stack as folds, Trading rules open */
+  .rules-tabbar{display:none}
+  .rules-panels{margin-top:0;display:grid;gap:14px}
+  .rules-panel{display:grid;gap:14px}
+  .rules-panel .card[data-fold]{scroll-margin-top:12px}
+  .rules-dmeta{display:none}
+  .rules-mmeta{display:inline}
   .rules-note{padding:12px 14px}
+
+  /* deliverables and AI policy: one fold card each; the cards inside become rows with light subheads */
+  .rules-mfold{display:block}
+  .rules-mfold > .card-head{display:flex}
+  .rules-mfold > .cols-2,.rules-mfold > .cols-3{gap:0}
+  .rules-mfold .card{border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none}
+  .rules-mfold > div > .card:first-child{border-top:0}
+  .rules-mfold .card > .card-head{background:var(--well);border-bottom:1px solid var(--line-2);min-height:44px}
+  .rules-mfold .card > .card-head h2{color:var(--navy)}
+  .rules-mfold .card > .card-head .meta{color:var(--ink-2)}
+  .rules-mfold > .note{padding:12px 14px;border-top:1px solid var(--line)}
 
   /* trading rules: one card per rule */
   .rules-table.m-stack tr{padding:13px 14px}
@@ -89,9 +99,6 @@
   .rules-ai .lede{font-size:15.5px}
   .rules-ol li{grid-template-columns:28px minmax(0,1fr);gap:10px;padding:11px 0;font-size:14.5px}
   .rules-sources{margin-top:16px}
-}
-@media (max-width:700px) and (prefers-reduced-motion:reduce){
-  .rules-tabbar::before,.rules-tabbar::after{transition:none}
 }
 </style>
 </head>
@@ -146,24 +153,24 @@
 
   <div class="rules-panels">
 
-    <section id="panel-trading" role="tabpanel" aria-labelledby="tab-trading" hidden>
-      <article class="card reveal">
-        <div class="card-head"><span class="ic" data-icon="chart"></span><h2>Trading rules</h2><span class="spacer"></span><span class="meta" id="rules-trading-count"></span></div>
+    <section id="panel-trading" class="rules-panel" role="tabpanel" aria-labelledby="tab-trading" hidden>
+      <article class="card reveal" id="rules-fold-trading" data-fold="open">
+        <div class="card-head"><span class="ic" data-icon="chart"></span><h2>Trading rules</h2><span class="spacer"></span><span class="meta rules-dmeta" id="rules-trading-count"></span><span class="meta rules-mmeta" id="rules-trading-mcount"></span></div>
         <div class="card-body tight">
           <p class="note rules-note" id="rules-trading-note"></p>
           <div class="table-wrap">
             <table class="rules-table m-stack">
               <thead><tr><th scope="col">Rule</th><th scope="col">What we know</th><th scope="col">Status</th><th scope="col">Season</th></tr></thead>
-              <tbody id="rules-trading-body"></tbody>
+              <tbody id="rules-trading-body" data-m-limit="6"></tbody>
             </table>
           </div>
         </div>
       </article>
     </section>
 
-    <section id="panel-team" role="tabpanel" aria-labelledby="tab-team" hidden>
-      <article class="card reveal">
-        <div class="card-head"><span class="ic" data-icon="users"></span><h2>Team rules</h2></div>
+    <section id="panel-team" class="rules-panel" role="tabpanel" aria-labelledby="tab-team" hidden>
+      <article class="card reveal" id="rules-fold-team" data-fold="closed">
+        <div class="card-head"><span class="ic" data-icon="users"></span><h2>Team rules</h2><span class="meta rules-mmeta" id="rules-team-mcount"></span></div>
         <div class="card-body tight">
           <dl class="rules-dl" id="rules-team-list"></dl>
         </div>
@@ -171,12 +178,17 @@
       </article>
     </section>
 
-    <section id="panel-deliverables" role="tabpanel" aria-labelledby="tab-deliverables" hidden>
+    <section id="panel-deliverables" class="rules-panel" role="tabpanel" aria-labelledby="tab-deliverables" hidden>
+      <div class="card rules-mfold" id="rules-fold-deliverables" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="flag"></span><h2>Deliverables</h2><span class="spacer"></span><span class="meta" id="rules-del-mcount"></span></div>
       <div class="cols-2" id="rules-deliverables"></div>
       <p class="note">Every deliverable is submitted by the team leader in <a href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener">SurveyMonkey Apply</a>. Missing one makes the team ineligible for the semifinals. Internal drafts are one week ahead so Coach P can read them.</p>
+      </div>
     </section>
 
-    <section id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
+    <section id="panel-ai" class="rules-panel" role="tabpanel" aria-labelledby="tab-ai" hidden>
+      <div class="card rules-mfold" id="rules-fold-ai" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="edit"></span><h2>AI policy</h2><span class="spacer"></span><span class="meta">cite AI in reports</span></div>
       <div class="cols-3 rules-ai">
         <article class="card reveal">
           <div class="card-head"><span class="ic" data-icon="check"></span><h2>Allowed</h2></div>
@@ -196,10 +208,11 @@
         <div class="card-body"><p class="lede" id="rules-ai-ours"></p></div>
         <div class="card-foot">Wharton's wording is on the official <a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/" target="_blank" rel="noopener">Rules &amp; Roles</a> page. Anything AI-generated that makes it into a report goes in the works cited.</div>
       </article>
+      </div>
     </section>
 
-    <section id="panel-disqualifiers" role="tabpanel" aria-labelledby="tab-disqualifiers" hidden>
-      <article class="card reveal">
+    <section id="panel-disqualifiers" class="rules-panel" role="tabpanel" aria-labelledby="tab-disqualifiers" hidden>
+      <article class="card reveal" id="rules-fold-disqualifiers" data-fold="closed">
         <div class="card-head"><span class="ic" data-icon="shield"></span><h2>Disqualifiers</h2><span class="spacer"></span><span class="meta" id="rules-dq-count"></span></div>
         <div class="card-body">
           <ol class="rules-ol" id="rules-dq-list"></ol>
@@ -208,8 +221,8 @@
       </article>
     </section>
 
-    <section id="panel-verify" role="tabpanel" aria-labelledby="tab-verify" hidden>
-      <article class="card reveal">
+    <section id="panel-verify" class="rules-panel" role="tabpanel" aria-labelledby="tab-verify" hidden>
+      <article class="card reveal" id="rules-fold-verify" data-fold="closed">
         <div class="card-head"><span class="ic" data-icon="check"></span><h2>Verify on Sep 15</h2><span class="spacer"></span><span class="meta" id="rules-verify-count"></span></div>
         <div class="card-body tight">
           <p class="note rules-note">Each item gets checked against the Rules tab in WInS and the trading requirements in SurveyMonkey Apply once the materials land. Answers go into the data file so the Trading rules tab stops saying "verify".</p>
@@ -245,6 +258,9 @@
   /* ---------- tabs ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".tabs [role=tab]"));
   var panels = tabs.map(function (t) { return byId(t.getAttribute("aria-controls")); });
+  /* phones (≤700px): no tab bar; every section shows as its own fold, so panels never hide there */
+  var PHONE = window.matchMedia ? window.matchMedia("(max-width:700px)") : { matches: false };
+  var current = "trading";
   /* when the tab bar overflows (phones), keep the active tab in view and mark which edges have more tabs */
   var tablist = document.querySelector(".rules-tabbar .tabs"), tabbar = tablist.parentNode;
   var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -265,12 +281,13 @@
   window.addEventListener("resize", function () { var a = tablist.querySelector(".is-active"); if (a) reveal(a, false); });
   function hasTab(id) { return tabs.some(function (t) { return t.getAttribute("data-tab") === id; }); }
   function select(id, focus, remember) {
+    current = id;
     tabs.forEach(function (t, i) {
       var on = t.getAttribute("data-tab") === id;
       t.classList.toggle("is-active", on);
       t.setAttribute("aria-selected", on ? "true" : "false");
       t.tabIndex = on ? 0 : -1;
-      panels[i].hidden = !on;
+      panels[i].hidden = !on && !PHONE.matches;
       if (on && focus) t.focus();
       if (on) reveal(t, remember);
     });
@@ -294,8 +311,33 @@
   });
   function fromHash() { var m = /tab=([\w-]+)/.exec(location.hash || ""); return m && hasTab(m[1]) ? m[1] : null; }
   var saved = W.store.get("rules-tab", null);
-  select(fromHash() || (hasTab(saved) ? saved : "trading"), false, false);
-  window.addEventListener("hashchange", function () { var id = fromHash(); if (id) select(id, false, true); });
+  current = fromHash() || (hasTab(saved) ? saved : "trading");
+  /* phones drop the tabpanel role (there is no tab bar for them to belong to); desktop gets it back */
+  function mode() {
+    panels.forEach(function (p, i) {
+      if (PHONE.matches) { p.removeAttribute("role"); p.removeAttribute("aria-labelledby"); }
+      else { p.setAttribute("role", "tabpanel"); p.setAttribute("aria-labelledby", tabs[i].id); }
+    });
+    select(current, false, false);
+  }
+  mode();
+  if (PHONE.addEventListener) PHONE.addEventListener("change", mode); else if (PHONE.addListener) PHONE.addListener(mode);
+  /* #tab=<id> on a phone opens that section's fold and scrolls to it. The shared fold code sets folds up on load,
+     before this listener runs; settle again after layout and web fonts shift the page. */
+  function jump(id) {
+    var card = byId("panel-" + id).querySelector(".card[data-fold]");
+    if (!card) return;
+    W.unfoldFor(card);
+    card.scrollIntoView({ block: "start", behavior: "instant" });
+  }
+  window.addEventListener("hashchange", function () { var id = fromHash(); if (!id) return; if (PHONE.matches) jump(id); else select(id, false, true); });
+  window.addEventListener("load", function () {
+    var id = fromHash();
+    if (!id || !PHONE.matches) return;
+    jump(id);
+    requestAnimationFrame(function () { setTimeout(function () { jump(id); }, 60); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(function () { jump(id); }, 60); });
+  });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { var a = tablist.querySelector(".is-active"); if (a) reveal(a, false); });
 
   /* ---------- 1. trading rules ---------- */
@@ -306,11 +348,13 @@
   var counts = { official: 0, last: 0, verify: 0 };
   D.tradingRules.forEach(function (r) { if (counts[r.status] !== undefined) counts[r.status]++; });
   byId("rules-trading-count").textContent = counts.official + " official · " + counts.last + " last season · " + counts.verify + " verify";
+  byId("rules-trading-mcount").textContent = D.tradingRules.length + " rules";
 
   /* ---------- 2. team rules ---------- */
   byId("rules-team-list").innerHTML = D.teamRules.map(function (r) {
     return "<div><dt class=\"kicker\">" + esc(r.rule) + "</dt><dd>" + esc(r.value) + "</dd></div>";
   }).join("");
+  byId("rules-team-mcount").textContent = D.teamRules.length + " rules";
 
   /* ---------- 3. deliverables ---------- */
   var submitted = W.store.get("deliverables", {});
@@ -318,6 +362,11 @@
     if (submitted[d.id]) return '<span class="chip done">Submitted</span>';
     var n = W.daysUntil(d.due);
     return '<span class="chip ' + (n <= 7 ? "decide" : "watch") + '">' + esc(W.relative(n)) + "</span>";
+  }
+  /* phone fold header: how many, and the next one not yet submitted */
+  function delMeta() {
+    var next = D.deliverables.filter(function (d) { return !submitted[d.id] && W.daysUntil(d.due) >= 0; })[0];
+    byId("rules-del-mcount").textContent = D.deliverables.length + (next ? " · next " + W.fmtDate(next.due) : "");
   }
   var delRoot = byId("rules-deliverables");
   delRoot.innerHTML = D.deliverables.map(function (d) {
@@ -342,9 +391,11 @@
       W.store.set("deliverables", submitted);
       var d = D.deliverables.filter(function (x) { return x.id === id; })[0];
       delRoot.querySelector('[data-countdown="' + id + '"]').innerHTML = countdown(d);
+      delMeta();
       W.toast(box.checked ? d.name + " marked submitted" : d.name + " reopened");
     });
   });
+  delMeta();
 
   /* ---------- 4. AI policy ---------- */
   byId("rules-ai-allowed").textContent = D.aiPolicy.allowed;
