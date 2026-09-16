@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Case Study · Wall Street Warriors</title>
-<meta name="description" content="This year's client, the pattern behind every Wharton case, the past clients, and the required-return math for day one.">
+<meta name="description" content="Laura Gao, the 2026–27 client: the money, the ten-payment operating commitment, the facility residual and the numbers behind them.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,58 @@
 .case-placeholder h3{font-size:17px;color:var(--navy)}
 .case-placeholder .when{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font:600 13.5px/1.3 var(--mono);color:var(--ink-2)}
 .case-h3{font-size:15px;color:var(--navy);margin-top:4px}
+.cl-hero{border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r);background:var(--well);padding:18px 20px;display:grid;gap:8px}
+.cl-hero h3{font:700 22px/1.15 var(--ui);color:var(--navy)}
+.cl-hero .cl-sub{font:600 13px/1.3 var(--mono);color:var(--blue);text-transform:uppercase;letter-spacing:.04em}
+.cl-hero p{font-size:14px;color:var(--ink-2);line-height:1.5;margin:0}
+.cl-quote{border-left:3px solid var(--line);padding-left:14px;font:italic 500 15px/1.45 var(--ui);color:var(--ink-2)}
+.cl-flows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.cl-flows{grid-template-columns:1fr}}
+.cl-ob{border:1px solid var(--line-2);border-radius:var(--r);padding:14px 16px;display:grid;gap:7px}
+.cl-ob.must{border-left:4px solid var(--orange,#EFA24A)}
+.cl-ob h4{font:700 15px/1.25 var(--ui);color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cl-ob p{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin:0}
+.cl-ob ul{margin:2px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
+.cl-ob ul li{margin-top:3px}
+.cl-tbl{width:100%;border-collapse:collapse;table-layout:auto;font-size:13.5px;font-variant-numeric:tabular-nums}
+.cl-tbl caption{text-align:left;font:600 13px/1.3 var(--mono);color:var(--ink-3);padding-bottom:7px}
+.cl-tbl th{text-align:left;font:600 12px/1.3 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:0 10px 7px 0;border-bottom:1px solid var(--line-2)}
+.cl-tbl td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
+.cl-tbl td.n{font-family:var(--mono);font-weight:600;color:var(--ink)}
+.cl-tbl tr:last-child td{border-bottom:0}
+.cl-take{list-style:none;margin:0;padding:0;counter-reset:t}
+.cl-take li{counter-increment:t;position:relative;padding:10px 0 10px 32px;border-top:1px solid var(--line-2);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.cl-take li:first-child{border-top:0}
+.cl-take li::before{content:counter(t);position:absolute;left:0;top:10px;width:21px;height:21px;border-radius:50%;background:var(--blue);color:#fff;font:700 11.5px/21px var(--mono);text-align:center}
+.cl-wrap{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.cl-wrap>*,.cl-flows>*,.cl-ob,.cl-hero{min-width:0}
+.cl-read{border:1px solid var(--line-2);border-radius:var(--r);background:#fff}
+.cl-read>summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;align-items:center;gap:10px;font:700 15px/1.25 var(--ui);color:var(--navy)}
+.cl-read>summary::-webkit-details-marker{display:none}
+.cl-read>summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
+.cl-read[open]>summary::after{transform:rotate(-135deg)}
+.cl-read>summary .tag{font:600 11.5px/1 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
+.cl-doc{padding:2px 16px 18px;border-top:1px solid var(--line-2)}
+.cl-doc h4{font:700 14.5px/1.3 var(--ui);color:var(--navy);margin:18px 0 6px}
+.cl-doc h4:first-child{margin-top:14px}
+.cl-doc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0 0 9px}
+.cl-doc ul{margin:4px 0 9px;padding-left:20px;font-size:14px;line-height:1.55;color:var(--ink-2)}
+.cl-doc ul li{margin-top:4px}
+.cl-tl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:330px}
+.cl-tl th{text-align:left;font:600 12px/1.3 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:0 10px 7px 0;border-bottom:1px solid var(--line-2)}
+.cl-tl td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:top}
+.cl-tl tr:last-child td{border-bottom:0}
+.cl-tl td.y{font:700 13px/1.4 var(--mono);color:var(--navy);white-space:nowrap}
+.cl-tl tr.now td{background:var(--well)}
+.cl-tl tr.now td.y{color:var(--blue)}
+.cl-tl td .badge{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:99px;background:var(--blue);color:#fff;font:700 10px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;vertical-align:1px}
+.cl-plain{list-style:none;margin:0;padding:0}
+.cl-plain li{padding:10px 0;border-top:1px solid var(--line-2);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.cl-plain li:first-child{border-top:0}
+.cl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
+.cl-tbl{min-width:330px}
+.cl-hero h3,.cl-hero p,.cl-ob p,.cl-ob h4,.cl-take li{overflow-wrap:anywhere}
+@media (max-width:640px){.cl-hero{padding:14px 15px}.cl-hero h3{font-size:19px}}
 .case-ws{display:grid;grid-template-columns:3fr 1fr;gap:12px}
 .case-full{grid-column:1/-1}
 .case-calc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
@@ -186,7 +238,7 @@
   <div class="page-title">
     <div>
       <h1>Case Study</h1>
-      <p>The 2026–27 client arrives Sep 15. Until then: the pattern, the past clients, and the math we need on day one.</p>
+      <p>Laura Gao, Taiwan 2033. Ten fixed $50,000 payments to defease, and whatever is left over builds the residency.</p>
     </div>
     <div class="right">
       <a class="btn ghost sm" href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener"><span data-icon="link"></span>SurveyMonkey Apply</a>
@@ -208,7 +260,7 @@
         <div class="card-head"><span class="ic" data-icon="flag"></span><h3>Client brief worksheet</h3><span class="spacer"></span><span class="meta">6 fields</span></div>
         <div class="card-body">
           <div class="case-ws" id="case-ws">
-            <div class="field"><label for="client-name">Client name</label><input id="client-name" type="text" autocomplete="off" placeholder="Announced Sep 15"></div>
+            <div class="field"><label for="client-name">Client name</label><input id="client-name" type="text" autocomplete="off" placeholder="Laura Gao"></div>
             <div class="field"><label for="client-cash">Starting cash</label><input id="client-cash" class="num" type="number" min="0" step="1000" inputmode="numeric" placeholder="in dollars"></div>
             <div class="field"><label for="client-goal1">Goal 1</label><input id="client-goal1" type="text" autocomplete="off" placeholder="The dated dollar goal"></div>
             <div class="field"><label for="client-goal1-year">Target year</label><input id="client-goal1-year" class="num" type="number" min="2026" max="2100" step="1" inputmode="numeric" placeholder="YYYY"></div>
@@ -217,7 +269,7 @@
             <div class="field case-full"><label for="client-values">Values and impact preferences</label><textarea id="client-values" placeholder="What the client cares about, in the case's own words"></textarea></div>
             <div class="field case-full"><label for="client-constraints">Constraints</label><textarea id="client-constraints" placeholder="Liquidity, payouts, exclusions, anything the case rules out"></textarea></div>
           </div>
-          <p class="note">Saved in this browser only. Once the case is out, the real numbers go into the site's data file so everyone sees them.</p>
+          <p class="note">Saved in this browser only. The real case is already loaded above from the data file — this is scratch space for your own notes on it.</p>
         </div>
       </section>
       </div>
@@ -325,13 +377,112 @@
   /* ---------- 1. this year's client ---------- */
   var release = W.eventById("release");
   var n = W.daysUntil(release.date);
-  byId("case-client-meta").textContent = n >= 0 ? "TBD" : "released " + W.fmtDate(release.date);
-  byId("case-placeholder").innerHTML =
-    '<span class="chip ' + (n <= 7 && n >= 0 ? "decide" : n < 0 ? "tbd" : "watch") + '">' + esc(W.relative(n)) + "</span>" +
-    "<h3>" + (n >= 0 ? "Released " : "Was released ") + esc(W.fmtDate(release.date, { weekday: true })) + " through " + esc(D.team.portal.name) + "</h3>" +
-    '<span class="when"><span>' + esc(W.fmtTimes(release.date)) + "</span></span>" +
-    '<p class="note">' + esc(D.team.portal.note) + " " + (n >= 0 ? "The moment the invite lands, the case goes in the team chat and the numbers below get filled in." : "If this card still says TBD, the case has not been added to the data file yet.") + "</p>" +
-    '<a class="btn sm" href="' + esc(D.team.portal.url) + '" target="_blank" rel="noopener"><span data-icon="link"></span>Open the portal</a>';
+  var C = D.client;
+  byId("case-client-meta").textContent = C ? "released " + W.fmtDate(C.released) : (n >= 0 ? "TBD" : "released " + W.fmtDate(release.date));
+
+  if (!C) {
+    byId("case-placeholder").innerHTML =
+      '<span class="chip ' + (n <= 7 && n >= 0 ? "decide" : n < 0 ? "tbd" : "watch") + '">' + esc(W.relative(n)) + "</span>" +
+      "<h3>" + (n >= 0 ? "Released " : "Was released ") + esc(W.fmtDate(release.date, { weekday: true })) + " through " + esc(D.team.portal.name) + "</h3>" +
+      '<span class="when"><span>' + esc(W.fmtTimes(release.date)) + "</span></span>" +
+      '<p class="note">' + esc(D.team.portal.note) + " " + (n >= 0 ? "The moment the invite lands, the case goes in the team chat and the numbers below get filled in." : "If this card still says TBD, the case has not been added to the data file yet.") + "</p>" +
+      '<a class="btn sm" href="' + esc(D.team.portal.url) + '" target="_blank" rel="noopener"><span data-icon="link"></span>Open the portal</a>';
+  } else {
+    var ph = byId("case-placeholder");
+    ph.className = "cl-wrap";
+    var pct = function (r) { var v = Math.round(r * 1e6) / 1e4; return (v % 1 ? v.toFixed(2) : v.toFixed(0)) + "%"; };
+    var h = '';
+
+    h += '<div class="cl-hero">' +
+      '<span class="cl-sub">' + esc(C.season) + " client &middot; " + esc(C.title) + "</span>" +
+      "<h3>" + esc(C.name) + "</h3>" +
+      "<p>" + esc(C.who) + "</p>" +
+      '<p class="cl-quote">&ldquo;' + esc(C.quote) + "&rdquo;</p></div>";
+
+    if (C.narrative) {
+      h += '<details class="cl-read"><summary>Read the full case study<span class="tag">as released</span></summary><div class="cl-doc">';
+      C.narrative.forEach(function (sec) {
+        h += "<h4>" + esc(sec.h) + "</h4>";
+        (sec.p || []).forEach(function (t) { h += "<p>" + esc(t) + "</p>"; });
+        if (sec.list) { h += "<ul>"; sec.list.forEach(function (t) { h += "<li>" + esc(t) + "</li>"; }); h += "</ul>"; }
+      });
+      h += "</div></details>";
+    }
+
+    if (C.timeline) {
+      h += '<div class="cl-wrap"><h3 class="case-h3">How the years work</h3>' +
+        '<p class="note">Year 0 is <b>2026</b> \u2014 right now, before any money is invested. Year N = calendar year \u2212 ' + C.yearZero +
+        ". So the competition finishes months before Laura invests a dollar.</p>" +
+        '<div class="cl-scroll"><table class="cl-tl"><thead><tr><th>Calendar</th><th>Year</th><th>What happens</th></tr></thead><tbody>';
+      C.timeline.forEach(function (t) {
+        h += '<tr' + (t.now ? ' class="now"' : "") + '><td class="y">' + esc(t.cal) + '</td><td class="y">' + esc(String(t.yr)) + "</td><td>" +
+          esc(t.what) + (t.now ? '<span class="badge">we are here</span>' : t.key ? '<span class="badge">decision point</span>' : "") + "</td></tr>";
+      });
+      h += "</tbody></table></div>" + '<p class="note">' + esc(C.timelineNote) + "</p></div>";
+    }
+
+    h += '<div class="cl-wrap"><h3 class="case-h3">The money</h3><div class="cl-flows">';
+    C.contributions.forEach(function (c) {
+      h += '<div class="case-stat"><span class="kicker">Start of ' + c.year + " &middot; Year " + (c.year - C.yearZero) + '</span>' +
+        '<span class="v num">' + W.money(c.amount) + "</span>" + '<span class="s">' + esc(c.note) + "</span></div>";
+    });
+    h += '<div class="case-stat primary"><span class="kicker">Total contributed</span><span class="v num">' + W.money(C.totalContributed) +
+      '</span><span class="s">Nothing else in or out before 2033.</span></div></div>' +
+      '<p class="note">' + esc(C.yearNote) + " " + esc(C.flowNote) + "</p></div>";
+
+    h += '<div class="cl-wrap"><h3 class="case-h3">' + esc(C.project.name) + " &middot; " + esc(C.project.where) + " &middot; " + C.project.year + "</h3>" +
+      '<p class="note">' + esc(C.project.what) + "</p></div>";
+
+    h += '<div class="cl-wrap"><h3 class="case-h3">What we have to answer</h3><div class="cl-wrap">';
+    C.obligations.forEach(function (o) {
+      h += '<div class="cl-ob' + (o.mandatory ? " must" : "") + '"><h4>' + esc(o.name) +
+        '<span class="chip ' + (o.mandatory ? "decide" : "watch") + '">' + (o.mandatory ? "mandatory" : "our call") + "</span></h4>" +
+        "<p><b>" + esc(o.what) + "</b></p><p>" + esc(o.detail) + "</p><ul>";
+      o.asks.forEach(function (a) { h += "<li>" + esc(a) + "</li>"; });
+      h += "</ul></div>";
+    });
+    h += "</div></div>";
+
+    h += '<div class="cl-wrap"><h3 class="case-h3">The numbers</h3><div class="cl-scroll"><table class="cl-tbl">' +
+      "<caption>Operating reserve struck at the start of 2033 &mdash; ten $50,000 payments, first one immediately, so it is an annuity-due. " +
+      esc(C.math.reserveFormula) + "</caption>" +
+      "<thead><tr><th>Reserve held at</th><th>Cost in 2033</th><th>Freed vs. cash</th></tr></thead><tbody>";
+    var cashCost = C.math.reserve[0].cost;
+    C.math.reserve.forEach(function (x) {
+      h += "<tr><td>" + esc(x.label) + '</td><td class="n">' + W.money(x.cost) + '</td><td class="n">' +
+        (x.cost === cashCost ? "&mdash;" : "+" + W.money(cashCost - x.cost)) + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+
+    h += '<div class="cl-scroll" style="margin-top:16px"><table class="cl-tbl">' +
+      "<caption>Portfolio in 2033 and what is left for the facility. " + esc(C.math.portfolioFormula) + " &middot; " + esc(C.math.facilityBasis) + "</caption>" +
+      "<thead><tr><th>Return</th><th>Portfolio 2033</th><th>Facility</th><th>Share to facility</th></tr></thead><tbody>";
+    C.math.projections.forEach(function (x) {
+      h += '<tr><td class="n">' + pct(x.r) + '</td><td class="n">' + W.money(x.v2033) + '</td><td class="n">' + W.money(x.facility) +
+        '</td><td class="n">' + Math.round(x.facility / x.v2033 * 100) + "%</td></tr>";
+    });
+    h += "</tbody></table></div>";
+
+    h += '<div class="cl-flows" style="margin-top:16px">';
+    C.math.breakeven.forEach(function (b) {
+      h += '<div class="case-stat"><span class="kicker">Break-even return</span><span class="v num">' + pct(b.r) +
+        '</span><span class="s">' + esc(b.label) + ". Nothing left for the facility.</span></div>";
+    });
+    h += "</div></div>";
+
+    h += '<div class="cl-wrap"><h3 class="case-h3">What this means</h3><ul class="cl-take">';
+    C.math.takeaways.forEach(function (t) { h += "<li>" + esc(t) + "</li>"; });
+    h += "</ul></div>";
+
+    h += '<div class="cl-wrap"><h3 class="case-h3">Explicitly out of scope</h3><ul class="cl-plain">';
+    C.outOfScope.forEach(function (o) { h += "<li>" + esc(o) + "</li>"; });
+    h += "</ul></div>";
+
+    h += '<p class="note"><b>WInS does not feed the projections.</b> ' + esc(C.winsNote) + "</p>" +
+      '<p class="note">Source: ' + esc(C.source) + "</p>";
+
+    ph.innerHTML = h;
+  }
 
   var WS = ["name", "cash", "goal1", "goal1-year", "goal2", "goal2-year", "values", "constraints"];
   var client = W.store.get("client", {});
@@ -345,13 +496,24 @@
 
   /* ---------- 2. required return ---------- */
   var last = D.pastCases[0];
-  var defaults = { start: last.cash, goal: 1500000, years: 10, payout: 10000, paystart: 3 };
-  var prefilled = [];
-  if (client.cash > 0) { defaults.start = client.cash; prefilled.push("starting cash"); }
-  if (client["goal1-year"] > thisYear) { defaults.years = client["goal1-year"] - thisYear; prefilled.push("years to Goal 1"); }
+  var defaults, note;
+  if (C) {
+    var mid = C.math.projections[2];
+    defaults = { start: C.totalContributed, goal: mid.v2033, years: C.project.year - 2027, payout: 0, paystart: C.project.year - C.yearZero };
+    note = "Seeded with Laura's case: all " + W.money(C.totalContributed) + " growing to " + W.money(mid.v2033) +
+      " by " + C.project.year + ". Heads up \u2014 this tool assumes the whole sum arrives in 2027, so it reads about 6.6%. " +
+      "The real staged math (" + W.money(300000) + " in 2027, " + W.money(150000) + " a year later) needs 7.0%. " +
+      "Use it to test other targets; the exact figures are in the client card above.";
+  } else {
+    defaults = { start: last.cash, goal: 1500000, years: 10, payout: 10000, paystart: 3 };
+    var prefilled = [];
+    if (client.cash > 0) { defaults.start = client.cash; prefilled.push("starting cash"); }
+    if (client["goal1-year"] > thisYear) { defaults.years = client["goal1-year"] - thisYear; prefilled.push("years to Goal 1"); }
+    note = (prefilled.length ? "Prefilled from the worksheet (" + prefilled.join(", ") + "); the rest is " : "Prefilled with ") +
+      "last season's case: " + W.money(last.cash) + " to " + W.money(1500000) + " in ten years. The $10,000 yearly payout is a stand-in. That case said grants start in year three and can rise above $10,000.";
+  }
   Object.keys(defaults).forEach(function (k) { byId("calc-" + k).value = defaults[k]; });
-  byId("case-calc-note").textContent = (prefilled.length ? "Prefilled from the worksheet (" + prefilled.join(", ") + "); the rest is " : "Prefilled with ") +
-    "last season's case: " + W.money(last.cash) + " to " + W.money(1500000) + " in ten years. The $10,000 yearly payout is a stand-in. That case said grants start in year three and can rise above $10,000.";
+  byId("case-calc-note").textContent = note;
 
   function path(start, r, years, payout, payStart) {
     var b = start, out = [start];

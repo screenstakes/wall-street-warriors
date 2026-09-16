@@ -14,6 +14,36 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <style>
+.gd{display:grid;gap:18px}
+.gd p{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0}
+.gd h3{font:700 15px/1.3 var(--ui);color:var(--navy);margin:0 0 8px}
+.gd-lead{border-left:4px solid var(--blue);background:var(--well);border-radius:var(--r);padding:14px 16px}
+.gd-not{border:1px solid var(--line-2);border-left:4px solid #C0392B;border-radius:var(--r);padding:14px 16px}
+.gd-not ul{margin:8px 0 9px;padding-left:20px;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.gd-not ul li{margin-top:4px}
+.gd-map{display:grid;gap:10px;counter-reset:m}
+.gd-step{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start}
+.gd-step .num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font:700 13px/28px var(--mono);text-align:center}
+.gd-step b{display:block;font:700 14.5px/1.3 var(--ui);color:var(--navy)}
+.gd-step .lead{display:block;font-weight:600;color:var(--ink);font-size:13.5px;margin:2px 0 3px}
+.gd-step p{font-size:13.5px}
+.gd-tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:330px}
+.gd-tbl th{text-align:left;font:600 12px/1.3 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:0 10px 7px 0;border-bottom:1px solid var(--line-2)}
+.gd-tbl td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:top}
+.gd-tbl tr:last-child td{border-bottom:0}
+.gd-tbl td b{color:var(--navy)}
+.gd-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
+.gd-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}
+.gd-chips span{background:var(--well);border:1px solid var(--line-2);border-radius:99px;padding:4px 11px;font:600 12.5px/1.3 var(--ui);color:var(--navy)}
+.gd-lock{border:1px solid var(--line-2);border-left:4px solid var(--orange,#EFA24A);border-radius:var(--r);padding:14px 16px}
+.gd-lock ul{margin:8px 0 9px;padding-left:20px;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.pg{display:grid;gap:9px}
+.pg-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line-2);border-radius:var(--r);padding:11px 14px}
+.pg-row.miss{border-left:4px solid var(--orange,#EFA24A);background:var(--well)}
+.pg-row.have{border-left:4px solid #2E8B57}
+.pg-row b{font:700 14px/1.3 var(--ui);color:var(--navy)}
+.pg-row .h{font-size:13px;color:var(--ink-2);line-height:1.45}
+@media (max-width:640px){.pg-row{grid-template-columns:1fr;gap:5px}.pg-row .chip{justify-self:start}}
 /* judging standard: navy pull-quote card */
 .pb-standard{background:var(--navy);color:#fff;border-color:var(--strip)}
 .pb-standard .card-body{position:relative;padding:34px 40px 28px 64px}
@@ -232,6 +262,18 @@
       <div class="card-body"><div class="cols-2" id="pb-insights" data-m-limit="3"></div></div>
     </section>
 
+    <!-- 3b. the competition guide -->
+    <section class="card reveal" id="guide" aria-labelledby="pb-guide-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pb-guide-h">The Competition Guide</h2><span class="spacer"></span><span class="meta pb-desk" id="pb-guide-src">official</span><span class="meta pb-m" id="pb-guide-m"></span></div>
+      <div class="card-body"><div id="pb-guide"></div></div>
+    </section>
+
+    <!-- 3c. portal pages we still need -->
+    <section class="card reveal" id="portal" aria-labelledby="pb-portal-h">
+      <div class="card-head"><span class="ic" data-icon="link"></span><h2 id="pb-portal-h">Portal pages</h2><span class="spacer"></span><span class="meta" id="pb-portal-m"></span></div>
+      <div class="card-body"><div id="pb-portal"></div></div>
+    </section>
+
     <!-- 4. what judges said -->
     <section class="card reveal" aria-labelledby="pb-judges-h" data-fold="closed">
       <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="pb-judges-h">What judges said</h2><span class="meta pb-m" id="pb-judges-m"></span></div>
@@ -428,7 +470,64 @@
   document.addEventListener("click", function (e) {
     if (e.target.closest('a[href="#notes"]') && W.unfoldFor) W.unfoldFor($("notes"));
   });
+  /* ---------- competition guide ---------- */
+  (function () {
+    var G = D.guide;
+    var host = $("pb-guide"), portal = $("pb-portal");
+    if (!G) { if (host) host.innerHTML = '<p class="note">The Competition Guide has not been loaded into the data file yet.</p>'; return; }
+    $("pb-guide-src").textContent = "released " + W.fmtDate(G.released);
+    $("pb-guide-m").textContent = G.roadmap.length + " steps";
+
+    var h = '<div class="gd">';
+    h += '<div class="gd-lead"><p>' + esc(G.intro) + "</p></div>";
+    h += "<div><h3>Keep the big picture in mind</h3><p>" + esc(G.bigPicture) + "</p></div>";
+
+    h += '<div class="gd-not"><h3>You are NOT evaluated on</h3><ul>';
+    G.notEvaluatedOn.forEach(function (x) { h += "<li>" + esc(x) + "</li>"; });
+    h += "</ul><p>" + esc(G.notEvalNote) + "</p></div>";
+
+    h += '<div><h3>The road map</h3><div class="gd-map">';
+    G.roadmap.forEach(function (r) {
+      h += '<div class="gd-step"><span class="num">' + r.n + "</span><div><b>" + esc(r.t) +
+        '</b><span class="lead">' + esc(r.lead) + "</span><p>" + esc(r.d) + "</p></div></div>";
+    });
+    h += "</div></div>";
+
+    h += "<div><h3>How the deliverables connect</h3>" +
+      '<div class="gd-scroll"><table class="gd-tbl"><thead><tr><th>Deliverable</th><th>Purpose</th><th>What it shows</th></tr></thead><tbody>';
+    G.connect.forEach(function (c) {
+      h += "<tr><td><b>" + esc(c.name) + "</b></td><td>" + esc(c.purpose) + "</td><td>" + esc(c.shows) + "</td></tr>";
+    });
+    h += "</tbody></table></div><p class=\"note\">" + esc(G.connectNote) + "</p></div>";
+
+    h += '<div class="gd-lock"><h3>The moment the IPS is submitted</h3><ul>';
+    G.ipsLock.forEach(function (x) { h += "<li>" + esc(x) + "</li>"; });
+    h += "</ul><p>" + esc(G.ipsLockNote) + "</p></div>";
+
+    h += "<div><h3>What they are looking for</h3><div class=\"gd-chips\">";
+    G.lookingFor.list.forEach(function (x) { h += "<span>" + esc(x) + "</span>"; });
+    h += "</div><p>" + esc(G.lookingFor.note) + "</p></div>";
+
+    h += "<div><h3>WInS and trading notes</h3><p>" + esc(G.winsRole) + "</p><p style=\"margin-top:9px\">" + esc(G.tradeNoteSpec) + "</p></div>";
+    h += '<p class="note">Source: ' + esc(G.source) + "</p></div>";
+    host.innerHTML = h;
+
+    var miss = G.pagesTab.filter(function (x) { return !x.have; });
+    $("pb-portal-m").textContent = miss.length ? miss.length + " still to pull in" : "all loaded";
+    var ph = '<div class="pg">';
+    G.pagesTab.forEach(function (x) {
+      ph += '<div class="pg-row ' + (x.have ? "have" : "miss") + '"><div><b>' + esc(x.page) + "</b></div>" +
+        '<div class="h">' + esc(x.holds) + "</div>" +
+        '<span class="chip ' + (x.have ? "done" : "watch") + '">' + (x.have ? "on this site" : "not pulled in") + "</span></div>";
+    });
+    ph += "</div>";
+    ph += '<p class="note">These are the six pages under <b>Pages</b> in SurveyMonkey Apply. The ones marked amber are still only in the portal \u2014 ' +
+      'download them and they get added here. <a href="' + esc(D.team.portal.url) + '" target="_blank" rel="noopener">Open the portal</a></p>';
+    portal.innerHTML = ph;
+  })();
 })(window.WSW);
+
+
 </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 
 window.WSW = window.WSW || {};
 WSW.data = {
-  checkedOn: "2026-09-14",
+  checkedOn: "2026-09-16",
 
   team: {
     name: "Wall Street Warriors",
@@ -27,6 +27,296 @@ WSW.data = {
     simulator: { name: "Wharton Investment Simulator (WInS)", url: "https://app.stocktrak.com/login?clientname=Wharton", account: "WallStreetWarriors-10447873", note: "One shared login for the whole team. Wharton says not to create separate student accounts." },
     portal: { name: "SurveyMonkey Apply", url: "https://wghsinvcomp.smapply.us/", note: "The case study, trading requirements and every submission live here. The team leader gets the invitation Sep 15." },
     safeSenders: ["wghs-invcomp@wharton.upenn.edu", "help-desk@stocktrak.com"]
+  },
+
+  /* ---- 2026–27 client. From the official case study PDF, released Sep 15 2026 via SurveyMonkey Apply. ---- */
+  client: {
+    season: "2026–27",
+    name: "Laura Gao",
+    title: "Storyteller, Entrepreneur, and Creative Visionary",
+    who: "Wharton 2018, Statistics & Information Decisions Management. Born in Wuhan, raised in Texas. Bestselling graphic novelist and illustrator — The Wuhan I Know (2020) and the memoir Messy Roots — after starting out as a product manager in tech. Author, illustrator, educator and public speaker.",
+    quote: "The only person who needs to believe in something is yourself.",
+    yearZero: 2026,
+    yearNote: "Year N = calendar year − 2026. So 2027 is Year 1, 2028 is Year 2, 2031 is Year 5, 2033 is Year 7. All contributions and withdrawals happen at the beginning of the year.",
+    contributions: [
+      { year: 2027, amount: 300000, note: "Initial investment with the firm." },
+      { year: 2028, amount: 150000, note: "From publishing advances, speaking, licensing and other ventures." }
+    ],
+    totalContributed: 450000,
+    flowNote: "Living expenses are covered outside the portfolio. Apart from those two contributions she neither adds to nor withdraws from the portfolio before 2033.",
+    project: { name: "The Creative Residency", where: "Taiwan", year: 2033, what: "A small, community-oriented space where artists, writers, designers, entrepreneurs and educators can temporarily live, work, teach and collaborate." },
+    goals: [
+      { label: "Operating commitment begins", year: 2033, hard: true },
+      { label: "Final operating payment", year: 2042, hard: true },
+      { label: "Co-sponsor conversations begin", year: 2031, hard: false }
+    ],
+    obligations: [
+      {
+        id: "operating",
+        name: "Operating commitment",
+        mandatory: true,
+        what: "Ten annual payments of $50,000, one at the beginning of each year from 2033 through 2042.",
+        detail: "Each payment is a fixed $50,000 and is NOT adjusted for inflation. All ten must be funded by the portfolio with a high degree of certainty — teams may not rely on co-sponsors, grants, program fees or any outside funding. Funding beyond the 2042 payment is out of scope.",
+        asks: ["Recommend the size of the operating reserve", "Recommend its initial asset composition", "Explain how that composition should change, if at all, as payments approach", "Define what counts as a high degree of funding certainty", "Explain how that certainty was evaluated, and the assumptions behind it"]
+      },
+      {
+        id: "facility",
+        name: "Facility contribution",
+        mandatory: false,
+        what: "After the reserve is set aside in 2033, how much of the remainder can she responsibly put toward building the residency?",
+        detail: "There is no predetermined amount. She knows committing everything left would limit her flexibility as the project develops. Any remaining facility cost can come from co-sponsors, grants, collaborators or program fees.",
+        asks: ["Recommend and justify the contribution", "Preserve appropriate financial flexibility", "Show how favorable and unfavorable markets change the answer"]
+      },
+      {
+        id: "cosponsor",
+        name: "Co-sponsor range",
+        mandatory: true,
+        what: "In 2031, two years early, she must tell potential co-sponsors a credible dollar RANGE for her 2033 contribution — not one exact number.",
+        detail: "Promising more than she can deliver would damage her credibility and cost her co-sponsors. The range must also protect the portfolio's ability to fund all ten operating payments.",
+        asks: ["Recommend the dollar range", "State how confident the team is that 2033 lands inside it", "Explain how favorable and unfavorable markets affect it", "Draft part of her fundraising materials describing the contribution"]
+      }
+    ],
+    /* Computed from the case. Annuity-due: first payment lands the moment the reserve is struck. */
+    math: {
+      reserveFormula: "Reserve = 50,000 × [(1 − (1+r)^−10) ÷ r] × (1 + r)",
+      portfolioFormula: "V(2033) = 300,000 × (1+r)^6 + 150,000 × (1+r)^5",
+      reserve: [
+        { rate: 0.00, cost: 500000, label: "cash, no return" },
+        { rate: 0.03, cost: 439305, label: "3% ladder" },
+        { rate: 0.04, cost: 421767, label: "4% ladder" },
+        { rate: 0.05, cost: 405391, label: "5% ladder" }
+      ],
+      projections: [
+        { r: 0.05, v2033: 593471, facility: 171704 },
+        { r: 0.06, v2033: 626290, facility: 204523 },
+        { r: 0.07, v2033: 660602, facility: 238835 },
+        { r: 0.08, v2033: 696462, facility: 274695 },
+        { r: 0.09, v2033: 733924, facility: 312157 }
+      ],
+      facilityBasis: "facility = V(2033) − $421,767, the reserve defeased with a 4% ladder",
+      breakeven: [
+        { label: "Reserve held in cash ($500,000)", r: 0.0188 },
+        { label: "Reserve laddered at 4% ($421,767)", r: -0.0114 }
+      ],
+      takeaways: [
+        "The hurdle is certainty, not return. Funding all ten payments needs 1.88%/yr if the reserve sits in cash — and a negative return if it is laddered. Every past case had a demanding growth target. This one does not.",
+        "The reserve eats 57–71% of the portfolio. The facility contribution is a residual, not a target.",
+        "The payments are fixed in nominal dollars, so a nominal Treasury ladder is an exact cash-flow match. TIPS would add basis risk here, not remove it — the reflex answer is the wrong one.",
+        "Laddering rather than holding cash frees $78,233 for the facility with no market risk taken to earn it.",
+        "The 2031 co-sponsor range moves the de-risking date to 2031, not 2033. A portfolio still at 12% vol in 2031 can only honestly quote roughly $54K–$423K, which is not a usable number for a co-sponsor."
+      ]
+    },
+    outOfScope: ["Total cost of the facility, a construction budget, the project's funding gap, or a business plan for the residency", "Size or composition of a separate contingency fund or endowment", "Personal income taxes and capital gains taxes", "Legal and regulatory requirements of establishing a residency in Taiwan"],
+    winsNote: "The WInS portfolio does not set Laura's 2027 starting value and its gains or losses are never added to or subtracted from her projections. Projections start from the $300,000 in 2027 plus $150,000 in 2028 with return assumptions consistent with the strategy. WInS is evidence of decision-making, nothing more.",
+    narrative: [
+      {
+            "h": "The assignment",
+            "p": [
+                  "You are a team of young analysts working at an asset management company.",
+                  "Your portfolio manager (your team's teacher/advisor who makes the final investment decisions for your firm's portfolio) recently met with a potential client, Laura Gao, a bestselling author, illustrator, entrepreneur, and educator, who is planning the next chapter of her career. Laura has built a successful creative business by turning ideas into opportunities, and she is now seeking thoughtful financial planning to help her achieve her long-term goals.",
+                  "Your team hopes to develop the investment strategy that Laura ultimately chooses as she works toward achieving her future vision."
+            ]
+      },
+      {
+            "h": "Introducing Laura Gao",
+            "p": [
+                  "Laura Gao believes stories have the power to change how people see the world.",
+                  "Born in Wuhan, China, and raised in Texas, Laura is a bestselling graphic novelist, illustrator, entrepreneur, and educator whose work explores identity, belonging, and the power of storytelling. While studying at the Wharton School, she combined her passion for creativity with an entrepreneurial mindset and launched a small business. She graduated in 2018 with a degree in Statistics & Information Decisions Management before beginning her career as a product manager in the technology industry.",
+                  "In 2020, Laura published The Wuhan I Know, a comic inspired by her personal experiences during the COVID-19 pandemic. Originally intended as a response to misinformation and anti-Asian racism, the comic resonated with readers worldwide and ultimately inspired her bestselling graphic memoir, Messy Roots. Today, her books are read in classrooms around the world and have sparked conversations about identity, belonging, and community.",
+                  "Although Laura's career began in business and technology, she has always approached creativity with an entrepreneurial mindset. As an author, illustrator, educator, and public speaker, she has combined artistic passion with strategic thinking and a willingness to pursue unconventional opportunities.",
+                  "That philosophy continues to guide Laura as she considers what comes next."
+            ]
+      },
+      {
+            "h": "Looking ahead",
+            "p": [
+                  "Laura has no shortage of ideas for the future. As she considers the next chapter of her career, she recognizes that achieving ambitious goals requires more than creativity alone. Thoughtful financial planning and long-term investing will play an important role in turning those ideas into reality. Working with your portfolio manager, Laura has identified several long-term financial objectives that reflect both her entrepreneurial mindset and her passion for innovation."
+            ]
+      },
+      {
+            "h": "Laura's financial goals",
+            "p": [
+                  "At the beginning of 2027, Laura plans to invest $300,000 with an asset management firm. She will contribute an additional $150,000 at the beginning of 2028, using earnings from publishing advances, speaking engagements, licensing, and other entrepreneurial ventures.",
+                  "For purposes of the competition, teams should use the following timeline. Year 0 is 2026, the present, before any money has been invested. 2026 is Year 0, 2027 is Year 1, 2028 is Year 2, 2031 is Year 5, 2033 is Year 7. Any year not listed follows the same pattern: subtract 2026 from the calendar year to get its year number.",
+                  "All contributions and withdrawals occur at the beginning of the applicable year. The ten operating payments are therefore spaced exactly one year apart.",
+                  "Laura's living expenses and short-term financial needs will be covered by income and financial resources outside the portfolio. Apart from the two contributions described above, she will neither add to nor withdraw from the portfolio before 2033. The portfolio should therefore be managed to support the goals described below.",
+                  "Laura understands that investing involves uncertainty and periods of market volatility. Although she has been willing to take thoughtful risks throughout her entrepreneurial career, she wants her investment team to recommend an appropriate balance between pursuing growth and protecting the capital required for her goals."
+            ]
+      },
+      {
+            "h": "The Creative Residency",
+            "p": [
+                  "In 2033, Laura plans to establish a collaborative creative residency in Taiwan. She envisions a small, community-oriented space where artists, writers, designers, entrepreneurs, and educators can temporarily live, work, teach, and collaborate.",
+                  "Establishing the residency will require funding for the facility as well as reliable support for its early operations. The investment portfolio must fund the operating commitment described below and may also cover part of the facility's cost. Any remaining facility cost, and any operating support beyond Laura's commitment, may come from co-sponsors, grants, collaborators, program fees, continued business income, or other sources."
+            ]
+      },
+      {
+            "h": "Operating commitment",
+            "p": [
+                  "Laura will make ten annual payments of $50,000 toward the residency's operating expenses, one at the beginning of each year from 2033 through 2042. For purposes of the competition, each payment is a fixed $50,000 and is not adjusted for inflation.",
+                  "All ten payments must be funded by the investment portfolio with a high degree of certainty. Teams may not rely on co-sponsors, grants, program fees, or other outside funding to meet this requirement. Funding the residency beyond the final payment in 2042 is outside the scope of the competition.",
+                  "At the beginning of 2033, before making the first operating payment or contributing to the facility, Laura will set aside a portion of the portfolio to fund the ten payments. This set-aside is called the operating reserve. Teams must recommend its size and initial asset composition and explain how its composition should change, if at all, as the annual payments approach and are made. They should also define what they consider a high degree of funding certainty, explain how they evaluated that level of certainty, and identify the assumptions supporting their recommendation."
+            ]
+      },
+      {
+            "h": "Facility contribution",
+            "p": [
+                  "After establishing the operating reserve in 2033, Laura must decide how much of the remaining portfolio she can responsibly contribute toward the cost of establishing the residency facility. She recognizes that committing all remaining assets could limit her financial flexibility as the project develops.",
+                  "There is no predetermined facility contribution. Teams must recommend and justify the extent to which Laura can responsibly contribute, based on their investment strategy, projected portfolio outcomes, assumptions, and understanding of her goals. Teams are not expected to determine the size or investment composition of a separate contingency fund or endowment."
+            ]
+      },
+      {
+            "h": "Communicating with co-sponsors",
+            "p": [
+                  "Laura plans to begin approaching potential co-sponsors in 2031, two years before the residency is established. At that time, she will need to describe how much she expects to contribute toward the facility in 2033. A meaningful personal contribution may signal that the residency is financially viable, demonstrate Laura's commitment to the project, and make potential co-sponsors more willing to contribute. In 2031, however, the value of her portfolio in 2033 remains uncertain.",
+                  "If Laura promises more than she can ultimately contribute, she could damage her credibility and lose the confidence or participation of co-sponsors. Rather than promising one exact amount, she wants to communicate a credible range for her potential contribution.",
+                  "Teams must recommend the dollar range Laura should communicate and state how confident they are that her 2033 contribution will fall within that range. They should explain how favorable and unfavorable market outcomes could affect the amount she can provide. The proposed range must also protect the portfolio's ability to fund the ten-year operating commitment.",
+                  "Each team must also draft part of Laura's fundraising materials describing this potential contribution for prospective co-sponsors."
+            ]
+      },
+      {
+            "h": "Developing Laura's investment strategy",
+            "p": [
+                  "There is no single correct strategy for achieving Laura's goals. Teams may reach different conclusions about risk, asset allocation, liquidity, return expectations, funding confidence, the facility contribution, and the financial flexibility Laura should preserve.",
+                  "The WInS portfolio represents each team's implementation of its investment strategy during the competition. It does not determine Laura's actual portfolio value at the beginning of 2027. For long-term projections, teams should begin with Laura's $300,000 investment in 2027, add the $150,000 contribution in 2028, and use reasonable return assumptions consistent with their strategy. Gains or losses generated during the WInS trading period should not be added to or subtracted from Laura's portfolio projections.",
+                  "Teams should identify and explain their assumptions about investment performance, the timing of cash flows, outside funding, the effect of inflation on portfolio projections and facility costs, and the financial flexibility Laura should preserve. They should also consider how favorable and unfavorable investment outcomes would affect their recommendations.",
+                  "Evaluators will consider the three deliverables together. Teams should use each deliverable for its intended purpose while maintaining a clear and consistent investment strategy across all three. Detailed Final Report requirements will be released at the beginning of Week 7.",
+                  "The total cost of the facility has not been determined. Teams are not expected to estimate that cost, prepare a construction budget, determine the project's total funding gap, or develop a detailed business plan for the residency. Their primary focus should remain on the investment strategy and how much the portfolio can responsibly provide toward Laura's goals.",
+                  "For purposes of the competition, teams do not need to account for personal income taxes, capital gains taxes, or the legal and regulatory requirements of establishing a residency in Taiwan."
+            ]
+      },
+      {
+            "h": "What the strategy must do",
+            "list": [
+                  "Support the ten-year operating commitment with a high degree of certainty.",
+                  "Determine a responsible facility contribution for the residency.",
+                  "Address how investment uncertainty could affect both the operating commitment and the facility contribution.",
+                  "Communicate Laura's potential facility contribution to co-sponsors clearly and credibly.",
+                  "Preserve appropriate financial flexibility when determining the facility contribution."
+            ]
+      }
+    ],
+    timeline: [{"cal": "2026", "yr": 0, "what": "Right now. Nothing is invested yet. The whole competition (Sep 28 - Dec 4) happens inside Year 0.", "now": true}, {"cal": "2027", "yr": 1, "what": "She invests $300,000."}, {"cal": "2028", "yr": 2, "what": "She adds $150,000. Nothing else moves until 2033."}, {"cal": "2029-2030", "yr": "3-4", "what": "Untouched, compounding."}, {"cal": "2031", "yr": 5, "what": "She starts approaching co-sponsors and must quote a credible range for her 2033 contribution.", "key": true}, {"cal": "2032", "yr": 6, "what": "Untouched."}, {"cal": "2033", "yr": 7, "what": "Operating reserve is struck, the residency is established, and payment 1 of 10 is made.", "key": true}, {"cal": "2034-2041", "yr": "8-15", "what": "Payments 2 through 9."}, {"cal": "2042", "yr": 16, "what": "Payment 10. The commitment ends; anything past this is out of scope."}],
+    timelineNote: "The year numbers locate events - they do not give you growth periods. Money invested at the start of Year 1 and measured at the start of Year 7 compounds for SIX years, not seven. That is why the exponent is 6 on the $300,000 and 5 on the $150,000. Because the competition sits entirely in Year 0, Laura's money never actually moves while we are trading - which is exactly why WInS gains and losses are never added to her projections.",
+    source: "2026_WGY_Gao Case Study-FINAL.pdf and 2026_WGY_Competition Guide-FINAL.pdf, SurveyMonkey Apply → Pages → Client",
+    released: "2026-09-15"
+  },
+
+  /* ---- Competition Guide, released Sep 15 2026 via SurveyMonkey Apply. ---- */
+  guide: {
+      "source": "2026_WGY_Competition Guide-FINAL.pdf, SurveyMonkey Apply -> Pages -> Competition Guide",
+      "released": "2026-09-15",
+      "intro": "The competition challenges the team to develop, implement and evaluate a long-term investment strategy that helps a client meet specific financial goals and future cash-flow needs. Over ten weeks we get to know the client, research and analyze, develop a strategy, build a portfolio and evaluate our approach. The first six weeks are for developing and implementing the strategy in WInS. At the end of Week 6 the IPS goes in, trading ends and the portfolio freezes.",
+      "bigPicture": "Your investment strategy is the cornerstone of the competition. This is not a competition to see which team can make the most money in a few weeks. From the beginning, develop a strategy and use it to guide research, portfolio construction and every investment decision. The strategy may evolve as we learn more, but the decisions have to reflect a clear and cohesive approach.",
+      "notEvaluatedOn": [
+          "Your portfolio ranking",
+          "How many trades you make",
+          "Whether you outperform other teams",
+          "Whether your portfolio makes money during the competition"
+      ],
+      "notEvalNote": "A long-term investment strategy cannot be judged solely by what happens in the market over a few weeks. Instead, the portfolio is evidence of the decisions the team made and how it put the strategy into practice.",
+      "roadmap": [
+          {
+              "n": 1,
+              "t": "Understand",
+              "lead": "Get to know your client and the investment challenge.",
+              "d": "Study the case study, the financial goals, the future funding commitments and the sources of uncertainty. Work out what additional research will help you understand the investment problem."
+          },
+          {
+              "n": 2,
+              "t": "Develop",
+              "lead": "Build your investment strategy.",
+              "d": "Use research and analysis to establish the principles that guide portfolio construction and balance growth, liquidity, funding reliability and flexibility."
+          },
+          {
+              "n": 3,
+              "t": "Implement and document",
+              "lead": "Put your strategy into action.",
+              "d": "Use WInS to construct a portfolio that reflects the strategy, document the reasoning behind each trade, and demonstrate decision-making through the Trading Notes Analysis."
+          },
+          {
+              "n": 4,
+              "t": "Articulate",
+              "lead": "Formally present and finalize your strategy in the IPS.",
+              "d": "Communicate the strategy clearly, including how it addresses risk and uncertainty, and the framework that guides investment decisions."
+          },
+          {
+              "n": 5,
+              "t": "Evaluate",
+              "lead": "Assess your strategy and its implementation in the Final Report.",
+              "d": "Evaluate the implementation and explain why the strategy supports the client's operating commitment, facility contribution, financial flexibility and communication with co-sponsors across varying outcomes."
+          }
+      ],
+      "connect": [
+          {
+              "name": "Trading Notes Analysis",
+              "purpose": "Demonstrate your decision-making",
+              "shows": "How three investment decisions reflected the team's strategy and supported the client's goals, future funding needs or constraints. The strategy may keep evolving before the IPS, but the decisions should already reflect a clear strategic approach."
+          },
+          {
+              "name": "Investment Policy Statement",
+              "purpose": "Articulate your strategy",
+              "shows": "Present and finalize the strategy, including how it balances growth, liquidity, funding reliability, flexibility, risk and uncertainty, and how it guides portfolio decisions."
+          },
+          {
+              "name": "Final Report",
+              "purpose": "Evaluate your strategy and implementation",
+              "shows": "Evaluate implementation of the IPS strategy and present the team's analysis and recommendations for the client's operating commitment, facility contribution, financial flexibility and communication with co-sponsors across varying outcomes."
+          }
+      ],
+      "connectNote": "The deliverables are not separate assignments. Evaluators consider all three together, so the strategy has to stay clear and consistent across them.",
+      "ipsLock": [
+          "Your investment strategy is final.",
+          "Trading ends and your WInS portfolio is frozen.",
+          "You may not change your holdings."
+      ],
+      "ipsLockNote": "A long-term strategy may include planned adjustments as funding dates approach, but it should not be rewritten simply because markets move or hindsight reveals a different outcome. You may identify decisions you would make differently, but you may not redesign the strategy after observing the results.",
+      "lookingFor": {
+          "list": [
+              "Thoughtful strategy",
+              "Research and analysis",
+              "Client understanding",
+              "Disciplined decisions",
+              "Management of risk and uncertainty",
+              "Communication",
+              "Creativity"
+          ],
+          "note": "Judges want to understand not only what the team decided to do, but the reasoning, assumptions and tradeoffs behind those decisions. The work should show an understanding of the client, informed investment decisions, and clear communication of how the approach supports the client's goals while addressing risk and uncertainty."
+      },
+      "winsRole": "WInS is where the strategy gets put into action under real market conditions - research investments, build the portfolio, make decisions and see how changing conditions affect the holdings. It is a tool for implementing the strategy, not the competition scorecard.",
+      "tradeNoteSpec": "When a trade is executed in WInS, the Trading Note should capture the reasoning behind the decision: its alignment with the strategy, the supporting research or analysis, and its expected role in growth, liquidity, risk management or future funding. Do not treat Trading Notes as an afterthought - they are the record of how the team put its strategy into practice.",
+      "pagesTab": [
+          {
+              "page": "Client",
+              "holds": "The complete Client Case Study",
+              "have": true
+          },
+          {
+              "page": "Competition Guide",
+              "holds": "The ten-week arc, road map and judging standard",
+              "have": true
+          },
+          {
+              "page": "Deliverables",
+              "holds": "IPS Requirements, Trading Notes Analysis Requirements, and the Evaluation Criteria",
+              "have": false
+          },
+          {
+              "page": "FAQs",
+              "holds": "Competition FAQs",
+              "have": false
+          },
+          {
+              "page": "WInS",
+              "holds": "Simulator setup and how-to",
+              "have": false
+          },
+          {
+              "page": "Trading",
+              "holds": "This season's trading requirements - approved list, commissions, caps, starting cash",
+              "have": false
+          }
+      ]
   },
 
   roles: [
@@ -71,9 +361,9 @@ WSW.data = {
 
   deliverables: [
     { id: "roster", name: "Official Team Roster", due: "2026-10-09T17:00:00-04:00", what: "The final list of 4–6 members, submitted by the team leader in SurveyMonkey Apply.", why: "Locks the team. No additions after this.", build: ["Full name, school email and grade for all five members", "Advisor confirmation from Coach P"], tips: "Submit it early in the week. A Friday 5:00 p.m. ET deadline is 4:00 p.m. our time, during school." },
-    { id: "notes",  name: "Trading Notes Analysis", due: "2026-10-23T17:00:00-04:00", what: "Wharton's description: submit required trading notes and justification. In WInS, a trading note is attached to each trade (Transaction History → Add/View Notes). Past reports carried numbered trading notes: the trade, the thesis, which client goal it served, the risk, and what happened.", why: "This is where judges see whether trades follow the strategy or chase returns.", build: ["A note entered in WInS on every trade, the same day", "One journal entry per trade: date, ticker, size, thesis, client goal, risk, exit plan", "The analysis: what the trades say about the strategy so far, and the top holdings"], tips: "The Sep 15 materials define the exact format. The old mid-season review was 1–2 pages, double-spaced, on strategy, decision process and top holdings; expect something similar." },
-    { id: "ips",    name: "Investment Policy Statement", due: "2026-11-06T17:00:00-05:00", what: "Wharton's description: define your client's investment objectives, risk tolerance, and overall investment strategy.", why: "Half of what the top 50 is chosen on.", build: ["Client profile from the case", "Return objective, with the required-return math", "Risk tolerance: ability and willingness, separately", "Time horizon per goal, liquidity and payout schedule", "Taxes, legal and unique circumstances", "Target allocation and how the portfolio is monitored"], tips: "Write it in the client's language. A judge should be able to hand it to the client." },
-    { id: "report", name: "Comprehensive Final Report", due: "2026-12-04T17:00:00-05:00", what: "Wharton's description: present and justify your team's investment strategy, portfolio recommendations, and analysis.", why: "The other half. Past prescribed sections: title page, portfolio breakdown graphic, elevator pitch, what makes the strategy unique, advisor reflection, trading notes, WInS portfolio vs. recommended portfolio, analysis by holding or sector, conclusion, works cited.", build: ["Elevator pitch: the strategy in one paragraph", "Portfolio-level analysis: diversification, correlations, downside scenario", "Every holding tied to a client goal", "The story of how the team worked", "Works cited, including any AI-generated material"], tips: "Past format: 7–11 pages, double-spaced, 12-point Times New Roman, 1-inch margins, PDF under 5 MB, and a page count outside the range was disqualifying. Re-check on Sep 15. Write it in chunks all season; teams that start in late November don't finish." }
+    { id: "notes",  name: "Trading Notes Analysis", due: "2026-10-23T17:00:00-04:00", what: "Official (Competition Guide): select THREE Trading Notes and reflect on how those decisions supported, tested or refined the strategy. Due at the end of Week 4, two weeks before the IPS. In WInS, a trading note is attached to each trade (Transaction History → Add/View Notes). Past reports carried numbered trading notes: the trade, the thesis, which client goal it served, the risk, and what happened.", why: "This is where judges see whether trades follow the strategy or chase returns.", build: ["A note entered in WInS on every trade, the same day", "One journal entry per trade: date, ticker, size, thesis, client goal, risk, exit plan", "The analysis: what the trades say about the strategy so far, and the top holdings"], tips: "Full requirements live in SurveyMonkey Apply under Pages \u2192 Deliverables \u2014 not yet pulled into this site. The old mid-season review was 1–2 pages, double-spaced, on strategy, decision process and top holdings; expect something similar." },
+    { id: "ips",    name: "Investment Policy Statement", due: "2026-11-06T17:00:00-05:00", what: "Wharton's description: define your client's investment objectives, risk tolerance, and overall investment strategy.", why: "Half of what the top 50 is chosen on. Once the deadline passes the strategy is FINAL, trading ends and the portfolio freezes.", build: ["Client profile from the case", "Return objective, with the required-return math", "Risk tolerance: ability and willingness, separately", "Time horizon per goal, liquidity and payout schedule", "Taxes, legal and unique circumstances", "Target allocation and how the portfolio is monitored"], tips: "Write it in the client's language. A judge should be able to hand it to the client." },
+    { id: "report", name: "Comprehensive Final Report", due: "2026-12-04T17:00:00-05:00", what: "Wharton's description: present and justify your team's investment strategy, portfolio recommendations, and analysis.", why: "The other half. Detailed requirements are not released until the beginning of Week 7 (about Nov 9), after the IPS is already locked. Past prescribed sections: title page, portfolio breakdown graphic, elevator pitch, what makes the strategy unique, advisor reflection, trading notes, WInS portfolio vs. recommended portfolio, analysis by holding or sector, conclusion, works cited.", build: ["Elevator pitch: the strategy in one paragraph", "Portfolio-level analysis: diversification, correlations, downside scenario", "Every holding tied to a client goal", "The story of how the team worked", "Works cited, including any AI-generated material"], tips: "Past format: 7–11 pages, double-spaced, 12-point Times New Roman, 1-inch margins, PDF under 5 MB, and a page count outside the range was disqualifying. Re-check on Sep 15. Write it in chunks all season; teams that start in late November don't finish." }
   ],
 
   tradingRules: [
