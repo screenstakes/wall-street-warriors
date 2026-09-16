@@ -109,7 +109,8 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
 .nt{width:100%;border-collapse:collapse;font-size:13.5px}
 .nt caption{text-align:left;font:700 13px/1.3 var(--ui);color:var(--navy);padding:0 0 8px}
 .nt th{text-align:left;font:700 11px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:0 8px 7px 0;border-bottom:1px solid var(--line-2)}
-.nt th.r,.nt td.r{text-align:right;padding-right:0}
+.nt th.r,.nt td.r{text-align:right;padding-right:0;padding-left:12px}
+.nt th.r:last-child,.nt td.r:last-child{padding-right:6px}
 .nt td{padding:8px 8px 8px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);font-variant-numeric:tabular-nums}
 .nt td.r{font-weight:600;color:var(--ink)}
 .nt tr:last-child td{border-bottom:0}
@@ -370,7 +371,7 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
     s += T(x(2026), 16, "Now · 2026 · nothing invested yet", "strong", "start", 12);
     /* compounding band */
     s += '<rect x="' + x(2027) + '" y="146" width="' + (x(2033) - x(2027)) + '" height="24" fill="' + BLUE + '" opacity=".09"/>';
-    s += T(x(2027) + 8, 162, "6 years of growth · Yr 1 → Yr 7", "soft", "start", 12);
+    s += T(x(2031) - 9, 162, "6 yrs of growth, Yr 1→7", "soft", "end", 12);
     /* axis + ticks */
     s += '<line x1="' + x(2026) + '" y1="' + AX + '" x2="988" y2="' + AX + '" class="axis"/><path d="M988 ' + (AX - 4) + ' L996 ' + AX + ' L988 ' + (AX + 4) + ' z" fill="#4B5872"/>';
     for (var yr = 2026; yr <= 2042; yr++) {
@@ -407,7 +408,7 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
     rows.forEach(function (yr) {
       var yy = y(yr), yrN = typeof yr === "number" ? "Yr " + (yr - 2026) : "";
       s += '<line x1="' + (AX - 4) + '" y1="' + yy + '" x2="' + (AX + 4) + '" y2="' + yy + '" class="axis"/>';
-      s += T(AX - 8, yy + 4, String(yr), (yr === 2033 || yr === 2027 ? "strong" : ""), "end", 12);
+      s += T(AX - 11, yy + 4, String(yr), (yr === 2033 || yr === 2027 ? "strong" : ""), "end", 12);
       if (yrN) s += T(2, yy + 4, yrN, "mute", "start", 10.5);
     });
     s += '<circle cx="' + AX + '" cy="' + y(2026) + '" r="5" fill="#142F63"/>';
@@ -421,7 +422,7 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
     s += T(AX + 14, y(2031) + 4, "Quote co-sponsors a $ range", "", "start", 12);
     [2033, MID, 2042].forEach(function (yr) { s += '<line x1="' + (AX + 30) + '" y1="' + y(yr) + '" x2="' + (AX + 10) + '" y2="' + y(yr) + '" stroke="' + ORANGE + '" stroke-width="2.5" marker-end="url(#ph-out)"/>'; });
     s += T(AX + 40, y(2033) + 4, "−" + money(flows.pay) + " out · reserve set aside first", "strong", "start", 12);
-    s += T(AX + 40, y(MID) + 4, "−" + money(flows.pay) + " each year, payments 2–9", "soft", "start", 12);
+    s += T(AX + 40, y(MID) + 4, "−" + money(flows.pay) + " a year, payments 2–9 (Yr 8–15)", "soft", "start", 12);
     s += T(AX + 40, y(2042) + 4, "−" + money(flows.pay) + " · the last of ten · " + money(flows.pay * 10) + " in all", "soft", "start", 12);
     return s + "</svg>";
   }
