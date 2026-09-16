@@ -99,11 +99,11 @@ WSW.data = {
         { label: "Reserve laddered at 4% ($421,767)", r: -0.0114 }
       ],
       takeaways: [
-        "The hurdle is certainty, not return. Funding all ten payments needs 1.88%/yr if the reserve sits in cash — and a negative return if it is laddered. Every past case had a demanding growth target. This one does not.",
-        "The reserve eats 57–71% of the portfolio. The facility contribution is a residual, not a target.",
-        "The payments are fixed in nominal dollars, so a nominal Treasury ladder is an exact cash-flow match. TIPS would add basis risk here, not remove it — the reflex answer is the wrong one.",
-        "Laddering rather than holding cash frees $78,233 for the facility with no market risk taken to earn it.",
-        "The 2031 co-sponsor range moves the de-risking date to 2031, not 2033. A portfolio still at 12% vol in 2031 can only honestly quote roughly $54K–$423K, which is not a usable number for a co-sponsor."
+        { h: "The hurdle is certainty, not return", d: "Funding all ten payments needs 1.88% a year if the reserve sits in cash, and a negative return if it is laddered. Every past case had a demanding growth target. This one does not \u2014 so the question is how much risk we can afford, not how much return we need." },
+        { h: "The reserve eats most of the pot", d: "57\u201371% of the 2033 portfolio across 5\u20139% returns. The facility contribution is whatever is left, a residual rather than a target." },
+        { h: "Nominal payments want a nominal ladder, not TIPS", d: "The payments are fixed in dollars, so a plain Treasury ladder matches them exactly. TIPS would add basis risk instead of removing it \u2014 the reflex answer is the wrong one." },
+        { h: "Laddering frees $78,233 without taking market risk", d: "The reserve costs $500,000 in cash and $421,767 laddered at 4%. The difference goes straight to the facility, earned by structure rather than by picking stocks." },
+        { h: "De-risk by 2031, not 2033", d: "She has to quote co-sponsors a credible range two years early. A portfolio still at 12% volatility in 2031 can only honestly promise roughly $54K\u2013$423K, which is useless to a co-sponsor. Most teams will glide to 2033 and miss this." }
       ]
     },
     outOfScope: ["Total cost of the facility, a construction budget, the project's funding gap, or a business plan for the residency", "Size or composition of a separate contingency fund or endowment", "Personal income taxes and capital gains taxes", "Legal and regulatory requirements of establishing a residency in Taiwan"],

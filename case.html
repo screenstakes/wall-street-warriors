@@ -14,197 +14,159 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.case-body{display:grid;gap:16px}
-.case-placeholder{border:2px dashed var(--line);border-radius:var(--r);background:var(--well);padding:22px 20px;display:grid;gap:8px;justify-items:start}
-.case-placeholder h3{font-size:17px;color:var(--navy)}
-.case-placeholder .when{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font:600 13.5px/1.3 var(--mono);color:var(--ink-2)}
-.case-h3{font-size:15px;color:var(--navy);margin-top:4px}
-.cl-hero{border:1px solid var(--line-2);border-left:4px solid var(--blue);border-radius:var(--r);background:var(--well);padding:18px 20px;display:grid;gap:8px}
-.cl-hero h3{font:700 22px/1.15 var(--ui);color:var(--navy)}
-.cl-hero .cl-sub{font:600 13px/1.3 var(--mono);color:var(--blue);text-transform:uppercase;letter-spacing:.04em}
-.cl-hero p{font-size:14px;color:var(--ink-2);line-height:1.5;margin:0}
-.cl-quote{border-left:3px solid var(--line);padding-left:14px;font:italic 500 15px/1.45 var(--ui);color:var(--ink-2)}
-.cl-flows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-@media (max-width:640px){.cl-flows{grid-template-columns:1fr}}
-.cl-ob{border:1px solid var(--line-2);border-radius:var(--r);padding:14px 16px;display:grid;gap:7px}
-.cl-ob.must{border-left:4px solid var(--orange,#EFA24A)}
-.cl-ob h4{font:700 15px/1.25 var(--ui);color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.cl-ob p{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin:0}
-.cl-ob ul{margin:2px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
-.cl-ob ul li{margin-top:3px}
-.cl-tbl{width:100%;border-collapse:collapse;table-layout:auto;font-size:13.5px;font-variant-numeric:tabular-nums}
-.cl-tbl caption{text-align:left;font:600 13px/1.3 var(--mono);color:var(--ink-3);padding-bottom:7px}
-.cl-tbl th{text-align:left;font:600 12px/1.3 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:0 10px 7px 0;border-bottom:1px solid var(--line-2)}
-.cl-tbl td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
-.cl-tbl td.n{font-family:var(--mono);font-weight:600;color:var(--ink)}
-.cl-tbl tr:last-child td{border-bottom:0}
-.cl-take{list-style:none;margin:0;padding:0;counter-reset:t}
-.cl-take li{counter-increment:t;position:relative;padding:10px 0 10px 32px;border-top:1px solid var(--line-2);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
-.cl-take li:first-child{border-top:0}
-.cl-take li::before{content:counter(t);position:absolute;left:0;top:10px;width:21px;height:21px;border-radius:50%;background:var(--blue);color:#fff;font:700 11.5px/21px var(--mono);text-align:center}
-.cl-wrap{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
-.cl-wrap>*,.cl-flows>*,.cl-ob,.cl-hero{min-width:0}
-.cl-read{border:1px solid var(--line-2);border-radius:var(--r);background:#fff}
-.cl-read>summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;align-items:center;gap:10px;font:700 15px/1.25 var(--ui);color:var(--navy)}
-.cl-read>summary::-webkit-details-marker{display:none}
-.cl-read>summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
-.cl-read[open]>summary::after{transform:rotate(-135deg)}
-.cl-read>summary .tag{font:600 11.5px/1 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
-.cl-doc{padding:2px 16px 18px;border-top:1px solid var(--line-2)}
-.cl-doc h4{font:700 14.5px/1.3 var(--ui);color:var(--navy);margin:18px 0 6px}
-.cl-doc h4:first-child{margin-top:14px}
-.cl-doc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0 0 9px}
-.cl-doc ul{margin:4px 0 9px;padding-left:20px;font-size:14px;line-height:1.55;color:var(--ink-2)}
-.cl-doc ul li{margin-top:4px}
-.cl-tl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:330px}
-.cl-tl th{text-align:left;font:600 12px/1.3 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:0 10px 7px 0;border-bottom:1px solid var(--line-2)}
-.cl-tl td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:top}
-.cl-tl tr:last-child td{border-bottom:0}
-.cl-tl td.y{font:700 13px/1.4 var(--mono);color:var(--navy);white-space:nowrap}
-.cl-tl tr.now td{background:var(--well)}
-.cl-tl tr.now td.y{color:var(--blue)}
-.cl-tl td .badge{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:99px;background:var(--blue);color:#fff;font:700 10px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;vertical-align:1px}
-.cl-plain{list-style:none;margin:0;padding:0}
-.cl-plain li{padding:10px 0;border-top:1px solid var(--line-2);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
-.cl-plain li:first-child{border-top:0}
-.cl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
-.cl-tbl{min-width:330px}
-.cl-hero h3,.cl-hero p,.cl-ob p,.cl-ob h4,.cl-take li{overflow-wrap:anywhere}
-@media (max-width:640px){.cl-hero{padding:14px 15px}.cl-hero h3{font-size:19px}}
-.case-ws{display:grid;grid-template-columns:3fr 1fr;gap:12px}
-.case-full{grid-column:1/-1}
-.case-calc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-@media (max-width:900px){.case-calc{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:520px){.case-calc{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.case-out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-@media (max-width:520px){.case-out{grid-template-columns:1fr}}
-.case-stat{background:var(--well);border:1px solid var(--line-2);border-radius:var(--r);padding:14px 16px}
-.case-stat .v{display:block;font:700 34px/1.1 var(--mono);color:var(--navy);margin:4px 0 2px;font-variant-numeric:tabular-nums}
-.case-stat.primary .v{color:var(--blue)}
-.case-stat .s{font-size:12.5px;color:var(--ink-3)}
-.case-chart{display:block;width:100%;height:260px}
-.case-pattern{list-style:none;margin:0;padding:0}
-.case-pattern li{padding:11px 18px;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2);line-height:1.45}
-.case-pattern li:first-child{border-top:0}
-.case-pattern b{display:block;font:600 14px/1.35 var(--ui);color:var(--ink);margin-bottom:1px}
-.case-build{display:grid;gap:14px;font-size:14px}
-.case-build ol{margin:4px 0 0;padding-left:20px;color:var(--ink-2)}
-.case-build ol li{margin-top:3px}
-.case-build .kicker{display:block;margin-bottom:2px}
-.case-section{margin-top:28px}
-.case-section > h2{font-size:18px;color:var(--navy);margin-bottom:4px}
-.case-section > p{margin-bottom:14px}
-.case-past .card-body{display:grid;gap:10px;font-size:14px}
-.case-past h3{font-size:16px;color:var(--ink);margin-top:2px}
-.case-past .chip{justify-self:start}
-.case-past small{font-size:12px;color:var(--ink-3)}
-.case-tl{position:relative;height:64px;margin:6px 4px 0}
-.case-tl .line{position:absolute;left:0;right:0;top:30px;height:2px;background:var(--line)}
-.case-tl .pt{position:absolute;top:0;width:0}
-.case-tl .pt i{position:absolute;left:-5px;top:25px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 1px var(--blue)}
-.case-tl .pt .y{position:absolute;top:2px;font:700 11px/1.2 var(--mono);color:var(--navy);white-space:nowrap}
-.case-tl .pt .l{position:absolute;top:42px;font-size:11.5px;line-height:1.2;color:var(--ink-2);white-space:nowrap}
-.case-tl .pt.mid .y,.case-tl .pt.mid .l{transform:translateX(-50%)}
-.case-tl .pt.end .y,.case-tl .pt.end .l{transform:translateX(-100%)}
+/* ---------- case page: one column, one spacing scale (8 / 16 / 24 inside, 20 between cards) ---------- */
+.case-main{display:grid;gap:20px}
+.case-main .card-body{display:grid;gap:24px}
+.case-main .card-body > *{min-width:0}
+.case-h{font:700 15px/1.3 var(--ui);color:var(--navy);margin:0 0 10px}
+.case-lede{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin:0}
+.only-phone{display:none}
+@media (max-width:700px){.only-phone{display:block}.only-desk{display:none}}
+
+/* hero: name block, then bio + quote beside the "she is building" well */
+.hero-top .k{font:700 11px/1.3 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.hero-top h3{font:700 26px/1.1 var(--ui);color:var(--navy);letter-spacing:-.01em;margin:2px 0 0}
+.case-main .card-body > .hero-top{margin-bottom:-8px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:10px 32px;align-items:stretch}
+.hero .who{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin:0;max-width:62ch}
+.hero .quote{border-left:3px solid var(--line);padding-left:12px;font:italic 500 14.5px/1.45 var(--ui);color:var(--ink-2);margin:0}
+.hero .proj{grid-column:2;grid-row:1 / span 2;background:var(--well);border:1px solid var(--line-2);border-radius:var(--r);padding:12px 14px;display:grid;align-content:start;gap:2px}
+.hero .proj .k{font:700 11px/1.3 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.hero .proj b{font:700 15px/1.3 var(--ui);color:var(--navy);margin-top:2px}
+.hero .proj span{font-size:13px;line-height:1.5;color:var(--ink-2)}
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr}.hero .proj{grid-column:1;grid-row:auto}.hero-top h3{font-size:22px}
+  /* phones: the three numbers come before the bio, so the verdict is on the first screen */
+  .case-main .card-body > .hero{order:5}.case-main .card-body > .verdict-line{order:4}
+}
+
+/* verdict strip */
+.verdict{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.verdict .v{background:var(--well);border:1px solid var(--line-2);border-radius:var(--r);padding:14px 16px;display:grid;gap:3px;align-content:start}
+.verdict .v .k{font:700 11px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.verdict .v .n{font:700 30px/1.1 var(--ui);color:var(--navy);letter-spacing:-.01em;margin:4px 0 2px}
+.verdict .v.accent .n{color:var(--blue)}
+.verdict .v .s{font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+.verdict-line{font-size:14px;line-height:1.55;color:var(--ink);margin:0;padding:12px 16px;border-left:4px solid var(--orange);background:var(--well);border-radius:var(--r)}
+@media (max-width:700px){.verdict{grid-template-columns:1fr}.verdict .v{grid-template-columns:1fr auto;grid-template-areas:"k n" "s n"}.verdict .v .k{grid-area:k}.verdict .v .n{grid-area:n;font-size:24px;margin:0;align-self:center}.verdict .v .s{grid-area:s}}
+
+/* figures */
+figure{margin:0}
+figure svg{display:block;width:100%;max-width:1000px;height:auto}
+figure svg text{font-family:var(--body);fill:var(--ink)}
+figure svg text.mute{fill:var(--ink-2);font-weight:600}
+figure svg text.soft{fill:var(--ink-2)}
+figure svg text.strong{font-weight:600}
+figure svg .hair{stroke:var(--line);stroke-width:1}
+figure svg .axis{stroke:var(--ink-2);stroke-width:1.5}
+figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin-top:10px}
+figcaption b{color:var(--ink)}
+
+/* folds */
+details.fold{border:1px solid var(--line-2);border-radius:var(--r);background:#fff}
+details.fold > summary{cursor:pointer;list-style:none;padding:12px 16px;display:flex;align-items:center;gap:10px;font:700 14px/1.3 var(--ui);color:var(--navy)}
+details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
+details.fold[open] > summary::after{transform:rotate(-135deg)}
+details.fold > summary .tag{font:600 11px/1 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
+details.fold > .in{padding:4px 16px 16px;border-top:1px solid var(--line-2)}
+.fold-stack{display:grid;gap:10px}
+@media (max-width:640px){details.fold > summary .tag{display:none}}
+details.fold.big > summary{padding:14px 18px;font-size:15px}
+details.fold.big > summary .sic{width:30px;height:30px;border-radius:50%;background:var(--navy);display:grid;place-items:center;flex:none}
+details.fold.big > summary .sic svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(--line-2)}
+
+/* year table (in a fold) */
+.yt{width:100%;border-collapse:collapse;font-size:13.5px;min-width:0}
+.yt th{text-align:left;font:700 11px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:10px 10px 8px 0;border-bottom:1px solid var(--line-2)}
+.yt td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:top}
+.yt tr:last-child td{border-bottom:0}
+.yt td.y{font:600 13px/1.4 var(--mono);color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
+.yt tr.now td{background:var(--well)}
+.yt tr.now td.y{color:var(--blue)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
+@media (max-width:700px){.case-main table{min-width:0}.yt td{white-space:normal}.nt{min-width:0}}
+
+/* the three questions */
+.qs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.q{border:1px solid var(--line-2);border-radius:var(--r);padding:14px 16px;display:grid;gap:8px;align-content:start}
+.q.must{border-left:4px solid var(--orange)}
+.q h4{font:700 15px/1.3 var(--ui);color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0}
+.q .what{font-size:14px;line-height:1.5;color:var(--ink);font-weight:600;margin:0}
+.q .why{font-size:13px;line-height:1.5;color:var(--ink-2);margin:0}
+.q ul{margin:2px 0 0;padding-left:18px;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.q ul li{margin-top:4px}
+@media (max-width:900px){.qs{grid-template-columns:1fr}}
+@media (max-width:700px){.q .why{display:none}}
+
+/* numbers */
+.tables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.tables > div{min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nt{min-width:300px}
+.nt caption{white-space:normal}
+@media (max-width:760px){.tables{grid-template-columns:1fr}}
+.nt{width:100%;border-collapse:collapse;font-size:13.5px}
+.nt caption{text-align:left;font:700 13px/1.3 var(--ui);color:var(--navy);padding:0 0 8px}
+.nt th{text-align:left;font:700 11px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:0 8px 7px 0;border-bottom:1px solid var(--line-2)}
+.nt th.r,.nt td.r{text-align:right;padding-right:0}
+.nt td{padding:8px 8px 8px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.nt td.r{font-weight:600;color:var(--ink)}
+.nt tr:last-child td{border-bottom:0}
+.nt tr.hi td{background:var(--well);color:var(--navy)}
+.nt tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--blue);padding-left:8px}
+.nt tr.hi td.r{color:var(--blue)}
+.foot-line{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin:0}
+.math{font:500 13px/1.6 var(--mono);color:var(--ink-2);margin:0;overflow-wrap:anywhere}
+.math b{color:var(--navy)}
+.try{display:grid;grid-template-columns:150px 150px 1fr;gap:12px 20px;align-items:end}
+.try .out{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.try .out div{background:var(--well);border:1px solid var(--line-2);border-radius:var(--r);padding:10px 12px}
+.try .out .k{display:block;font:700 10.5px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.try .out .n{display:block;font:700 18px/1.2 var(--ui);color:var(--navy);margin-top:3px;font-variant-numeric:tabular-nums}
+.try .out .n.neg{color:var(--bad)}
+@media (max-width:900px){.try{grid-template-columns:1fr 1fr}.try .out{grid-column:1 / -1;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* takeaways */
+.take{list-style:none;margin:0;padding:0;counter-reset:t;display:grid;gap:0}
+.take li{counter-increment:t;position:relative;padding:12px 0 12px 38px;border-top:1px solid var(--line-2)}
+.take li:first-child{border-top:0;padding-top:0}
+.take li::before{content:counter(t);position:absolute;left:0;top:12px;width:24px;height:24px;box-sizing:border-box;border-radius:999px;background:var(--navy);color:#fff;font:700 12px/24px var(--mono);text-align:center}
+.take li:first-child::before{top:0}
+.take b{display:block;font:700 14.5px/1.35 var(--ui);color:var(--navy);margin-bottom:3px}
+.take p{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin:0}
+
+/* rules of the case (in a fold) */
+.rules-in{display:grid;gap:14px}
+.rules-in h5{font:700 12px/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+.rules-in ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.rules-in p{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin:0}
+.doc h4{font:700 14.5px/1.3 var(--ui);color:var(--navy);margin:16px 0 6px}
+.doc h4:first-child{margin-top:10px}
+.doc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0 0 9px}
+.doc ul{margin:4px 0 9px;padding-left:20px;font-size:14px;line-height:1.55;color:var(--ink-2)}
+
+/* IPS builder (kept) */
 .case-ips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:700px){.case-ips{grid-template-columns:1fr}}
-.case-ips .hint{font-size:12.5px;color:var(--ink-3);margin-top:-2px}
-.case-ips textarea{min-height:110px}
+.case-ips .hint{font-size:12.5px;line-height:1.45;color:var(--ink-3);margin-top:-2px}
+.case-ips textarea{min-height:104px}
 .case-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .case-foot .note{margin-left:auto}
-/* phone-only pieces: hidden on desktop */
-.case-mjump,.case-ml,.case-more,.case-mmeta,.case-chartd > summary{display:none}
-.case-chartbox{display:grid;gap:16px}
-/* Desktop and tablet: the client status card and the worksheet card draw as the one card they were before the
-   phone split, and Past clients keeps its plain heading. On phones both are real cards so they can fold. */
-@media (min-width:701px){
-  .case-client-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-  .case-client-wrap > .card,.case-pastcard{background:none;border:0;border-radius:0;box-shadow:none}
-  .case-pastcard{overflow:visible}
-  .case-o-client > .card-body{padding-bottom:0}
-  .case-o-ws{display:grid;gap:16px;padding:16px 18px 18px}
-  .case-o-ws > .card-head,.case-o-ws > .card-body{display:contents}
-  .case-o-ws > .card-head > :not(h3),.case-pastcard > .card-head > :not(h2){display:none}
-  .case-o-ws > .card-head > h3{font-size:15px;color:var(--navy);letter-spacing:-.005em;margin-top:4px}
-  .case-pastcard > .card-head{display:block;min-height:0;padding:0;background:none;color:inherit}
-  .case-pastcard > .card-head > h2{font-size:18px;color:var(--navy);letter-spacing:-.005em;margin-bottom:4px}
-}
-@media (max-width:700px){
-  /* one column, tools first and reference last: client status, worksheet, calculator, IPS builder, what we build first, the pattern, past clients */
-  main{display:flex;flex-direction:column;gap:14px}
-  main > .page-title{margin-bottom:2px}
-  .grid.main-rail,.grid.main-rail > .stack,.case-client-wrap{display:contents}
-  .case-o-client{order:1}.case-o-ws{order:2}.case-o-calc{order:3}.case-o-ips{order:4}.case-o-build{order:5}.case-o-pattern{order:6}.case-o-past{order:7}
-  .case-o-client,.case-o-ws{animation:rise .5s var(--ease) both}
-  .case-section{margin-top:0}
-  #case-past-card{scroll-margin-top:12px}
-  .case-mjump{display:inline-flex}
-  .case-mmeta{display:inline}
-  .page-title .right .btn{white-space:nowrap;gap:6px;padding-inline:6px;font-size:12px}
-  #case-calc-card{scroll-margin-top:12px}
+@media (max-width:700px){.case-foot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.case-foot .btn{justify-content:center;min-height:44px}.case-foot .note{grid-column:1 / -1;margin-left:0}}
 
-  .case-body{gap:14px}
-  .case-chartbox{gap:14px}
-  .case-o-ws > .card-body{display:grid;gap:14px}
-  .case-placeholder{padding:14px;gap:8px}
-  .case-placeholder h3{font-size:16px}
-  .case-placeholder .when{font-size:13px}
+/* past clients: compact rows */
+.past{list-style:none;margin:0;padding:0}
+.past li{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:4px 14px;align-items:baseline;padding:12px 18px;border-top:1px solid var(--line-2)}
+.past li:first-child{border-top:0}
+.past .s{font:600 12px/1.4 var(--mono);color:var(--ink-3)}
+.past b{font:700 14px/1.35 var(--ui);color:var(--navy)}
+.past .w{grid-column:2;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.past .chip{justify-self:end}
+@media (max-width:640px){.past li{grid-template-columns:1fr;padding:12px 14px}.past .w{grid-column:1}.past .chip{justify-self:start}}
 
-  /* worksheet: name and cash full width, each goal 2-up with its year */
-  .case-ws{grid-template-columns:minmax(0,1fr) 104px;gap:12px 10px}
-  .case-ws > .field:nth-child(1),.case-ws > .field:nth-child(2){grid-column:1 / -1}
-  .case-ws label{white-space:nowrap}
-
-  /* calculator: 2-up numeric fields, one-line labels */
-  .case-calc{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 10px}
-  .case-calc label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .case-dl{display:none}
-  .case-ml{display:inline}
-  .case-out{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .case-stat{padding:12px;display:flex;flex-direction:column}
-  .case-stat .kicker{display:block;font-size:10px;letter-spacing:.07em;min-height:2.6em}
-  .case-stat .v{font-size:27px;margin:4px 0}
-  .case-stat .s{font-size:12px;line-height:1.4}
-  .case-chart{height:236px}
-  /* the chart is one tap away on phones; the two results stay in view */
-  .case-chartd > summary{list-style:none;display:flex;justify-content:center;min-height:44px}
-  .case-chartd > summary::-webkit-details-marker{display:none}
-  .case-chartd .when-open,.case-chartd[open] .when-closed{display:none}
-  .case-chartd[open] .when-open{display:inline}
-  .case-chartd[open] > summary{margin-bottom:14px}
-
-  .case-pattern li{padding:10px 14px}
-
-  /* past clients: a folded card; the three newest as rows, the older seasons behind Show all seasons */
-  .case-pastcard > .note{margin:0;padding:12px 14px}
-  .case-pastcard .case-past{gap:0}
-  .case-pastcard .case-past > .card{border:0;border-top:1px solid var(--line-2);border-radius:0;box-shadow:none}
-  .case-past .card-body{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;line-height:1.5}
-  .case-past .card-body > *{flex:1 1 100%;min-width:0;order:2}
-  .case-past .card-body > .eyebrow{flex:1 1 auto;order:0}
-  .case-past .card-body > .chip{flex:0 0 auto;order:1}
-  .case-past h3{font-size:15px;margin-top:0}
-  .case-past .card-body > .note{font-size:13px;line-height:1.45;margin-top:-4px}
-  .case-past .case-tl{margin:2px 4px 0;height:62px}
-  .case-past .case-tl .pt .l{font-size:12px}
-  #case-past > .card:nth-child(n+4){display:none}
-  .case-more{display:block;border-top:1px solid var(--line-2)}
-  .case-more > summary{list-style:none;display:flex;justify-content:center;min-height:46px;margin:12px 14px}
-  .case-more > summary::-webkit-details-marker{display:none}
-  .case-more .when-open,.case-more[open] .when-closed{display:none}
-  .case-more[open] .when-open{display:inline}
-
-  /* IPS builder */
-  .case-ips{gap:14px}
-  .case-ips .hint{line-height:1.45}
-  .case-ips textarea{min-height:104px}
-  .case-foot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .case-foot .btn{justify-content:center;min-height:44px}
-  .case-foot .note{grid-column:1 / -1;margin-left:0}
-}
-@media (max-width:700px) and (prefers-reduced-motion:reduce){
-  .case-o-client,.case-o-ws{animation:none}
-}
+/* phone: card body gap tighter, badges never wrap */
+@media (max-width:700px){.case-main .card-body{gap:20px}.card-body{padding:14px}.case-main .card-head .meta{display:none}.case-main .card-head h2{flex:1;min-width:0}}
 </style>
 </head>
 <body>
@@ -238,120 +200,120 @@
   <div class="page-title">
     <div>
       <h1>Case Study</h1>
-      <p>Laura Gao, Taiwan 2033. Ten fixed $50,000 payments to defease, and whatever is left over builds the residency.</p>
+      <p>Laura Gao, Taiwan 2033. Ten fixed $50,000 payments to fund with certainty, and whatever is left over builds the residency.</p>
     </div>
     <div class="right">
       <a class="btn ghost sm" href="https://wghsinvcomp.smapply.us/" target="_blank" rel="noopener"><span data-icon="link"></span>SurveyMonkey Apply</a>
-      <a class="btn sm case-mjump" href="#case-calc-card"><span data-icon="target"></span>Return calculator</a>
     </div>
   </div>
 
-  <div class="grid main-rail">
-    <div class="stack">
+  <div class="case-main">
 
-      <div class="case-client-wrap reveal">
-      <article class="card case-o-client">
-        <div class="card-head"><span class="ic" data-icon="users"></span><h2>This year's client</h2><span class="spacer"></span><span class="meta" id="case-client-meta"></span></div>
-        <div class="card-body case-body">
-          <div class="case-placeholder" id="case-placeholder"></div>
+    <!-- 1. client + verdict -->
+    <section class="card reveal" id="client" aria-labelledby="client-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="client-h">This year's client</h2><span class="spacer"></span><span class="meta" id="client-meta"></span></div>
+      <div class="card-body">
+        <div class="hero-top" id="hero-top"></div>
+        <div class="hero" id="hero"></div>
+        <div class="verdict-wrap">
+          <h3 class="case-h">The answer in three numbers</h3>
+          <div class="verdict" id="verdict"></div>
         </div>
-      </article>
-      <section class="card case-o-ws" id="case-ws-card" data-fold="closed">
-        <div class="card-head"><span class="ic" data-icon="flag"></span><h3>Client brief worksheet</h3><span class="spacer"></span><span class="meta">6 fields</span></div>
-        <div class="card-body">
-          <div class="case-ws" id="case-ws">
-            <div class="field"><label for="client-name">Client name</label><input id="client-name" type="text" autocomplete="off" placeholder="Laura Gao"></div>
-            <div class="field"><label for="client-cash">Starting cash</label><input id="client-cash" class="num" type="number" min="0" step="1000" inputmode="numeric" placeholder="in dollars"></div>
-            <div class="field"><label for="client-goal1">Goal 1</label><input id="client-goal1" type="text" autocomplete="off" placeholder="The dated dollar goal"></div>
-            <div class="field"><label for="client-goal1-year">Target year</label><input id="client-goal1-year" class="num" type="number" min="2026" max="2100" step="1" inputmode="numeric" placeholder="YYYY"></div>
-            <div class="field"><label for="client-goal2">Goal 2</label><input id="client-goal2" type="text" autocomplete="off" placeholder="The long goal"></div>
-            <div class="field"><label for="client-goal2-year">Target year</label><input id="client-goal2-year" class="num" type="number" min="2026" max="2100" step="1" inputmode="numeric" placeholder="YYYY"></div>
-            <div class="field case-full"><label for="client-values">Values and impact preferences</label><textarea id="client-values" placeholder="What the client cares about, in the case's own words"></textarea></div>
-            <div class="field case-full"><label for="client-constraints">Constraints</label><textarea id="client-constraints" placeholder="Liquidity, payouts, exclusions, anything the case rules out"></textarea></div>
-          </div>
-          <p class="note">Saved in this browser only. The real case is already loaded above from the data file — this is scratch space for your own notes on it.</p>
-        </div>
-      </section>
+        <p class="verdict-line" id="verdict-line"></p>
       </div>
+    </section>
 
-      <article class="card reveal case-o-calc" id="case-calc-card">
-        <div class="card-head"><span class="ic" data-icon="target"></span><h2>Required return</h2><span class="spacer"></span><span class="meta">annual, compounded</span></div>
-        <div class="card-body case-body">
-          <div class="case-calc">
-            <div class="field"><label for="calc-start">Starting money</label><input id="calc-start" class="num" type="number" min="1" step="1000" inputmode="numeric"></div>
-            <div class="field"><label for="calc-goal">Goal</label><input id="calc-goal" class="num" type="number" min="1" step="1000" inputmode="numeric"></div>
-            <div class="field"><label for="calc-years">Years</label><input id="calc-years" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
-            <div class="field"><label for="calc-payout">Yearly payout</label><input id="calc-payout" class="num" type="number" min="0" step="500" inputmode="numeric"></div>
-            <div class="field"><label for="calc-paystart"><span class="case-dl">Payouts start in year</span><span class="case-ml">Payouts from year</span></label><input id="calc-paystart" class="num" type="number" min="1" max="50" step="1" inputmode="numeric"></div>
-          </div>
-          <p class="note" id="case-calc-note"></p>
-          <div class="case-out">
-            <div class="case-stat primary"><span class="kicker">Required return with payouts</span><span class="v num" id="case-req">—</span><span class="s" id="case-req-sub"></span></div>
-            <div class="case-stat"><span class="kicker">No-payout CAGR</span><span class="v num" id="case-cagr">—</span><span class="s">(goal ÷ start)<sup>1/years</sup> − 1</span></div>
-          </div>
-          <details class="case-chartd" id="case-chartd" open>
-            <summary class="btn ghost"><span data-icon="chart"></span><span class="when-closed">Show the chart</span><span class="when-open">Hide the chart</span></summary>
-            <div class="case-chartbox">
-              <canvas class="case-chart" id="case-chart" role="img" aria-label="Balance by year at the required return"></canvas>
-              <p class="note">Balance at the end of each year at the required return. Dashed line is the goal. Shaded years have a payout. The blue path lands on the goal by construction; the question is whether the rate is realistic for the risk the client can take.</p>
-            </div>
-          </details>
+    <!-- 2. the money over time -->
+    <section class="card reveal" id="money" aria-labelledby="money-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="money-h">The money, 2026 to 2042</h2><span class="spacer"></span><span class="meta">Year 0 is now</span></div>
+      <div class="card-body">
+        <figure>
+          <div class="only-desk" id="tl-desk"></div>
+          <div class="only-phone" id="tl-phone"></div>
+          <figcaption id="tl-cap"></figcaption>
+        </figure>
+        <details class="fold" id="year-table">
+          <summary>Year-by-year table<span class="tag">reference</span></summary>
+          <div class="in"><div class="scroll"><table class="yt" id="yt"><thead><tr><th>Calendar</th><th>Year</th><th>What happens</th></tr></thead><tbody></tbody></table></div></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 3. the assignment -->
+    <section class="card reveal" id="questions" aria-labelledby="questions-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="flag"></span><h2 id="questions-h">What we have to answer</h2><span class="spacer"></span><span class="meta">3 questions</span></div>
+      <div class="card-body">
+        <div class="qs" id="qs"></div>
+      </div>
+    </section>
+
+    <!-- 4. the numbers -->
+    <section class="card reveal" id="numbers" aria-labelledby="numbers-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="numbers-h">What the numbers say</h2><span class="spacer"></span><span class="meta">2033, before the first payment</span></div>
+      <div class="card-body">
+        <figure>
+          <div class="only-desk" id="ch-desk"></div>
+          <div class="only-phone" id="ch-phone"></div>
+          <figcaption id="ch-cap"></figcaption>
+        </figure>
+        <p class="foot-line" id="breakeven"></p>
+        <details class="fold" id="tables-fold">
+          <summary>The tables, and a place to try your own numbers<span class="tag">reference</span></summary>
+          <div class="in fold-stack" style="gap:20px;padding-top:16px">
+        <div class="tables">
+          <div><table class="nt" id="t-reserve"><caption>What the reserve costs in 2033</caption><thead><tr><th>Reserve held at</th><th class="r">Cost</th><th class="r">Freed vs cash</th></tr></thead><tbody></tbody></table></div>
+          <div><table class="nt" id="t-port"><caption>What the portfolio reaches, and what is left</caption><thead><tr><th>Return</th><th class="r">Portfolio</th><th class="r">Facility</th><th class="r">Share</th></tr></thead><tbody></tbody></table></div>
         </div>
-      </article>
-
-    </div>
-
-    <div class="stack">
-      <article class="card reveal case-o-pattern" id="case-pattern-card" data-fold="closed">
-        <div class="card-head"><span class="ic" data-icon="list"></span><h2>The pattern</h2><span class="meta case-mmeta" id="case-pattern-meta"></span></div>
-        <div class="card-body tight"><ul class="case-pattern" id="case-pattern"></ul></div>
-        <div class="card-foot">Seven seasons of cases, one shape.</div>
-      </article>
-
-      <article class="card reveal case-o-build" id="case-build-card" data-fold="closed">
-        <div class="card-head"><span class="ic" data-icon="edit"></span><h2>What we build first</h2><span class="meta case-mmeta">IPS outline</span></div>
-        <div class="card-body case-build">
-          <div><span class="kicker">IPS outline</span>
-            <ol>
-              <li>Return objective</li>
-              <li>Risk: ability vs. willingness</li>
-              <li>Time horizon per goal</li>
-              <li>Liquidity and payouts</li>
-              <li>Taxes and legal</li>
-              <li>Unique circumstances and values</li>
-              <li>Target allocation</li>
-              <li>Monitoring</li>
-            </ol>
+        <div>
+          <h3 class="case-h">Try other assumptions</h3>
+          <div class="try">
+            <div class="field"><label for="try-r">Portfolio return, %/yr</label><input class="num" id="try-r" type="number" step="0.5" min="-10" max="30" value="7" inputmode="decimal"></div>
+            <div class="field"><label for="try-rf">Reserve ladder, %/yr</label><input class="num" id="try-rf" type="number" step="0.5" min="0" max="10" value="4" inputmode="decimal"></div>
+            <div class="out" id="try-out"></div>
           </div>
-          <div><span class="kicker">Trade-note template</span>One note per trade from trade one. The template is in the <a href="playbook.html#notes">Playbook</a>.</div>
-          <div><span class="kicker">Two buckets</span>A near bucket that has to be there on the goal date, and a growth bucket for the long goal. Each holding lives in one of them.</div>
-          <div><span class="kicker">Reference</span>Michael's Essentials of Finance notes, shared in the team chat. Part Two covers growing annuities and payouts. Part Seven covers CAPM, DDM and DCF.</div>
         </div>
-      </article>
-    </div>
-  </div>
+        <details class="fold">
+          <summary>Show the math<span class="tag">two formulas</span></summary>
+          <div class="in fold-stack" id="math-in"></div>
+        </details>
+          </div>
+        </details>
+      </div>
+    </section>
 
-  <section class="case-section case-o-past card case-pastcard" id="case-past-card" data-fold="closed" aria-labelledby="case-past-h">
-    <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="case-past-h">Past clients</h2><span class="spacer"></span><span class="meta" id="case-past-meta"></span></div>
-    <p class="note">Newest first. The starting cash, the goals and the twist are what to read the new case for.</p>
-    <div class="cols-3 case-past" id="case-past"></div>
-    <details class="case-more" id="case-more">
-      <summary class="btn ghost"><span class="when-closed">Show all seasons</span><span class="when-open">Hide older seasons</span></summary>
-      <div class="cols-3 case-past" id="case-past-more"></div>
-    </details>
-  </section>
+    <!-- 5. what it means -->
+    <section class="card reveal" id="means" aria-labelledby="means-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="star"></span><h2 id="means-h">What this means</h2><span class="spacer"></span><span class="meta">5 takeaways</span></div>
+      <div class="card-body"><ol class="take" id="take"></ol></div>
+    </section>
 
-  <section class="case-section case-o-ips" aria-labelledby="case-ips-h">
-    <article class="card reveal" id="case-ips-card" data-fold="closed">
-      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="case-ips-h">IPS builder</h2><span class="spacer"></span><span class="meta" id="case-ips-meta"></span></div>
-      <div class="card-body"><div class="case-ips" id="case-ips"></div></div>
+    <!-- 6. the deliverable -->
+    <div class="fold-stack" id="ref-folds">
+    <details class="fold big" id="case-ips-card">
+      <summary><span data-icon="edit" class="sic"></span>IPS builder<span class="tag" id="case-ips-meta"></span></summary>
+      <div class="in" style="padding-top:16px"><div class="case-ips" id="case-ips"></div></div>
       <div class="card-foot case-foot">
         <button class="btn orange" type="button" id="case-ips-copy"><span data-icon="copy"></span>Copy as text</button>
         <button class="btn ghost" type="button" id="case-ips-clear"><span data-icon="x"></span>Clear draft</button>
         <span class="note">Private to this browser. The shared draft lives in the team doc.</span>
       </div>
-    </article>
-  </section>
+    </details>
+    <details class="fold big" id="rules-fold">
+      <summary><span data-icon="list" class="sic"></span>Rules of the case<span class="tag">out of scope, simulator, source</span></summary>
+      <div class="in rules-in" id="rules-in"></div>
+    </details>
+    <details class="fold big" id="doc-fold">
+      <summary><span data-icon="book" class="sic"></span>Read the full case study<span class="tag">as released</span></summary>
+      <div class="in doc" id="doc-in"></div>
+    </details>
+    <details class="fold big" id="case-past-card">
+      <summary><span data-icon="clock" class="sic"></span>Past clients<span class="tag" id="case-past-meta"></span></summary>
+      <ol class="past" id="past"></ol>
+      <div class="card-foot">Every past case had a dated dollar goal that set a required return. Laura's has a fixed obligation instead, which is why this season's math looks different.</div>
+    </details>
+    </div>
+
+  </div>
 </main>
 
 <footer class="site">
@@ -365,325 +327,179 @@
 <script src="assets/app.js"></script>
 <script>
 (function (W) {
-  var D = W.data;
+  var D = W.data, C = D.client, M = C.math;
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function byId(id) { return document.getElementById(id); }
-  function num(el) { var v = parseFloat(el.value); return isFinite(v) ? v : NaN; }
-  var css = getComputedStyle(document.documentElement);
-  function tok(name) { return css.getPropertyValue(name).trim(); }
-  function rgba(hex, a) { var n = parseInt(hex.slice(1), 16); return "rgba(" + (n >> 16 & 255) + "," + (n >> 8 & 255) + "," + (n & 255) + "," + a + ")"; }
-  var thisYear = W.now().getFullYear();
+  function money(n) { return W.money(n); }
+  function k(n) { return "$" + Math.round(n / 1000) + "K"; }
+  function pct(r) { var v = Math.round(r * 1e6) / 1e4; return (v % 1 ? v.toFixed(2) : v.toFixed(0)) + "%"; }
+  function reserveAt(rf) { return rf === 0 ? 500000 : 50000 * ((1 - Math.pow(1 + rf, -10)) / rf) * (1 + rf); }
+  function portfolioAt(r, year) { year = year || 2033; return 300000 * Math.pow(1 + r, year - 2027) + 150000 * Math.pow(1 + r, year - 2028); }
+  var RES = M.reserve[2];                 /* the 4% ladder: the reserve the argument runs on */
+  var BASE = M.projections[2];            /* 7%: the central case */
+  var BLUE = "#1E4B95", ORANGE = "#D98B2B", GRAY = "#C5CCD8";
 
-  /* ---------- 1. this year's client ---------- */
-  var release = W.eventById("release");
-  var n = W.daysUntil(release.date);
-  var C = D.client;
-  byId("case-client-meta").textContent = C ? "released " + W.fmtDate(C.released) : (n >= 0 ? "TBD" : "released " + W.fmtDate(release.date));
+  /* ---------- 1. hero + verdict ---------- */
+  byId("client-meta").textContent = "released " + W.fmtDate(C.released);
+  byId("hero-top").innerHTML = '<span class="k">' + esc(C.season) + " client</span><h3>" + esc(C.name) + "</h3>";
+  byId("hero").innerHTML =
+    '<p class="who">Wharton 2018. Bestselling graphic novelist (<i>Messy Roots</i>), born in Wuhan, raised in Texas, and a tech product manager before that.</p>' +
+    '<p class="quote">&ldquo;' + esc(C.quote) + "&rdquo;</p>" +
+    '<div class="proj"><span class="k">She is building</span><b>' + esc(C.project.name) + "</b><span>" + esc(C.project.where) + ", opening " + C.project.year + ". A small space where artists, writers and entrepreneurs live, work and teach for a while.</span></div>";
 
-  if (!C) {
-    byId("case-placeholder").innerHTML =
-      '<span class="chip ' + (n <= 7 && n >= 0 ? "decide" : n < 0 ? "tbd" : "watch") + '">' + esc(W.relative(n)) + "</span>" +
-      "<h3>" + (n >= 0 ? "Released " : "Was released ") + esc(W.fmtDate(release.date, { weekday: true })) + " through " + esc(D.team.portal.name) + "</h3>" +
-      '<span class="when"><span>' + esc(W.fmtTimes(release.date)) + "</span></span>" +
-      '<p class="note">' + esc(D.team.portal.note) + " " + (n >= 0 ? "The moment the invite lands, the case goes in the team chat and the numbers below get filled in." : "If this card still says TBD, the case has not been added to the data file yet.") + "</p>" +
-      '<a class="btn sm" href="' + esc(D.team.portal.url) + '" target="_blank" rel="noopener"><span data-icon="link"></span>Open the portal</a>';
-  } else {
-    var ph = byId("case-placeholder");
-    ph.className = "cl-wrap";
-    var pct = function (r) { var v = Math.round(r * 1e6) / 1e4; return (v % 1 ? v.toFixed(2) : v.toFixed(0)) + "%"; };
-    var h = '';
+  byId("verdict").innerHTML =
+    '<div class="v"><span class="k">Reserve, 2033</span><span class="n">' + money(RES.cost) + '</span><span class="s">Set aside for the ten payments, laddered at 4%. In cash it would cost ' + money(M.reserve[0].cost) + ".</span></div>" +
+    '<div class="v"><span class="k">Portfolio, 2033</span><span class="n">' + money(BASE.v2033) + '</span><span class="s">At the start of 2033, at 7% a year on the ' + money(C.totalContributed) + " she puts in.</span></div>" +
+    '<div class="v accent"><span class="k">For the facility</span><span class="n">' + money(BASE.facility) + '</span><span class="s">' + Math.round(BASE.facility / BASE.v2033 * 100) + "% of the portfolio. This is the number she can promise co-sponsors.</span></div>";
+  byId("verdict-line").innerHTML = "<b>The hurdle is certainty, not return.</b> Just covering the reserve needs " + pct(M.breakeven[0].r) + " a year holding cash, or " + pct(M.breakeven[1].r) + " laddered &mdash; she could lose money for six years and still make every payment. The job is to grow the rest without ever putting the ten payments at risk.";
 
-    h += '<div class="cl-hero">' +
-      '<span class="cl-sub">' + esc(C.season) + " client &middot; " + esc(C.title) + "</span>" +
-      "<h3>" + esc(C.name) + "</h3>" +
-      "<p>" + esc(C.who) + "</p>" +
-      '<p class="cl-quote">&ldquo;' + esc(C.quote) + "&rdquo;</p></div>";
-
-    if (C.narrative) {
-      h += '<details class="cl-read"><summary>Read the full case study<span class="tag">as released</span></summary><div class="cl-doc">';
-      C.narrative.forEach(function (sec) {
-        h += "<h4>" + esc(sec.h) + "</h4>";
-        (sec.p || []).forEach(function (t) { h += "<p>" + esc(t) + "</p>"; });
-        if (sec.list) { h += "<ul>"; sec.list.forEach(function (t) { h += "<li>" + esc(t) + "</li>"; }); h += "</ul>"; }
-      });
-      h += "</div></details>";
+  /* ---------- 2. timeline ---------- */
+  function T(x, y, s, cls, anchor, size) { return '<text x="' + x + '" y="' + y + '"' + (cls ? ' class="' + cls + '"' : "") + (anchor ? ' text-anchor="' + anchor + '"' : "") + ' font-size="' + (size || 12) + '">' + esc(s) + "</text>"; }
+  function markers(id) {
+    return "<defs>" +
+      '<marker id="' + id + '-in" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + BLUE + '"/></marker>' +
+      '<marker id="' + id + '-out" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + ORANGE + '"/></marker>' +
+      "</defs>";
+  }
+  var flows = { in27: C.contributions[0].amount, in28: C.contributions[1].amount, pay: 50000 };
+  function tlDesk() {
+    var x = function (yr) { return 40 + 58 * (yr - 2026); }, AX = 170, s = "";
+    s += '<svg viewBox="0 0 1000 300" role="img" aria-labelledby="tl-t tl-d"><title id="tl-t">Cash-flow timeline 2026 to 2042</title><desc id="tl-d">Nothing invested in 2026. $300,000 in at the start of 2027, $150,000 at the start of 2028, then ten $50,000 payments out at the start of each year 2033 to 2042.</desc>' + markers("dk");
+    /* now */
+    s += '<line x1="' + x(2026) + '" y1="24" x2="' + x(2026) + '" y2="178" stroke="#7A869E" stroke-width="1" stroke-dasharray="3 3"/>';
+    s += T(x(2026), 16, "Now · 2026 · nothing invested yet", "strong", "start", 12);
+    /* compounding band */
+    s += '<rect x="' + x(2027) + '" y="146" width="' + (x(2033) - x(2027)) + '" height="24" fill="' + BLUE + '" opacity=".09"/>';
+    s += T(x(2027) + 8, 162, "6 years of growth · Yr 1 → Yr 7", "soft", "start", 12);
+    /* axis + ticks */
+    s += '<line x1="' + x(2026) + '" y1="' + AX + '" x2="988" y2="' + AX + '" class="axis"/><path d="M988 ' + (AX - 4) + ' L996 ' + AX + ' L988 ' + (AX + 4) + ' z" fill="#4B5872"/>';
+    for (var yr = 2026; yr <= 2042; yr++) {
+      s += '<line x1="' + x(yr) + '" y1="' + (AX - 4) + '" x2="' + x(yr) + '" y2="' + (AX + 4) + '" class="axis"/>';
+      s += T(x(yr), 190, String(yr), (yr === 2033 || yr === 2027 ? "strong" : ""), "middle", 12);
+      s += T(x(yr), 204, "Yr " + (yr - 2026), "mute", "middle", 10.5);
     }
-
-    if (C.timeline) {
-      h += '<div class="cl-wrap"><h3 class="case-h3">How the years work</h3>' +
-        '<p class="note">Year 0 is <b>2026</b> \u2014 right now, before any money is invested. Year N = calendar year \u2212 ' + C.yearZero +
-        ". So the competition finishes months before Laura invests a dollar.</p>" +
-        '<div class="cl-scroll"><table class="cl-tl"><thead><tr><th>Calendar</th><th>Year</th><th>What happens</th></tr></thead><tbody>';
-      C.timeline.forEach(function (t) {
-        h += '<tr' + (t.now ? ' class="now"' : "") + '><td class="y">' + esc(t.cal) + '</td><td class="y">' + esc(String(t.yr)) + "</td><td>" +
-          esc(t.what) + (t.now ? '<span class="badge">we are here</span>' : t.key ? '<span class="badge">decision point</span>' : "") + "</td></tr>";
-      });
-      h += "</tbody></table></div>" + '<p class="note">' + esc(C.timelineNote) + "</p></div>";
-    }
-
-    h += '<div class="cl-wrap"><h3 class="case-h3">The money</h3><div class="cl-flows">';
-    C.contributions.forEach(function (c) {
-      h += '<div class="case-stat"><span class="kicker">Start of ' + c.year + " &middot; Year " + (c.year - C.yearZero) + '</span>' +
-        '<span class="v num">' + W.money(c.amount) + "</span>" + '<span class="s">' + esc(c.note) + "</span></div>";
-    });
-    h += '<div class="case-stat primary"><span class="kicker">Total contributed</span><span class="v num">' + W.money(C.totalContributed) +
-      '</span><span class="s">Nothing else in or out before 2033.</span></div></div>' +
-      '<p class="note">' + esc(C.yearNote) + " " + esc(C.flowNote) + "</p></div>";
-
-    h += '<div class="cl-wrap"><h3 class="case-h3">' + esc(C.project.name) + " &middot; " + esc(C.project.where) + " &middot; " + C.project.year + "</h3>" +
-      '<p class="note">' + esc(C.project.what) + "</p></div>";
-
-    h += '<div class="cl-wrap"><h3 class="case-h3">What we have to answer</h3><div class="cl-wrap">';
-    C.obligations.forEach(function (o) {
-      h += '<div class="cl-ob' + (o.mandatory ? " must" : "") + '"><h4>' + esc(o.name) +
-        '<span class="chip ' + (o.mandatory ? "decide" : "watch") + '">' + (o.mandatory ? "mandatory" : "our call") + "</span></h4>" +
-        "<p><b>" + esc(o.what) + "</b></p><p>" + esc(o.detail) + "</p><ul>";
-      o.asks.forEach(function (a) { h += "<li>" + esc(a) + "</li>"; });
-      h += "</ul></div>";
-    });
-    h += "</div></div>";
-
-    h += '<div class="cl-wrap"><h3 class="case-h3">The numbers</h3><div class="cl-scroll"><table class="cl-tbl">' +
-      "<caption>Operating reserve struck at the start of 2033 &mdash; ten $50,000 payments, first one immediately, so it is an annuity-due. " +
-      esc(C.math.reserveFormula) + "</caption>" +
-      "<thead><tr><th>Reserve held at</th><th>Cost in 2033</th><th>Freed vs. cash</th></tr></thead><tbody>";
-    var cashCost = C.math.reserve[0].cost;
-    C.math.reserve.forEach(function (x) {
-      h += "<tr><td>" + esc(x.label) + '</td><td class="n">' + W.money(x.cost) + '</td><td class="n">' +
-        (x.cost === cashCost ? "&mdash;" : "+" + W.money(cashCost - x.cost)) + "</td></tr>";
-    });
-    h += "</tbody></table></div>";
-
-    h += '<div class="cl-scroll" style="margin-top:16px"><table class="cl-tbl">' +
-      "<caption>Portfolio in 2033 and what is left for the facility. " + esc(C.math.portfolioFormula) + " &middot; " + esc(C.math.facilityBasis) + "</caption>" +
-      "<thead><tr><th>Return</th><th>Portfolio 2033</th><th>Facility</th><th>Share to facility</th></tr></thead><tbody>";
-    C.math.projections.forEach(function (x) {
-      h += '<tr><td class="n">' + pct(x.r) + '</td><td class="n">' + W.money(x.v2033) + '</td><td class="n">' + W.money(x.facility) +
-        '</td><td class="n">' + Math.round(x.facility / x.v2033 * 100) + "%</td></tr>";
-    });
-    h += "</tbody></table></div>";
-
-    h += '<div class="cl-flows" style="margin-top:16px">';
-    C.math.breakeven.forEach(function (b) {
-      h += '<div class="case-stat"><span class="kicker">Break-even return</span><span class="v num">' + pct(b.r) +
-        '</span><span class="s">' + esc(b.label) + ". Nothing left for the facility.</span></div>";
-    });
-    h += "</div></div>";
-
-    h += '<div class="cl-wrap"><h3 class="case-h3">What this means</h3><ul class="cl-take">';
-    C.math.takeaways.forEach(function (t) { h += "<li>" + esc(t) + "</li>"; });
-    h += "</ul></div>";
-
-    h += '<div class="cl-wrap"><h3 class="case-h3">Explicitly out of scope</h3><ul class="cl-plain">';
-    C.outOfScope.forEach(function (o) { h += "<li>" + esc(o) + "</li>"; });
-    h += "</ul></div>";
-
-    h += '<p class="note"><b>WInS does not feed the projections.</b> ' + esc(C.winsNote) + "</p>" +
-      '<p class="note">Source: ' + esc(C.source) + "</p>";
-
-    ph.innerHTML = h;
+    /* inflows: 1px = $2,500 */
+    s += '<line x1="' + x(2027) + '" y1="' + AX + '" x2="' + x(2027) + '" y2="' + (AX - flows.in27 / 2500) + '" stroke="' + BLUE + '" stroke-width="3" marker-end="url(#dk-in)"/>';
+    s += T(x(2027), AX - flows.in27 / 2500 - 12, "+" + money(flows.in27), "strong", "middle", 14);
+    s += '<line x1="' + x(2028) + '" y1="' + AX + '" x2="' + x(2028) + '" y2="' + (AX - flows.in28 / 2500) + '" stroke="' + BLUE + '" stroke-width="3" marker-end="url(#dk-in)"/>';
+    s += T(x(2028) + 4, AX - flows.in28 / 2500 - 12, "+" + money(flows.in28), "strong", "middle", 14);
+    /* 2031 decision */
+    s += '<line x1="' + x(2031) + '" y1="' + (AX - 8) + '" x2="' + x(2031) + '" y2="124" stroke="#7A869E" stroke-width="1"/>';
+    s += '<rect x="' + (x(2031) - 6) + '" y="' + (AX - 6) + '" width="12" height="12" fill="#fff" stroke="#142F63" stroke-width="2" transform="rotate(45 ' + x(2031) + " " + AX + ')"/>';
+    s += T(x(2031), 116, "2031 · quote co-sponsors a $ range", "", "middle", 12);
+    /* outflows: ten arrows, one label, one bracket */
+    for (yr = 2033; yr <= 2042; yr++) s += '<line x1="' + x(yr) + '" y1="214" x2="' + x(yr) + '" y2="' + (214 + flows.pay / 2500) + '" stroke="' + ORANGE + '" stroke-width="2.5" marker-end="url(#dk-out)"/>';
+    s += T(x(2033) - 12, 250, "−" + money(flows.pay) + " · reserve set aside first", "strong", "end", 13);
+    s += '<path d="M' + x(2033) + ' 262 v4 H' + x(2042) + ' v-4" fill="none" stroke="#7A869E" stroke-width="1"/>';
+    s += T((x(2033) + x(2042)) / 2, 282, "10 payments × " + money(flows.pay) + " = " + money(flows.pay * 10) + ", at the start of each year 2033–2042", "soft", "middle", 12);
+    return s + "</svg>";
   }
-
-  var WS = ["name", "cash", "goal1", "goal1-year", "goal2", "goal2-year", "values", "constraints"];
-  var client = W.store.get("client", {});
-  WS.forEach(function (k) { var el = byId("client-" + k); if (client[k] !== undefined && client[k] !== null) el.value = client[k]; });
-  byId("case-ws").addEventListener("input", function (e) {
-    WS.forEach(function (k) { var el = byId("client-" + k); client[k] = el.type === "number" ? (isFinite(num(el)) ? num(el) : "") : el.value; });
-    W.store.set("client", client);
-    if (e.target.id === "client-cash" && client.cash > 0) { byId("calc-start").value = client.cash; calc(); }
-    if (e.target.id === "client-goal1-year" && client["goal1-year"] > thisYear) { byId("calc-years").value = client["goal1-year"] - thisYear; calc(); }
-  });
-
-  /* ---------- 2. required return ---------- */
-  var last = D.pastCases[0];
-  var defaults, note;
-  if (C) {
-    var mid = C.math.projections[2];
-    defaults = { start: C.totalContributed, goal: mid.v2033, years: C.project.year - 2027, payout: 0, paystart: C.project.year - C.yearZero };
-    note = "Seeded with Laura's case: all " + W.money(C.totalContributed) + " growing to " + W.money(mid.v2033) +
-      " by " + C.project.year + ". Heads up \u2014 this tool assumes the whole sum arrives in 2027, so it reads about 6.6%. " +
-      "The real staged math (" + W.money(300000) + " in 2027, " + W.money(150000) + " a year later) needs 7.0%. " +
-      "Use it to test other targets; the exact figures are in the client card above.";
-  } else {
-    defaults = { start: last.cash, goal: 1500000, years: 10, payout: 10000, paystart: 3 };
-    var prefilled = [];
-    if (client.cash > 0) { defaults.start = client.cash; prefilled.push("starting cash"); }
-    if (client["goal1-year"] > thisYear) { defaults.years = client["goal1-year"] - thisYear; prefilled.push("years to Goal 1"); }
-    note = (prefilled.length ? "Prefilled from the worksheet (" + prefilled.join(", ") + "); the rest is " : "Prefilled with ") +
-      "last season's case: " + W.money(last.cash) + " to " + W.money(1500000) + " in ten years. The $10,000 yearly payout is a stand-in. That case said grants start in year three and can rise above $10,000.";
-  }
-  Object.keys(defaults).forEach(function (k) { byId("calc-" + k).value = defaults[k]; });
-  byId("case-calc-note").textContent = note;
-
-  function path(start, r, years, payout, payStart) {
-    var b = start, out = [start];
-    for (var y = 1; y <= years; y++) { b = b * (1 + r); if (payout > 0 && y >= payStart) b -= payout; out.push(b); }
-    return out;
-  }
-  function solve(start, goal, years, payout, payStart) {
-    function f(r) { var p = path(start, r, years, payout, payStart); return p[p.length - 1] - goal; }
-    var lo = -0.99, hi = 5;
-    if (f(hi) < 0) return NaN;
-    if (f(lo) > 0) return lo;
-    for (var i = 0; i < 200; i++) { var mid = (lo + hi) / 2; if (f(mid) >= 0) hi = mid; else lo = mid; }
-    return (lo + hi) / 2;
-  }
-  var state = null;
-  function calc() {
-    var start = num(byId("calc-start")), goal = num(byId("calc-goal")), years = Math.round(num(byId("calc-years")));
-    var payout = num(byId("calc-payout")), payStart = Math.round(num(byId("calc-paystart")));
-    if (!(payout >= 0)) payout = 0;
-    if (!(payStart >= 1)) payStart = 1;
-    var ok = start > 0 && goal > 0 && years >= 1 && years <= 60;
-    var r = ok ? solve(start, goal, years, payout, payStart) : NaN;
-    var cagr = ok ? Math.pow(goal / start, 1 / years) - 1 : NaN;
-    byId("case-req").textContent = isFinite(r) ? W.pct(r, 2) : "—";
-    byId("case-cagr").textContent = isFinite(cagr) ? W.pct(cagr, 2) : "—";
-    var paid = ok && payout > 0 && payStart <= years ? (years - payStart + 1) * payout : 0;
-    byId("case-req-sub").textContent = !ok ? "Enter a start, a goal and at least one year." : !isFinite(r) ? "No rate under 500% reaches this goal with those payouts." :
-      paid > 0 ? W.money(paid) + " paid out over " + (years - payStart + 1) + " years, " + W.money(payout) + " each" : "No payouts, so this equals the CAGR";
-    state = ok && isFinite(r) ? { start: start, goal: goal, years: years, payout: payout, payStart: payStart, r: r, path: path(start, r, years, payout, payStart) } : null;
-    draw();
-  }
-  ["start", "goal", "years", "payout", "paystart"].forEach(function (k) { byId("calc-" + k).addEventListener("input", calc); });
-
-  var canvas = byId("case-chart"), ctx = canvas.getContext("2d");
-  var mono = tok("--mono"), ui = tok("--ui");
-  function kfmt(v) { return "$" + Math.round(v / 1000).toLocaleString("en-US") + "K"; }
-  function niceStep(raw) { var mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), q = raw / mag; return (q < 1.5 ? 1 : q < 3 ? 2 : q < 7 ? 5 : 10) * mag; }
-  function draw() {
-    var w = canvas.clientWidth || 600, h = canvas.clientHeight || 260, dpr = window.devicePixelRatio || 1;
-    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = tok("--card"); ctx.fillRect(0, 0, w, h);
-    ctx.font = "600 11px " + mono; ctx.textBaseline = "middle";
-    if (!state) { ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "center"; ctx.fillText("Nothing to chart yet", w / 2, h / 2); return; }
-    var s = state, N = s.years;
-    var yMin = Math.min(0, Math.min.apply(null, s.path)), yMax = Math.max(s.goal, Math.max.apply(null, s.path)) * 1.1;
-    var step = niceStep((yMax - yMin) / 4), ticks = [];
-    for (var t = Math.ceil(yMin / step) * step; t <= yMax; t += step) ticks.push(t);
-    var labW = 0; ticks.forEach(function (t) { labW = Math.max(labW, ctx.measureText(kfmt(t)).width); });
-    var L = Math.ceil(labW) + 14, R = 14, T = 18, B = 36;
-    var pw = w - L - R, ph = h - T - B;
-    function X(y) { return L + pw * y / N; }
-    function Y(v) { return T + ph * (1 - (v - yMin) / (yMax - yMin)); }
-    /* payout band */
-    if (s.payout > 0 && s.payStart <= N) {
-      ctx.fillStyle = tok("--warn-soft"); ctx.fillRect(X(s.payStart - 1), T, X(N) - X(s.payStart - 1), ph);
-      var ly = Math.abs(Y(s.goal) - (T + 9)) < 14 ? Y(s.goal) + 13 : T + 9;
-      ctx.fillStyle = tok("--warn"); ctx.textAlign = "left"; ctx.fillText("payouts", X(s.payStart - 1) + 6, ly);
-    }
-    /* grid + y labels */
-    ticks.forEach(function (t) {
-      ctx.strokeStyle = tok("--line-2"); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, Y(t) + .5); ctx.lineTo(w - R, Y(t) + .5); ctx.stroke();
-      ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "right"; ctx.fillText(kfmt(t), L - 8, Y(t));
+  function tlPhone() {
+    /* ten rows, not seventeen: 2034-2041 (payments 2-9) share one row, which is what the bracket says anyway */
+    var MID = "2034–41";
+    var rows = [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, MID, 2042];
+    var y = function (yr) { return 18 + 44 * rows.indexOf(yr); }, AX = 70, s = "";
+    var H = 18 + 44 * (rows.length - 1) + 24;
+    s += '<svg viewBox="0 0 340 ' + H + '" role="img" aria-labelledby="tlp-t tlp-d"><title id="tlp-t">Cash-flow timeline 2026 to 2042</title><desc id="tlp-d">Nothing invested in 2026. $300,000 in at the start of 2027, $150,000 at the start of 2028, then ten $50,000 payments out at the start of each year 2033 to 2042.</desc>' + markers("ph");
+    s += '<line x1="' + AX + '" y1="' + y(2026) + '" x2="' + AX + '" y2="' + (y(2042) + 14) + '" class="axis"/>';
+    s += '<rect x="' + (AX + 3) + '" y="' + y(2027) + '" width="6" height="' + (y(2033) - y(2027)) + '" fill="' + BLUE + '" opacity=".35"/>' +
+         '<path d="M' + (AX + 3) + ' ' + y(2027) + ' h12 M' + (AX + 3) + ' ' + y(2033) + ' h12" stroke="' + BLUE + '" stroke-width="2"/>';
+    rows.forEach(function (yr) {
+      var yy = y(yr), yrN = typeof yr === "number" ? "Yr " + (yr - 2026) : "";
+      s += '<line x1="' + (AX - 4) + '" y1="' + yy + '" x2="' + (AX + 4) + '" y2="' + yy + '" class="axis"/>';
+      s += T(AX - 8, yy + 4, String(yr), (yr === 2033 || yr === 2027 ? "strong" : ""), "end", 12);
+      if (yrN) s += T(2, yy + 4, yrN, "mute", "start", 10.5);
     });
-    /* x labels */
-    var every = N <= 12 ? 1 : N <= 24 ? 2 : 5;
-    while (pw * every / N < 26 && every < N) every = every === 1 ? 2 : every === 2 ? 5 : every * 2; /* thin ticks on narrow charts */
-    ctx.fillStyle = tok("--ink-3"); ctx.textAlign = "center";
-    for (var y = 0; y <= N; y += every) ctx.fillText(String(y), X(y), h - B + 14);
-    ctx.font = "600 10px " + ui; ctx.fillText("YEAR", L + pw / 2, h - 8);
-    ctx.font = "600 11px " + mono;
-    /* area + line */
-    var base = Y(Math.max(yMin, 0));
-    ctx.beginPath(); ctx.moveTo(X(0), base);
-    s.path.forEach(function (v, i) { ctx.lineTo(X(i), Y(v)); });
-    ctx.lineTo(X(N), base); ctx.closePath(); ctx.fillStyle = rgba(tok("--blue"), .14); ctx.fill();
-    ctx.beginPath(); s.path.forEach(function (v, i) { if (i) ctx.lineTo(X(i), Y(v)); else ctx.moveTo(X(i), Y(v)); });
-    ctx.strokeStyle = tok("--blue"); ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.stroke();
-    if (N <= 25) s.path.forEach(function (v, i) { ctx.beginPath(); ctx.arc(X(i), Y(v), 3, 0, Math.PI * 2); ctx.fillStyle = "#fff"; ctx.fill(); ctx.strokeStyle = tok("--blue"); ctx.lineWidth = 1.5; ctx.stroke(); });
-    /* goal line */
-    ctx.setLineDash([5, 4]); ctx.strokeStyle = tok("--orange-deep"); ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.moveTo(L, Y(s.goal)); ctx.lineTo(w - R, Y(s.goal)); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = tok("--orange-ink"); ctx.textAlign = "right"; ctx.fillText("goal " + kfmt(s.goal), w - R - 4, Y(s.goal) - 9);
-    /* start label, unless a tick already says it */
-    var onTick = ticks.some(function (t) { return Math.abs(Y(t) - Y(s.start)) < 6; });
-    if (!onTick) { ctx.fillStyle = tok("--navy"); ctx.textAlign = "left"; ctx.fillText(kfmt(s.start), X(0) + 6, Y(s.start) - 10); }
+    s += '<circle cx="' + AX + '" cy="' + y(2026) + '" r="5" fill="#142F63"/>';
+    s += T(AX + 14, y(2026) + 4, "Now · nothing invested yet", "strong", "start", 12);
+    s += '<line x1="' + (AX + 8) + '" y1="' + y(2027) + '" x2="' + (AX + 8 + flows.in27 / 3000) + '" y2="' + y(2027) + '" stroke="' + BLUE + '" stroke-width="3" marker-end="url(#ph-in)"/>';
+    s += T(AX + 8 + flows.in27 / 3000 + 16, y(2027) + 4, "+" + money(flows.in27) + " in", "strong", "start", 13);
+    s += '<line x1="' + (AX + 8) + '" y1="' + y(2028) + '" x2="' + (AX + 8 + flows.in28 / 3000) + '" y2="' + y(2028) + '" stroke="' + BLUE + '" stroke-width="3" marker-end="url(#ph-in)"/>';
+    s += T(AX + 8 + flows.in28 / 3000 + 16, y(2028) + 4, "+" + money(flows.in28) + " in", "strong", "start", 13);
+    s += T(AX + 14, y(2030) + 4, "6 years of growth, Yr 1 → Yr 7", "soft", "start", 12);
+    s += '<rect x="' + (AX - 5) + '" y="' + (y(2031) - 5) + '" width="10" height="10" fill="#fff" stroke="#142F63" stroke-width="2" transform="rotate(45 ' + AX + " " + y(2031) + ')"/>';
+    s += T(AX + 14, y(2031) + 4, "Quote co-sponsors a $ range", "", "start", 12);
+    [2033, MID, 2042].forEach(function (yr) { s += '<line x1="' + (AX + 30) + '" y1="' + y(yr) + '" x2="' + (AX + 10) + '" y2="' + y(yr) + '" stroke="' + ORANGE + '" stroke-width="2.5" marker-end="url(#ph-out)"/>'; });
+    s += T(AX + 40, y(2033) + 4, "−" + money(flows.pay) + " out · reserve set aside first", "strong", "start", 12);
+    s += T(AX + 40, y(MID) + 4, "−" + money(flows.pay) + " each year, payments 2–9", "soft", "start", 12);
+    s += T(AX + 40, y(2042) + 4, "−" + money(flows.pay) + " · the last of ten · " + money(flows.pay * 10) + " in all", "soft", "start", 12);
+    return s + "</svg>";
   }
-  var raf = null;
-  function redraw() { if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { raf = null; draw(); }); }
-  if (window.ResizeObserver) new ResizeObserver(redraw).observe(canvas.parentNode); else window.addEventListener("resize", redraw);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
-  /* phones: the chart sits in a <details>, closed by default and remembered for the session. Desktop keeps it open
-     with the summary hidden. The canvas is 0 wide while closed, so it redraws whenever it opens. */
+  byId("tl-desk").innerHTML = tlDesk();
+  byId("tl-phone").innerHTML = tlPhone();
+  byId("tl-cap").innerHTML = "<b>Year 0 is 2026, right now, and nothing is invested yet.</b> The whole competition happens inside Year 0, which is why WInS gains and losses never feed her projections. Money that arrives at the start of 2027 has compounded six times by the start of 2033 (Yr 7 − Yr 1), so the exponent is 6, not 7. Arrows are to scale.";
+  byId("yt").querySelector("tbody").innerHTML = C.timeline.map(function (t) {
+    return '<tr' + (t.now ? ' class="now"' : "") + '><td class="y">' + esc(t.cal) + '</td><td class="y">' + esc(String(t.yr)) + "</td><td>" + esc(t.what) + "</td></tr>";
+  }).join("");
+
+  /* ---------- 3. the three questions ---------- */
+  byId("qs").innerHTML = C.obligations.map(function (o) {
+    return '<div class="q' + (o.mandatory ? " must" : "") + '"><h4>' + esc(o.name) + '<span class="chip ' + (o.mandatory ? "decide" : "watch") + '">' + (o.mandatory ? "mandatory" : "our call") + "</span></h4>" +
+      '<p class="what">' + esc(o.what) + '</p><p class="why">' + esc(o.detail) + "</p><ul>" + o.asks.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ul></div>";
+  }).join("");
+
+  /* ---------- 4. numbers: chart, tables, explorer ---------- */
+  function chart(vb, x0, kx, rowY, rowGap, thick, phone) {
+    var s = '<svg viewBox="0 0 ' + vb.w + " " + vb.h + '" role="img" aria-labelledby="' + (phone ? "chp" : "chd") + '-t"><title id="' + (phone ? "chp" : "chd") + '-t">What is left for the facility after the reserve, by annual return</title>';
+    var xr = x0 + RES.cost / 1000 * kx;
+    M.projections.forEach(function (p, i) {
+      var y = rowY + rowGap * i, base = p.r === BASE.r;
+      var wRes = RES.cost / 1000 * kx, wFac = p.facility / 1000 * kx;
+      s += T(x0 - 10, y + thick / 2 + 4, pct(p.r) + (phone ? "" : " / yr"), base ? "strong" : "soft", "end", phone ? 12 : 13);
+      s += '<rect x="' + x0 + '" y="' + y + '" width="' + wRes + '" height="' + thick + '" fill="' + GRAY + '"' + (base ? "" : ' opacity=".75"') + "/>";
+      s += '<path d="M' + (xr + 2) + " " + y + " h" + (wFac - 4) + " a4 4 0 0 1 4 4 v" + (thick - 8) + " a4 4 0 0 1 -4 4 H" + (xr + 2) + ' z" fill="' + BLUE + '"' + (base ? "" : ' opacity=".55"') + "/>";
+      if (i === 0) s += T(x0 + 8, y + thick / 2 + 4, "Reserve " + money(RES.cost), "soft", "start", phone ? 11 : 12);
+      s += '<text x="' + (xr + wFac + 6) + '" y="' + (y + thick / 2 + 4) + '" font-size="' + (phone ? 13 : 14) + '" class="strong">' + k(p.facility) + (phone ? "" : '<tspan class="mute" font-size="12" font-weight="400"> of ' + k(p.v2033) + "</tspan>") + "</text>";
+    });
+    s += '<line x1="' + xr + '" y1="' + (rowY - 26) + '" x2="' + xr + '" y2="' + (rowY + rowGap * (M.projections.length - 1) + thick + 8) + '" stroke="#4B5872" stroke-width="1.5" stroke-dasharray="4 3"/>';
+    s += T(xr + 6, rowY - 30 + (phone ? 6 : 0), phone ? "fixed at every return" : "The reserve costs " + money(RES.cost) + " at every return", "soft", "start", 12);
+    return s + "</svg>";
+  }
+  byId("ch-desk").innerHTML = chart({ w: 1000, h: 280 }, 110, 1.0, 50, 44, 22, false);
+  byId("ch-phone").innerHTML = chart({ w: 340, h: 316 }, 44, 0.31, 52, 52, 18, true);
+  byId("ch-cap").innerHTML = "Gray is the reserve, fixed at " + money(RES.cost) + " whatever the market does. Blue is what is left for the facility. The 7% row is the central case; at 5% it is " + k(M.projections[0].facility) + ", at 9% " + k(M.projections[4].facility) + ".";
+
+  var cash = M.reserve[0].cost;
+  byId("t-reserve").querySelector("tbody").innerHTML = M.reserve.map(function (x) {
+    return "<tr" + (x === RES ? ' class="hi"' : "") + "><td>" + esc(x.label) + '</td><td class="r">' + money(x.cost) + '</td><td class="r">' + (x.cost === cash ? "—" : "+" + money(cash - x.cost)) + "</td></tr>";
+  }).join("");
+  byId("t-port").querySelector("tbody").innerHTML = M.projections.map(function (p) {
+    return "<tr" + (p === BASE ? ' class="hi"' : "") + "><td>" + pct(p.r) + " a year</td><td class=\"r\">" + money(p.v2033) + '</td><td class="r">' + money(p.facility) + '</td><td class="r">' + Math.round(p.facility / p.v2033 * 100) + "%</td></tr>";
+  }).join("");
+  byId("breakeven").innerHTML = "<b>Break-even:</b> the portfolio covers the reserve with nothing to spare at " + pct(M.breakeven[0].r) + " a year if the reserve is held in cash, and at " + pct(M.breakeven[1].r) + " if it is laddered at 4%. Negative is good news here: she can lose a little every year and still pay.";
+  byId("math-in").innerHTML =
+    '<p class="math"><b>Reserve at the start of 2033</b><br>' + esc(M.reserveFormula) + "<br>Ten payments, the first one immediately, so it is an annuity-due. r is the return the reserve earns while it pays out.</p>" +
+    '<p class="math"><b>Portfolio at the start of 2033</b><br>' + esc(M.portfolioFormula) + "<br>$300,000 compounds for six years (2027 → 2033), $150,000 for five. WInS results are not in this formula.</p>" +
+    '<p class="math"><b>Facility</b><br>' + esc(M.facilityBasis) + "</p>";
+
+  function tryOut() {
+    var r = parseFloat(byId("try-r").value) / 100, rf = parseFloat(byId("try-rf").value) / 100;
+    if (!isFinite(r) || !isFinite(rf) || rf < 0) return;
+    var res = reserveAt(rf), v = portfolioAt(r), fac = v - res;
+    byId("try-out").innerHTML =
+      '<div><span class="k">Reserve</span><span class="n">' + money(res) + "</span></div>" +
+      '<div><span class="k">Portfolio 2033</span><span class="n">' + money(v) + "</span></div>" +
+      '<div><span class="k">Facility</span><span class="n' + (fac < 0 ? " neg" : "") + '">' + (fac < 0 ? "−" : "") + money(Math.abs(fac)) + "</span></div>" +
+      '<div><span class="k">Share</span><span class="n' + (fac < 0 ? " neg" : "") + '">' + (fac < 0 ? "short" : Math.round(fac / v * 100) + "%") + "</span></div>";
+  }
+  ["try-r", "try-rf"].forEach(function (id) { byId(id).addEventListener("input", tryOut); });
   var PHONE = window.matchMedia ? window.matchMedia("(max-width:700px)") : null;
-  function phone() { return !!(PHONE && PHONE.matches); }
-  var chartBox = byId("case-chartd");
-  function chartMode() {
-    var saved = null;
-    try { saved = sessionStorage.getItem("wsw:case-chart"); } catch (e) {}
-    chartBox.open = !phone() || saved === "open";
-  }
-  chartBox.addEventListener("toggle", function () {
-    if (chartBox.open) redraw();
-    if (phone()) { try { sessionStorage.setItem("wsw:case-chart", chartBox.open ? "open" : "closed"); } catch (e) {} }
-  });
-  chartMode();
-  if (PHONE && PHONE.addEventListener) PHONE.addEventListener("change", chartMode); else if (PHONE && PHONE.addListener) PHONE.addListener(chartMode);
-  calc();
+  if (!(PHONE && PHONE.matches)) byId("tables-fold").open = true;
+  tryOut();
 
-  /* ---------- 3. the pattern ---------- */
-  byId("case-pattern").innerHTML = D.casePattern.map(function (p) { return "<li><b>" + esc(p.t) + "</b>" + esc(p.d) + "</li>"; }).join("");
-  byId("case-pattern-meta").textContent = D.casePattern.length + " things";
-
-  /* ---------- 5. past clients ---------- */
-  function timeline(c) {
-    var startYear = parseInt(c.season.slice(0, 4), 10);
-    var years = c.goals.map(function (g) { return g.year; });
-    var endYear = Math.max.apply(null, years.concat([startYear + 1]));
-    var span = endYear - startYear;
-    return '<div class="case-tl" aria-label="Goal years">' + '<div class="line"></div>' + c.goals.map(function (g) {
-      var p = (g.year - startYear) / span, cls = p < .18 ? "start" : p > .82 ? "end" : "mid";
-      return '<div class="pt ' + cls + '" style="left:' + (p * 100).toFixed(1) + '%"><span class="y">' + esc(g.year) + "</span><i></i><span class=\"l\">" + esc(g.label) + "</span></div>";
-    }).join("") + "</div>";
-  }
-  var past = D.pastCases.slice().sort(function (a, b) { return b.season.localeCompare(a.season); });
-  function pastCard(c) {
-    return '<article class="card reveal"><div class="card-body">' +
-      '<span class="eyebrow">' + esc(c.season) + "</span>" +
-      "<h3>" + esc(c.client) + "</h3>" +
-      '<p class="note">' + esc(c.who) + "</p>" +
-      '<span class="chip tbd">' + esc(W.money(c.cash)) + " to start</span>" +
-      "<p>" + esc(c.scenario) + "</p>" +
-      "<p><b>The twist:</b> " + esc(c.twist) + "</p>" +
-      timeline(c) +
-      "<small>Source: " + esc(c.source) + "</small>" +
-    "</div></article>";
-  }
-  byId("case-past").innerHTML = past.map(pastCard).join("");
-  byId("case-past-meta").textContent = past.length + " seasons";
-  /* phone: the three newest show above; the older seasons render again inside a <details> that CSS hides on desktop */
-  byId("case-past-more").innerHTML = past.slice(3).map(pastCard).join("");
-  /* #past=all opens Show all seasons and the folded Past clients card; on a phone it also scrolls there */
-  function pastAll() { return /past=all/.test(location.hash || ""); }
-  function openPast() {
-    if (!pastAll()) return;
-    byId("case-more").open = true;
-    W.unfoldFor(byId("case-past"));
-    if (phone()) byId("case-past-card").scrollIntoView({ block: "start", behavior: "instant" });
-  }
-  if (pastAll()) byId("case-more").open = true;
-  /* the shared fold code folds cards on load before this listener runs; re-settle after layout and web fonts */
-  window.addEventListener("load", function () {
-    if (!pastAll()) return;
-    openPast();
-    if (!phone()) return;
-    requestAnimationFrame(function () { setTimeout(openPast, 60); });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(openPast, 60); });
-  });
-  window.addEventListener("hashchange", openPast);
+  /* ---------- 5. takeaways ---------- */
+  byId("take").innerHTML = M.takeaways.map(function (t) { return "<li><b>" + esc(t.h) + "</b><p>" + esc(t.d) + "</p></li>"; }).join("");
 
   /* ---------- 6. IPS builder ---------- */
   var IPS = [
-    { id: "summary", t: "Client summary", h: "Who the client is, what the money is for, and the dates that matter." },
-    { id: "return", t: "Return objective", h: "The required annual return from the calculator, and whether it is realistic for the risk." },
-    { id: "ability", t: "Risk tolerance: ability", h: "What the client can afford to lose given the timeline, income and other assets." },
-    { id: "willingness", t: "Risk tolerance: willingness", h: "How the client feels about swings, in the case's own words." },
-    { id: "horizon", t: "Time horizon and goal buckets", h: "One bucket per dated goal, with the years to each." },
-    { id: "liquidity", t: "Liquidity and payout schedule", h: "When cash leaves the portfolio and what it has to be held in until then." },
-    { id: "unique", t: "Taxes, legal and unique circumstances", h: "Foundation status, exclusions, values screens, anything the case rules out." },
-    { id: "allocation", t: "Target allocation and monitoring", h: "Percent by asset class and sector, the rebalancing rule, and what triggers a review." }
+    { id: "summary", t: "Client summary", h: "Laura, the residency, the two contributions, the ten payments, and the 2031 conversation with co-sponsors." },
+    { id: "return", t: "Return objective", h: "There is barely one: 1.88% a year in cash, negative if laddered. Say so, then state the growth target you choose for the facility and why." },
+    { id: "ability", t: "Risk tolerance: ability", h: "High for the growth money until 2033, near zero for the reserve. Treat them as two different clients." },
+    { id: "willingness", t: "Risk tolerance: willingness", h: "“Thoughtful risks” but “protecting the capital required for her goals” — quote the case, then translate it into a maximum drawdown you would accept." },
+    { id: "horizon", t: "Time horizon and buckets", h: "Growth bucket 2027 → 2033 (six years). Reserve 2033 → 2042 (a ladder). The 2031 quote is the real de-risking date." },
+    { id: "liquidity", t: "Liquidity and payout schedule", h: "Ten $50,000 payments at the start of each year 2033–2042. What the reserve is held in, and how it changes as payments go out." },
+    { id: "unique", t: "Constraints and unique circumstances", h: "Payments are nominal, not inflation-linked. No outside funding for the reserve. Taxes and Taiwan law are out of scope. Define “high degree of certainty” as a number." },
+    { id: "allocation", t: "Target allocation and monitoring", h: "Percent by asset class for the growth bucket and for the reserve, the glide path to 2031 and 2033, the rebalancing rule, and what triggers a review." }
   ];
   var ips = W.store.get("ips", {});
   var ipsRoot = byId("case-ips");
@@ -691,7 +507,7 @@
     return '<div class="field"><label for="ips-' + s.id + '">' + (i + 1) + ". " + esc(s.t) + '</label><span class="hint">' + esc(s.h) + '</span><textarea id="ips-' + s.id + '" data-ips="' + s.id + '"></textarea></div>';
   }).join("");
   var areas = Array.prototype.slice.call(ipsRoot.querySelectorAll("[data-ips]"));
-  function ipsMeta() { var n = areas.filter(function (a) { return a.value.trim(); }).length; byId("case-ips-meta").innerHTML = n + " / " + IPS.length + ' <span class="case-dl">sections </span>started'; }
+  function ipsMeta() { var n = areas.filter(function (a) { return a.value.trim(); }).length; byId("case-ips-meta").textContent = n + " / " + IPS.length + " started"; }
   areas.forEach(function (a) {
     if (ips[a.getAttribute("data-ips")]) a.value = ips[a.getAttribute("data-ips")];
     a.addEventListener("input", function () { ips[a.getAttribute("data-ips")] = a.value; W.store.set("ips", ips); ipsMeta(); });
@@ -706,6 +522,23 @@
     if (!confirm("Clear the IPS draft saved in this browser?")) return;
     ips = {}; W.store.set("ips", ips); areas.forEach(function (a) { a.value = ""; }); ipsMeta(); W.toast("Draft cleared");
   });
+
+  /* ---------- 7. folds: rules of the case, full text ---------- */
+  byId("rules-in").innerHTML =
+    "<div><h5>Explicitly out of scope</h5><ul>" + C.outOfScope.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul></div>" +
+    "<div><h5>The simulator</h5><p>" + esc(C.winsNote) + "</p></div>" +
+    "<div><h5>Source</h5><p>The official Client Case Study and Competition Guide, released Sep 15, 2026 in SurveyMonkey Apply under Pages → Client.</p></div>";
+  byId("doc-in").innerHTML = C.narrative.map(function (sec) {
+    return "<h4>" + esc(sec.h) + "</h4>" + (sec.p || []).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") +
+      (sec.list ? "<ul>" + sec.list.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" : "");
+  }).join("");
+
+  /* ---------- 8. past clients ---------- */
+  var past = D.pastCases.slice().sort(function (a, b) { return b.season.localeCompare(a.season); });
+  byId("past").innerHTML = past.map(function (c) {
+    return '<li><span class="s">' + esc(c.season) + "</span><b>" + esc(c.client) + '</b><span class="chip tbd">' + esc(money(c.cash)) + ' to start</span><span class="w">' + esc(c.scenario) + " <i>The twist:</i> " + esc(c.twist) + "</span></li>";
+  }).join("");
+  byId("case-past-meta").textContent = past.length + " seasons";
 
   W.fillIcons(document);
 })(window.WSW);
