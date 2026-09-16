@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>Rules · Wall Street Warriors</title>
-<meta name="description" content="Trading rules, team rules, deliverables, the AI policy, disqualifiers and what the team verifies on Sep 15.">
+<meta name="description" content="Trading rules, team rules, deliverables, the AI policy, disqualifiers and the questions still open after the Sep 15 release.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,7 +133,7 @@
   <div class="page-title">
     <div>
       <h1>Rules</h1>
-      <p>What Wharton has published for 2026–27, what last season's rules said, and what we verify on Sep 15.</p>
+      <p>What Wharton has published for 2026–27, what last season's rules said, and what is still open until we pull in the remaining portal pages.</p>
     </div>
     <div class="right">
       <a class="btn ghost sm" href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/" target="_blank" rel="noopener"><span data-icon="link"></span>Rules &amp; Roles</a>
@@ -147,7 +147,7 @@
       <button class="tab" role="tab" id="tab-deliverables" data-tab="deliverables" aria-controls="panel-deliverables" aria-selected="false" tabindex="-1">Deliverables</button>
       <button class="tab" role="tab" id="tab-ai" data-tab="ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1">AI policy</button>
       <button class="tab" role="tab" id="tab-disqualifiers" data-tab="disqualifiers" aria-controls="panel-disqualifiers" aria-selected="false" tabindex="-1">Disqualifiers</button>
-      <button class="tab" role="tab" id="tab-verify" data-tab="verify" aria-controls="panel-verify" aria-selected="false" tabindex="-1">Verify on Sep 15</button>
+      <button class="tab" role="tab" id="tab-verify" data-tab="verify" aria-controls="panel-verify" aria-selected="false" tabindex="-1">Still open</button>
     </div>
   </div>
 
@@ -223,9 +223,9 @@
 
     <section id="panel-verify" class="rules-panel" role="tabpanel" aria-labelledby="tab-verify" hidden>
       <article class="card reveal" id="rules-fold-verify" data-fold="closed">
-        <div class="card-head"><span class="ic" data-icon="check"></span><h2>Verify on Sep 15</h2><span class="spacer"></span><span class="meta" id="rules-verify-count"></span></div>
+        <div class="card-head"><span class="ic" data-icon="check"></span><h2>Still open</h2><span class="spacer"></span><span class="meta" id="rules-verify-count"></span></div>
         <div class="card-body tight">
-          <p class="note rules-note">Each item gets checked against the Rules tab in WInS and the trading requirements in SurveyMonkey Apply once the materials land. Answers go into the data file so the Trading rules tab stops saying "verify".</p>
+          <p class="note rules-note">The Sep 15 materials are partly in. Each question below is answered by one of the four SurveyMonkey Apply pages not yet pulled into this site; once a page comes in, its answers go into the data file and the Trading rules tab stops saying “In the portal”.</p>
           <ul class="checks" id="rules-verify-list"></ul>
         </div>
         <div class="card-foot">Checked items are saved in this browser only.</div>
@@ -252,7 +252,7 @@
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function byId(id) { return document.getElementById(id); }
   var release = W.eventById("release");
-  var STATUS = { official: ["official", "Official"], last: ["last", "Last season"], verify: ["verify", "Verify Sep 15"] };
+  var STATUS = { official: ["official", "Official"], last: ["last", "Last season"], verify: ["verify", "In the portal"] };
   function chip(status) { var s = STATUS[status] || ["tbd", status]; return '<span class="chip ' + s[0] + '">' + esc(s[1]) + "</span>"; }
 
   /* ---------- tabs ---------- */
@@ -410,7 +410,10 @@
   /* ---------- 6. verify checklist ---------- */
   var verifyRoot = byId("rules-verify-list");
   verifyRoot.innerHTML = D.verifyChecklist.map(function (t, i) {
-    return '<li><label for="verify-' + (i + 1) + '"><input type="checkbox" id="verify-' + (i + 1) + '"><span><b>' + esc(t) + "</b></span></label></li>";
+    /* rows are { q, where }: `where` is the SurveyMonkey Apply page that answers it, or "done" */
+    var q = typeof t === "string" ? t : t.q, where = typeof t === "string" ? "" : t.where, done = where === "done";
+    return '<li><label for="verify-' + (i + 1) + '"><input type="checkbox" id="verify-' + (i + 1) + '"' + (done ? " checked disabled" : "") + '><span><b>' + esc(q) + "</b>" +
+      (where ? '<small>' + (done ? "Answered" : "Answered on the <b>" + esc(where) + "</b> page in SurveyMonkey Apply") + "</small>" : "") + "</span></label></li>";
   }).join("");
   W.bindChecks(verifyRoot, "verify");
   function verifyCount() {

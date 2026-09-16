@@ -197,16 +197,16 @@
           <li><b>Trading account</b><span>One shared WInS login for the team. Wharton says not to create separate student accounts; get the login from Michael.</span><span class="chip done">Done</span></li>
           <li><b>Team leader</b><span>Michael. Gets Wharton's emails, submits every deliverable, and is locked in after Sep 28.</span><span class="chip done">Done</span></li>
           <li><b>Roster</b><span id="status-roster">All five confirmed: Michael, Caleb, Dylan, Joe and Federico. That's one above Wharton's minimum of four. Official roster due Oct 9.</span><span class="chip done">Five</span></li>
-          <li><b>Case study</b><span>Released Tue Sep 15 through SurveyMonkey Apply. Michael posts it in the chat the same day.</span><span class="chip watch">Sep 15</span></li>
-          <li><b>The $300,000</b><span>That's the practice portfolio. It gets wiped Sep 25, so experiment freely. Real starting cash is announced Sep 15; last season it was $500,000.</span><span class="chip verify">Practice</span></li>
+          <li><b>Case study</b><span>Out now. Our client is Laura Gao — the full case and the numbers are on the <a href="case.html">Case page</a>.</span><span class="chip done">Out</span></li>
+          <li><b>The $300,000</b><span>That's the practice portfolio. It gets wiped Sep 25, so experiment freely. Real starting cash is on the Trading page in SurveyMonkey Apply, not pulled in yet; last season it was $500,000.</span><span class="chip verify">Practice</span></li>
         </ul>
       </section>
 
       <section class="card reveal" style="--i:6" aria-labelledby="week-h">
         <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="week-h">This week</h2><span class="sep"></span><span class="meta">Sep 14–18</span></div>
         <ul class="checks" id="week">
-          <li><label for="w1"><input type="checkbox" id="w1"><span><b>Read the client case study</b><small>Michael posts it in the chat once the Sep 15 invite lands. Read it before the meeting.</small></span></label></li>
-          <li><label for="w2"><input type="checkbox" id="w2"><span><b>Try the practice simulator</b><small>Opens Sep 15 at 9:30 a.m. ET. Place a buy, a sell and a foreign stock so the mechanics are familiar. It all resets Sep 25.</small></span></label></li>
+          <li><label for="w1"><input type="checkbox" id="w1"><span><b>Read the client case study</b><small>It is on the <a href="case.html">Case page</a> now — open "Read the full case study". Read it before the meeting.</small></span></label></li>
+          <li><label for="w2"><input type="checkbox" id="w2"><span><b>Try the practice simulator</b><small>Open now until Sep 25 at 4:00 p.m. ET, then wiped. Place a buy, a sell and a foreign stock so the mechanics are familiar. It all resets Sep 25.</small></span></label></li>
           <li><label for="w3"><input type="checkbox" id="w3"><span><b>Skim the trading rules</b><small>The $5 minimum share price, the 200-trade cap, and the buy-and-hold guidance. <a href="rules.html">Rules</a></small></span></label></li>
           <li><label for="w4"><input type="checkbox" id="w4"><span><b>Read Part Seven of the Essentials of Finance reference</b><small>CAPM, DDM and DCF. It's how we value stocks.</small></span></label></li>
           <li><label for="w5"><input type="checkbox" id="w5"><span><b>Send Michael your school email and grade</b><small>The official roster form asks for them. Everyone's info in by Oct 2.</small></span></label></li>
@@ -247,7 +247,7 @@
       <section class="card reveal" style="--i:5" aria-labelledby="rq-h" data-fold="closed">
         <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="rq-h">Rules at a glance</h2><span class="meta dash-m" id="rq-m"></span></div>
         <ul class="dash-rules" id="rules"></ul>
-        <div class="card-foot"><a href="rules.html">All rules, and what we verify on Sep 15</a></div>
+        <div class="card-foot"><a href="rules.html">All rules, and what is still open</a></div>
       </section>
 
     </aside>
@@ -279,7 +279,7 @@
   var maybe = D.team.members.filter(function (m) { return m.status === "maybe"; }).length;
   var nextDeliv = D.deliverables.filter(function (d) { return !subs[d.id]; })[0];
 
-  var SHORT = { release: "Case study drops, Sep 15", "practice-end": "Practice wiped, Sep 25", trading: "Trading begins, Sep 28", roster: "Roster due, Oct 9", notes: "Trading Notes, Oct 23", ips: "IPS due, Nov 6", report: "Final report, Dec 4", finale: "Global Finale, Apr 29" };
+  var SHORT = { release: "Case study out, Sep 15", "practice-end": "Practice wiped, Sep 25", trading: "Trading begins, Sep 28", roster: "Roster due, Oct 9", notes: "Trading Notes, Oct 23", ips: "IPS due, Nov 6", report: "Final report, Dec 4", finale: "Global Finale, Apr 29" };
   if (next) {
     var n = W.daysUntil(next.date);
     if (n <= 1) { $("t-next").textContent = n === 0 ? "Today" : "Tomorrow"; $("t-next-u").textContent = ""; }
