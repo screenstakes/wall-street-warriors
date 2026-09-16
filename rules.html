@@ -240,7 +240,7 @@
 <footer class="site">
   <div class="shell">
     <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
-    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026 · <a href="news.html#sources">Sources</a></span>
   </div>
 </footer>
 
@@ -341,13 +341,13 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { var a = tablist.querySelector(".is-active"); if (a) reveal(a, false); });
 
   /* ---------- 1. trading rules ---------- */
-  byId("rules-trading-note").textContent = "Wharton releases this year's trading requirements " + W.fmtDate(release.date, { weekday: true }) + ". Rows marked Last season are the 2025–26 rules and can change. Rows marked Verify get answered on the Verify tab.";
+  byId("rules-trading-note").textContent = "This year's trading requirements were released " + W.fmtDate(release.date, { weekday: true }) + " on the Trading page in SurveyMonkey Apply, which is not pulled into this site yet. Rows marked Last season are the 2025–26 rules and can change. Rows marked In the portal are answered there, and are tracked on the Still open tab.";
   byId("rules-trading-body").innerHTML = D.tradingRules.map(function (r) {
     return "<tr><td class=\"key\" data-label=\"Rule\">" + esc(r.rule) + "</td><td class=\"val\" data-label=\"What we know\">" + esc(r.value) + "</td><td class=\"stat\" data-label=\"Status\">" + chip(r.status) + "</td><td class=\"mono\" data-label=\"Season\">" + esc(r.season) + "</td></tr>";
   }).join("");
   var counts = { official: 0, last: 0, verify: 0 };
   D.tradingRules.forEach(function (r) { if (counts[r.status] !== undefined) counts[r.status]++; });
-  byId("rules-trading-count").textContent = counts.official + " official · " + counts.last + " last season · " + counts.verify + " verify";
+  byId("rules-trading-count").textContent = counts.official + " official · " + counts.last + " last season · " + counts.verify + " in the portal";
   byId("rules-trading-mcount").textContent = D.tradingRules.length + " rules";
 
   /* ---------- 2. team rules ---------- */

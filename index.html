@@ -152,7 +152,7 @@
   <div class="page-title">
     <div>
       <h1>My Dashboard</h1>
-      <p>Where the season stands today. Every date and rule on this site was checked against Wharton's official pages on Sep 14, 2026.</p>
+      <p>Where the season stands today. Every date and rule on this site was checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026.</p>
     </div>
     <div class="right">
       <a class="btn orange" href="https://app.stocktrak.com/login?clientname=Wharton" target="_blank" rel="noopener"><span data-icon="chart"></span>Open WInS</a>
@@ -210,7 +210,7 @@
           <li><label for="w3"><input type="checkbox" id="w3"><span><b>Skim the trading rules</b><small>The $5 minimum share price, the 200-trade cap, and the buy-and-hold guidance. <a href="rules.html">Rules</a></small></span></label></li>
           <li><label for="w4"><input type="checkbox" id="w4"><span><b>Read Part Seven of the Essentials of Finance reference</b><small>CAPM, DDM and DCF. It's how we value stocks.</small></span></label></li>
           <li><label for="w5"><input type="checkbox" id="w5"><span><b>Send Michael your school email and grade</b><small>The official roster form asks for them. Everyone's info in by Oct 2.</small></span></label></li>
-          <li><label for="w6"><input type="checkbox" id="w6"><span><b>Team meeting: Tue lunch or Wed 9:00 a.m.</b><small>Tuesday at lunch or Wednesday zero period. Michael confirms the time in the chat. Agenda on the <a href="team.html">Team</a> page.</small></span></label></li>
+          <li><label for="w6"><input type="checkbox" id="w6"><span><b>Team meeting: Wed 9:00 a.m.</b><small>Tuesday lunch has passed, so it is Wednesday zero period. Michael confirms in the chat. Agenda on the <a href="team.html">Team</a> page.</small></span></label></li>
         </ul>
         <div class="card-foot">Checkmarks save in this browser only.</div>
       </section>
@@ -236,7 +236,7 @@
       </section>
 
       <section class="card reveal" style="--i:4" aria-labelledby="pat-h" data-fold="closed">
-        <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pat-h">The case, before it lands</h2><span class="meta dash-m" id="pat-m"></span></div>
+        <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="pat-h">The pattern behind every case</h2><span class="meta dash-m" id="pat-m"></span></div>
         <div class="dash-pattern">
           <p>Every recent case has the same bones. A real Wharton alum is the client; the money situation is written for the competition.</p>
           <ol id="pattern"></ol>
@@ -257,7 +257,7 @@
 <footer class="site">
   <div class="shell">
     <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
-    <span>Dates and rules checked against Wharton's official pages on Sep 14, 2026 · <a href="news.html#sources">Sources</a></span>
+    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026 · <a href="news.html#sources">Sources</a></span>
   </div>
 </footer>
 
@@ -352,7 +352,7 @@
   $("pattern").innerHTML = D.casePattern.map(function (c) { return "<li>" + esc(c.t) + "</li>"; }).join("");
   var quick = D.tradingRules.slice(0, 5);
   $("rules").innerHTML = quick.map(function (r) {
-    var c = r.status === "official" ? '<span class="chip official">Official</span>' : r.status === "last" ? '<span class="chip last">Last season</span>' : '<span class="chip verify">Verify</span>';
+    var c = r.status === "official" ? '<span class="chip official">Official</span>' : r.status === "last" ? '<span class="chip last">Last season</span>' : '<span class="chip verify">In the portal</span>';
     return "<li><div><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</div>" + c + "</li>";
   }).join("");
 
