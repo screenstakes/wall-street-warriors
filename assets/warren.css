@@ -4,7 +4,8 @@
 
 .wn{font:15px/1.5 var(--body);color:var(--ink)}
 .wn *,.wn *::before,.wn *::after{box-sizing:border-box}
-.wn button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+.wn button{-webkit-tap-highlight-color:transparent}
+.wn button:not(.btn){font:inherit;color:inherit}
 .wn svg{display:block}
 
 /* ---------- mascot: a round navy bull with short orange horns ---------- */

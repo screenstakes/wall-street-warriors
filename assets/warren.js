@@ -148,7 +148,7 @@
       '<div class="wn-hint" aria-hidden="true">Ask ' + esc(NAME) + "</div>" +
       '<section class="wn-panel" id="wn-panel" role="dialog" aria-modal="true" aria-labelledby="wn-title" hidden>' +
         '<div class="wn-head">' + mascot() +
-          '<div class="wn-title"><b id="wn-title">' + esc(NAME) + "</b><small>Wall Street Warriors' helper</small></div>" +
+          '<div class="wn-title"><b id="wn-title">' + esc(NAME) + "</b><small>Team site helper</small></div>" +
           '<span class="wn-status" data-state="online" role="status"><i></i><span class="wn-status-t">Online</span></span>' +
           '<button type="button" class="wn-hbtn wn-clear" aria-label="Clear chat" title="Clear chat">' + icon("trash") + "</button>" +
           '<button type="button" class="wn-hbtn wn-close" aria-label="Close" title="Close">' + icon("x") + "</button>" +
@@ -337,8 +337,14 @@
     if (navigator.onLine === false) { hideTyping(); return offline("Looks like you're offline", lastUser); }
     var ctrl = window.AbortController ? new AbortController() : null;
     state.ctrl = ctrl;
-    var msgs = state.log.filter(function (m) { return !m.local && (m.role === "user" || m.role === "assistant"); }).slice(-SEND)
-      .map(function (m) { return { role: m.role, content: m.content }; });
+    var msgs = [];
+    state.log.forEach(function (m) {
+      if (m.local || (m.role !== "user" && m.role !== "assistant") || !m.content) return;
+      var last = msgs[msgs.length - 1];
+      if (last && last.role === m.role) last.content += "\n\n" + m.content; else msgs.push({ role: m.role, content: m.content });
+    });
+    msgs = msgs.slice(-SEND);
+    while (msgs.length && msgs[0].role !== "user") msgs.shift();
     var body = { code: state.code, page: { title: document.title, url: location.href }, messages: msgs };
     var bubble = null, buf = "", gotError = false;
     function startBubble() { if (!bubble) { hideTyping(); var el = addBubble("assistant", ""); el.setAttribute("aria-busy", "true"); bubble = el.querySelector(".wn-bubble"); } return bubble; }
@@ -461,7 +467,7 @@
     if (PHONE.addEventListener) PHONE.addEventListener("change", function () { document.body.classList.toggle("wn-lock", state.open && PHONE.matches); fitViewport(); });
 
     /* restore: open state comes back without stealing focus; the hint shows once per visit, only while closed */
-    if (store.get("open", false)) setOpen(true, true);
+    if (store.get("open", false) && !PHONE.matches) setOpen(true, true);
     else if (!session.get("hinted")) {
       session.set("hinted", "1");
       setTimeout(function () { if (!state.open) showHint(); }, 1200);
