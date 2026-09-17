@@ -328,11 +328,11 @@ WSW.data = {
   },
 
   roles: [
-    { id: "lead",    title: "Team leader + strategy", owns: "The thesis, the IPS draft, every submission in SurveyMonkey Apply, and Wharton's emails.", fixed: "michael" },
-    { id: "analyst", title: "Analysis",               owns: "Required-return math, correlations, diversification and risk numbers in a shared sheet.", suggest: "joe" },
-    { id: "client",  title: "Client lead",            owns: "Knows the case cold. Asks \"does this fit the client?\" on every pick and drafts the client section of the IPS." },
-    { id: "trader",  title: "Trader + journal",       owns: "Places only team-approved trades in WInS and logs the reasoning for every one. Owns the Trading Notes Analysis draft." },
-    { id: "writer",  title: "Writer + editor",        owns: "One voice across Trading Notes, the IPS and the final report. Citations and the works-cited list." }
+    { id: "lead",    title: "Team leader + submissions", owns: "The thesis, the IPS draft, every submission in SurveyMonkey Apply, and Wharton's emails.", fixed: "michael" },
+    { id: "risk",    title: "Risk checker",              owns: "Checks every trade against our limits before the vote, and can pause one that breaks a rule." },
+    { id: "log",     title: "Journal keeper",            owns: "The shared trade sheet and the shape of our notes. Chases missing notes \u2014 does not write them for us. Drafts the Oct 23 Trading Notes Analysis." },
+    { id: "client",  title: "Laura's case + the math",   owns: "Knows the case cold. Required-return math, the bond ladder, and the client sections of the IPS." },
+    { id: "research",title: "Research + sources",        owns: "A short market update each week, the works-cited list including any AI use, and the final edit of the report." }
   ],
 
   phases: [
@@ -497,8 +497,8 @@ WSW.data = {
   weekly: [
     { d: "Monday", t: "Sector pitches", s: "Each member brings one idea from their sector, tied to a client goal. Ten minutes each." },
     { d: "Tuesday", t: "Analysis", s: "Joe runs the numbers on anything the team liked: valuation, beta, correlation with what we hold." },
-    { d: "Wednesday", t: "Vote and trade", s: "The team votes. The trader places approved trades and writes the journal entry the same day." },
-    { d: "Friday", t: "Write", s: "One hour on the current deliverable. Internal deadlines are one week before Wharton's." }
+    { d: "Wednesday", t: "Vote and trade", s: "The team votes. Whoever proposes a trade writes its note the same day \u2014 everyone journals, nobody writes them for us." },
+    { d: "Friday", t: "Write", s: "Three lines each in the journal: what I learned, what I'd do differently, one number I watched. Then an hour on the current deliverable \u2014 internal deadlines are one week before Wharton's." }
   ],
 
   announcements: [

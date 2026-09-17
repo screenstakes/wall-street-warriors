@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>The Guide · Wall Street Warriors</title>
-<meta name="description" content="Laura Gao's case in 20 plain steps: the money, the two piles, how WInS connects to her real money, our plan, how we win, and who does what.">
+<meta name="description" content="Laura Gao's case in 21 plain steps: the money, the two piles, how WInS connects to her real money, our plan, how we win, and who does what.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -387,7 +387,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   <div class="page-title">
     <div>
       <h1>The Guide</h1>
-      <p>Laura's case in 20 plain steps. Start here if the Case page feels like too much, or send it to a teammate who hasn't read the case yet.</p>
+      <p>Laura's case in 21 plain steps. Start here if the Case page feels like too much, or send it to a teammate who hasn't read the case yet.</p>
     </div>
     <div class="right">
       <a class="btn ghost sm" href="case.html"><span data-icon="book"></span>The full case page</a>
@@ -399,7 +399,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     <div class="tabs" id="chapters" role="tablist" aria-label="Chapters"></div>
 
     <section class="card reveal" aria-labelledby="ghead">
-      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="ghead">The story</h2><span class="spacer"></span><span class="meta" id="gmeta">Step 1 of 20</span></div>
+      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="ghead">The story</h2><span class="spacer"></span><span class="meta" id="gmeta">Step 1 of 21</span></div>
       <div class="card-body g-body">
         <div id="text" aria-live="polite"></div>
         <section class="pot" id="pot" aria-label="The money">
@@ -421,7 +421,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   </div>
   <aside class="stack" id="guide-rail" aria-label="Chapters">
     <article class="card reveal rail-card">
-      <div class="card-head"><span class="ic" data-icon="list"></span><h3>Chapters</h3><span class="spacer"></span><span class="meta" id="rail-meta">Step 1 of 20</span></div>
+      <div class="card-head"><span class="ic" data-icon="list"></span><h3>Chapters</h3><span class="spacer"></span><span class="meta" id="rail-meta">Step 1 of 21</span></div>
       <ol class="chap-list" id="chaplist"></ol>
       <div class="card-foot rail-foot"><div class="progress gprog" aria-hidden="true"><i></i></div><span class="pct" id="rail-pct">5%</span></div>
     </article>
@@ -814,7 +814,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   var TEAM_JOBS = [
     { id: "lead", name: "Team leader and submissions", owner: W.member(W.data.team.leader).name, does: ["Turns in every deliverable on SurveyMonkey Apply", "Runs a 15-minute check-in each week", "Pulls the IPS together (everyone writes their own slice’s part)", "Settles it when a vote or a HOLD gets stuck"] },
     { id: "risk", name: "Risk checker", owner: "", does: ["Checks every trade against our limits before the vote", "Can pause a trade that breaks a rule", "Looks over every holding at the weekly check-in"] },
-    { id: "log", name: "Trade log and notes", owner: "", does: ["Keeps the shared sheet: every trade, who proposed it, who placed it", "Makes sure every trade has a note", "Picks the 3 notes and drafts the Oct 23 analysis"] },
+    { id: "log", name: "Journal keeper", owner: "", does: ["Keeps the shared sheet: every trade, who proposed it, who placed it", "Does NOT write our notes for us \u2014 chases anyone whose note is missing the next day", "Keeps every note in the same shape so they read as one team", "Picks the notes and drafts the Oct 23 Trading Notes Analysis"] },
     { id: "client", name: "Laura’s case and the math", owner: "", does: ["Knows Laura’s case best", "Runs the spreadsheet for her real money", "Checks that every note ties back to her goals"] },
     { id: "research", name: "Research and sources", owner: "", does: ["A short market update each week", "Keeps the list of sources, including any AI use, which the rules say we must cite", "Edits the final report"] }
   ];
@@ -829,7 +829,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       '<div class="jobs" id="jobs">' + TEAM_JOBS.map(function (j) { return '<button class="jobrow" type="button" id="job-' + j.id + '" data-pick="j:' + j.id + '"><span>' + j.name + "</span>" + ownerPill(j.owner) + "</button>"; }).join("") + "</div>" +
       '<article class="detail" id="pickd" aria-live="polite"></article>' +
       '<p class="g-note plain"><b>How we pick:</b> everyone names their top 2 slices and top 2 jobs, and ' + W.member(W.data.team.leader).name + ' matches them up. We can swap after two weeks. If someone’s out, anyone can cover.</p>' +
-      '<p class="g-note b"><b>One rule for everyone:</b> go through steps 1 to 13 of this guide before you vote on or place a trade.</p>',
+      '<p class="g-note b"><b>Two rules for everyone:</b> go through steps 1 to 13 of this guide before you vote on or place a trade \u2014 and <b>everyone journals</b>. Whoever proposes a trade writes its note the same day, and each of us adds three lines every Friday. The journal keeper keeps the sheet; the writing is ours. Wharton grades the notes on Oct 23, so five people thinking on paper beats one person writing up everyone else\u2019s trades.</p>',
     mount: function (draw) {
       function pick(e) { var b = e.target.closest("[data-pick]"); if (!b) return; ui.own = b.getAttribute("data-pick"); draw(); }
       $("tree").addEventListener("click", pick); $("jobs").addEventListener("click", pick);
@@ -930,6 +930,18 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       $("acts").hidden = !acts;
       if (hadFocus) { var fb = $("acts").querySelector("button") || $("votes").querySelector("button:not([disabled])"); if (fb) fb.focus({ preventScroll: true }); }
     } });
+
+  S({ ch: "Our team", title: "Everyone journals. Here is the whole note.",
+    say: "The trade card you just posted IS the note — six lines, written by whoever proposed the trade, the same day. Wharton reads these.",
+    html: '<ol class="qs">' +
+      "<li><div><b>What and how big</b><span>Buy or sell, the ticker, and the size as a percent of the portfolio.</span></div></li>" +
+      "<li><div><b>Why now</b><span>Two sentences. What you saw that made today the day.</span></div></li>" +
+      "<li><div><b>Which slice, and which of Laura’s goals</b><span>Keeping Pile A safe, or growing Pile B. Name one.</span></div></li>" +
+      "<li><div><b>What would make this wrong</b><span>The number or the news that means we get out. Write it before you need it.</span></div></li>" +
+      "<li><div><b>The vote</b><span>Who said yes, and anyone who said HOLD and why.</span></div></li>" +
+      "<li><div><b>Where it came from</b><span>Links. The rules say any AI we used gets cited too.</span></div></li>" +
+      "</ol>" +
+      '<p class="g-note b"><b>Every Friday, three lines each:</b> what I learned, what I’d do differently, and one number I watched and where it ended. That is the whole personal journal — it takes five minutes and it becomes the part of the final report other teams have to invent at the end.</p>' });
 
   S({ ch: "Our team", title: "Words you’ll see, translated.",
     say: "Same story, fancier words.",
