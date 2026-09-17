@@ -30,7 +30,7 @@
 #guide{display:grid;gap:16px;line-height:1.6;--r-lg:var(--r)}
 #guide .tabs{display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding-inline:8px;margin-bottom:0}
 @media (max-width:980px){#guide .tabs{display:flex}#guide-rail{display:none}}
-@media (max-width:700px){#guide .tabs{padding-right:24px}}
+@media (max-width:700px){#guide .tabs{padding-right:36px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}}
 #guide [hidden]{display:none !important}
 #guide button{font-family:inherit}
 #guide :focus-visible{outline:2px solid var(--g-focus);outline-offset:2px}
@@ -157,7 +157,7 @@ input[type=range]{width:100%;accent-color:var(--g-ink);height:40px;margin:0;curs
 .scale .stops i:nth-child(1){background:var(--g-r1)}.scale .stops i:nth-child(2){background:var(--g-r2)}.scale .stops i:nth-child(3){background:var(--g-r3)}.scale .stops i:nth-child(4){background:var(--g-r4)}.scale .stops i:nth-child(5){background:var(--g-r5)}
 .scale .lab{position:absolute;top:48px;left:0;right:0;display:flex;justify-content:space-between;font:700 12px/1 var(--g-display);color:var(--g-ink-3)}
 .scale .mk{position:absolute;top:0;transform:translateX(-50%);display:grid;gap:0;transition:left .45s cubic-bezier(.2,.7,.2,1)}
-.scale .mk span{font:700 12px/1 var(--g-display);color:var(--g-card);background:var(--g-ink);border-radius:6px;padding:4px 7px;white-space:nowrap}
+.scale .mk span{font:700 12px/1 var(--g-display);color:var(--g-card);background:var(--g-ink);border-radius:4px;padding:4px 7px;white-space:nowrap}
 .scale .mk::after{content:"";width:0;height:0;margin-left:calc(var(--ax,50%) - 6px);border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid var(--g-ink)}
 
 /* ---- step 11: does it fit? ---- */
@@ -167,7 +167,7 @@ input[type=range]{width:100%;accent-color:var(--g-ink);height:40px;margin:0;curs
 .pick b{font:700 15.5px/1.3 var(--g-display)}
 .pick .q{font:700 12px/1 var(--g-display);color:var(--g-ink-3);letter-spacing:.04em}
 .pick .v{display:none;font-size:14.5px;line-height:1.45;color:var(--g-ink-2)}
-.pick .badge{display:none;font:700 12px/1 var(--g-display);letter-spacing:.05em;text-transform:uppercase;border-radius:6px;padding:5px 8px;justify-self:start}
+.pick .badge{display:none;font:700 12px/1 var(--g-display);letter-spacing:.05em;text-transform:uppercase;border-radius:4px;padding:5px 8px;justify-self:start}
 .pick[aria-expanded="true"] .v,.pick[aria-expanded="true"] .badge{display:block}
 .pick[aria-expanded="true"] .q{display:none}
 .pick.good[aria-expanded="true"]{background:var(--g-yes-soft);border-color:transparent}
@@ -222,7 +222,7 @@ input[type=range]{width:100%;accent-color:var(--g-ink);height:40px;margin:0;curs
 @media (max-width:420px){.rticks span:nth-child(2),.rticks span:nth-child(4){display:none}}
 .bubble{position:relative;border-radius:var(--r-lg);padding:16px 18px;background:var(--g-card);border:1px solid var(--g-line);font:600 17px/1.45 var(--g-display);color:var(--g-ink)}
 .bubble small{display:block;font:600 13px/1.4 var(--g-body);color:var(--g-ink-3);margin-top:6px}
-.verdict-chip{display:inline-block;font:700 12px/1 var(--g-display);letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:5px 8px;margin-bottom:8px}
+.verdict-chip{display:inline-block;font:700 12px/1 var(--g-display);letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:5px 8px;margin-bottom:8px}
 .verdict-chip.bad{background:var(--g-no-soft);color:var(--g-no)}.verdict-chip.good{background:var(--g-yes-soft);color:var(--g-yes)}
 
 /* ---- step 16: futures ---- */
@@ -346,6 +346,8 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
 .rail-card .chap-list button.is-active i{background:var(--navy);border-color:var(--navy);color:#fff}
 .rail-card .chap-list button.done i{background:var(--ok-soft);border-color:transparent;color:var(--ok)}
 .rail-card .card-foot{padding:12px 16px}
+.rail-foot{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.rail-foot .pct{font:600 12px/1 var(--mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
 .rail-links{display:grid;gap:10px;justify-items:start}
 .rail-links .note{font-size:13px}
 .phone-only{display:none}
@@ -420,12 +422,12 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     <article class="card reveal rail-card">
       <div class="card-head"><span class="ic" data-icon="list"></span><h3>Chapters</h3><span class="spacer"></span><span class="meta" id="rail-meta">Step 1 of 20</span></div>
       <ol class="chap-list" id="chaplist"></ol>
-      <div class="card-foot"><div class="progress gprog" aria-hidden="true"><i></i></div></div>
+      <div class="card-foot rail-foot"><div class="progress gprog" aria-hidden="true"><i></i></div><span class="pct" id="rail-pct">5%</span></div>
     </article>
     <article class="card reveal">
       <div class="card-body rail-links">
-        <a class="btn ghost sm" href="case.html"><span data-icon="book"></span>The full case page</a>
         <a class="btn ghost sm" href="team.html"><span data-icon="users"></span>Team page</a>
+        <a class="btn ghost sm" href="rules.html"><span data-icon="shield"></span>Rules</a>
         <p class="note">Numbers are rounded. Anything marked “example” is a sample, not our final plan.</p>
       </div>
     </article>
@@ -1007,7 +1009,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     $("hint").textContent = i === STEPS.length - 1 ? "That\u2019s the whole guide. Tap Start over to go again." : "Tap Next to keep going. Numbers are rounded, and anything marked \u201cexample\u201d is a sample, not our final plan.";
     var chIdx = 0; CHAPTERS.forEach(function (c, j) { if (i >= c.first) chIdx = j; });
     Array.prototype.forEach.call(document.querySelectorAll(".gprog i"), function (el) { el.style.width = ((i + 1) / STEPS.length * 100) + "%"; });
-    $("rail-meta").textContent = "Step " + (i + 1) + " of " + STEPS.length;
+    $("rail-meta").textContent = "Step " + (i + 1) + " of " + STEPS.length; $("rail-pct").textContent = Math.round((i + 1) / STEPS.length * 100) + "%";
     Array.prototype.forEach.call($("chaplist").querySelectorAll("[data-chap]"), function (b, j) { b.classList.toggle("is-active", j === chIdx); b.classList.toggle("done", j < chIdx); });
     Array.prototype.forEach.call($("chapters").children, function (b, j) { b.classList.toggle("is-active", j === chIdx); b.setAttribute("aria-selected", String(j === chIdx)); });
     var cur = $("chapters").children[chIdx]; if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest", inline: "nearest" });
