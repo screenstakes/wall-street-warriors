@@ -6,6 +6,11 @@
 .wn *,.wn *::before,.wn *::after{box-sizing:border-box}
 .wn button{-webkit-tap-highlight-color:transparent}
 .wn button:not(.btn){font:inherit;color:inherit}
+/* Warren's action buttons always read white on navy (and dark on orange), even if an older rule is cached */
+.wn .wn-send,.wn .wn-code-go{background:var(--navy);color:#fff;font:700 13px/1 var(--ui)}
+.wn .wn-send:hover,.wn .wn-code-go:hover{background:var(--blue-deep);color:#fff}
+.wn .wn-send svg,.wn .wn-code-go svg{stroke:#fff}
+.wn .wn-stop{color:#1F1300;font:700 13px/1 var(--ui)}
 .wn svg{display:block}
 
 /* ---------- mascot: a round navy bull with short orange horns ---------- */
