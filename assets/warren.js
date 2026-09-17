@@ -258,11 +258,33 @@
   }
 
   /* ---------- status + mascot moods ---------- */
-  function setStatus(s) {
+  function setStatus(s, label) {
     statusEl.setAttribute("data-state", s);
-    statusT.textContent = s === "thinking" ? "Thinking" : s === "offline" ? "Offline" : "Online";
+    statusT.textContent = label || (s === "thinking" ? "Thinking" : s === "offline" ? "Offline" : "Online");
   }
-  function idleStatus() { setStatus(navigator.onLine === false ? "offline" : "online"); }
+  /* relay: null = not checked yet, "up", "down" (unreachable or no key), "resting" (daily budget used) */
+  var relay = ENDPOINT ? null : "down", relayAt = 0;
+  function idleStatus() {
+    if (navigator.onLine === false) return setStatus("offline");
+    if (relay === "down") return setStatus("offline", "Unavailable");
+    if (relay === "resting") return setStatus("offline", "Resting");
+    setStatus("online");
+  }
+  function checkRelay(force) {
+    if (!ENDPOINT || state.busy || navigator.onLine === false) return;
+    if (!force && Date.now() - relayAt < 60000) return;
+    relayAt = Date.now();
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctrl) ctrl.abort(); }, 6000);
+    fetch(ENDPOINT + "/health", { cache: "no-store", signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (h) {
+        relay = !h || !h.ok || h.keyConfigured === false ? "down"
+          : h.budget && h.budget.usedUsd >= h.budget.capUsd ? "resting" : "up";
+      })
+      .catch(function () { relay = "down"; })
+      .then(function () { clearTimeout(t); if (!state.busy) idleStatus(); });
+  }
   function nod(el) {
     if (!el) return;
     el.classList.remove("is-nod"); void el.offsetWidth; el.classList.add("is-nod");
@@ -274,7 +296,7 @@
     state.busy = on;
     sendBtn.disabled = on; sendBtn.hidden = on; stopBtn.hidden = !on;
     ta.readOnly = on;
-    setStatus(on ? "thinking" : (navigator.onLine === false ? "offline" : "online"));
+    if (on) setStatus("thinking"); else idleStatus();
     think(on);
   }
 
@@ -297,7 +319,7 @@
     launch.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("wn-lock", open && PHONE.matches);
     if (open) {
-      hideHint(); fitViewport(); scrollLog(true); nod(headMascot);
+      hideHint(); fitViewport(); scrollLog(true); nod(headMascot); checkRelay(false);
       if (!quiet) (codeBox.hidden ? ta : codeIn).focus({ preventScroll: true });
     } else {
       fitViewport();
@@ -374,6 +396,7 @@
     }
     fetch(ENDPOINT + "/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: ctrl ? ctrl.signal : undefined })
       .then(function (res) {
+        relay = res.status === 402 ? "resting" : res.status >= 500 ? "down" : "up"; relayAt = Date.now();
         if (res.status === 401) { hideTyping(); state.code = ""; store.del("code"); setBusy(false); showCodeForm("That code didn't work. Try again."); return; }
         if (res.status === 429) return fail(NAME + " is busy, try again in a minute.");
         if (res.status === 402) return fail(NAME + " has used today's budget. Try again tomorrow.");
@@ -395,6 +418,7 @@
       .catch(function (err) {
         if (err && err.name === "AbortError") { finish(true); return; }
         hideTyping();
+        relay = "down"; relayAt = Date.now();
         if (bubble) { finish(false); return; }
         offline("I can't reach " + NAME + "'s server right now", lastUser);
       });
@@ -466,7 +490,7 @@
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && state.open && !e.defaultPrevented) setOpen(false); });
 
-    window.addEventListener("online", idleStatus); window.addEventListener("offline", idleStatus);
+    window.addEventListener("online", function () { idleStatus(); if (state.open) checkRelay(true); }); window.addEventListener("offline", idleStatus);
     if (window.visualViewport) { window.visualViewport.addEventListener("resize", fitViewport); window.visualViewport.addEventListener("scroll", fitViewport); }
     window.addEventListener("resize", fitViewport);
     if (PHONE.addEventListener) PHONE.addEventListener("change", function () { document.body.classList.toggle("wn-lock", state.open && PHONE.matches); fitViewport(); });
