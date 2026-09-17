@@ -1,0 +1,156 @@
+/* Warren — Wall Street Warriors' chat helper.
+   Styled with site.css tokens only. z-index 60 (launcher) / 61 (panel) sits above the site's
+   drawers and sheets (46–50). All text inside the widget is 13px or larger. */
+
+.wn{font:15px/1.5 var(--body);color:var(--ink)}
+.wn *,.wn *::before,.wn *::after{box-sizing:border-box}
+.wn button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+.wn svg{display:block}
+
+/* ---------- mascot: a round navy bull with short orange horns ---------- */
+.wn-mascot{display:inline-block;line-height:0;flex:none}
+.wn-mascot svg{width:100%;height:100%;overflow:visible}
+.wn-mascot .navy{fill:var(--navy)}
+.wn-mascot .blue{fill:var(--blue)}
+.wn-mascot .orange{fill:var(--orange)}
+.wn-mascot .white{fill:#fff}
+.wn-mascot .dark{fill:var(--strip)}
+.wn-mascot .line{fill:none;stroke:var(--strip);stroke-width:1.6;stroke-linecap:round}
+/* blink: the eye group squashes for one frame every 4s */
+.wn-mascot .eyes{transform-box:fill-box;transform-origin:center;animation:wn-blink 4s linear infinite}
+.wn-head .wn-mascot .eyes{animation-delay:1.3s}
+/* thinking: pupils glance up and to the side */
+.wn-mascot .pupils{transition:transform .25s var(--ease)}
+.wn-mascot.is-thinking .pupils{transform:translate(1.4px,-2.6px)}
+/* nod: on open and when a reply lands */
+.wn-mascot.is-nod .head{transform-box:fill-box;transform-origin:50% 70%;animation:wn-nod .7s var(--ease) 1}
+@keyframes wn-blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+@keyframes wn-nod{0%{transform:rotate(0)}25%{transform:rotate(-9deg)}55%{transform:rotate(7deg)}80%{transform:rotate(-3deg)}100%{transform:rotate(0)}}
+@keyframes wn-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+
+/* ---------- launcher ---------- */
+.wn-launch{position:fixed;right:16px;bottom:16px;z-index:60;width:56px;height:56px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow-lg);cursor:pointer;display:grid;place-items:center;transition:transform .15s var(--ease),background .15s,box-shadow .15s}
+.wn-launch:hover{background:var(--well);transform:translateY(-1px)}
+.wn-launch:active{transform:translateY(1px)}
+.wn-launch[aria-expanded=true]{background:var(--well);box-shadow:var(--shadow)}
+.wn-launch .wn-mascot{width:44px;height:44px;animation:wn-bob 3.2s ease-in-out infinite}
+.wn-launch:hover .wn-mascot{animation-play-state:paused}
+
+/* "Ask Warren" bubble, shown once per visit */
+.wn-hint{position:fixed;right:82px;bottom:28px;z-index:60;background:var(--strip);color:#fff;font:600 13px/1 var(--ui);padding:9px 12px;border-radius:6px;box-shadow:var(--shadow);white-space:nowrap;opacity:0;transform:translateX(6px);transition:opacity .25s,transform .3s var(--ease);pointer-events:none}
+.wn-hint::after{content:"";position:absolute;right:-4px;top:50%;width:9px;height:9px;background:var(--strip);transform:translateY(-50%) rotate(45deg)}
+.wn-hint.is-on{opacity:1;transform:none}
+
+/* ---------- panel ---------- */
+.wn-panel{position:fixed;right:16px;bottom:84px;z-index:61;width:380px;max-width:calc(100vw - 32px);height:min(620px,80vh);max-height:calc(100vh - 100px);background:var(--card);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow-lg);display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;transform-origin:bottom right;animation:wn-open .28s var(--ease) both}
+.wn-panel[hidden]{display:none}
+@keyframes wn-open{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+
+.wn-head{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 14px;min-height:58px;background:var(--navy);color:#fff}
+/* white disc behind the head-bar mascot, like the site's brand mark, so the navy bull reads on navy */
+.wn-head .wn-mascot{width:36px;height:36px;padding:3px;border-radius:50%;background:#fff}
+.wn-title{flex:1;min-width:0;display:grid;gap:1px}
+.wn-title b{font:700 15.5px/1.2 var(--ui);letter-spacing:.01em}
+.wn-title small{font:500 13px/1.25 var(--ui);color:#C9D8F2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wn-status{display:inline-flex;align-items:center;gap:6px;font:600 13px/1 var(--mono);color:#C9D8F2;margin-right:2px}
+.wn-status i{width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 0 3px rgba(61,187,110,.25)}
+.wn-status[data-state=thinking] i{background:var(--orange);box-shadow:0 0 0 3px rgba(239,162,74,.3);animation:wn-pulse 1s ease-in-out infinite}
+.wn-status[data-state=offline] i{background:#8A98B8;box-shadow:none}
+@keyframes wn-pulse{0%,100%{transform:scale(1)}50%{transform:scale(.6)}}
+.wn-hbtn{width:34px;height:34px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s}
+.wn-hbtn:hover{background:rgba(255,255,255,.22)}
+.wn-hbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- messages ---------- */
+.wn-log{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:14px 14px 8px;background:var(--well);display:flex;flex-direction:column;gap:10px;scroll-behavior:auto}
+.wn-msg{display:flex;gap:8px;align-items:flex-end;max-width:100%}
+.wn-msg.user{justify-content:flex-end}
+.wn-msg .wn-mascot{width:26px;height:26px;margin-bottom:2px}
+.wn-bubble{max-width:84%;min-width:0;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere;transform-origin:bottom left;animation:wn-pop .26s cubic-bezier(.34,1.56,.64,1) both}
+.wn-msg.user .wn-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:4px;transform-origin:bottom right;white-space:pre-wrap}
+.wn-msg.bot .wn-bubble{background:var(--card);border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px}
+.wn-msg.sys{justify-content:center}
+.wn-msg.sys .wn-bubble{max-width:100%;padding:2px 8px;background:transparent;border:0;color:var(--ink-2);font-size:13px;text-align:center;animation:none}
+.wn-msg.sys.bad .wn-bubble{color:var(--bad)}
+.wn-still .wn-bubble{animation:none}
+@keyframes wn-pop{0%{opacity:0;transform:translateY(6px) scale(.92)}70%{opacity:1;transform:translateY(-1px) scale(1.02)}100%{opacity:1;transform:none}}
+
+/* markdown subset inside a bubble */
+.wn-bubble p{margin:0}
+.wn-bubble p+p,.wn-bubble p+ul,.wn-bubble p+ol,.wn-bubble ul+p,.wn-bubble ol+p{margin-top:7px}
+.wn-bubble ul,.wn-bubble ol{margin:0;padding-left:20px}
+.wn-bubble li+li{margin-top:3px}
+.wn-bubble code{font:500 13px/1.4 var(--mono);background:var(--gray-soft);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+.wn-msg.user .wn-bubble code{background:rgba(255,255,255,.18)}
+.wn-bubble a{color:var(--blue);font-weight:600;text-underline-offset:2px}
+.wn-msg.user .wn-bubble a{color:#fff}
+.wn-bubble strong{font-weight:600;color:var(--navy)}
+.wn-msg.user .wn-bubble strong{color:#fff}
+/* caret while a reply streams */
+.wn-caret{display:inline-block;width:2px;height:1em;background:var(--orange-deep);vertical-align:-2px;margin-left:2px;animation:wn-blink-caret 1s steps(2,start) infinite}
+@keyframes wn-blink-caret{to{visibility:hidden}}
+/* time dividers between groups more than five minutes apart */
+.wn-when{align-self:center;font:500 13px/1 var(--mono);color:var(--ink-3);margin:4px 0 -2px}
+
+/* typing indicator */
+.wn-typing{display:flex;gap:8px;align-items:flex-end}
+.wn-typing .wn-mascot{width:26px;height:26px;margin-bottom:2px}
+.wn-dots{display:inline-flex;gap:4px;align-items:center;padding:12px 12px;background:var(--card);border:1px solid var(--line);border-radius:12px;border-bottom-left-radius:4px;animation:wn-pop .26s cubic-bezier(.34,1.56,.64,1) both;transform-origin:bottom left}
+.wn-dots i{width:6px;height:6px;border-radius:50%;background:var(--ink-3);animation:wn-bounce 1.2s ease-in-out infinite}
+.wn-dots i:nth-child(2){animation-delay:.15s}
+.wn-dots i:nth-child(3){animation-delay:.3s}
+.wn-state{display:block;font:500 13px/1.3 var(--mono);color:var(--ink-3);margin-top:5px}
+.wn-state:empty{display:none}
+@keyframes wn-bounce{0%,60%,100%{transform:translateY(0);opacity:.55}30%{transform:translateY(-4px);opacity:1}}
+
+/* starter chips on an empty chat */
+.wn-starters{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 6px 34px}
+.wn-chip{border:1px solid var(--line);background:var(--card);color:var(--navy);font:600 13px/1.25 var(--ui);padding:8px 11px;border-radius:999px;cursor:pointer;text-align:left;transition:background .15s,border-color .15s}
+.wn-chip:hover{background:var(--info-soft);border-color:var(--blue)}
+
+/* ---------- composer ---------- */
+.wn-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;padding:10px 12px;border-top:1px solid var(--line);background:var(--card)}
+.wn-form textarea{display:block;width:100%;min-height:40px;max-height:150px;resize:none;overflow-y:auto;font:500 15px/1.4 var(--body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:9px 11px}
+.wn-form textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,75,149,.15);outline:none}
+.wn-form textarea::placeholder{color:var(--ink-3)}
+.wn-form .btn{min-height:40px;padding:9px 13px}
+.wn-form .btn[disabled]{opacity:.5;cursor:default}
+.wn-form .btn[hidden]{display:none}
+
+/* team-code step, shown inline above the input the first time (and again after a 401) */
+.wn-code{grid-column:1 / -1;display:grid;gap:6px;padding:10px 12px;background:var(--info-soft);border:1px solid #C9D8F2;border-radius:6px}
+.wn-code[hidden]{display:none}
+.wn-code label{font:700 13px/1.3 var(--ui);color:var(--info)}
+.wn-code-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.wn-code input{width:100%;min-width:0;font:500 15px/1.4 var(--mono);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:4px;padding:8px 10px;letter-spacing:.1em}
+.wn-code input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,75,149,.15);outline:none}
+.wn-code .btn{font-size:13px;min-height:38px}
+.wn-code small{font-size:13px;line-height:1.4;color:var(--ink-2)}
+.wn-code.is-bad small{color:var(--bad);font-weight:600}
+
+/* ---------- phone (≤ 700px): full-height sheet above the site's tab bar ---------- */
+@media (max-width:700px){
+  .wn-launch{bottom:calc(58px + 12px + env(safe-area-inset-bottom))}
+  .wn-hint{bottom:calc(58px + 24px + env(safe-area-inset-bottom))}
+  .wn-panel{top:0;left:0;right:0;bottom:auto;width:auto;max-width:none;height:100vh;height:100dvh;max-height:none;border:0;border-radius:0;padding-top:env(safe-area-inset-top);transform-origin:bottom center;animation:wn-sheet .3s var(--ease) both}
+  .wn-form{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+  .wn-form textarea,.wn-code input{font-size:16px}
+  .wn-head{padding-left:12px}
+  .wn-log{padding:12px 12px 8px}
+  .wn-bubble{max-width:88%}
+  .wn-chip{min-height:38px}
+  body.wn-lock{overflow:hidden}
+}
+@media (max-width:360px){
+  .wn-status .wn-status-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .wn-title small{font-size:13px}
+}
+@keyframes wn-sheet{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+
+/* ---------- reduced motion: nothing moves on its own ---------- */
+@media (prefers-reduced-motion:reduce){
+  .wn-launch .wn-mascot,.wn-mascot .eyes,.wn-mascot.is-nod .head,.wn-bubble,.wn-dots,.wn-dots i,.wn-caret,.wn-status i,.wn-panel{animation:none!important}
+  .wn-launch,.wn-hint,.wn-chip,.wn-hbtn,.wn-mascot .pupils{transition:none!important}
+  .wn-mascot.is-thinking .pupils{transform:none}
+  .wn-caret{visibility:visible}
+}
