@@ -41,6 +41,16 @@
 .team-member .team-roles .kicker{display:block;margin-bottom:2px}
 .team-member .team-roles em{font-style:normal;color:var(--ink-3);font-weight:500}
 
+.team-wk{display:block;margin-top:4px;color:var(--ink-3);font-size:12.5px;line-height:1.5}
+.team-phase{border-top:1px solid var(--line);padding:12px 0}
+.team-phase:first-child{border-top:0;padding-top:2px}
+.team-phase-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.team-phase-top .k{font:700 11px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.team-phase h3{margin:0;font:700 16px/1.3 var(--ui)}
+.team-phase-lead{margin:4px 0 6px;font-size:13.5px;color:var(--ink-2)}
+.team-phase ul{margin:0 0 6px;padding-left:18px;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.team-phase-gate{margin:0;font:600 13px/1.5 var(--ui);color:var(--navy)}
+h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
 /* roles table */
 .team-select{font:500 14px/1.3 var(--body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:4px;padding:7px 9px;width:100%;min-width:130px;max-width:200px}
 .team-select:disabled{color:var(--ink-2);background:var(--well)}
@@ -209,7 +219,42 @@
               </table>
             </div>
           </div>
-          <div class="card-foot">Everyone also owns one slice of the portfolio on top of their job — and everyone journals: your own trade notes the same day, three lines every Friday.</div>
+          <div class="card-foot">Everyone owns one sector on top of their job, and everyone journals: your own trade notes the same day, three lines every Friday.</div>
+        </section>
+
+        <!-- 4b. sectors -->
+        <section class="card reveal" aria-labelledby="team-sectors-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="team-sectors-h">Sectors</h2><span class="spacer"></span><span class="meta team-m" id="team-sectors-m"></span></div>
+          <div class="card-body tight"><ul class="list" id="team-sectors"></ul></div>
+          <div class="card-foot">Wharton requires at least one stock from as many sectors as we have members, held all season, and past final reports had to print who ran each one. Index funds and Treasuries are team positions: we all vote on those.</div>
+        </section>
+
+        <!-- 4c. how we decide -->
+        <section class="card reveal" aria-labelledby="team-decide-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="team-decide-h">How we decide</h2><span class="spacer"></span><span class="meta team-m" id="team-decide-m"></span></div>
+          <div class="card-body tight">
+            <ul class="list" id="team-decide"></ul>
+            <h3 class="sub" id="team-meet-h"></h3>
+            <ol class="list num" id="team-meet"></ol>
+          </div>
+        </section>
+
+        <!-- 4d. the season -->
+        <section class="card reveal" aria-labelledby="team-season-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="calendar"></span><h2 id="team-season-h">The season, phase by phase</h2><span class="spacer"></span><span class="meta team-m" id="team-season-m"></span></div>
+          <div class="card-body tight"><div id="team-season"></div></div>
+          <div class="card-foot">The jobs stay the same all season. What changes is who is on point: the trade log owner runs October, Laura's case owner runs the IPS, Michael runs the report.</div>
+        </section>
+
+        <!-- 4e. what we're scored on -->
+        <section class="card reveal" aria-labelledby="team-score-h" data-fold="closed">
+          <div class="card-head"><span class="ic" data-icon="star"></span><h2 id="team-score-h">What the report is scored on</h2><span class="spacer"></span><span class="meta team-m" id="team-score-m"></span></div>
+          <div class="card-body tight">
+            <ul class="list" id="team-criteria"></ul>
+            <h3 class="sub">Get these wrong and it never gets read</h3>
+            <ul class="list" id="team-gates"></ul>
+          </div>
+          <div class="card-foot">Wharton's wording, from the archived judging page. The current rubric is in SurveyMonkey Apply under Deliverables and still needs pulling in.</div>
         </section>
 
         <!-- 5. where we work -->
@@ -320,12 +365,42 @@
   $("team-roles").innerHTML = D.roles.map(function (r) {
     var cur = ownerOf(r);
     var opts = '<option value="">Unassigned</option>' + members.map(function (m) { return '<option value="' + m.id + '"' + (m.id === cur ? " selected" : "") + ">" + esc(m.name) + "</option>"; }).join("");
-    return '<tr><td class="key">' + esc(r.title) + '</td><td data-label="Owner"><select class="team-select" data-role="' + r.id + '" aria-label="Owner of ' + esc(r.title) + '"' + (r.fixed ? " disabled" : "") + ">" + opts + "</select></td><td class=\"team-owns\">" + esc(r.owns) + "</td></tr>";
+    var bk = r.backup && D.roles.filter(function (x) { return x.id === r.backup; })[0];
+    return '<tr><td class="key">' + esc(r.title) + '</td><td data-label="Owner"><select class="team-select" data-role="' + r.id + '" aria-label="Owner of ' + esc(r.title) + '"' + (r.fixed ? " disabled" : "") + ">" + opts + "</select></td><td class=\"team-owns\">" + esc(r.owns) +
+      (r.weekly ? '<span class="team-wk"><b>Every week:</b> ' + esc(r.weekly) + "</span>" : "") +
+      (bk ? '<span class="team-wk"><b>Backup:</b> ' + esc(bk.title) + "</span>" : "") + "</td></tr>";
   }).join("");
   /* folded-card summaries (phone only) */
   function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
   function rolesMeta() { $("team-roles-m").textContent = plural(D.roles.length, "role", "roles") + " · " + D.roles.filter(function (r) { return ownerOf(r); }).length + " assigned"; }
   rolesMeta();
+
+  /* sectors, decision rules, meeting shape, the four phases, and the scoring criteria */
+  $("team-sectors").innerHTML = D.sectors.map(function (x) {
+    return "<li><b>" + esc(x.name) + "</b><span>" + esc(x.eg) + "</span></li>";
+  }).join("");
+  $("team-sectors-m").textContent = D.sectors.length + " sectors";
+
+  $("team-decide").innerHTML = D.ops.decide.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
+  $("team-meet-h").textContent = "The meeting: " + D.ops.meeting.length;
+  $("team-meet").innerHTML = D.ops.meeting.steps.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
+  $("team-decide-m").textContent = D.ops.decide.length + " rules";
+
+  $("team-season").innerHTML = D.ops.phases.map(function (ph) {
+    var lead = D.roles.filter(function (r) { return r.id === ph.lead; })[0];
+    return '<article class="team-phase"><div class="team-phase-top"><span class="k">' + esc(ph.when) + '</span><h3>' + esc(ph.name) + "</h3></div>" +
+      '<p class="team-phase-lead"><b>On point:</b> ' + esc(lead ? lead.title : "") + "</p>" +
+      "<ul>" + ph.does.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+      '<p class="team-phase-gate">' + esc(ph.gate) + "</p></article>";
+  }).join("");
+  $("team-season-m").textContent = D.ops.phases.length + " phases";
+
+  $("team-criteria").innerHTML = D.ops.criteria.map(function (c, i) {
+    return "<li><b>" + (i + 1) + ". " + esc(c.n) + "</b><span>" + esc(c.d) + "</span></li>";
+  }).join("");
+  $("team-gates").innerHTML = D.ops.gates.map(function (g) { return "<li>" + esc(g) + "</li>"; }).join("");
+  $("team-score-m").textContent = D.ops.criteria.length + " criteria";
+
   $("team-roles").addEventListener("change", function (e) {
     var s = e.target; if (!s.matches("select[data-role]")) return;
     saved[s.getAttribute("data-role")] = s.value; W.store.set(KEY, saved); renderMembers(); rolesMeta();

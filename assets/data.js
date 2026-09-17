@@ -327,13 +327,97 @@ WSW.data = {
       ]
   },
 
+  /* Five jobs, built around the four things Wharton actually grades (three of the four are documents),
+     not around the portfolio. Everyone also owns one sector: the rules require at least one stock per
+     sector per member, and past final reports had to print who managed each sector. Every job has a
+     backup, because after Oct 9 nobody can be added and 4 members is the disqualification floor. */
   roles: [
-    { id: "lead",    title: "Team leader + submissions", owns: "The thesis, the IPS draft, every submission in SurveyMonkey Apply, and Wharton's emails.", fixed: "michael" },
-    { id: "risk",    title: "Risk checker",              owns: "Checks every trade against our limits before the vote, and can pause one that breaks a rule." },
-    { id: "log",     title: "Journal keeper",            owns: "The shared trade sheet and the shape of our notes. Chases missing notes \u2014 does not write them for us. Drafts the Oct 23 Trading Notes Analysis." },
-    { id: "client",  title: "Laura's case + the math",   owns: "Knows the case cold. Required-return math, the bond ladder, and the client sections of the IPS." },
-    { id: "research",title: "Research + sources",        owns: "A short market update each week, the works-cited list including any AI use, and the final edit of the report." }
+    { id: "lead", title: "Team leader and submissions", fixed: "michael", backup: "client",
+      owns: "Sends every deliverable to Wharton and keeps the calendar. Breaks a tie vote. Does the last read of the IPS and the report so five people's writing sounds like one team.",
+      weekly: "Posts the week's three questions the night before the meeting. Chairs it. Submits a day early, never on the deadline." },
+    { id: "client", title: "Laura's case", backup: "lead",
+      owns: "Knows the client case cold and answers one question on every trade: does this help Laura? Writes the first draft of the IPS.",
+      weekly: "Keeps the one-page client brief current. Any pitch that doesn't name one of her goals gets sent back." },
+    { id: "numbers", title: "The numbers", backup: "lead",
+      owns: "The math and the charts: what return we need, the bond ladder, what a position does to the whole portfolio. Only person who edits the spreadsheet.",
+      weekly: "One new name analysed with a valuation. Updates the portfolio sheet before the meeting." },
+    { id: "risk", title: "Risk and the bear case",  backup: "log",
+      owns: "Checks every trade against our limits before the vote, and writes the short version of why it could be wrong. Never writes the bear case on their own idea.",
+      weekly: "Posts a one-page risk sheet before the meeting: what we hold, anything near a limit, the worst case." },
+    { id: "log", title: "Trade log and the rules", backup: "numbers",
+      owns: "Logs every trade the same day, checks the log against WInS each week, and owns the Oct 23 Trading Notes Analysis. Also keeps the checklist of Wharton's rules and formats \u2014 nothing gets submitted until it passes.",
+      weekly: "Same-day log entries, a 10-line set of minutes within a day, and one reconciliation against the account." }
   ],
+
+  /* One sector each: Wharton requires at least one stock from as many sectors as there are members,
+     held all season. Index funds and Treasuries are team positions \u2014 the whole team votes on those. */
+  sectors: [
+    { id: "tech",   name: "Tech and communication", eg: "software, chips, phones, media" },
+    { id: "health", name: "Health care",            eg: "drugs, devices, insurers" },
+    { id: "fin",    name: "Financials",             eg: "banks, payments, insurance" },
+    { id: "ind",    name: "Industrials and energy", eg: "machines, transport, oil, utilities" },
+    { id: "cons",   name: "Consumer",               eg: "food, retail, restaurants, travel" }
+  ],
+
+  /* How we decide and how we meet. Scaled from real investment-club rules: a written objection with a
+     deadline, and silence lets the trade go ahead, so nobody can block a trade by never answering. */
+  ops: {
+    decide: [
+      "3 of 5 yes approves a trade. Michael breaks a tie.",
+      "4 of 5 for anything over 10% of the portfolio, a new kind of investment, or a change to the plan.",
+      "The bear case is posted before the vote. If it isn't posted in time the trade goes ahead \u2014 staying quiet is not a veto.",
+      "Position limits until the Trading page says otherwise: 5% of the portfolio in one stock to start, 8% at most, 30% in one sector.",
+      "Whoever proposes a trade writes its note the same day. No note, no trade next time.",
+      "Your name stays on your section even when it's empty. Nobody quietly covers for anyone."
+    ],
+    meeting: {
+      length: "18 minutes, standing",
+      steps: [
+        "Status goes in the chat before the meeting. Reading it is the price of admission.",
+        "Two minutes, everyone writes their answer to today's question before anyone talks.",
+        "One round where each person reads one line, no arguing yet.",
+        "Eight minutes on the question, then the decision.",
+        "Last three minutes: who does what, and when and where they'll do it. Posted before anyone leaves."
+      ]
+    },
+    /* The five things the report is scored on. Wharton's wording, from the archived Judging and
+       Evaluation page (2023-24) - the current rubric sits in SurveyMonkey Apply under Deliverables.
+       Note #4: how we run ourselves is a scored line item, not admin. */
+    criteria: [
+      { n: "Investment strategy", d: "A clear, creative thesis with mid- and long-term thinking, and a portfolio in at least as many sectors as we have members." },
+      { n: "Client knowledge", d: "Tailored to Laura's goals closely enough that it would win her over as a client." },
+      { n: "Portfolio analysis", d: "Real understanding of the tools, with both numbers and judgement. Not jargon." },
+      { n: "Our competition experience", d: "How we worked together, how we made decisions, and what we learned. This is why the jobs and the journal exist." },
+      { n: "Creativity and presentation", d: "A compelling story, clean data, an authentic team voice." }
+    ],
+
+    /* Miss one of these and the report never gets read, however good it is. The trade log and rules
+       owner checks them; nothing is submitted until they pass. */
+    gates: [
+      "First trade placed by Wharton's deadline",
+      "At least one stock in every sector we have a member for, plus at least one ETF, held at the checkpoint",
+      "Every deliverable in on time - skipping one has ended teams' seasons",
+      "Only securities the Trading page allows",
+      "Inside the page range, with every required element",
+      "Same advisor and same roster after the Oct 9 lock"
+    ],
+
+    /* The season changes shape four times. Each phase has one person on point. */
+    phases: [
+      { id: "setup", when: "Sep 28 \u2013 Oct 9", name: "Set up and start trading", lead: "lead",
+        does: ["Everyone picks a sector and names their backup", "The one-page team agreement gets signed by all five", "First trades, each with its note the same day"],
+        gate: "Roster submitted Oct 6 or 7, not Oct 9." },
+      { id: "notes", when: "Oct 10 \u2013 Oct 23", name: "Trading Notes Analysis", lead: "log",
+        does: ["Keep trading and keep writing notes", "Pick the three notes that best show the strategy being tested", "Write the analysis from everyone's notes"],
+        gate: "Submitted Oct 21. Missing this one has ended teams' seasons." },
+      { id: "ips", when: "Oct 24 \u2013 Nov 6", name: "Investment Policy Statement", lead: "client",
+        does: ["Laura's case owner drafts it", "Each person writes why their sector is in the plan", "The numbers owner supplies the required return and the ladder", "Michael edits it into one voice"],
+        gate: "Submitted Nov 5. Trading ends Nov 6." },
+      { id: "report", when: "Nov 7 \u2013 Dec 4", name: "Final report", lead: "lead",
+        does: ["Nov 7: outline it together, no writing yet, every section gets an owner and a page budget", "Nov 20: all drafts done", "Nov 21: everyone reviews a section they did not write, and no new ideas after that day", "Nov 24: Michael merges it; Nov 30 one-voice pass"],
+        gate: "Submitted Dec 2. Ask Coach P for the school letter by Nov 13." }
+    ]
+  },
 
   phases: [
     { id: "pre",      label: "Pre-season",            start: "2026-09-14", end: "2026-09-14", color: "#B9C3D6", desc: "Registered. Materials released Sep 15 \u2014 client is Laura Gao." },
@@ -495,10 +579,10 @@ WSW.data = {
   ],
 
   weekly: [
-    { d: "Monday", t: "Sector pitches", s: "Each member brings one idea from their sector, tied to a client goal. Ten minutes each." },
-    { d: "Tuesday", t: "Analysis", s: "Joe runs the numbers on anything the team liked: valuation, beta, correlation with what we hold." },
-    { d: "Wednesday", t: "Vote and trade", s: "The team votes. Whoever proposes a trade writes its note the same day \u2014 everyone journals, nobody writes them for us." },
-    { d: "Friday", t: "Write", s: "Three lines each in the journal: what I learned, what I'd do differently, one number I watched. Then an hour on the current deliverable \u2014 internal deadlines are one week before Wharton's." }
+    { d: "Monday", t: "Sector pitches", s: "Each person brings one idea from their sector and says which of Laura's goals it serves. Ten minutes each." },
+    { d: "Tuesday", t: "Numbers and the bear case", s: "The numbers owner values anything the team liked. The risk owner writes the short case against it, and posts it before the vote." },
+    { d: "Wednesday", t: "Vote and trade", s: "18 minutes, standing. 3 of 5 approves. Whoever proposes a trade writes its note the same day \u2014 everyone journals." },
+    { d: "Friday", t: "Write", s: "Three lines each in the journal: what I learned, what I'd do differently, one number I watched. Then an hour on whatever the current phase is building." }
   ],
 
   announcements: [

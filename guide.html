@@ -461,7 +461,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   function potAt(year, rate) { if (year < 2027) return 0; return 300 * Math.pow(1 + rate, year - 2027) + (year >= 2028 ? 150 * Math.pow(1 + rate, year - 2028) : 0); }
   function pileAAfter(year) { var r = RESERVE; for (var yr = 2033; yr <= year; yr++) { r -= 50; if (yr < year) r *= 1 + LADDER; } return Math.max(0, r); }
 
-  var ui = { grow: 2033, bills: 2033, scen: "none", mix: 40, lens: "wins", pile: "a", slice: 0, year: 2031, side: "most", derisk: "late", profile: "balanced", own: "s:core", tr: null };
+  var ui = { grow: 2033, bills: 2033, scen: "none", mix: 40, lens: "wins", pile: "a", slice: 0, year: 2031, side: "most", derisk: "late", profile: "balanced", own: "s:" + W.data.sectors[0].id, tr: null };
   var timer = null;
   function stopPlay() { if (timer) { clearInterval(timer); timer = null; } var p = $("play"); if (p) p.innerHTML = playIcon + "Play"; }
   function playLoop(key, min, max, cb) {
@@ -804,36 +804,34 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       "<li><div><b>What does she promise co‑sponsors in 2031?</b><span>A range, plus how sure we are, plus a short pitch she could actually send.</span></div></li>" +
       "</ol>" });
 
-  var SLICES_OWN = [
-    { id: "core", name: "Core funds", pct: "about 45%", tag: "US and international index funds", cls: "t-core", owner: "", does: ["Researches index funds on Wharton’s approved list", "Keeps the mix on target, called rebalancing", "Proposes every trade in this slice"] },
-    { id: "safe", name: "Safe part", pct: "about 40%", tag: "Bonds and Treasuries", cls: "t-safe", owner: "", does: ["Researches bond and Treasury funds", "Plans how the safe part grows as 2031 and 2033 get close", "Proposes every trade in this slice"] },
-    { id: "sa", name: "Stocks A", pct: "about 5%", tag: "Tech and communication", cls: "t-stk", owner: "", does: ["Researches 1 to 3 companies in these areas", "Tags each pick medium or higher risk, with a reason", "No single stock over 3% of the portfolio"] },
-    { id: "sb", name: "Stocks B", pct: "about 5%", tag: "Healthcare and consumer", cls: "t-stk", owner: "", does: ["Researches 1 to 3 companies in these areas", "Tags each pick medium or higher risk, with a reason", "No single stock over 3% of the portfolio"] },
-    { id: "sc", name: "Stocks C", pct: "about 5%", tag: "Banks, industry and energy", cls: "t-stk", owner: "", does: ["Researches 1 to 3 companies in these areas", "Tags each pick medium or higher risk, with a reason", "No single stock over 3% of the portfolio"] }
-  ];
-  var TEAM_JOBS = [
-    { id: "lead", name: "Team leader and submissions", owner: W.member(W.data.team.leader).name, does: ["Turns in every deliverable on SurveyMonkey Apply", "Runs a 15-minute check-in each week", "Pulls the IPS together (everyone writes their own slice’s part)", "Settles it when a vote or a HOLD gets stuck"] },
-    { id: "risk", name: "Risk checker", owner: "", does: ["Checks every trade against our limits before the vote", "Can pause a trade that breaks a rule", "Looks over every holding at the weekly check-in"] },
-    { id: "log", name: "Journal keeper", owner: "", does: ["Keeps the shared sheet: every trade, who proposed it, who placed it", "Does NOT write our notes for us \u2014 chases anyone whose note is missing the next day", "Keeps every note in the same shape so they read as one team", "Picks the notes and drafts the Oct 23 Trading Notes Analysis"] },
-    { id: "client", name: "Laura’s case and the math", owner: "", does: ["Knows Laura’s case best", "Runs the spreadsheet for her real money", "Checks that every note ties back to her goals"] },
-    { id: "research", name: "Research and sources", owner: "", does: ["A short market update each week", "Keeps the list of sources, including any AI use, which the rules say we must cite", "Edits the final report"] }
-  ];
+  /* one sector each (Wharton: at least one stock per sector per member, held all season) plus the
+     five jobs, both straight out of data.js so the Team page and the Guide can never disagree */
+  var SECTOR_DOES = ["Finds 1 to 3 companies in this sector", "Says why each one fits Laura, not just why it looks like a good company", "Proposes those trades and writes their notes", "Writes this sector's part of the final report"];
+  var TCLS = ["t-core", "t-safe", "t-stk", "t-stk", "t-stk"];
+  var SLICES_OWN = W.data.sectors.map(function (x, i) {
+    return { id: x.id, name: x.name, pct: "1 stock or more", tag: x.eg, cls: TCLS[i] || "t-stk", owner: "", does: SECTOR_DOES };
+  });
+  var TEAM_JOBS = W.data.roles.map(function (r) {
+    var bk = W.data.roles.filter(function (x) { return x.id === r.backup; })[0];
+    return { id: r.id, name: r.title, owner: r.fixed ? W.member(r.fixed).name : "",
+      does: [r.owns, "Every week: " + r.weekly, "Backup: " + (bk ? bk.title : "-")] };
+  });
   function ownerPill(o) { return o ? '<span class="pillname set">' + o + "</span>" : '<span class="pillname open">Open</span>'; }
-  S({ ch: "Our team", title: "Our jobs: one slice, one team job each.",
-    say: "<b>A proposal for our next meeting, not decided yet.</b> Each of us picks one slice to research and one team job. The small stock slices are Federico’s idea. Only the leader job is filled, because Wharton made Michael team leader.",
-    html: '<div class="seg-btns" id="ownview" role="group" aria-label="Show" style="--n:2"><button type="button" id="ownview-s" data-view="s">Slices<small>what we research</small></button><button type="button" id="ownview-j" data-view="j">Team jobs<small>what we run</small></button></div>' +
-      '<div class="tree" id="tree" role="group" aria-label="Portfolio slices, sizes are rough">' +
+  S({ ch: "Our team", title: "Two things each: a sector and a job.",
+    say: "<b>A proposal for our next meeting, not decided yet.</b> Two things each: one sector you follow, and one job you run. Only the leader job is filled, because Wharton picked that one.",
+    html: '<div class="seg-btns" id="ownview" role="group" aria-label="Show" style="--n:2"><button type="button" id="ownview-s" data-view="s">Sectors<small>what we follow</small></button><button type="button" id="ownview-j" data-view="j">Jobs<small>what we run</small></button></div>' +
+      '<div class="tree" id="tree" role="group" aria-label="One sector each">' +
         '<div class="top">' + SLICES_OWN.slice(0, 2).map(function (t) { return '<button class="g-tile ' + t.cls + '" type="button" id="tile-' + t.id + '" data-pick="s:' + t.id + '"><span class="nm">' + t.name + '</span><span class="pc">' + t.pct + "</span>" + (t.owner ? '<span class="ow">' + t.owner + "</span>" : '<span class="ow">Open</span>') + "</button>"; }).join("") + "</div>" +
         '<div class="bot">' + SLICES_OWN.slice(2).map(function (t) { return '<button class="g-tile ' + t.cls + '" type="button" id="tile-' + t.id + '" data-pick="s:' + t.id + '"><span class="nm">' + t.name + '</span><span class="pc">' + t.pct + "</span>" + '<span class="ow">Open</span>' + "</button>"; }).join("") + "</div>" +
       "</div>" +
       '<div class="jobs" id="jobs">' + TEAM_JOBS.map(function (j) { return '<button class="jobrow" type="button" id="job-' + j.id + '" data-pick="j:' + j.id + '"><span>' + j.name + "</span>" + ownerPill(j.owner) + "</button>"; }).join("") + "</div>" +
       '<article class="detail" id="pickd" aria-live="polite"></article>' +
-      '<p class="g-note plain"><b>How we pick:</b> everyone names their top 2 slices and top 2 jobs, and ' + W.member(W.data.team.leader).name + ' matches them up. We can swap after two weeks. If someone’s out, anyone can cover.</p>' +
+      '<p class="g-note plain"><b>Why a sector each:</b> the rules say the portfolio has to hold a stock from at least as many sectors as we have people, all season, and past final reports had to print who ran each one. Index funds and Treasuries are team positions — we all vote on those. <b>How we pick:</b> name your top 2 sectors and top 2 jobs and ' + W.member(W.data.team.leader).name + ' matches them up. Every job has a backup, because after Oct 9 nobody can be added.</p>' +
       '<p class="g-note b"><b>Two rules for everyone:</b> go through steps 1 to 13 of this guide before you vote on or place a trade \u2014 and <b>everyone journals</b>. Whoever proposes a trade writes its note the same day, and each of us adds three lines every Friday. The journal keeper keeps the sheet; the writing is ours. Wharton grades the notes on Oct 23, so five people thinking on paper beats one person writing up everyone else\u2019s trades.</p>',
     mount: function (draw) {
       function pick(e) { var b = e.target.closest("[data-pick]"); if (!b) return; ui.own = b.getAttribute("data-pick"); draw(); }
       $("tree").addEventListener("click", pick); $("jobs").addEventListener("click", pick);
-      $("ownview").addEventListener("click", function (e) { var b = e.target.closest("[data-view]"); if (!b) return; var v = b.getAttribute("data-view"); if (ui.own.charAt(0) !== v) ui.own = v === "s" ? "s:core" : "j:lead"; draw(); });
+      $("ownview").addEventListener("click", function (e) { var b = e.target.closest("[data-view]"); if (!b) return; var v = b.getAttribute("data-view"); if (ui.own.charAt(0) !== v) ui.own = v === "s" ? "s:" + W.data.sectors[0].id : "j:" + W.data.roles[0].id; draw(); });
     },
     update: function () {
       var sel = ui.own, kind = sel.split(":")[0], id = sel.split(":")[1];
@@ -841,7 +839,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       pressGroup($("ownview"), "data-view", kind);
       Array.prototype.forEach.call(document.querySelectorAll("#tree [data-pick], #jobs [data-pick]"), function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-pick") === sel)); });
       var item = (kind === "s" ? SLICES_OWN : TEAM_JOBS).filter(function (x) { return x.id === id; })[0];
-      $("pickd").innerHTML = '<span class="k">' + (kind === "s" ? "Slice · " + item.pct + " · " + item.tag : "Team job") + "</span><h3>" + item.name + "</h3>" +
+      $("pickd").innerHTML = '<span class="k">' + (kind === "s" ? "Sector · " + item.tag : "Job") + "</span><h3>" + item.name + "</h3>" +
         "<ul>" + item.does.map(function (d) { return "<li>" + d + "</li>"; }).join("") + "</ul>" +
         '<span class="count">Owner: ' + (item.owner || "open, pick at the meeting") + "</span>";
     } });
@@ -902,7 +900,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       if (t.stage === 3 && t.yes.length < 3) t.stage = 2;
       if (t.stage === 2 && t.yes.length >= 3) t.stage = 3;
       if (t.stage >= 1) m.push(msg("Dylan (example)", "Proposing a trade:" + tradeCard));
-      if (t.stage >= 2) m.push(msg("Risk checker", "Rules OK: under 10% of the portfolio, and the fund is on the approved list."));
+      if (t.stage >= 2) m.push(msg("Risk owner", "Rules OK: under 10% of the portfolio, and the fund is on the approved list. Bear case posted."));
       if (t.held) { m.push(msg("Michael", "HOLD. We already own a US index fund. Do we need more?")); m.push(msg("Dylan (example)", "Yes. It\u2019s one fund, and it\u2019s below the example plan. This brings it back to 30%.")); m.push(msg("", "Votes start over", "hold")); }
       if (t.stage >= 3) m.push(msg("", "Approved \u00b7 " + t.yes.length + " of 5 yes", "ok"));
       if (t.stage >= 4) { m.push(msg("Caleb", "Placing it now.")); m.push(msg("Caleb", "Filled. I checked our holdings first, so no double buy.")); }
