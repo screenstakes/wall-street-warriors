@@ -208,10 +208,12 @@
     if (!state.log.length) renderIntro();
     for (var i = 0; i < state.log.length; i++) {
       var m = state.log[i];
-      addBubble(m.role, m.role === "user" ? m.content : md(m.content), m.t);
+      var el = addBubble(m.role, m.role === "user" ? m.content : md(m.content), m.t);
+      var b = el && el.querySelector ? el.querySelector(".wn-bubble") : null;
+      if (b) b.style.animation = "none"; /* restored turns appear as they were, without popping */
     }
     scrollLog(true);
-    setTimeout(function () { log.classList.remove("wn-still"); }, 50);
+    log.classList.remove("wn-still");
   }
   function push(role, content, extra) {
     var m = { role: role, content: content, t: Date.now() };
@@ -268,6 +270,7 @@
   }
   function think(on) { headMascot.classList.toggle("is-thinking", !!on); launch.querySelector(".wn-mascot").classList.toggle("is-thinking", !!on); }
   function setBusy(on) {
+    if (!on && document.activeElement === stopBtn) ta.focus({ preventScroll: true });
     state.busy = on;
     sendBtn.disabled = on; sendBtn.hidden = on; stopBtn.hidden = !on;
     ta.readOnly = on;
@@ -290,6 +293,7 @@
   function setOpen(open, quiet) {
     state.open = open; store.set("open", open && !(window.matchMedia && window.matchMedia("(max-width:700px)").matches)); /* phones: never reopen the full-screen sheet on the next page */
     panel.hidden = !open;
+    panel.setAttribute("aria-modal", PHONE.matches ? "true" : "false");
     launch.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("wn-lock", open && PHONE.matches);
     if (open) {
@@ -323,7 +327,7 @@
   function ask(text) {
     text = String(text || "").trim();
     if (!text || state.busy) return;
-    if (starters) { starters.remove(); starters = null; }
+    if (starters) { if (starters.contains(document.activeElement)) ta.focus({ preventScroll: true }); starters.remove(); starters = null; }
     if (!state.code) { state.pending = text; ta.value = ""; grow(); showCodeForm(""); return; }
     push("user", text); addBubble("user", text); scrollLog(true);
     ta.value = ""; grow();
@@ -355,6 +359,7 @@
       else if (ev.error) { gotError = true; note(String(ev.error), true); }
     }
     function finish(aborted) {
+      if (!state.log.length) { hideTyping(); state.ctrl = null; setBusy(false); return; } /* cleared mid-request */
       hideTyping(); state.ctrl = null;
       if (bubble) {
         var wrap = bubble.parentNode; wrap.removeAttribute("aria-busy");
