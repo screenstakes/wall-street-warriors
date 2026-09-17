@@ -1,5 +1,7 @@
 /* Warren — Wall Street Warriors' chat helper. One stylesheet, one script, no libraries.
-   Config (optional):  window.WARREN = { endpoint: "https://…", name: "Warren" }
+   Config (optional):  window.WARREN = { endpoint: "https://…", endpoints: ["https://…", …], name: "Warren" }
+   Several endpoints = the same relay behind different hostnames. School web filters block some
+   hostnames and not others, so the widget probes them and remembers the one that works here.
    Transport: POST {endpoint}/chat with { code, page:{title,url}, messages:[{role,content}] } (last 12 turns).
    Reply is text/event-stream, one JSON object per "data:" line: {delta} | {status} | {done} | {error}.
    Without an endpoint, or offline, a small local fallback answers from WSW.data (dates, roster, links, roles). */
@@ -8,7 +10,9 @@
   /* config: window.WARREN wins, else the site data (assets/data.js), else nothing */
   var CFG = window.WARREN || (window.WSW && window.WSW.data && window.WSW.data.warren) || {};
   var NAME = CFG.name || "Warren";
-  var ENDPOINT = String(CFG.endpoint || "").replace(/\/+$/, "");
+  var EPS = (CFG.endpoints && CFG.endpoints.length ? CFG.endpoints : [CFG.endpoint])
+    .map(function (u) { return String(u || "").replace(/\/+$/, ""); }).filter(Boolean);
+  var epAt = 0, ENDPOINT = EPS[0] || "";
   var W = window.WSW || {};
   var D = W.data || null;
   var KEEP = 20, SEND = 12, GAP = 5 * 60000;
@@ -21,6 +25,14 @@
     set: function (k, v) { try { localStorage.setItem("warren:" + k, JSON.stringify(v)); } catch (e) {} },
     del: function (k) { try { localStorage.removeItem("warren:" + k); } catch (e) {} }
   };
+  /* stick to whatever host worked last time on this machine */
+  (function () {
+    var saved = store.get("ep", "");
+    var i = saved ? EPS.indexOf(saved) : -1;
+    if (i > 0) { epAt = i; ENDPOINT = EPS[i]; }
+  })();
+  function useEndpoint(i) { epAt = (i + EPS.length) % (EPS.length || 1); ENDPOINT = EPS[epAt] || ""; store.set("ep", ENDPOINT); }
+
   var session = {
     get: function (k) { try { return sessionStorage.getItem("warren:" + k); } catch (e) { return null; } },
     set: function (k, v) { try { sessionStorage.setItem("warren:" + k, v); } catch (e) {} }
@@ -270,20 +282,33 @@
     if (relay === "resting") return setStatus("offline", "Resting");
     setStatus("online");
   }
-  function checkRelay(force) {
-    if (!ENDPOINT || state.busy || navigator.onLine === false) return;
-    if (!force && Date.now() - relayAt < 60000) return;
-    relayAt = Date.now();
+  function probe(url) {
     var ctrl = window.AbortController ? new AbortController() : null;
     var t = setTimeout(function () { if (ctrl) ctrl.abort(); }, 6000);
-    fetch(ENDPOINT + "/health", { cache: "no-store", signal: ctrl ? ctrl.signal : undefined })
+    return fetch(url + "/health", { cache: "no-store", signal: ctrl ? ctrl.signal : undefined })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (h) {
-        relay = !h || !h.ok || h.keyConfigured === false ? "down"
-          : h.budget && h.budget.usedUsd >= h.budget.capUsd ? "resting" : "up";
+        clearTimeout(t);
+        if (!h || !h.ok || h.keyConfigured === false) return "down";
+        return h.budget && h.budget.usedUsd >= h.budget.capUsd ? "resting" : "up";
       })
-      .catch(function () { relay = "down"; })
-      .then(function () { clearTimeout(t); if (!state.busy) idleStatus(); });
+      .catch(function () { clearTimeout(t); return "down"; });
+  }
+  /* try the remembered host first, then the others: one of them is usually past the filter */
+  function checkRelay(force) {
+    if (!EPS.length || state.busy || navigator.onLine === false) return;
+    if (!force && Date.now() - relayAt < 60000) return;
+    relayAt = Date.now();
+    var order = [], i;
+    for (i = 0; i < EPS.length; i++) order.push((epAt + i) % EPS.length);
+    (function step(n) {
+      if (n >= order.length) { relay = "down"; if (!state.busy) idleStatus(); return; }
+      probe(EPS[order[n]]).then(function (r) {
+        if (r === "down") return step(n + 1);
+        useEndpoint(order[n]); relay = r;
+        if (!state.busy) idleStatus();
+      });
+    })(0);
   }
   function nod(el) {
     if (!el) return;
@@ -355,7 +380,8 @@
     ta.value = ""; grow();
     request();
   }
-  function request() {
+  function request(tries) {
+    tries = tries || 0;
     var lastUser = "";
     for (var i = state.log.length - 1; i >= 0; i--) if (state.log[i].role === "user") { lastUser = state.log[i].content; break; }
     setBusy(true); showTyping();
@@ -420,6 +446,8 @@
         hideTyping();
         relay = "down"; relayAt = Date.now();
         if (bubble) { finish(false); return; }
+        /* couldn't reach this host at all — the school filter blocks some and not others, so try the next one */
+        if (tries < EPS.length - 1) { useEndpoint(epAt + 1); state.ctrl = null; return request(tries + 1); }
         offline("I can't reach " + NAME + "'s server right now", lastUser);
       });
     function handleLine(line) {

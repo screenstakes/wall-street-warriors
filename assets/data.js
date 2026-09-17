@@ -8,7 +8,12 @@ WSW.data = {
   checkedOn: "2026-09-16",
 
   /* Warren, the site's helper: the relay that holds the Claude key (see agentic-os/warren-relay). */
-  warren: { endpoint: "https://warren.192-241-138-219.sslip.io", name: "Warren" },
+  /* Two hostnames, one relay. School filters block *.sslip.io (it reads as dynamic DNS), so the
+     .com is tried first; the widget remembers whichever one works on that machine. */
+  warren: {
+    endpoints: ["https://warren.sidelineorder.com", "https://warren.192-241-138-219.sslip.io"],
+    name: "Warren"
+  },
 
   team: {
     name: "Wall Street Warriors",

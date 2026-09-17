@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Warren connection check — Wall Street Warriors</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .wc-wrap{max-width:720px;margin:0 auto;padding:24px 16px 64px}
+  .wc-verdict{border:2px solid var(--line,#D8DEEC);border-radius:12px;padding:16px;margin:16px 0;font-size:18px;line-height:1.45}
+  .wc-verdict[data-v=ok]{border-color:#1B7F4B;background:#EAF7F0}
+  .wc-verdict[data-v=bad]{border-color:#B3261E;background:#FCEDEC}
+  .wc-row{display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line,#D8DEEC)}
+  .wc-row b{flex:1;font-weight:600}
+  .wc-res{font-variant-numeric:tabular-nums;font-weight:700}
+  .wc-res[data-r=pass]{color:#1B7F4B}
+  .wc-res[data-r=fail]{color:#B3261E}
+  .wc-res[data-r=run]{color:#5A6785}
+  .wc-note{color:#5A6785;font-size:14px;margin-top:4px}
+  #wc-copy{margin-top:20px}
+  #wc-out{width:100%;min-height:120px;margin-top:12px;font:12px/1.4 ui-monospace,Menlo,monospace;padding:10px;border:1px solid var(--line,#D8DEEC);border-radius:8px}
+</style>
+</head>
+<body>
+<div class="wc-wrap">
+  <h1>Warren connection check</h1>
+  <p>Open this on a <b>school laptop, on school Wi-Fi</b>. It tests which of Warren's addresses the school network allows. Nothing is sent anywhere and no login is needed.</p>
+
+  <div class="wc-verdict" id="wc-verdict" data-v="run">Testing…</div>
+
+  <div id="wc-rows"></div>
+
+  <button class="btn" id="wc-copy" type="button">Copy results</button>
+  <textarea id="wc-out" readonly aria-label="Results to copy"></textarea>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var TESTS = [
+    { key: "com",    label: "Warren on warren.sidelineorder.com", url: "https://warren.sidelineorder.com/health", kind: "health" },
+    { key: "sslip",  label: "Warren on warren.192-241-138-219.sslip.io", url: "https://warren.192-241-138-219.sslip.io/health", kind: "health" },
+    { key: "server", label: "The server itself (sidelineorder.com)", url: "https://sidelineorder.com/robots.txt", kind: "reach" },
+    { key: "google", label: "Google Apps Script (backup route)", url: "https://script.google.com/robots.txt", kind: "reach" },
+    { key: "site",   label: "This site (control — should always pass)", url: "assets/data.js", kind: "reach" }
+  ];
+  var rows = document.getElementById("wc-rows"), out = document.getElementById("wc-out"), verdict = document.getElementById("wc-verdict");
+  var results = {};
+
+  function row(t) {
+    var el = document.createElement("div");
+    el.className = "wc-row";
+    el.innerHTML = '<b>' + t.label + '<div class="wc-note" id="n-' + t.key + '"></div></b><span class="wc-res" data-r="run" id="r-' + t.key + '">testing…</span>';
+    rows.appendChild(el);
+  }
+  function mark(t, pass, note, ms) {
+    var r = document.getElementById("r-" + t.key);
+    r.setAttribute("data-r", pass ? "pass" : "fail");
+    r.textContent = (pass ? "works" : "blocked") + (ms != null ? "  " + ms + "ms" : "");
+    document.getElementById("n-" + t.key).textContent = note || "";
+    results[t.key] = { pass: pass, note: note || "", ms: ms };
+    render();
+  }
+  function timeout(ms) { var c = window.AbortController ? new AbortController() : null; setTimeout(function () { if (c) c.abort(); }, ms); return c; }
+
+  function run(t) {
+    var t0 = Date.now(), c = timeout(10000);
+    var opts = { cache: "no-store", signal: c ? c.signal : undefined };
+    if (t.kind === "reach") opts.mode = "no-cors";
+    fetch(t.url, opts).then(function (res) {
+      var ms = Date.now() - t0;
+      if (t.kind === "reach") return mark(t, true, "", ms);
+      if (!res.ok) return mark(t, false, "reached it but got HTTP " + res.status, ms);
+      return res.json().then(function (h) {
+        mark(t, h && h.ok === true, h && h.keyConfigured === false ? "running, but no API key installed" : "", ms);
+      }).catch(function () { mark(t, false, "answered with something that isn't Warren (a filter block page?)", ms); });
+    }).catch(function (e) {
+      mark(t, false, e && e.name === "AbortError" ? "no answer in 10 seconds" : "connection refused or blocked", Date.now() - t0);
+    });
+  }
+
+  function render() {
+    var done = TESTS.every(function (t) { return results[t.key]; });
+    var working = TESTS.filter(function (t) { return t.kind === "health" && results[t.key] && results[t.key].pass; });
+    if (!done) { verdict.textContent = "Testing…"; verdict.setAttribute("data-v", "run"); }
+    else if (working.length) {
+      verdict.setAttribute("data-v", "ok");
+      verdict.innerHTML = "<b>Warren can be reached from here</b> on " + working.map(function (t) { return t.url.replace("https://", "").replace("/health", ""); }).join(" and ") + ". The chat should work on this laptop.";
+    } else {
+      verdict.setAttribute("data-v", "bad");
+      var srv = results.server && results.server.pass;
+      verdict.innerHTML = "<b>The school network is blocking Warren here.</b> " +
+        (srv ? "It reaches the server on other addresses, so it is blocking those two names specifically."
+             : "It blocks the whole server, not just one name.") +
+        (results.google && results.google.pass ? " Google is reachable, so the Google backup route would work." : " Google is blocked too.");
+    }
+    out.value = "Warren check — " + new Date().toString() + "\n" + location.href + "\n\n" +
+      TESTS.map(function (t) {
+        var r = results[t.key];
+        return (r ? (r.pass ? "WORKS  " : "BLOCKED") : "…      ") + "  " + t.label + (r && r.note ? "  (" + r.note + ")" : "") + (r && r.ms != null ? "  " + r.ms + "ms" : "");
+      }).join("\n");
+  }
+
+  TESTS.forEach(function (t) { row(t); run(t); });
+  render();
+  document.getElementById("wc-copy").addEventListener("click", function () {
+    out.select();
+    try { document.execCommand("copy"); this.textContent = "Copied"; } catch (e) { this.textContent = "Select the text and copy it"; }
+  });
+})();
+</script>
+</body>
+</html>
