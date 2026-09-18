@@ -29,6 +29,73 @@
 .dash-next .meta .chip{margin-left:8px;vertical-align:1px}
 .dash-next p.d{color:var(--ink-2);font-size:14px;margin-top:8px;max-width:58ch}
 .dash-next .act{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+/* team files */
+.files-intro{padding:16px 18px 4px;font-size:15px;color:var(--ink-2);max-width:78ch}
+.files-intro b{color:var(--ink)}
+.files-grid{list-style:none;margin:0;padding:14px 18px 18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.file{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:var(--r);padding:14px;background:var(--card);min-width:0}
+.file-top{display:flex;align-items:flex-start;gap:10px;min-width:0;min-height:53px}
+.file-av{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 15px/1 var(--ui);flex:none}
+.file-name{min-width:0}
+.file-name b{display:block;font:700 15px/1.25 var(--ui);color:var(--ink)}
+.file-name span{display:block;font-size:12.5px;line-height:1.35;color:var(--ink-2)}
+.file ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;flex:1;align-content:start}
+.file li{position:relative;padding-left:14px;font-size:13px;line-height:1.4;color:var(--ink-2)}
+.file li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.file .btn{justify-content:center;white-space:nowrap}
+.file .soon{display:block;text-align:center;font:600 12px/15px var(--ui);color:var(--ink-2);background:var(--well);border:1px dashed #C5CCD8;border-radius:4px;padding:9px 10px}
+.files-flow{border-top:1px solid var(--line-2);padding:16px 18px 18px}
+.files-flow h3{font:700 11px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
+.files-flow ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:f}
+.files-flow li{position:relative;background:var(--well);border-radius:var(--r);padding:12px 14px;counter-increment:f}
+.files-flow li b{display:flex;align-items:center;gap:8px;font:700 13px/1.2 var(--ui);color:var(--navy);margin-bottom:6px}
+.files-flow li b::before{content:counter(f);width:20px;height:20px;border-radius:50%;background:var(--orange);color:#1F1300;display:grid;place-items:center;font:700 11px/1 var(--mono);flex:none}
+.files-flow li span{display:block;font-size:13px;line-height:1.45;color:var(--ink-2)}
+@media (max-width:1100px){
+  .files-grid{grid-template-columns:1fr;gap:0;padding:6px 18px 12px}
+  .file{flex-direction:row;align-items:center;border:0;border-top:1px solid var(--line-2);border-radius:0;padding:12px 0;gap:16px}
+  .file:first-child{border-top:0}
+  .file-top{flex:0 0 190px;min-height:0;align-items:center}
+  .file ul{grid-template-columns:1fr;gap:3px}
+  .file .btn,.file .soon{flex:0 0 auto;width:136px}
+  .files-flow ol{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .file{flex-direction:column;align-items:stretch;gap:10px}
+  .file-top{flex:none}
+  .file ul{grid-template-columns:1fr}
+  .file .btn,.file .soon{width:auto}
+  .files-flow ol{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  #files{margin-bottom:14px!important}
+  .files-intro{padding:14px 14px 2px;font-size:14px}
+  .files-grid{padding:2px 14px 8px}
+  .file{flex-direction:row;align-items:center;gap:12px;padding:10px 0}
+  .file ul{display:none}
+  .file-top{flex:1 1 auto;min-width:0}
+  .file .btn,.file .soon{flex:0 0 auto;width:auto;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .file .soon{padding:0 12px}
+  .files-flow{padding:14px}
+  .files-flow li{padding:10px 12px}
+  #files .card-head .spacer,#files-folder:empty{display:none}
+  #files.has-folder .card-head{flex-wrap:wrap}
+  #files.has-folder #files-meta,#files.has-folder .card-head .sep{display:none}
+  #files-folder{flex:1 0 100%}
+  #files-folder .btn{width:100%;justify-content:center;min-height:44px}
+}
+@media (max-width:360px){#files-meta,#files .card-head .sep{display:none}}
+@media (max-width:360px){
+  .file .btn svg{display:none}
+  .file .btn{padding:0 12px;gap:0}
+  .file .soon{padding:0 10px}
+}
+@media (min-width:361px) and (max-width:700px){
+  #files.has-folder .card-head{flex-wrap:nowrap}
+  #files-folder{flex:0 0 auto;margin-left:auto}
+  #files-folder .btn{width:auto}
+}
+
 @media (max-width:520px){.dash-next{grid-template-columns:1fr}.dash-next .ring{margin:0 auto}}
 
 .dash-phase{display:grid;gap:14px;padding:18px}
@@ -169,6 +236,14 @@
     <div class="tile reveal" style="--i:3"><span class="dot c-purple" data-icon="users"></span><div><div class="k">Roster</div><div class="v"><span id="t-roster">–</span><small id="t-roster-u">confirmed</small></div><div class="sub" id="t-roster-s">Wharton allows 4 to 6</div></div></div>
     <div class="tile reveal" style="--i:4"><span class="dot c-pink" data-icon="calendar"></span><div><div class="k">Final report</div><div class="v"><span id="t-final">–</span><small>days</small></div><div class="sub">Fri Dec 4 · 5:00 p.m. ET</div></div></div>
   </div>
+
+  <section class="card reveal" style="--i:1;margin-bottom:20px" aria-labelledby="files-h" id="files">
+    <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="files-h">Our team files</h2><span class="sep"></span><span class="meta" id="files-meta">5 Google Sheets</span><span class="spacer"></span><span id="files-folder"></span></div>
+    <p class="files-intro">Everyone has their own Google Sheet, built for their job. Open yours every Friday. It opens on a tab called <b>This week</b>: fill in this week's yellow cells, then pick <b>✓</b> in the Done column.</p>
+    <ul class="files-grid" id="files-grid"></ul>
+    <div class="files-flow"><h3>How they connect</h3><ol id="files-flow"></ol></div>
+    <div class="card-foot">Open these while signed in to your <b>school</b> Google account. They're shared to that email only, so a personal Gmail will say you need access. Only type in the yellow cells, and don't rename tabs or move columns: Michael's dashboard reads them. Stuck? Ask Michael.</div>
+  </section>
 
   <div class="grid main-rail">
     <div class="stack">
@@ -358,6 +433,19 @@
     var c = r.status === "official" ? '<span class="chip official">Official</span>' : r.status === "last" ? '<span class="chip last">Last season</span>' : '<span class="chip verify">In the portal</span>';
     return "<li><div><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</div>" + c + "</li>";
   }).join("");
+
+  /* team files */
+  var FILES = D.files;
+  $("files-grid").innerHTML = FILES.list.map(function (f) {
+    var m = W.member(f.id) || { name: f.id };
+    var open = f.url ? '<a class="btn" href="' + esc(f.url) + '" target="_blank" rel="noopener" aria-label="Open ' + esc(m.name) + '\'s sheet">' + W.icon("link") + "Open sheet</a>" : '<span class="soon">Link coming</span>';
+    return '<li class="file"><div class="file-top"><span class="file-av" aria-hidden="true">' + esc(m.name.charAt(0)) + '</span><div class="file-name"><b>' + esc(m.name) + "</b><span>" + esc(f.job) + "</span></div></div>" +
+      "<ul>" + f.has.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul>" + open + "</li>";
+  }).join("");
+  $("files-flow").innerHTML = FILES.flow.map(function (x) { return "<li><b>" + esc(x.when) + "</b><span>" + esc(x.what) + "</span></li>"; }).join("");
+  if (FILES.folder) { $("files-folder").innerHTML = '<a class="btn light sm" href="' + esc(FILES.folder) + '" target="_blank" rel="noopener">Open the folder</a>'; $("files").classList.add("has-folder"); }
+  var live = FILES.list.filter(function (f) { return f.url; }).length;
+  $("files-meta").textContent = live === FILES.list.length ? FILES.list.length + " Google Sheets" : live === 0 ? "Links coming soon" : live + " of " + FILES.list.length + " linked";
 
   /* folded-card summaries, shown in the card head on phones only */
   function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }

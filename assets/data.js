@@ -351,6 +351,32 @@ WSW.data = {
 
   /* One sector each: Wharton requires at least one stock from as many sectors as there are members,
      held all season. Index funds and Treasuries are team positions \u2014 the whole team votes on those. */
+  /* The team's working files: one Google Sheet each, in Michael's school Drive
+     (Wall Street Warriors → Team docs), shared to the team's school emails. Paste each
+     sheet's link into url; an empty url shows "Link coming" instead of a button. The order
+     follows a trade: fit check, number, case against, log, then Michael's dashboard. */
+  files: {
+    folder: "",
+    list: [
+      { id: "federico", job: "Laura's case", title: "Federico — Laura's case", url: "",
+        has: ["Laura, our client, on one page", "Does each trade help Laura? One row per trade", "The Investment Policy Statement (IPS), all 11 sections"] },
+      { id: "joe", job: "The numbers", title: "Joe — The numbers", url: "",
+        has: ["Four short math lessons that check your work", "Laura's real numbers: Pile A (her reserve) and Pile B (money for the building)", "Our portfolio and a value for each stock we pitch"] },
+      { id: "dylan", job: "Risk, and the case against each trade", title: "Dylan — Risk and the bear case", url: "",
+        has: ["Every stock we own checked against our limits: 5% to start, 8% max, 30% per sector", "The case against each trade, posted before the vote", "A check that we hold all five sectors and an ETF"] },
+      { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "",
+        has: ["Every trade, logged the same day", "Every Friday, the log checked against our WInS account", "The rules checklist, meeting minutes and the Oct 23 Trading Notes"] },
+      { id: "michael", job: "Team leader and submissions", title: "Michael — Team leader and submissions", url: "",
+        has: ["A live dashboard that reads everyone's sheet", "The four deliverables and where each one stands", "The meeting plan, team grid and team agreement"] }
+    ],
+    flow: [
+      { when: "Before a vote", what: "Someone pitches a trade. Federico checks it fits Laura, Joe works out what the stock is worth, and Dylan posts the case against it." },
+      { when: "After the vote", what: "Caleb logs the trade the same day, with the reason." },
+      { when: "Every Friday", what: "Caleb checks his log against WInS. Joe copies what we own into his Portfolio tab and Dylan into his Limits tab. The dashboard checks all three totals match." },
+      { when: "All the time", what: "Michael's dashboard pulls from all four sheets on its own: who finished their week, how far the IPS is, and any rules or risk flags." }
+    ]
+  },
+
   sectors: [
     { id: "tech",   name: "Tech and communication", eg: "software, chips, phones, media" },
     { id: "health", name: "Health care",            eg: "drugs, devices, insurers" },
