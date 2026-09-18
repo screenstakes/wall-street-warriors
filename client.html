@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1737">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Federico's job on Wall Street Warriors, one screen at a time: Laura, the fit check on every trade, the IPS draft and works cited.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Federico's Job">
+<meta property="og:title" content="Federico's Job: Laura's Case">
+<meta property="og:description" content="Everything in your sheet and everything else you do, one screen at a time.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Federico's Job · Wall Street Warriors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --navy:#142F63; --blue:#1E4B95; --strip:#0B1737;
+  --orange:#EFA24A; --orange-deep:#D98B2B; --orange-ink:#6E4209;
+  --page:#F3F5F8; --card:#FFFFFF; --well:#F2F4F8; --tint:#EAF0FB;
+  --ink:#12213D; --ink-2:#44516B; --ink-3:#6F7B93;
+  --line:#DDE2EA;
+  --ok-soft:#E1F1E8; --ok:#1F6B3A; --warn-soft:#FAEED8;
+  --ui:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@supports (height:100dvh){body{height:100dvh}}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);display:flex;flex-direction:column}
+[hidden]{display:none!important}
+.top{background:var(--strip);color:#fff;padding:12px 16px 0}
+.brand{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--ui);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.brand a{font-weight:700;color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:36px;margin-block:-8px}
+.brand span{color:#AFC0E0}
+.chapters{max-width:720px;margin:10px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.chapters::-webkit-scrollbar{display:none}
+.chapters button{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;color:#C9D4EA;font:600 13px/1 var(--ui);padding:0 10px;min-height:40px;cursor:pointer;white-space:nowrap}
+.chapters button[aria-current="true"]{color:#fff;border-bottom-color:var(--orange)}
+.chapters button:focus-visible,.nav button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.chip-home{display:none}
+main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-block:16px 20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
+.top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.screen{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.eyebrow.ex{color:var(--orange-ink)}
+.eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
+h1{font:700 27px/1.18 var(--ui);margin:0;text-wrap:balance;letter-spacing:-.01em;color:var(--navy)}
+p{margin:0;max-width:62ch}
+.small{font-size:14px;color:var(--ink-2)}
+b{font-weight:600}
+/* the four stops */
+ol.flow{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+ol.flow li{display:grid;grid-template-columns:26px 1fr;gap:2px 12px;align-items:start}
+ol.flow li::before{content:attr(data-n);grid-row:span 2;font:700 13px/26px var(--ui);color:#fff;background:var(--navy);border-radius:50%;width:26px;height:26px;text-align:center}
+ol.flow b{font:700 15px/1.3 var(--ui);color:var(--ink)}
+ol.flow span{font-size:15px;color:var(--ink-2);line-height:1.4}
+/* where things go */
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.2 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+td:first-child{color:var(--ink-2);width:46%}
+td:last-child{font-weight:600;color:var(--navy)}
+tr.hl td{background:var(--tint)}
+.callout{background:var(--tint);border-left:3px solid var(--navy);border-radius:4px;padding:10px 12px;font-size:15px}
+.callout.ok{background:var(--ok-soft);border-left-color:var(--ok)}
+/* chat */
+.bubble{background:var(--tint);border-radius:4px 14px 14px 14px;padding:11px 14px;font-size:15px;line-height:1.45}
+.bubble .who{display:block;font:700 12px/1.2 var(--ui);letter-spacing:.04em;color:var(--blue);margin-bottom:4px}
+.bubble ol{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.tip{font-size:14px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:10px}
+.tip b{color:var(--ink)}
+.replies{display:flex;flex-direction:column;gap:6px}
+.reply{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:baseline;background:var(--well);border-radius:8px;padding:8px 12px;font-size:14.5px;line-height:1.4}
+.reply .who{font:700 13px/1.3 var(--ui);color:var(--blue)}
+/* minute by minute */
+.tl{display:flex;flex-direction:column}
+.tl div{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.42}
+.tl div:last-child{border-bottom:0}
+.tl time{font:600 13px/1.5 var(--mono);color:var(--orange-ink);white-space:nowrap}
+.tl q{quotes:"\201C" "\201D"}
+/* tasks */
+.tasks{display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:78px 1fr;gap:1px 12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.task .who{grid-row:span 2;font:700 14px/1.4 var(--ui);color:var(--navy)}
+.task .what{font-size:15px;line-height:1.35}
+.task .when{font-size:13px;color:var(--ink-2)}
+.task .when i{font-style:normal;font:600 12px/1 var(--mono);color:var(--blue)}
+/* the minutes row */
+.sheet{border:1px solid #C9D3E2;border-radius:6px;overflow:hidden}
+.sheet-cap{background:var(--strip);color:#fff;font:600 12px/1.2 var(--ui);letter-spacing:.05em;padding:8px 12px}
+.sheet dl{margin:0;display:grid;grid-template-columns:104px 1fr}
+.sheet dt,.sheet dd{margin:0;padding:6px 10px;border-top:1px solid #E6EAF1;font-size:13.5px;line-height:1.38}
+.sheet dt{font:600 12px/1.35 var(--ui);color:var(--ink-2);background:var(--well)}
+.sheet dd{background:#FEF6D8;color:#0B3DAF}
+/* per person */
+.roles{display:flex;flex-direction:column}
+.roles div{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+.roles div:last-child{border-bottom:0}
+.roles b{font:700 14px/1.45 var(--ui);color:var(--navy)}
+.small a{color:var(--blue);font-weight:600;text-underline-offset:2px;display:inline-block;padding:10px 0;margin:-10px 0}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:1px solid var(--line);border-radius:8px;padding:12px}
+.tile h3{font:700 15px/1.25 var(--ui);margin:0 0 6px;color:var(--ink)}
+.tile .tabname{font:600 13px/1.2 var(--mono);color:var(--blue)}
+.tile .when{font-size:13px;color:var(--ink-2);margin-top:2px}
+.lims{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.lims div{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:4px}
+.lims b{font:700 26px/1 var(--ui);color:var(--navy)}
+.lims span{font-size:13px;line-height:1.35;color:var(--ink-2)}
+.fig{margin:0}
+.fig svg{display:block;width:100%;height:auto;max-width:520px}
+.fig figcaption{font-size:13px;color:var(--ink-2);margin-top:6px}
+.lbl{font:600 11px var(--mono);fill:var(--ink)}
+.axis{font:500 11px var(--body);fill:var(--ink-2)}
+.z-ok{fill:var(--ok-soft)} .z-warn{fill:var(--warn-soft)} .z-bad{fill:#FAE5E2}
+.tick{stroke:var(--ink-2);stroke-width:1.5} .mk{fill:var(--navy)}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--orange-deep)}
+.callout b{font-weight:700}
+ol.flow.qs span{color:var(--ink)}
+.tiles.piles .tile{display:flex;flex-direction:column;gap:6px}
+.tiles.piles p{margin:0;font-size:14px;line-height:1.45;color:var(--ink)}
+.tile.pa{border-top:4px solid var(--navy)}
+.tile.pb{border-top:4px solid var(--orange-deep)}
+.bubble.back{background:var(--warn-soft);border-radius:14px 4px 14px 14px}
+.bubble.back .who{color:var(--orange-ink)}
+.tl.dates div{grid-template-columns:88px 1fr}
+.roles.wide div{grid-template-columns:118px 1fr}
+/* nav */
+.nav{background:var(--card);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.nav-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.nav button{font:600 15px/1 var(--ui);border-radius:6px;padding:12px 18px;cursor:pointer;min-height:44px}
+#prev{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+#next{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+.nav button:disabled{opacity:.4;cursor:default}
+.prog{flex:1;display:flex;flex-direction:column;gap:5px;align-items:center}
+.prog span{font:600 12px/1 var(--mono);color:var(--ink-2)}
+.bar{width:100%;max-width:220px;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange-deep);width:0}
+@media (max-width:520px){
+  body{font-size:15px}
+  .top{padding-top:calc(6px + env(safe-area-inset-top,0px))}
+  .brand{display:none}
+  .chapters{margin-top:0;gap:0}
+  .chapters button{padding:0 8px;font-size:12.5px}
+  .chip-home{display:inline-flex;align-items:center;flex:0 0 auto;min-height:40px;padding:0 8px 0 0;color:#fff;font:700 12.5px/1 var(--ui);text-decoration:none;border-right:1px solid #2A3B63;margin-right:4px}
+  main{padding-block:8px 10px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+  h1{font-size:22px}
+  .screen{padding:16px 14px 14px;gap:11px}
+  .small,.tip{font-size:13.5px}
+  table{font-size:14px}
+  th,td{padding:7px 6px}
+  ol.flow span,.bubble,.callout,.tl div,.task .what,.roles div{font-size:14px}
+  .reply{grid-template-columns:62px 1fr;font-size:13.5px;padding:7px 10px}
+  .tl div{grid-template-columns:50px 1fr;gap:10px;padding:7px 0}
+  .tl time{font-size:12px}
+  .task,.roles div{grid-template-columns:66px 1fr;gap:1px 10px}
+  .roles div{gap:10px}
+  .task .who,.roles b{font-size:13px}
+  .sheet dl{grid-template-columns:88px 1fr}
+  .sheet dt,.sheet dd{font-size:12.5px;padding:5px 8px}
+  .sheet dt{font-size:11px}
+  .tile{padding:10px}
+  .tile h3{font-size:14px}
+  .tile .tabname,.tile .when{font-size:12px}
+  .lims b{font-size:22px}
+  .lims span{font-size:12.5px}
+  .fig figcaption{font-size:12.5px}
+  .tiles.piles p{font-size:13px}
+  .tl.dates div{grid-template-columns:80px 1fr}
+  .roles.wide div{grid-template-columns:100px 1fr}
+  .nav button{padding:12px 14px}
+}
+@media (max-height:700px){
+  .chapters{margin-top:4px}
+  main{padding-block:10px 14px}
+  .screen{gap:10px;padding-block:16px 14px}
+  h1{font-size:21px}
+  .eyebrow{font-size:11px}
+  .nav{padding-top:8px}
+}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
+/* Federico page: even label columns, no stranded words, room under headlines */
+.tile h3,.sheet-cap{text-wrap:balance}
+p,.roles span,.sheet dd,.tile .when,.bubble,.callout,ol.flow span,.tl span{text-wrap:pretty}
+.sheet dl{grid-template-columns:150px 1fr}
+.sheet dt,.sheet dd{line-height:19px}
+.roles.wide div,.tl.dates div{grid-template-columns:120px 1fr}
+.roles.mid div{grid-template-columns:96px 1fr}
+h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-top:6px}
+@media (max-width:520px){
+  main{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+  .sheet dl{grid-template-columns:112px 1fr}
+  .sheet dt,.sheet dd{line-height:17px;padding-block:6px}
+  .roles.wide div,.tl.dates div{grid-template-columns:108px 1fr}
+  .roles.mid div{grid-template-columns:84px 1fr}
+  main{padding-top:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><a href="index.html">‹ Wall Street Warriors</a><span>Laura's case</span></div>
+  <nav class="chapters" id="chapters" aria-label="Chapters">
+    <a class="chip-home" href="index.html" aria-label="Back to the team site">‹ Site</a>
+    <button type="button" data-go="0">Start</button>
+    <button type="button" data-go="1">Laura</button>
+    <button type="button" data-go="3">Fit check</button>
+    <button type="button" data-go="5">IPS</button>
+    <button type="button" data-go="7">Week</button>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="screen" data-ch="0" aria-labelledby="h1">
+  <div class="eyebrow">Federico, this is your job</div>
+  <h1 id="h1" tabindex="-1">You're the one who knows Laura best.</h1>
+  <p>Every trade has to help our client. You ask one question on each one: does this help Laura? In late October you write the first draft of our plan for her money.</p>
+  <div class="tiles">
+    <div class="tile"><h3>Laura on one page</h3><div class="tabname">Laura tab</div><div class="when">Now, then keep it current</div></div>
+    <div class="tile"><h3>Does each trade help her?</h3><div class="tabname">Fit check tab</div><div class="when">Every trade card</div></div>
+    <div class="tile"><h3>Our plan for her money</h3><div class="tabname">IPS tab</div><div class="when">Oct 24 to 30</div></div>
+    <div class="tile"><h3>Every source</h3><div class="tabname">Works cited tab</div><div class="when">The day we use it</div></div>
+  </div>
+  <p class="small">Your line, every time: "Name Laura's goal, or it goes back." Knowing the client is one of the five things the report is scored on.</p>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h2" hidden>
+  <div class="eyebrow">Laura tab</div>
+  <h1 id="h2" tabindex="-1">Who you're working for</h1>
+  <div class="roles mid">
+    <div><b>Who</b><span>Laura Gao, Wharton 2018, bestselling graphic novelist. Not a finance person.</span></div>
+    <div><b>Her plan</b><span>A creative residency in Taiwan, opening in 2033.</span></div>
+    <div><b>Money in</b><span>$300,000 in 2027, then $150,000 more in 2028.</span></div>
+    <div><b>Money out</b><span>$50,000 a year, 2033 to 2042. It has to be certain.</span></div>
+    <div><b>2031</b><span>She tells co-sponsors a range, two years early.</span></div>
+  </div>
+  <p class="small">Your Laura tab has every fact. Column C is yours: what each fact means for a trade. Fill it in before trading starts Sep&nbsp;28.</p>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h3" hidden>
+  <div class="eyebrow">Her two goals</div>
+  <h1 id="h3" tabindex="-1">Every trade has to serve one of two piles</h1>
+  <div class="tiles piles">
+    <div class="tile pa"><h3>Pile A · safety</h3><p>The money for the ten $50,000 payments. About $422,000 in 2033, held in Treasury bonds.</p><div class="when">Judged on certainty, not return</div></div>
+    <div class="tile pb"><h3>Pile B · growth</h3><p>Whatever is left, for the building. About $239,000 if we grow 7% a year.</p><div class="when">This is where stocks go</div></div>
+  </div>
+  <div class="callout">If a pitch serves neither pile, or doesn't say which, it goes back.</div>
+</section>
+
+<section class="screen" data-ch="2" aria-labelledby="h4" hidden>
+  <div class="eyebrow">Fit check · every trade card</div>
+  <h1 id="h4" tabindex="-1">When a trade card shows up</h1>
+  <ol class="flow">
+    <li data-n="1"><b>Read it</b><span>Which pile does it serve? Does the pitch say so itself?</span></li>
+    <li data-n="2"><b>Fill one row</b><span>On your Fit check tab.</span></li>
+    <li data-n="3"><b>Reply in its thread</b><span>In the Google Chat, before Dylan posts his case against, so he can read yours.</span></li>
+  </ol>
+  <div class="sheet">
+    <div class="sheet-cap">Your sheet · Fit check tab</div>
+    <dl>
+      <dt>Ticker</dt><dd>JPM, proposed by Joe</dd>
+      <dt>Which goal?</dt><dd>Pile B growth</dd>
+      <dt>Pitch says so?</dt><dd>Yes</dd>
+      <dt>My reply</dt><dd>Fits: Pile B growth. Nothing is due until 2033.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="screen" data-ch="2" aria-labelledby="h5" hidden>
+  <div class="eyebrow">Fit check · your reply</div>
+  <h1 id="h5" tabindex="-1">Say yes, or send it back</h1>
+  <div class="bubble"><span class="who">You, in the trade's thread</span>Fits: Pile B growth. Nothing is due until 2033, so a bank's ups and downs are fine for this pile.</div>
+  <div class="bubble back"><span class="who">Or, sending one back</span>Sending this back: the card doesn't name Laura's goal. Which pile is it for, and why? Repost it with that line and I'll check it again.</div>
+  <p class="small">Sending one back isn't being difficult. It's the job. If you send it back, pick ✓ in the Sent back column.</p>
+</section>
+
+<section class="screen" data-ch="3" aria-labelledby="h6" hidden>
+  <div class="eyebrow">IPS tab · Oct 24 to Nov 5</div>
+  <h1 id="h6" tabindex="-1">You write the first draft of the IPS</h1>
+  <p>The IPS (Investment Policy Statement) is our written plan for Laura's money: what it's for, how much risk she can take, and the rules we follow. It's half of what picks the top 50.</p>
+  <div class="tl dates">
+    <div><time>Oct 24–30</time><span>You draft the 11 sections on your IPS tab.</span></div>
+    <div><time>Fri Oct 30</time><span>Send the draft to Michael.</span></div>
+    <div><time>Sat Oct 31</time><span>One 60-minute review together.</span></div>
+    <div><time>Nov 1–4</time><span>Michael edits it into one voice. Everyone proofreads.</span></div>
+    <div><time>Thu Nov 5</time><span>Michael submits. It's due Nov 6.</span></div>
+  </div>
+</section>
+
+<section class="screen" data-ch="3" aria-labelledby="h7" hidden>
+  <div class="eyebrow">IPS tab · who hands you what</div>
+  <h1 id="h7" tabindex="-1">11 sections, and everyone hands you pieces</h1>
+  <div class="roles wide">
+    <div><b>You</b><span>1&nbsp;Purpose · 2&nbsp;Her&nbsp;goals</span></div>
+    <div><b>You + Joe</b><span>3&nbsp;Time&nbsp;horizon · 11&nbsp;The&nbsp;2031&nbsp;promise</span></div>
+    <div><b>Joe</b><span>4&nbsp;Return&nbsp;objective</span></div>
+    <div><b>Dylan</b><span>5&nbsp;Risk&nbsp;tolerance · 8&nbsp;What&nbsp;we&nbsp;won't&nbsp;do</span></div>
+    <div><b>Caleb</b><span>6&nbsp;Constraints</span></div>
+    <div><b>Michael + Joe</b><span>7&nbsp;Target&nbsp;mix</span></div>
+    <div><b>Dylan + Caleb</b><span>10&nbsp;Monitoring</span></div>
+    <div><b>Everyone</b><span>9&nbsp;How&nbsp;each&nbsp;sector&nbsp;fits. You collect them.</span></div>
+  </div>
+  <p class="small">Tick Drafted ✓ as you finish each one.</p>
+</section>
+
+<section class="screen" data-ch="4" aria-labelledby="h8" hidden>
+  <div class="eyebrow">Works cited tab · every time</div>
+  <h1 id="h8" tabindex="-1">Every source, the day we use it</h1>
+  <p>Add a row the moment we use a source, not in December. If anyone used AI, Wharton wants it cited and described.</p>
+  <div class="sheet">
+    <div class="sheet-cap">Your sheet · Works cited tab</div>
+    <dl>
+      <dt>What it is</dt><dd>Client case study, 2026–27</dd>
+      <dt>Who wrote it</dt><dd>Wharton Global Youth Program</dd>
+      <dt>Date</dt><dd>2026-09-15</dd>
+      <dt>Where</dt><dd>SurveyMonkey Apply → Pages&nbsp;→&nbsp;Client</dd>
+      <dt>Used in</dt><dd>IPS, report</dd>
+      <dt>AI involved?</dt><dd>No</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="screen" data-ch="4" aria-labelledby="h9" hidden>
+  <div class="eyebrow">This week tab · every Friday</div>
+  <h1 id="h9" tabindex="-1">Four cells, then ✓</h1>
+  <div class="sheet">
+    <div class="sheet-cap">Your sheet · This week tab</div>
+    <dl>
+      <dt>Trades checked</dt><dd>2</dd>
+      <dt>Sent back</dt><dd>None</dd>
+      <dt>About Laura</dt><dd>She has to give co-sponsors a range in 2031, two years before she pays.</dd>
+      <dt>IPS section</dt><dd>Not yet (starts week 5)</dd>
+    </dl>
+  </div>
+  <p class="small">Then pick ✓ in the Done column. Two skipped weeks are fine.</p>
+</section>
+
+<section class="screen" data-ch="4" aria-labelledby="h10" hidden>
+  <div class="eyebrow">Your week</div>
+  <h1 id="h10" tabindex="-1">What you do, and when</h1>
+  <div class="roles wide">
+    <div><b>By Sep&nbsp;28</b><span>Read your Laura tab top to bottom. Fill in column C.</span></div>
+    <div><b>Each trade</b><span>A row on Fit check, then reply in its thread before Dylan posts.</span></div>
+    <div><b>Each source</b><span>A row on Works cited, the day we use it.</span></div>
+    <div><b>Friday</b><span>Your This week row, then ✓.</span></div>
+    <div><b>Oct 24–30</b><span>Draft the IPS. Send it to Michael on Oct&nbsp;30.</span></div>
+    <div><b>Out?</b><span>Michael covers. Tell him the night before.</span></div>
+  </div>
+</section>
+
+</main>
+
+<nav class="nav" aria-label="Screens">
+  <div class="nav-in">
+    <button type="button" id="prev">Back</button>
+    <div class="prog"><span id="count">1 of 10</span><div class="bar"><i id="fill"></i></div></div>
+    <button type="button" id="next">Next</button>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var screens = [].slice.call(document.querySelectorAll('.screen'));
+  var chips = [].slice.call(document.querySelectorAll('#chapters button'));
+  var main = document.getElementById('main');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var count = document.getElementById('count'), fill = document.getElementById('fill');
+  var cur = 0;
+  function show(i, focus){
+    i = Math.max(0, Math.min(screens.length - 1, i));
+    screens.forEach(function(s, k){ s.hidden = k !== i; });
+    cur = i;
+    var ch = screens[i].getAttribute('data-ch');
+    chips.forEach(function(c, k){ c.setAttribute('aria-current', String(k) === ch ? 'true' : 'false'); });
+    var on = chips[+ch]; if (on && on.scrollIntoView) { try { on.scrollIntoView({block:'nearest', inline:'nearest'}); } catch (e) {} }
+    prev.disabled = i === 0;
+    next.textContent = i === screens.length - 1 ? 'Start over' : 'Next';
+    count.textContent = (i + 1) + ' of ' + screens.length;
+    fill.style.width = ((i + 1) / screens.length * 100) + '%';
+    main.scrollTop = 0;
+    try { localStorage.setItem('federico-screen', String(i)); } catch (e) {}
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+    if (focus) { var h = screens[i].querySelector('h1'); if (h) h.focus({preventScroll:true}); }
+  }
+  prev.addEventListener('click', function(){ show(cur - 1, true); });
+  next.addEventListener('click', function(){ show(cur === screens.length - 1 ? 0 : cur + 1, true); });
+  chips.forEach(function(c){ c.addEventListener('click', function(){ show(+c.getAttribute('data-go'), true); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight') show(cur + 1, true);
+    else if (e.key === 'ArrowLeft') show(cur - 1, true);
+  });
+  var x0 = null, y0 = 0;
+  main.addEventListener('touchstart', function(e){ if (e.touches.length !== 1) { x0 = null; return; } x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  main.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1), false);
+  });
+  var start = 0;
+  var fromHash = parseInt((location.hash || '').slice(1), 10);
+  if (!isNaN(fromHash)) start = fromHash - 1;
+  else { try { var saved = parseInt(localStorage.getItem('federico-screen'), 10); if (!isNaN(saved)) start = saved; } catch (e) {} }
+  show(start, false);
+})();
+</script>
+</body>
+</html>

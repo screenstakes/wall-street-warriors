@@ -360,7 +360,7 @@ WSW.data = {
   files: {
     folder: "",
     list: [
-      { id: "federico", job: "Laura's case", title: "Federico — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client",
+      { id: "federico", job: "Laura's case", title: "Federico — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client", guide: "client.html",
         week: "Reply to every trade card with the goal it serves, or send it back. From week 5, draft the IPS.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Laura", "The client on one page, and what each fact means for a trade"], ["Fit check", "One row per trade card: which of Laura's goals it serves"], ["IPS", "The 11 sections to draft Oct 24 to 30, and who feeds you each one"], ["Works cited", "Every source as we use it, including any AI"]],
         has: ["Laura, our client, on one page", "Does each trade help Laura? One row per trade", "The Investment Policy Statement (IPS), all 11 sections"] },
