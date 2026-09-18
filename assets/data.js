@@ -493,7 +493,7 @@ WSW.data = {
     { rule: "Style of strategy",    value: "Wharton's trading page: this is \"not a trading competition\"; the majority of the strategy should be a long-term, buy-and-hold approach.", status: "official", season: "current" },
     { rule: "International stocks", value: "Domestic and international equities allowed; currency converts automatically. International fills can be delayed 15–30 minutes.", status: "official", season: "current" },
     { rule: "Trading hours",        value: "9:30 a.m. – 4:00 p.m. ET on weekdays. After-hours U.S. orders fill at the next open.", status: "official", season: "current" },
-    { rule: "Starting cash",        value: "$500,000 last season (up from $100,000 every year since 2012). The $300,000 on our dashboard is the practice portfolio.", status: "last", season: "2025–26" },
+    { rule: "Starting cash",        value: "$300,000: what our WInS account starts with, and what every team sheet uses. Last season it was $500,000. If Wharton resets the account to a different amount on Sep 28, change one cell in Joe's, Caleb's and Dylan's sheets.", status: "verify", season: "2026–27" },
     { rule: "What we can buy",      value: "Any stock priced $5 or more on any exchange; ETFs from Wharton's approved list (at least one required); Treasuries from the approved list (optional).", status: "last", season: "2025–26" },
     { rule: "Trade cap",            value: "200 trades. Each buy or sell counts as one. Matches the 0 / 200 on our dashboard.", status: "last", season: "2025–26" },
     { rule: "Commissions",          value: "$25 per stock trade, $10 per Treasury trade, charged when the trade clears.", status: "last", season: "2025–26" },
