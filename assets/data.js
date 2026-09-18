@@ -355,7 +355,8 @@ WSW.data = {
      (Wall Street Warriors → Team docs), shared to the team's school emails. Paste each
      sheet's link into url; an empty url shows "Link coming" instead of a button. The order
      follows a trade: fit check, number, case against, log, then Michael's dashboard.
-     guide: an optional how-to page for that job, linked next to the job name. */
+     guide: an optional how-to page for that job, linked next to the job name;
+     guideLabel replaces the link text "How-to" when the page covers only part of the job. */
   files: {
     folder: "",
     list: [
@@ -371,7 +372,7 @@ WSW.data = {
         week: "Post the case against each trade before its vote, and the week's biggest position and worst case.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Limits", "Every holding against our limits, one stock per sector, and an ETF"], ["Bear case", "One column per trade, five questions, 150 words. Column B is a finished example"]],
         has: ["Every stock we own checked against our limits: 5% to start, 8% max, 30% per sector", "The case against each trade, posted before the vote", "A check that we hold all five sectors and an ETF"] },
-      { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit", role: "log",
+      { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit", role: "log", guide: "caleb-meetings.html", guideLabel: "Meeting how-to",
         week: "Log every trade the day it happens, check the log against WInS on Friday, post the minutes after the meeting.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Log", "Every trade the same day: why, the vote, and the ✓s"], ["Friday check", "The log against the WInS account"], ["Rules", "Wharton's eligibility checklist. Nothing is submitted until it says Ready"], ["Minutes", "The team's only meeting notes: one row per meeting, what we decided and who does what"], ["Oct 23", "Pick the three notes for the Trading Notes Analysis"]],
         has: ["Every trade, logged the same day", "Every Friday, the log checked against our WInS account", "The rules checklist, meeting minutes and the Oct 23 Trading Notes"] },

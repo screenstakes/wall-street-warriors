@@ -440,7 +440,7 @@
   $("files-grid").innerHTML = FILES.list.map(function (f) {
     var m = W.member(f.id) || { name: f.id };
     var open = f.url ? '<a class="btn" href="' + esc(f.url) + '" target="_blank" rel="noopener" aria-label="Open ' + esc(m.name) + '\'s sheet">' + W.icon("link") + "Open sheet</a>" : '<span class="soon">Link coming</span>';
-    return '<li class="file"><div class="file-top"><span class="file-av" aria-hidden="true">' + esc(m.name.charAt(0)) + '</span><div class="file-name"><b>' + esc(m.name) + "</b><span>" + esc(f.job) + (f.guide ? ' · <a class="file-guide" href="' + esc(f.guide) + '" aria-label="How to do ' + esc(m.name) + '\'s job">How-to</a>' : "") + "</span></div></div>" +
+    return '<li class="file"><div class="file-top"><span class="file-av" aria-hidden="true">' + esc(m.name.charAt(0)) + '</span><div class="file-name"><b>' + esc(m.name) + "</b><span>" + esc(f.job) + (f.guide ? '&nbsp;· <a class="file-guide" href="' + esc(f.guide) + '" aria-label="' + (f.guideLabel ? esc(f.guideLabel) + " for " + esc(m.name) : "How to do " + esc(m.name) + "\'s job") + '">' + esc(f.guideLabel || "How-to") + "</a>" : "") + "</span></div></div>" +
       "<ul>" + f.has.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul>" + open + "</li>";
   }).join("");
   $("files-flow").innerHTML = FILES.flow.map(function (x) { return "<li><b>" + esc(x.when) + "</b><span>" + esc(x.what) + "</span></li>"; }).join("");
