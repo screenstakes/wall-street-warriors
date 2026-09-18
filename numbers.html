@@ -83,6 +83,10 @@ td:first-child{font-weight:600;white-space:nowrap}
 .foot{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--ink-2)}
 .foot b{font:600 11px/1.4 var(--ui);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-right:6px}
 .warn{color:var(--bad)}
+.why{margin:0;max-width:none;background:var(--warn-soft);border-left:3px solid var(--orange-deep);border-radius:4px;padding:8px 12px;font-size:15px;line-height:1.45;color:var(--ink)}
+.why b{font-weight:600;color:var(--orange-ink)}
+.why,.foot div{text-wrap:pretty}
+.nw{white-space:nowrap}
 /* chart classes */
 .fa{fill:var(--navy)} .fb{fill:var(--orange)}
 .lbl{font:600 11px var(--mono);fill:var(--ink)}
@@ -118,6 +122,7 @@ td:first-child{font-weight:600;white-space:nowrap}
   .small{font-size:13.5px}
   .foot{font-size:12.5px;gap:2px;padding-top:8px}
   .quote{font-size:16px}
+  .why{font-size:14px;padding:7px 10px}
   .fig figcaption{font-size:12.5px}
   th,td{padding:6px 6px}
   .tile{padding:10px}
@@ -186,9 +191,10 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 <section class="screen" data-ch="0" aria-labelledby="h2" hidden>
   <div class="eyebrow">The idea under all of it</div>
   <h1 id="h2" tabindex="-1">Money later is worth less than money now.</h1>
-  <p>Money you have today can be invested and grow. So every formula you'll use does one of two things.</p>
+  <p>Money today can be invested and grow. So every formula does one of two things.</p>
   <figure class="fig"><svg viewBox="0 0 360 146" role="img" aria-label="$75.13 today grows to $100 in three years at 10%, and $100 in three years shrinks back to $75.13 today"><circle cx="34" cy="70" r="5" class="dot"/><text x="34" y="96" text-anchor="middle" class="axis">Today</text><text x="34" y="58" text-anchor="middle" class="lbl num">$75.13</text><circle cx="128" cy="70" r="5" class="dot"/><text x="128" y="96" text-anchor="middle" class="axis">Year 1</text><text x="128" y="58" text-anchor="middle" class="lbl num">$82.64</text><circle cx="222" cy="70" r="5" class="dot"/><text x="222" y="96" text-anchor="middle" class="axis">Year 2</text><text x="222" y="58" text-anchor="middle" class="lbl num">$90.91</text><circle cx="316" cy="70" r="5" class="dot"/><text x="316" y="96" text-anchor="middle" class="axis">Year 3</text><text x="316" y="58" text-anchor="middle" class="lbl num">$100</text><line x1="34" y1="70" x2="316" y2="70" class="rule"/><path d="M40,26 H300" class="arrow-g"/><path d="M300,20 L312,26 L300,32 Z" class="head-g"/><text x="40" y="16" class="axis strong g">Grow it forward: × 1.10 each year (FV)</text><path d="M310,116 H50" class="arrow-s"/><path d="M50,110 L38,116 L50,122 Z" class="head-s"/><text x="50" y="138" class="axis strong s">Shrink it back: ÷ 1.10 each year (PV)</text></svg></figure>
-  <p>$75.13 today at 10% becomes $100 in 3 years. So $100 in 3 years is worth $75.13 today. Same money, read in two directions.</p>
+  <p>$75.13 today at 10% becomes $100 in 3 years. So $100 in 3 years is worth $75.13 today.</p>
+  <p class="why"><b>Why it helps us:</b> every number in Laura's plan uses one of these two moves.</p>
   <div class="foot">
     <div><b>Your sheet</b>Learn 1 grows money. Learn 4 shrinks it.</div>
     <div><b>Michael's notes</b>Day 2, Lecture 1 · Day 8, Lecture 1 · the PV vs FV slide</div>
@@ -199,8 +205,9 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
   <div class="eyebrow">Laura's money · grow it forward</div>
   <h1 id="h3" tabindex="-1">What Laura has at the start of 2033</h1>
   <div class="calc">$300,000 × 1.07<sup>6</sup> = $450,219<br>$150,000 × 1.07<sup>5</sup> = $210,383<br><span class="res">Together = $660,602</span></div>
-  <p>Why 6 and 5? Count the years the money is growing, not the year numbers. The 2027 money grows from 2027 to 2033. That's 6 years. Using 7 and 6 gives $706,844, which is $46,000 too high.</p>
-  <p class="small">7% is our guess, not a promise. You'll try other rates on screen 7.</p>
+  <p>Why 6 and 5? Count the years the money grows: 2027 to 2033 is 6 years. Using 7 and 6 gives $706,844, which is $46,000 too high.</p>
+  <p class="why"><b>Why it helps us:</b> this is the pot Laura has when her payments start. Pile A and Pile B are both cut from it.</p>
+  <p class="small">7% is a guess, not a promise. Screen 7 tries others.</p>
   <div class="foot">
     <div><b>Your sheet</b>Laura tab, step 3. Step 6 is the same for 2031 with 4 and 3 years: $576,995.</div>
     <div><b>Michael's notes</b>Day 3, Lecture 1 formula sheet: FV = CF × (1 + growth rate)<sup>t</sup></div>
@@ -211,7 +218,7 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
   <div class="eyebrow">Laura's money · Pile A, the bills</div>
   <h1 id="h4" tabindex="-1">Pile A is an account that ends at exactly $0.</h1>
   <p>Laura pays $50,000 a year, 2033 to 2042. That's $500,000 on paper, but the money we set aside keeps earning while we pay it out.</p>
-  <p class="small">From Michael's notes: put $3,545.95 in the bank at 5%, take out $1,000 a year, and after the 4th payment it's exactly $0. Pile A is the same, bigger.</p>
+  <p class="why"><b>Why it helps us:</b> we lock away only what the payments need. The rest grows for her building.</p>
   <figure class="fig"><svg viewBox="0 0 360 166" role="img" aria-label="Pile A balance falls from $421,767 in 2033 to $50,000 before the last payment in 2042, then $0"><rect x="24.0" y="34.0" width="27" height="108.0" rx="2" class="fa"/><text x="24.0" y="27.0" class="lbl num">$421,767</text><text x="37.5" y="158" text-anchor="middle" class="axis">2033</text><rect x="57.4" y="43.0" width="27" height="99.0" rx="2" class="fa"/><rect x="90.8" y="52.4" width="27" height="89.6" rx="2" class="fa"/><rect x="124.2" y="62.1" width="27" height="79.9" rx="2" class="fa"/><rect x="157.6" y="72.2" width="27" height="69.8" rx="2" class="fa"/><text x="171.1" y="158" text-anchor="middle" class="axis">2037</text><rect x="191.0" y="82.7" width="27" height="59.3" rx="2" class="fa"/><rect x="224.4" y="93.7" width="27" height="48.3" rx="2" class="fa"/><rect x="257.8" y="105.0" width="27" height="37.0" rx="2" class="fa"/><rect x="291.2" y="116.9" width="27" height="25.1" rx="2" class="fa"/><rect x="324.6" y="129.2" width="27" height="12.8" rx="2" class="fa"/><text x="351.6" y="108.9" text-anchor="end" class="lbl num">$50,000</text><text x="338.1" y="158" text-anchor="middle" class="axis">2042</text><line x1="18" y1="142" x2="357.6" y2="142" class="rule"/></svg><figcaption>Pile A each January at 4%, before that year's $50,000 goes out. After payment 10: $0.</figcaption></figure>
   <div class="foot">
     <div><b>Michael's notes</b>Day 2, Lecture 1 (annuities) · Day 2, Lecture 2 (the nest egg)</div>
@@ -222,11 +229,10 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
   <div class="eyebrow">Laura's money · Pile A, the math</div>
   <h1 id="h5" tabindex="-1">Pile A in two steps. Most people skip step 2.</h1>
   <div class="step"><span class="n">1</span><div class="calc">$50,000 × [1 − 1.04<sup>−10</sup>] ÷ 0.04 = $405,545<span class="note">Assumes payments at the end of the year.</span></div></div>
-  <div class="step"><span class="n">2</span><div class="calc">$405,545 × 1.04 = <span class="res">$421,767</span><span class="note">Laura pays at the start of each year, so every payment comes a year sooner.</span></div></div>
-  <p>Skip step 2 and Pile A is $16,222 short.</p>
-  <div class="calc">=PV(0.04, 10, -50000, 0, 1)<span class="note">Sheets does both steps at once. The last 1 means "start of the year."</span></div>
+  <div class="step"><span class="n">2</span><div class="calc">$405,545 × 1.04 = <span class="res">$421,767</span><span class="note">Laura pays at the start of each year, so each payment comes a year sooner.</span></div></div>
+  <p class="why"><b>Why it helps us:</b> $421,767 is what we lock away in 2033 so all ten payments are certain. Skip step 2 and 2042 comes up $23,000 short.</p>
   <div class="foot">
-    <div><b>Your sheet</b>Learn 2, then Laura tab, step 2.</div>
+    <div><b>Your sheet</b>Learn 2, then Laura tab, step 2. <span class="nw">=PV(0.04, 10, -50000, 0, 1)</span> does both steps; the last 1 means start of the&nbsp;year.</div>
     <div><b>Michael's notes</b>Day 3, Lecture 1: "PV of Annuity Due" and the [type] note</div>
   </div>
 </section>
@@ -234,7 +240,7 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 <section class="screen" data-ch="1" aria-labelledby="h6" hidden>
   <div class="eyebrow">Laura's money · where Pile A lives</div>
   <h1 id="h6" tabindex="-1">Keep Pile A in bonds, not cash.</h1>
-  <p>In cash, Pile A needs the full $500,000. In a bond ladder it needs $421,767. The $78,233 difference can go to the building, and we don't have to pick a single stock to get it.</p>
+  <p class="why"><b>Why it helps us:</b> in cash, Pile A needs the full $500,000. In a bond ladder it needs $421,767. The $78,233 difference goes to her building, without picking a single stock.</p>
   <div class="ladder" aria-label="Ten bonds, one paying $50,000 each January from 2033 to 2042">
     <div>2033<span>$50K</span></div><div>2034<span>$50K</span></div><div>2035<span>$50K</span></div><div>2036<span>$50K</span></div><div>2037<span>$50K</span></div>
     <div>2038<span>$50K</span></div><div>2039<span>$50K</span></div><div>2040<span>$50K</span></div><div>2041<span>$50K</span></div><div>2042<span>$50K</span></div>
@@ -250,8 +256,8 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
   <div class="eyebrow">Laura's money · Pile B, the building</div>
   <h1 id="h7" tabindex="-1">Pile B is whatever's left, and it swings.</h1>
   <div class="calc">Pile B = 2033 portfolio − Pile A<br>At 7%: $660,602 − $421,767 = <span class="res">$238,835</span></div>
-  <figure class="fig"><svg viewBox="0 0 360 158" role="img" aria-label="At 5%, 7% and 9% growth Pile A stays $421,767 while Pile B is $171,704, $238,835 and $312,157"><text x="0" y="33" class="axis strong">5%</text><rect x="44" y="14" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="14" width="71.0" height="28" rx="2" class="fb"/><text x="52" y="32.5" class="inA">Pile A $421,767</text><text x="224.4" y="32.5" class="inB num">$171,704</text><text x="0" y="77" class="axis strong">7%</text><rect x="44" y="58" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="58" width="98.8" height="28" rx="2" class="fb"/><text x="52" y="76.5" class="inA">$421,767</text><text x="224.4" y="76.5" class="inB num">$238,835</text><text x="0" y="121" class="axis strong">9%</text><rect x="44" y="102" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="102" width="129.1" height="28" rx="2" class="fb"/><text x="52" y="120.5" class="inA">$421,767</text><text x="224.4" y="120.5" class="inB num">$312,157</text><text x="0" y="150" class="axis">growth 2027 to 2033</text></svg></figure>
-  <p>Pile A stays put. Pile B moves about $140,000 between a bad run and a good one. In 2031 Laura quotes co-sponsors a range, so we play it safer by 2031: a calmer portfolio gives a range people believe.</p>
+  <figure class="fig"><svg viewBox="0 0 360 153" role="img" aria-label="At 5%, 7% and 9% growth Pile A stays $421,767 while Pile B is $171,704, $238,835 and $312,157"><text x="0" y="33" class="axis strong">5%</text><rect x="44" y="14" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="14" width="71.0" height="28" rx="2" class="fb"/><text x="52" y="32.5" class="inA">Pile A $421,767</text><text x="224.4" y="32.5" class="inB num">$171,704</text><text x="0" y="77" class="axis strong">7%</text><rect x="44" y="58" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="58" width="98.8" height="28" rx="2" class="fb"/><text x="52" y="76.5" class="inA">$421,767</text><text x="224.4" y="76.5" class="inB num">$238,835</text><text x="0" y="121" class="axis strong">9%</text><rect x="44" y="102" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="102" width="129.1" height="28" rx="2" class="fb"/><text x="52" y="120.5" class="inA">$421,767</text><text x="224.4" y="120.5" class="inB num">$312,157</text><text x="0" y="150" class="axis">growth 2027 to 2033</text></svg></figure>
+  <p class="why"><b>Why it helps us:</b> Pile B swings about $140,000 between a bad run and a good one. In 2031 Laura quotes co-sponsors a range, so we play it safer by&nbsp;then.</p>
   <div class="foot">
     <div><b>Your sheet</b>Laura tab, steps 4 and 5. Then change B10 to 5% and to 9% and watch step 4.</div>
   </div>
@@ -262,8 +268,8 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
   <h1 id="h8" tabindex="-1">How big is one position?</h1>
   <div class="calc">Value = shares × price<br>Weight = value ÷ the whole portfolio, cash included<span class="note">90 × $220 = $19,800, and $19,800 ÷ $300,000 = 6.6%.</span></div>
   <figure class="fig"><svg viewBox="0 0 360 62" role="img" aria-label="A 6.6% position sits past the 5% buy limit and under the 8% maximum"><rect x="20" y="24" width="160" height="15" class="z-ok"/><rect x="180" y="24" width="96" height="15" class="z-warn"/><rect x="276" y="24" width="64" height="15" class="z-bad"/><line x1="180" y1="19" x2="180" y2="44" class="tick"/><line x1="276" y1="19" x2="276" y2="44" class="tick"/><text x="180" y="57" text-anchor="middle" class="axis">5% buy limit</text><text x="276" y="57" text-anchor="middle" class="axis">8% max</text><text x="20" y="57" class="axis">0%</text><path d="M224.2,8 L238.2,8 L231.2,20 Z" class="mk"/><text x="243.2" y="16" class="lbl num">6.6%</text></svg></figure>
-  <p>Limits: 5% when we buy, 8% max in one stock, 30% max in one sector. At 6.6% we stop adding. We also need a stock in all five sectors and one ETF.</p>
-  <p class="small">Every Friday, copy what we own from Caleb's Log into your Portfolio tab. The weights and warnings fill in. Always divide by the whole portfolio.</p>
+  <p class="why"><b>Why it helps us:</b> our limits are 5% when we buy, 8% max, 30% per sector, so no single loser can sink us. At 6.6% we stop adding.</p>
+  <p class="small">Every Friday, copy what we own from Caleb's Log into your Portfolio tab. Always divide by the whole portfolio.</p>
   <div class="foot">
     <div><b>Your sheet</b>Learn 3, then the Portfolio tab.</div>
     <div><b>Limits</b>Ours until Wharton's Trading page says otherwise.</div>
@@ -278,11 +284,11 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
     <li data-n="1"><span>Guess its free cash flow for 5 years. Shrink each year back, add them up.</span></li>
     <li data-n="2"><span>Lump every year after into one number, the terminal value. Shrink it back.</span></li>
     <li data-n="3"><span>Add 1 and 2: the whole business.</span></li>
-    <li data-n="4"><span>Subtract net debt (debt minus cash), divide by shares. That's one share.</span></li>
+    <li data-n="4"><span>Subtract net debt (debt minus cash), divide by shares.</span></li>
   </ol>
-  <p class="small">In class Microsoft came out at $289 while it traded near $388: overpriced. Only call a stock cheap if value beats price by 20 to 30%.</p>
+  <p class="why"><b>Why it helps us:</b> every trade card needs a number, not a feeling. Call a stock cheap only if value beats price by 20 to 30%.</p>
   <div class="foot">
-    <div><b>Your sheet</b>Learn 4, then the Valuation tab. Step 2 is worked for you.</div>
+    <div><b>Your sheet</b>Learn 4, then the Valuation tab.</div>
     <div><b>Michael's notes</b>Day 8, Lecture 1 · Prof. Roberts' Valuation Strategy slide</div>
   </div>
 </section>
@@ -291,8 +297,8 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
   <div class="eyebrow">Valuing a stock · the two guesses</div>
   <h1 id="h10" tabindex="-1">Two guesses decide the whole answer.</h1>
   <div class="calc">Discount rate = 4.5% + beta × 5%<span class="note">4.5% is the 10-year Treasury (check today's). Beta is how hard the stock swings next to the market. Microsoft: 4.5% + 1.13 × 5% ≈ 10%.</span></div>
-  <div class="calc">Terminal value = year-5 cash × (1 + g) ÷ (rate − g)<span class="note">g is growth after year 5: boring, 2.5% to 4%, always below the rate. Why rate − g: the money earns the rate, but g of it stays invested to keep the cash growing.</span></div>
-  <p>Small changes swing everything: Microsoft was $289 at 10% and $350 at 9%. Always give a range.</p>
+  <div class="calc">Terminal value = year-5 cash × (1 + g) ÷ (rate − g)<span class="note">g is growth after year 5: boring, 2.5% to 4%, always below the rate.</span></div>
+  <p class="why"><b>Why it helps us:</b> small guesses swing the answer: Microsoft was $289 at 10% and $350 at 9%. So we pitch a range, and the judges see we know it.</p>
   <div class="foot">
     <div><b>Your sheet</b>Valuation tab, B10 and B11.</div>
     <div><b>Michael's notes</b>Day 8, Lecture 1 · Day 9, Lecture 2 (CAPM)</div>
@@ -312,10 +318,10 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
       <tr><td>Shares</td><td>Balance Sheet: shares</td></tr>
     </tbody>
   </table></div>
-  <p class="small">Same units everywhere (all millions). Cite the 10-K on SEC EDGAR in the report. Quick check: earnings per share × similar companies' P/E. Way off? Recheck.</p>
-  <p>Every number goes in the Ledger with a date and source, or it stays out of the IPS.</p>
+  <p class="small">Same units everywhere (all millions). Sanity check: earnings per share × similar companies' P/E.</p>
+  <p class="why"><b>Why it helps us:</b> judges ask where numbers come from. No source in the Ledger, no place in the IPS.</p>
   <div class="foot">
-    <div><b>Michael's notes</b>Day 8, Lecture 1 (where to find each input) · Day 7, Lecture 3 (P/E comps)</div>
+    <div><b>Michael's notes</b>Day 8, Lecture 1 (the inputs) · Day 7, Lecture 3 (P/E)</div>
   </div>
 </section>
 
