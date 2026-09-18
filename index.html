@@ -43,6 +43,7 @@
 .file li{position:relative;padding-left:14px;font-size:13px;line-height:1.4;color:var(--ink-2)}
 .file li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--orange)}
 .file .btn{justify-content:center;white-space:nowrap}
+.file-guide{display:inline-block;padding:10px 4px;margin:-10px -4px;font-weight:600;color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 .file .soon{display:block;text-align:center;font:600 12px/15px var(--ui);color:var(--ink-2);background:var(--well);border:1px dashed #C5CCD8;border-radius:4px;padding:9px 10px}
 .files-flow{border-top:1px solid var(--line-2);padding:16px 18px 18px}
 .files-flow h3{font:700 11px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
@@ -439,7 +440,7 @@
   $("files-grid").innerHTML = FILES.list.map(function (f) {
     var m = W.member(f.id) || { name: f.id };
     var open = f.url ? '<a class="btn" href="' + esc(f.url) + '" target="_blank" rel="noopener" aria-label="Open ' + esc(m.name) + '\'s sheet">' + W.icon("link") + "Open sheet</a>" : '<span class="soon">Link coming</span>';
-    return '<li class="file"><div class="file-top"><span class="file-av" aria-hidden="true">' + esc(m.name.charAt(0)) + '</span><div class="file-name"><b>' + esc(m.name) + "</b><span>" + esc(f.job) + "</span></div></div>" +
+    return '<li class="file"><div class="file-top"><span class="file-av" aria-hidden="true">' + esc(m.name.charAt(0)) + '</span><div class="file-name"><b>' + esc(m.name) + "</b><span>" + esc(f.job) + (f.guide ? ' · <a class="file-guide" href="' + esc(f.guide) + '" aria-label="How to do ' + esc(m.name) + '\'s job">How-to</a>' : "") + "</span></div></div>" +
       "<ul>" + f.has.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul>" + open + "</li>";
   }).join("");
   $("files-flow").innerHTML = FILES.flow.map(function (x) { return "<li><b>" + esc(x.when) + "</b><span>" + esc(x.what) + "</span></li>"; }).join("");

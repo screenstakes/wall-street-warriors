@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1737">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Joe's job on Wall Street Warriors, one screen at a time: Laura's money, the two piles, position size and valuing a stock.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Joe's Numbers">
+<meta property="og:title" content="Joe's Numbers">
+<meta property="og:description" content="The numbers job on Wall Street Warriors, one screen at a time.">
+<link rel="apple-touch-icon" href="assets/numbers-icon.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Joe's Numbers · Wall Street Warriors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --navy:#142F63; --blue:#1E4B95; --strip:#0B1737;
+  --orange:#EFA24A; --orange-deep:#D98B2B; --orange-ink:#6E4209;
+  --page:#F3F5F8; --card:#FFFFFF; --well:#F2F4F8;
+  --ink:#12213D; --ink-2:#44516B; --ink-3:#6F7B93;
+  --line:#DDE2EA;
+  --ok-soft:#E1F1E8; --warn-soft:#FAEED8; --bad-soft:#FAE5E2; --bad:#AD2A20;
+  --ui:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@supports (height:100dvh){body{height:100dvh}}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);display:flex;flex-direction:column}
+.top{background:var(--strip);color:#fff;padding:12px 16px 0}
+.brand{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--ui);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.brand b,.brand a{font-weight:700;color:#fff;text-decoration:none}
+.brand span{color:#AFC0E0}
+.chapters{max-width:720px;margin:10px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.chapters::-webkit-scrollbar{display:none}
+.chapters button{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;color:#C9D4EA;font:600 13px/1 var(--ui);padding:0 10px;min-height:40px;cursor:pointer;white-space:nowrap}
+.chapters button[aria-current="true"]{color:#fff;border-bottom-color:var(--orange)}
+.chapters button:focus-visible,.nav button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-inline:16px;padding-block:16px 20px}
+.screen{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+h1{font:700 27px/1.18 var(--ui);margin:0;text-wrap:balance;letter-spacing:-.01em;color:var(--navy)}
+p{margin:0;max-width:62ch}
+.small{font-size:14px;color:var(--ink-2)}
+.calc{background:var(--well);border-radius:8px;padding:12px 14px;font:500 15px/1.65 var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);overflow-x:auto}
+.calc .res{font-weight:600;color:var(--navy)}
+.calc .note{display:block;font:14px/1.45 var(--body);color:var(--ink-2);margin-top:4px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start}
+.step .n{font:700 13px/1 var(--ui);color:#fff;background:var(--navy);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;margin-top:2px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:1px solid var(--line);border-radius:8px;padding:12px}
+.tile h3{font:700 15px/1.25 var(--ui);margin:0 0 6px;color:var(--ink)}
+.tile .tabname{font:600 13px/1.2 var(--mono);color:var(--blue)}
+.tile .when{font-size:13px;color:var(--ink-2);margin-top:2px}
+.fig{margin:0}
+.fig svg{display:block;width:100%;height:auto;max-width:520px}
+.fig figcaption{font-size:13px;color:var(--ink-2);margin-top:6px}
+.ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.ladder div{border:1px solid var(--navy);border-radius:4px;padding:6px 4px;text-align:center;font:600 12px/1.3 var(--mono);color:var(--navy);background:#EEF2FA}
+.ladder div span{display:block;font-weight:500;color:var(--ink-2)}
+.quote{font:600 18px/1.35 var(--ui);color:var(--navy);border-left:3px solid var(--orange);padding-left:12px}
+ol.steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+ol.steps li{display:grid;grid-template-columns:24px 1fr;gap:10px}
+ol.steps li::before{content:attr(data-n);font:700 13px/24px var(--ui);color:#fff;background:var(--navy);border-radius:50%;width:24px;height:24px;text-align:center}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.2 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+td:first-child{font-weight:600;white-space:nowrap}
+.tw{overflow-x:auto}
+.check{display:flex;flex-direction:column;gap:8px}
+.check h3{font:700 14px/1.2 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin:4px 0 0}
+.check ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.foot{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--ink-2)}
+.foot b{font:600 11px/1.4 var(--ui);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-right:6px}
+.warn{color:var(--bad)}
+/* chart classes */
+.fa{fill:var(--navy)} .fb{fill:var(--orange)}
+.lbl{font:600 11px var(--mono);fill:var(--ink)}
+.axis{font:500 11px var(--body);fill:var(--ink-2)}
+.axis.strong{font-weight:600;fill:var(--ink)}
+.axis.g{fill:var(--orange-ink)} .axis.s{fill:var(--navy)}
+.inA{font:600 11px var(--mono);fill:#fff} .inB{font:600 11px var(--mono);fill:var(--orange-ink)}
+.rule{stroke:var(--line);stroke-width:1.5}
+.dot{fill:var(--navy)}
+.arrow-g{stroke:var(--orange-deep);stroke-width:2.5;fill:none} .head-g{fill:var(--orange-deep)}
+.arrow-s{stroke:var(--navy);stroke-width:2.5;fill:none} .head-s{fill:var(--navy)}
+.z-ok{fill:var(--ok-soft)} .z-warn{fill:var(--warn-soft)} .z-bad{fill:var(--bad-soft)}
+.tick{stroke:var(--ink-2);stroke-width:1.5} .mk{fill:var(--navy)}
+.nav{background:var(--card);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.nav-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.nav button{font:600 15px/1 var(--ui);border-radius:6px;padding:12px 18px;cursor:pointer;min-height:44px}
+#prev{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+#next{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+.nav button:disabled{opacity:.4;cursor:default}
+.prog{flex:1;display:flex;flex-direction:column;gap:5px;align-items:center}
+.prog span{font:600 12px/1 var(--mono);color:var(--ink-2)}
+.bar{width:100%;max-width:220px;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange-deep);width:0}
+@media (max-width:520px){
+  body{font-size:15px}
+  .top{padding-top:6px}
+  .brand{display:none}
+  .chapters{margin-top:0;gap:0}
+  .chapters button{padding:0 8px;font-size:12.5px}
+  main{padding-inline:8px;padding-block:8px 10px}
+  h1{font-size:22px}
+  .screen{padding:16px 14px 14px;gap:11px}
+  .small{font-size:13.5px}
+  .foot{font-size:12.5px;gap:2px;padding-top:8px}
+  .quote{font-size:16px}
+  .fig figcaption{font-size:12.5px}
+  th,td{padding:6px 6px}
+  .tile{padding:10px}
+  .tile h3{font-size:14px}
+  .tile .tabname,.tile .when{font-size:12px}
+  .calc{font-size:14px;padding:10px 12px}
+  .nav button{padding:12px 14px}
+}
+@media (max-height:700px){
+  .top{padding-top:8px}
+  .chapters{margin-top:4px}
+  main{padding-block:10px 14px}
+  .screen{gap:10px;padding-block:16px 14px}
+  h1{font-size:21px}
+  .eyebrow{font-size:11px}
+  .nav{padding-top:8px}
+}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
+</style>
+<style>
+/* team-site build: the page owns the whole screen, so it pads for the notch, home bar and landscape sides */
+body{margin:0}
+[hidden]{display:none!important}
+.top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
+.top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand a{display:inline-flex;align-items:center;min-height:36px;margin-block:-8px}
+@media (max-height:700px){.top{padding-top:calc(8px + env(safe-area-inset-top,0px))}}
+.chip-home{display:none}
+@media (max-width:520px){
+  .top{padding-top:calc(6px + env(safe-area-inset-top,0px))}
+  main{padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+  .chip-home{display:inline-flex;align-items:center;flex:0 0 auto;min-height:40px;padding:0 8px 0 0;color:#fff;font:700 12.5px/1 var(--ui);text-decoration:none;border-right:1px solid #2A3B63;margin-right:4px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><a href="index.html">‹ Wall Street Warriors</a><span>The numbers job</span></div>
+  <nav class="chapters" id="chapters" aria-label="Chapters">
+    <a class="chip-home" href="index.html" aria-label="Back to the team site">‹ Site</a>
+    <button type="button" data-go="0">Start</button>
+    <button type="button" data-go="2">Laura</button>
+    <button type="button" data-go="7">Portfolio</button>
+    <button type="button" data-go="8">Stocks</button>
+    <button type="button" data-go="11">Week</button>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="screen" data-ch="0" aria-labelledby="h1">
+  <div class="eyebrow">Joe, this is your job</div>
+  <h1 id="h1" tabindex="-1">You're the team's calculator.</h1>
+  <p>Everyone else pitches ideas. You put the number on them. It's four things, and each one has its own tab in your sheet.</p>
+  <div class="tiles">
+    <div class="tile"><h3>Laura's money</h3><div class="tabname">Laura tab</div><div class="when">Once, then again if a guess changes</div></div>
+    <div class="tile"><h3>How big each position is</h3><div class="tabname">Portfolio tab</div><div class="when">Every Friday</div></div>
+    <div class="tile"><h3>What one stock is worth</h3><div class="tabname">Valuation tab</div><div class="when">One idea a week</div></div>
+    <div class="tile"><h3>Where every number came from</h3><div class="tabname">Ledger tab</div><div class="when">Every time you use one</div></div>
+  </div>
+  <p class="small">It all comes from Michael's Wharton notes. Each screen says which lecture.</p>
+</section>
+
+<section class="screen" data-ch="0" aria-labelledby="h2" hidden>
+  <div class="eyebrow">The idea under all of it</div>
+  <h1 id="h2" tabindex="-1">Money later is worth less than money now.</h1>
+  <p>Money you have today can be invested and grow. So every formula you'll use does one of two things.</p>
+  <figure class="fig"><svg viewBox="0 0 360 146" role="img" aria-label="$75.13 today grows to $100 in three years at 10%, and $100 in three years shrinks back to $75.13 today"><circle cx="34" cy="70" r="5" class="dot"/><text x="34" y="96" text-anchor="middle" class="axis">Today</text><text x="34" y="58" text-anchor="middle" class="lbl num">$75.13</text><circle cx="128" cy="70" r="5" class="dot"/><text x="128" y="96" text-anchor="middle" class="axis">Year 1</text><text x="128" y="58" text-anchor="middle" class="lbl num">$82.64</text><circle cx="222" cy="70" r="5" class="dot"/><text x="222" y="96" text-anchor="middle" class="axis">Year 2</text><text x="222" y="58" text-anchor="middle" class="lbl num">$90.91</text><circle cx="316" cy="70" r="5" class="dot"/><text x="316" y="96" text-anchor="middle" class="axis">Year 3</text><text x="316" y="58" text-anchor="middle" class="lbl num">$100</text><line x1="34" y1="70" x2="316" y2="70" class="rule"/><path d="M40,26 H300" class="arrow-g"/><path d="M300,20 L312,26 L300,32 Z" class="head-g"/><text x="40" y="16" class="axis strong g">Grow it forward: × 1.10 each year (FV)</text><path d="M310,116 H50" class="arrow-s"/><path d="M50,110 L38,116 L50,122 Z" class="head-s"/><text x="50" y="138" class="axis strong s">Shrink it back: ÷ 1.10 each year (PV)</text></svg></figure>
+  <p>$75.13 today at 10% becomes $100 in 3 years. So $100 in 3 years is worth $75.13 today. Same money, read in two directions.</p>
+  <div class="foot">
+    <div><b>Your sheet</b>Learn 1 grows money. Learn 4 shrinks it.</div>
+    <div><b>Michael's notes</b>Day 2, Lecture 1 · Day 8, Lecture 1 · the PV vs FV slide</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h3" hidden>
+  <div class="eyebrow">Laura's money · grow it forward</div>
+  <h1 id="h3" tabindex="-1">What Laura has at the start of 2033</h1>
+  <div class="calc">$300,000 × 1.07<sup>6</sup> = $450,219<br>$150,000 × 1.07<sup>5</sup> = $210,383<br><span class="res">Together = $660,602</span></div>
+  <p>Why 6 and 5? Count the years the money is growing, not the year numbers. The 2027 money grows from 2027 to 2033. That's 6 years. Using 7 and 6 gives $706,844, which is $46,000 too high.</p>
+  <p class="small">7% is our guess, not a promise. You'll try other rates on screen 7.</p>
+  <div class="foot">
+    <div><b>Your sheet</b>Laura tab, step 3. Step 6 is the same for 2031 with 4 and 3 years: $576,995.</div>
+    <div><b>Michael's notes</b>Day 3, Lecture 1 formula sheet: FV = CF × (1 + growth rate)<sup>t</sup></div>
+  </div>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h4" hidden>
+  <div class="eyebrow">Laura's money · Pile A, the bills</div>
+  <h1 id="h4" tabindex="-1">Pile A is an account that ends at exactly $0.</h1>
+  <p>Laura pays $50,000 a year, 2033 to 2042. That's $500,000 on paper, but the money we set aside keeps earning while we pay it out.</p>
+  <p class="small">From Michael's notes: put $3,545.95 in the bank at 5%, take out $1,000 a year, and after the 4th payment it's exactly $0. Pile A is the same, bigger.</p>
+  <figure class="fig"><svg viewBox="0 0 360 166" role="img" aria-label="Pile A balance falls from $421,767 in 2033 to $50,000 before the last payment in 2042, then $0"><rect x="24.0" y="34.0" width="27" height="108.0" rx="2" class="fa"/><text x="24.0" y="27.0" class="lbl num">$421,767</text><text x="37.5" y="158" text-anchor="middle" class="axis">2033</text><rect x="57.4" y="43.0" width="27" height="99.0" rx="2" class="fa"/><rect x="90.8" y="52.4" width="27" height="89.6" rx="2" class="fa"/><rect x="124.2" y="62.1" width="27" height="79.9" rx="2" class="fa"/><rect x="157.6" y="72.2" width="27" height="69.8" rx="2" class="fa"/><text x="171.1" y="158" text-anchor="middle" class="axis">2037</text><rect x="191.0" y="82.7" width="27" height="59.3" rx="2" class="fa"/><rect x="224.4" y="93.7" width="27" height="48.3" rx="2" class="fa"/><rect x="257.8" y="105.0" width="27" height="37.0" rx="2" class="fa"/><rect x="291.2" y="116.9" width="27" height="25.1" rx="2" class="fa"/><rect x="324.6" y="129.2" width="27" height="12.8" rx="2" class="fa"/><text x="351.6" y="108.9" text-anchor="end" class="lbl num">$50,000</text><text x="338.1" y="158" text-anchor="middle" class="axis">2042</text><line x1="18" y1="142" x2="357.6" y2="142" class="rule"/></svg><figcaption>Pile A each January at 4%, before that year's $50,000 goes out. After payment 10: $0.</figcaption></figure>
+  <div class="foot">
+    <div><b>Michael's notes</b>Day 2, Lecture 1 (annuities) · Day 2, Lecture 2 (the nest egg)</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h5" hidden>
+  <div class="eyebrow">Laura's money · Pile A, the math</div>
+  <h1 id="h5" tabindex="-1">Pile A in two steps. Most people skip step 2.</h1>
+  <div class="step"><span class="n">1</span><div class="calc">$50,000 × [1 − 1.04<sup>−10</sup>] ÷ 0.04 = $405,545<span class="note">Assumes payments at the end of the year.</span></div></div>
+  <div class="step"><span class="n">2</span><div class="calc">$405,545 × 1.04 = <span class="res">$421,767</span><span class="note">Laura pays at the start of each year, so every payment comes a year sooner.</span></div></div>
+  <p>Skip step 2 and Pile A is $16,222 short.</p>
+  <div class="calc">=PV(0.04, 10, -50000, 0, 1)<span class="note">Sheets does both steps at once. The last 1 means "start of the year."</span></div>
+  <div class="foot">
+    <div><b>Your sheet</b>Learn 2, then Laura tab, step 2.</div>
+    <div><b>Michael's notes</b>Day 3, Lecture 1: "PV of Annuity Due" and the [type] note</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h6" hidden>
+  <div class="eyebrow">Laura's money · where Pile A lives</div>
+  <h1 id="h6" tabindex="-1">Keep Pile A in bonds, not cash.</h1>
+  <p>In cash, Pile A needs the full $500,000. In a bond ladder it needs $421,767. The $78,233 difference can go to the building, and we don't have to pick a single stock to get it.</p>
+  <div class="ladder" aria-label="Ten bonds, one paying $50,000 each January from 2033 to 2042">
+    <div>2033<span>$50K</span></div><div>2034<span>$50K</span></div><div>2035<span>$50K</span></div><div>2036<span>$50K</span></div><div>2037<span>$50K</span></div>
+    <div>2038<span>$50K</span></div><div>2039<span>$50K</span></div><div>2040<span>$50K</span></div><div>2041<span>$50K</span></div><div>2042<span>$50K</span></div>
+  </div>
+  <p class="small">Ten Treasury bonds, each paying out the January a payment is due. Hold one until it matures and you get its full value back, whatever its price does. Regular Treasuries, not TIPS: her payments stay at $50,000 and don't grow with inflation.</p>
+  <p>Your part: look up today's Treasury yields (Links tab) and put the rate in Laura tab, B9.</p>
+  <div class="foot">
+    <div><b>Michael's notes</b>Day 6, Lecture 1 (bonds, yield to maturity) · Day 7, Lecture 2 (Treasuries are the risk-free floor)</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h7" hidden>
+  <div class="eyebrow">Laura's money · Pile B, the building</div>
+  <h1 id="h7" tabindex="-1">Pile B is whatever's left, and it swings.</h1>
+  <div class="calc">Pile B = 2033 portfolio − Pile A<br>At 7%: $660,602 − $421,767 = <span class="res">$238,835</span></div>
+  <figure class="fig"><svg viewBox="0 0 360 158" role="img" aria-label="At 5%, 7% and 9% growth Pile A stays $421,767 while Pile B is $171,704, $238,835 and $312,157"><text x="0" y="33" class="axis strong">5%</text><rect x="44" y="14" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="14" width="71.0" height="28" rx="2" class="fb"/><text x="52" y="32.5" class="inA">Pile A $421,767</text><text x="224.4" y="32.5" class="inB num">$171,704</text><text x="0" y="77" class="axis strong">7%</text><rect x="44" y="58" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="58" width="98.8" height="28" rx="2" class="fb"/><text x="52" y="76.5" class="inA">$421,767</text><text x="224.4" y="76.5" class="inB num">$238,835</text><text x="0" y="121" class="axis strong">9%</text><rect x="44" y="102" width="174.4" height="28" rx="2" class="fa"/><rect x="218.4" y="102" width="129.1" height="28" rx="2" class="fb"/><text x="52" y="120.5" class="inA">$421,767</text><text x="224.4" y="120.5" class="inB num">$312,157</text><text x="0" y="150" class="axis">growth 2027 to 2033</text></svg></figure>
+  <p>Pile A stays put. Pile B moves about $140,000 between a bad run and a good one. In 2031 Laura quotes co-sponsors a range, so we play it safer by 2031: a calmer portfolio gives a range people believe.</p>
+  <div class="foot">
+    <div><b>Your sheet</b>Laura tab, steps 4 and 5. Then change B10 to 5% and to 9% and watch step 4.</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="2" aria-labelledby="h8" hidden>
+  <div class="eyebrow">Our portfolio · every Friday</div>
+  <h1 id="h8" tabindex="-1">How big is one position?</h1>
+  <div class="calc">Value = shares × price<br>Weight = value ÷ the whole portfolio, cash included<span class="note">90 × $220 = $19,800, and $19,800 ÷ $300,000 = 6.6%.</span></div>
+  <figure class="fig"><svg viewBox="0 0 360 62" role="img" aria-label="A 6.6% position sits past the 5% buy limit and under the 8% maximum"><rect x="20" y="24" width="160" height="15" class="z-ok"/><rect x="180" y="24" width="96" height="15" class="z-warn"/><rect x="276" y="24" width="64" height="15" class="z-bad"/><line x1="180" y1="19" x2="180" y2="44" class="tick"/><line x1="276" y1="19" x2="276" y2="44" class="tick"/><text x="180" y="57" text-anchor="middle" class="axis">5% buy limit</text><text x="276" y="57" text-anchor="middle" class="axis">8% max</text><text x="20" y="57" class="axis">0%</text><path d="M224.2,8 L238.2,8 L231.2,20 Z" class="mk"/><text x="243.2" y="16" class="lbl num">6.6%</text></svg></figure>
+  <p>Limits: 5% when we buy, 8% max in one stock, 30% max in one sector. At 6.6% we stop adding. We also need a stock in all five sectors and one ETF.</p>
+  <p class="small">Every Friday, copy what we own from Caleb's Log into your Portfolio tab. The weights and warnings fill in. Always divide by the whole portfolio.</p>
+  <div class="foot">
+    <div><b>Your sheet</b>Learn 3, then the Portfolio tab.</div>
+    <div><b>Limits</b>Ours until Wharton's Trading page says otherwise.</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="3" aria-labelledby="h9" hidden>
+  <div class="eyebrow">Valuing a stock</div>
+  <h1 id="h9" tabindex="-1">Price is what you pay. Value is what you get.</h1>
+  <p>A stock's value is all the cash the company will ever make, shrunk back to today:</p>
+  <ol class="steps">
+    <li data-n="1"><span>Guess its free cash flow for 5 years. Shrink each year back, add them up.</span></li>
+    <li data-n="2"><span>Lump every year after into one number, the terminal value. Shrink it back.</span></li>
+    <li data-n="3"><span>Add 1 and 2: the whole business.</span></li>
+    <li data-n="4"><span>Subtract net debt (debt minus cash), divide by shares. That's one share.</span></li>
+  </ol>
+  <p class="small">In class Microsoft came out at $289 while it traded near $388: overpriced. Only call a stock cheap if value beats price by 20 to 30%.</p>
+  <div class="foot">
+    <div><b>Your sheet</b>Learn 4, then the Valuation tab. Step 2 is worked for you.</div>
+    <div><b>Michael's notes</b>Day 8, Lecture 1 · Prof. Roberts' Valuation Strategy slide</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="3" aria-labelledby="h10" hidden>
+  <div class="eyebrow">Valuing a stock · the two guesses</div>
+  <h1 id="h10" tabindex="-1">Two guesses decide the whole answer.</h1>
+  <div class="calc">Discount rate = 4.5% + beta × 5%<span class="note">4.5% is the 10-year Treasury (check today's). Beta is how hard the stock swings next to the market. Microsoft: 4.5% + 1.13 × 5% ≈ 10%.</span></div>
+  <div class="calc">Terminal value = year-5 cash × (1 + g) ÷ (rate − g)<span class="note">g is growth after year 5: boring, 2.5% to 4%, always below the rate. Why rate − g: the money earns the rate, but g of it stays invested to keep the cash growing.</span></div>
+  <p>Small changes swing everything: Microsoft was $289 at 10% and $350 at 9%. Always give a range.</p>
+  <div class="foot">
+    <div><b>Your sheet</b>Valuation tab, B10 and B11.</div>
+    <div><b>Michael's notes</b>Day 8, Lecture 1 · Day 9, Lecture 2 (CAPM)</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="3" aria-labelledby="h11" hidden>
+  <div class="eyebrow">Valuing a stock · getting the inputs</div>
+  <h1 id="h11" tabindex="-1">Where every number comes from</h1>
+  <div class="tw"><table>
+    <thead><tr><th>You need</th><th>On Yahoo Finance</th></tr></thead>
+    <tbody>
+      <tr><td>Free cash flow</td><td>Cash Flow tab: operating cash flow − capex</td></tr>
+      <tr><td>Growth</td><td>Analysis tab: sales growth</td></tr>
+      <tr><td>Beta</td><td>Statistics tab</td></tr>
+      <tr><td>Net debt</td><td>Balance Sheet: debt − cash</td></tr>
+      <tr><td>Shares</td><td>Balance Sheet: shares</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Same units everywhere (all millions). Cite the 10-K on SEC EDGAR in the report. Quick check: earnings per share × similar companies' P/E. Way off? Recheck.</p>
+  <p>Every number goes in the Ledger with a date and source, or it stays out of the IPS.</p>
+  <div class="foot">
+    <div><b>Michael's notes</b>Day 8, Lecture 1 (where to find each input) · Day 7, Lecture 3 (P/E comps)</div>
+  </div>
+</section>
+
+<section class="screen" data-ch="4" aria-labelledby="h12" hidden>
+  <div class="eyebrow">Your week</div>
+  <h1 id="h12" tabindex="-1">What you do, and when</h1>
+  <div class="check">
+    <h3>This week, before trading starts Sep 28</h3>
+    <ul>
+      <li>Learn 1 to 4 until every check says Correct</li>
+      <li>Laura tab: all six say Correct</li>
+      <li>Put today's Treasury rate in Laura tab, B9</li>
+    </ul>
+    <h3>Every Friday</h3>
+    <ul>
+      <li>Portfolio tab, copied from Caleb's Log</li>
+      <li>Value one idea the team liked (copy the Valuation tab for each stock)</li>
+      <li>Add the week's new numbers to the Ledger</li>
+      <li>This week tab: fill in your row, then pick ✓</li>
+    </ul>
+    <h3>Oct 24 to 30</h3>
+    <ul>
+      <li>Give Federico your Pile A, Pile B and the rates for the IPS</li>
+    </ul>
+  </div>
+  <p class="small">Stuck? The check cell tells you what went wrong. Still stuck, ask Michael.</p>
+</section>
+
+</main>
+
+<nav class="nav" aria-label="Screens">
+  <div class="nav-in">
+    <button type="button" id="prev">Back</button>
+    <div class="prog"><span id="count">1 of 12</span><div class="bar"><i id="fill"></i></div></div>
+    <button type="button" id="next">Next</button>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var screens = [].slice.call(document.querySelectorAll('.screen'));
+  var chips = [].slice.call(document.querySelectorAll('#chapters button'));
+  var main = document.getElementById('main');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var count = document.getElementById('count'), fill = document.getElementById('fill');
+  var cur = 0;
+  function show(i, focus){
+    i = Math.max(0, Math.min(screens.length - 1, i));
+    screens.forEach(function(s, k){ s.hidden = k !== i; });
+    cur = i;
+    var ch = screens[i].getAttribute('data-ch');
+    chips.forEach(function(c, k){ c.setAttribute('aria-current', String(k) === ch ? 'true' : 'false'); });
+    var on = chips[+ch]; if (on && on.scrollIntoView) { try { on.scrollIntoView({block:'nearest', inline:'nearest'}); } catch (e) {} }
+    prev.disabled = i === 0;
+    next.textContent = i === screens.length - 1 ? 'Start over' : 'Next';
+    count.textContent = (i + 1) + ' of ' + screens.length;
+    fill.style.width = ((i + 1) / screens.length * 100) + '%';
+    main.scrollTop = 0;
+    try { localStorage.setItem('joe-screen', String(i)); } catch (e) {}
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+    if (focus) { var h = screens[i].querySelector('h1'); if (h) h.focus({preventScroll:true}); }
+  }
+  prev.addEventListener('click', function(){ show(cur - 1, true); });
+  next.addEventListener('click', function(){ show(cur === screens.length - 1 ? 0 : cur + 1, true); });
+  chips.forEach(function(c){ c.addEventListener('click', function(){ show(+c.getAttribute('data-go'), true); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight') show(cur + 1, true);
+    else if (e.key === 'ArrowLeft') show(cur - 1, true);
+  });
+  var x0 = null, y0 = 0;
+  main.addEventListener('touchstart', function(e){ if (e.touches.length !== 1) { x0 = null; return; } x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  main.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1), false);
+  });
+  var start = 0;
+  var fromHash = parseInt((location.hash || '').slice(1), 10);
+  if (!isNaN(fromHash)) start = fromHash - 1;
+  else { try { var saved = parseInt(localStorage.getItem('joe-screen'), 10); if (!isNaN(saved)) start = saved; } catch (e) {} }
+  show(start, false);
+})();
+</script>
+
+</body>
+</html>
