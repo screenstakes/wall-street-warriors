@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1737">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Dylan's job on Wall Street Warriors, one screen at a time: the case against each trade, our limits, the weekly check and his parts of the IPS.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dylan's Job">
+<meta property="og:title" content="Dylan's Job: Risk and the Case Against">
+<meta property="og:description" content="Everything in your sheet and everything else you do, one screen at a time.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Dylan's Job · Wall Street Warriors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --navy:#142F63; --blue:#1E4B95; --strip:#0B1737;
+  --orange:#EFA24A; --orange-deep:#D98B2B; --orange-ink:#6E4209;
+  --page:#F3F5F8; --card:#FFFFFF; --well:#F2F4F8; --tint:#EAF0FB;
+  --ink:#12213D; --ink-2:#44516B; --ink-3:#6F7B93;
+  --line:#DDE2EA;
+  --ok-soft:#E1F1E8; --ok:#1F6B3A; --warn-soft:#FAEED8;
+  --ui:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@supports (height:100dvh){body{height:100dvh}}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);display:flex;flex-direction:column}
+[hidden]{display:none!important}
+.top{background:var(--strip);color:#fff;padding:12px 16px 0}
+.brand{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--ui);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.brand a{font-weight:700;color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:36px;margin-block:-8px}
+.brand span{color:#AFC0E0}
+.chapters{max-width:720px;margin:10px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.chapters::-webkit-scrollbar{display:none}
+.chapters button{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;color:#C9D4EA;font:600 13px/1 var(--ui);padding:0 10px;min-height:40px;cursor:pointer;white-space:nowrap}
+.chapters button[aria-current="true"]{color:#fff;border-bottom-color:var(--orange)}
+.chapters button:focus-visible,.nav button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.chip-home{display:none}
+main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-block:16px 20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
+.top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.screen{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.eyebrow.ex{color:var(--orange-ink)}
+.eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
+h1{font:700 27px/1.18 var(--ui);margin:0;text-wrap:balance;letter-spacing:-.01em;color:var(--navy)}
+p{margin:0;max-width:62ch}
+.small{font-size:14px;color:var(--ink-2)}
+b{font-weight:600}
+/* the four stops */
+ol.flow{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+ol.flow li{display:grid;grid-template-columns:26px 1fr;gap:2px 12px;align-items:start}
+ol.flow li::before{content:attr(data-n);grid-row:span 2;font:700 13px/26px var(--ui);color:#fff;background:var(--navy);border-radius:50%;width:26px;height:26px;text-align:center}
+ol.flow b{font:700 15px/1.3 var(--ui);color:var(--ink)}
+ol.flow span{font-size:15px;color:var(--ink-2);line-height:1.4}
+/* where things go */
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.2 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+td:first-child{color:var(--ink-2);width:46%}
+td:last-child{font-weight:600;color:var(--navy)}
+tr.hl td{background:var(--tint)}
+.callout{background:var(--tint);border-left:3px solid var(--navy);border-radius:4px;padding:10px 12px;font-size:15px}
+.callout.ok{background:var(--ok-soft);border-left-color:var(--ok)}
+/* chat */
+.bubble{background:var(--tint);border-radius:4px 14px 14px 14px;padding:11px 14px;font-size:15px;line-height:1.45}
+.bubble .who{display:block;font:700 12px/1.2 var(--ui);letter-spacing:.04em;color:var(--blue);margin-bottom:4px}
+.bubble ol{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.tip{font-size:14px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:10px}
+.tip b{color:var(--ink)}
+.replies{display:flex;flex-direction:column;gap:6px}
+.reply{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:baseline;background:var(--well);border-radius:8px;padding:8px 12px;font-size:14.5px;line-height:1.4}
+.reply .who{font:700 13px/1.3 var(--ui);color:var(--blue)}
+/* minute by minute */
+.tl{display:flex;flex-direction:column}
+.tl div{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.42}
+.tl div:last-child{border-bottom:0}
+.tl time{font:600 13px/1.5 var(--mono);color:var(--orange-ink);white-space:nowrap}
+.tl q{quotes:"\201C" "\201D"}
+/* tasks */
+.tasks{display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:78px 1fr;gap:1px 12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.task .who{grid-row:span 2;font:700 14px/1.4 var(--ui);color:var(--navy)}
+.task .what{font-size:15px;line-height:1.35}
+.task .when{font-size:13px;color:var(--ink-2)}
+.task .when i{font-style:normal;font:600 12px/1 var(--mono);color:var(--blue)}
+/* the minutes row */
+.sheet{border:1px solid #C9D3E2;border-radius:6px;overflow:hidden}
+.sheet-cap{background:var(--strip);color:#fff;font:600 12px/1.2 var(--ui);letter-spacing:.05em;padding:8px 12px}
+.sheet dl{margin:0;display:grid;grid-template-columns:104px 1fr}
+.sheet dt,.sheet dd{margin:0;padding:6px 10px;border-top:1px solid #E6EAF1;font-size:13.5px;line-height:1.38}
+.sheet dt{font:600 12px/1.35 var(--ui);color:var(--ink-2);background:var(--well)}
+.sheet dd{background:#FEF6D8;color:#0B3DAF}
+/* per person */
+.roles{display:flex;flex-direction:column}
+.roles div{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+.roles div:last-child{border-bottom:0}
+.roles b{font:700 14px/1.45 var(--ui);color:var(--navy)}
+.small a{color:var(--blue);font-weight:600;text-underline-offset:2px;display:inline-block;padding:10px 0;margin:-10px 0}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:1px solid var(--line);border-radius:8px;padding:12px}
+.tile h3{font:700 15px/1.25 var(--ui);margin:0 0 6px;color:var(--ink)}
+.tile .tabname{font:600 13px/1.2 var(--mono);color:var(--blue)}
+.tile .when{font-size:13px;color:var(--ink-2);margin-top:2px}
+.lims{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.lims div{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:4px}
+.lims b{font:700 26px/1 var(--ui);color:var(--navy)}
+.lims span{font-size:13px;line-height:1.35;color:var(--ink-2)}
+.fig{margin:0}
+.fig svg{display:block;width:100%;height:auto;max-width:520px}
+.fig figcaption{font-size:13px;color:var(--ink-2);margin-top:6px}
+.lbl{font:600 11px var(--mono);fill:var(--ink)}
+.axis{font:500 11px var(--body);fill:var(--ink-2)}
+.z-ok{fill:var(--ok-soft)} .z-warn{fill:var(--warn-soft)} .z-bad{fill:#FAE5E2}
+.tick{stroke:var(--ink-2);stroke-width:1.5} .mk{fill:var(--navy)}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--orange-deep)}
+.callout b{font-weight:700}
+ol.flow.qs span{color:var(--ink)}
+/* nav */
+.nav{background:var(--card);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.nav-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.nav button{font:600 15px/1 var(--ui);border-radius:6px;padding:12px 18px;cursor:pointer;min-height:44px}
+#prev{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+#next{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+.nav button:disabled{opacity:.4;cursor:default}
+.prog{flex:1;display:flex;flex-direction:column;gap:5px;align-items:center}
+.prog span{font:600 12px/1 var(--mono);color:var(--ink-2)}
+.bar{width:100%;max-width:220px;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange-deep);width:0}
+@media (max-width:520px){
+  body{font-size:15px}
+  .top{padding-top:calc(6px + env(safe-area-inset-top,0px))}
+  .brand{display:none}
+  .chapters{margin-top:0;gap:0}
+  .chapters button{padding:0 8px;font-size:12.5px}
+  .chip-home{display:inline-flex;align-items:center;flex:0 0 auto;min-height:40px;padding:0 8px 0 0;color:#fff;font:700 12.5px/1 var(--ui);text-decoration:none;border-right:1px solid #2A3B63;margin-right:4px}
+  main{padding-block:8px 10px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+  h1{font-size:22px}
+  .screen{padding:16px 14px 14px;gap:11px}
+  .small,.tip{font-size:13.5px}
+  table{font-size:14px}
+  th,td{padding:7px 6px}
+  ol.flow span,.bubble,.callout,.tl div,.task .what,.roles div{font-size:14px}
+  .reply{grid-template-columns:62px 1fr;font-size:13.5px;padding:7px 10px}
+  .tl div{grid-template-columns:50px 1fr;gap:10px;padding:7px 0}
+  .tl time{font-size:12px}
+  .task,.roles div{grid-template-columns:66px 1fr;gap:1px 10px}
+  .roles div{gap:10px}
+  .task .who,.roles b{font-size:13px}
+  .sheet dl{grid-template-columns:88px 1fr}
+  .sheet dt,.sheet dd{font-size:12.5px;padding:5px 8px}
+  .sheet dt{font-size:11px}
+  .tile{padding:10px}
+  .tile h3{font-size:14px}
+  .tile .tabname,.tile .when{font-size:12px}
+  .lims b{font-size:22px}
+  .lims span{font-size:12.5px}
+  .fig figcaption{font-size:12.5px}
+  .nav button{padding:12px 14px}
+}
+@media (max-height:700px){
+  .chapters{margin-top:4px}
+  main{padding-block:10px 14px}
+  .screen{gap:10px;padding-block:16px 14px}
+  h1{font-size:21px}
+  .eyebrow{font-size:11px}
+  .nav{padding-top:8px}
+}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><a href="index.html">‹ Wall Street Warriors</a><span>Risk and the case against</span></div>
+  <nav class="chapters" id="chapters" aria-label="Chapters">
+    <a class="chip-home" href="index.html" aria-label="Back to the team site">‹ Site</a>
+    <button type="button" data-go="0">Start</button>
+    <button type="button" data-go="2">Bear case</button>
+    <button type="button" data-go="4">Limits</button>
+    <button type="button" data-go="6">IPS</button>
+    <button type="button" data-go="7">Week</button>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="screen" data-ch="0" aria-labelledby="h1">
+  <div class="eyebrow">Dylan, this is your job</div>
+  <h1 id="h1" tabindex="-1">You ask the question nobody else wants to: what if we're wrong?</h1>
+  <p>Everyone else pitches trades. Before each vote, you check the trade against our limits and write the short case against it.</p>
+  <div class="tiles">
+    <div class="tile"><h3>The case against each trade</h3><div class="tabname">Bear case tab</div><div class="when">Before every vote</div></div>
+    <div class="tile"><h3>Our limits</h3><div class="tabname">Limits tab</div><div class="when">Every Friday</div></div>
+    <div class="tile"><h3>Your weekly check</h3><div class="tabname">This week tab</div><div class="when">Every Friday</div></div>
+    <div class="tile"><h3>Three parts of the IPS</h3><div class="tabname">To Federico</div><div class="when">Oct 24 to 30</div></div>
+  </div>
+  <p class="small">It's never a veto. Your job is making sure we decide with our eyes open.</p>
+</section>
+
+<section class="screen" data-ch="0" aria-labelledby="h2" hidden>
+  <div class="eyebrow">The one rule</div>
+  <h1 id="h2" tabindex="-1">Post it before the vote, or the trade goes ahead.</h1>
+  <div class="roles">
+    <div><b>Where</b><span>Our team Google Chat.</span></div>
+    <div><b>When</b><span>By the night before the vote.</span></div>
+    <div><b>Late?</b><span>We vote without it. That's what keeps it from being a veto.</span></div>
+    <div><b>Meeting</b><span>On any trade, you talk first, in minutes 2 to 4.</span></div>
+    <div><b>Your idea?</b><span>Never write the case against your own pitch. Caleb writes that one.</span></div>
+  </div>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h3" hidden>
+  <div class="eyebrow">The case against · step 1</div>
+  <h1 id="h3" tabindex="-1">Answer five questions</h1>
+  <ol class="flow qs">
+    <li data-n="1"><span>Where did the numbers come from? A fact, or someone's guess?</span></li>
+    <li data-n="2"><span>Was there a real alternative, or did we take the first idea?</span></li>
+    <li data-n="3"><span>Is our best guess too hopeful?</span></li>
+    <li data-n="4"><span>Is the worst case bad enough?</span></li>
+    <li data-n="5"><span>Did anyone disagree, and did we listen?</span></li>
+  </ol>
+  <p class="small">Your Bear case tab has one column per trade. Column B is a finished example on VOO, so read it first. Fill yours in C, then D. Rows 5 to 8 first: the trade, who pitched it, and what your Limits tab says about it.</p>
+</section>
+
+<section class="screen" data-ch="1" aria-labelledby="h4" hidden>
+  <div class="eyebrow">The case against · step 2</div>
+  <h1 id="h4" tabindex="-1">Write 150 words, then post them in the chat</h1>
+  <div class="bubble"><span class="who">You, in the Google Chat</span>Nothing is wrong with VOO. What could be wrong is the size and the timing. Fifteen percent on day one, before the IPS, means we set the core before we've written what it's for. I'd approve 10% now and revisit at the IPS. If we want 15% anyway, write down why, because a judge will ask.</div>
+  <ol class="flow">
+    <li data-n="1"><span>Write it in row 14. Under 150 words, the sheet says Good.</span></li>
+    <li data-n="2"><span>Copy it into the Google Chat, the night before the vote.</span></li>
+    <li data-n="3"><span>Row 7: the time you posted. Row 16: pick ✓.</span></li>
+  </ol>
+</section>
+
+<section class="screen" data-ch="2" aria-labelledby="h5" hidden>
+  <div class="eyebrow">Our limits</div>
+  <h1 id="h5" tabindex="-1">Three numbers you protect</h1>
+  <div class="lims">
+    <div><b>5%</b><span>most one stock can be when we buy it</span></div>
+    <div><b>8%</b><span>most one stock can ever be. Over it, we sell some.</span></div>
+    <div><b>30%</b><span>most in any one sector</span></div>
+  </div>
+  <figure class="fig"><svg viewBox="0 0 360 62" role="img" aria-label="A 6.6% position sits past the 5% buy limit and under the 8% maximum"><rect x="20" y="24" width="160" height="15" class="z-ok"/><rect x="180" y="24" width="96" height="15" class="z-warn"/><rect x="276" y="24" width="64" height="15" class="z-bad"/><line x1="180" y1="19" x2="180" y2="44" class="tick"/><line x1="276" y1="19" x2="276" y2="44" class="tick"/><text x="180" y="57" text-anchor="middle" class="axis">5% buy limit</text><text x="276" y="57" text-anchor="middle" class="axis">8% max</text><text x="20" y="57" class="axis">0%</text><path d="M224.2,8 L238.2,8 L231.2,20 Z" class="mk"/><text x="243.2" y="16" class="lbl num">6.6%</text></svg><figcaption>$19,800 of $300,000 is 6.6%. Past 5%, so we stop adding. Under 8%, so we keep it.</figcaption></figure>
+  <div class="callout">We also need a stock in all five sectors and at least one ETF, all season. Miss that and we risk disqualification.</div>
+</section>
+
+<section class="screen" data-ch="2" aria-labelledby="h6" hidden>
+  <div class="eyebrow">Limits tab · every Friday</div>
+  <h1 id="h6" tabindex="-1">Update it in three steps</h1>
+  <ol class="flow">
+    <li data-n="1"><b>Our total</b><span>Cell D3: the total from WInS. It starts at $300,000. If yours says $500,000, fix it. That was last season.</span></li>
+    <li data-n="2"><b>What we own</b><span>Copy each holding from Caleb's Log: ticker, type, sector, dollar value. One row each.</span></li>
+    <li data-n="3"><b>Read the flags</b><span>The grey cells do the math. Look for anything that doesn't say ok.</span></li>
+  </ol>
+  <div class="callout warn"><b>Before Sep 28:</b> rows 8 to 13 are examples. Select those yellow cells and press Delete to clear them. Don't delete the rows themselves, because Michael's dashboard reads the cells below them.</div>
+</section>
+
+<section class="screen" data-ch="3" aria-labelledby="h7" hidden>
+  <div class="eyebrow">The IPS · Oct 24 to 30</div>
+  <h1 id="h7" tabindex="-1">Give Federico three pieces</h1>
+  <p>The IPS is our written plan for Laura's money, and half of what picks the top 50. Federico writes it. You hand him:</p>
+  <div class="tasks">
+    <div class="task"><span class="who">Part 5</span><span class="what">The worst year</span><span class="when">Like: a 2008-style year takes stocks down 35 to 40%.</span></div>
+    <div class="task"><span class="who">Part 8</span><span class="what">What we won't do</span><span class="when">No stock over 8%, no sector over 30%, no borrowing to invest.</span></div>
+    <div class="task"><span class="who">Part 10</span><span class="what">How we keep watch, with Caleb</span><span class="when">How often we check, and what makes us change something.</span></div>
+  </div>
+  <p class="small">Plus one paragraph on your sector, like everyone. Due Nov 6, and ours is done by Nov 5.</p>
+</section>
+
+<section class="screen" data-ch="4" aria-labelledby="h8" hidden>
+  <div class="eyebrow">This week tab · every Friday</div>
+  <h1 id="h8" tabindex="-1">Four cells, then ✓</h1>
+  <div class="sheet">
+    <div class="sheet-cap">Your sheet · This week tab · this week's row</div>
+    <dl>
+      <dt>Biggest single stock %</dt><dd>6.6%, copied from Limits C29</dd>
+      <dt>Anything near a limit?</dt><dd>Yes, JPM at 6.6%</dd>
+      <dt>Bear cases written / trades voted</dt><dd>2 / 2</dd>
+      <dt>Worst case this week</dt><dd>If the market drops 10%, we lose about $25,000. Laura's plan doesn't change: nothing is due until 2033.</dd>
+    </dl>
+  </div>
+  <p class="small">If the second number in 2 / 2 is bigger, a trade got voted with no case against. Post the four lines in the chat, then pick ✓ in Done.</p>
+</section>
+
+<section class="screen" data-ch="4" aria-labelledby="h9" hidden>
+  <div class="eyebrow">Your week</div>
+  <h1 id="h9" tabindex="-1">What you do, and when</h1>
+  <div class="roles">
+    <div><b>Before Sep 28</b><span>Clear rows 8 to 13 on Limits. Check D3 says $300,000. Read column B on Bear case.</span></div>
+    <div><b>Before a vote</b><span>Five questions, 150 words, posted in the chat the night before.</span></div>
+    <div><b>Meeting</b><span>On any trade, you talk first.</span></div>
+    <div><b>Friday</b><span>Update Limits, fill your This week row, post the four lines, pick ✓.</span></div>
+    <div><b>Oct 24–30</b><span>Parts 5, 8 and 10 of the IPS to Federico.</span></div>
+    <div><b>Out?</b><span>Caleb covers. Tell him the night before.</span></div>
+  </div>
+</section>
+
+</main>
+
+<nav class="nav" aria-label="Screens">
+  <div class="nav-in">
+    <button type="button" id="prev">Back</button>
+    <div class="prog"><span id="count">1 of 9</span><div class="bar"><i id="fill"></i></div></div>
+    <button type="button" id="next">Next</button>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var screens = [].slice.call(document.querySelectorAll('.screen'));
+  var chips = [].slice.call(document.querySelectorAll('#chapters button'));
+  var main = document.getElementById('main');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var count = document.getElementById('count'), fill = document.getElementById('fill');
+  var cur = 0;
+  function show(i, focus){
+    i = Math.max(0, Math.min(screens.length - 1, i));
+    screens.forEach(function(s, k){ s.hidden = k !== i; });
+    cur = i;
+    var ch = screens[i].getAttribute('data-ch');
+    chips.forEach(function(c, k){ c.setAttribute('aria-current', String(k) === ch ? 'true' : 'false'); });
+    var on = chips[+ch]; if (on && on.scrollIntoView) { try { on.scrollIntoView({block:'nearest', inline:'nearest'}); } catch (e) {} }
+    prev.disabled = i === 0;
+    next.textContent = i === screens.length - 1 ? 'Start over' : 'Next';
+    count.textContent = (i + 1) + ' of ' + screens.length;
+    fill.style.width = ((i + 1) / screens.length * 100) + '%';
+    main.scrollTop = 0;
+    try { localStorage.setItem('dylan-screen', String(i)); } catch (e) {}
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+    if (focus) { var h = screens[i].querySelector('h1'); if (h) h.focus({preventScroll:true}); }
+  }
+  prev.addEventListener('click', function(){ show(cur - 1, true); });
+  next.addEventListener('click', function(){ show(cur === screens.length - 1 ? 0 : cur + 1, true); });
+  chips.forEach(function(c){ c.addEventListener('click', function(){ show(+c.getAttribute('data-go'), true); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight') show(cur + 1, true);
+    else if (e.key === 'ArrowLeft') show(cur - 1, true);
+  });
+  var x0 = null, y0 = 0;
+  main.addEventListener('touchstart', function(e){ if (e.touches.length !== 1) { x0 = null; return; } x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  main.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1), false);
+  });
+  var start = 0;
+  var fromHash = parseInt((location.hash || '').slice(1), 10);
+  if (!isNaN(fromHash)) start = fromHash - 1;
+  else { try { var saved = parseInt(localStorage.getItem('dylan-screen'), 10); if (!isNaN(saved)) start = saved; } catch (e) {} }
+  show(start, false);
+})();
+</script>
+</body>
+</html>
