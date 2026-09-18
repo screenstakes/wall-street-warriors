@@ -174,7 +174,7 @@
   /* ---------- mobile shell: bottom tab bar, "More" sheet, compact date + phase in the header ---------- */
   function mobileShell(here) {
     var tabs = [["index.html", "Home", "home"], ["calendar.html", "Calendar", "calendar"], ["case.html", "Case", "book"], ["rules.html", "Rules", "shield"]];
-    var more = [["guide.html", "The Guide", "The case in 21 plain steps", "book"], ["playbook.html", "Playbook", "How teams advance, trade notes", "star"], ["team.html", "Team", "Roster, roles, first meeting", "users"], ["news.html", "Newsroom", "Champions, reading list, links", "news"]];
+    var more = [["guide.html", "The Guide", "The case in 21 plain steps", "book"], ["playbook.html", "Playbook", "How teams advance, trade notes", "star"], ["team.html", "Team", "Roster, sheets, team rules", "users"], ["news.html", "Newsroom", "Champions, reading list, links", "news"]];
     if (here === "") here = "index.html";
     var inMore = more.some(function (m) { return m[0] === here; });
 

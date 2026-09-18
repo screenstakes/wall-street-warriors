@@ -37,6 +37,9 @@
 .sheets-how span{font-size:13.5px;line-height:1.45;color:var(--ink-2)}
 .sheets-how strong{color:var(--ink)}
 .sheets-tabs{margin:10px 18px 0}
+.sheets-tabs .tab::after{bottom:0}
+.sheets-how span{text-wrap:pretty}
+ol.list.num > li{font-family:var(--body)}
 .sheet-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:18px 28px;padding:18px}
 .sheet-who{display:flex;align-items:center;gap:12px}
 .sheet-who .av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 18px/1 var(--ui);flex:none}
@@ -53,9 +56,9 @@
 .sheet-tabs-list li b{font:700 13px/1.45 var(--ui);color:var(--navy)}
 .sheet-tabs-list li span{color:var(--ink-2)}
 .sheet-tabs-cap{font:700 11px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
-.team-coach{margin-top:12px;font-size:13.5px;color:var(--ink-2)}
-.team-coach a{font-weight:600}
-@media (max-width:900px){.sheet-panel{grid-template-columns:1fr}}
+.team-coach{margin-top:0;font-size:13.5px;color:var(--ink-2)}
+.team-coach a{font-weight:600;white-space:nowrap}
+@media (max-width:900px){.sheet-panel{grid-template-columns:1fr}.sheet-left p{max-width:75ch}}
 .sheet-tabs-list li span{text-wrap:pretty}
 @media (max-width:700px){
   .sheets-how{grid-template-columns:1fr;gap:8px;margin:14px 14px 0;padding:10px 12px;background:var(--well);border-radius:var(--r)}
@@ -76,6 +79,40 @@
 }
 @media (max-width:340px){#sheets-tabs .tab{font-size:12.5px;padding-inline:4px}#sheets-tabs .tab::after{left:4px;right:4px}}
 
+.team-phase{border-top:1px solid var(--line);padding:12px 0}
+.team-phase:first-child{border-top:0;padding-top:2px}
+.team-phase-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.team-phase-top .k{font:700 11px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.team-phase h3{margin:0;font:700 16px/1.3 var(--ui)}
+.team-phase-lead{margin:4px 0 6px;font-size:13.5px;color:var(--ink-2)}
+.team-phase ul{margin:0 0 6px;padding-left:18px;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.team-phase-gate{margin:0;font:600 13px/1.5 var(--ui);color:var(--navy)}
+h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
+/* advisor */
+.team-advisor{display:grid;gap:14px}
+.team-advisor .team-who{display:flex;align-items:center;gap:12px}
+.team-advisor .team-who .team-initial{width:40px;height:40px;border-radius:50%;background:var(--orange);color:#1F1300;display:grid;place-items:center;font:700 15px/1 var(--ui);flex:none}
+.team-advisor .team-who b{font:700 16px/1.2 var(--ui);display:block}
+.team-advisor .team-who small{font-size:12.5px;color:var(--ink-2)}
+.team-may{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.team-may > div{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;background:var(--well)}
+.team-may ul{margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink)}
+.team-may li{margin:3px 0}
+.team-may .kicker.ok{color:var(--ok)}
+.team-may .kicker.no{color:var(--bad)}
+.team-advisor blockquote{margin:0;padding:12px 14px;border-left:3px solid var(--orange);background:var(--well);font-size:13.5px;color:var(--ink-2);border-radius:0 var(--r) var(--r) 0}
+@media (max-width:420px){.team-may{grid-template-columns:1fr}}
+
+/* where we work */
+.team-work .what b.num{font-size:13.5px;word-break:break-all}
+
+/* team rules */
+.team-rules{list-style:none;margin:0;padding:0}
+/* spacing overrides for the restored cards: these must come after the rules above */
+h3.sub{margin:14px 18px 6px}
+.team-phase{padding:12px 18px}
+.team-phase:first-child{padding-top:14px}
+@media (max-width:700px){h3.sub{margin-inline:14px}.team-phase{padding-inline:14px}}
 .team-rules li{padding:11px 18px;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2)}
 .team-rules li:first-child{border-top:0}
 .team-rules b{display:block;font:600 14px/1.4 var(--ui);color:var(--ink)}
@@ -396,7 +433,7 @@
 
 
   /* 7. team rules */
-  var shortRules = D.teamRules.slice(0, 4);
+  var shortRules = D.teamRules.filter(function (r) { return r.rule !== "Advisor"; }).slice(0, 4);
   $("team-rules").innerHTML = shortRules.map(function (r) { return "<li><b>" + esc(r.rule) + "</b>" + esc(r.value) + "</li>"; }).join("");
   $("team-rules-m").textContent = plural(shortRules.length, "rule", "rules");
 })(window.WSW);
