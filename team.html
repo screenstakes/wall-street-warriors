@@ -30,53 +30,52 @@
 .team-meter .note{margin-top:8px}
 @media (max-width:560px){.team-meter{grid-template-columns:1fr}}
 
-/* members */
-.team-member{border:1px solid var(--line);border-radius:var(--r);background:var(--well);padding:16px;display:grid;gap:10px;align-content:start}
-.team-member .team-top{display:flex;align-items:center;gap:12px}
-.team-member .team-initial{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 17px/1 var(--ui);flex:none}
-.team-member h3{font-size:16px;font-weight:700}
-.team-member .team-chips{display:flex;gap:6px;flex-wrap:wrap}
-.team-member p{font-size:13.5px;color:var(--ink-2)}
-.team-member .team-roles{font:600 12.5px/1.5 var(--ui);color:var(--ink)}
-.team-member .team-roles .kicker{display:block;margin-bottom:2px}
-.team-member .team-roles em{font-style:normal;color:var(--ink-3);font-weight:500}
+/* our sheets */
+.sheets-how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:16px 18px 6px}
+.sheets-how div{display:flex;gap:10px;align-items:flex-start;background:var(--well);border-radius:var(--r);padding:10px 12px}
+.sheets-how b{width:22px;height:22px;border-radius:50%;background:var(--orange);color:#1F1300;display:grid;place-items:center;font:700 12px/1 var(--mono);flex:none}
+.sheets-how span{font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+.sheets-how strong{color:var(--ink)}
+.sheets-tabs{margin:10px 18px 0}
+.sheet-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:18px 28px;padding:18px}
+.sheet-who{display:flex;align-items:center;gap:12px}
+.sheet-who .av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 18px/1 var(--ui);flex:none}
+.sheet-who h3{font-size:18px;font-weight:700;color:var(--ink)}
+.sheet-who span{display:block;font-size:13.5px;color:var(--ink-2)}
+.sheet-left{display:grid;gap:14px;align-content:start}
+.sheet-left p{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.sheet-left p b{color:var(--ink)}
+.sheet-left .btn{justify-content:center;width:max-content}
+.sheet-left .soon{display:inline-block;font:600 12.5px/15px var(--ui);color:var(--ink-2);background:var(--well);border:1px dashed #C5CCD8;border-radius:4px;padding:9px 14px;width:max-content}
+.sheet-tabs-list{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.sheet-tabs-list li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:10px 14px;border-top:1px solid var(--line-2);font-size:13.5px;line-height:1.45}
+.sheet-tabs-list li:first-child{border-top:0;background:var(--well)}
+.sheet-tabs-list li b{font:700 13px/1.45 var(--ui);color:var(--navy)}
+.sheet-tabs-list li span{color:var(--ink-2)}
+.sheet-tabs-cap{font:700 11px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
+.team-coach{margin-top:12px;font-size:13.5px;color:var(--ink-2)}
+.team-coach a{font-weight:600}
+@media (max-width:900px){.sheet-panel{grid-template-columns:1fr}}
+.sheet-tabs-list li span{text-wrap:pretty}
+@media (max-width:700px){
+  .sheets-how{grid-template-columns:1fr;gap:8px;margin:14px 14px 0;padding:10px 12px;background:var(--well);border-radius:var(--r)}
+  .sheets-how div{background:none;padding:0;gap:10px}
+  .sheets-how b{width:20px;height:20px;font-size:11px;margin-top:1px}
+  .sheets-how span{font-size:13px;line-height:1.4}
+  .sheets-tabs{margin:8px 0 0}
+  #sheets-tabs{padding-inline:4px;gap:0;scroll-snap-type:none}
+  #sheets-tabs .tab{flex:1 0 auto;min-width:44px;min-height:46px;padding:0 5px;display:inline-flex;align-items:center;justify-content:center;font-weight:600}
+  #sheets-tabs .tab.is-active{font-weight:700}
+  #sheets-tabs .tab::after{left:5px;right:5px;height:3px}
+  #sheets-folder{margin-left:auto;flex:none}
+  #sheets-folder .btn{min-height:44px}
+  .sheet-panel{padding:14px}
+  .sheet-left .btn,.sheet-left .soon{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center}
+  .sheet-tabs-list li{grid-template-columns:1fr;gap:2px}
+  #sheets .card-head .spacer,#sheets-folder:empty{display:none}
+}
+@media (max-width:340px){#sheets-tabs .tab{font-size:12.5px;padding-inline:4px}#sheets-tabs .tab::after{left:4px;right:4px}}
 
-.team-wk{display:block;margin-top:4px;color:var(--ink-3);font-size:12.5px;line-height:1.5}
-.team-phase{border-top:1px solid var(--line);padding:12px 0}
-.team-phase:first-child{border-top:0;padding-top:2px}
-.team-phase-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.team-phase-top .k{font:700 11px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
-.team-phase h3{margin:0;font:700 16px/1.3 var(--ui)}
-.team-phase-lead{margin:4px 0 6px;font-size:13.5px;color:var(--ink-2)}
-.team-phase ul{margin:0 0 6px;padding-left:18px;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
-.team-phase-gate{margin:0;font:600 13px/1.5 var(--ui);color:var(--navy)}
-h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
-/* roles table */
-.team-select{font:500 14px/1.3 var(--body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:4px;padding:7px 9px;width:100%;min-width:130px;max-width:200px}
-.team-select:disabled{color:var(--ink-2);background:var(--well)}
-.team-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,75,149,.15);outline:none}
-.team-roles-table td.key{white-space:normal}
-
-/* advisor */
-.team-advisor{display:grid;gap:14px}
-.team-advisor .team-who{display:flex;align-items:center;gap:12px}
-.team-advisor .team-who .team-initial{width:40px;height:40px;border-radius:50%;background:var(--orange);color:#1F1300;display:grid;place-items:center;font:700 15px/1 var(--ui);flex:none}
-.team-advisor .team-who b{font:700 16px/1.2 var(--ui);display:block}
-.team-advisor .team-who small{font-size:12.5px;color:var(--ink-2)}
-.team-may{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.team-may > div{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;background:var(--well)}
-.team-may ul{margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink)}
-.team-may li{margin:3px 0}
-.team-may .kicker.ok{color:var(--ok)}
-.team-may .kicker.no{color:var(--bad)}
-.team-advisor blockquote{margin:0;padding:12px 14px;border-left:3px solid var(--orange);background:var(--well);font-size:13.5px;color:var(--ink-2);border-radius:0 var(--r) var(--r) 0}
-@media (max-width:420px){.team-may{grid-template-columns:1fr}}
-
-/* where we work */
-.team-work .what b.num{font-size:13.5px;word-break:break-all}
-
-/* team rules */
-.team-rules{list-style:none;margin:0;padding:0}
 .team-rules li{padding:11px 18px;border-top:1px solid var(--line-2);font-size:13.5px;color:var(--ink-2)}
 .team-rules li:first-child{border-top:0}
 .team-rules b{display:block;font:600 14px/1.4 var(--ui);color:var(--ink)}
@@ -88,11 +87,8 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
   .card-head .team-m{display:inline;white-space:nowrap}
   .card-head .team-desk{display:none}
 
-  /* order for a teammate this week: roster, then the first-meeting agenda, then who's who */
+  /* order on a phone: sheets sit above the grid; then where we work, advisor, rules */
   .grid.main-rail > .stack{display:contents}
-  .grid.main-rail > .stack > section[aria-labelledby="team-agenda-h"]{order:1}
-  .grid.main-rail > .stack > section[aria-labelledby="team-members-h"]{order:2}
-  .grid.main-rail > .stack > section[aria-labelledby="team-roles-h"]{order:3}
   .grid.main-rail > .stack > section[aria-labelledby="team-work-h"]{order:4}
   .grid.main-rail > .stack > section[aria-labelledby="team-advisor-h"]{order:5}
   .grid.main-rail > .stack > section[aria-labelledby="team-rules-h"]{order:6}
@@ -106,24 +102,7 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
   .team-meter-text .chip{margin-left:6px;vertical-align:1px}
   .team-meter .note{margin-top:6px;font-size:13.5px;line-height:1.5}
 
-  /* 2. members: initial, name and chips on one line; note and role full width under */
-  #team-members{gap:10px}
-  .team-member{grid-template-columns:36px minmax(0,1fr);gap:3px 10px;align-items:center;padding:12px}
-  .team-member .team-top{display:contents}
-  .team-member .team-initial{width:36px;height:36px;font-size:15px;grid-row:1 / span 2}
-  .team-member h3{font-size:15px;grid-column:2;grid-row:1}
-  .team-member .team-chips{grid-column:2;grid-row:2}
-  .team-member p,.team-member .team-roles{grid-column:1 / -1;margin-top:5px}
-  .team-member p + .team-roles{margin-top:3px}
-  .team-member p{font-size:13px;line-height:1.5}
-  .team-member .team-roles{font-size:13px}
-  .team-member .team-roles .kicker{display:inline;margin:0 6px 0 0;font-size:10px}
 
-  /* 3. roles as cards: title, the owner select full width, what it owns */
-  table.m-stack.team-roles-table td.key{font:700 15px/1.3 var(--ui)}
-  table.m-stack.team-roles-table td + td{margin-top:8px}
-  .team-select{font-size:16px;min-height:44px;padding:10px 12px;max-width:none;min-width:0}
-  .team-roles-table td.team-owns{font-size:13px;color:var(--ink-2);line-height:1.5}
 
   /* 4. advisor: lists stay stacked (side by side they wrap in a ~117px column) */
   .team-advisor{gap:10px}
@@ -177,7 +156,7 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
   <div class="page-title">
     <div>
       <h1>Team</h1>
-      <p>Who's on Wall Street Warriors, who owns what, and the rules that keep us eligible.</p>
+      <p>Who's on Wall Street Warriors, each person's sheet and what's in it, and the rules that keep us eligible.</p>
     </div>
     <div class="right"><a class="btn ghost" href="rules.html#tab=team"><span data-icon="shield"></span>Team rules</a></div>
   </div>
@@ -199,28 +178,21 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
       </div>
     </section>
 
+    <!-- 2. our sheets -->
+    <section class="card reveal" aria-labelledby="team-sheets-h" id="sheets">
+      <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="team-sheets-h">Our sheets</h2><span class="sep"></span><span class="meta" id="sheets-meta"></span><span class="spacer"></span><span id="sheets-folder"></span></div>
+      <div class="sheets-how">
+        <div><b>1</b><span>Open your sheet signed in to your <strong>school</strong> Google account.</span></div>
+        <div><b>2</b><span>Every Friday, go to the <strong>This week</strong> tab and fill in this week's yellow cells.</span></div>
+        <div><b>3</b><span>Pick <strong>✓</strong> in the Done column. Michael's dashboard sees it.</span></div>
+      </div>
+      <div class="tabs sheets-tabs" id="sheets-tabs" role="tablist" aria-label="Whose sheet"></div>
+      <div id="sheets-panel" role="tabpanel" aria-labelledby="sheets-tabs"></div>
+      <div class="card-foot">Don't rename tabs or move columns: Michael's dashboard reads them. Delete the example row at the top of each tab before you start.</div>
+    </section>
+
     <div class="grid main-rail">
       <div class="stack">
-
-        <!-- 2. members -->
-        <section class="card reveal" aria-labelledby="team-members-h">
-          <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="team-members-h">Members</h2></div>
-          <div class="card-body"><div class="cols-3" id="team-members"></div></div>
-        </section>
-
-        <!-- 3. roles -->
-        <section class="card reveal" aria-labelledby="team-roles-h" data-fold="closed">
-          <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="team-roles-h">Roles</h2><span class="spacer"></span><span class="meta team-desk">saved in this browser</span><span class="meta team-m" id="team-roles-m"></span></div>
-          <div class="card-body tight">
-            <div class="table-wrap">
-              <table class="team-roles-table m-stack">
-                <thead><tr><th>Role</th><th>Owner</th><th>Owns</th></tr></thead>
-                <tbody id="team-roles"></tbody>
-              </table>
-            </div>
-          </div>
-          <div class="card-foot">Everyone owns one sector on top of their job, and everyone journals: your own trade notes the same day, three lines every Friday.</div>
-        </section>
 
         <!-- 4b. sectors -->
         <section class="card reveal" aria-labelledby="team-sectors-h" data-fold="closed">
@@ -276,23 +248,8 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
               <div><span class="kicker no">May not</span><ul><li>Make decisions</li><li>Trade</li><li>Write any deliverable</li></ul></div>
             </div>
             <blockquote id="team-adv-rule"></blockquote>
+            <p class="team-coach" id="team-coach"></p>
           </div>
-        </section>
-
-        <!-- 6. first meeting agenda -->
-        <section class="card reveal" aria-labelledby="team-agenda-h">
-          <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="team-agenda-h">First meeting agenda</h2></div>
-          <div class="card-body tight">
-            <ul class="checks" id="team-agenda">
-              <li><label><input type="checkbox" id="ag-read"><span><b>Read the case study out loud</b><small>One section per person.</small></span></label></li>
-              <li><label><input type="checkbox" id="ag-questions"><span><b>Answer three questions</b><small>What does the client need by when, what do they value, what's the tension.</small></span></label></li>
-              <li><label><input type="checkbox" id="ag-roles"><span><b>Assign the five roles and one sector each</b></span></label></li>
-              <li><label><input type="checkbox" id="ag-practice"><span><b>Decide what each person tests in the practice simulator</b></span></label></li>
-              <li><label><input type="checkbox" id="ag-time"><span><b>Set the weekly meeting time</b></span></label></li>
-              <li><label><input type="checkbox" id="ag-docs"><span><b>Pick the shared doc and sheet</b><small>For the journal and the IPS.</small></span></label></li>
-            </ul>
-          </div>
-          <div class="card-foot">The case is out, so this runs this week. Checks are saved in this browser.</div>
         </section>
 
         <!-- 7. team rules -->
@@ -345,35 +302,44 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
     : confirmed < T.min ? "Below " + T.min + " the team can't compete. Confirm members before Sep 28."
     : "Roster locks at the Oct 9 submission. Nobody can be added after that.";
 
-  /* 3. roles: selection map persisted per browser */
-  var KEY = "roles";
-  var saved = W.store.get(KEY, {}); if (!saved || typeof saved !== "object") saved = {};
-  function ownerOf(role) { if (role.fixed) return role.fixed; if (saved[role.id] !== undefined) return saved[role.id]; return role.suggest || ""; }
-  function rolesFor(memberId) { return D.roles.filter(function (r) { return ownerOf(r) === memberId; }); }
-
-  /* 2. members */
-  function renderMembers() {
-    $("team-members").innerHTML = members.map(function (m) {
-      var roles = rolesFor(m.id);
-      return '<div class="team-member"><div class="team-top"><span class="team-initial">' + esc(m.name.charAt(0)) + "</span><h3>" + esc(m.name) + "</h3></div>" +
-        '<div class="team-chips"><span class="chip ' + (m.status === "confirmed" ? 'confirmed">Confirmed' : 'maybe">Maybe') + "</span>" +
-        (m.id === T.leader ? '<span class="chip official">Team leader</span>' : "") + "</div>" +
-        (m.note ? "<p>" + esc(m.note) + "</p>" : "") +
-        '<div class="team-roles"><span class="kicker">Role</span>' + (roles.length ? roles.map(function (r) { return esc(r.title); }).join(" · ") : "<em>Not assigned yet</em>") + "</div></div>";
-    }).join("");
-  }
-  $("team-roles").innerHTML = D.roles.map(function (r) {
-    var cur = ownerOf(r);
-    var opts = '<option value="">Unassigned</option>' + members.map(function (m) { return '<option value="' + m.id + '"' + (m.id === cur ? " selected" : "") + ">" + esc(m.name) + "</option>"; }).join("");
-    var bk = r.backup && D.roles.filter(function (x) { return x.id === r.backup; })[0];
-    return '<tr><td class="key">' + esc(r.title) + '</td><td data-label="Owner"><select class="team-select" data-role="' + r.id + '" aria-label="Owner of ' + esc(r.title) + '"' + (r.fixed ? " disabled" : "") + ">" + opts + "</select></td><td class=\"team-owns\">" + esc(r.owns) +
-      (r.weekly ? '<span class="team-wk"><b>Every week:</b> ' + esc(r.weekly) + "</span>" : "") +
-      (bk ? '<span class="team-wk"><b>Backup:</b> ' + esc(bk.title) + "</span>" : "") + "</td></tr>";
-  }).join("");
-  /* folded-card summaries (phone only) */
   function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
-  function rolesMeta() { $("team-roles-m").textContent = plural(D.roles.length, "role", "roles") + " · " + D.roles.filter(function (r) { return ownerOf(r); }).length + " assigned"; }
-  rolesMeta();
+
+  /* 2. our sheets: one tab per person, the panel shows their sheet */
+  var F = D.files;
+  var roleOf = function (id) { return D.roles.filter(function (r) { return r.id === id; })[0] || {}; };
+  var sel = W.store.get("sheet", F.list[0].id);
+  if (!F.list.some(function (f) { return f.id === sel; })) sel = F.list[0].id;
+  $("sheets-tabs").innerHTML = F.list.map(function (f) {
+    var m = W.member(f.id) || { name: f.id };
+    return '<button type="button" class="tab" role="tab" id="st-' + f.id + '" data-sheet="' + f.id + '" aria-controls="sheets-panel">' + esc(m.name) + "</button>";
+  }).join("");
+  function drawSheet() {
+    var f = F.list.filter(function (x) { return x.id === sel; })[0], m = W.member(f.id) || { name: f.id }, r = roleOf(f.role);
+    var bk = r.backup ? roleOf(r.backup) : null;
+    var bkName = bk ? (F.list.filter(function (x) { return x.role === bk.id; }).map(function (x) { return (W.member(x.id) || {}).name; })[0] || bk.title) : "";
+    $("sheets-panel").setAttribute("aria-labelledby", "st-" + sel);
+    Array.prototype.forEach.call($("sheets-tabs").children, function (t) {
+      var on = t.getAttribute("data-sheet") === sel; t.classList.toggle("is-active", on); t.setAttribute("aria-selected", on ? "true" : "false"); t.tabIndex = on ? 0 : -1;
+    });
+    var open = f.url ? '<a class="btn" href="' + esc(f.url) + '" target="_blank" rel="noopener">' + W.icon("link") + "Open " + esc(m.name) + "'s sheet</a>" : '<span class="soon">Link coming</span>';
+    $("sheets-panel").innerHTML = '<div class="sheet-panel"><div class="sheet-left">' +
+      '<div class="sheet-who"><span class="av" aria-hidden="true">' + esc(m.name.charAt(0)) + "</span><div><h3>" + esc(m.name) + "</h3><span>" + esc(f.job) + "</span></div></div>" +
+      (r.owns ? "<p><b>Owns:</b> " + esc(r.owns) + "</p>" : "") +
+      "<p><b>Every week:</b> " + esc(f.week) + "</p>" +
+      (bkName ? "<p><b>Backup:</b> " + esc(bkName) + "</p>" : "") + open + "</div>" +
+      '<div><p class="sheet-tabs-cap">The tabs in ' + esc(m.name) + "'s sheet</p><ul class=\"sheet-tabs-list\">" +
+      f.tabs.map(function (t) { return "<li><b>" + esc(t[0]) + "</b><span>" + esc(t[1]) + "</span></li>"; }).join("") + "</ul></div></div>";
+  }
+  $("sheets-tabs").addEventListener("click", function (e) { var t = e.target.closest("[data-sheet]"); if (!t) return; sel = t.getAttribute("data-sheet"); W.store.set("sheet", sel); drawSheet(); });
+  $("sheets-tabs").addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var ids = F.list.map(function (x) { return x.id; }), i = ids.indexOf(sel);
+    sel = ids[(i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length]; W.store.set("sheet", sel); drawSheet(); $("st-" + sel).focus();
+  });
+  drawSheet();
+  var linked = F.list.filter(function (x) { return x.url; }).length;
+  $("sheets-meta").textContent = linked === F.list.length ? F.list.length + " Google Sheets" : linked === 0 ? "Links coming soon" : linked + " of " + F.list.length + " linked";
+  if (F.folder) { $("sheets-folder").innerHTML = '<a class="btn light sm" href="' + esc(F.folder) + '" target="_blank" rel="noopener">Open the folder</a>'; $("sheets-meta").classList.add("team-desk"); }
 
   /* sectors, decision rules, meeting shape, the four phases, and the scoring criteria */
   $("team-sectors").innerHTML = D.sectors.map(function (x) {
@@ -401,12 +367,6 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
   $("team-gates").innerHTML = D.ops.gates.map(function (g) { return "<li>" + esc(g) + "</li>"; }).join("");
   $("team-score-m").textContent = D.ops.criteria.length + " criteria";
 
-  $("team-roles").addEventListener("change", function (e) {
-    var s = e.target; if (!s.matches("select[data-role]")) return;
-    saved[s.getAttribute("data-role")] = s.value; W.store.set(KEY, saved); renderMembers(); rolesMeta();
-    W.toast(s.value ? W.member(s.value).name + " owns " + s.closest("tr").querySelector("td.key").textContent : "Role unassigned");
-  });
-  renderMembers();
 
   /* 4. advisor */
   $("team-adv-initial").textContent = T.advisor.name.replace(/^Coach\s+/, "").charAt(0);
@@ -415,6 +375,8 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
   var advRule = D.teamRules.filter(function (r) { return r.rule === "Advisor"; })[0];
   $("team-adv-rule").textContent = advRule ? advRule.value : "";
   $("team-adv-m").textContent = T.advisor.name;
+  var CO = F.coach;
+  $("team-coach").innerHTML = "<b>" + esc(CO.title) + ".</b> " + esc(CO.what) + (CO.url ? ' <a href="' + esc(CO.url) + '" target="_blank" rel="noopener">Open it</a>' : "");
 
   /* 5. where we work */
   var work = [
@@ -432,8 +394,6 @@ h3.sub{margin:14px 0 6px;font:700 13px/1.3 var(--ui);letter-spacing:.02em}
   $("team-work").addEventListener("click", function (e) { var b = e.target.closest("[data-copy]"); if (b) W.copy(b.getAttribute("data-copy"), "Address copied"); });
   $("team-work-m").textContent = plural(work.length + T.safeSenders.length, "link", "links");
 
-  /* 6. agenda */
-  W.bindChecks($("team-agenda"), "agenda");
 
   /* 7. team rules */
   var shortRules = D.teamRules.slice(0, 4);
