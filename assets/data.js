@@ -354,27 +354,28 @@ WSW.data = {
   /* The team's working files: one Google Sheet each, in Michael's school Drive
      (Wall Street Warriors → Team docs), shared to the team's school emails. Paste each
      sheet's link into url; an empty url shows "Link coming" instead of a button. The order
-     follows a trade: fit check, number, case against, log, then Michael's dashboard. */
+     follows a trade: fit check, number, case against, log, then Michael's dashboard.
+     guide: an optional how-to page for that job, linked next to the job name. */
   files: {
     folder: "",
     list: [
-      { id: "federico", job: "Laura's case", title: "Federico — Laura's case", url: "", role: "client",
+      { id: "federico", job: "Laura's case", title: "Federico — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client",
         week: "Reply to every trade card with the goal it serves, or send it back. From week 5, draft the IPS.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Laura", "The client on one page, and what each fact means for a trade"], ["Fit check", "One row per trade card: which of Laura's goals it serves"], ["IPS", "The 11 sections to draft Oct 24 to 30, and who feeds you each one"], ["Works cited", "Every source as we use it, including any AI"]],
         has: ["Laura, our client, on one page", "Does each trade help Laura? One row per trade", "The Investment Policy Statement (IPS), all 11 sections"] },
-      { id: "joe", job: "The numbers", title: "Joe — The numbers", url: "", role: "numbers",
+      { id: "joe", job: "The numbers", title: "Joe — The numbers", url: "https://docs.google.com/spreadsheets/d/15I2v_2KLHGlGB8IQs0b1Ye5XHlRpZeCA4_0Qcc_lCYw/edit", role: "numbers", guide: "numbers.html",
         week: "Update the Portfolio tab, value one idea the team liked, and add every new number to the Ledger.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Learn 1 to 4", "Growth, the reserve, weight, DCF: a worked example, one to finish, one blank, each with a check"], ["Laura", "Her real numbers: six blanks that say Correct when they're right"], ["Portfolio", "What we hold, against the 5% / 8% / 30% limits"], ["Valuation", "A value for one stock. Copy the tab for each idea"], ["Ledger", "Every number that goes in a deliverable, with its source"]],
         has: ["Four short math lessons that check your work", "Laura's real numbers: Pile A (her reserve) and Pile B (money for the building)", "Our portfolio and a value for each stock we pitch"] },
-      { id: "dylan", job: "Risk, and the case against each trade", title: "Dylan — Risk and the bear case", url: "", role: "risk",
+      { id: "dylan", job: "Risk, and the case against each trade", title: "Dylan — Risk and the bear case", url: "https://docs.google.com/spreadsheets/d/1Rq2ZdyHtm8vxGg1tGDP4UxWAwcfKynmq6OuPFZvwgQ4/edit", role: "risk",
         week: "Post the case against each trade before its vote, and the week's biggest position and worst case.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Limits", "Every holding against our limits, one stock per sector, and an ETF"], ["Bear case", "One column per trade, five questions, 150 words. Column B is a finished example"]],
         has: ["Every stock we own checked against our limits: 5% to start, 8% max, 30% per sector", "The case against each trade, posted before the vote", "A check that we hold all five sectors and an ETF"] },
-      { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "", role: "log",
+      { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit", role: "log",
         week: "Log every trade the day it happens, check the log against WInS on Friday, post the minutes after the meeting.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Log", "Every trade the same day: why, the vote, and the ✓s"], ["Friday check", "The log against the WInS account"], ["Rules", "Wharton's eligibility checklist. Nothing is submitted until it says Ready"], ["Minutes", "One row per meeting: questions, decisions, who does what"], ["Oct 23", "Pick the three notes for the Trading Notes Analysis"]],
         has: ["Every trade, logged the same day", "Every Friday, the log checked against our WInS account", "The rules checklist, meeting minutes and the Oct 23 Trading Notes"] },
-      { id: "michael", job: "Team leader and submissions", title: "Michael — Team leader and submissions", url: "", role: "lead",
+      { id: "michael", job: "Team leader and submissions", title: "Michael — Team leader and submissions", url: "https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit", role: "lead",
         week: "Post the questions the night before, run the meeting, check the dashboard and the portal.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Dashboard", "Reads the other four sheets live: weeks done, IPS progress, rules and risk flags"], ["Deliverables", "The five things due to Wharton. Status fills itself in"], ["Meeting", "One row per meeting: the questions, decisions, who does what"], ["Team grid", "Who did their week. Fills itself in"], ["Agreement", "The one-page team agreement, signed by all five"]],
         has: ["A live dashboard that reads everyone's sheet", "The four deliverables and where each one stands", "The meeting plan, team grid and team agreement"] }
