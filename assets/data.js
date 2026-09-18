@@ -373,12 +373,12 @@ WSW.data = {
         has: ["Every stock we own checked against our limits: 5% to start, 8% max, 30% per sector", "The case against each trade, posted before the vote", "A check that we hold all five sectors and an ETF"] },
       { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit", role: "log",
         week: "Log every trade the day it happens, check the log against WInS on Friday, post the minutes after the meeting.",
-        tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Log", "Every trade the same day: why, the vote, and the ✓s"], ["Friday check", "The log against the WInS account"], ["Rules", "Wharton's eligibility checklist. Nothing is submitted until it says Ready"], ["Minutes", "One row per meeting: questions, decisions, who does what"], ["Oct 23", "Pick the three notes for the Trading Notes Analysis"]],
+        tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Log", "Every trade the same day: why, the vote, and the ✓s"], ["Friday check", "The log against the WInS account"], ["Rules", "Wharton's eligibility checklist. Nothing is submitted until it says Ready"], ["Minutes", "The team's only meeting notes: one row per meeting, what we decided and who does what"], ["Oct 23", "Pick the three notes for the Trading Notes Analysis"]],
         has: ["Every trade, logged the same day", "Every Friday, the log checked against our WInS account", "The rules checklist, meeting minutes and the Oct 23 Trading Notes"] },
       { id: "michael", job: "Team leader and submissions", title: "Michael — Team leader and submissions", url: "https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit", role: "lead",
         week: "Post the questions the night before, run the meeting, check the dashboard and the portal.",
-        tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Dashboard", "Reads the other four sheets live: weeks done, IPS progress, rules and risk flags"], ["Deliverables", "The five things due to Wharton. Status fills itself in"], ["Meeting", "One row per meeting: the questions, decisions, who does what"], ["Team grid", "Who did their week. Fills itself in"], ["Agreement", "The one-page team agreement, signed by all five"]],
-        has: ["A live dashboard that reads everyone's sheet", "The four deliverables and where each one stands", "The meeting plan, team grid and team agreement"] }
+        tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Dashboard", "Reads the other four sheets live: weeks done, IPS progress, rules and risk flags"], ["Deliverables", "The five things due to Wharton. Status fills itself in"], ["Team grid", "Who did their week. Fills itself in"], ["Agreement", "The one-page team agreement, signed by all five"]],
+        has: ["A live dashboard that reads everyone's sheet", "The four deliverables and where each one stands", "The team grid and the team agreement"] }
     ],
     coach: { title: "Coach P — Season overview", url: "", what: "One read-only page for Coach P that fills itself in: deliverable status with days left, each person's weeks, portfolio health, and what the team needs from him." },
     flow: [
@@ -411,11 +411,11 @@ WSW.data = {
     meeting: {
       length: "18 minutes, standing",
       steps: [
-        "Status goes in the chat before the meeting. Reading it is the price of admission.",
-        "Two minutes, everyone writes their answer to today's question before anyone talks.",
-        "One round where each person reads one line, no arguing yet.",
-        "Eight minutes on the question, then the decision.",
-        "Last three minutes: who does what, and when and where they'll do it. Posted before anyone leaves."
+        "The night before, Michael posts 2 or 3 questions in the chat. Everyone replies with one line per question before the meeting.",
+        "0\u20132 min: Michael says what the replies already settled. Missed the chat? Say your answers now.",
+        "2\u20134 min: one line each on whatever is still split, no arguing. On a trade, Dylan goes first with the case against.",
+        "4\u201315 min: talk it out, then vote. 3 of 5 passes; 4 of 5 if it's over 10% of the portfolio.",
+        "15\u201318 min: who does what, each with a day, time and place. Caleb reads it back, then writes one row in his Minutes tab and posts it in the chat. Nobody else takes notes."
       ]
     },
     /* The five things the report is scored on. Wharton's wording, from the archived Judging and
