@@ -332,7 +332,7 @@ WSW.data = {
      sector per member, and past final reports had to print who managed each sector. Every job has a
      backup, because after Oct 9 nobody can be added and 4 members is the disqualification floor. */
   roles: [
-    { id: "lead", title: "Team leader and submissions", fixed: "michael", backup: "client",
+    { id: "lead", title: "Team leader and submissions", fixed: "michael", backup: "log",
       owns: "Sends every deliverable to Wharton and keeps the calendar. Breaks a tie vote. Does the last read of the IPS and the report so five people's writing sounds like one team.",
       weekly: "Posts the week's three questions the night before the meeting. Chairs it. Submits a day early, never on the deadline." },
     { id: "client", title: "Laura's case", backup: "lead",
@@ -341,7 +341,7 @@ WSW.data = {
     { id: "numbers", title: "The numbers", backup: "lead",
       owns: "The math and the charts: what return we need, the bond ladder, what a position does to the whole portfolio. Only person who edits the spreadsheet.",
       weekly: "One new name analysed with a valuation. Updates the portfolio sheet before the meeting." },
-    { id: "risk", title: "Risk and the bear case",  backup: "log",
+    { id: "risk", title: "Risk and the bear case",  backup: "client",
       owns: "Checks every trade against our limits before the vote, and writes the short version of why it could be wrong. Never writes the bear case on their own idea.",
       weekly: "Posts a one-page risk sheet before the meeting: what we hold, anything near a limit, the worst case." },
     { id: "log", title: "Trade log and the rules", backup: "numbers",
@@ -360,7 +360,7 @@ WSW.data = {
   files: {
     folder: "",
     list: [
-      { id: "federico", job: "Laura's case", title: "Federico — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client", guide: "client.html",
+      { id: "caleb", job: "Laura's case", title: "Caleb — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client", guide: "client.html",
         week: "Reply to every trade card with the goal it serves, or send it back. From week 5, draft the IPS.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Laura", "The client on one page, and what each fact means for a trade"], ["Fit check", "One row per trade card: which of Laura's goals it serves"], ["IPS", "The 11 sections to draft Oct 24 to 30, and who feeds you each one"], ["Works cited", "Every source as we use it, including any AI"]],
         has: ["Laura, our client, on one page", "Does each trade help Laura? One row per trade", "The Investment Policy Statement (IPS), all 11 sections"] },
@@ -372,7 +372,7 @@ WSW.data = {
         week: "Post the case against each trade before its vote, and the week's biggest position and worst case.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Limits", "Every holding against our limits, one stock per sector, and an ETF"], ["Bear case", "One column per trade, five questions, 150 words. Column B is a finished example"]],
         has: ["Every stock we own checked against our limits: 5% to start, 8% max, 30% per sector", "The case against each trade, posted before the vote", "A check that we hold all five sectors and an ETF"] },
-      { id: "caleb", job: "Trade log and the rules", title: "Caleb — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit", role: "log", guide: "caleb-meetings.html", guideLabel: "Meeting how-to",
+      { id: "federico", job: "Trade log and the rules", title: "Federico — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit", role: "log", guide: "minutes.html", guideLabel: "Meeting how-to",
         week: "Log every trade the day it happens, check the log against WInS on Friday, post the minutes after the meeting.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Log", "Every trade the same day: why, the vote, and the ✓s"], ["Friday check", "The log against the WInS account"], ["Rules", "Wharton's eligibility checklist. Nothing is submitted until it says Ready"], ["Minutes", "The team's only meeting notes: one row per meeting, what we decided and who does what"], ["Oct 23", "Pick the three notes for the Trading Notes Analysis"]],
         has: ["Every trade, logged the same day", "Every Friday, the log checked against our WInS account", "The rules checklist, meeting minutes and the Oct 23 Trading Notes"] },
@@ -383,9 +383,9 @@ WSW.data = {
     ],
     coach: { title: "Coach P — Season overview", url: "", what: "One read-only page for Coach P that fills itself in: deliverable status with days left, each person's weeks, portfolio health, and what the team needs from him." },
     flow: [
-      { when: "Before a vote", what: "Someone pitches a trade. Federico checks it fits Laura, Joe works out what the stock is worth, and Dylan posts the case against it." },
-      { when: "After the vote", what: "Caleb logs the trade the same day, with the reason." },
-      { when: "Every Friday", what: "Caleb checks his log against WInS. Joe copies what we own into his Portfolio tab and Dylan into his Limits tab. The dashboard checks all three totals match." },
+      { when: "Before a vote", what: "Someone pitches a trade. Caleb checks it fits Laura, Joe works out what the stock is worth, and Dylan posts the case against it." },
+      { when: "After the vote", what: "Federico logs the trade the same day, with the reason." },
+      { when: "Every Friday", what: "Federico checks his log against WInS. Joe copies what we own into his Portfolio tab and Dylan into his Limits tab. The dashboard checks all three totals match." },
       { when: "All the time", what: "Michael's dashboard pulls from all four sheets on its own: who finished their week, how far the IPS is, and any rules or risk flags." }
     ]
   },
@@ -416,7 +416,7 @@ WSW.data = {
         "0\u20132 min: Michael says what the replies already settled. Missed the chat? Say your answers now.",
         "2\u20134 min: one line each on whatever is still split, no arguing. On a trade, Dylan goes first with the case against.",
         "4\u201315 min: talk it out, then vote. 3 of 5 passes; 4 of 5 if it's over 10% of the portfolio.",
-        "15\u201318 min: who does what, each with a day, time and place. Caleb reads it back, then writes one row in his Minutes tab and posts it in the chat. Nobody else takes notes."
+        "15\u201318 min: who does what, each with a day, time and place. Federico reads it back, then writes one row in his Minutes tab and posts it in the chat. Nobody else takes notes."
       ]
     },
     /* The five things the report is scored on. Wharton's wording, from the archived Judging and
@@ -506,7 +506,7 @@ WSW.data = {
     { rule: "Style of strategy",    value: "Wharton's trading page: this is \"not a trading competition\"; the majority of the strategy should be a long-term, buy-and-hold approach.", status: "official", season: "current" },
     { rule: "International stocks", value: "Domestic and international equities allowed; currency converts automatically. International fills can be delayed 15–30 minutes.", status: "official", season: "current" },
     { rule: "Trading hours",        value: "9:30 a.m. – 4:00 p.m. ET on weekdays. After-hours U.S. orders fill at the next open.", status: "official", season: "current" },
-    { rule: "Starting cash",        value: "$300,000: what our WInS account starts with, and what every team sheet uses. Last season it was $500,000. If Wharton resets the account to a different amount on Sep 28, change one cell in Joe's, Caleb's and Dylan's sheets.", status: "verify", season: "2026–27" },
+    { rule: "Starting cash",        value: "$300,000: what our WInS account starts with, and what every team sheet uses. Last season it was $500,000. If Wharton resets the account to a different amount on Sep 28, change one cell in Joe's, Federico's and Dylan's sheets.", status: "verify", season: "2026–27" },
     { rule: "What we can buy",      value: "Any stock priced $5 or more on any exchange; ETFs from Wharton's approved list (at least one required); Treasuries from the approved list (optional).", status: "last", season: "2025–26" },
     { rule: "Trade cap",            value: "200 trades. Each buy or sell counts as one. Matches the 0 / 200 on our dashboard.", status: "last", season: "2025–26" },
     { rule: "Commissions",          value: "$25 per stock trade, $10 per Treasury trade, charged when the trade clears.", status: "last", season: "2025–26" },

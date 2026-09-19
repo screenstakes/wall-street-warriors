@@ -6,16 +6,16 @@
 <meta name="theme-color" content="#0B1737">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
-<meta name="description" content="Federico's job on Wall Street Warriors, one screen at a time: Laura, the fit check on every trade, the IPS draft and works cited.">
+<meta name="description" content="Caleb's job on Wall Street Warriors, one screen at a time: Laura, the fit check on every trade, the IPS draft and works cited.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Federico's Job">
-<meta property="og:title" content="Federico's Job: Laura's Case">
+<meta name="apple-mobile-web-app-title" content="Caleb's Job">
+<meta property="og:title" content="Caleb's Job: Laura's Case">
 <meta property="og:description" content="Everything in your sheet and everything else you do, one screen at a time.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<title>Federico's Job · Wall Street Warriors</title>
+<title>Caleb's Job · Wall Street Warriors</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
@@ -190,7 +190,7 @@ ol.flow.qs span{color:var(--ink)}
   .nav{padding-top:8px}
 }
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
-/* Federico page: even label columns, no stranded words, room under headlines */
+/* How-to page: even label columns, no stranded words, room under headlines */
 .tile h3,.sheet-cap{text-wrap:balance}
 p,.roles span,.sheet dd,.tile .when,.bubble,.callout,ol.flow span,.tl span{text-wrap:pretty}
 .sheet dl{grid-template-columns:150px 1fr}
@@ -225,7 +225,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
 <main id="main">
 
 <section class="screen" data-ch="0" aria-labelledby="h1">
-  <div class="eyebrow">Federico, this is your job</div>
+  <div class="eyebrow">Caleb, this is your job</div>
   <h1 id="h1" tabindex="-1">You're the one who knows Laura best.</h1>
   <p>Every trade has to help our client. You ask one question on each one: does this help Laura? In late October you write the first draft of our plan for her money.</p>
   <div class="tiles">
@@ -307,10 +307,9 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
     <div><b>You</b><span>1&nbsp;Purpose · 2&nbsp;Her&nbsp;goals</span></div>
     <div><b>You + Joe</b><span>3&nbsp;Time&nbsp;horizon · 11&nbsp;The&nbsp;2031&nbsp;promise</span></div>
     <div><b>Joe</b><span>4&nbsp;Return&nbsp;objective</span></div>
-    <div><b>Dylan</b><span>5&nbsp;Risk&nbsp;tolerance · 8&nbsp;What&nbsp;we&nbsp;won't&nbsp;do</span></div>
-    <div><b>Caleb</b><span>6&nbsp;Constraints</span></div>
+    <div><b>Dylan</b><span>5&nbsp;Risk&nbsp;tolerance · 8&nbsp;What&nbsp;we&nbsp;won't&nbsp;do · 10&nbsp;Monitoring, with&nbsp;Federico</span></div>
+    <div><b>Federico</b><span>6&nbsp;Constraints</span></div>
     <div><b>Michael + Joe</b><span>7&nbsp;Target&nbsp;mix</span></div>
-    <div><b>Dylan + Caleb</b><span>10&nbsp;Monitoring</span></div>
     <div><b>Everyone</b><span>9&nbsp;How&nbsp;each&nbsp;sector&nbsp;fits. You collect them.</span></div>
   </div>
   <p class="small">Tick Drafted ✓ as you finish each one.</p>
@@ -391,7 +390,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
     count.textContent = (i + 1) + ' of ' + screens.length;
     fill.style.width = ((i + 1) / screens.length * 100) + '%';
     main.scrollTop = 0;
-    try { localStorage.setItem('federico-screen', String(i)); } catch (e) {}
+    try { localStorage.setItem('caleb-screen', String(i)); } catch (e) {}
     try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
     if (focus) { var h = screens[i].querySelector('h1'); if (h) h.focus({preventScroll:true}); }
   }
@@ -412,7 +411,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
   var start = 0;
   var fromHash = parseInt((location.hash || '').slice(1), 10);
   if (!isNaN(fromHash)) start = fromHash - 1;
-  else { try { var saved = parseInt(localStorage.getItem('federico-screen'), 10); if (!isNaN(saved)) start = saved; } catch (e) {} }
+  else { try { var saved = parseInt(localStorage.getItem('caleb-screen'), 10); if (!isNaN(saved)) start = saved; } catch (e) {} }
   show(start, false);
 })();
 </script>

@@ -903,7 +903,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       if (t.stage >= 2) m.push(msg("Risk owner", "Rules OK: under 10% of the portfolio, and the fund is on the approved list. Bear case posted."));
       if (t.held) { m.push(msg("Michael", "HOLD. We already own a US index fund. Do we need more?")); m.push(msg("Dylan (example)", "Yes. It\u2019s one fund, and it\u2019s below the example plan. This brings it back to 30%.")); m.push(msg("", "Votes start over", "hold")); }
       if (t.stage >= 3) m.push(msg("", "Approved \u00b7 " + t.yes.length + " of 5 yes", "ok"));
-      if (t.stage >= 4) { m.push(msg("Caleb", "Placing it now.")); m.push(msg("Caleb", "Filled. I checked our holdings first, so no double buy.")); }
+      if (t.stage >= 4) { m.push(msg("Federico", "Placing it now.")); m.push(msg("Federico", "Filled. I checked our holdings first, so no double buy.")); }
       if (t.stage >= 5) { m.push(msg("Dylan (example)", "Trading note saved in WInS.")); m.push(msg("", "Logged in the trade sheet", "ok")); }
       var chat = $("chat"), have = chat.querySelectorAll(".msg").length;
       /* only messages that weren't there before get the fade-in */
