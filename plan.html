@@ -215,11 +215,12 @@ tbl,.tbl{width:100%}
 .days{display:flex;flex-direction:column;gap:9px}
 .day{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;
   font:400 14.5px/1.5 var(--body);padding-bottom:9px;border-bottom:1px solid var(--line)}
-.day b{font:700 13px/1.5 var(--ui);color:var(--navy)}
-.day .who{color:var(--ink-3);font-size:13px}
+.day b{font:700 13.5px/1.45 var(--ui);color:var(--navy);display:block}
+.day .who{display:block;font:500 12.5px/1.5 var(--ui);color:var(--ink-3);margin-top:1px}
+
 .checks2{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.checks2 li{display:grid;grid-template-columns:26px 1fr;gap:11px;font:400 14.5px/1.5 var(--body)}
-.checks2 li::before{content:"\25A1";font-size:19px;line-height:1.15;color:var(--ink-3)}
+.checks2 li{position:relative;padding-left:32px;font:400 14.5px/1.55 var(--body)}
+.checks2 li::before{content:"\25A1";position:absolute;left:0;top:-1px;font-size:19px;line-height:1.4;color:var(--ink-3)}
 .checks2 b{color:var(--navy)}
 @media (max-width:560px){
   .kpis{grid-template-columns:1fr}
@@ -322,23 +323,28 @@ tbl,.tbl{width:100%}
     <div class="eyebrow">The process, cut down</div>
     <h1 id="p5" tabindex="-1">Two habits. That is the whole system.</h1>
     <div class="two">
-      <div class="keep"><h3>1 &middot; No note, no Confirm</h3><p>Four lines into the WInS box before you place any trade. About forty seconds, inside something you are already doing.</p></div>
-      <div class="keep"><h3>2 &middot; Sixty seconds each on Sunday</h3><p>Round robin on the call. One number you watched, one thing you'd do differently, one line on how we decided. Federico types it.</p></div>
+      <div class="keep"><h3>1 &middot; Type the note before you click Confirm</h3><p>WInS asks you for it on the last screen before the trade goes through. Four lines. About forty seconds. If there is no note, do not click Confirm.</p></div>
+      <div class="keep"><h3>2 &middot; One minute each on the Sunday call</h3><p>Go round the five of you. Say one number you watched, one thing you would do differently, and one line on how the team decided something. Federico types it into the minutes.</p></div>
     </div>
-    <div class="note2"><b>Why only two.</b> A habit takes about 66 days of daily repetition to form. Your season is 68 days and a trade happens maybe fifteen times. Nothing here will ever become automatic &mdash; so the only thing that works is hanging the record on a moment that already exists. <b>The WInS note box already sits between Review Order and Confirm.</b> You built a ceremony around a gate that was already there.</div>
-    <div class="warnbox">Gawande's surgical checklist cut deaths nearly in half as an enforced pause in the room, and produced <b>no significant improvement</b> across 101 hospitals when it was mandated as paperwork. Same checklist. One hospital measured <b>100% documented compliance against 3.5% actual</b>. Paperwork outlives the behaviour.</div>
+    <div class="note2"><b>Why only two.</b> Habits take about two months of doing something <b>every day</b> before they stick. Your season is about that long, and you will only trade fifteen times. So none of this will ever become automatic, and any plan that needs everyone to remember will fail. The only thing that works is putting the record somewhere you already have to stand — and <b>WInS already makes you pass the note box to place a trade</b>.</div>
+    <div class="warnbox"><b>Proof this is the right bet.</b> Hospitals cut deaths nearly in half with a surgery checklist when it was a real pause in the room. The same checklist, handed out as paperwork across 101 other hospitals, did <b>nothing at all</b>. At one hospital the paperwork said 100% of staff were following it while only 3.5% actually were. Forms survive long after people stop using them.</div>
   </section>
 
   <section class="screen" data-ch="3" aria-labelledby="p6" hidden>
-    <div class="eyebrow">What gets cut</div>
-    <h1 id="p6" tabindex="-1">Keep two, downgrade four, delete one.</h1>
-    <div class="two">
-      <div class="cut"><h3>Bear case &rarr; spoken</h3><p>Said at the meeting, one line in the minutes. Writing a case against a friend's idea is the highest social cost in the whole process, and it is documented as the first thing to go quiet.</p></div>
-      <div class="cut"><h3>Fit check &rarr; folded in</h3><p>Lines three and four of the note already say who it is for. Asking twice is asking twice.</p></div>
-      <div class="cut"><h3>Valuation &rarr; new stocks only</h3><p>Joe runs one for a new single-stock position. Not for adding to something you hold, not for a fund.</p></div>
-      <div class="cut"><h3>Poll &rarr; thumbs</h3><p>Reactions on the card's thread, or a show of hands on Sunday. Do not build a voting system.</p></div>
-    </div>
-    <div class="warnbox" style="margin-top:12px"><b>Delete Federico's same-day log row.</b> It duplicates the Excel export WInS already produces. One person exports and reconciles every <b>Friday</b> &mdash; ten minutes a week instead of a daily obligation. The only thing lost is the vote count, and the minutes already hold that.</div>
+    <div class="eyebrow">What changes for each person</div>
+    <h1 id="p6" tabindex="-1">Everyone does less than before.</h1>
+    <table class="tbl">
+      <thead><tr><th>Person</th><th>What they do now</th><th>What they do instead</th></tr></thead>
+      <tbody>
+        <tr><td>Dylan</td><td>Writes 150 words in his sheet before every trade</td><td>Says it out loud on the call. Federico writes one line.</td></tr>
+        <tr><td>Caleb</td><td>Fills a Fit check row for every trade</td><td>Nothing extra. The note already names Laura's goal.</td></tr>
+        <tr><td>Joe</td><td>Values every trade</td><td>Only a <b>new</b> stock. Not adds, not funds.</td></tr>
+        <tr class="hi"><td>Federico</td><td>Types a log row the same day, every trade</td><td>Downloads the file from WInS on <b>Friday</b>. Ten minutes, once a week.</td></tr>
+        <tr><td>Everyone</td><td>Votes in a poll</td><td>Thumbs on the message, or hands up on Sunday.</td></tr>
+      </tbody>
+    </table>
+    <div class="okbox"><b>Nothing here is lost.</b> Dylan still argues the other side, Caleb still owns the client, Joe still does the maths. They just stop writing it down twice.</div>
+    <div class="note2"><b>Why Federico's row can go:</b> WInS already keeps every trade and lets you download the whole lot as a spreadsheet. He was hand-copying a file the site makes for him.</div>
   </section>
 
   <section class="screen" data-ch="3" aria-labelledby="p7" hidden>
