@@ -249,7 +249,7 @@ ol.flow.qs span{color:var(--ink)}
 <main id="main">
  <div class="wrap">
 
-  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">Three things left to change</h1>
+  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">Four things left to change</h1>
   <p class="lede">Only you can do these &mdash; the files live in your school Drive and the dashboard reads them by position, so they have to be edited by hand rather than rebuilt.</p>
   <div class="why"><b>Do number 1 first.</b> Dylan's sheet still prints a disqualification warning for a rule that does not exist this season. The rest can wait until before Sep 28.</div>
   <div class="doneall" style="margin:0 0 20px"><b>Two of the original five are already done.</b> Federico's rebuilt sheet ships with &ldquo;Pile C flex&rdquo; in its dropdown and with the seven new columns (Q to X) already in place, so jobs 2 and 4 from the old list are handled. They are greyed out below for the record.</div>
@@ -354,6 +354,38 @@ ol.flow.qs span{color:var(--ink)}
         <li>Make them look like the others: select <b>P5</b>, click the paint roller, then drag across <b>Q5:W5</b>.</li>
       </ol>
       <div class="warn"><b>Two things worth knowing.</b> Adding at the end is safe &mdash; nothing in the dashboard reads past column P, so this cannot break anything. And <b>What happened</b> stays empty until around Oct 21. Filling it in then, against what you wrote in <b>What we expect</b>, is the evidence the October deliverable is built on.</div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="job" data-k="fix6">
+    <div class="job-h">
+      <span class="job-n">4</span>
+      <span class="job-t"><h2>Fix your Connections table</h2><p>Michael &mdash; Team leader and submissions</p></span>
+      <label class="tick"><input type="checkbox" data-k="fix6"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit" target="_blank" rel="noopener">Michael &mdash; Team leader and submissions</a></dd>
+        <dt>Tab</dt><dd>Dashboard</dd>
+        <dt>Cells</dt><dd><span class="cell">B7</span> <span class="cell">B9</span> <span class="cell">E6:E9</span></dd>
+      </dl>
+      <ol class="steps">
+        <li><b>First, rename a file in Drive.</b> Caleb's sheet is currently called <b>&ldquo;Celeb &mdash; Laura's case&rdquo;</b>. That is a typo, and it is why the row goes red &mdash; the check looks for &ldquo;Caleb&rdquo; and cannot find it. Rename it to <b>Caleb &mdash; Laura's case</b>.</li>
+        <li><b>Fix two labels</b> that never got updated after the September 19 job swap.<br>
+          <b>B7</b> should say:
+          <div class="paste" id="p6a">Caleb — Laura's case</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6a">Copy</button></div>
+          <b>B9</b> should say:
+          <div class="paste" id="p6b">Federico — Trade log and the rules</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6b">Copy</button></div>
+        </li>
+        <li><b>Then replace the check so it can never go stale again.</b> Click <b>E6</b>, paste this, then drag the little square in its corner down to <b>E9</b>:
+          <div class="paste" id="p6c">=IF($C6="","Not connected",IF(ISERROR($D6),"Click D"&ROW()&", press Allow access",IF(ISNUMBER(SEARCH($A6,$D6)),"Connected ✓","Wrong file: that link is "&$D6)))</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6c">Copy that formula</button></div>
+        </li>
+      </ol>
+      <div class="warn"><b>Why this keeps breaking.</b> The old check had each person's name <b>typed into the formula</b>, so when you swapped Caleb and Federico's jobs in September the names in column A moved but the formulas did not. The new one reads the name out of column A, so you can reorder those rows freely and it will always be right.</div>
     </div>
   </div>
 
