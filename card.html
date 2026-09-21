@@ -199,6 +199,14 @@ ol.flow.qs span{color:var(--ink)}
 .fld input,.fld textarea{font:400 16px/1.45 var(--body);color:var(--ink);background:var(--card);
   border:1.5px solid var(--line);border-radius:9px;padding:11px 12px;min-height:46px;width:100%;box-sizing:border-box}
 .fld textarea{min-height:76px;resize:vertical}
+.lands-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.lands-list li{background:var(--well);border:1px solid var(--line);border-radius:9px;padding:10px 12px;
+  display:grid;grid-template-columns:132px 1fr;gap:4px 12px;align-items:start}
+.lands-list b{font:700 13.5px/1.35 var(--ui);color:var(--navy)}
+.lands-list span{font:400 13.5px/1.45 var(--body);color:var(--ink-2)}
+.lands-list li.gap{background:#FDF2EC;border-color:#F0C2B5}
+.lands-list li.gap b{color:#8C2F1E}
+@media (max-width:520px){ .lands-list li{grid-template-columns:1fr} }
 .count{font:400 12.5px/1 var(--mono);color:var(--ink-3);margin-top:5px}
 .count.near{color:var(--orange-ink);font-weight:600}
 .fld input:focus,.fld textarea:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--blue)}
@@ -254,6 +262,9 @@ ol.flow.qs span{color:var(--ink)}
 .pile.a{background:#E1F1E8;color:#1F6B3A}
 .pile.b{background:#FAEED8;color:#6E4209}
 .pile.c{background:#E4EBF7;color:#1E4B95}
+.lands{font:400 13px/1.5 var(--body);color:var(--ink-3);border-left:2px solid var(--line);
+  padding-left:11px;margin:0}
+.lands b{color:var(--ink-2);font-weight:600}
 .reqflag{display:block;margin-top:7px;font:600 13px/1.2 var(--ui);color:#9A2B18}
 .reqflag::before{content:"\2217";margin-right:5px;font-size:15px}
 .needs{outline:2px solid #E3A392;outline-offset:3px;border-radius:11px}
@@ -293,6 +304,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 1 of 8</div>
     <h1 id="h1" tabindex="-1">Who, and what?</h1>
     <div class="owner"><b>Whoever is proposing</b><span>You are writing the card, so these are yours. Anyone on the team can pitch a trade.</span></div>
+    <p class="lands"><b>Where it goes:</b> The chat card, Federico’s Log columns A, B, C and H, Caleb’s Fit check, and Dylan’s Limits tab.</p>
     <div class="q">
       <div class="fld"><label for="who">Your name</label>
         <div class="opts three" id="who-opts"></div></div>
@@ -312,6 +324,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 2 of 8</div>
     <h1 id="h2" tabindex="-1">How big?</h1>
     <div class="owner"><b>You size it, Dylan checks it</b><span>You pick the size. Dylan checks it against our limits in his Limits tab before the poll closes.</span></div>
+    <p class="lands"><b>Where it goes:</b> The chat card and the WInS note. Federico’s Log columns D and E; Dylan copies the dollar value into his Limits tab.</p>
     <div class="opts three" id="size-opts"></div>
     <div class="calc" id="size-calc">Pick a size.</div>
     <p class="hint">5 / 8 / 30 are <b>our</b> limits, not Wharton's. Wharton caps the season at 200 trades and nothing else about size.</p>
@@ -321,6 +334,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 3 of 8</div>
     <h1 id="h3" tabindex="-1">What is this money for?</h1>
     <div class="owner"><b>Caleb's call</b><span>Caleb owns Laura’s case and answers this for every trade in his Fit check tab. Put your best answer here — he confirms it or sends it back in the thread.</span></div>
+    <p class="lands"><b>Where it goes:</b> The chat card, the WInS note, Federico’s Log column J and Caleb’s Fit check column D. <b>Those two dropdowns only offer Pile A and Pile B so far</b> — Pile C has to be added to them.</p>
     <div class="opts" id="goal-opts"></div>
     <p class="hint"><b>Pile A</b> is the safe money covering her ten $50,000 payments. <b>Pile B</b> is the growth money for the residency itself. <b>Pile C</b> is the flex account Coach P asked for — cash and short-term Treasuries we can buy with, and where money sits after a sale. A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b> &mdash; this is that line. If it serves none of them, stop here and don't trade.</p>
   </section>
@@ -329,6 +343,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 4 of 8</div>
     <h1 id="h4" tabindex="-1">What job does it do in the portfolio?</h1>
     <div class="owner"><b>Yours to name</b><span>This is the job you are assigning the position. The whole team votes on whether they agree.</span></div>
+    <p class="lands"><b>Where it goes:</b> The WInS note and the chat card. There is no column for it in anyone’s sheet yet.</p>
     <div class="opts two" id="role-opts"></div>
     <p class="hint">Wharton's Competition Guide asks for the trade's <b>expected role in growth, liquidity, risk management, or future funding</b>. Naming the job is also the only way we can check later whether it did it.</p>
   </section>
@@ -337,6 +352,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 5 of 8</div>
     <h1 id="h5" tabindex="-1">Why, in one sentence</h1>
     <div class="owner"><b>Yours</b><span>This is your pitch. Joe will post what he thinks it is worth underneath it in the thread.</span></div>
+    <p class="lands"><b>Where it goes:</b> The WInS note, the chat card, and Federico’s Log column I.</p>
     <div class="fld"><label for="why">One fact, and what you conclude from it</label>
       <textarea id="why" maxlength="700" rows="3" placeholder="Cloud revenue grew 22% last quarter, so the part of the business we are paying for is still compounding."></textarea></div>
     <p class="hint">A judge's warning, word for word: <b>&ldquo;hiding behind fancy terms and formulas&hellip; the best solutions are made up of simple, elegant ideas.&rdquo;</b> A number with no conclusion attached is worse than no number. Say what it means.</p>
@@ -346,6 +362,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 6 of 8</div>
     <h1 id="h6" tabindex="-1">What do you expect, and by when?</h1>
     <div class="owner"><b>Yours, with Joe behind it</b><span>You say what you expect. Joe’s valuation is the evidence — he posts his number as a range in the thread.</span></div>
+    <p class="lands"><b>Where it goes:</b> The WInS note and the chat card. <b>No column for it yet</b> — and it is the line the October deliverable depends on, so it needs one.</p>
     <div class="q">
       <div class="fld"><label for="exp">We expect it to&hellip;</label>
         <textarea id="exp" maxlength="400" rows="2" placeholder="hold its value within about 5%"></textarea></div>
@@ -357,7 +374,8 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="4" aria-labelledby="h7" hidden>
     <div class="eyebrow">Step 7 of 8</div>
     <h1 id="h7" tabindex="-1">What would make this wrong?</h1>
-    <div class="owner"><b>Dylan's call</b><span>Dylan writes the full case against in the thread before the poll opens. Write what you think here; his version is the one that counts.</span></div>
+    <div class="owner"><b>Yours</b><span>This is the exit you are committing to, and it goes in Federico's Log. <b>It is not Dylan's bear case</b> — that is a separate thing: five questions and 150 words in his own sheet, posted in the thread before the poll.</span></div>
+    <p class="lands"><b>Where it goes:</b> The WInS note, the chat card, and Federico’s Log column K. The date and the action have no column yet.</p>
     <div class="q">
       <div class="fld"><label for="wrong">The state that means we were wrong</label>
         <textarea id="wrong" maxlength="600" rows="3" placeholder="cloud growth comes in under 20%"></textarea></div>
@@ -373,6 +391,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Step 8 of 8</div>
     <h1 id="h8" tabindex="-1">Where did it come from?</h1>
     <div class="owner"><b>Yours</b><span>Everyone cites their own sources. If AI helped, it gets named — that rule is not optional.</span></div>
+    <p class="lands"><b>Where it goes:</b> The chat card and Caleb’s Works cited tab. Deliberately not the WInS note — the IPS forbids citations in it.</p>
     <div class="chips" id="src-chips"></div>
     <div class="fld" style="margin-top:4px"><label for="src">Anything else</label>
       <input id="src" maxlength="300" placeholder="FY25 10-K p.34"></div>
@@ -401,6 +420,16 @@ ol.flow.qs span{color:var(--ink)}
     <div class="out" id="o-row"></div>
     <div><button class="cbtn ghost" type="button" id="c-row">Copy the log row</button></div>
 
+    <div class="outhead" style="margin-top:14px"><h2>Where each line lands</h2></div>
+    <ul class="lands-list">
+      <li><b>Chat thread</b><span>The whole card, as a new message. The poll goes on it.</span></li>
+      <li><b>WInS</b><span>The note, pasted before Confirm. Graded, and not editable afterwards.</span></li>
+      <li><b>Federico &middot; Log</b><span>Columns A to K from the row above. He fills the votes and the tick boxes himself.</span></li>
+      <li><b>Caleb &middot; Fit check</b><span>Date, ticker, who proposed it, and which pile. He writes his own reply.</span></li>
+      <li><b>Dylan &middot; Limits</b><span>Ticker, type, sector and the dollar value.</span></li>
+      <li class="gap"><b>Nowhere yet</b><span>The job it does, what we expect and by when, the check-by date, the action, and the sources. None of these have a column. Expect is the one that matters — the October deliverable is built on it.</span></li>
+    </ul>
+    <p class="hint" style="margin-top:14px">Dylan’s bear case is a separate document: five questions and 150 words in his own sheet, posted in the thread before the poll. This card does not produce it.</p>
     <p class="hint" style="margin-top:14px">Saved in this browser so you can come back to it. <button class="cbtn ghost" type="button" id="reset" style="margin-left:6px">Start another card</button></p>
   </section>
 
