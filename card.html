@@ -230,6 +230,10 @@ ol.flow.qs span{color:var(--ink)}
   border-radius:0 8px 8px 0;padding:9px 12px;font:400 14px/1.45 var(--body);color:var(--ink-2)}
 .owner b{font:700 14px/1.45 var(--ui);color:var(--navy);white-space:nowrap}
 .owner span{min-width:0}
+.opt-t{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.pile{font:700 11.5px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:4px 9px;white-space:nowrap}
+.pile.a{background:#E1F1E8;color:#1F6B3A}
+.pile.b{background:#FAEED8;color:#6E4209}
 .reqflag{display:block;margin-top:7px;font:600 13px/1.2 var(--ui);color:#9A2B18}
 .reqflag::before{content:"\2217";margin-right:5px;font-size:15px}
 .needs{outline:2px solid #E3A392;outline-offset:3px;border-radius:11px}
@@ -298,7 +302,7 @@ ol.flow.qs span{color:var(--ink)}
     <h1 id="h3" tabindex="-1">Which of Laura's obligations does it serve?</h1>
     <div class="owner"><b>Caleb's call</b><span>Caleb owns Laura’s case and answers this for every trade in his Fit check tab. Put your best answer here — he confirms it or sends it back in the thread.</span></div>
     <div class="opts" id="goal-opts"></div>
-    <p class="hint">A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b>. This is that line. If it serves none of them, stop here and don't trade.</p>
+    <p class="hint"><b>Pile A</b> is the safe money covering her ten $50,000 payments. <b>Pile B</b> is the growth money for the residency itself. A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b> &mdash; this is that line. If it serves none of them, stop here and don't trade.</p>
   </section>
 
   <section class="screen" data-ch="2" aria-labelledby="h4" hidden>
@@ -438,10 +442,10 @@ ol.flow.qs span{color:var(--ink)}
 
   var CASH = 300000;
   var GOALS = [
-    { id:"reserve",  label:"The operating commitment", sub:"Ten $50,000 payments, 2033 to 2042. Must be funded with a high degree of certainty, no outside money.", note:"as the residency funding dates approach" },
-    { id:"facility", label:"The facility contribution", sub:"Whatever is left in 2033 for the building itself. No set amount.", note:"toward the 2033 facility contribution" },
-    { id:"flex",     label:"Her financial flexibility", sub:"Committing everything would leave her no room to move.", note:"while protecting her financial flexibility" },
-    { id:"cosponsor",label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" }
+    { id:"reserve",  pile:"Pile A", label:"The operating commitment", sub:"Ten $50,000 payments, 2033 to 2042. Must be funded with a high degree of certainty, no outside money.", note:"as the residency funding dates approach" },
+    { id:"facility", pile:"Pile B", label:"The facility contribution", sub:"Whatever is left in 2033 for the building itself. No set amount.", note:"toward the 2033 facility contribution" },
+    { id:"flex",     pile:"Pile A", label:"Her financial flexibility", sub:"Committing everything would leave her no room to move.", note:"while protecting her financial flexibility" },
+    { id:"cosponsor",pile:"Pile B", label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" }
   ];
   var ROLES = [
     { id:"growth", label:"Growth", sub:"Grows the pot" },
@@ -488,8 +492,10 @@ ol.flow.qs span{color:var(--ink)}
   /* ---------- option groups ---------- */
   function group(host, items, key, render2) {
     $(host).innerHTML = items.map(function (o) {
+      var pile = o.pile ? '<span class="pile ' + (o.pile === "Pile A" ? "a" : "b") + '">' + escH(o.pile) + "</span>" : "";
       return '<button class="opt" type="button" data-v="' + escH(o.id) + '" aria-pressed="' + (s[key] === o.id) + '">' +
-        escH(o.label) + (o.sub ? "<small>" + escH(o.sub) + "</small>" : "") + "</button>";
+        '<span class="opt-t">' + escH(o.label) + pile + "</span>" +
+        (o.sub ? "<small>" + escH(o.sub) + "</small>" : "") + "</button>";
     }).join("");
     $(host).addEventListener("click", function (e) {
       var b = e.target.closest("[data-v]"); if (!b) return;
@@ -601,7 +607,7 @@ ol.flow.qs span{color:var(--ink)}
     return [
       "TRADE      " + (s.side || "Buy") + " " + (s.tk || "[ticker]") + ", " + (s.size || "?") + "% of the portfolio (" + money(CASH * (s.size || 0) / 100) + ")",
       "WHY        " + (s.why || "[why]"),
-      "FOR LAURA  " + (g ? g.label : "[which obligation]") + (r ? " — " + r.label.toLowerCase() : ""),
+      "FOR LAURA  " + (g ? g.label + " (" + g.pile + ")" : "[which obligation]") + (r ? " — " + r.label.toLowerCase() : ""),
       "EXPECT     " + (s.exp || "[what]") + (s.expd ? " by " + pretty(s.expd) : ""),
       "WRONG IF   " + (s.wrong || "[state]") + (s.wrongd ? " — check " + pretty(s.wrongd) : "") + (s.act ? ", then " + s.act : ""),
       "SOURCES    " + (srcs.length ? srcs.join(", ") : "[sources]"),
@@ -616,7 +622,7 @@ ol.flow.qs span{color:var(--ink)}
        F and G are formulas, so they are left empty and the sheet fills them. */
     return [today, s.tk || "", s.side || "", "", "", "", "",
       s.who || "", s.why || "",
-      g ? (g.id === "reserve" || g.id === "flex" ? "Pile A safety" : "Pile B growth") : "",
+      g ? (g.pile === "Pile A" ? "Pile A safety" : "Pile B growth") : "",
       (s.wrong || "") + (s.wrongd ? " (check " + pretty(s.wrongd) + ")" : "") + (s.act ? ", then " + s.act : "")
     ].join("\t");
   }
