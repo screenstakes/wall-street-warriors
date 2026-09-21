@@ -234,6 +234,7 @@ ol.flow.qs span{color:var(--ink)}
 .pile{font:700 11.5px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:4px 9px;white-space:nowrap}
 .pile.a{background:#E1F1E8;color:#1F6B3A}
 .pile.b{background:#FAEED8;color:#6E4209}
+.pile.c{background:#E4EBF7;color:#1E4B95}
 .reqflag{display:block;margin-top:7px;font:600 13px/1.2 var(--ui);color:#9A2B18}
 .reqflag::before{content:"\2217";margin-right:5px;font-size:15px}
 .needs{outline:2px solid #E3A392;outline-offset:3px;border-radius:11px}
@@ -299,10 +300,10 @@ ol.flow.qs span{color:var(--ink)}
 
   <section class="screen" data-ch="2" aria-labelledby="h3" hidden>
     <div class="eyebrow">Step 3 of 8</div>
-    <h1 id="h3" tabindex="-1">Which of Laura's obligations does it serve?</h1>
+    <h1 id="h3" tabindex="-1">What is this money for?</h1>
     <div class="owner"><b>Caleb's call</b><span>Caleb owns Laura’s case and answers this for every trade in his Fit check tab. Put your best answer here — he confirms it or sends it back in the thread.</span></div>
     <div class="opts" id="goal-opts"></div>
-    <p class="hint"><b>Pile A</b> is the safe money covering her ten $50,000 payments. <b>Pile B</b> is the growth money for the residency itself. A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b> &mdash; this is that line. If it serves none of them, stop here and don't trade.</p>
+    <p class="hint"><b>Pile A</b> is the safe money covering her ten $50,000 payments. <b>Pile B</b> is the growth money for the residency itself. <b>Pile C</b> is the flex account Coach P asked for — cash and short-term Treasuries we can buy with, and where money sits after a sale. A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b> &mdash; this is that line. If it serves none of them, stop here and don't trade.</p>
   </section>
 
   <section class="screen" data-ch="2" aria-labelledby="h4" hidden>
@@ -445,7 +446,8 @@ ol.flow.qs span{color:var(--ink)}
     { id:"reserve",  pile:"Pile A", label:"The operating commitment", sub:"Ten $50,000 payments, 2033 to 2042. Must be funded with a high degree of certainty, no outside money.", note:"as the residency funding dates approach" },
     { id:"facility", pile:"Pile B", label:"The facility contribution", sub:"Whatever is left in 2033 for the building itself. No set amount.", note:"toward the 2033 facility contribution" },
     { id:"flex",     pile:"Pile A", label:"Her financial flexibility", sub:"Committing everything would leave her no room to move.", note:"while protecting her financial flexibility" },
-    { id:"cosponsor",pile:"Pile B", label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" }
+    { id:"cosponsor",pile:"Pile B", label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" },
+    { id:"dry",      pile:"Pile C", label:"Dry powder", sub:"Cash and short-term Treasuries: money ready to buy with when something gets cheap, and somewhere for the proceeds to sit when we sell. Coach P\u2019s addition, Sep 20.", note:"by keeping part of the portfolio liquid, so we can act when something gets cheap and have somewhere to hold the proceeds of a sale" }
   ];
   var ROLES = [
     { id:"growth", label:"Growth", sub:"Grows the pot" },
@@ -492,7 +494,7 @@ ol.flow.qs span{color:var(--ink)}
   /* ---------- option groups ---------- */
   function group(host, items, key, render2) {
     $(host).innerHTML = items.map(function (o) {
-      var pile = o.pile ? '<span class="pile ' + (o.pile === "Pile A" ? "a" : "b") + '">' + escH(o.pile) + "</span>" : "";
+      var pile = o.pile ? '<span class="pile ' + o.pile.slice(-1).toLowerCase() + '">' + escH(o.pile) + "</span>" : "";
       return '<button class="opt" type="button" data-v="' + escH(o.id) + '" aria-pressed="' + (s[key] === o.id) + '">' +
         '<span class="opt-t">' + escH(o.label) + pile + "</span>" +
         (o.sub ? "<small>" + escH(o.sub) + "</small>" : "") + "</button>";
@@ -622,7 +624,7 @@ ol.flow.qs span{color:var(--ink)}
        F and G are formulas, so they are left empty and the sheet fills them. */
     return [today, s.tk || "", s.side || "", "", "", "", "",
       s.who || "", s.why || "",
-      g ? (g.pile === "Pile A" ? "Pile A safety" : "Pile B growth") : "",
+      g ? ({ "Pile A": "Pile A safety", "Pile B": "Pile B growth", "Pile C": "Pile C flex" }[g.pile] || "") : "",
       (s.wrong || "") + (s.wrongd ? " (check " + pretty(s.wrongd) + ")" : "") + (s.act ? ", then " + s.act : "")
     ].join("\t");
   }
