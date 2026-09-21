@@ -226,6 +226,11 @@ ol.flow.qs span{color:var(--ink)}
   padding:8px 13px;font:600 13.5px/1 var(--ui);color:var(--ink-2);cursor:pointer;min-height:38px}
 .chip2[aria-pressed="true"]{background:var(--tint);border-color:var(--blue);color:var(--navy)}
 .chip2:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(8px);
+  background:var(--strip);color:#fff;font:600 14px/1.3 var(--ui);padding:11px 18px;border-radius:99px;
+  opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:60;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
 @media (max-width:520px){
   .opts.three{grid-template-columns:1fr}
   .row2{grid-template-columns:1fr}
@@ -367,11 +372,50 @@ ol.flow.qs span{color:var(--ink)}
 </div>
 
 <script src="assets/data.js"></script>
-<script src="assets/app.js"></script>
+<script>
+/* Deliberately NOT loading app.js: it injects the site's mobile tab bar and More sheet, which are
+   styled by site.css, and this page carries the standalone stepper CSS instead. Every other job
+   page (risk, client, leader, minutes, meeting, numbers, formulas) loads no scripts for the same
+   reason. The two helpers we need are 15 lines, so they live here. */
+(function () {
+  var W = window.WSW = window.WSW || {};
+  W.store = W.store || {
+    get: function (k, fb) { try { var v = localStorage.getItem("wsw:" + k); return v === null ? fb : JSON.parse(v); } catch (e) { return fb; } },
+    set: function (k, v) { try { localStorage.setItem("wsw:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  W.toast = W.toast || function (msg) {
+    var t = document.getElementById("toast");
+    if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 1900);
+  };
+  W.copy = W.copy || function (text, msg) {
+    function done() { W.toast(msg || "Copied"); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) { W.toast("Select it and copy manually"); }
+      ta.remove();
+    }
+  };
+})();
+</script>
 <script>
 (function (W) {
   "use strict";
-  var D = W.data, $ = function (id) { return document.getElementById(id); };
+  var D = (W && W.data) || null, $ = function (id) { return document.getElementById(id); };
+  if (!D) {
+    var b = document.createElement("div");
+    b.setAttribute("role", "alert");
+    b.style.cssText = "background:#8C2F1E;color:#fff;font:600 14px/1.45 system-ui,sans-serif;padding:12px 16px;text-align:center";
+    b.textContent = "This page could not load its data. Reload, and tell Michael if it keeps happening.";
+    document.body.insertBefore(b, document.body.firstChild);
+    return;
+  }
   function escH(v){return String(v==null?"":v).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 
   var CASH = 300000;
