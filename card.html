@@ -230,6 +230,23 @@ ol.flow.qs span{color:var(--ink)}
   border-radius:0 8px 8px 0;padding:9px 12px;font:400 14px/1.45 var(--body);color:var(--ink-2)}
 .owner b{font:700 14px/1.45 var(--ui);color:var(--navy);white-space:nowrap}
 .owner span{min-width:0}
+.pilebox{border:1.5px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.pilebox + .pilebox{margin-top:10px}
+.pilebox > summary{list-style:none;cursor:pointer;display:flex;gap:11px;align-items:flex-start;
+  padding:14px;min-height:56px}
+.pilebox > summary::-webkit-details-marker{display:none}
+.pilebox > summary:focus-visible{outline:2px solid var(--orange);outline-offset:-3px}
+.pb-t{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.pb-t b{font:700 16px/1.25 var(--ui);color:var(--ink)}
+.pb-t small{font:400 13.5px/1.45 var(--body);color:var(--ink-2)}
+.pb-chev{flex:0 0 auto;width:11px;height:11px;margin-top:6px;border-right:2px solid var(--ink-3);
+  border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
+.pilebox[open] .pb-chev{transform:rotate(-135deg)}
+.pilebox[open]{border-color:var(--blue)}
+.pilebox.sel{border-color:var(--blue);box-shadow:inset 3px 0 0 var(--blue)}
+.pb-items{display:grid;gap:8px;padding:0 14px 14px}
+.pb-items .opt{border-radius:9px}
+@media (prefers-reduced-motion:reduce){.pb-chev{transition:none}}
 .opt-t{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .pile{font:700 11.5px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:4px 9px;white-space:nowrap}
 .pile.a{background:#E1F1E8;color:#1F6B3A}
@@ -442,13 +459,33 @@ ol.flow.qs span{color:var(--ink)}
   function escH(v){return String(v==null?"":v).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 
   var CASH = 300000;
-  var GOALS = [
-    { id:"reserve",  pile:"Pile A", label:"The operating commitment", sub:"Ten $50,000 payments, 2033 to 2042. Must be funded with a high degree of certainty, no outside money.", note:"as the residency funding dates approach" },
-    { id:"facility", pile:"Pile B", label:"The facility contribution", sub:"Whatever is left in 2033 for the building itself. No set amount.", note:"toward the 2033 facility contribution" },
-    { id:"flex",     pile:"Pile A", label:"Her financial flexibility", sub:"Committing everything would leave her no room to move.", note:"while protecting her financial flexibility" },
-    { id:"cosponsor",pile:"Pile B", label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" },
-    { id:"dry",      pile:"Pile C", label:"Dry powder", sub:"Cash and short-term Treasuries: money ready to buy with when something gets cheap, and somewhere for the proceeds to sit when we sell. Coach P\u2019s addition, Sep 20.", note:"by keeping part of the portfolio liquid, so we can act when something gets cheap and have somewhere to hold the proceeds of a sale" }
+  /* Three piles. A and B come from the case; C is the flex account Coach P asked for on Sep 20.
+     Each pile holds the specific jobs money can be doing inside it. note[] is the clause that
+     closes the WInS note, so it has to read on from "This supports Laura's plan ...". */
+  var PILES = [
+    { tag:"Pile A", name:"Safety", tone:"a",
+      what:"The money that has to be there. It covers her ten $50,000 payments, 2033 to 2042.",
+      items:[
+        { id:"reserve", label:"The operating commitment", sub:"Ten $50,000 payments a year, 2033 to 2042, funded with a high degree of certainty and no outside money.", note:"as the residency funding dates approach" },
+        { id:"flex",    label:"Her financial flexibility", sub:"Committing every dollar would leave her no room to move if something changes.", note:"while protecting her financial flexibility" }
+      ] },
+    { tag:"Pile B", name:"Growth", tone:"b",
+      what:"The money that grows, and becomes her contribution to the residency in 2033.",
+      items:[
+        { id:"facility",  label:"The facility contribution", sub:"Whatever is left in 2033 goes toward the building itself. There is no set amount, so more is better.", note:"toward the 2033 facility contribution" },
+        { id:"cosponsor", label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" }
+      ] },
+    { tag:"Pile C", name:"Flex", tone:"c",
+      what:"Cash and short-term Treasuries. Coach P\u2019s addition on Sep 20, and it is what SGOV and BIL are for.",
+      items:[
+        { id:"dry",    label:"Money ready to buy with", sub:"So we can act when something gets cheap, instead of having to sell something first to raise the cash.", note:"by keeping money ready, so we can act when something gets cheap instead of selling to raise cash" },
+        { id:"parked", label:"Where money sits after a sale", sub:"When we close a position the proceeds have somewhere safe to wait until we decide where they go.", note:"by giving the proceeds of a sale somewhere safe to wait" }
+      ] }
   ];
+  var GOALS = PILES.reduce(function (acc, p) {
+    p.items.forEach(function (it) { acc.push({ id: it.id, pile: p.tag, label: it.label, sub: it.sub, note: it.note }); });
+    return acc;
+  }, []);
   var ROLES = [
     { id:"growth", label:"Growth", sub:"Grows the pot" },
     { id:"fund",   label:"Funding reliability", sub:"Makes a dated payment certain" },
@@ -537,7 +574,27 @@ ol.flow.qs span{color:var(--ink)}
     });
     sizeCalc();
 
-    group("goal-opts", GOALS, "goal");
+    $("goal-opts").innerHTML = PILES.map(function (p) {
+      var mine = p.items.some(function (it) { return s.goal === it.id; });
+      return '<details class="pilebox ' + p.tone + (mine ? " sel" : "") + '"' + (mine ? " open" : "") + '>' +
+        "<summary>" +
+          '<span class="pile ' + p.tone + '">' + escH(p.tag) + "</span>" +
+          '<span class="pb-t"><b>' + escH(p.name) + "</b><small>" + escH(p.what) + "</small></span>" +
+          '<span class="pb-chev" aria-hidden="true"></span>' +
+        "</summary>" +
+        '<div class="pb-items">' + p.items.map(function (it) {
+          return '<button class="opt" type="button" data-v="' + escH(it.id) + '" aria-pressed="' + (s.goal === it.id) + '">' +
+            escH(it.label) + "<small>" + escH(it.sub) + "</small></button>";
+        }).join("") + "</div></details>";
+    }).join("");
+    $("goal-opts").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-v]"); if (!b) return;
+      s.goal = b.getAttribute("data-v"); save(); clearFlags();
+      [].forEach.call($("goal-opts").querySelectorAll("[data-v]"), function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+      [].forEach.call($("goal-opts").children, function (d) {
+        d.classList.toggle("sel", d.contains(b));
+      });
+    });
     group("role-opts", ROLES, "role");
 
     $("src-chips").innerHTML = SOURCES.map(function (x) {
