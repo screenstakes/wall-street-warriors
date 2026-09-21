@@ -93,6 +93,9 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
 .live{background:var(--live-soft);border:1px solid var(--live-line);border-radius:14px;padding:20px 22px}
 .live ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55}
 .live .res{margin-top:18px;padding-top:16px;border-top:1px solid var(--live-line);font:700 15px/1.45 var(--ui);color:var(--ink)}
+/* the vote steps that used to sit above the result are gone, so when .res is alone it must not
+   carry their separator or their top spacing */
+.live .res:first-child{margin-top:0;padding-top:0;border-top:0}
 
 /* where it lands */
 .lands{display:grid;grid-template-columns:1fr 1fr;gap:12px}
