@@ -191,6 +191,8 @@ ol.flow.qs span{color:var(--ink)}
   font:400 14.5px/1.55 var(--body);color:var(--ink-2);margin:0 0 20px}
 .job{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 16px;overflow:hidden}
 .job.done{opacity:.55}
+.job.shipped .tick{display:none}
+.job.shipped{opacity:.6}
 .job-h{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--well);
   border-bottom:1px solid var(--line)}
 .job-n{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;
@@ -247,9 +249,10 @@ ol.flow.qs span{color:var(--ink)}
 <main id="main">
  <div class="wrap">
 
-  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">Five things to change in the sheets</h1>
+  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">Three things left to change</h1>
   <p class="lede">Only you can do these &mdash; the files live in your school Drive and the dashboard reads them by position, so they have to be edited by hand rather than rebuilt.</p>
-  <div class="why"><b>Do number 1 first.</b> Right now Dylan's sheet prints a disqualification warning for a rule that does not exist this season. Everything else can wait until before Sep 28.</div>
+  <div class="why"><b>Do number 1 first.</b> Dylan's sheet still prints a disqualification warning for a rule that does not exist this season. The rest can wait until before Sep 28.</div>
+  <div class="doneall" style="margin:0 0 20px"><b>Two of the original five are already done.</b> Federico's rebuilt sheet ships with &ldquo;Pile C flex&rdquo; in its dropdown and with the seven new columns (Q to X) already in place, so jobs 2 and 4 from the old list are handled. They are greyed out below for the record.</div>
 
   <!-- 1 -->
   <div class="job" data-k="fix1">
@@ -277,15 +280,15 @@ ol.flow.qs span{color:var(--ink)}
   </div>
 
   <!-- 2 -->
-  <div class="job" data-k="fix2">
+  <div class="job done shipped" data-k="fix2">
     <div class="job-h">
       <span class="job-n">2</span>
-      <span class="job-t"><h2>Add Pile C to Federico's dropdown</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <span class="job-t"><span style="display:inline-block;background:#E1F1E8;color:#1F6B3A;font:700 11px/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:5px 10px;margin-bottom:6px">Came with the new sheet</span><br><h2>Add Pile C to Federico's dropdown</h2><p>Federico &mdash; Trade log and the rules</p></span>
       <label class="tick"><input type="checkbox" data-k="fix2"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
         <dt>Tab</dt><dd>Log</dd>
         <dt>Cells</dt><dd><span class="cell">J6:J79</span> &nbsp;(the &ldquo;Which of Laura's goals&rdquo; column)</dd>
       </dl>
@@ -329,15 +332,15 @@ ol.flow.qs span{color:var(--ink)}
   </div>
 
   <!-- 4 -->
-  <div class="job" data-k="fix4">
+  <div class="job done shipped" data-k="fix4">
     <div class="job-h">
       <span class="job-n">4</span>
-      <span class="job-t"><h2>Add six columns to the Log</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <span class="job-t"><span style="display:inline-block;background:#E1F1E8;color:#1F6B3A;font:700 11px/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:5px 10px;margin-bottom:6px">Came with the new sheet</span><br><h2>Add six columns to the Log</h2><p>Federico &mdash; Trade log and the rules</p></span>
       <label class="tick"><input type="checkbox" data-k="fix4"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1I7TWOR_a8SKvLY1m6dgAIDX_BSyGaIyu4Kj7QSSqmhE/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
         <dt>Tab</dt><dd>Log</dd>
         <dt>Cells</dt><dd><span class="cell">Q5</span> across to <span class="cell">W5</span></dd>
       </dl>
@@ -375,7 +378,7 @@ ol.flow.qs span{color:var(--ink)}
     </div>
   </div>
 
-  <div class="doneall" id="allgood" hidden><b>That is all five.</b> The sheets and the trade card now agree with each other, and nothing prints a rule that does not exist.</div>
+  <div class="doneall" id="allgood" hidden><b>That is all of them.</b> The sheets and the trade card now agree with each other, and nothing prints a rule that does not exist.</div>
 
  </div>
 </main>
@@ -416,7 +419,9 @@ ol.flow.qs span{color:var(--ink)}
   function paint() {
     var all = true;
     [].forEach.call(document.querySelectorAll(".job"), function (j) {
-      var k = j.getAttribute("data-k"), on = !!state[k];
+      var k = j.getAttribute("data-k");
+      /* jobs that shipped inside the rebuilt sheet have no checkbox and are always done */
+      var on = j.classList.contains("shipped") ? true : !!state[k];
       j.classList.toggle("done", on);
       var cb = j.querySelector("input[type=checkbox]"); if (cb) cb.checked = on;
       if (!on) all = false;
