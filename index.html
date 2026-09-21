@@ -32,6 +32,13 @@
 /* team files */
 .files-intro{padding:16px 18px 4px;font-size:15px;color:var(--ink-2);max-width:78ch}
 .files-intro b{color:var(--ink)}
+#tradecard .tc-lede{margin:0 0 12px;font-size:15px;line-height:1.55;color:var(--ink-2);max-width:72ch}
+#tradecard .tc-outs{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px;grid-template-columns:repeat(3,minmax(0,1fr))}
+#tradecard .tc-outs li{background:var(--well);border:1px solid var(--line-2);border-radius:10px;padding:12px 13px}
+#tradecard .tc-outs b{display:block;font:700 14px/1.3 var(--ui);color:var(--navy);margin-bottom:4px}
+#tradecard .tc-outs span{font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+#tradecard .tc-go{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:760px){ #tradecard .tc-outs{grid-template-columns:1fr} }
 /* One rhythm for the two top-level blocks: 20px desktop, 14px phone, matching .stack. */
   #tiles,#files{margin-bottom:20px}
   .files-grid{list-style:none;margin:0;padding:14px 18px 18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
@@ -212,6 +219,7 @@
       <a href="case.html">Case Study</a>
       <a href="guide.html">Guide</a>
       <a href="rules.html">Rules</a>
+      <a href="card.html">Trade card</a>
       <a href="playbook.html">Playbook</a>
       <a href="team.html">Team</a>
       <a href="news.html">Newsroom</a>
@@ -239,6 +247,20 @@
     <div class="tile reveal" style="--i:3"><span class="dot c-purple" data-icon="users"></span><div><div class="k">Roster</div><div class="v"><span id="t-roster">–</span><small id="t-roster-u">confirmed</small></div><div class="sub" id="t-roster-s">Wharton allows 4 to 6</div></div></div>
     <div class="tile reveal" style="--i:4"><span class="dot c-pink" data-icon="calendar"></span><div><div class="k">Final report</div><div class="v"><span id="t-final">–</span><small>days</small></div><div class="sub">Fri Dec 4 · 5:00 p.m. ET</div></div></div>
   </div>
+
+  <section class="card reveal" style="--i:1" aria-labelledby="tc-h" id="tradecard">
+    <div class="card-head"><span class="ic" data-icon="edit"></span><h2 id="tc-h">Write a trade card</h2><span class="sep"></span><span class="meta">Before the trade, not after</span></div>
+    <div class="card-body">
+      <p class="tc-lede">No trade goes in without a card. It takes about a minute and it is mostly tapping &mdash; it works out the dollars, checks our limits, and tells you whether it needs 3 of 5 or 4 of 5.</p>
+      <ul class="tc-outs">
+        <li><b>The WInS note</b><span>Paste it before you hit Confirm. Wharton quotes three of these back word for word in October, and WInS will not let you edit one once it is saved.</span></li>
+        <li><b>The card for the chat</b><span>Post it as a new message. It starts the thread, and the poll goes on it.</span></li>
+        <li><b>Federico's log row</b><span>One paste fills the Log across to column K instead of thirteen typed cells.</span></li>
+      </ul>
+      <a class="btn tc-go" href="card.html">Open the trade card</a>
+    </div>
+    <div class="card-foot">Whoever proposes the trade writes the card. Dylan checks the size against our limits, Caleb answers which pile it serves, Joe posts what it is worth, and Federico logs it once it is placed.</div>
+  </section>
 
   <section class="card reveal" style="--i:1" aria-labelledby="files-h" id="files">
     <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="files-h">Our team files</h2><span class="sep"></span><span class="meta" id="files-meta">5 Google Sheets</span><span class="spacer"></span><span id="files-folder"></span></div>
