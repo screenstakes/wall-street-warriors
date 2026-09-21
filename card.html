@@ -226,6 +226,14 @@ ol.flow.qs span{color:var(--ink)}
   padding:8px 13px;font:600 13.5px/1 var(--ui);color:var(--ink-2);cursor:pointer;min-height:38px}
 .chip2[aria-pressed="true"]{background:var(--tint);border-color:var(--blue);color:var(--navy)}
 .chip2:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.owner{display:flex;gap:9px;align-items:flex-start;background:var(--tint);border-left:3px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:9px 12px;font:400 14px/1.45 var(--body);color:var(--ink-2)}
+.owner b{font:700 14px/1.45 var(--ui);color:var(--navy);white-space:nowrap}
+.owner span{min-width:0}
+.reqflag{display:block;margin-top:7px;font:600 13px/1.2 var(--ui);color:#9A2B18}
+.reqflag::before{content:"\2217";margin-right:5px;font-size:15px}
+.needs{outline:2px solid #E3A392;outline-offset:3px;border-radius:11px}
+.fld input.needs,.fld textarea.needs{outline-offset:1px}
 .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(8px);
   background:var(--strip);color:#fff;font:600 14px/1.3 var(--ui);padding:11px 18px;border-radius:99px;
   opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:60;max-width:90vw;text-align:center}
@@ -233,6 +241,7 @@ ol.flow.qs span{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
 @media (max-width:520px){
   .opts.three{grid-template-columns:1fr}
+  #who-opts,#size-opts{grid-template-columns:1fr 1fr}
   .row2{grid-template-columns:1fr}
   h1{font-size:23px}
 }
@@ -259,6 +268,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="1" aria-labelledby="h1" hidden>
     <div class="eyebrow">Step 1 of 8</div>
     <h1 id="h1" tabindex="-1">Who, and what?</h1>
+    <div class="owner"><b>Whoever is proposing</b><span>You are writing the card, so these are yours. Anyone on the team can pitch a trade.</span></div>
     <div class="q">
       <div class="fld"><label for="who">Your name</label>
         <div class="opts three" id="who-opts"></div></div>
@@ -277,6 +287,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="1" aria-labelledby="h2" hidden>
     <div class="eyebrow">Step 2 of 8</div>
     <h1 id="h2" tabindex="-1">How big?</h1>
+    <div class="owner"><b>You size it, Dylan checks it</b><span>You pick the size. Dylan checks it against our limits in his Limits tab before the poll closes.</span></div>
     <div class="opts three" id="size-opts"></div>
     <div class="calc" id="size-calc">Pick a size.</div>
     <p class="hint">5 / 8 / 30 are <b>our</b> limits, not Wharton's. Wharton caps the season at 200 trades and nothing else about size.</p>
@@ -285,6 +296,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="2" aria-labelledby="h3" hidden>
     <div class="eyebrow">Step 3 of 8</div>
     <h1 id="h3" tabindex="-1">Which of Laura's obligations does it serve?</h1>
+    <div class="owner"><b>Caleb's call</b><span>Caleb owns Laura’s case and answers this for every trade in his Fit check tab. Put your best answer here — he confirms it or sends it back in the thread.</span></div>
     <div class="opts" id="goal-opts"></div>
     <p class="hint">A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b>. This is that line. If it serves none of them, stop here and don't trade.</p>
   </section>
@@ -292,6 +304,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="2" aria-labelledby="h4" hidden>
     <div class="eyebrow">Step 4 of 8</div>
     <h1 id="h4" tabindex="-1">What job does it do in the portfolio?</h1>
+    <div class="owner"><b>Yours to name</b><span>This is the job you are assigning the position. The whole team votes on whether they agree.</span></div>
     <div class="opts two" id="role-opts"></div>
     <p class="hint">Wharton's Competition Guide asks for the trade's <b>expected role in growth, liquidity, risk management, or future funding</b>. Naming the job is also the only way we can check later whether it did it.</p>
   </section>
@@ -299,6 +312,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="3" aria-labelledby="h5" hidden>
     <div class="eyebrow">Step 5 of 8</div>
     <h1 id="h5" tabindex="-1">Why, in one sentence</h1>
+    <div class="owner"><b>Yours</b><span>This is your pitch. Joe will post what he thinks it is worth underneath it in the thread.</span></div>
     <div class="fld"><label for="why">One fact, and what you conclude from it</label>
       <textarea id="why" maxlength="220" placeholder="Cloud revenue grew 22% last quarter, so the part of the business we are paying for is still compounding."></textarea></div>
     <p class="hint">A judge's warning, word for word: <b>&ldquo;hiding behind fancy terms and formulas&hellip; the best solutions are made up of simple, elegant ideas.&rdquo;</b> A number with no conclusion attached is worse than no number. Say what it means.</p>
@@ -307,6 +321,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="3" aria-labelledby="h6" hidden>
     <div class="eyebrow">Step 6 of 8</div>
     <h1 id="h6" tabindex="-1">What do you expect, and by when?</h1>
+    <div class="owner"><b>Yours, with Joe behind it</b><span>You say what you expect. Joe’s valuation is the evidence — he posts his number as a range in the thread.</span></div>
     <div class="q">
       <div class="fld"><label for="exp">We expect it to&hellip;</label>
         <input id="exp" maxlength="120" placeholder="hold its value within about 5%"></div>
@@ -318,6 +333,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="4" aria-labelledby="h7" hidden>
     <div class="eyebrow">Step 7 of 8</div>
     <h1 id="h7" tabindex="-1">What would make this wrong?</h1>
+    <div class="owner"><b>Dylan's call</b><span>Dylan writes the full case against in the thread before the poll opens. Write what you think here; his version is the one that counts.</span></div>
     <div class="q">
       <div class="fld"><label for="wrong">The state that means we were wrong</label>
         <input id="wrong" maxlength="140" placeholder="cloud growth comes in under 20%"></div>
@@ -332,6 +348,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="4" aria-labelledby="h8" hidden>
     <div class="eyebrow">Step 8 of 8</div>
     <h1 id="h8" tabindex="-1">Where did it come from?</h1>
+    <div class="owner"><b>Yours</b><span>Everyone cites their own sources. If AI helped, it gets named — that rule is not optional.</span></div>
     <div class="chips" id="src-chips"></div>
     <div class="fld" style="margin-top:4px"><label for="src">Anything else</label>
       <input id="src" maxlength="140" placeholder="FY25 10-K p.34"></div>
@@ -342,6 +359,7 @@ ol.flow.qs span{color:var(--ink)}
   <section class="screen" data-ch="5" aria-labelledby="h9" hidden>
     <div class="eyebrow">Done</div>
     <h1 id="h9" tabindex="-1">Three things to paste</h1>
+    <div class="owner"><b>Federico logs it</b><span>Once the poll passes and the trade is placed, Federico puts the row in the Log the same day. Hand him row 3.</span></div>
     <div class="missing" id="gaps" hidden></div>
 
     <div class="outhead"><h2>1. The WInS note</h2><span class="wc" id="wc"></span></div>
@@ -475,7 +493,7 @@ ol.flow.qs span{color:var(--ink)}
     }).join("");
     $(host).addEventListener("click", function (e) {
       var b = e.target.closest("[data-v]"); if (!b) return;
-      s[key] = b.getAttribute("data-v"); save();
+      s[key] = b.getAttribute("data-v"); save(); clearFlags();
       [].forEach.call($(host).children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
       if (render2) render2();
     });
@@ -488,13 +506,13 @@ ol.flow.qs span{color:var(--ink)}
     }).join("");
     $("who-opts").addEventListener("click", function (e) {
       var b = e.target.closest("[data-v]"); if (!b) return;
-      s.who = b.getAttribute("data-v"); save();
+      s.who = b.getAttribute("data-v"); save(); clearFlags();
       [].forEach.call($("who-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
     });
 
     $("side-opts").addEventListener("click", function (e) {
       var b = e.target.closest("[data-side]"); if (!b) return;
-      s.side = b.getAttribute("data-side"); save();
+      s.side = b.getAttribute("data-side"); save(); clearFlags();
       [].forEach.call($("side-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
     });
     [].forEach.call($("side-opts").children, function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-side") === s.side)); });
@@ -505,7 +523,7 @@ ol.flow.qs span{color:var(--ink)}
     }).join("");
     $("size-opts").addEventListener("click", function (e) {
       var b = e.target.closest("[data-v]"); if (!b) return;
-      s.size = parseFloat(b.getAttribute("data-v")); save();
+      s.size = parseFloat(b.getAttribute("data-v")); save(); clearFlags();
       [].forEach.call($("size-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
       sizeCalc();
     });
@@ -522,7 +540,7 @@ ol.flow.qs span{color:var(--ink)}
       var v = b.getAttribute("data-v"); s.srcs = s.srcs || [];
       var at = s.srcs.indexOf(v);
       if (at > -1) s.srcs.splice(at, 1); else s.srcs.push(v);
-      b.setAttribute("aria-pressed", String(at === -1)); save(); aiWarn();
+      b.setAttribute("aria-pressed", String(at === -1)); save(); aiWarn(); clearFlags();
     });
     aiWarn();
 
@@ -532,7 +550,7 @@ ol.flow.qs span{color:var(--ink)}
       el.addEventListener("input", function () {
         s[id] = id === "tk" ? el.value.toUpperCase() : el.value;
         if (id === "tk") el.value = s[id];
-        save();
+        save(); clearFlags();
       });
     });
   }
@@ -628,10 +646,50 @@ ol.flow.qs span{color:var(--ink)}
     $("o-row").textContent = logRow();
   }
 
+  /* ---------- required fields ---------- */
+  /* screen index -> [state key, the element the marker hangs off] */
+  var REQ = {
+    1: [["who", "who-opts"], ["side", "side-opts"], ["tk", "tk"]],
+    2: [["size", "size-opts"]],
+    3: [["goal", "goal-opts"]],
+    4: [["role", "role-opts"]],
+    5: [["why", "why"]],
+    6: [["exp", "exp"], ["expd", "expd"]],
+    7: [["wrong", "wrong"]],
+    8: [["srcs", "src-chips"]]
+  };
+  function have(k) {
+    if (k === "srcs") return ((s.srcs || []).length > 0) || !!(s.src && s.src.trim());
+    return !!(s[k] && String(s[k]).trim());
+  }
+  function clearFlags() {
+    [].forEach.call(document.querySelectorAll(".reqflag"), function (e) { e.remove(); });
+    [].forEach.call(document.querySelectorAll(".needs"), function (e) { e.classList.remove("needs"); });
+  }
+  function check(n) {
+    clearFlags();
+    var list = REQ[n] || [], first = null;
+    list.forEach(function (pair) {
+      if (have(pair[0])) return;
+      var el = $(pair[1]); if (!el) return;
+      if (!first) first = el;
+      el.classList.add("needs");
+      var f = document.createElement("span");
+      f.className = "reqflag"; f.textContent = "Required";
+      el.parentNode.insertBefore(f, el.nextSibling);
+    });
+    if (first) {
+      first.scrollIntoView({ block: "center", behavior: "smooth" });
+      if (first.focus) { try { first.focus({ preventScroll: true }); } catch (e) {} }
+      W.toast("Fill this in first");
+    }
+    return !first;
+  }
+
   /* ---------- wire ---------- */
   chapters(); build();
-  $("back").addEventListener("click", function () { go(i - 1); });
-  $("next").addEventListener("click", function () { go(i + 1); });
+  $("back").addEventListener("click", function () { clearFlags(); go(i - 1); });
+  $("next").addEventListener("click", function () { if (!check(i)) return; go(i + 1); });
   $("c-note").addEventListener("click", function () { W.copy(winsNote(), "WInS note copied"); });
   $("c-card").addEventListener("click", function () { W.copy(chatCard(), "Card copied — post it as a new message"); });
   $("c-row").addEventListener("click", function () { W.copy(logRow(), "Row copied — paste into Log cell A7"); });
