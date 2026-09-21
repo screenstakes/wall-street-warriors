@@ -29,7 +29,7 @@ WSW.data = {
     chat: "Google Chat space · Wharton Global Investment Challenge",
     members: [
       { id: "michael",  name: "Michael",  status: "confirmed", note: "Team leader. Finished Wharton's Essentials of Finance this summer; wrote the team's 13-page reference." },
-      { id: "caleb",    name: "Caleb",    status: "confirmed", note: "" },
+      { id: "caleb",    name: "Celeb",    status: "confirmed", note: "" },
       { id: "dylan",    name: "Dylan",    status: "confirmed", note: "" },
       { id: "joe",      name: "Joe",      status: "confirmed", note: "The math lead." },
       { id: "federico", name: "Federico", status: "confirmed", note: "Joined Sep 14. The fifth member." }
@@ -365,7 +365,7 @@ WSW.data = {
   files: {
     folder: "",
     list: [
-      { id: "caleb", job: "Laura's case", title: "Caleb — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client", guide: "client.html",
+      { id: "caleb", job: "Laura's case", title: "Celeb — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client", guide: "client.html",
         week: "Reply to every trade card with the goal it serves, or send it back. From week 5, draft the IPS.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Laura", "The client on one page, and what each fact means for a trade"], ["Fit check", "One row per trade card: which of Laura's goals it serves"], ["IPS", "The 11 sections to draft Oct 24 to 30, and who feeds you each one"], ["Works cited", "Every source as we use it, including any AI"]],
         has: ["Laura, our client, on one page", "Does each trade help Laura? One row per trade", "The Investment Policy Statement (IPS), all 11 sections"] },
@@ -388,7 +388,7 @@ WSW.data = {
     ],
     coach: { title: "Coach P — Season overview", url: "", what: "One read-only page for Coach P that fills itself in: deliverable status with days left, each person's weeks, portfolio health, and what the team needs from him." },
     flow: [
-      { when: "Before a vote", what: "Michael posts the trade card. Dylan writes the case against it and checks our limits, Caleb says which of Laura\u2019s goals it serves, and Joe works out what the stock is worth." },
+      { when: "Before a vote", what: "Michael posts the trade card. Dylan writes the case against it and checks our limits, Celeb says which of Laura\u2019s goals it serves, and Joe works out what the stock is worth." },
       { when: "After the vote", what: "The poll on the card\u2019s thread decides it. Federico logs the trade the day it\u2019s executed, with the reason." },
       { when: "Every Friday", what: "Federico checks his log against WInS. Joe copies what we own into his Portfolio tab and Dylan into his Limits tab. The dashboard checks all three totals match." },
       { when: "All the time", what: "Michael's dashboard pulls from all four sheets on its own: who finished their week, how far the IPS is, and any rules or risk flags." }
@@ -665,18 +665,18 @@ WSW.data = {
   ],
 
   weekly: [
-    { d: "Any day", t: "The card goes up", s: "A trade card gets its own thread in the Google Chat. Dylan posts the case against and checks the limits, Caleb says which of Laura's goals it serves, Joe posts what it's worth. Everyone replies in that one thread." },
+    { d: "Any day", t: "The card goes up", s: "A trade card gets its own thread in the Google Chat. Dylan posts the case against and checks the limits, Celeb says which of Laura's goals it serves, Joe posts what it's worth. Everyone replies in that one thread." },
     { d: "Any day", t: "The poll", s: "Michael opens a poll on the card's thread. 3 of 5 approves, 4 of 5 for anything over 10% of the portfolio. Federico logs it the day it's executed, with the reason." },
     { d: "Friday", t: "Fill in your week", s: "Your section of your own sheet, done before the weekend, so Sunday reviews finished work. Three lines in the journal: what I learned, what I'd do differently, one number I watched." },
     { d: "Sunday 8 p.m.", t: "The weekly call", s: "About 30 minutes on Zoom, every week for ten weeks. What the polls already settled, anything still split, then who does what. Federico writes the one row." }
   ],
 
   announcements: [
-    { date: "2026-09-20", text: "First weekly call done. Sectors for now: Michael tech, Joe health care, Caleb financials, Dylan industrials, and consumer is open for Federico. Not final \u2014 one area each leaves too much of the market uncovered, so we\u2019re moving to two or three each with fixed income separate, and we settle it at Monday\u2019s lunch. Bitcoin is out: too volatile for what Laura said she wants. The SGOV practice card is still open and gets finished and voted Monday. From here the call is every Sunday at 8." },
+    { date: "2026-09-20", text: "First weekly call done. Sectors for now: Michael tech, Joe health care, Celeb financials, Dylan industrials, and consumer is open for Federico. Not final \u2014 one area each leaves too much of the market uncovered, so we\u2019re moving to two or three each with fixed income separate, and we settle it at Monday\u2019s lunch. Bitcoin is out: too volatile for what Laura said she wants. The SGOV practice card is still open and gets finished and voted Monday. From here the call is every Sunday at 8." },
     { date: "2026-09-16", text: "The case is out. Our client is Laura Gao \u2014 Wharton 2018, bestselling graphic novelist, building a creative residency in Taiwan in 2033. She invests $300,000 in 2027 and adds $150,000 in 2028, then owes ten fixed $50,000 payments from 2033 to 2042. Full case and the numbers are on the Case page; the Competition Guide is on the Playbook page." },
-    { date: "2026-09-14", text: "Federico is in. We're five: Michael, Caleb, Dylan, Joe and Federico, one above Wharton's minimum." },
+    { date: "2026-09-14", text: "Federico is in. We're five: Michael, Celeb, Dylan, Joe and Federico, one above Wharton's minimum." },
     { date: "2026-09-14", text: "Practice trading and the client case study arrive tomorrow, Sep 15. Michael will post the case in the chat once the SurveyMonkey Apply invite lands." },
-    { date: "2026-09-13", text: "Roster for the season: Michael, Caleb, Dylan, Joe, and maybe Federico. Cash can't do it." },
+    { date: "2026-09-13", text: "Roster for the season: Michael, Celeb, Dylan, Joe, and maybe Federico. Cash can't do it." },
     { date: "2026-09-04", text: "Registered as Wall Street Warriors. Coach P created the shared WInS team account; the $300,000 showing is the practice portfolio." }
   ],
 
