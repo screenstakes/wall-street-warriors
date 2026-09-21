@@ -131,7 +131,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
 <header>
   <p class="kicker">Wall Street Warriors · how a trade works</p>
   <h1>One trade, start to finish, in our Google Chat</h1>
-  <p class="lede">Every trade gets <b>its own thread</b>. The replies stack up in order, and <b>the vote is a poll on that same thread</b> — so a trade never waits for a meeting.</p>
+  <p class="lede">Every trade gets <b>its own thread</b>, and an <b>ID</b> like <code>0928-MSFT</code> that follows it into WInS and into Federico's file. The replies stack up in order. Nothing waits for a meeting.</p>
   <div class="order" aria-label="The order">Card <i>→</i> Case against <i>→</i> Fits Laura? <i>→</i> What it's worth <i>→</i> Poll <i>→</i> Placed and logged</div>
   <div class="legend"><span class="t">In the trade's thread</span><span class="m">In the main chat</span></div>
   <p class="fine">Worked example. Microsoft is a real candidate, but the numbers here are made up.</p>
@@ -150,18 +150,18 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
         <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
           <div class="mh"><b>Michael Fitzgerald</b><time>8:02 PM</time></div>
           <div class="mt card">
-            <p class="head">TRADE CARD: Buy MSFT</p>
+            <p class="head">TRADE CARD &nbsp;0928-MSFT</p>
             <dl>
               <dt>TRADE</dt><dd>Buy MSFT, 3% of the portfolio, about $9,000 of our $300,000</dd>
               <dt>WHY</dt><dd>Fills our tech slot with a profitable company, not a bet</dd>
               <dt>FOR LAURA</dt><dd>Pile B, growth for the building</dd>
               <dt>EXPECT</dt><dd>Hold through Nov 6. Working if it's flat or better by then</dd>
               <dt>WRONG IF</dt><dd>Cloud growth under 20% at the next earnings — then we cut it to 1.5%</dd>
-              <dt>SOURCES</dt><dd>FY25 10-K, the 2026 proxy, and Claude for the DCF check</dd>
+              <dt>SOURCES</dt><dd>FY25 annual report, and AI helped draft this</dd>
               <dt>BY</dt><dd>Michael · needs 3 of 5</dd>
             </dl>
           </div>
-          <div class="threadnote">↳ 4 replies</div>
+          <div class="threadnote">↳ the WInS note is at the bottom of this card · 4 replies</div>
         </div></div>
       </div>
       <p class="aside"><b>Anyone can pitch.</b> One trade, one new message. Everything about this trade after that is a reply in its thread, never a new message.</p>
@@ -172,7 +172,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
     <div class="rail"><span class="dot">2</span></div>
     <div class="body">
       <div class="when">Mon 9:15 PM · the case against</div>
-      <h2>Dylan replies first: why this could be wrong</h2>
+      <h2>Dylan says why this could be wrong</h2>
       <div class="chat reply">
         <div class="tag">↳ Reply in the MSFT thread</div>
         <div class="msg"><span class="av" style="--c:var(--dyl)">D</span><div>
@@ -183,7 +183,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
           </div>
         </div></div>
       </div>
-      <p class="aside"><b>Dylan goes first, on purpose.</b> Everyone else reads the case against before they form a view. If it is not posted before the poll opens, the trade goes ahead anyway — staying quiet is not a veto.</p>
+      <p class="aside"><b>Dylan goes first, on purpose</b> — everyone else reads the case against before they make their mind up. <b>He does not write 150 words any more.</b> A few lines here, or just say it on Sunday. If he hasn't posted by the time the vote opens, the trade goes ahead; staying quiet is not a veto.</p>
     </div>
   </li>
 
@@ -218,7 +218,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
           </div>
         </div></div>
       </div>
-      <p class="aside">A low value is evidence for the vote, not a veto. Joe votes like everyone else.</p>
+      <p class="aside"><b>Only for a stock we do not already own.</b> Adding to something we hold, or buying a fund, does not need a valuation. A low number is evidence for the vote, not a veto — Joe votes like everyone else.</p>
     </div>
   </li>
 
@@ -226,19 +226,18 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
     <div class="rail"><span class="dot">5</span></div>
     <div class="body">
       <div class="when">Tue 12:40 PM · the poll</div>
-      <h2>Michael opens the poll on the thread</h2>
+      <h2>Everyone votes on the thread</h2>
       <div class="chat reply">
         <div class="tag">↳ Poll in the MSFT thread</div>
         <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
           <div class="mh"><b>Michael Fitzgerald</b><time>12:40 PM</time></div>
-          <div class="mt"><p><b>Buy MSFT at 3%?</b> Read Dylan's case against first. Closes at 2 PM so it can be placed before the market closes.</p>
-            <p>👍 Yes &nbsp;·&nbsp; 👎 No</p></div>
+          <div class="mt"><p><b>Buy MSFT at 3%?</b> Read Dylan's case against first. Thumbs up or down on this message by 2 PM, so it can be placed before the market closes.</p></div>
         </div></div>
       </div>
       <div class="live">
         <div class="res">4 yes, 1 no. 3% is under 10% of the portfolio, so 3 of 5 passes. Approved.</div>
       </div>
-      <p class="aside">Over 10% of the portfolio, a new kind of investment, or a change to the plan needs 4 of 5. Anything the poll can't settle waits for Sunday's call — it never gets its own extra meeting.</p>
+      <p class="aside">Thumbs on the message. <b>Do not build a voting system.</b> Over 10% of the portfolio, a new kind of investment, or a change to the plan needs 4 of 5 instead of 3. Anything that can't be settled here waits for Sunday — it never gets its own extra meeting.</p>
     </div>
   </li>
 
@@ -254,7 +253,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
           <div class="mt"><p>Placing it now. Pasted the whole card into the WInS trade note before hitting Confirm ✅</p></div>
         </div></div>
       </div>
-      <p class="aside"><b>The note goes in before Confirm.</b> WInS asks for it on the Review Order screen, and that note is what Wharton grades on Oct 23. Not an afterthought.</p>
+      <p class="aside"><b>The note was already written.</b> It is sitting at the bottom of the card at the top of this thread — long-press, copy, paste. WInS asks for it on the screen right before Confirm, and that note is what Wharton quotes back in October. If there is no note, do not click Confirm.</p>
     </div>
   </li>
 
@@ -262,7 +261,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
     <div class="rail"><span class="dot">7</span></div>
     <div class="body">
       <div class="when">Tue · the same day</div>
-      <h2>Logged. The thread is done.</h2>
+      <h2>The thread is done.</h2>
       <div class="chat reply">
         <div class="tag">↳ Replies in the MSFT thread</div>
         <div class="msg"><span class="av" style="--c:var(--cal)">C</span><div>
@@ -275,10 +274,10 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
         </div></div>
         <div class="msg"><span class="av" style="--c:var(--fed)">F</span><div>
           <div class="mh"><b>Federico Mancini</b><time>4:05 PM</time></div>
-          <div class="mt"><p>Logged, Log row 8, with the poll result ✓</p></div>
+          <div class="mt"><p>DONE — Sep 28. Passed 4 of 5. 41 shares at $218.55 ✓</p></div>
         </div></div>
       </div>
-      <p class="aside">Team rule: whoever places it pastes the card into the WInS note before Confirm, and Federico logs it the same day.</p>
+      <p class="aside"><b>Federico does not type a row today.</b> He downloads the whole file from WInS on <b>Friday</b> and checks it against the threads — ten minutes, once a week. WInS already keeps every trade; he was copying out a file the site makes for him.</p>
     </div>
   </li>
 
@@ -286,13 +285,13 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
     <div class="rail"><span class="dot">✓</span></div>
     <div class="body">
       <div class="when">Where it ends up</div>
-      <h2>One thread, plus one line in each sheet</h2>
+      <h2>Where it all ends up</h2>
       <div class="lands">
-        <div class="wide"><b>The thread</b>The whole story of the decision in one place. Our Oct 23 Trading Notes are built from threads like this.</div>
-        <div><b>Federico</b>A row on his Log tab</div>
-        <div><b>Caleb</b>A row on his Fit check tab</div>
-        <div><b>Dylan</b>A column on his Bear case tab</div>
-        <div><b>Joe</b>His Valuation tab, and the WInS note</div>
+        <div class="wide"><b>The thread</b>The whole story in one place, under one ID. <b>Only three of these ever get graded</b> — we pick the best three in October.</div>
+        <div><b>Federico</b>Checks the WInS file on Friday</div>
+        <div><b>Caleb</b>Confirms the pile, or sends it back</div>
+        <div><b>Dylan</b>The case against, said or posted</div>
+        <div><b>Joe</b>A value, for new stocks only</div>
       </div>
       <div class="no"><b>If the poll fails,</b> Federico replies "Not approved, 2 to 3" and the thread ends there. Nothing gets placed or logged.</div>
     </div>
