@@ -351,8 +351,11 @@ WSW.data = {
       weekly: "Same-day log entries, a 10-line set of minutes within a day, and one reconciliation against the account." }
   ],
 
-  /* One sector each: Wharton requires at least one stock from as many sectors as there are members,
-     held all season. Index funds and Treasuries are team positions \u2014 the whole team votes on those. */
+  /* CORRECTION, verified 2026-09-20 against the official Trading page: "There is no required sector
+     allocation or minimum number of sectors." The one-stock-per-member rule came from the archived
+     2023-24 rubric and is DEAD for 2026-27. Areas are still how we split the research, and criterion 1
+     still rewards "appropriate diversification" \u2014 but this is our choice, not a rule, and nothing
+     here is a disqualification risk. Index funds and Treasuries are team positions. */
   /* The team's working files: one Google Sheet each, in Michael's school Drive
      (Wall Street Warriors → Team docs), shared to the team's school emails. Paste each
      sheet's link into url; an empty url shows "Link coming" instead of a button. The order
@@ -451,7 +454,7 @@ WSW.data = {
        Evaluation page (2023-24) - the current rubric sits in SurveyMonkey Apply under Deliverables.
        Note #4: how we run ourselves is a scored line item, not admin. */
     criteria: [
-      { n: "Investment strategy", d: "A clear, creative thesis with mid- and long-term thinking, and a portfolio in at least as many sectors as we have members." },
+      { n: "Investment strategy", d: "A clear, creative thesis; disciplined planning across Laura\u2019s changing time horizons and cash-flow needs; appropriate diversification; consistency with our IPS." },
       { n: "Client knowledge", d: "Tailored to Laura's goals closely enough that it would win her over as a client." },
       { n: "Portfolio analysis", d: "Real understanding of the tools, with both numbers and judgement. Not jargon." },
       { n: "Our competition experience", d: "How we worked together, how we made decisions, and what we learned. This is why the jobs and the journal exist." },
@@ -461,10 +464,10 @@ WSW.data = {
     /* Miss one of these and the report never gets read, however good it is. The trade log and rules
        owner checks them; nothing is submitted until they pass. */
     gates: [
-      "First trade placed by Wharton's deadline",
-      "At least one stock in every sector we have a member for, plus at least one ETF, held at the checkpoint",
+      "Inside the 200-trade cap, with trading between Sep 28 and Nov 6",
+      "A Trading Note on every executed trade \u2014 Wharton verifies the notes against the trades",
       "Every deliverable in on time - skipping one has ended teams' seasons",
-      "Only securities the Trading page allows",
+      "Only what the Trading page allows: stocks at $5 or more, ETFs, and Treasuries from the US, UK, Germany, France, Italy or the Netherlands",
       "Inside the page range, with every required element",
       "Same advisor and same roster after the Oct 9 lock"
     ],
@@ -541,6 +544,7 @@ WSW.data = {
     { rule: "Competition window",   value: "Sep 28 – Dec 4, 2026. The portal lists trading ending Nov 6 with the IPS.", status: "official", season: "2026–27" },
     { rule: "Required activity",    value: "Teams \"must meet the required trading activity and portfolio management guidelines throughout the competition.\" The specifics live on the Trading page in SurveyMonkey Apply, which is not pulled into this site yet.", status: "verify", season: "2026–27" },
     { rule: "Trading notes",        value: "A note explaining each trade is added inside WInS (Transaction History → Add/View Notes). The Oct 23 deliverable is the written analysis of them.", status: "official", season: "current" },
+    { rule: "Notes can't be edited", value: "StockTrak: students cannot edit or delete a trade note once it is saved, but more timestamped notes can be added to the same trade, and the full set exports to a spreadsheet. So the first note has to be right, and a later review can be appended to it.", status: "official", season: "2026\u201327" },
     { rule: "Style of strategy",    value: "Wharton's trading page: this is \"not a trading competition\"; the majority of the strategy should be a long-term, buy-and-hold approach.", status: "official", season: "current" },
     { rule: "International stocks", value: "Domestic and international equities allowed; currency converts automatically. International fills can be delayed 15–30 minutes.", status: "official", season: "current" },
     { rule: "Trading hours",        value: "9:30 a.m. – 4:00 p.m. ET on weekdays. After-hours U.S. orders fill at the next open.", status: "official", season: "current" },
