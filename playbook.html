@@ -217,7 +217,7 @@
       <a href="case.html">Case Study</a>
       <a href="guide.html">Guide</a>
       <a href="rules.html">Rules</a>
-      <a href="card.html">Trade card</a>
+      <a href="card.html">Propose</a>
       <a href="playbook.html">Playbook</a>
       <a href="team.html">Team</a>
       <a href="news.html">Newsroom</a>
@@ -312,34 +312,13 @@
     </section>
 
     <!-- 8. trade note builder -->
-    <section class="card reveal" id="notes" aria-labelledby="pb-notes-h" data-fold="closed">
-      <div class="card-head"><span class="ic" data-icon="edit"></span><h2 id="pb-notes-h">Trade note builder</h2><span class="spacer"></span><span class="meta pb-desk">one note per trade</span><span class="meta pb-m" id="pb-notes-m"></span></div>
-      <div class="card-body">
-        <form class="pb-form" id="pb-form" autocomplete="off">
-          <div class="fields">
-            <div class="field"><label for="pb-date">Date</label><input class="num" type="date" id="pb-date"></div>
-            <div class="field"><label for="pb-ticker">Ticker</label><input class="num" type="text" id="pb-ticker" placeholder="MSFT" maxlength="12"></div>
-            <div class="field"><label for="pb-company">Company</label><input type="text" id="pb-company" placeholder="Microsoft"></div>
-            <div class="field"><label for="pb-side">Side</label><select id="pb-side"><option value="Buy">Buy</option><option value="Sell">Sell</option></select></div>
-            <div class="field"><label for="pb-shares">Shares</label><input class="num" type="number" id="pb-shares" min="1" step="1" placeholder="100"></div>
-            <div class="field"><label for="pb-price">Price</label><input class="num" type="number" id="pb-price" min="0" step="0.01" placeholder="0.00"></div>
-            <div class="field wide"><label for="pb-thesis">Thesis</label><textarea id="pb-thesis" placeholder="Why this, why now."></textarea></div>
-            <div class="field half"><label for="pb-goal">Client goal it serves</label><input type="text" id="pb-goal" placeholder="Which stated goal this position works toward"></div>
-            <div class="field half"><label for="pb-numbers">Key numbers</label><input type="text" id="pb-numbers" placeholder="Beta, P/E, yield, correlation with holdings"></div>
-            <div class="field wide"><label for="pb-risk">Risk</label><textarea id="pb-risk" placeholder="What could go wrong, and how much it would cost the client."></textarea></div>
-            <div class="field wide"><label for="pb-exit">Exit plan</label><input type="text" id="pb-exit" placeholder="The condition that makes us sell, or hold to the end"></div>
-          </div>
-          <div class="pb-actions">
-            <button type="submit" class="btn orange"><span data-icon="check"></span>Add note</button>
-            <button type="button" class="btn ghost" id="pb-copy-one"><span data-icon="copy"></span>Copy this note</button>
-            <span class="note">The shared journal is the team doc. Draft here, paste there.</span>
-          </div>
-        </form>
-      </div>
-      <div class="pb-draft-head"><h3>Draft notes in this browser</h3><button type="button" class="btn ghost sm" id="pb-copy-all"><span data-icon="copy"></span>Copy all</button></div>
-      <ul class="pb-drafts" id="pb-drafts"></ul>
-      <div class="card-foot">Drafts live in this browser only. The shared journal is the team doc, and the Trading Notes Analysis is built from it.</div>
-    </section>
+    <section class="card reveal" id="notes" aria-labelledby="notes-h">
+    <div class="card-head"><span class="ic" data-icon="edit"></span><h2 id="notes-h">Trade notes</h2><span class="sep"></span><span class="meta">Moved</span></div>
+    <div class="card-body">
+      <p>The trade note is written on the <a href="card.html">Propose a trade</a> page now. It asks the questions in order, works out the dollars, checks our limits, and hands back one block to post in the chat with the WInS note inside it.</p>
+      <p class="note">There used to be a second note builder here with a different field list and no EXPECT or SOURCES. Two tools meant two different notes for the same trade, so this one was retired.</p>
+    </div>
+  </section>
 
   </div>
 </main>
@@ -427,53 +406,10 @@
   $("pb-week").innerHTML = D.weekly.map(function (w) { return '<div><span class="eyebrow">' + esc(w.d) + "</span><h3>" + esc(w.t) + "</h3><p>" + esc(w.s) + "</p></div>"; }).join("");
   $("pb-week-m").textContent = plural(D.weekly.length, "day", "days");
 
-  /* 8. trade note builder */
-  var KEY = "notes";
-  var FIELDS = ["date", "ticker", "company", "side", "shares", "price", "thesis", "goal", "numbers", "risk", "exit"];
-  function todayISO() { var d = W.now(), p = function (n) { return (n < 10 ? "0" : "") + n; }; return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
-  $("pb-date").value = todayISO();
-  function read() { var o = {}; FIELDS.forEach(function (f) { o[f] = $("pb-" + f).value.trim(); }); o.ticker = o.ticker.toUpperCase(); return o; }
-  function firstLine(s) { return (s || "").split(/\n/)[0]; }
-  function headline(n) { return n.side + " " + (n.shares ? n.shares + " " : "") + n.ticker + (n.price ? " @ " + n.price : ""); }
-  function text(n) {
-    return ["Trade note · " + n.date, "Ticker: " + n.ticker + (n.company ? " (" + n.company + ")" : ""), "Side: " + headline(n),
-      "Thesis: " + n.thesis, "Client goal: " + n.goal, "Key numbers: " + n.numbers, "Risk: " + n.risk, "Exit plan: " + n.exit].join("\n");
-  }
-  function drafts() { var v = W.store.get(KEY, []); return Array.isArray(v) ? v : []; }
-  function render() {
-    var list = drafts(), ul = $("pb-drafts");
-    $("pb-notes-m").textContent = list.length ? plural(list.length, "draft", "drafts") : "one note per trade";
-    if (!list.length) { ul.innerHTML = '<li class="pb-empty">No draft notes yet. The first real trade is Sep 28.</li>'; return; }
-    ul.innerHTML = list.map(function (n, i) {
-      return '<li><span class="pb-d">' + esc(n.date) + '</span><div class="pb-t"><b>' + esc(headline(n)) + "</b><span>" + esc(firstLine(n.thesis) || "No thesis yet") + "</span></div>" +
-        '<div class="pb-b"><button type="button" class="btn ghost sm" data-copy="' + i + '">Copy</button><button type="button" class="btn ghost sm" data-del="' + i + '">Delete</button></div></li>';
-    }).join("");
-  }
-  $("pb-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var n = read();
-    if (!n.ticker) { W.toast("Add a ticker first"); $("pb-ticker").focus(); return; }
-    var list = drafts(); list.unshift(n); W.store.set(KEY, list); render();
-    ["ticker", "company", "shares", "price", "thesis", "goal", "numbers", "risk", "exit"].forEach(function (f) { $("pb-" + f).value = ""; });
-    W.toast("Note saved in this browser");
-  });
-  $("pb-copy-one").addEventListener("click", function () { W.copy(text(read()), "Note copied"); });
-  $("pb-copy-all").addEventListener("click", function () {
-    var list = drafts(); if (!list.length) { W.toast("Nothing to copy yet"); return; }
-    W.copy(list.map(text).join("\n\n"), list.length + (list.length === 1 ? " note copied" : " notes copied"));
-  });
-  $("pb-drafts").addEventListener("click", function (e) {
-    var b = e.target.closest("button"); if (!b) return;
-    var list = drafts();
-    if (b.hasAttribute("data-copy")) W.copy(text(list[+b.getAttribute("data-copy")]), "Note copied");
-    if (b.hasAttribute("data-del")) { list.splice(+b.getAttribute("data-del"), 1); W.store.set(KEY, list); render(); W.toast("Draft deleted"); }
-  });
-  render();
-  /* the page-title button jumps to the builder: open its phone fold first so the jump lands on the form
-     (runs before the browser scrolls; on desktop the fold class has no visual effect) */
-  document.addEventListener("click", function (e) {
-    if (e.target.closest('a[href="#notes"]') && W.unfoldFor) W.unfoldFor($("notes"));
-  });
+  /* 8. the trade note builder lived here. Retired 2026-09-21: the note is written on card.html
+     ("Propose a trade"), which asks a different, canonical field set. Two builders meant two
+     different notes for the same trade. */
+
   /* ---------- competition guide ---------- */
   (function () {
     var G = D.guide;

@@ -15,7 +15,7 @@
 <meta property="og:description" content="The note comes before the trade. Tap it out in a minute.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<title>Trade Card</title>
+<title>Propose a Trade</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
@@ -181,7 +181,17 @@ ol.flow.qs span{color:var(--ink)}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
 </style>
 <style>
-/* ---- trade card builder ---- */
+</style>
+<style>
+/* ---- propose a trade ---- */
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:680px;margin:0 auto 14px}
+.mode button{appearance:none;background:var(--card);border:1.5px solid var(--line);border-radius:10px;
+  padding:11px 12px;font:600 14px/1.25 var(--ui);color:var(--ink-2);cursor:pointer;min-height:48px;
+  display:flex;flex-direction:column;gap:2px;align-items:flex-start}
+.mode button small{font:400 12.5px/1.3 var(--body);color:var(--ink-3)}
+.mode button[aria-pressed="true"]{border-color:var(--blue);background:var(--tint);color:var(--navy)}
+.mode button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
 .q{display:flex;flex-direction:column;gap:10px}
 .opts{display:grid;gap:8px}
 .opts.two{grid-template-columns:1fr 1fr}
@@ -189,105 +199,98 @@ ol.flow.qs span{color:var(--ink)}
 .opt{appearance:none;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:10px;
   padding:13px 14px;font:600 15px/1.3 var(--ui);color:var(--ink);cursor:pointer;min-height:48px;display:flex;
   flex-direction:column;gap:3px;transition:border-color .12s,background .12s}
-.opt small{font:400 13px/1.35 var(--body);color:var(--ink-2)}
+.opt small{font:400 13px/1.4 var(--body);color:var(--ink-2)}
 .opt:hover{border-color:var(--blue)}
 .opt[aria-pressed="true"]{border-color:var(--blue);background:var(--tint)}
-.opt[aria-pressed="true"] small{color:var(--ink-2)}
 .opt:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
-.fld{display:flex;flex-direction:column;gap:6px}
-.fld label{font:600 13px/1.2 var(--ui);color:var(--ink-2)}
-.fld input,.fld textarea{font:400 16px/1.45 var(--body);color:var(--ink);background:var(--card);
-  border:1.5px solid var(--line);border-radius:9px;padding:11px 12px;min-height:46px;width:100%;box-sizing:border-box}
-.fld textarea{min-height:76px;resize:vertical}
-.lands-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.lands-list li{background:var(--well);border:1px solid var(--line);border-radius:9px;padding:10px 12px;
-  display:grid;grid-template-columns:132px 1fr;gap:4px 12px;align-items:start}
-.lands-list b{font:700 13.5px/1.35 var(--ui);color:var(--navy)}
-.lands-list span{font:400 13.5px/1.45 var(--body);color:var(--ink-2)}
-.lands-list li.gap{background:#FDF2EC;border-color:#F0C2B5}
-.lands-list li.gap b{color:#8C2F1E}
-@media (max-width:520px){ .lands-list li{grid-template-columns:1fr} }
-.count{font:400 12.5px/1 var(--mono);color:var(--ink-3);margin-top:5px}
-.count.near{color:var(--orange-ink);font-weight:600}
-.fld input:focus,.fld textarea:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--blue)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.calc{background:var(--well);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font:400 14px/1.5 var(--body);color:var(--ink-2)}
-.calc b{font-family:var(--mono);font-weight:600;color:var(--ink)}
-.calc .flag{display:block;margin-top:5px;font-weight:600}
-.calc .ok{color:var(--ok)} .calc .no{color:#9A2B18}
-.hint{font:400 13.5px/1.5 var(--body);color:var(--ink-3);max-width:62ch}
-.hint b{color:var(--ink-2)}
-.out{background:var(--well);border:1px solid var(--line);border-radius:10px;padding:14px;
-  font:400 14px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
-.out.note{font-family:var(--body);font-size:15px;line-height:1.6}
-.outhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.outhead h2{font:700 16px/1.2 var(--ui);margin:0;color:var(--navy)}
-.wc{font:400 12.5px/1 var(--mono);color:var(--ink-3)}
-.wc.over{color:#9A2B18;font-weight:600}
-.cbtn{appearance:none;background:var(--navy);color:#fff;border:0;border-radius:99px;padding:9px 16px;
-  font:600 13.5px/1 var(--ui);min-height:40px;cursor:pointer}
-.cbtn.ghost{background:var(--card);color:var(--navy);border:1.5px solid var(--line)}
-.cbtn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
-.missing{background:#FDECE7;border:1px solid #F0C2B5;color:#8C2F1E;border-radius:9px;padding:11px 13px;
-  font:400 14px/1.5 var(--body)}
-.missing b{font-weight:600}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip2{appearance:none;background:var(--card);border:1.5px solid var(--line);border-radius:99px;
-  padding:8px 13px;font:600 13.5px/1 var(--ui);color:var(--ink-2);cursor:pointer;min-height:38px}
-.chip2[aria-pressed="true"]{background:var(--tint);border-color:var(--blue);color:var(--navy)}
-.chip2:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
-.owner{display:flex;gap:9px;align-items:flex-start;background:var(--tint);border-left:3px solid var(--blue);
-  border-radius:0 8px 8px 0;padding:9px 12px;font:400 14px/1.45 var(--body);color:var(--ink-2)}
-.owner b{font:700 14px/1.45 var(--ui);color:var(--navy);white-space:nowrap}
-.owner span{min-width:0}
-.pilebox{border:1.5px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
-.pilebox + .pilebox{margin-top:10px}
-.pilebox > summary{list-style:none;cursor:pointer;display:flex;gap:11px;align-items:flex-start;
-  padding:14px;min-height:56px}
-.pilebox > summary::-webkit-details-marker{display:none}
-.pilebox > summary:focus-visible{outline:2px solid var(--orange);outline-offset:-3px}
-.pb-t{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
-.pb-t b{font:700 16px/1.25 var(--ui);color:var(--ink)}
-.pb-t small{font:400 13.5px/1.45 var(--body);color:var(--ink-2)}
-.pb-chev{flex:0 0 auto;width:11px;height:11px;margin-top:6px;border-right:2px solid var(--ink-3);
-  border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
-.pilebox[open] .pb-chev{transform:rotate(-135deg)}
-.pilebox[open]{border-color:var(--blue)}
-.pilebox.sel{border-color:var(--blue);box-shadow:inset 3px 0 0 var(--blue)}
-.pb-items{display:grid;gap:8px;padding:0 14px 14px}
-.pb-items .opt{border-radius:9px}
-@media (prefers-reduced-motion:reduce){.pb-chev{transition:none}}
 .opt-t{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .pile{font:700 11.5px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:4px 9px;white-space:nowrap}
 .pile.a{background:#E1F1E8;color:#1F6B3A}
 .pile.b{background:#FAEED8;color:#6E4209}
 .pile.c{background:#E4EBF7;color:#1E4B95}
-.lands{font:400 13px/1.5 var(--body);color:var(--ink-3);border-left:2px solid var(--line);
-  padding-left:11px;margin:0}
-.lands b{color:var(--ink-2);font-weight:600}
+
+.grp{display:flex;flex-direction:column;gap:7px}
+.grp > .lbl{font:600 13px/1.2 var(--ui);color:var(--ink-2)}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{font:600 13px/1.2 var(--ui);color:var(--ink-2)}
+.fld input,.fld textarea{font:400 16px/1.45 var(--body);color:var(--ink);background:var(--card);
+  border:1.5px solid var(--line);border-radius:9px;padding:11px 12px;min-height:46px;width:100%;box-sizing:border-box}
+.fld textarea{min-height:82px;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--blue)}
+.count{font:400 12.5px/1 var(--mono);color:var(--ink-3);margin-top:5px}
+.count.near{color:var(--orange-ink);font-weight:600}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* persistent worked examples: placeholders vanish on focus, these do not */
+.eg{border-left:3px solid var(--orange);background:var(--warn-soft);border-radius:0 8px 8px 0;
+  padding:9px 12px;font:400 13.5px/1.5 var(--body);color:var(--ink-2)}
+.eg b{display:block;font:700 11.5px/1 var(--ui);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--orange-ink);margin-bottom:4px}
+.eg .no{color:#8C2F1E}
+.eg .no b{color:#8C2F1E}
+.starts{display:flex;flex-wrap:wrap;gap:7px}
+.start{appearance:none;background:var(--card);border:1.5px dashed var(--line);border-radius:99px;
+  padding:9px 13px;font:500 13.5px/1 var(--body);color:var(--ink-2);cursor:pointer;min-height:40px;text-align:left}
+.start:hover{border-color:var(--blue);color:var(--navy)}
+.start:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+.calc{background:var(--well);border:1px solid var(--line);border-radius:9px;padding:11px 13px;
+  font:400 14px/1.5 var(--body);color:var(--ink-2)}
+.calc b{font-family:var(--mono);font-weight:600;color:var(--ink)}
+.calc .flag{display:block;margin-top:5px;font-weight:600}
+.calc .ok{color:var(--ok)} .calc .no{color:#9A2B18}
+.hint{font:400 13.5px/1.5 var(--body);color:var(--ink-3);max-width:62ch;margin:0}
+.hint b{color:var(--ink-2)}
+.owner{display:flex;gap:9px;align-items:flex-start;background:var(--tint);border-left:3px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:9px 12px;font:400 13.5px/1.45 var(--body);color:var(--ink-2)}
+.owner b{font:700 13.5px/1.45 var(--ui);color:var(--navy);white-space:nowrap}
+
 .reqflag{display:block;margin-top:7px;font:600 13px/1.2 var(--ui);color:#9A2B18}
 .reqflag::before{content:"\2217";margin-right:5px;font-size:15px}
 .needs{outline:2px solid #E3A392;outline-offset:3px;border-radius:11px}
 .fld input.needs,.fld textarea.needs{outline-offset:1px}
+
+.tid{font:700 13px/1 var(--mono);color:var(--navy);background:var(--tint);border-radius:6px;padding:6px 9px;
+  display:inline-block}
+.out{background:var(--well);border:1px solid var(--line);border-radius:10px;padding:14px;
+  font:400 14px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink);
+  border-left:4px solid var(--blue)}
+.out.two{border-left-color:var(--orange-deep)}
+.outhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:6px}
+.outhead h2{font:700 16px/1.25 var(--ui);margin:0;color:var(--navy)}
+.wc{font:400 12.5px/1 var(--mono);color:var(--ink-3)}
+.wc.over{color:#9A2B18;font-weight:600}
+.cbtn{appearance:none;background:var(--navy);color:#fff;border:0;border-radius:99px;padding:10px 17px;
+  font:600 13.5px/1 var(--ui);min-height:44px;cursor:pointer}
+.cbtn.ghost{background:var(--card);color:var(--navy);border:1.5px solid var(--line)}
+.cbtn[disabled]{background:var(--line);color:var(--ink-3);cursor:not-allowed}
+.cbtn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.missing{background:#FDECE7;border:1px solid #F0C2B5;color:#8C2F1E;border-radius:9px;padding:11px 13px;
+  font:400 14px/1.5 var(--body)}
+.missing b{font-weight:600}
 .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(8px);
   background:var(--strip);color:#fff;font:600 14px/1.3 var(--ui);padding:11px 18px;border-radius:99px;
   opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:60;max-width:90vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
 @media (max-width:520px){
+  .owner{flex-direction:column;gap:4px}
+  .owner b{white-space:normal}
   .opts.three{grid-template-columns:1fr}
-  #who-opts,#size-opts{grid-template-columns:1fr 1fr}
+  #who-opts,#size-opts,#type-opts{grid-template-columns:1fr 1fr}
   .row2{grid-template-columns:1fr}
+  .mode{grid-template-columns:1fr}
   h1{font-size:23px}
 }
 </style>
-
 </head>
 <body>
 
 <div class="top">
-  <div class="brand"><a href="index.html">Wall Street Warriors</a><span>Trade card</span></div>
-  <div class="chapters" id="chapters" role="tablist" aria-label="Sections"></div>
+  <div class="brand"><a href="index.html">Wall Street Warriors</a><span id="brand-mode">Propose a trade</span></div>
+  <div class="chapters" id="chapters" role="tablist" aria-label="Sections">
+    <a class="chip-home" href="index.html">&lsaquo; Site</a>
+  </div>
 </div>
 
 <main id="main">
@@ -296,141 +299,167 @@ ol.flow.qs span{color:var(--ink)}
     <div class="eyebrow">Before the trade, not after</div>
     <h1 id="h0" tabindex="-1">Write the card first. Then place the trade.</h1>
     <p>Every serious student fund works this way: the write-up has to exist and be approved <b>before</b> anyone can trade. It means the record can never be wrong later, because there is no later.</p>
-    <p class="small">This takes about a minute. Most of it is tapping. At the end you get three things to paste: the note for WInS, the card for the chat, and Federico's log row.</p>
-    <div class="calc"><b>Why it matters:</b> Wharton quotes three of these notes back, word for word, in October. WInS will not let you edit a note once it is saved.</div>
+    <div class="mode" id="mode">
+      <button type="button" data-mode="propose" aria-pressed="true">I'm proposing a trade<small>Writes the card for the chat</small></button>
+      <button type="button" data-mode="done" aria-pressed="false">It went through<small>Gives Federico his row</small></button>
+    </div>
+    <p class="small" id="mode-note">About a minute, mostly tapping. You get one block to paste into the chat, and the WInS note is inside it.</p>
+    <div class="calc"><b>Why it matters:</b> Wharton quotes three of these notes back, word for word, in October, and checks them against your real trades. WInS will not let you edit a note once it is saved.</div>
   </section>
 
   <section class="screen" data-ch="1" aria-labelledby="h1" hidden>
     <div class="eyebrow">Step 1 of 8</div>
-    <h1 id="h1" tabindex="-1">Who, and what?</h1>
-    <div class="owner"><b>Whoever is proposing</b><span>You are writing the card, so these are yours. Anyone on the team can pitch a trade.</span></div>
-    <p class="lands"><b>Where it goes:</b> The chat card, Federico’s Log columns A, B, C and H, Caleb’s Fit check, and Dylan’s Limits tab.</p>
+    <h1 id="h1" tabindex="-1">Who's proposing, and are we buying or selling?</h1>
     <div class="q">
-      <div class="fld"><label for="who">Your name</label>
-        <div class="opts three" id="who-opts"></div></div>
-      <div class="opts two" id="side-opts">
-        <button class="opt" type="button" data-side="Buy" aria-pressed="false">Buy<small>Open or add to a position</small></button>
-        <button class="opt" type="button" data-side="Sell" aria-pressed="false">Sell<small>Trim or exit</small></button>
-      </div>
-      <div class="row2">
-        <div class="fld"><label for="tk">Ticker</label><input id="tk" maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="MSFT"></div>
-        <div class="fld"><label for="co">Company</label><input id="co" maxlength="80" autocomplete="off" placeholder="Microsoft"></div>
-      </div>
+      <div class="grp"><span class="lbl" id="who-lbl">Your name</span>
+        <div class="opts three" id="who-opts" role="group" aria-labelledby="who-lbl"></div></div>
+      <div class="grp"><span class="lbl" id="side-lbl">Buying or selling?</span>
+        <div class="opts two" id="side-opts" role="group" aria-labelledby="side-lbl">
+          <button class="opt" type="button" data-side="Buy" aria-pressed="false">Buy<small>Open or add to a position</small></button>
+          <button class="opt" type="button" data-side="Sell" aria-pressed="false">Sell<small>Trim or close one</small></button>
+        </div></div>
     </div>
-    <p class="hint">Wharton allows stocks at $5 or more, ETFs, and Treasuries from the US, UK, Germany, France, Italy and the Netherlands.</p>
   </section>
 
   <section class="screen" data-ch="1" aria-labelledby="h2" hidden>
     <div class="eyebrow">Step 2 of 8</div>
-    <h1 id="h2" tabindex="-1">How big?</h1>
-    <div class="owner"><b>You size it, Dylan checks it</b><span>You pick the size. Dylan checks it against our limits in his Limits tab before the poll closes.</span></div>
-    <p class="lands"><b>Where it goes:</b> The chat card and the WInS note. Federico’s Log columns D and E; Dylan copies the dollar value into his Limits tab.</p>
-    <div class="opts three" id="size-opts"></div>
-    <div class="calc" id="size-calc">Pick a size.</div>
-    <p class="hint">5 / 8 / 30 are <b>our</b> limits, not Wharton's. Wharton caps the season at 200 trades and nothing else about size.</p>
+    <h1 id="h2" tabindex="-1">What are we trading?</h1>
+    <div class="q">
+      <div class="row2">
+        <div class="fld"><label for="tk">Ticker</label><input id="tk" maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="MSFT"></div>
+        <div class="fld"><label for="co">Company or fund name</label><input id="co" maxlength="80" autocomplete="off" placeholder="Microsoft"></div>
+      </div>
+      <div class="grp"><span class="lbl" id="type-lbl">What kind of thing is it?</span>
+        <div class="opts three" id="type-opts" role="group" aria-labelledby="type-lbl">
+          <button class="opt" type="button" data-type="Stock" aria-pressed="false">Stock<small>One company</small></button>
+          <button class="opt" type="button" data-type="ETF" aria-pressed="false">ETF<small>A fund holding many</small></button>
+          <button class="opt" type="button" data-type="Treasury" aria-pressed="false">Treasury<small>Government bonds or bills</small></button>
+        </div></div>
+      <div class="grp" id="sector-wrap" hidden><span class="lbl" id="sector-lbl">Which industry is the company in?</span>
+        <div class="opts" id="sector-opts" role="group" aria-labelledby="sector-lbl"></div></div>
+      <p class="hint" id="sector-na" hidden><b>Funds and Treasuries do not get an industry.</b> Dylan's Limits tab needs that answer, and &ldquo;not a sector, it's a fund&rdquo; is the right one. Don't guess a sector for a fund.</p>
+    </div>
+    <p class="hint">Wharton allows stocks priced $5 or more, ETFs, and Treasuries (government bonds) from the US, UK, Germany, France, Italy and the Netherlands.</p>
   </section>
 
-  <section class="screen" data-ch="2" aria-labelledby="h3" hidden>
+  <section class="screen" data-ch="1" aria-labelledby="h3" hidden>
     <div class="eyebrow">Step 3 of 8</div>
-    <h1 id="h3" tabindex="-1">What is this money for?</h1>
-    <div class="owner"><b>Caleb's call</b><span>Caleb owns Laura’s case and answers this for every trade in his Fit check tab. Put your best answer here — he confirms it or sends it back in the thread.</span></div>
-    <p class="lands"><b>Where it goes:</b> The chat card, the WInS note, Federico’s Log column J and Caleb’s Fit check column D. <b>Those two dropdowns only offer Pile A and Pile B so far</b> — Pile C has to be added to them.</p>
-    <div class="opts" id="goal-opts"></div>
-    <p class="hint"><b>Pile A</b> is the safe money covering her ten $50,000 payments. <b>Pile B</b> is the growth money for the residency itself. <b>Pile C</b> is the flex account Coach P asked for — cash and short-term Treasuries we can buy with, and where money sits after a sale. A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b> &mdash; this is that line. If it serves none of them, stop here and don't trade.</p>
+    <h1 id="h3" tabindex="-1">How big?</h1>
+    <div class="opts three" id="size-opts" role="group" aria-label="Size as a percent of the portfolio"></div>
+    <div class="calc" id="size-calc">Pick a size.</div>
+    <div class="owner"><b>You size it, Dylan checks it</b><span>You pick. Dylan checks it against our limits in his Limits tab before the poll closes.</span></div>
+    <p class="hint">5% to start and 8% at most are <b>our</b> rules, not Wharton's. Wharton caps the season at 200 trades and says nothing about position size.</p>
   </section>
 
   <section class="screen" data-ch="2" aria-labelledby="h4" hidden>
     <div class="eyebrow">Step 4 of 8</div>
-    <h1 id="h4" tabindex="-1">What job does it do in the portfolio?</h1>
-    <div class="owner"><b>Yours to name</b><span>This is the job you are assigning the position. The whole team votes on whether they agree.</span></div>
-    <p class="lands"><b>Where it goes:</b> The WInS note and the chat card. There is no column for it in anyone’s sheet yet.</p>
-    <div class="opts two" id="role-opts"></div>
-    <p class="hint">Wharton's Competition Guide asks for the trade's <b>expected role in growth, liquidity, risk management, or future funding</b>. Naming the job is also the only way we can check later whether it did it.</p>
+    <h1 id="h4" tabindex="-1">Which pile is this money in?</h1>
+    <div class="opts" id="pile-opts" role="group" aria-label="Pile"></div>
+    <div class="owner"><b>Your answer, Caleb's final call</b><span>Put your best answer here. Caleb owns Laura's case and either confirms it or sends it back.</span></div>
   </section>
 
-  <section class="screen" data-ch="3" aria-labelledby="h5" hidden>
+  <section class="screen" data-ch="2" aria-labelledby="h5" hidden>
     <div class="eyebrow">Step 5 of 8</div>
-    <h1 id="h5" tabindex="-1">Why, in one sentence</h1>
-    <div class="owner"><b>Yours</b><span>This is your pitch. Joe will post what he thinks it is worth underneath it in the thread.</span></div>
-    <p class="lands"><b>Where it goes:</b> The WInS note, the chat card, and Federico’s Log column I.</p>
-    <div class="fld"><label for="why">One fact, and what you conclude from it</label>
-      <textarea id="why" maxlength="700" rows="3" placeholder="Cloud revenue grew 22% last quarter, so the part of the business we are paying for is still compounding."></textarea></div>
-    <p class="hint">A judge's warning, word for word: <b>&ldquo;hiding behind fancy terms and formulas&hellip; the best solutions are made up of simple, elegant ideas.&rdquo;</b> A number with no conclusion attached is worse than no number. Say what it means.</p>
+    <h1 id="h5" tabindex="-1">What is this money for?</h1>
+    <div class="opts" id="goal-opts" role="group" aria-label="What the money is for"></div>
+    <p class="hint">A judge said the thing that stood out was <b>the ability to connect the client's objectives to an investment strategy</b>. This is that line.</p>
   </section>
 
   <section class="screen" data-ch="3" aria-labelledby="h6" hidden>
     <div class="eyebrow">Step 6 of 8</div>
-    <h1 id="h6" tabindex="-1">What do you expect, and by when?</h1>
-    <div class="owner"><b>Yours, with Joe behind it</b><span>You say what you expect. Joe’s valuation is the evidence — he posts his number as a range in the thread.</span></div>
-    <p class="lands"><b>Where it goes:</b> The WInS note and the chat card. <b>No column for it yet</b> — and it is the line the October deliverable depends on, so it needs one.</p>
+    <h1 id="h6" tabindex="-1">Why, in one sentence</h1>
     <div class="q">
-      <div class="fld"><label for="exp">We expect it to&hellip;</label>
-        <textarea id="exp" maxlength="400" rows="2" placeholder="hold its value within about 5%"></textarea></div>
-      <div class="fld"><label for="expd">By when</label><input id="expd" type="date"></div>
+      <div class="fld"><label for="why">One fact, and what it tells you</label>
+        <textarea id="why" maxlength="700"></textarea></div>
+      <div class="eg"><b>Like this</b>Cloud revenue grew 22% last quarter, so the part of the business we are paying for is still compounding.</div>
+      <div class="starts" id="why-starts"></div>
+      <div class="fld"><label for="src">Where did that fact come from?</label>
+        <input id="src" maxlength="300" placeholder="FY25 annual report, page 34"></div>
     </div>
-    <p class="hint">This is the field the October deliverable rests on. Wharton asks whether a decision <b>supported, tested or refined</b> the strategy &mdash; three verdicts on a prediction. You can't give a verdict on a prediction you never made.</p>
+    <p class="hint">A judge's warning, word for word: <b>&ldquo;hiding behind fancy terms and formulas&hellip; the best solutions are made up of simple, elegant ideas.&rdquo;</b> A number with nothing concluded from it is worse than no number.</p>
   </section>
 
-  <section class="screen" data-ch="4" aria-labelledby="h7" hidden>
+  <section class="screen" data-ch="3" aria-labelledby="h7" hidden>
     <div class="eyebrow">Step 7 of 8</div>
-    <h1 id="h7" tabindex="-1">What would make this wrong?</h1>
-    <div class="owner"><b>Yours</b><span>This is the exit you are committing to, and it goes in Federico's Log. <b>It is not Dylan's bear case</b> — that is a separate thing: five questions and 150 words in his own sheet, posted in the thread before the poll.</span></div>
-    <p class="lands"><b>Where it goes:</b> The WInS note, the chat card, and Federico’s Log column K. The date and the action have no column yet.</p>
+    <h1 id="h7" tabindex="-1">What do you expect, and by when?</h1>
     <div class="q">
-      <div class="fld"><label for="wrong">The state that means we were wrong</label>
-        <textarea id="wrong" maxlength="600" rows="3" placeholder="cloud growth comes in under 20%"></textarea></div>
-      <div class="row2">
-        <div class="fld"><label for="wrongd">Check it by</label><input id="wrongd" type="date"></div>
-        <div class="fld"><label for="act">Then we</label><input id="act" maxlength="200" placeholder="cut it to 1.5%"></div>
+      <div class="fld"><label for="exp">We expect it to&hellip;</label>
+        <textarea id="exp" maxlength="400"></textarea></div>
+      <div class="starts" id="exp-starts"></div>
+      <div class="grp"><span class="lbl" id="expd-lbl">By when?</span>
+        <div class="starts" id="expd-quick" role="group" aria-labelledby="expd-lbl"></div>
+        <div class="fld"><label for="expd">Or pick a date</label><input id="expd" type="date"></label></div>
       </div>
     </div>
-    <p class="hint">A state and a date, never a price off what we paid. Investors sell winners about 1.5&times; as readily as losers, and the winners they sold beat the losers they kept by 3.4 points over the next year. An exit priced off our cost builds that mistake in.</p>
+    <p class="hint">In October we have to say whether each trade <b>worked</b>. We can only do that if you wrote down what you expected.</p>
   </section>
 
   <section class="screen" data-ch="4" aria-labelledby="h8" hidden>
     <div class="eyebrow">Step 8 of 8</div>
-    <h1 id="h8" tabindex="-1">Where did it come from?</h1>
-    <div class="owner"><b>Yours</b><span>Everyone cites their own sources. If AI helped, it gets named — that rule is not optional.</span></div>
-    <p class="lands"><b>Where it goes:</b> The chat card and Caleb’s Works cited tab. Deliberately not the WInS note — the IPS forbids citations in it.</p>
-    <div class="chips" id="src-chips"></div>
-    <div class="fld" style="margin-top:4px"><label for="src">Anything else</label>
-      <input id="src" maxlength="300" placeholder="FY25 10-K p.34"></div>
-    <div class="missing" id="ai-warn" hidden><b>If you used AI, tick it.</b> Wharton's rule is that AI material must be cited like any other source, and plagiarism means dismissal. This is the one line that can end our season.</div>
-    <p class="hint">Sources stay out of the WInS note &mdash; they go in the card and the log, for the December report.</p>
+    <h1 id="h8" tabindex="-1">What would make this a mistake?</h1>
+    <div class="q">
+      <div class="fld"><label for="wrong">What would have to happen for us to admit we were wrong?</label>
+        <textarea id="wrong" maxlength="600"></textarea></div>
+      <div class="eg"><b>Like this</b>Cloud growth comes in under 20% at the next earnings.</div>
+      <div class="eg"><span class="no"><b>Never this</b>The price drops 10%. An exit priced off what we paid is the one thing we do not do &mdash; it is how people sell their winners and keep their losers.</span></div>
+      <div class="starts" id="wrong-starts"></div>
+      <div class="row2">
+        <div class="fld"><label for="wrongd">Check it by</label><input id="wrongd" type="date"></div>
+        <div class="fld"><label for="act">Then we</label><input id="act" maxlength="200" placeholder="cut it to 1.5%"></div>
+      </div>
+      <div class="grp"><span class="lbl" id="ai-lbl">Did AI help you with this card?</span>
+        <div class="opts two" id="ai-opts" role="group" aria-labelledby="ai-lbl">
+          <button class="opt" type="button" data-ai="yes" aria-pressed="false">Yes, AI helped<small>It gets named in the card</small></button>
+          <button class="opt" type="button" data-ai="no" aria-pressed="false">No AI<small>All my own work</small></button>
+        </div></div>
+    </div>
+    <p class="hint"><b>Answer the AI question honestly.</b> Wharton allows AI for brainstorming but it has to be cited like any other source, and passing AI work off as your own is grounds for dismissal.</p>
   </section>
 
   <section class="screen" data-ch="5" aria-labelledby="h9" hidden>
     <div class="eyebrow">Done</div>
-    <h1 id="h9" tabindex="-1">Three things to paste</h1>
-    <div class="owner"><b>Federico logs it</b><span>Once the poll passes and the trade is placed, Federico puts the row in the Log the same day. Hand him row 3.</span></div>
+    <h1 id="h9" tabindex="-1">Post this in the chat</h1>
     <div class="missing" id="gaps" hidden></div>
-
-    <div class="outhead"><h2>1. The WInS note</h2><span class="wc" id="wc"></span></div>
-    <p class="small">Paste this into the Trade Note box <b>before</b> you hit Confirm. It cannot be edited afterwards, and Wharton quotes it word for word.</p>
-    <div class="out note" id="o-note"></div>
-    <div><button class="cbtn" type="button" id="c-note">Copy the WInS note</button></div>
-
-    <div class="outhead" style="margin-top:12px"><h2>2. The card for the chat</h2></div>
-    <p class="small">Post this as a new message. It starts the thread, and the poll goes on it.</p>
+    <p class="small">One new message. It starts the thread, and everything about this trade &mdash; Dylan's case against, Caleb's fit check, Joe's number, the poll &mdash; happens as replies underneath it.</p>
+    <div class="outhead"><h2 id="tid-h">Trade <span class="tid" id="tid"></span></h2><span class="wc" id="wc"></span></div>
     <div class="out" id="o-card"></div>
-    <div><button class="cbtn" type="button" id="c-card">Copy the chat card</button></div>
+    <div><button class="cbtn" type="button" id="c-card">Copy it for the chat</button></div>
+    <div class="owner" style="margin-top:12px"><b>Then, later</b><span>When the poll passes, whoever places it copies the note out of this message and pastes it into WInS <b>before</b> hitting Confirm. Once the trade fills, come back here and pick &ldquo;It went through&rdquo; to give Federico his row.</span></div>
+  </section>
 
-    <div class="outhead" style="margin-top:12px"><h2>3. Federico's log row</h2></div>
-    <p class="small">Click Log cell <b>A7</b> (or the first empty row) and paste. It fills across to column K in one go.</p>
-    <div class="out" id="o-row"></div>
-    <div><button class="cbtn ghost" type="button" id="c-row">Copy the log row</button></div>
+  <section class="screen" data-ch="6" aria-labelledby="hd1" hidden>
+    <div class="eyebrow">It went through</div>
+    <h1 id="hd1" tabindex="-1">What actually happened?</h1>
+    <div class="q">
+      <div class="row2">
+        <div class="fld"><label for="d-tk">Ticker</label><input id="d-tk" maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="MSFT"></div>
+        <div class="fld"><label for="d-side">Buy or Sell</label><input id="d-side" maxlength="4" autocomplete="off" placeholder="Buy"></div>
+      </div>
+      <div class="row2">
+        <div class="fld"><label for="d-shares">Shares filled</label><input id="d-shares" type="number" min="0" step="any" inputmode="decimal"></div>
+        <div class="fld"><label for="d-price">Price it filled at</label><input id="d-price" type="number" min="0" step="0.01" inputmode="decimal"></div>
+      </div>
+      <div class="row2">
+        <div class="fld"><label for="d-yes">Yes votes, out of 5</label><input id="d-yes" type="number" min="0" max="5" step="1" inputmode="numeric"></div>
+        <div class="fld"><label for="d-date">Date it was placed</label><input id="d-date" type="date"></div>
+      </div>
+    </div>
+    <div class="calc" id="d-calc">Fill these in and I'll check the vote against our rules.</div>
+    <p class="hint">Nothing is remembered between the card and this form, on purpose. You may not be the person who wrote the card, and you are probably not on the same laptop.</p>
+  </section>
 
-    <div class="outhead" style="margin-top:14px"><h2>Where each line lands</h2></div>
-    <ul class="lands-list">
-      <li><b>Chat thread</b><span>The whole card, as a new message. The poll goes on it.</span></li>
-      <li><b>WInS</b><span>The note, pasted before Confirm. Graded, and not editable afterwards.</span></li>
-      <li><b>Federico &middot; Log</b><span>Columns A to K from the row above. He fills the votes and the tick boxes himself.</span></li>
-      <li><b>Caleb &middot; Fit check</b><span>Date, ticker, who proposed it, and which pile. He writes his own reply.</span></li>
-      <li><b>Dylan &middot; Limits</b><span>Ticker, type, sector and the dollar value.</span></li>
-      <li class="gap"><b>Nowhere yet</b><span>The job it does, what we expect and by when, the check-by date, the action, and the sources. None of these have a column. Expect is the one that matters — the October deliverable is built on it.</span></li>
-    </ul>
-    <p class="hint" style="margin-top:14px">Dylan’s bear case is a separate document: five questions and 150 words in his own sheet, posted in the thread before the poll. This card does not produce it.</p>
-    <p class="hint" style="margin-top:14px">Saved in this browser so you can come back to it. <button class="cbtn ghost" type="button" id="reset" style="margin-left:6px">Start another card</button></p>
+  <section class="screen" data-ch="6" aria-labelledby="hd2" hidden>
+    <div class="eyebrow">It went through</div>
+    <h1 id="hd2" tabindex="-1">Two things to paste</h1>
+    <div class="missing" id="d-gaps" hidden></div>
+    <div class="outhead"><h2>1. Reply in the trade's thread</h2></div>
+    <div class="out" id="d-reply"></div>
+    <div><button class="cbtn" type="button" id="c-reply">Copy the reply</button></div>
+    <div class="outhead"><h2>2. Federico's log cells</h2></div>
+    <p class="small">Click the <b>first empty row</b> in column A and paste. This fills the date, ticker and side. Then the shares, price and votes go in <b>D, E and L</b> of that same row &mdash; they are listed under the block.</p>
+    <div class="out two" id="d-row"></div>
+    <div><button class="cbtn ghost" type="button" id="c-row">Copy A to C</button></div>
+    <p class="hint" style="margin-top:12px"><b>Why not one paste across the whole row?</b> Columns F and G are formulas that work out the dollar value and the weight. Pasting blanks over them would wipe them for good, so the tool stays out of those two cells.</p>
   </section>
 
 </main>
@@ -441,13 +470,10 @@ ol.flow.qs span{color:var(--ink)}
     <button class="btn next" id="next" type="button">Next</button>
   </div>
 </div>
-
 <script src="assets/data.js"></script>
 <script>
-/* Deliberately NOT loading app.js: it injects the site's mobile tab bar and More sheet, which are
-   styled by site.css, and this page carries the standalone stepper CSS instead. Every other job
-   page (risk, client, leader, minutes, meeting, numbers, formulas) loads no scripts for the same
-   reason. The two helpers we need are 15 lines, so they live here. */
+/* Not loading app.js: it injects the site's mobile tab bar, which only site.css styles. Every other
+   job page loads nothing for the same reason. The three helpers we need live here. */
 (function () {
   var W = window.WSW = window.WSW || {};
   W.store = W.store || {
@@ -462,16 +488,15 @@ ol.flow.qs span{color:var(--ink)}
   };
   W.copy = W.copy || function (text, msg) {
     function done() { W.toast(msg || "Copied"); }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, fallback);
-    } else { fallback(); }
     function fallback() {
       var ta = document.createElement("textarea");
       ta.value = text; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); done(); } catch (e) { W.toast("Select it and copy manually"); }
+      try { document.execCommand("copy"); done(); } catch (e) { W.toast("Select it and copy by hand"); }
       ta.remove();
     }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
   };
 })();
 </script>
@@ -487,328 +512,416 @@ ol.flow.qs span{color:var(--ink)}
     document.body.insertBefore(b, document.body.firstChild);
     return;
   }
-  function escH(v){return String(v==null?"":v).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function escH(v) {
+    return String(v == null ? "" : v).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
 
-  /* Read the balance from data.js; do not hardcode a fourth copy of a number the three sheets
-     refresh from WInS every Friday. */
   var CASH = (D.account && D.account.start) || 300000;
-  /* Three piles. A and B come from the case; C is the flex account Coach P asked for on Sep 20.
-     Each pile holds the specific jobs money can be doing inside it. note[] is the clause that
-     closes the WInS note, so it has to read on from "This supports Laura's plan ...". */
+  var SIZES = [1, 2, 3, 4, 5, 6, 8, 10, 12];
+
+  /* Three piles, each with the jobs money can be doing inside it. `note` closes the WInS note, so it
+     has to read on from "This supports Laura's plan ...". Wording is deliberately plain: "the 2031
+     co-sponsor range" and "funding reliability" are Wharton's words, not a 15-year-old's. */
   var PILES = [
-    { tag:"Pile A", name:"Safety", tone:"a",
-      what:"The money that has to be there. It covers her ten $50,000 payments, 2033 to 2042.",
-      items:[
-        { id:"reserve", label:"The operating commitment", sub:"Ten $50,000 payments a year, 2033 to 2042, funded with a high degree of certainty and no outside money.", note:"as the residency funding dates approach" },
-        { id:"flex",    label:"Her financial flexibility", sub:"Committing every dollar would leave her no room to move if something changes.", note:"while protecting her financial flexibility" }
+    { tag: "Pile A", tone: "a", name: "Safety", what: "The money that has to be there, to cover the ten payments she owes from 2033 to 2042.",
+      items: [
+        { id: "reserve", label: "The ten payments she has to make", sub: "$50,000 a year from 2033 to 2042. These have to be there, and no outside money is allowed to cover them.", note: "as the residency funding dates approach" },
+        { id: "flex", label: "Leaving her room to change her mind", sub: "If she commits every dollar she has no room to move if something changes.", note: "while protecting her financial flexibility" }
       ] },
-    { tag:"Pile B", name:"Growth", tone:"b",
-      what:"The money that grows, and becomes her contribution to the residency in 2033.",
-      items:[
-        { id:"facility",  label:"The facility contribution", sub:"Whatever is left in 2033 goes toward the building itself. There is no set amount, so more is better.", note:"toward the 2033 facility contribution" },
-        { id:"cosponsor", label:"The 2031 co-sponsor range", sub:"She has to quote a credible dollar range two years early. A narrower range is worth real money to her.", note:"so the range she quotes co-sponsors in 2031 can be narrower" }
+    { tag: "Pile B", tone: "b", name: "Growth", what: "The money that grows, and becomes what she puts into the residency in 2033.",
+      items: [
+        { id: "facility", label: "How much she can put into the building", sub: "Whatever is left in 2033 goes toward the residency itself. There is no target, so more is better.", note: "toward the 2033 facility contribution" },
+        { id: "cosponsor", label: "Being able to promise a number in 2031", sub: "In 2031 she has to tell people who might help pay roughly how much she can put in. The better this money does, the tighter that promise can be.", note: "so the range she can quote co-sponsors in 2031 is tighter" }
       ] },
-    { tag:"Pile C", name:"Flex", tone:"c",
-      what:"Cash and short-term Treasuries. Coach P\u2019s addition on Sep 20, and it is what SGOV and BIL are for.",
-      items:[
-        { id:"dry",    label:"Money ready to buy with", sub:"So we can act when something gets cheap, instead of having to sell something first to raise the cash.", note:"by keeping money ready, so we can act when something gets cheap instead of selling to raise cash" },
-        { id:"parked", label:"Where money sits after a sale", sub:"When we close a position the proceeds have somewhere safe to wait until we decide where they go.", note:"by giving the proceeds of a sale somewhere safe to wait" }
+    { tag: "Pile C", tone: "c", name: "Flex", what: "Cash and short-term Treasuries. Coach P asked for this on Sep 20, and it is what SGOV and BIL are for.",
+      items: [
+        { id: "dry", label: "Money ready to buy with", sub: "So we can act when something gets cheap, instead of having to sell something else first to raise the cash.", note: "by keeping money ready, so we can act when something gets cheap instead of selling to raise cash" },
+        { id: "parked", label: "Where money sits after a sale", sub: "When we close a position the money has somewhere safe to wait until we decide where it goes.", note: "by giving the money from a sale somewhere safe to wait" }
       ] }
   ];
-  var GOALS = PILES.reduce(function (acc, p) {
-    p.items.forEach(function (it) { acc.push({ id: it.id, pile: p.tag, label: it.label, sub: it.sub, note: it.note }); });
-    return acc;
+  var GOALS = PILES.reduce(function (a, p) {
+    p.items.forEach(function (it) { a.push({ id: it.id, pile: p.tag, tone: p.tone, label: it.label, sub: it.sub, note: it.note }); });
+    return a;
   }, []);
-  var ROLES = [
-    { id:"growth", label:"Growth", sub:"Grows the pot" },
-    { id:"fund",   label:"Funding reliability", sub:"Makes a dated payment certain" },
-    { id:"risk",   label:"Risk management", sub:"Cuts how much the whole thing swings" },
-    { id:"liq",    label:"Liquidity", sub:"Keeps money reachable" }
-  ];
-  var SOURCES = ["10-K", "10-Q", "The proxy", "WInS quote", "Company site", "AI (must be cited)"];
-  var SIZES = [1, 1.5, 2, 3, 5, 8];
+
+  var SECTORS = (D.sectors || []).map(function (x) { return { id: x.id, label: x.name, sub: x.eg }; });
+
+  /* Wharton's own example note concedes a risk: "although interest-rate changes may affect its
+     value". That concession is half of graded element three, so every kind of holding gets one. */
+  var RISK_BY_TYPE = {
+    Stock: "though a single company can fall a long way on its own news",
+    ETF: "though it falls with the whole market it tracks",
+    Treasury: "though changes in interest rates move its value"
+  };
+
+  var START_WHY = ["It earns more than cash while we wait", "It grows faster than the market", "It holds up when the market falls", "It pays a steady income"];
+  var START_EXP = ["hold its value within about 5%", "still be worth about what we paid", "beat what cash would have earned", "be up over the next month"];
+  var START_WRONG = ["the next earnings come in below what we assumed", "the reason we bought it stops being true", "it stops doing the job we bought it for"];
 
   var s = W.store.get("card", {}) || {};
   function save() { W.store.set("card", s); }
 
-  /* ---------- steps ---------- */
-  var screens = [].slice.call(document.querySelectorAll(".screen"));
-  var i = 0;
-  var CH = ["Start", "What", "For Laura", "Why", "Risk", "Paste"];
+  /* ---------- date and money ---------- */
+  function todayLocal(d) {
+    d = d || new Date();
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+  }
+  function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function pretty(d) {
+    if (!d) return "";
+    var p = String(d).split("-"); if (p.length !== 3) return d;
+    var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return M[+p[1] - 1] + " " + (+p[2]) + ", " + p[0];
+  }
+  function tradeId() {
+    var d = (s.expd ? new Date() : new Date());
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    return p(d.getMonth() + 1) + p(d.getDate()) + "-" + (s.tk || "????");
+  }
 
+  /* ---------- screens ---------- */
+  var screens = [].slice.call(document.querySelectorAll(".screen"));
+  var PROPOSE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];   /* intro, the eight steps, then post */
+  var DONE = [0, 10, 11];               /* intro, the fill form, then paste */
+  function flow() { return s.mode === "done" ? DONE : PROPOSE; }
+  var at = 0;
+
+  var CH_P = ["Start", "Trade", "For Laura", "Why", "Risk", "Post"];
+  var CH_D = ["Start", "Filled", "Paste"];
   function chapters() {
-    $("chapters").innerHTML = CH.map(function (c, n) {
-      return '<button type="button" role="tab" data-ch="' + n + '">' + escH(c) + "</button>";
-    }).join("");
-    $("chapters").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-ch]"); if (!b) return;
-      var want = +b.getAttribute("data-ch");
-      for (var k = 0; k < screens.length; k++) if (+screens[k].getAttribute("data-ch") === want) { go(k); return; }
+    var names = s.mode === "done" ? CH_D : CH_P;
+    var seen = {}, html = '<a class="chip-home" href="index.html">‹ Site</a>';
+    flow().forEach(function (si, k) {
+      var ch = +screens[si].getAttribute("data-ch");
+      if (seen[ch]) return; seen[ch] = 1;
+      html += '<button type="button" role="tab" data-go="' + k + '">' + escH(names[Object.keys(seen).length - 1] || "") + "</button>";
     });
+    $("chapters").innerHTML = html;
   }
 
   function go(n) {
-    i = Math.max(0, Math.min(screens.length - 1, n));
-    screens.forEach(function (sc, k) { sc.hidden = k !== i; });
-    var ch = +screens[i].getAttribute("data-ch");
-    [].forEach.call($("chapters").children, function (b, n2) { b.setAttribute("aria-current", n2 === ch ? "true" : "false"); });
-    $("back").disabled = i === 0;
-    $("next").textContent = i === screens.length - 1 ? "Done" : "Next";
-    $("next").disabled = i === screens.length - 1;
-    var h = screens[i].querySelector("h1"); if (h) h.focus({ preventScroll: true });
+    var f = flow();
+    at = Math.max(0, Math.min(f.length - 1, n));
+    screens.forEach(function (sc, k) { sc.hidden = f[at] !== k; });
+    var cur = +screens[f[at]].getAttribute("data-ch");
+    [].forEach.call($("chapters").querySelectorAll("[data-go]"), function (b, i) {
+      b.setAttribute("aria-current", +screens[f[+b.getAttribute("data-go")]].getAttribute("data-ch") === cur ? "true" : "false");
+    });
+    $("back").disabled = at === 0;
+    var last = at === f.length - 1;
+    $("next").textContent = last ? "Start another" : "Next";
+    $("next").disabled = false;
+    var h = screens[f[at]].querySelector("h1"); if (h) h.focus({ preventScroll: true });
     $("main").scrollTop = 0;
-    if (i === screens.length - 1) render();
-    try { localStorage.setItem("card-screen", String(i)); } catch (e) {}
+    if (screens[f[at]].id === undefined) { /* noop */ }
+    if (f[at] === 9) renderCard();
+    if (f[at] === 11) renderDone();
+    if (f[at] === 10) doneCalc();
+    try { localStorage.setItem("wsw:card-at", String(at)); } catch (e) {}
   }
 
-  /* ---------- option groups ---------- */
-  function group(host, items, key, render2) {
+  /* ---------- pickers ---------- */
+  function picker(host, items, key, after) {
     $(host).innerHTML = items.map(function (o) {
-      var pile = o.pile ? '<span class="pile ' + o.pile.slice(-1).toLowerCase() + '">' + escH(o.pile) + "</span>" : "";
+      var badge = o.tone ? '<span class="pile ' + o.tone + '">' + escH(o.pile || "") + "</span>" : "";
       return '<button class="opt" type="button" data-v="' + escH(o.id) + '" aria-pressed="' + (s[key] === o.id) + '">' +
-        '<span class="opt-t">' + escH(o.label) + pile + "</span>" +
+        (badge ? '<span class="opt-t">' + escH(o.label) + badge + "</span>" : escH(o.label)) +
         (o.sub ? "<small>" + escH(o.sub) + "</small>" : "") + "</button>";
     }).join("");
+    if ($(host)._wired) return;
+    $(host)._wired = 1;
     $(host).addEventListener("click", function (e) {
       var b = e.target.closest("[data-v]"); if (!b) return;
       s[key] = b.getAttribute("data-v"); save(); clearFlags();
-      [].forEach.call($(host).children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
-      if (render2) render2();
+      [].forEach.call($(host).querySelectorAll("[data-v]"), function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+      if (after) after();
     });
   }
 
+  function simple(host, attr, key, after) {
+    if ($(host)._wired) return;
+    $(host)._wired = 1;
+    $(host).addEventListener("click", function (e) {
+      var b = e.target.closest("[data-" + attr + "]"); if (!b) return;
+      s[key] = b.getAttribute("data-" + attr); save(); clearFlags();
+      [].forEach.call($(host).children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+      if (after) after();
+    });
+  }
+  function paint(host, attr, key) {
+    [].forEach.call($(host).children, function (c) {
+      if (c.getAttribute("data-" + attr)) c.setAttribute("aria-pressed", String(c.getAttribute("data-" + attr) === s[key]));
+    });
+  }
+
+  function starters(host, list, target) {
+    $(host).innerHTML = list.map(function (t) { return '<button class="start" type="button" data-t="' + escH(t) + '">' + escH(t) + "</button>"; }).join("");
+    if ($(host)._wired) return;
+    $(host)._wired = 1;
+    $(host).addEventListener("click", function (e) {
+      var b = e.target.closest("[data-t]"); if (!b) return;
+      var el = $(target);
+      el.value = b.getAttribute("data-t");
+      el.dispatchEvent(new Event("input"));
+      el.focus();
+    });
+  }
+
+  function sizeCalc() {
+    var el = $("size-calc");
+    if (!s.size) { el.textContent = "Pick a size."; return; }
+    var dollars = CASH * s.size / 100;
+    var flag = s.size > 8 ? '<span class="flag no">Over our 8% ceiling. We do not hold more than 8% in one name.</span>'
+      : s.size === 8 ? '<span class="flag no">At our 8% ceiling, the most we ever hold in one name.</span>'
+      : s.size > 5 ? '<span class="flag no">Over our 5% starting limit — only for adding to something we already hold.</span>'
+      : '<span class="flag ok">Inside our limits.</span>';
+    el.innerHTML = "That is <b>" + money(dollars) + "</b> of our <b>" + money(CASH) +
+      "</b>, and it needs <b>" + votesNeeded() + "</b> to pass." + flag;
+  }
+  /* 4 of 5 is needed over 10% of the portfolio, for a new kind of investment, or for a change to the
+     plan. Testing size alone (and stopping the buttons at 8) meant the branch could never fire. */
+  function votesNeeded() { return (s.size > 10 || s.newKind) ? "4 of 5" : "3 of 5"; }
+
+  function pileOf(id) { for (var i = 0; i < GOALS.length; i++) if (GOALS[i].id === id) return GOALS[i]; return null; }
+  function goalsInPile() {
+    var p = PILES.filter(function (x) { return x.tag === s.pile; })[0];
+    return p ? p.items.map(function (it) { return { id: it.id, label: it.label, sub: it.sub }; }) : [];
+  }
+
   function build() {
-    var members = (D.team && D.team.members) || [];
-    $("who-opts").innerHTML = members.map(function (m) {
-      return '<button class="opt" type="button" data-v="' + escH(m.name) + '" aria-pressed="' + (s.who === m.name) + '">' + escH(m.name) + "</button>";
-    }).join("");
-    $("who-opts").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-v]"); if (!b) return;
-      s.who = b.getAttribute("data-v"); save(); clearFlags();
-      [].forEach.call($("who-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
-    });
-
-    $("side-opts").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-side]"); if (!b) return;
-      s.side = b.getAttribute("data-side"); save(); clearFlags();
-      [].forEach.call($("side-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
-    });
-    [].forEach.call($("side-opts").children, function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-side") === s.side)); });
-
+    picker("who-opts", ((D.team && D.team.members) || []).map(function (m) { return { id: m.name, label: m.name }; }), "who");
+    simple("side-opts", "side", "side"); paint("side-opts", "side", "side");
+    simple("type-opts", "type", "type", typeChanged); paint("type-opts", "type", "type");
+    simple("ai-opts", "ai", "ai"); paint("ai-opts", "ai", "ai");
+    picker("sector-opts", SECTORS, "sector");
+    picker("pile-opts", PILES.map(function (p) {
+      return { id: p.tag, tone: p.tone, pile: p.tag, label: p.name, sub: p.what };
+    }), "pile", function () { s.goal = ""; save(); picker("goal-opts", goalsInPile(), "goal"); });
+    picker("goal-opts", goalsInPile(), "goal");
     $("size-opts").innerHTML = SIZES.map(function (p) {
       return '<button class="opt" type="button" data-v="' + p + '" aria-pressed="' + (s.size === p) + '">' + p +
         '%<small>' + money(CASH * p / 100) + "</small></button>";
     }).join("");
-    $("size-opts").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-v]"); if (!b) return;
-      s.size = parseFloat(b.getAttribute("data-v")); save(); clearFlags();
-      [].forEach.call($("size-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
-      sizeCalc();
-    });
-    sizeCalc();
-
-    $("goal-opts").innerHTML = PILES.map(function (p) {
-      var mine = p.items.some(function (it) { return s.goal === it.id; });
-      return '<details class="pilebox ' + p.tone + (mine ? " sel" : "") + '"' + (mine ? " open" : "") + '>' +
-        "<summary>" +
-          '<span class="pile ' + p.tone + '">' + escH(p.tag) + "</span>" +
-          '<span class="pb-t"><b>' + escH(p.name) + "</b><small>" + escH(p.what) + "</small></span>" +
-          '<span class="pb-chev" aria-hidden="true"></span>' +
-        "</summary>" +
-        '<div class="pb-items">' + p.items.map(function (it) {
-          return '<button class="opt" type="button" data-v="' + escH(it.id) + '" aria-pressed="' + (s.goal === it.id) + '">' +
-            escH(it.label) + "<small>" + escH(it.sub) + "</small></button>";
-        }).join("") + "</div></details>";
-    }).join("");
-    $("goal-opts").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-v]"); if (!b) return;
-      s.goal = b.getAttribute("data-v"); save(); clearFlags();
-      [].forEach.call($("goal-opts").querySelectorAll("[data-v]"), function (c) { c.setAttribute("aria-pressed", String(c === b)); });
-      [].forEach.call($("goal-opts").children, function (d) {
-        d.classList.toggle("sel", d.contains(b));
+    if (!$("size-opts")._wired) {
+      $("size-opts")._wired = 1;
+      $("size-opts").addEventListener("click", function (e) {
+        var b = e.target.closest("[data-v]"); if (!b) return;
+        s.size = parseFloat(b.getAttribute("data-v")); save(); clearFlags();
+        [].forEach.call($("size-opts").children, function (c) { c.setAttribute("aria-pressed", String(c === b)); });
+        sizeCalc();
       });
-    });
-    group("role-opts", ROLES, "role");
+    }
+    sizeCalc(); typeChanged();
 
-    $("src-chips").innerHTML = SOURCES.map(function (x) {
-      return '<button class="chip2" type="button" data-v="' + escH(x) + '" aria-pressed="' + ((s.srcs || []).indexOf(x) > -1) + '">' + escH(x) + "</button>";
-    }).join("");
-    $("src-chips").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-v]"); if (!b) return;
-      var v = b.getAttribute("data-v"); s.srcs = s.srcs || [];
-      var at = s.srcs.indexOf(v);
-      if (at > -1) s.srcs.splice(at, 1); else s.srcs.push(v);
-      b.setAttribute("aria-pressed", String(at === -1)); save(); aiWarn(); clearFlags();
-    });
-    aiWarn();
+    starters("why-starts", START_WHY, "why");
+    starters("exp-starts", START_EXP, "exp");
+    starters("wrong-starts", START_WRONG, "wrong");
+    quickDates();
 
-    ["tk","co","why","exp","expd","wrong","wrongd","act","src"].forEach(function (id) {
+    ["tk","co","why","exp","expd","wrong","wrongd","act","src","d-tk","d-side","d-shares","d-price","d-yes","d-date"].forEach(function (id) {
       var el = $(id); if (!el) return;
       if (s[id]) el.value = s[id];
       el.addEventListener("input", function () {
-        s[id] = id === "tk" ? el.value.toUpperCase() : el.value;
-        if (id === "tk") el.value = s[id];
+        s[id] = id === "tk" || id === "d-tk" ? el.value.toUpperCase() : el.value;
+        if (id === "tk" || id === "d-tk") el.value = s[id];
         save(); clearFlags();
+        if (id.indexOf("d-") === 0) doneCalc();
       });
+    });
+    counters();
+  }
+
+  function typeChanged() {
+    var isStock = s.type === "Stock";
+    $("sector-wrap").hidden = !isStock;
+    $("sector-na").hidden = !(s.type && !isStock);
+    if (!isStock && s.sector) { s.sector = ""; save(); picker("sector-opts", SECTORS, "sector"); }
+  }
+
+  function quickDates() {
+    var now = new Date();
+    function iso(d) { function p(n){return (n<10?"0":"")+n;} return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()); }
+    var eom = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    var opts = [["End of this month", iso(eom)], ["In a month", iso(new Date(now.getTime() + 30 * 864e5))], ["When trading ends, Nov 6", "2026-11-06"]];
+    $("expd-quick").innerHTML = opts.map(function (o) {
+      return '<button class="start" type="button" data-d="' + o[1] + '">' + escH(o[0]) + "</button>";
+    }).join("");
+    if ($("expd-quick")._wired) return;
+    $("expd-quick")._wired = 1;
+    $("expd-quick").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-d]"); if (!b) return;
+      $("expd").value = b.getAttribute("data-d");
+      $("expd").dispatchEvent(new Event("input"));
     });
   }
 
-  /* Nothing should stop typing without saying so. Every capped field gets a live counter that
-     shows up once you are past halfway and turns amber near the limit. */
   function counters() {
-    ["why", "exp", "wrong", "act", "src", "co"].forEach(function (id) {
-      var el = $(id); if (!el) return;
+    ["why","exp","wrong","act","src","co"].forEach(function (id) {
+      var el = $(id); if (!el || el._c) return; el._c = 1;
       var max = parseInt(el.getAttribute("maxlength"), 10); if (!max) return;
-      var c = document.createElement("span");
-      c.className = "count"; c.id = "count-" + id;
-      el.parentNode.appendChild(c);
+      var c = document.createElement("span"); c.className = "count"; el.parentNode.appendChild(c);
       function draw() {
-        var n = el.value.length, left = max - n;
-        c.textContent = n > max * 0.5 ? left + " characters left" : "";
+        var left = max - el.value.length;
+        c.textContent = el.value.length > max * 0.5 ? left + " characters left" : "";
         c.className = "count" + (left <= 40 ? " near" : "");
       }
       el.addEventListener("input", draw); draw();
     });
   }
 
-  /* toISOString() is UTC: a card written at 8:02pm CDT stamped TOMORROW. Anything after 7pm CDT
-     rolled over. Build the date from local parts. */
-  function todayLocal(d) {
-    d = d || new Date();
-    function p(n) { return (n < 10 ? "0" : "") + n; }
-    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
-  }
-
-  function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
-
-  /* 4 of 5 is needed for over 10% of the portfolio, a NEW KIND of investment, or a change to the
-     plan. The size buttons stop at 8%, so testing size alone meant the 4-of-5 branch could never
-     fire. Size is only one of the three triggers. */
-  function votesNeeded() { return (s.size > 10 || s.newKind) ? "4 of 5" : "3 of 5"; }
-
-  function sizeCalc() {
-    var el = $("size-calc");
-    if (!s.size) { el.textContent = "Pick a size."; return; }
-    var dollars = CASH * s.size / 100;
-    var flag = s.size >= 8 ? '<span class="flag no">At our 8% ceiling — the most we ever hold in one name.</span>'
-      : s.size > 5 ? '<span class="flag no">Over our 5% starting limit — only for adding to something we already hold.</span>'
-      : '<span class="flag ok">Inside our limits.</span>';
-    var vote = votesNeeded();
-    el.innerHTML = "That is <b>" + money(dollars) + "</b> of our <b>" + money(CASH) + "</b>, and it needs <b>" + vote + "</b> to pass." + flag;
-  }
-
-  function aiWarn() { $("ai-warn").hidden = !((s.srcs || []).length === 0); }
-
   /* ---------- outputs ---------- */
-  function goalObj() { return GOALS.filter(function (g) { return g.id === s.goal; })[0]; }
-  function roleObj() { return ROLES.filter(function (r) { return r.id === s.role; })[0]; }
-  function pretty(d) {
-    if (!d) return "";
-    var p = d.split("-"); if (p.length !== 3) return d;
-    var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return M[+p[1] - 1] + " " + (+p[2]) + ", " + p[0];
-  }
-
   function winsNote() {
-    var g = goalObj(), r = roleObj();
+    var g = pileOf(s.goal);
     var tk = s.tk || "[ticker]", co = s.co ? " (" + s.co + ")" : "";
-    var a = (s.side === "Sell" ? "We are selling " : "We are buying ") + tk + co +
-      " at " + (s.size || "[size]") + "% of the portfolio to serve as " +
-      (r ? r.label.toLowerCase() : "[its role]") + " in our plan.";
-    var b = s.why ? " " + s.why.trim().replace(/\s+$/, "") + (/[.!?]$/.test(s.why.trim()) ? "" : ".") : " [why]";
-    var c = s.wrong ? " We would be wrong if " + s.wrong.trim().replace(/\.$/, "") +
-      (s.wrongd ? ", which we check by " + pretty(s.wrongd) : "") + "." : " [what would make it wrong]";
-    var d = s.exp ? " We expect it to " + s.exp.trim().replace(/\.$/, "") +
-      (s.expd ? " by " + pretty(s.expd) : "") + "." : " [expectation]";
-    var e = g ? " This supports Laura's plan " + g.note + "." : " [client goal]";
-    return (a + b + d + c + e).replace(/\s+/g, " ").trim();
+    var selling = s.side === "Sell";
+    var a = selling
+      ? "We are selling " + tk + co + ", " + (s.size || "[size]") + "% of the portfolio, because it is no longer doing the job we bought it for."
+      : "We are buying " + tk + co + " at " + (s.size || "[size]") + "% of the portfolio.";
+    var why = s.why ? " " + s.why.trim().replace(/[.\s]+$/, "") + "." : " [why]";
+    var risk = RISK_BY_TYPE[s.type] ? " It should do that " + RISK_BY_TYPE[s.type] + "." : "";
+    var exp = s.exp ? " We expect it to " + s.exp.trim().replace(/[.\s]+$/, "") + (s.expd ? " by " + pretty(s.expd) : "") + "." : "";
+    var wrong = s.wrong ? " We would be wrong if " + s.wrong.trim().replace(/[.\s]+$/, "") + (s.wrongd ? ", which we check by " + pretty(s.wrongd) : "") + "." : "";
+    var client = g ? " This supports Laura's plan " + g.note + "." : " [what it is for]";
+    return (a + why + risk + exp + wrong + client).replace(/\s+/g, " ").trim();
   }
 
   function chatCard() {
-    var g = goalObj(), r = roleObj();
-    var srcs = (s.srcs || []).concat(s.src ? [s.src] : []);
-    return [
-      "TRADE      " + (s.side || "Buy") + " " + (s.tk || "[ticker]") + ", " + (s.size || "?") + "% of the portfolio (" + money(CASH * (s.size || 0) / 100) + ")",
-      "WHY        " + (s.why || "[why]"),
-      "FOR LAURA  " + (g ? g.label + " (" + g.pile + ")" : "[which obligation]") + (r ? " — " + r.label.toLowerCase() : ""),
-      "EXPECT     " + (s.exp || "[what]") + (s.expd ? " by " + pretty(s.expd) : ""),
-      "WRONG IF   " + (s.wrong || "[state]") + (s.wrongd ? " — check " + pretty(s.wrongd) : "") + (s.act ? ", then " + s.act : ""),
-      "SOURCES    " + (srcs.length ? srcs.join(", ") : "[sources]"),
-      "BY         " + (s.who || "[you]") + " · needs " + votesNeeded()
-    ].join("\n");
+    var g = pileOf(s.goal);
+    var srcs = [];
+    if (s.src) srcs.push(s.src);
+    if (s.ai === "yes") srcs.push("AI helped draft this");
+    var lines = [
+      "TRADE CARD  " + tradeId(),
+      "",
+      "TRADE: " + (s.side || "Buy") + " " + (s.tk || "[ticker]") + (s.co ? ", " + s.co : "") +
+        " — " + (s.size || "?") + "% of the portfolio (" + money(CASH * (s.size || 0) / 100) + ")" +
+        (s.type ? ", " + s.type : "") + (s.sector ? ", " + (SECTORS.filter(function(x){return x.id===s.sector;})[0]||{}).label : ""),
+      "WHY: " + (s.why || "[why]"),
+      "FOR LAURA: " + (g ? g.label + " (" + g.pile + ")" : "[what it is for]"),
+      "EXPECT: " + (s.exp || "[what]") + (s.expd ? ", by " + pretty(s.expd) : ""),
+      "WRONG IF: " + (s.wrong || "[what would make it a mistake]") +
+        (s.wrongd ? " — check by " + pretty(s.wrongd) : "") + (s.act ? ", then " + s.act : ""),
+      "SOURCES: " + (srcs.length ? srcs.join(" · ") : "[where it came from]"),
+      "BY: " + (s.who || "[you]") + " — needs " + votesNeeded(),
+      "",
+      "--- paste this into WInS before you hit Confirm ---",
+      winsNote()
+    ];
+    return lines.join("\n");
   }
 
-  function logRow() {
-    var g = goalObj();
-    var today = todayLocal();
-    /* Log columns A..K: Date, Ticker, Buy/Sell, Shares, Price, $Value(f), %(f), Proposed by, Why, Goal, Wrong if.
-       F and G are formulas, so they are left empty and the sheet fills them. */
-    return [today, s.tk || "", s.side || "", "", "", "", "",
-      s.who || "", s.why || "",
-      g ? ({ "Pile A": "Pile A safety", "Pile B": "Pile B growth", "Pile C": "Pile C flex" }[g.pile] || "") : "",
-      (s.wrong || "") + (s.wrongd ? " (check " + pretty(s.wrongd) + ")" : "") + (s.act ? ", then " + s.act : "")
-    ].join("\t");
-  }
-
-  function render() {
+  function renderCard() {
     var need = [];
     if (!s.who) need.push("your name");
     if (!s.side) need.push("buy or sell");
     if (!s.tk) need.push("the ticker");
+    if (!s.type) need.push("what kind of thing it is");
+    if (s.type === "Stock" && !s.sector) need.push("the industry");
     if (!s.size) need.push("a size");
-    if (!s.goal) need.push("which of Laura's obligations");
-    if (!s.role) need.push("the job it does");
+    if (!s.pile) need.push("which pile");
+    if (!s.goal) need.push("what the money is for");
     if (!s.why) need.push("why");
     if (!s.exp || !s.expd) need.push("what you expect and by when");
-    if (!s.wrong) need.push("what would make it wrong");
-    if (!(s.srcs || []).length && !s.src) need.push("sources");
-    $("gaps").hidden = !need.length;
-    if (need.length) $("gaps").innerHTML = "<b>Still missing:</b> " + need.join(", ") +
-      ". You can still copy what is here, but do not place the trade on a half-written card.";
+    if (!s.wrong) need.push("what would make it a mistake");
+    if (!s.src) need.push("where the fact came from");
+    if (!s.ai) need.push("whether AI helped");
 
-    var note = winsNote();
-    $("o-note").textContent = note;
-    var words = note.split(/\s+/).filter(Boolean).length;
-    $("wc").textContent = words + " words";
-    $("wc").className = "wc" + (words > 95 ? " over" : "");
+    $("gaps").hidden = !need.length;
+    if (need.length) $("gaps").innerHTML = "<b>Not finished yet:</b> " + need.join(", ") +
+      ". The copy button unlocks once it is complete — a half-written note goes into WInS and cannot be taken back.";
+    $("tid").textContent = tradeId();
     $("o-card").textContent = chatCard();
-    $("o-row").textContent = logRow();
+    var wds = winsNote().split(/\s+/).filter(Boolean).length;
+    $("wc").textContent = "note: " + wds + " words";
+    $("wc").className = "wc" + (wds > 100 ? " over" : "");
+    $("c-card").disabled = need.length > 0;
+    $("c-card").textContent = need.length ? "Finish the card first" : "Copy it for the chat";
+  }
+
+  /* ---------- "it went through" ---------- */
+  function dneed() {
+    var n = [];
+    if (!s["d-tk"]) n.push("the ticker");
+    if (!s["d-shares"]) n.push("shares");
+    if (!s["d-price"]) n.push("the price");
+    if (s["d-yes"] === undefined || s["d-yes"] === "") n.push("the vote");
+    if (!s["d-date"]) n.push("the date");
+    return n;
+  }
+  function doneCalc() {
+    var el = $("d-calc"); if (!el) return;
+    var sh = parseFloat(s["d-shares"]), pr = parseFloat(s["d-price"]), yes = parseInt(s["d-yes"], 10);
+    if (!(sh > 0 && pr > 0)) { el.textContent = "Fill these in and I'll check the vote against our rules."; return; }
+    var val = sh * pr, pct = val / CASH * 100;
+    var need = pct > 10 ? 4 : 3;
+    var msg = "That is <b>" + money(val) + "</b>, <b>" + pct.toFixed(1) + "%</b> of our " + money(CASH) + ".";
+    if (!isNaN(yes)) {
+      msg += pct > 10
+        ? '<span class="flag ' + (yes >= 4 ? "ok" : "no") + '">Over 10% of the portfolio, so it needed 4 of 5. You have ' + yes + '.' + (yes >= 4 ? " Passed." : " This did not pass — do not log it.") + "</span>"
+        : '<span class="flag ' + (yes >= 3 ? "ok" : "no") + '">Needed 3 of 5. You have ' + yes + '.' + (yes >= 3 ? " Passed." : " This did not pass — do not log it.") + "</span>";
+    }
+    el.innerHTML = msg;
+  }
+  function doneReply() {
+    var sh = parseFloat(s["d-shares"]), pr = parseFloat(s["d-price"]);
+    var val = (sh > 0 && pr > 0) ? sh * pr : 0;
+    return "DONE — " + (s["d-date"] ? pretty(s["d-date"]) : "[date]") + ". Passed " + (s["d-yes"] || "?") +
+      " of 5. Placed " + (s["d-shares"] || "?") + " shares of " + (s["d-tk"] || "[ticker]") +
+      " at $" + (s["d-price"] || "?") + (val ? " (" + money(val) + ", " + (val / CASH * 100).toFixed(1) + "% of the portfolio)" : "") +
+      ". Note is in WInS.";
+  }
+  function doneRow() { return [s["d-date"] || "", s["d-tk"] || "", s["d-side"] || ""].join("\t"); }
+  function renderDone() {
+    var n = dneed();
+    $("d-gaps").hidden = !n.length;
+    if (n.length) $("d-gaps").innerHTML = "<b>Still need:</b> " + n.join(", ") + ".";
+    $("d-reply").textContent = doneReply();
+    $("d-row").textContent = doneRow() +
+      "\n\nthen, in the same row:   D = " + (s["d-shares"] || "?") + " shares    E = " + (s["d-price"] || "?") + "    L = " + (s["d-yes"] || "?") + " yes votes";
+    $("c-reply").disabled = n.length > 0;
+    $("c-row").disabled = n.length > 0;
   }
 
   /* ---------- required fields ---------- */
-  /* screen index -> [state key, the element the marker hangs off] */
   var REQ = {
-    1: [["who", "who-opts"], ["side", "side-opts"], ["tk", "tk"]],
-    2: [["size", "size-opts"]],
-    3: [["goal", "goal-opts"]],
-    4: [["role", "role-opts"]],
-    5: [["why", "why"]],
-    6: [["exp", "exp"], ["expd", "expd"]],
-    7: [["wrong", "wrong"]],
-    8: [["srcs", "src-chips"]]
+    1: [["who", "who-opts"], ["side", "side-opts"]],
+    2: [["tk", "tk"], ["type", "type-opts"]],
+    3: [["size", "size-opts"]],
+    4: [["pile", "pile-opts"]],
+    5: [["goal", "goal-opts"]],
+    6: [["why", "why"], ["src", "src"]],
+    7: [["exp", "exp"], ["expd", "expd"]],
+    8: [["wrong", "wrong"], ["ai", "ai-opts"]],
+    10: [["d-tk", "d-tk"], ["d-shares", "d-shares"], ["d-price", "d-price"], ["d-yes", "d-yes"], ["d-date", "d-date"]]
   };
+  var REQ_MSG = { pile: "Pick one of the three piles", goal: "Pick a line", ai: "Answer yes or no", sector: "Pick one" };
   function have(k) {
-    if (k === "srcs") return ((s.srcs || []).length > 0) || !!(s.src && s.src.trim());
-    return !!(s[k] && String(s[k]).trim());
+    if (k === "sector") return s.type !== "Stock" || !!s.sector;
+    return !!(s[k] !== undefined && String(s[k]).trim());
   }
   function clearFlags() {
     [].forEach.call(document.querySelectorAll(".reqflag"), function (e) { e.remove(); });
     [].forEach.call(document.querySelectorAll(".needs"), function (e) { e.classList.remove("needs"); });
   }
-  function check(n) {
+  function check(screenIdx) {
     clearFlags();
-    var list = REQ[n] || [], first = null;
+    var list = (REQ[screenIdx] || []).slice();
+    if (screenIdx === 2 && s.type === "Stock") list.push(["sector", "sector-opts"]);
+    var first = null;
     list.forEach(function (pair) {
       if (have(pair[0])) return;
       var el = $(pair[1]); if (!el) return;
       if (!first) first = el;
       el.classList.add("needs");
       var f = document.createElement("span");
-      f.className = "reqflag"; f.textContent = "Required";
+      f.className = "reqflag"; f.textContent = REQ_MSG[pair[0]] || "Required";
       el.parentNode.insertBefore(f, el.nextSibling);
     });
     if (first) {
-      first.scrollIntoView({ block: "center", behavior: "smooth" });
+      first.scrollIntoView({ block: "nearest", behavior: "smooth" });
       if (first.focus) { try { first.focus({ preventScroll: true }); } catch (e) {} }
       W.toast("Fill this in first");
     }
@@ -816,22 +929,47 @@ ol.flow.qs span{color:var(--ink)}
   }
 
   /* ---------- wire ---------- */
-  chapters(); build(); counters();
-  $("back").addEventListener("click", function () { clearFlags(); go(i - 1); });
-  $("next").addEventListener("click", function () { if (!check(i)) return; go(i + 1); });
-  $("c-note").addEventListener("click", function () { W.copy(winsNote(), "WInS note copied"); });
-  $("c-card").addEventListener("click", function () { W.copy(chatCard(), "Card copied — post it as a new message"); });
-  $("c-row").addEventListener("click", function () { W.copy(logRow(), "Row copied — paste into Log cell A7"); });
-  $("reset").addEventListener("click", function () {
-    if (!confirm("Clear this card and start another?")) return;
-    s = {}; save();
-    ["tk","co","why","exp","expd","wrong","wrongd","act","src"].forEach(function (id) { if ($(id)) $(id).value = ""; });
-    build(); go(1);
+  function setMode(m) {
+    s.mode = m; save();
+    [].forEach.call($("mode").children, function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-mode") === m)); });
+    $("brand-mode").textContent = m === "done" ? "It went through" : "Propose a trade";
+    $("mode-note").textContent = m === "done"
+      ? "Three numbers and a date. It gives you the reply for the thread and the cells Federico needs."
+      : "About a minute, mostly tapping. You get one block to paste into the chat, and the WInS note is inside it.";
+    chapters();
+  }
+
+  build();
+  setMode(s.mode === "done" ? "done" : "propose");
+  $("mode").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-mode]"); if (!b) return;
+    setMode(b.getAttribute("data-mode")); go(0);
   });
+  $("chapters").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-go]"); if (!b) return;
+    var want = +b.getAttribute("data-go");
+    for (var k = at; k < want; k++) { if (!check(flow()[k])) { go(k); return; } }
+    go(want);
+  });
+  $("back").addEventListener("click", function () { clearFlags(); go(at - 1); });
+  $("next").addEventListener("click", function () {
+    var f = flow();
+    if (at === f.length - 1) {
+      if (!confirm("Clear this and start another? What you have here will be gone.")) return;
+      s = { mode: s.mode }; save();
+      ["tk","co","why","exp","expd","wrong","wrongd","act","src","d-tk","d-side","d-shares","d-price","d-yes","d-date"].forEach(function (id) { if ($(id)) $(id).value = ""; });
+      build(); go(1); return;
+    }
+    if (!check(f[at])) return;
+    go(at + 1);
+  });
+  $("c-card").addEventListener("click", function () { if (!$("c-card").disabled) W.copy(chatCard(), "Copied — post it as a new message"); });
+  $("c-reply").addEventListener("click", function () { if (!$("c-reply").disabled) W.copy(doneReply(), "Copied — reply in the trade's thread"); });
+  $("c-row").addEventListener("click", function () { if (!$("c-row").disabled) W.copy(doneRow(), "Copied — paste into the first empty row, column A"); });
 
   var start = 0;
-  try { start = parseInt(localStorage.getItem("card-screen"), 10) || 0; } catch (e) {}
-  go(start);
+  try { start = parseInt(localStorage.getItem("wsw:card-at"), 10) || 0; } catch (e) {}
+  go(start >= flow().length ? 0 : start);
 })(window.WSW);
 </script>
 </body>
