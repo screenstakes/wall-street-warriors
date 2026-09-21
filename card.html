@@ -199,6 +199,8 @@ ol.flow.qs span{color:var(--ink)}
 .fld input,.fld textarea{font:400 16px/1.45 var(--body);color:var(--ink);background:var(--card);
   border:1.5px solid var(--line);border-radius:9px;padding:11px 12px;min-height:46px;width:100%;box-sizing:border-box}
 .fld textarea{min-height:76px;resize:vertical}
+.count{font:400 12.5px/1 var(--mono);color:var(--ink-3);margin-top:5px}
+.count.near{color:var(--orange-ink);font-weight:600}
 .fld input:focus,.fld textarea:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--blue)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .calc{background:var(--well);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font:400 14px/1.5 var(--body);color:var(--ink-2)}
@@ -300,7 +302,7 @@ ol.flow.qs span{color:var(--ink)}
       </div>
       <div class="row2">
         <div class="fld"><label for="tk">Ticker</label><input id="tk" maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="MSFT"></div>
-        <div class="fld"><label for="co">Company</label><input id="co" maxlength="40" autocomplete="off" placeholder="Microsoft"></div>
+        <div class="fld"><label for="co">Company</label><input id="co" maxlength="80" autocomplete="off" placeholder="Microsoft"></div>
       </div>
     </div>
     <p class="hint">Wharton allows stocks at $5 or more, ETFs, and Treasuries from the US, UK, Germany, France, Italy and the Netherlands.</p>
@@ -336,7 +338,7 @@ ol.flow.qs span{color:var(--ink)}
     <h1 id="h5" tabindex="-1">Why, in one sentence</h1>
     <div class="owner"><b>Yours</b><span>This is your pitch. Joe will post what he thinks it is worth underneath it in the thread.</span></div>
     <div class="fld"><label for="why">One fact, and what you conclude from it</label>
-      <textarea id="why" maxlength="220" placeholder="Cloud revenue grew 22% last quarter, so the part of the business we are paying for is still compounding."></textarea></div>
+      <textarea id="why" maxlength="700" rows="3" placeholder="Cloud revenue grew 22% last quarter, so the part of the business we are paying for is still compounding."></textarea></div>
     <p class="hint">A judge's warning, word for word: <b>&ldquo;hiding behind fancy terms and formulas&hellip; the best solutions are made up of simple, elegant ideas.&rdquo;</b> A number with no conclusion attached is worse than no number. Say what it means.</p>
   </section>
 
@@ -346,7 +348,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="owner"><b>Yours, with Joe behind it</b><span>You say what you expect. Joe’s valuation is the evidence — he posts his number as a range in the thread.</span></div>
     <div class="q">
       <div class="fld"><label for="exp">We expect it to&hellip;</label>
-        <input id="exp" maxlength="120" placeholder="hold its value within about 5%"></div>
+        <textarea id="exp" maxlength="400" rows="2" placeholder="hold its value within about 5%"></textarea></div>
       <div class="fld"><label for="expd">By when</label><input id="expd" type="date"></div>
     </div>
     <p class="hint">This is the field the October deliverable rests on. Wharton asks whether a decision <b>supported, tested or refined</b> the strategy &mdash; three verdicts on a prediction. You can't give a verdict on a prediction you never made.</p>
@@ -358,10 +360,10 @@ ol.flow.qs span{color:var(--ink)}
     <div class="owner"><b>Dylan's call</b><span>Dylan writes the full case against in the thread before the poll opens. Write what you think here; his version is the one that counts.</span></div>
     <div class="q">
       <div class="fld"><label for="wrong">The state that means we were wrong</label>
-        <input id="wrong" maxlength="140" placeholder="cloud growth comes in under 20%"></div>
+        <textarea id="wrong" maxlength="600" rows="3" placeholder="cloud growth comes in under 20%"></textarea></div>
       <div class="row2">
         <div class="fld"><label for="wrongd">Check it by</label><input id="wrongd" type="date"></div>
-        <div class="fld"><label for="act">Then we</label><input id="act" maxlength="80" placeholder="cut it to 1.5%"></div>
+        <div class="fld"><label for="act">Then we</label><input id="act" maxlength="200" placeholder="cut it to 1.5%"></div>
       </div>
     </div>
     <p class="hint">A state and a date, never a price off what we paid. Investors sell winners about 1.5&times; as readily as losers, and the winners they sold beat the losers they kept by 3.4 points over the next year. An exit priced off our cost builds that mistake in.</p>
@@ -373,7 +375,7 @@ ol.flow.qs span{color:var(--ink)}
     <div class="owner"><b>Yours</b><span>Everyone cites their own sources. If AI helped, it gets named — that rule is not optional.</span></div>
     <div class="chips" id="src-chips"></div>
     <div class="fld" style="margin-top:4px"><label for="src">Anything else</label>
-      <input id="src" maxlength="140" placeholder="FY25 10-K p.34"></div>
+      <input id="src" maxlength="300" placeholder="FY25 10-K p.34"></div>
     <div class="missing" id="ai-warn" hidden><b>If you used AI, tick it.</b> Wharton's rule is that AI material must be cited like any other source, and plagiarism means dismissal. This is the one line that can end our season.</div>
     <p class="hint">Sources stay out of the WInS note &mdash; they go in the card and the log, for the December report.</p>
   </section>
@@ -620,6 +622,24 @@ ol.flow.qs span{color:var(--ink)}
     });
   }
 
+  /* Nothing should stop typing without saying so. Every capped field gets a live counter that
+     shows up once you are past halfway and turns amber near the limit. */
+  function counters() {
+    ["why", "exp", "wrong", "act", "src", "co"].forEach(function (id) {
+      var el = $(id); if (!el) return;
+      var max = parseInt(el.getAttribute("maxlength"), 10); if (!max) return;
+      var c = document.createElement("span");
+      c.className = "count"; c.id = "count-" + id;
+      el.parentNode.appendChild(c);
+      function draw() {
+        var n = el.value.length, left = max - n;
+        c.textContent = n > max * 0.5 ? left + " characters left" : "";
+        c.className = "count" + (left <= 40 ? " near" : "");
+      }
+      el.addEventListener("input", draw); draw();
+    });
+  }
+
   function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
 
   function sizeCalc() {
@@ -752,7 +772,7 @@ ol.flow.qs span{color:var(--ink)}
   }
 
   /* ---------- wire ---------- */
-  chapters(); build();
+  chapters(); build(); counters();
   $("back").addEventListener("click", function () { clearFlags(); go(i - 1); });
   $("next").addEventListener("click", function () { if (!check(i)) return; go(i + 1); });
   $("c-note").addEventListener("click", function () { W.copy(winsNote(), "WInS note copied"); });
