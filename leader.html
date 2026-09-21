@@ -50,7 +50,7 @@ body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);
 main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-block:16px 20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
 .top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.screen{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.screen{max-width:680px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
 .eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
 .eyebrow.ex{color:var(--orange-ink)}
 .eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
@@ -240,7 +240,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
 <section class="screen" data-ch="1" aria-labelledby="h2" hidden>
   <div class="eyebrow">The meeting · the night before</div>
   <h1 id="h2" tabindex="-1">Post 2 or 3 questions in the chat</h1>
-  <div class="bubble"><span class="who">You, in the chat</span>Meeting tomorrow, zero period, library. One line each by 7 a.m.
+  <div class="bubble"><span class="who">You, in the chat</span>Call tonight, 8pm, Zoom. One line each on these before then.
     <ol>
       <li>Vote on Joe's JPM card (read its thread first): 5%, or Dylan's 3%?</li>
       <li>Who pitches next week?</li>
@@ -254,14 +254,14 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
 </section>
 
 <section class="screen" data-ch="1" aria-labelledby="h3" hidden>
-  <div class="eyebrow">The meeting · 18 minutes</div>
+  <div class="eyebrow">The Sunday call · about 30 minutes</div>
   <h1 id="h3" tabindex="-1">You run the clock</h1>
   <div class="roles wide">
-    <div><b>0–2 min</b><span>Say what the chat replies already settled.</span></div>
-    <div><b>2–4 min</b><span>One line each, no arguing. On a trade, Dylan goes first.</span></div>
-    <div><b>4–15 min</b><span>Talk it out, then vote. 3 of 5 passes; 4 of 5 if it's over 10% of the portfolio, a new kind of investment, or a plan change.</span></div>
-    <div><b>Tie?</b><span>You break it. That's in the team agreement.</span></div>
-    <div><b>15–18 min</b><span>Who does what, with a day, time and place. Federico reads it back.</span></div>
+    <div><b>First</b><span>Say what the polls and the chat already settled this week.</span></div>
+    <div><b>Then</b><span>One line each on anything still split, no arguing. On a trade, Dylan goes first.</span></div>
+    <div><b>The middle</b><span>Talk out whatever a poll couldn’t settle, then decide it here. 3 of 5 passes; 4 of 5 if it’s over 10% of the portfolio, a new kind of investment, or a plan change.</span></div>
+    <div><b>Tie?</b><span>You break it. That’s in the team agreement.</span></div>
+    <div><b>Last</b><span>Who does what, each with a day. Federico reads it back.</span></div>
   </div>
   <p class="small">Federico writes the notes, so you only run it.</p>
 </section>
@@ -274,7 +274,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
     <li data-n="1"><span>Post the card as a new message. Everything after is a reply in its thread.</span></li>
     <li data-n="2"><span>After the vote, place it in WInS and reply "Placed ✓". Write its WInS note the same day if you pitched it.</span></li>
   </ol>
-  <p class="small">Nobody votes in the chat. Votes happen at the meeting.</p>
+  <p class="small">The vote is a poll on the card’s own thread. You open it and you post the result.</p>
 </section>
 
 <section class="screen" data-ch="2" aria-labelledby="h5" hidden>
@@ -335,7 +335,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
   <h1 id="h9" tabindex="-1">Keep the team honest, kindly</h1>
   <div class="roles wide">
     <div><b>Grid</b><span>Fills itself in from everyone's sheet. Show it at the meeting. No scores. For a blank, ask only: what got in the way?</span></div>
-    <div><b>Agreement</b><span>Write it together at the first long meeting. Photo it into the chat. Send it again in week three.</span></div>
+    <div><b>Agreement</b><span>Write it together on a Sunday call. Photo it into the chat. Send it again in week three.</span></div>
     <div><b>Coach P</b><span>His overview sheet reads yours. Upload it and share it view-only.</span></div>
   </div>
   <div class="callout">Say this once, early: "If you're behind, say it in the chat and we'll re-cut it. Being behind is fine, silence isn't." Then do it first about one of your own things.</div>
@@ -360,7 +360,7 @@ h1 + .tiles,h1 + .sheet,h1 + .bubble,h1 + ol.flow,h1 + .roles,h1 + .tl{margin-to
   <div class="eyebrow">Your week, and your season</div>
   <h1 id="h11" tabindex="-1">What you do, and when</h1>
   <div class="roles wide">
-    <div><b>Night before</b><span>Post the meeting questions, with any trade votes.</span></div>
+    <div><b>Before the call</b><span>Post the week’s questions in the chat. Any open poll gets flagged.</span></div>
     <div><b>Meeting</b><span>Run the clock. Say what's settled. Break ties.</span></div>
     <div><b>Friday</b><span>Dashboard, message anyone behind, your This&nbsp;week row.</span></div>
     <div><b>Every week</b><span>Check the portal.</span></div>

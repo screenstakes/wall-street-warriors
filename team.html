@@ -309,7 +309,7 @@ h3.sub{margin:14px 18px 6px}
 <footer class="site">
   <div class="shell">
     <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
-    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026 · <a href="news.html#sources">Sources</a></span>
+    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 20, 2026 · <a href="news.html#sources">Sources</a></span>
   </div>
 </footer>
 
@@ -384,13 +384,18 @@ h3.sub{margin:14px 18px 6px}
   if (F.folder) { $("sheets-folder").innerHTML = '<a class="btn light sm" href="' + esc(F.folder) + '" target="_blank" rel="noopener">Open the folder</a>'; $("sheets-meta").classList.add("team-desk"); }
 
   /* sectors, decision rules, meeting shape, the four phases, and the scoring criteria */
-  $("team-sectors").innerHTML = D.sectors.map(function (x) {
-    return "<li><b>" + esc(x.name) + "</b><span>" + esc(x.eg) + "</span></li>";
-  }).join("");
-  $("team-sectors-m").textContent = D.sectors.length + " sectors";
+  $("team-sectors").innerHTML =
+    (D.sectorsNote ? '<li class="sector-note"><span>' + esc(D.sectorsNote) + "</span></li>" : "") +
+    D.sectors.map(function (x) {
+      var m = x.owner ? W.member(x.owner) : null;
+      var who = m ? esc(m.name) : "Open";
+      return '<li><b>' + esc(x.name) + '</b><span>' + esc(x.eg) + '</span>' +
+             '<span class="sector-owner' + (m ? "" : " open") + '">' + who + "</span></li>";
+    }).join("");
+  $("team-sectors-m").textContent = D.sectors.filter(function (x) { return x.owner; }).length + " of " + D.sectors.length + " taken";
 
   $("team-decide").innerHTML = D.ops.decide.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
-  $("team-meet-h").textContent = "The meeting: " + D.ops.meeting.length;
+  $("team-meet-h").textContent = "How we meet: " + D.ops.meeting.length;
   $("team-meet").innerHTML = D.ops.meeting.steps.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
   $("team-decide-m").textContent = D.ops.decide.length + " rules";
 

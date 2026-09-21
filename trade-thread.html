@@ -6,9 +6,9 @@
 <meta name="theme-color" content="#142F63">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
-<meta name="description" content="How one Wall Street Warriors trade moves through our Google Chat: pitch, fits Laura, case against, vote at the meeting, result in the thread.">
+<meta name="description" content="How one Wall Street Warriors trade moves through our Google Chat: the card, the case against, fits Laura, what it's worth, then a poll on the same thread.">
 <meta property="og:title" content="One Trade, Start to Finish">
-<meta property="og:description" content="Every trade gets its own thread. Nobody votes in the chat.">
+<meta property="og:description" content="Every trade gets its own thread, and the vote is a poll on that thread.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <title>One Trade, Start to Finish · Wall Street Warriors</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,7 +84,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
 .card dd{margin:0}
 .threadnote{display:flex;align-items:center;gap:6px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font:500 13px/1.3 var(--chat);color:var(--thread)}
 
-/* in person */
+/* the poll result */
 .live{background:var(--live-soft);border:1px solid var(--live-line);border-radius:14px;padding:20px 22px}
 .live ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55}
 .live .res{margin-top:18px;padding-top:16px;border-top:1px solid var(--live-line);font:700 15px/1.45 var(--ui);color:var(--ink)}
@@ -131,10 +131,10 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
 <header>
   <p class="kicker">Wall Street Warriors · how a trade works</p>
   <h1>One trade, start to finish, in our Google Chat</h1>
-  <p class="lede">Every trade gets <b>its own thread</b>. The replies stack up in order. <b>Nobody votes in the chat:</b> we vote by hand at the meeting, and Federico posts the result back in the thread.</p>
-  <div class="order" aria-label="The order">Pitch <i>→</i> Fits Laura? <i>→</i> Case against <i>→</i> Vote at the meeting <i>→</i> Result, placed, logged</div>
-  <div class="legend"><span class="t">In the trade's thread</span><span class="m">In the main chat</span><span class="l">In person</span></div>
-  <p class="fine">Made-up example with the same week as our meeting pages. JPM is not a real pick.</p>
+  <p class="lede">Every trade gets <b>its own thread</b>. The replies stack up in order, and <b>the vote is a poll on that same thread</b> — so a trade never waits for a meeting.</p>
+  <div class="order" aria-label="The order">Card <i>→</i> Case against <i>→</i> Fits Laura? <i>→</i> What it's worth <i>→</i> Poll <i>→</i> Placed and logged</div>
+  <div class="legend"><span class="t">In the trade's thread</span><span class="m">In the main chat</span></div>
+  <p class="fine">Worked example. Microsoft is a real candidate, but the numbers here are made up.</p>
 </header>
 
 <ol class="flow">
@@ -142,24 +142,24 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
   <li class="step">
     <div class="rail"><span class="dot">1</span></div>
     <div class="body">
-      <div class="when">Thu Sep 24 · the pitch</div>
-      <h2>Joe starts a new thread with his trade card</h2>
+      <div class="when">Mon 8:02 PM · the card</div>
+      <h2>Michael starts a new thread with the trade card</h2>
       <div class="chat main">
         <div class="tag">Main chat · new message, which starts the thread</div>
-        <div class="msg"><span class="av" style="--c:var(--joe)">J</span><div>
-          <div class="mh"><b>Joe Brown</b><time>7:02 PM</time></div>
+        <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
+          <div class="mh"><b>Michael Fitzgerald</b><time>8:02 PM</time></div>
           <div class="mt card">
-            <p class="head">TRADE CARD: Buy JPM</p>
+            <p class="head">TRADE CARD: Buy MSFT</p>
             <dl>
-              <dt>How much</dt><dd>$15,000, 5% of the portfolio</dd>
-              <dt>Why</dt><dd>Biggest US bank. Fills our Financials slot.</dd>
+              <dt>How much</dt><dd>3% of the portfolio, about $9,000 of our $300,000</dd>
+              <dt>Why</dt><dd>Fills our tech slot with a profitable company, not a bet</dd>
               <dt>Laura's goal</dt><dd>Pile B, growth for the building</dd>
-              <dt>What it's worth</dt><dd>My value is about 20% above today's price (Valuation tab)</dd>
-              <dt>What makes it wrong</dt><dd>A recession that drives up loan losses</dd>
-              <dt>Vote</dt><dd>Wednesday's meeting</dd>
+              <dt>Expect</dt><dd>Hold through Nov 6. I'd call it working if it's flat or better</dd>
+              <dt>Wrong if</dt><dd>Cloud growth under 20% at the next earnings — then we cut it to 1.5%</dd>
+              <dt>Vote</dt><dd>Poll on this thread, closes tomorrow lunch</dd>
             </dl>
           </div>
-          <div class="threadnote">↳ 5 replies</div>
+          <div class="threadnote">↳ 4 replies</div>
         </div></div>
       </div>
       <p class="aside"><b>Anyone can pitch.</b> One trade, one new message. Everything about this trade after that is a reply in its thread, never a new message.</p>
@@ -169,107 +169,114 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
   <li class="step">
     <div class="rail"><span class="dot">2</span></div>
     <div class="body">
-      <div class="when">By Sun 8 PM · fits Laura?</div>
-      <h2>Caleb replies: which of Laura's goals it serves</h2>
+      <div class="when">Mon 9:15 PM · the case against</div>
+      <h2>Dylan replies first: why this could be wrong</h2>
       <div class="chat reply">
-        <div class="tag">↳ Reply in the JPM thread</div>
-        <div class="msg"><span class="av" style="--c:var(--cal)">C</span><div>
-          <div class="mh"><b>Caleb Hamels</b><time>Fri 4:10 PM</time></div>
-          <div class="mt"><p>Fits: Pile B growth. Nothing is due until 2033, so a bank's ups and downs are fine for this pile.</p></div>
+        <div class="tag">↳ Reply in the MSFT thread</div>
+        <div class="msg"><span class="av" style="--c:var(--dyl)">D</span><div>
+          <div class="mh"><b>Dylan Wroan</b><time>9:15 PM</time></div>
+          <div class="mt">
+            <p><b>Case against MSFT:</b> it is already one of the most expensive large companies in the market, so we are paying for growth that has to actually show up. Most of the upside depends on cloud, which is one business, not five.</p>
+            <p>Limits check: 3% is under our 5% start and 8% cap, and tech would sit at 3% against a 30% sector cap. Nothing flags.</p>
+          </div>
         </div></div>
       </div>
-      <p class="aside">If it serves none of her goals, he sends it back and the trade stops here. <b>Joe's number is already in the card</b> because he pitched it. If someone else pitches, Joe replies here with what the stock is worth.</p>
+      <p class="aside"><b>Dylan goes first, on purpose.</b> Everyone else reads the case against before they form a view. If it is not posted before the poll opens, the trade goes ahead anyway — staying quiet is not a veto.</p>
     </div>
   </li>
 
   <li class="step">
     <div class="rail"><span class="dot">3</span></div>
     <div class="body">
-      <div class="when">By Tue 8 PM · the night before the vote</div>
-      <h2>Dylan replies with the case against</h2>
+      <div class="when">Tue 7:30 AM · fits Laura?</div>
+      <h2>Caleb replies: which of Laura's goals it serves</h2>
       <div class="chat reply">
-        <div class="tag">↳ Reply in the JPM thread</div>
-        <div class="msg"><span class="av" style="--c:var(--dyl)">D</span><div>
-          <div class="mh"><b>Dylan Wroan</b><time>Tue 7:40 PM</time></div>
+        <div class="tag">↳ Reply in the MSFT thread</div>
+        <div class="msg"><span class="av" style="--c:var(--cal)">C</span><div>
+          <div class="mh"><b>Caleb Hamels</b><time>7:30 AM</time></div>
+          <div class="mt"><p>Fits Pile B, the growth money for the residency. Nothing is owed until 2033, so a company that moves around is fine in this pile. It would not belong in Pile A.</p></div>
+        </div></div>
+      </div>
+      <p class="aside">If it serves none of her goals, he sends it back and the trade stops here. That is the whole job.</p>
+    </div>
+  </li>
+
+  <li class="step">
+    <div class="rail"><span class="dot">4</span></div>
+    <div class="body">
+      <div class="when">Tue 12:20 PM · the number</div>
+      <h2>Joe replies with what it's worth</h2>
+      <div class="chat reply">
+        <div class="tag">↳ Reply in the MSFT thread</div>
+        <div class="msg"><span class="av" style="--c:var(--joe)">J</span><div>
+          <div class="mh"><b>Joe Brown</b><time>12:20 PM</time></div>
           <div class="mt">
-            <p><b>Case against JPM:</b> banks fall hardest in a recession, and this puts our whole Financials slot in one company. 5% on day one leaves no room to add if it drops. The 20% is Joe's estimate, not a fact, and a slightly higher discount rate shrinks it.</p>
-            <p>I'd argue for 3% now, and adding later if it holds up.</p>
+            <p>My value is a range, not a number: roughly fair to about 10% above today's price, using 2.5% terminal growth like every other name we run.</p>
+            <p>3% of $300,000 is about $9,000. Added to the Ledger with the date and source.</p>
           </div>
         </div></div>
       </div>
-      <p class="aside"><b>Last reply before the vote, on purpose:</b> he can read the pitch and Caleb's answer first. If it's late, the team votes without it.</p>
+      <p class="aside">A low value is evidence for the vote, not a veto. Joe votes like everyone else.</p>
     </div>
   </li>
 
   <li class="step s-main">
-    <div class="rail"><span class="dot">4</span></div>
-    <div class="body">
-      <div class="when">Tue 8 PM · Michael</div>
-      <h2>Michael puts the vote on tomorrow's meeting</h2>
-      <div class="chat main">
-        <div class="tag">Main chat · new message, not in the thread</div>
-        <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
-          <div class="mh"><b>Michael Fitzgerald</b><time>8:00 PM</time></div>
-          <div class="mt"><p>Meeting tomorrow, zero period, library. One line each by 7 a.m.</p><p>1. Vote on Joe's JPM card (read its thread first): 5%, or Dylan's 3%?<br>2. Who pitches next week?</p></div>
-        </div></div>
-      </div>
-      <p class="aside">Nobody votes here. Michael just puts it on the meeting's list.</p>
-    </div>
-  </li>
-
-  <li class="step s-live">
     <div class="rail"><span class="dot">5</span></div>
     <div class="body">
-      <div class="when">Wed · zero period</div>
-      <h2>The vote, in person</h2>
-      <div class="live">
-        <ol>
-          <li>Dylan talks first, with the case against.</li>
-          <li>Joe answers. Everyone else, one line each.</li>
-          <li>Hands up on 5%. Federico counts out loud: three.</li>
-        </ol>
-        <div class="res">5% is under 10% of the portfolio, so 3 of 5 passes. Approved.</div>
+      <div class="when">Tue 12:40 PM · the poll</div>
+      <h2>Michael opens the poll on the thread</h2>
+      <div class="chat reply">
+        <div class="tag">↳ Poll in the MSFT thread</div>
+        <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
+          <div class="mh"><b>Michael Fitzgerald</b><time>12:40 PM</time></div>
+          <div class="mt"><p><b>Buy MSFT at 3%?</b> Read Dylan's case against first. Closes at 2 PM so it can be placed before the market closes.</p>
+            <p>👍 Yes &nbsp;·&nbsp; 👎 No</p></div>
+        </div></div>
       </div>
-      <p class="aside">Over 10% of the portfolio, a new kind of investment, or a change to the plan would need 4 of 5.</p>
+      <div class="live">
+        <div class="res">4 yes, 1 no. 3% is under 10% of the portfolio, so 3 of 5 passes. Approved.</div>
+      </div>
+      <p class="aside">Over 10% of the portfolio, a new kind of investment, or a change to the plan needs 4 of 5. Anything the poll can't settle waits for Sunday's call — it never gets its own extra meeting.</p>
     </div>
   </li>
 
   <li class="step">
     <div class="rail"><span class="dot">6</span></div>
     <div class="body">
-      <div class="when">Wed · right after the meeting</div>
-      <h2>Federico posts the result in the thread</h2>
+      <div class="when">Tue 2:10 PM · placed</div>
+      <h2>It gets placed, with the card pasted into the trade note</h2>
       <div class="chat reply">
-        <div class="tag">↳ Reply in the JPM thread</div>
-        <div class="msg"><span class="av" style="--c:var(--fed)">F</span><div>
-          <div class="mh"><b>Federico Mancini</b><time>Wed 9:20 AM</time></div>
-          <div class="mt"><p>Approved at 5% ($15,000), 3 to 2. Dylan and I wanted 3%. Michael places it at lunch.</p></div>
+        <div class="tag">↳ Reply in the MSFT thread</div>
+        <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
+          <div class="mh"><b>Michael Fitzgerald</b><time>2:10 PM</time></div>
+          <div class="mt"><p>Placing it now. Pasted the whole card into the WInS trade note before hitting Confirm ✅</p></div>
         </div></div>
       </div>
+      <p class="aside"><b>The note goes in before Confirm.</b> WInS asks for it on the Review Order screen, and that note is what Wharton grades on Oct 23. Not an afterthought.</p>
     </div>
   </li>
 
   <li class="step">
     <div class="rail"><span class="dot">7</span></div>
     <div class="body">
-      <div class="when">Wed · the same day</div>
-      <h2>Placed, noted, logged. The thread is done.</h2>
+      <div class="when">Tue · the same day</div>
+      <h2>Logged. The thread is done.</h2>
       <div class="chat reply">
-        <div class="tag">↳ Replies in the JPM thread</div>
-        <div class="msg"><span class="av" style="--c:var(--mic)">M</span><div>
-          <div class="mh"><b>Michael Fitzgerald</b><time>12:15 PM</time></div>
-          <div class="mt"><p>Placed in WInS: $15,000 of JPM ✓</p></div>
+        <div class="tag">↳ Replies in the MSFT thread</div>
+        <div class="msg"><span class="av" style="--c:var(--cal)">C</span><div>
+          <div class="mh"><b>Caleb Hamels</b><time>2:30 PM</time></div>
+          <div class="mt"><p>Fit check row added ✓</p></div>
         </div></div>
-        <div class="msg"><span class="av" style="--c:var(--joe)">J</span><div>
-          <div class="mh"><b>Joe Brown</b><time>3:30 PM</time></div>
-          <div class="mt"><p>Wrote the trading note in WInS ✓</p></div>
+        <div class="msg"><span class="av" style="--c:var(--dyl)">D</span><div>
+          <div class="mh"><b>Dylan Wroan</b><time>3:05 PM</time></div>
+          <div class="mt"><p>Bear case column filed ✓</p></div>
         </div></div>
         <div class="msg"><span class="av" style="--c:var(--fed)">F</span><div>
           <div class="mh"><b>Federico Mancini</b><time>4:05 PM</time></div>
-          <div class="mt"><p>Logged, Log row 8 ✓</p></div>
+          <div class="mt"><p>Logged, Log row 8, with the poll result ✓</p></div>
         </div></div>
       </div>
-      <p class="aside">Team rule: whoever pitched writes the trade's note in WInS the same day.</p>
+      <p class="aside">Team rule: whoever places it pastes the card into the WInS note before Confirm, and Federico logs it the same day.</p>
     </div>
   </li>
 
@@ -285,7 +292,7 @@ h2{margin:8px 0 18px;font:700 20px/1.3 var(--ui);color:var(--ink);text-wrap:bala
         <div><b>Dylan</b>A column on his Bear case tab</div>
         <div><b>Joe</b>His Valuation tab, and the WInS note</div>
       </div>
-      <div class="no"><b>If the vote fails,</b> Federico replies "Not approved, 2 to 3" and the thread ends there. Nothing gets placed or logged.</div>
+      <div class="no"><b>If the poll fails,</b> Federico replies "Not approved, 2 to 3" and the thread ends there. Nothing gets placed or logged.</div>
     </div>
   </li>
 

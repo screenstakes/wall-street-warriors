@@ -1,11 +1,13 @@
 /* Wall Street Warriors — season data.
    Everything the site shows comes from here. The Sep 15 materials are partly in: the client case
    and the Competition Guide. Four portal pages are still missing: Deliverables, FAQs, WInS, Trading.
+   Team process was reset on the Sep 20 call: weekly Sunday 8pm Zoom, trades voted by Google Chat poll
+   on the card's own thread, sectors picked but provisional pending 2-3 areas each.
    Dates carry an Eastern Time offset: -04:00 through Oct 31, -05:00 from Nov 1, 2026. */
 
 window.WSW = window.WSW || {};
 WSW.data = {
-  checkedOn: "2026-09-16",
+  checkedOn: "2026-09-20",
 
   /* Warren, the site's helper: the relay that holds the Claude key (see agentic-os/warren-relay). */
   /* Two hostnames, one relay. School filters block *.sslip.io (it reads as dynamic DNS), so the
@@ -334,16 +336,16 @@ WSW.data = {
   roles: [
     { id: "lead", title: "Team leader and submissions", fixed: "michael", backup: "log",
       owns: "Sends every deliverable to Wharton and keeps the calendar. Breaks a tie vote. Does the last read of the IPS and the report so five people's writing sounds like one team.",
-      weekly: "Posts the week's three questions the night before the meeting. Chairs it. Submits a day early, never on the deadline." },
+      weekly: "Posts the week's questions in the chat before Sunday's call and chairs it. Opens the poll on every trade card. Submits a day early, never on the deadline." },
     { id: "client", title: "Laura's case", backup: "lead",
       owns: "Knows the client case cold and answers one question on every trade: does this help Laura? Writes the first draft of the IPS.",
       weekly: "Keeps the one-page client brief current. Any pitch that doesn't name one of her goals gets sent back." },
     { id: "numbers", title: "The numbers", backup: "lead",
       owns: "The math and the charts: what return we need, the bond ladder, what a position does to the whole portfolio. Only person who edits the spreadsheet.",
-      weekly: "One new name analysed with a valuation. Updates the portfolio sheet before the meeting." },
+      weekly: "One new name analysed with a valuation, with the math shown. Portfolio tab updated by Friday." },
     { id: "risk", title: "Risk and the bear case",  backup: "client",
       owns: "Checks every trade against our limits before the vote, and writes the short version of why it could be wrong. Never writes the bear case on their own idea.",
-      weekly: "Posts a one-page risk sheet before the meeting: what we hold, anything near a limit, the worst case." },
+      weekly: "The case against each card, posted in its thread before the poll opens. Limits tab done by Friday: what we hold, anything near a limit, the worst case." },
     { id: "log", title: "Trade log and the rules", backup: "numbers",
       owns: "Logs every trade the same day, checks the log against WInS each week, and owns the Oct 23 Trading Notes Analysis. Also keeps the checklist of Wharton's rules and formats \u2014 nothing gets submitted until it passes.",
       weekly: "Same-day log entries, a 10-line set of minutes within a day, and one reconciliation against the account." }
@@ -354,7 +356,7 @@ WSW.data = {
   /* The team's working files: one Google Sheet each, in Michael's school Drive
      (Wall Street Warriors → Team docs), shared to the team's school emails. Paste each
      sheet's link into url; an empty url shows "Link coming" instead of a button. The order
-     follows a trade: fit check, number, case against, log, then Michael's dashboard.
+     follows a trade: case against, fit check, number, log, then Michael's dashboard.
      guide: an optional how-to page for that job, linked next to the job name;
      guideLabel replaces the link text "How-to" when the page covers only part of the job. */
   files: {
@@ -383,40 +385,45 @@ WSW.data = {
     ],
     coach: { title: "Coach P — Season overview", url: "", what: "One read-only page for Coach P that fills itself in: deliverable status with days left, each person's weeks, portfolio health, and what the team needs from him." },
     flow: [
-      { when: "Before a vote", what: "Someone pitches a trade. Caleb checks it fits Laura, Joe works out what the stock is worth, and Dylan posts the case against it." },
-      { when: "After the vote", what: "Federico logs the trade the same day, with the reason." },
+      { when: "Before a vote", what: "Michael posts the trade card. Dylan writes the case against it and checks our limits, Caleb says which of Laura\u2019s goals it serves, and Joe works out what the stock is worth." },
+      { when: "After the vote", what: "The poll on the card\u2019s thread decides it. Federico logs the trade the day it\u2019s executed, with the reason." },
       { when: "Every Friday", what: "Federico checks his log against WInS. Joe copies what we own into his Portfolio tab and Dylan into his Limits tab. The dashboard checks all three totals match." },
       { when: "All the time", what: "Michael's dashboard pulls from all four sheets on its own: who finished their week, how far the IPS is, and any rules or risk flags." }
     ]
   },
 
+  /* Picked live on the Sep 20 call. NOT final: one area each leaves too much of the market uncovered,
+     so Monday Sep 21 moves this to two or three areas each across the whole equity market, with fixed
+     income handled separately. Update owner as that settles. */
+  sectorsNote: "Picked Sep 20 and not final yet. One area each leaves too much of the market uncovered, so we\u2019re moving to two or three areas each, with fixed income handled separately. We settle it at Monday\u2019s lunch.",
   sectors: [
-    { id: "tech",   name: "Tech and communication", eg: "software, chips, phones, media" },
-    { id: "health", name: "Health care",            eg: "drugs, devices, insurers" },
-    { id: "fin",    name: "Financials",             eg: "banks, payments, insurance" },
-    { id: "ind",    name: "Industrials and energy", eg: "machines, transport, oil, utilities" },
-    { id: "cons",   name: "Consumer",               eg: "food, retail, restaurants, travel" }
+    { id: "tech",   name: "Tech and communication", eg: "software, chips, phones, media",      owner: "michael" },
+    { id: "health", name: "Health care",            eg: "drugs, devices, insurers",            owner: "joe" },
+    { id: "fin",    name: "Financials",             eg: "banks, payments, insurance",          owner: "caleb" },
+    { id: "ind",    name: "Industrials and energy", eg: "machines, transport, oil, utilities", owner: "dylan" },
+    { id: "cons",   name: "Consumer",               eg: "food, retail, restaurants, travel",   owner: "" }
   ],
 
   /* How we decide and how we meet. Scaled from real investment-club rules: a written objection with a
      deadline, and silence lets the trade go ahead, so nobody can block a trade by never answering. */
   ops: {
     decide: [
-      "3 of 5 yes approves a trade. Michael breaks a tie.",
+      "Trades are voted in a Google Chat poll on the card\u2019s own thread. 3 of 5 yes approves. Michael breaks a tie.",
       "4 of 5 for anything over 10% of the portfolio, a new kind of investment, or a change to the plan.",
+      "Anything the poll can\u2019t settle waits for Sunday\u2019s call. It never gets its own extra meeting.",
       "The bear case is posted before the vote. If it isn't posted in time the trade goes ahead \u2014 staying quiet is not a veto.",
       "Position limits until the Trading page says otherwise: 5% of the portfolio in one stock to start, 8% at most, 30% in one sector.",
       "Whoever proposes a trade writes its note the same day. No note, no trade next time.",
       "Your name stays on your section even when it's empty. Nobody quietly covers for anyone."
     ],
     meeting: {
-      length: "18 minutes, standing",
+      length: "Sundays, 8:00 p.m., about 30 minutes on Zoom",
       steps: [
-        "The night before, Michael posts 2 or 3 questions in the chat. Everyone replies with one line per question before the meeting.",
-        "0\u20132 min: Michael says what the replies already settled. Missed the chat? Say your answers now.",
-        "2\u20134 min: one line each on whatever is still split, no arguing. On a trade, Dylan goes first with the case against.",
-        "4\u201315 min: talk it out, then vote. 3 of 5 passes; 4 of 5 if it's over 10% of the portfolio.",
-        "15\u201318 min: who does what, each with a day, time and place. Federico reads it back, then writes one row in his Minutes tab and posts it in the chat. Nobody else takes notes."
+        "During the week everything happens in the chat. A trade card gets its own thread and the whole discussion stays in that thread.",
+        "By Friday, fill in your week's section of your own sheet, so the call reviews a week that is already finished.",
+        "First few minutes: what the chat and the polls already settled. Then anything still split. On a trade, Dylan goes first with the case against.",
+        "Anything a poll could not settle gets decided here, out loud. It never gets its own extra meeting.",
+        "Last few minutes: who does what, each with a day. Federico reads it back, writes the one row in his Minutes tab and posts it in the chat. Nobody else takes notes."
       ]
     },
     /* The five things the report is scored on. Wharton's wording, from the archived Judging and
@@ -444,7 +451,7 @@ WSW.data = {
     /* The season changes shape four times. Each phase has one person on point. */
     phases: [
       { id: "setup", when: "Sep 28 \u2013 Oct 9", name: "Set up and start trading", lead: "lead",
-        does: ["Everyone picks a sector and names their backup", "The one-page team agreement gets signed by all five", "First trades, each with its note the same day"],
+        does: ["Everyone settles their two or three research areas and names their backup", "The one-page team agreement gets signed by all five", "First trades, each with its note the same day"],
         gate: "Roster submitted Oct 6 or 7, not Oct 9." },
       { id: "notes", when: "Oct 10 \u2013 Oct 23", name: "Trading Notes Analysis", lead: "log",
         does: ["Keep trading and keep writing notes", "Pick the three notes that best show the strategy being tested", "Write the analysis from everyone's notes"],
@@ -473,7 +480,17 @@ WSW.data = {
     { id: "reg-open",   date: "2026-08-10T09:00:00-04:00", kind: "event",       title: "Registration opened", detail: "Advisors could register teams from Aug 10.", official: true },
     { id: "reg-close",  date: "2026-09-11T17:00:00-04:00", kind: "event",       title: "Registration closed; team accounts due", detail: "Coach P registered Wall Street Warriors and created the shared WInS account before the deadline.", official: true },
     { id: "release",    date: "2026-09-15T09:30:00-04:00", kind: "release",     title: "Case study and materials released; practice opens", detail: "The team leader receives the SurveyMonkey Apply invitation. The client case study, trading requirements and deliverable instructions are posted there. Practice trading on WInS opens at 9:30 a.m. ET.", official: true, action: "Michael: find the invite (check spam), opt in to Wharton communications, download everything, post it in the team chat." },
-    { id: "meeting",    date: "2026-09-16T09:00:00-05:00", kind: "internal",    title: "Team meeting (Wed 9:00 a.m.)", detail: "Tuesday lunch has passed, so the remaining option is Wednesday Sep 16 during zero period, around 9:00 a.m. Michael confirms in the chat. Agenda: read the case together, assign roles, decide what to test in practice.", official: false, tentative: true },
+    { id: "lunch-0921",  date: "2026-09-21T12:00:00-05:00", kind: "internal",    title: "Team lunch: finish the SGOV card", detail: "At school. Finish and vote the SGOV practice card, walk Federico through logging a trade, run a fresh card on Microsoft end to end, and settle how we split the market research. Dylan is bringing pizza.", official: false },
+    { id: "call-20260927",  date: "2026-09-27T20:00:00-05:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "The starting portfolio. We vote the whole opening mix as one package the night before trading starts, and everyone brings their sector's idea. Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261004",  date: "2026-10-04T20:00:00-05:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261011",  date: "2026-10-11T20:00:00-05:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261018",  date: "2026-10-18T20:00:00-05:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261025",  date: "2026-10-25T20:00:00-05:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Trading Notes Analysis is due Friday. Federico has the draft. Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261101",  date: "2026-11-01T20:00:00-06:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261108",  date: "2026-11-08T20:00:00-06:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "The IPS went in Friday and trading has ended. From here it is the final report. Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261115",  date: "2026-11-15T20:00:00-06:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261122",  date: "2026-11-22T20:00:00-06:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Drafts are due Friday Nov 20. Thanksgiving is Thursday. Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
+    { id: "call-20261129",  date: "2026-11-29T20:00:00-06:00", kind: "internal",    title: "Weekly team call (Sun 8:00 p.m.)", detail: "Every Sunday on Zoom, about 30 minutes, for the next ten weeks. We review the week that just finished and set the next one. Have your week's section of your own sheet filled in by Friday so the call reviews finished work.", official: false },
     { id: "practice-end", date: "2026-09-25T16:00:00-04:00", kind: "practice", title: "Practice ends; portfolios removed", detail: "All practice portfolios are deleted at 4:00 p.m. ET. Nothing carries over to the competition.", official: true, action: "Roster decision: are we 4 or 5? Thesis written. Trade journal set up." },
     { id: "trading",    date: "2026-09-28T09:30:00-04:00", kind: "trading",     title: "Competition trading begins", detail: "The real portfolio opens. From this day the team must stay at 4–6 members and the team leader can't be changed.", official: true },
     { id: "roster-int", date: "2026-10-02T17:00:00-04:00", kind: "internal",    title: "Internal: roster final", detail: "Every name, email and grade collected one week before Wharton's deadline.", official: false },
@@ -519,7 +536,7 @@ WSW.data = {
   /* Was "verify on Sep 15". The materials are out, so these are the questions still open and which
      portal page answers each. Everything marked Trading/Deliverables is a page we have not pulled in. */
   verifyChecklist: [
-    { q: "Starting cash for the real 2026\u201327 contest, and which contest is selected in WInS", where: "Trading" },
+    { q: "Starting cash for the real 2026\u201327 contest, and which contest is selected in WInS", where: "done", answer: "$300,000. Confirmed on the Sep 20 call and it is what every team sheet uses." },
     { q: "Minimum share price ($5 last season) and whether it applies to foreign listings in local currency", where: "Trading" },
     { q: "Approved ETF and Treasury lists for 2026\u201327; is at least one ETF still required?", where: "Trading" },
     { q: "Short selling, margin, options, futures, mutual funds, crypto: on or off", where: "Trading" },
@@ -618,15 +635,16 @@ WSW.data = {
   ],
 
   weekly: [
-    { d: "Monday", t: "Sector pitches", s: "Each person brings one idea from their sector and says which of Laura's goals it serves. Ten minutes each." },
-    { d: "Tuesday", t: "Numbers and the bear case", s: "The numbers owner values anything the team liked. The risk owner writes the short case against it, and posts it before the vote." },
-    { d: "Wednesday", t: "Vote and trade", s: "18 minutes, standing. 3 of 5 approves. Whoever proposes a trade writes its note the same day \u2014 everyone journals." },
-    { d: "Friday", t: "Write", s: "Three lines each in the journal: what I learned, what I'd do differently, one number I watched. Then an hour on whatever the current phase is building." }
+    { d: "Any day", t: "The card goes up", s: "A trade card gets its own thread in the Google Chat. Dylan posts the case against and checks the limits, Caleb says which of Laura's goals it serves, Joe posts what it's worth. Everyone replies in that one thread." },
+    { d: "Any day", t: "The poll", s: "Michael opens a poll on the card's thread. 3 of 5 approves, 4 of 5 for anything over 10% of the portfolio. Federico logs it the day it's executed, with the reason." },
+    { d: "Friday", t: "Fill in your week", s: "Your section of your own sheet, done before the weekend, so Sunday reviews finished work. Three lines in the journal: what I learned, what I'd do differently, one number I watched." },
+    { d: "Sunday 8 p.m.", t: "The weekly call", s: "About 30 minutes on Zoom, every week for ten weeks. What the polls already settled, anything still split, then who does what. Federico writes the one row." }
   ],
 
   announcements: [
+    { date: "2026-09-20", text: "First weekly call done. Sectors for now: Michael tech, Joe health care, Caleb financials, Dylan industrials, and consumer is open for Federico. Not final \u2014 one area each leaves too much of the market uncovered, so we\u2019re moving to two or three each with fixed income separate, and we settle it at Monday\u2019s lunch. Bitcoin is out: too volatile for what Laura said she wants. The SGOV practice card is still open and gets finished and voted Monday. From here the call is every Sunday at 8." },
     { date: "2026-09-16", text: "The case is out. Our client is Laura Gao \u2014 Wharton 2018, bestselling graphic novelist, building a creative residency in Taiwan in 2033. She invests $300,000 in 2027 and adds $150,000 in 2028, then owes ten fixed $50,000 payments from 2033 to 2042. Full case and the numbers are on the Case page; the Competition Guide is on the Playbook page." },
-    { date: "2026-09-14", text: "Federico is in. We're five: Michael, Caleb, Dylan, Joe and Federico, one above Wharton's minimum. First team meeting is Tuesday at lunch or Wednesday zero period around 9:00 a.m.; Michael confirms the time in the chat." },
+    { date: "2026-09-14", text: "Federico is in. We're five: Michael, Caleb, Dylan, Joe and Federico, one above Wharton's minimum." },
     { date: "2026-09-14", text: "Practice trading and the client case study arrive tomorrow, Sep 15. Michael will post the case in the chat once the SurveyMonkey Apply invite lands." },
     { date: "2026-09-13", text: "Roster for the season: Michael, Caleb, Dylan, Joe, and maybe Federico. Cash can't do it." },
     { date: "2026-09-04", text: "Registered as Wall Street Warriors. Coach P created the shared WInS team account; the $300,000 showing is the practice portfolio." }

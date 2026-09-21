@@ -102,6 +102,8 @@
   .news-more[open] .news-more-closed,.news-more:not([open]) .news-more-open{display:none}
   section[aria-labelledby="news-champs-h"]:has(.news-more:not([open]):not([hidden])) #news-champs tr:nth-child(n+5){display:none}
 }
+  /* The rail is taller than the main column, so pin it instead of leaving dead space. */
+  @media (min-width:981px){ .main-rail > aside{ position:sticky; top:16px; align-self:start; } }
 </style>
 </head>
 <body>
@@ -213,7 +215,7 @@
 <footer class="site">
   <div class="shell">
     <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
-    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026 · <a href="news.html#sources">Sources</a></span>
+    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 20, 2026 · <a href="news.html#sources">Sources</a></span>
   </div>
 </footer>
 

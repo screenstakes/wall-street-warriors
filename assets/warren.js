@@ -104,7 +104,7 @@
   /* ---------- local fallback: a few honest answers from the site data ---------- */
   var NAMED = [
     [/\broster\b/, "roster"], [/trading notes?|notes analysis/, "notes"], [/\bips\b|investment policy/, "ips"], [/final report|\breport\b/, "report"],
-    [/\bpractice\b/, "practice-end"], [/trading (begins|starts|opens)|competition trading|first day of trading/, "trading"], [/\bfinale\b|philadelphia/, "finale"], [/\bmeeting\b/, "meeting"]
+    [/\bpractice\b/, "practice-end"], [/trading (begins|starts|opens)|competition trading|first day of trading/, "trading"], [/\bfinale\b|philadelphia/, "finale"]
   ];
   function local(q) {
     if (!D) return "";
@@ -119,12 +119,31 @@
         "**Pile B is what's left** in 2033 after the reserve is set aside; we recommend how much of it goes to the residency.\n\nFull story: the Guide and Case pages.";
     }
     if (/\b(job|jobs|role|roles|assign|assigned|owns?)\b/.test(s) && D.roles) {
+      var jobOwner = {};
+      ((D.files && D.files.list) || []).forEach(function (f) {
+        var m = f.id && W.member ? W.member(f.id) : null; if (f.role && m) jobOwner[f.role] = m.name;
+      });
       var picks = (W.store && W.store.get("roles", {})) || {};
       var lines = D.roles.map(function (r) {
         var id = r.fixed || picks[r.id] || r.suggest || "", mem = id && W.member ? W.member(id) : null;
-        return "- **" + r.title + "**: " + (mem ? mem.name : id || "open") + " — " + r.owns;
+        return "- **" + r.title + "**: " + (jobOwner[r.id] || (mem ? mem.name : id) || "open") + " — " + r.owns;
       });
-      return "I can't tell who you are, so here are all the roles:\n\n" + lines.join("\n") + "\n\nPicks are saved per browser on the Team page.";
+      return "Here are all five jobs:\n\n" + lines.join("\n") + "\n\nEveryone also follows one area of the market — ask me about sectors.";
+    }
+
+    if (/\bsectors?\b|\bindustr|\bareas?\b/.test(s) && D.sectors) {
+      var sl = D.sectors.map(function (x) {
+        var sm = x.owner && W.member ? W.member(x.owner) : null;
+        return "- **" + x.name + "**: " + (sm ? sm.name : "open") + " — " + x.eg;
+      });
+      return sl.join("\n") + (D.sectorsNote ? "\n\n" + D.sectorsNote : "");
+    }
+
+    if (/\bmeetings?\b|\bcalls?\b|\bzoom\b/.test(s)) {
+      return "**The team call is every Sunday at 8:00 p.m. on Zoom, about 30 minutes**, for the next ten weeks. " +
+        "During the week everything happens in the Google Chat: a trade card gets its own thread, and the vote is a poll on that thread. " +
+        "Have your week's section of your own sheet filled in by Friday, so the call reviews a finished week. " +
+        "Exact dates are on the Calendar page.";
     }
     if (/\bwins\b|simulator|stocktrak|surveymonkey|portal|\bapply\b|login|\blinks?\b/.test(s) && T.simulator) {
       return "- [" + T.simulator.name + "](" + T.simulator.url + ") — " + T.simulator.note + "\n- [" + T.portal.name + "](" + T.portal.url + ") — " + T.portal.note +

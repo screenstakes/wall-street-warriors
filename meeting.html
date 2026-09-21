@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Our Meetings">
 <meta property="og:title" content="How Our Meetings Work">
-<meta property="og:description" content="Talk in the chat, decide in the meeting, Federico writes it down. A full example, one screen at a time.">
+<meta property="og:description" content="Talk in the chat, settle the rest on the Sunday call, Federico writes it down. A full example, one screen at a time.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>How Our Meetings Work · Wall Street Warriors</title>
@@ -50,7 +50,7 @@ body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);
 main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-block:16px 20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
 .top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.screen{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.screen{max-width:680px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
 .eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
 .eyebrow.ex{color:var(--orange-ink)}
 .eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
@@ -173,11 +173,11 @@ tr.hl td{background:var(--tint)}
 
 <section class="screen" data-ch="0" aria-labelledby="h1">
   <div class="eyebrow">How our meetings work</div>
-  <h1 id="h1" tabindex="-1">Talk in the chat. Decide in the meeting. Federico writes it down.</h1>
+  <h1 id="h1" tabindex="-1">Talk in the chat. Settle the rest on Sunday. Federico writes it down.</h1>
   <ol class="flow">
-    <li data-n="1"><b>The night before</b><span>Michael posts 2 or 3 questions in the chat.</span></li>
-    <li data-n="2"><b>Before the meeting</b><span>Everyone replies, one line per question.</span></li>
-    <li data-n="3"><b>The meeting, 18 minutes</b><span>Settle whatever the replies didn't, then who does what.</span></li>
+    <li data-n="1"><b>During the week</b><span>Trades get decided by poll, on their own thread. Michael posts the week’s questions in the chat.</span></li>
+    <li data-n="2"><b>Before the call</b><span>Everyone replies, one line per question. Your sheet is filled in by Friday.</span></li>
+    <li data-n="3"><b>Sunday, 8 p.m., about 30 min</b><span>Settle whatever the chat and the polls didn’t, then who does what.</span></li>
     <li data-n="4"><b>The same day</b><span>Federico writes one row in his Minutes tab. You do your task in your own sheet.</span></li>
   </ol>
   <p class="small">The next screens walk through one example, start to finish.</p>
@@ -200,9 +200,9 @@ tr.hl td{background:var(--tint)}
 </section>
 
 <section class="screen" data-ch="1" aria-labelledby="h3" hidden>
-  <div class="eyebrow ex">Tuesday, 8 p.m.</div>
+  <div class="eyebrow ex">Sunday, by 6 p.m.</div>
   <h1 id="h3" tabindex="-1">Michael posts the questions</h1>
-  <div class="bubble"><span class="who">Michael, in the chat</span>Meeting tomorrow, zero period, library. Reply to each with one line by 7 a.m.
+  <div class="bubble"><span class="who">Michael, in the chat</span>Call tonight, 8pm, Zoom. Reply to each with one line before then.
     <ol>
       <li>On Sep 28, do we start with an S&amp;P 500 fund (VOO)? 10% or 15% of our $300,000?</li>
       <li>Buy it all on day one, or spread it over two weeks?</li>
@@ -213,8 +213,8 @@ tr.hl td{background:var(--tint)}
 </section>
 
 <section class="screen" data-ch="1" aria-labelledby="h4" hidden>
-  <div class="eyebrow ex">By 7 a.m.</div>
-  <h1 id="h4" tabindex="-1">Everyone replies before the meeting</h1>
+  <div class="eyebrow ex">By 8 p.m.</div>
+  <h1 id="h4" tabindex="-1">Everyone replies before the call</h1>
   <div class="replies">
     <div class="reply"><span class="who">Joe</span><span>1. VOO, 15%. 2. Spread. 3. Me.</span></div>
     <div class="reply"><span class="who">Dylan</span><span>1. 10%. If it drops 20%, 15% loses $9,000. 2. Spread.</span></div>
@@ -222,32 +222,32 @@ tr.hl td{background:var(--tint)}
     <div class="reply"><span class="who">Federico</span><span>1. 10%, keep cash for stock picks. 2. Day one.</span></div>
     <div class="reply"><span class="who">Michael</span><span>1. 15%. 2. Spread. 3. Joe.</span></div>
   </div>
-  <div class="callout ok">Question 2 is settled: spread it, 4 to 1. Question 3: Joe. Question 1 is split 3 to 2, so that's the only thing the meeting has to talk about.</div>
+  <div class="callout ok">Question 2 is settled: spread it, 4 to 1. Question 3: Joe. Question 1 is split 3 to 2, so that’s the only thing the call has to talk about.</div>
 </section>
 
 <section class="screen" data-ch="2" aria-labelledby="h5" hidden>
-  <div class="eyebrow ex">Wednesday, zero period</div>
-  <h1 id="h5" tabindex="-1">The meeting, minute by minute</h1>
+  <div class="eyebrow ex">Sunday, 8 p.m. · Zoom</div>
+  <h1 id="h5" tabindex="-1">The call, start to finish</h1>
   <div class="tl">
-    <div><time>0–2</time><span>Michael: <q>Spreading it and Joe's pitch are settled. The fund size is split, so that's today.</q> Anyone who skipped the chat says their answers now.</span></div>
-    <div><time>2–4</time><span>One line each, no arguing. Dylan goes first with the case against.</span></div>
-    <div><time>4–12</time><span>Talk it out. Joe: <q>In two halves, only $22,500 goes in on day one. If it drops, the second half buys cheaper.</q> Caleb: <q>Laura doesn't touch this money until 2033.</q></span></div>
-    <div><time>12–15</time><span>Vote: 15%, bought in two halves. It's over 10% of the portfolio, so it needs 4 of 5. Federico counts four hands. It passes.</span></div>
-    <div><time>15–18</time><span>Who does what. Next screen.</span></div>
+    <div><time>First</time><span>Michael: <q>Spreading it and Joe’s pitch are settled. The fund size is split, so that’s tonight.</q> Anyone who skipped the chat says their answers now.</span></div>
+    <div><time>Then</time><span>One line each, no arguing. Dylan goes first with the case against.</span></div>
+    <div><time>The middle</time><span>Talk it out. Joe: <q>In two halves, only $22,500 goes in on day one. If it drops, the second half buys cheaper.</q> Caleb: <q>Laura doesn't touch this money until 2033.</q></span></div>
+    <div><time>The call</time><span>Decide it: 15%, bought in two halves. It’s over 10% of the portfolio, so it needs 4 of 5. Four yes. It passes, and Federico writes it down.</span></div>
+    <div><time>Last</time><span>Who does what. Next screen.</span></div>
   </div>
 </section>
 
 <section class="screen" data-ch="2" aria-labelledby="h6" hidden>
-  <div class="eyebrow ex">The last 3 minutes</div>
+  <div class="eyebrow ex">The last few minutes</div>
   <h1 id="h6" tabindex="-1">Everyone leaves with a task, a day and a place</h1>
   <div class="tasks">
     <div class="task"><span class="who">Michael</span><span class="what">Buy the first half of VOO in WInS</span><span class="when">Mon Sep 28, lunch</span></div>
     <div class="task"><span class="who">Federico</span><span class="what">Log the trade</span><span class="when">Monday, the same day · <i>Log</i></span></div>
-    <div class="task"><span class="who">Joe</span><span class="what">Value his stock pick</span><span class="when">Thursday, 6th period, library · <i>Valuation</i></span></div>
-    <div class="task"><span class="who">Caleb</span><span class="what">Does Joe's pick fit Laura?</span><span class="when">By Sunday, 8 p.m. · <i>Fit check</i></span></div>
-    <div class="task"><span class="who">Dylan</span><span class="what">The case against Joe's pick</span><span class="when">By Tuesday, 8 p.m. · <i>Bear case</i></span></div>
+    <div class="task"><span class="who">Joe</span><span class="what">Value his stock pick</span><span class="when">By Wednesday · <i>Valuation</i></span></div>
+    <div class="task"><span class="who">Caleb</span><span class="what">Does Joe’s pick fit Laura?</span><span class="when">After Dylan posts · <i>Fit check</i></span></div>
+    <div class="task"><span class="who">Dylan</span><span class="what">The case against Joe’s pick</span><span class="when">First reply, before the poll · <i>Bear case</i></span></div>
   </div>
-  <p class="small">Federico reads the list back before anyone leaves. "I'll look at it" doesn't count. Every task gets a day, a time and a place.</p>
+  <p class="small">Federico reads the list back before anyone drops off. "I'll look at it" doesn't count. Every task gets a day, a time and a place.</p>
 </section>
 
 <section class="screen" data-ch="3" aria-labelledby="h7" hidden>
@@ -256,15 +256,15 @@ tr.hl td{background:var(--tint)}
   <div class="sheet">
     <div class="sheet-cap">Federico's sheet · Minutes tab</div>
     <dl>
-      <dt>Date</dt><dd>2026-09-23</dd>
+      <dt>Date</dt><dd>2026-09-27</dd>
       <dt>Who was there</dt><dd>All five</dd>
       <dt>Questions</dt><dd>1. S&amp;P fund on Sep 28, 10% or 15%? 2. All at once or spread? 3. Who pitches first?</dd>
       <dt>What we decided</dt><dd>VOO at 15%, bought in two halves, Sep 28 and Oct 5. Passed 4 to 1, Dylan no. Joe pitches next week.</dd>
-      <dt>Who does what</dt><dd>Michael: buy half, Mon lunch. Federico: log it Mon. Joe: value his pick, Thu 6th, library. Caleb: fit check by Sun 8pm. Dylan: case against by Tue 8pm.</dd>
+      <dt>Who does what</dt><dd>Michael: buy half, Mon lunch. Federico: log it Mon. Joe: value his pick by Wed. Dylan: case against, first reply. Caleb: fit check after Dylan.</dd>
       <dt>Blocked on</dt><dd>Nothing</dd>
     </dl>
   </div>
-  <p class="small">Then he pastes it in the chat. Missed the meeting? That message is all you need to read.</p>
+  <p class="small">Then he pastes it in the chat. Missed the call? That message is all you need to read.</p>
 </section>
 
 <section class="screen" data-ch="4" aria-labelledby="h8" hidden>
@@ -273,7 +273,7 @@ tr.hl td{background:var(--tint)}
   <div class="roles">
     <div><b>Everyone</b><span>Reply in the chat before the meeting. Do your task in your own sheet. Friday, tick ✓ on your This week tab.</span></div>
     <div><b>Michael</b><span>Posts the questions the night before, keeps time, and says what the chat already settled.</span></div>
-    <div><b>Federico</b><span>Counts the votes, reads back who does what, then writes the row and posts it.</span></div>
+    <div><b>Federico</b><span>Reads back who does what, then writes the one row and posts it.</span></div>
     <div><b>Dylan</b><span>Goes first on any trade, with the case against.</span></div>
     <div><b>Joe</b><span>Brings the number.</span></div>
     <div><b>Caleb</b><span>Says whether it fits Laura.</span></div>

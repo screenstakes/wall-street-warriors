@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0B1737">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
-<meta name="description" content="Federico's part of every Wall Street Warriors meeting, one screen at a time: count the votes, write the one row, post it in the chat.">
+<meta name="description" content="Federico's part of every Wall Street Warriors meeting, one screen at a time: write the one row, post it in the chat.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -50,7 +50,7 @@ body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);
 main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-block:16px 20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
 .top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.screen{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.screen{max-width:680px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
 .eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
 .eyebrow.ex{color:var(--orange-ink)}
 .eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
@@ -175,10 +175,10 @@ tr.hl td{background:var(--tint)}
 <section class="screen" data-ch="0" aria-labelledby="h1">
   <div class="eyebrow">Federico, this is your meeting job</div>
   <h1 id="h1" tabindex="-1">Everyone talks. You keep the record.</h1>
-  <p>Meetings are 18 minutes and Michael runs them. You're the only one who writes anything down, so nobody else has to.</p>
+  <p>The call is Sunday at 8, about 30 minutes, and Michael runs it. You’re the only one who writes anything down, so nobody else has to.</p>
   <ol class="flow">
     <li data-n="1"><b>Before</b><span>Reply to Michael's questions in the chat. Start the row.</span></li>
-    <li data-n="2"><b>During</b><span>Count the votes. Write what we decided.</span></li>
+    <li data-n="2"><b>During</b><span>Write what we decided, and the poll result on any trade.</span></li>
     <li data-n="3"><b>Last 3 minutes</b><span>Read back who does what.</span></li>
     <li data-n="4"><b>Same day</b><span>Finish the row and post it in the chat.</span></li>
   </ol>
@@ -186,9 +186,9 @@ tr.hl td{background:var(--tint)}
 </section>
 
 <section class="screen" data-ch="1" aria-labelledby="h2" hidden>
-  <div class="eyebrow ex">Tuesday night</div>
+  <div class="eyebrow ex">Sunday, before the call</div>
   <h1 id="h2" tabindex="-1">Reply, then start the row</h1>
-  <div class="bubble"><span class="who">Michael, in the chat</span>Meeting tomorrow, zero period, library. One line each by 7 a.m.
+  <div class="bubble"><span class="who">Michael, in the chat</span>Call tonight, 8pm, Zoom. One line each on these before then.
     <ol>
       <li>S&amp;P 500 fund (VOO) on Sep 28: 10% or 15%?</li>
       <li>All on day one, or spread over two weeks?</li>
@@ -206,11 +206,11 @@ tr.hl td{background:var(--tint)}
 </section>
 
 <section class="screen" data-ch="2" aria-labelledby="h3" hidden>
-  <div class="eyebrow ex">Wednesday, zero period</div>
+  <div class="eyebrow ex">Sunday, 8 p.m. · Zoom</div>
   <h1 id="h3" tabindex="-1">Write down two things, and skip the discussion.</h1>
   <p>Just what we decided, and who does what. When there's a vote, you count the hands out loud.</p>
   <div class="callout">3 of 5 passes. 4 of 5 if it's over 10% of the portfolio, a new kind of investment, or a change to the plan.</div>
-  <p class="small">In the example, 15% is over 10%, so it needs four. You count four hands. It passes. Write the count and who voted no:</p>
+  <p class="small">In the example, 15% is over 10%, so it needs four. Four say yes, so it passes. Write the count and who voted no:</p>
   <div class="sheet">
     <div class="sheet-cap">Your sheet · Minutes tab</div>
     <dl>
@@ -226,7 +226,7 @@ tr.hl td{background:var(--tint)}
   <div class="tasks">
     <div class="task"><span class="who">Michael</span><span class="what">Buy the first half of VOO in WInS</span><span class="when">Mon Sep 28, lunch</span></div>
     <div class="task"><span class="who">You</span><span class="what">Log the trade</span><span class="when">Monday, the same day · <i>Log</i></span></div>
-    <div class="task"><span class="who">Joe</span><span class="what">Value his stock pick</span><span class="when">Thursday, 6th period, library</span></div>
+    <div class="task"><span class="who">Joe</span><span class="what">Value his stock pick</span><span class="when">By Wednesday</span></div>
     <div class="task"><span class="who">Caleb</span><span class="what">Does Joe's pick fit Laura?</span><span class="when">By Sunday, 8 p.m.</span></div>
     <div class="task"><span class="who">Dylan</span><span class="what">The case against Joe's pick</span><span class="when">By Tuesday, 8 p.m.</span></div>
   </div>
@@ -243,7 +243,7 @@ tr.hl td{background:var(--tint)}
       <dt>Who was there</dt><dd>All five</dd>
       <dt>Questions</dt><dd>1. S&amp;P fund, 10% or 15%? 2. All at once or spread? 3. Who pitches first?</dd>
       <dt>What we decided</dt><dd>VOO at 15%, bought in two halves, Sep 28 and Oct 5. Passed 4 to 1, Dylan no. Joe pitches next week.</dd>
-      <dt>Who does what</dt><dd>Michael: buy half, Mon lunch. Federico: log it Mon. Joe: value his pick, Thu 6th, library. Caleb: fit check by Sun 8pm. Dylan: case against by Tue 8pm.</dd>
+      <dt>Who does what</dt><dd>Michael: buy half, Mon lunch. Federico: log it Mon. Joe: value his pick by Wed. Dylan: case against, first reply. Caleb: fit check after Dylan.</dd>
       <dt>Blocked on</dt><dd>Nothing</dd>
     </dl>
   </div>
@@ -253,8 +253,8 @@ tr.hl td{background:var(--tint)}
 <section class="screen" data-ch="3" aria-labelledby="h6" hidden>
   <div class="eyebrow ex">Right after</div>
   <h1 id="h6" tabindex="-1">Paste it in the chat</h1>
-  <div class="bubble"><span class="who">You, in the chat</span>Minutes, Wed 9/23, all five.<br><b>Decided:</b> VOO at 15%, in two halves, Sep 28 and Oct 5. Passed 4 to 1. Joe pitches next week.<br><b>Who does what:</b> Michael buys half Mon lunch. I log it Mon. Joe values his pick Thu 6th, library. Caleb fit check by Sun 8pm. Dylan case against by Tue 8pm.</div>
-  <p class="small">Anyone who missed the meeting reads this and is caught up.</p>
+  <div class="bubble"><span class="who">You, in the chat</span>Minutes, Sun 9/27, all five.<br><b>Decided:</b> VOO at 15%, in two halves, Sep 28 and Oct 5. Passed 4 to 1. Joe pitches next week.<br><b>Who does what:</b> Michael buys half Mon lunch. I log it Mon. Joe values his pick by Wed. Dylan case against, first reply. Caleb fit check after Dylan.</div>
+  <p class="small">Anyone who missed the call reads this and is caught up.</p>
   <div class="callout">After a trade vote, reply in that trade's thread with the result, like "Approved 3 to 2." Log it on your <b>Log</b> tab the day it's placed. Put the yes votes (4 here) in the Yes votes column, and ✓ Bear case once Dylan's is posted.</div>
 </section>
 
@@ -263,7 +263,7 @@ tr.hl td{background:var(--tint)}
   <h1 id="h7" tabindex="-1">Your checklist</h1>
   <div class="roles">
     <div><b>Before</b><span>Reply in the chat. Put the date and the questions in the next Minutes row.</span></div>
-    <div><b>During</b><span>Count votes out loud. Write what we decided and who does what, nothing else.</span></div>
+    <div><b>During</b><span>Write what we decided and who does what, nothing else. On a trade, the poll result and who voted no.</span></div>
     <div><b>Last 3 min</b><span>Read back every task with a day, a time and a place.</span></div>
     <div><b>Same day</b><span>Finish the row, paste it in the chat, and log any trade the day it's placed.</span></div>
     <div><b>Friday</b><span>On your This week tab, write the date under Minutes posted.</span></div>

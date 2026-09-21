@@ -37,7 +37,8 @@
   .grid div{flex:1; padding:5pt 8pt 6pt 0;}
   .grid div + div{border-left:.6pt solid var(--rule); padding-left:8pt;}
   .grid span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
-    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;}
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;
+    min-height:2.1em;}
   .grid p{margin:0; font-size:8.8pt; line-height:1.3;}
   .grid .out span{color:var(--muted);}
   .grid .out p{color:var(--muted); font-style:italic;}
@@ -125,6 +126,11 @@
   .card,.decide,.week,.grid,.rule3,.gotcha,.lgrid,.sec,.owns,.say,.secthead,.open{break-inside:avoid; page-break-inside:avoid;}
   .open > div{break-inside:avoid; page-break-inside:avoid;}
   h2,h3,.subh{break-after:avoid; page-break-after:avoid;}
+  .superseded{border:1px solid var(--gold); background:var(--wash); border-radius:10px;
+    padding:9pt 12pt; margin:0 0 12pt;}
+  .superseded .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.6pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .superseded p{margin:0; font-size:9.6pt; line-height:1.4;}
   footer{margin-top:9pt; padding-top:6pt; border-top:.6pt solid var(--rule);
     font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt; color:var(--muted);
     display:flex; justify-content:space-between;}
@@ -177,28 +183,32 @@
   }
 </style></head><body>
 
+<div class="superseded">
+  <span class="k">This is the plan we went in with — the call has happened</span>
+  <p>Caleb made it after all, so four of us were on. We picked areas instead of three sectors, the SGOV card is still open and still SGOV, and the weekly call is now every Sunday at 8. <a href="index.html">What’s current is on the dashboard.</a></p>
+</div>
 <header>
   <div>
     <p class="eyebrow">Wall Street Warriors &middot; Wharton Global Investment Competition</p>
-    <h1>Sunday night &mdash; 8:00 to 8:30</h1>
+    <h1>Sunday night &mdash; 8:00 to 8:45</h1>
   </div>
-  <div class="who"><b>Sep 20, 2026 &middot; Google Meet</b><br>Michael, Joe, Dylan<br>Federico, Caleb and Coach P out</div>
+  <div class="who"><b>Sep 20, 2026 &middot; Zoom</b><br>Michael, Joe, Dylan, Caleb<br>Federico and Coach P out</div>
 </header>
 
 <div class="say">
   <span class="k">Read this out loud to start</span>
   <p>&ldquo;Tonight we write one real trade card for Microsoft. Not practice &mdash; the actual card we use tomorrow.</p>
-  <p>A card has five lines. <b>Three of them are ours.</b> Caleb and Federico write the other two and they're not here, so we leave those blank. Tomorrow at lunch they fill them in and we place the trade. That makes tomorrow real instead of a demo.&rdquo;</p>
+  <p>A card has five lines. <b>Three of them are ours.</b> Caleb and Federico write the other two. Tomorrow at lunch they fill them in and we place the trade. That makes tomorrow real instead of a demo.&rdquo;</p>
 </div>
 
 <div class="owns">
   <p class="cap">Who writes which line <span>&mdash; Wharton grades these write-ups, not how much money we make</span></p>
   <div class="grid">
-    <div><span>Michael &mdash; tonight</span><p>The pitch. What we buy and why.</p></div>
-    <div><span>Joe &mdash; tonight</span><p>The number. Worth vs. price.</p></div>
-    <div><span>Dylan &mdash; tonight</span><p>The case against.</p></div>
-    <div class="out"><span>Caleb &mdash; tomorrow</span><p>Does it fit Laura?</p></div>
-    <div class="out"><span>Federico &mdash; tomorrow</span><p>Places it. Logs it.</p></div>
+    <div><span>Michael</span><p>The pitch. What we buy and why.</p></div>
+    <div><span>Joe</span><p>The number. Worth vs. price.</p></div>
+    <div><span>Dylan</span><p>The case against.</p></div>
+    <div><span>Caleb</span><p>Does it fit Laura?</p></div>
+    <div class="out"><span>Federico</span><p>Places it. Logs it.</p></div>
   </div>
 </div>
 
@@ -208,12 +218,12 @@
     <h2>Finish the practice vote</h2>
     <ul>
       <li>Our practice trade vote closes at 8. That's now, so we just do it.</li>
-      <li>Swap <b>SGOV</b> for <b>BIL</b>. SGOV wasn't on the approved list. BIL does the same job.</li>
-      <li>Three yes votes passes a trade. There are three of us.</li>
+      <li>Check <b>SGOV</b> against this season's approved fund list on the portal. It was not on last season's.</li>
+      <li>Three yes votes passes a trade.</li>
       <li>Michael places it Monday on <a href="https://app.stocktrak.com/login?clientname=Wharton">the trading site</a>. Federico logs it when he's back.</li>
-      <li>It all gets erased <b>Thursday 4pm</b>. Practice is for the routine, not the money.</li>
+      <li>It all gets erased <b>Friday Sep 25, 4pm ET</b>. Practice is for the routine, not the money.</li>
     </ul>
-    <div class="decide"><i>Decide</i>BIL instead of SGOV. Yes or no.</div>
+    <div class="decide"><i>What happened</i>Not voted. The card is still SGOV and still open — it gets finished and voted at Monday's lunch.</div>
   </div>
 </div>
 
@@ -224,10 +234,10 @@
     <ul>
       <li>Rule: one stock in each person's industry, held all season. Get it wrong and we're disqualified before anyone reads our work.</li>
       <li><b>Tech &rarr; Microsoft &middot; Health &rarr; J&amp;J &middot; Finance &rarr; Mastercard &middot; Industrials &rarr; Waste Management &middot; Consumer &rarr; P&amp;G</b></li>
-      <li>We claim three tonight. Caleb and Federico pick theirs tomorrow.</li>
+      <li>We claim ours tonight. Whoever is missing picks at the next meeting.</li>
       <li>Your industry is what you pitch, what you write in the final report, and what you get asked about in December.</li>
     </ul>
-    <div class="decide"><i>Decide</i>Michael ____________ &nbsp; Joe ____________ &nbsp; Dylan ____________ &nbsp; Post it in the chat.</div>
+    <div class="decide"><i>What happened</i>Michael tech &middot; Joe health care &middot; Caleb financials &middot; Dylan industrials &middot; consumer open for Federico. Not final: we move to two or three areas each on Monday.</div>
   </div>
 </div>
 
@@ -260,9 +270,9 @@
       <li><b>Use 2.5% growth, not 4%</b>, on all five stocks. 4% says the company grows faster than the whole country forever. All five using the same number matters more than which number.</li>
       <li><b>Our account is $300,000, not $500,000.</b> Joe fixes Portfolio cell C3, Dylan fixes Limits cell D3. Do it on your phone now.</li>
       <li><b>Clear your example rows</b> &mdash; select the cells, hit Delete. Don't delete the rows, my <a href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit">dashboard</a> reads them by position.</li>
-      <li><b>Changing how we vote needs four of five.</b> We're three, so we can't. We bring one suggestion to lunch.</li>
+      <li><b>How we vote is settled:</b> a Google Chat poll on the card’s own thread.</li>
     </ul>
-    <div class="decide"><i>Our suggestion</i>Card posted by 8pm &rarr; everyone votes by lunch &rarr; placed before the market closes at 3. We're in class when it's open.</div>
+    <div class="decide"><i>Settled</i>Card posted by 8pm &rarr; poll on its own thread &rarr; placed before the market closes at 3. We're in class when it's open.</div>
   </div>
 </div>
 
@@ -277,7 +287,7 @@
       <li>Vote. Three of five passes.</li>
       <li>Federico places it, and pastes <b>the whole card</b> into the trade note box <b>before</b> hitting Confirm. That note is what Wharton grades.</li>
       <li>Caleb and Federico pick the last two industries.</li>
-      <li>Vote on the new way of voting. Needs four of five.</li>
+      <li>Settle how we split the research: two or three areas each.</li>
     </ol>
     <div class="decide"><i>Housekeeping</i>Dylan's bringing pizza. Eighteen minutes, then eat.</div>
   </div>
@@ -288,10 +298,10 @@
   <div class="body">
     <h2>The week that actually counts</h2>
     <div class="week">
-      <div><span>Thu Sep 25, 4pm</span><p>Practice account erased. Before then, test how long a trade note can be.</p></div>
-      <div><span>Sat Sep 27</span><p>We vote on the whole starting portfolio. Refresh prices &mdash; ours are from Sep 17. Check this season's approved fund list first.</p></div>
+      <div><span>Fri Sep 25, 4pm</span><p>Practice account erased. Before then, test how long a trade note can be.</p></div>
+      <div><span>Sun Sep 27</span><p>The weekly call, and we vote the whole starting portfolio. Refresh prices &mdash; ours are from Sep 17. Check this season's approved fund list first.</p></div>
       <div><span>Mon Sep 28</span><p>Real trading starts, $300,000. From that morning: no card, no trade.</p></div>
-      <div><span>Thu Oct 9</span><p>Roster locks. Nobody joins after. Below four people and we're out.</p></div>
+      <div><span>Fri Oct 9</span><p>Roster locks. Nobody joins after. Below four people and we're out.</p></div>
     </div>
   </div>
 </div>

@@ -32,9 +32,11 @@
 /* team files */
 .files-intro{padding:16px 18px 4px;font-size:15px;color:var(--ink-2);max-width:78ch}
 .files-intro b{color:var(--ink)}
-.files-grid{list-style:none;margin:0;padding:14px 18px 18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+/* One rhythm for the two top-level blocks: 20px desktop, 14px phone, matching .stack. */
+  #tiles,#files{margin-bottom:20px}
+  .files-grid{list-style:none;margin:0;padding:14px 18px 18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
 .file{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:var(--r);padding:14px;background:var(--card);min-width:0}
-.file-top{display:flex;align-items:flex-start;gap:10px;min-width:0;min-height:53px}
+.file-top{display:flex;align-items:flex-start;gap:10px;min-width:0;min-height:70px}
 .file-av{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 15px/1 var(--ui);flex:none}
 .file-name{min-width:0}
 .file-name b{display:block;font:700 15px/1.25 var(--ui);color:var(--ink)}
@@ -52,7 +54,7 @@
 .files-flow li b{display:flex;align-items:center;gap:8px;font:700 13px/1.2 var(--ui);color:var(--navy);margin-bottom:6px}
 .files-flow li b::before{content:counter(f);width:20px;height:20px;border-radius:50%;background:var(--orange);color:#1F1300;display:grid;place-items:center;font:700 11px/1 var(--mono);flex:none}
 .files-flow li span{display:block;font-size:13px;line-height:1.45;color:var(--ink-2)}
-@media (max-width:1100px){
+@media (max-width:1220px){
   .files-grid{grid-template-columns:1fr;gap:0;padding:6px 18px 12px}
   .file{flex-direction:row;align-items:center;border:0;border-top:1px solid var(--line-2);border-radius:0;padding:12px 0;gap:16px}
   .file:first-child{border-top:0}
@@ -69,7 +71,7 @@
   .files-flow ol{grid-template-columns:1fr}
 }
 @media (max-width:700px){
-  #files{margin-bottom:14px!important}
+  #tiles,#files{margin-bottom:14px}
   .files-intro{padding:14px 14px 2px;font-size:14px}
   .files-grid{padding:2px 14px 8px}
   .file{flex-direction:row;align-items:center;gap:12px;padding:10px 0}
@@ -222,7 +224,7 @@
   <div class="page-title">
     <div>
       <h1>My Dashboard</h1>
-      <p>Where the season stands today. Every date and rule on this site was checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026.</p>
+      <p>Where the season stands today. Every date and rule on this site was checked against Wharton's official pages and the Sep 15 materials on Sep 20, 2026.</p>
     </div>
     <div class="right">
       <a class="btn orange" href="https://app.stocktrak.com/login?clientname=Wharton" target="_blank" rel="noopener"><span data-icon="chart"></span>Open WInS</a>
@@ -230,7 +232,7 @@
     </div>
   </div>
 
-  <div class="tiles" id="tiles" style="margin-bottom:20px">
+  <div class="tiles" id="tiles">
     <div class="tile reveal" style="--i:0"><span class="dot c-orange" data-icon="clock"></span><div><div class="k">Next deadline</div><div class="v"><span id="t-next">–</span><small id="t-next-u">days</small></div><div class="sub" id="t-next-s">–</div></div></div>
     <div class="tile reveal" style="--i:1"><span class="dot c-blue" data-icon="chart"></span><div><div class="k">Trading begins</div><div class="v"><span id="t-trade">–</span><small>days</small></div><div class="sub">Mon Sep 28 · 9:30 a.m. ET</div></div></div>
     <div class="tile reveal" style="--i:2"><span class="dot c-green" data-icon="flag"></span><div><div class="k">Deliverables</div><div class="v"><span id="t-deliv">0</span><small>/ 4 submitted</small></div><div class="sub" id="t-deliv-s">Roster first, Oct 9</div></div></div>
@@ -238,7 +240,7 @@
     <div class="tile reveal" style="--i:4"><span class="dot c-pink" data-icon="calendar"></span><div><div class="k">Final report</div><div class="v"><span id="t-final">–</span><small>days</small></div><div class="sub">Fri Dec 4 · 5:00 p.m. ET</div></div></div>
   </div>
 
-  <section class="card reveal" style="--i:1;margin-bottom:20px" aria-labelledby="files-h" id="files">
+  <section class="card reveal" style="--i:1" aria-labelledby="files-h" id="files">
     <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="files-h">Our team files</h2><span class="sep"></span><span class="meta" id="files-meta">5 Google Sheets</span><span class="spacer"></span><span id="files-folder"></span></div>
     <p class="files-intro">Everyone has their own Google Sheet, built for their job. Open yours every Friday. It opens on a tab called <b>This week</b>: fill in this week's yellow cells, then pick <b>✓</b> in the Done column.</p>
     <ul class="files-grid" id="files-grid"></ul>
@@ -276,19 +278,19 @@
           <li><b>Team leader</b><span>Michael. Gets Wharton's emails, submits every deliverable, and is locked in after Sep 28.</span><span class="chip done">Done</span></li>
           <li><b>Roster</b><span id="status-roster">All five confirmed: Michael, Caleb, Dylan, Joe and Federico. That's one above Wharton's minimum of four. Official roster due Oct 9.</span><span class="chip done">Five</span></li>
           <li><b>Case study</b><span>Out now. Our client is Laura Gao. Read <a href="guide.html">the Guide</a> first (21 plain steps), then the <a href="case.html">Case page</a> for the numbers.</span><span class="chip done">Out</span></li>
-          <li><b>The $300,000</b><span>That's the practice portfolio. It gets wiped Sep 25, so experiment freely. Real starting cash is on the Trading page in SurveyMonkey Apply, not pulled in yet; last season it was $500,000.</span><span class="chip verify">Practice</span></li>
+          <li><b>The $300,000</b><span>This is what we start with, practice and real. The practice portfolio gets wiped Friday Sep 25, so experiment freely until then. ($500,000 was last season, not ours.)</span><span class="chip done">Confirmed</span></li>
         </ul>
       </section>
 
       <section class="card reveal" style="--i:6" aria-labelledby="week-h">
-        <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="week-h">This week</h2><span class="sep"></span><span class="meta">Sep 14–18</span></div>
+        <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="week-h">This week</h2><span class="sep"></span><span class="meta">Sep 21–27</span></div>
         <ul class="checks" id="week">
-          <li><label for="w1"><input type="checkbox" id="w1"><span><b>Read the client case study</b><small>It is on the <a href="case.html">Case page</a> now — open "Read the full case study". Read it before the meeting.</small></span></label></li>
-          <li><label for="w2"><input type="checkbox" id="w2"><span><b>Try the practice simulator</b><small>Open now until Sep 25 at 4:00 p.m. ET, then wiped. Place a buy, a sell and a foreign stock so the mechanics are familiar. It all resets Sep 25.</small></span></label></li>
-          <li><label for="w3"><input type="checkbox" id="w3"><span><b>Skim the trading rules</b><small>The $5 minimum share price, the 200-trade cap, and the buy-and-hold guidance. <a href="rules.html">Rules</a></small></span></label></li>
-          <li><label for="w4"><input type="checkbox" id="w4"><span><b>Read Part Seven of the Essentials of Finance reference</b><small>CAPM, DDM and DCF. It's how we value stocks.</small></span></label></li>
-          <li><label for="w5"><input type="checkbox" id="w5"><span><b>Send Michael your school email and grade</b><small>The official roster form asks for them. Everyone's info in by Oct 2.</small></span></label></li>
-          <li><label for="w6"><input type="checkbox" id="w6"><span><b>Team meeting: Wed 9:00 a.m.</b><small>Tuesday lunch has passed, so it is Wednesday zero period. Michael confirms in the chat. Agenda on the <a href="team.html">Team</a> page.</small></span></label></li>
+          <li><label for="w1"><input type="checkbox" id="w1"><span><b>Monday lunch: finish the SGOV card</b><small>It was never placed. We vote it, walk Federico through logging, and run a fresh card on Microsoft end to end.</small></span></label></li>
+          <li><label for="w2"><input type="checkbox" id="w2"><span><b>Bring your two or three research areas</b><small>One area each leaves too much of the market uncovered, so we split it properly on Monday. Fixed income is handled separately.</small></span></label></li>
+          <li><label for="w3"><input type="checkbox" id="w3"><span><b>Federico: pick a sector and learn the log</b><small>Consumer is the one still open. We walk through logging a trade at Monday's lunch.</small></span></label></li>
+          <li><label for="w4"><input type="checkbox" id="w4"><span><b>Check this season's approved fund list</b><small>On the Trading page in SurveyMonkey Apply, before we vote on anything. SGOV was not on last season's list.</small></span></label></li>
+          <li><label for="w5"><input type="checkbox" id="w5"><span><b>Fill in your week by Friday</b><small>Your own sheet, done before the weekend, so Sunday's call reviews a finished week. <a href="team.html">Our sheets</a></small></span></label></li>
+          <li><label for="w6"><input type="checkbox" id="w6"><span><b>Practice ends Friday Sep 25, 4:00 p.m. ET</b><small>Everything is wiped. Real trading starts Monday Sep 28 with $300,000. Before that, Sunday's call votes the whole starting mix.</small></span></label></li>
         </ul>
         <div class="card-foot">Checkmarks save in this browser only.</div>
       </section>
@@ -335,7 +337,7 @@
 <footer class="site">
   <div class="shell">
     <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
-    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 16, 2026 · <a href="news.html#sources">Sources</a></span>
+    <span>Dates and rules checked against Wharton's official pages and the Sep 15 materials on Sep 20, 2026 · <a href="news.html#sources">Sources</a></span>
   </div>
 </footer>
 
