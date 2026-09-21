@@ -368,28 +368,42 @@ ol.flow.qs span{color:var(--ink)}
       <dl class="where">
         <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit" target="_blank" rel="noopener">Michael &mdash; Team leader and submissions</a></dd>
         <dt>Tab</dt><dd>Dashboard</dd>
-        <dt>Cells</dt><dd><span class="cell">B7</span> <span class="cell">B9</span> <span class="cell">E6:E9</span></dd>
+        <dt>Cells</dt><dd><span class="cell">A7:C7</span> <span class="cell">A9:C9</span> <span class="cell">E6:E9</span></dd>
       </dl>
+      <div class="warn" style="margin:0 0 14px"><b>Read this first, then the steps make sense.</b> Everything lower down the Dashboard is wired to <b>rows</b>, not to names. <b>Row&nbsp;7 has to be the trade-log sheet. Row&nbsp;9 has to be the Laura&rsquo;s-case sheet.</b> When Caleb and Federico swapped jobs on September&nbsp;19, the two people swapped but the two rows did not &mdash; so your links are on the wrong rows and sections&nbsp;3 and&nbsp;6 further down are showing &ldquo;&mdash;&rdquo; instead of numbers. Scroll down and look; that is the same bug.</div>
       <ol class="steps">
-        <li><b>Rename one file in Drive.</b> His sheet is called <b>&ldquo;Celeb &mdash; Laura’s case&rdquo;</b> but his name is <b>Caleb</b>. That single letter is why the row goes red: the check reads the linked file’s title and looks for the name in column A, and &ldquo;Caleb&rdquo; is not in &ldquo;Celeb&rdquo;. Rename the file to:
-          <div class="paste" id="p6z">Caleb — Laura’s case</div>
-          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6z">Copy</button></div>
-          <span style="display:block;margin-top:6px;color:var(--ink-3);font-size:13.5px">Worth doing anyway — a judge may see that filename in December.</span>
-        </li>
-        <li><b>Fix two labels</b> that never got updated after the September 19 job swap.<br>
-          <b>B7</b> should say:
-          <div class="paste" id="p6a">Caleb — Laura's case</div>
-          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6a">Copy</button></div>
-          <b>B9</b> should say:
+        <li><b>Copy Caleb&rsquo;s link out before you overwrite it.</b> Click <b>C7</b> and copy the whole address out of the formula bar at the top. That is Caleb&rsquo;s sheet, sitting on the wrong row. Paste it somewhere for a second &mdash; a note, a blank cell, anywhere.</li>
+
+        <li><b>Make row&nbsp;7 Federico.</b>
+          <div class="paste" id="p6a">Federico</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6a">Copy for A7</button></div>
           <div class="paste" id="p6b">Federico — Trade log and the rules</div>
-          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6b">Copy</button></div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6b">Copy for B7</button></div>
+          Then put <b>Federico&rsquo;s new sheet link</b> in <b>C7</b> &mdash; the one you upload in job&nbsp;6, not the old one.
         </li>
-        <li><b>Then replace the check so it can never go stale again.</b> Click <b>E6</b>, paste this, then drag the little square in its corner down to <b>E9</b>:
-          <div class="paste" id="p6c">=IF($C6="","Not connected",IF(ISERROR($D6),"Click D"&ROW()&", press Allow access",IF(ISNUMBER(SEARCH($A6,$D6)),"Connected ✓","Wrong file: that link is "&$D6)))</div>
+
+        <li><b>Make row&nbsp;9 Caleb.</b>
+          <div class="paste" id="p6d">Caleb</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6d">Copy for A9</button></div>
+          <div class="paste" id="p6e">Caleb — Laura's case</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6e">Copy for B9</button></div>
+          Then paste <b>Caleb&rsquo;s link</b> &mdash; the one you set aside in step&nbsp;1 &mdash; into <b>C9</b>.
+        </li>
+
+        <li><b>Click D7, press Allow access. Click D9, press Allow access.</b> Both rows just got a new link, so both need permission again. Nothing below will fill in until you do this.</li>
+
+        <li><b>Rename one file in Drive.</b> Caleb&rsquo;s sheet is actually titled <b>&ldquo;Celeb &mdash; Laura&rsquo;s case&rdquo;</b>. That one letter is why the row goes red &mdash; the check reads the linked file&rsquo;s title and looks for the name from column&nbsp;A, and &ldquo;Caleb&rdquo; is not inside &ldquo;Celeb&rdquo;. Rename the file to:
+          <div class="paste" id="p6z">Caleb — Laura's case</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6z">Copy</button></div>
+          <span style="display:block;margin-top:6px;color:var(--ink-3);font-size:13.5px">Worth doing anyway &mdash; a judge may see that filename in December.</span>
+        </li>
+
+        <li><b>Last, replace the check so it can never go stale again.</b> Click <b>E6</b>, paste this, then drag the little square in its corner down to <b>E9</b>:
+          <div class="paste" id="p6c">=IF($C6="","Not connected",IF(ISERROR($D6),"Click D"&amp;ROW()&amp;", press Allow access",IF(ISNUMBER(SEARCH($A6,$D6)),"Connected &#10003;","Wrong file: that link is "&amp;$D6)))</div>
           <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6c">Copy that formula</button></div>
         </li>
       </ol>
-      <div class="warn"><b>Why this keeps breaking.</b> The old check had each person's name <b>typed into the formula</b>, so when you swapped Caleb and Federico's jobs in September the names in column A moved but the formulas did not. The new one reads the name out of column A, so you can reorder those rows freely and it will always be right.</div>
+      <div class="warn"><b>Why it broke, in one line.</b> The old check had each person&rsquo;s name <b>typed inside the formula</b>, so when the jobs swapped in September the names in column&nbsp;A moved and the formulas did not. The new one reads the name out of column&nbsp;A, so the check will follow you. The <b>row</b> rule is the part that still matters: row&nbsp;7 is the trade log, row&nbsp;9 is Laura&rsquo;s case, whoever happens to be doing them.</div>
     </div>
   </div>
 
