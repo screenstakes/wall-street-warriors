@@ -371,7 +371,11 @@ ol.flow.qs span{color:var(--ink)}
         <dt>Cells</dt><dd><span class="cell">B7</span> <span class="cell">B9</span> <span class="cell">E6:E9</span></dd>
       </dl>
       <ol class="steps">
-        <li><b>First, rename a file in Drive.</b> Caleb's sheet is currently called <b>&ldquo;Celeb &mdash; Laura's case&rdquo;</b>. That is a typo, and it is why the row goes red &mdash; the check looks for &ldquo;Caleb&rdquo; and cannot find it. Rename it to <b>Caleb &mdash; Laura's case</b>.</li>
+        <li><b>Rename one file in Drive.</b> His sheet is called <b>&ldquo;Celeb &mdash; Laura’s case&rdquo;</b> but his name is <b>Caleb</b>. That single letter is why the row goes red: the check reads the linked file’s title and looks for the name in column A, and &ldquo;Caleb&rdquo; is not in &ldquo;Celeb&rdquo;. Rename the file to:
+          <div class="paste" id="p6z">Caleb — Laura’s case</div>
+          <div class="pastebtn"><button class="cbtn" type="button" data-copy="p6z">Copy</button></div>
+          <span style="display:block;margin-top:6px;color:var(--ink-3);font-size:13.5px">Worth doing anyway — a judge may see that filename in December.</span>
+        </li>
         <li><b>Fix two labels</b> that never got updated after the September 19 job swap.<br>
           <b>B7</b> should say:
           <div class="paste" id="p6a">Caleb — Laura's case</div>
