@@ -419,6 +419,11 @@ WSW.data = {
     after: "DONE: the date, the votes by name, any HOLD, and the shares at the price it filled."
   },
 
+  /* The WInS account balance, in ONE place. Joe's Portfolio C3, Federico's Log D3 and Dylan's Limits
+     D3 all carry their own copy and are refreshed every Friday from WInS; the site must not become a
+     fourth copy that can only be changed by editing code. Update this the same Friday they do. */
+  account: { start: 300000, asOf: "2026-09-21", note: "Starting balance. Refresh from WInS each Friday, alongside Log D3, Portfolio C3 and Limits D3." },
+
   sectorsNote: "Picked Sep 20 and not final yet. One area each leaves too much of the market uncovered, so we\u2019re moving to two or three areas each, with fixed income handled separately. We settle it at Monday\u2019s lunch.",
   sectors: [
     { id: "tech",   name: "Tech and communication", eg: "software, chips, phones, media",      owner: "michael" },

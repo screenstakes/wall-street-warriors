@@ -489,7 +489,9 @@ ol.flow.qs span{color:var(--ink)}
   }
   function escH(v){return String(v==null?"":v).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 
-  var CASH = 300000;
+  /* Read the balance from data.js; do not hardcode a fourth copy of a number the three sheets
+     refresh from WInS every Friday. */
+  var CASH = (D.account && D.account.start) || 300000;
   /* Three piles. A and B come from the case; C is the flex account Coach P asked for on Sep 20.
      Each pile holds the specific jobs money can be doing inside it. note[] is the clause that
      closes the WInS note, so it has to read on from "This supports Laura's plan ...". */
@@ -669,16 +671,29 @@ ol.flow.qs span{color:var(--ink)}
     });
   }
 
+  /* toISOString() is UTC: a card written at 8:02pm CDT stamped TOMORROW. Anything after 7pm CDT
+     rolled over. Build the date from local parts. */
+  function todayLocal(d) {
+    d = d || new Date();
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+  }
+
   function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+
+  /* 4 of 5 is needed for over 10% of the portfolio, a NEW KIND of investment, or a change to the
+     plan. The size buttons stop at 8%, so testing size alone meant the 4-of-5 branch could never
+     fire. Size is only one of the three triggers. */
+  function votesNeeded() { return (s.size > 10 || s.newKind) ? "4 of 5" : "3 of 5"; }
 
   function sizeCalc() {
     var el = $("size-calc");
     if (!s.size) { el.textContent = "Pick a size."; return; }
     var dollars = CASH * s.size / 100;
-    var flag = s.size > 8 ? '<span class="flag no">Over our 8% cap. Needs a very good reason.</span>'
+    var flag = s.size >= 8 ? '<span class="flag no">At our 8% ceiling — the most we ever hold in one name.</span>'
       : s.size > 5 ? '<span class="flag no">Over our 5% starting limit — only for adding to something we already hold.</span>'
       : '<span class="flag ok">Inside our limits.</span>';
-    var vote = s.size > 10 ? "4 of 5" : "3 of 5";
+    var vote = votesNeeded();
     el.innerHTML = "That is <b>" + money(dollars) + "</b> of our <b>" + money(CASH) + "</b>, and it needs <b>" + vote + "</b> to pass." + flag;
   }
 
@@ -719,13 +734,13 @@ ol.flow.qs span{color:var(--ink)}
       "EXPECT     " + (s.exp || "[what]") + (s.expd ? " by " + pretty(s.expd) : ""),
       "WRONG IF   " + (s.wrong || "[state]") + (s.wrongd ? " — check " + pretty(s.wrongd) : "") + (s.act ? ", then " + s.act : ""),
       "SOURCES    " + (srcs.length ? srcs.join(", ") : "[sources]"),
-      "BY         " + (s.who || "[you]") + " · needs " + ((s.size || 0) > 10 ? "4 of 5" : "3 of 5")
+      "BY         " + (s.who || "[you]") + " · needs " + votesNeeded()
     ].join("\n");
   }
 
   function logRow() {
     var g = goalObj();
-    var today = new Date().toISOString().slice(0, 10);
+    var today = todayLocal();
     /* Log columns A..K: Date, Ticker, Buy/Sell, Shares, Price, $Value(f), %(f), Proposed by, Why, Goal, Wrong if.
        F and G are formulas, so they are left empty and the sheet fills them. */
     return [today, s.tk || "", s.side || "", "", "", "", "",
