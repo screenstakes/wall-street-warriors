@@ -936,16 +936,22 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       if (hadFocus) { var fb = $("acts").querySelector("button") || $("votes").querySelector("button:not([disabled])"); if (fb) fb.focus({ preventScroll: true }); }
     } });
 
+  /* guide.html had no HTML escaper; team.html's is the house one. Local, so nothing else shifts. */
+  function escH(v) {
+    return String(v == null ? "" : v).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
   S({ ch: "Our team", title: "Everyone journals. Here is the whole note.",
-    say: "The trade card you just posted IS the note — six lines, written by whoever proposed the trade, the same day. Wharton reads these.",
+    say: W.data.tradeCard.intro,
     html: '<ol class="qs">' +
-      "<li><div><b>What and how big</b><span>Buy or sell, the ticker, and the size as a percent of the portfolio.</span></div></li>" +
-      "<li><div><b>Why now</b><span>Two sentences. What you saw that made today the day.</span></div></li>" +
-      "<li><div><b>Which slice, and which of Laura’s goals</b><span>Keeping Pile A safe, or growing Pile B. Name one.</span></div></li>" +
-      "<li><div><b>What would make this wrong</b><span>The number or the news that means we get out. Write it before you need it.</span></div></li>" +
-      "<li><div><b>The vote</b><span>Who said yes, and anyone who said HOLD and why.</span></div></li>" +
-      "<li><div><b>Where it came from</b><span>Links. The rules say any AI we used gets cited too.</span></div></li>" +
+      W.data.tradeCard.lines.map(function (L) {
+        return "<li><div><b>" + escH(L.k) + "</b><span>" + escH(L.what) +
+          (L.note ? " " + escH(L.note) : "") + "</span></div></li>";
+      }).join("") +
       "</ol>" +
+      '<p class="g-note plain"><b>After it is placed:</b> ' + escH(W.data.tradeCard.after) + "</p>" +
       '<p class="g-note b"><b>Every Friday, three lines each:</b> what I learned, what I’d do differently, and one number I watched and where it ended. That is the whole personal journal — it takes five minutes and it becomes the part of the final report other teams have to invent at the end.</p>' });
 
   S({ ch: "Our team", title: "Words you’ll see, translated.",

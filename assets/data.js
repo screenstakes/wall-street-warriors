@@ -395,6 +395,27 @@ WSW.data = {
   /* Picked live on the Sep 20 call. NOT final: one area each leaves too much of the market uncovered,
      so Monday Sep 21 moves this to two or three areas each across the whole equity market, with fixed
      income handled separately. Update owner as that settles. */
+  /* THE trade card. One definition, because five pages used to disagree: the Guide called it six
+     lines and omitted EXPECT, trade-thread dropped SOURCES and BY. EXPECT is the field the Oct 23
+     Trading Notes Analysis depends on — without a number and a date written BEFORE the outcome,
+     nobody can honestly say in October whether a trade supported, tested or refined the strategy.
+     SOURCES carries the AI-citation rule, and uncited AI material is a dismissal risk.
+     Log column mapping is Federico's sheet: TRADE->B,C,D,E,F,G  WHY->I  FOR LAURA->J  WRONG IF->K
+     BY->H  the vote->L. */
+  tradeCard: {
+    intro: "Whoever proposes the trade writes the card, the same day. The card IS the trading note \u2014 it gets pasted into WInS before you hit Confirm, and Wharton grades it.",
+    lines: [
+      { k: "TRADE",     what: "Buy or sell, the ticker, and the size as a percent of the portfolio.", note: "The page works out the dollars and checks it against 5 / 8 / 30." },
+      { k: "WHY",       what: "Two sentences. What you saw that made today the day.", note: "" },
+      { k: "FOR LAURA", what: "Pile A safety or Pile B growth. Name one.", note: "If it serves neither, it gets sent back." },
+      { k: "EXPECT",    what: "A number and a date. What should have happened, and by when.", note: "Written before the result, so in October we can prove whether we were right instead of remembering." },
+      { k: "WRONG IF",  what: "A number or a headline, a date, and what we do about it.", note: "Write the exit before you need it." },
+      { k: "SOURCES",   what: "Where it came from, including any AI we used.", note: "The rules require AI to be cited. Uncited material is a dismissal risk, so this line is never optional." },
+      { k: "BY",        what: "Your name, and the votes it needs.", note: "3 of 5, or 4 of 5 over 10% of the portfolio." }
+    ],
+    after: "DONE: the date, the votes by name, any HOLD, and the shares at the price it filled."
+  },
+
   sectorsNote: "Picked Sep 20 and not final yet. One area each leaves too much of the market uncovered, so we\u2019re moving to two or three areas each, with fixed income handled separately. We settle it at Monday\u2019s lunch.",
   sectors: [
     { id: "tech",   name: "Tech and communication", eg: "software, chips, phones, media",      owner: "michael" },
