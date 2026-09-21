@@ -1,0 +1,356 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Monday lunch — Wall Street Warriors</title>
+<style>
+  @page { size: letter; margin: 0.5in; }
+  :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
+         --ground:#FCFAF6; --rule:#DED6C6; --wash:#F4EFE4; --link:#1F4E8C; }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--ground); color:var(--ink);
+       font-family:Charter,"Iowan Old Style",Georgia,serif; font-size:10.2pt; line-height:1.44;}
+  a{color:var(--link); text-decoration:none; border-bottom:.5pt solid rgba(31,78,140,.4);}
+  .sans{font-family:"Avenir Next",Avenir,"Helvetica Neue",sans-serif;}
+
+  header{border-bottom:1.6pt solid var(--navy); padding-bottom:7pt; margin-bottom:10pt;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16pt;}
+  .eyebrow{font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  h1{font-size:19pt; line-height:1.03; margin:0; color:var(--navy); font-weight:600; letter-spacing:-.012em;}
+  .who{font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt; color:var(--muted);
+    text-align:right; line-height:1.55;}
+  .who b{color:var(--navy); font-weight:600;}
+
+  .say{background:var(--wash); border-left:2.5pt solid var(--gold); padding:8pt 11pt; margin:0 0 9pt;}
+  .say .k{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:4pt;}
+  .say p{margin:0 0 4pt; font-size:10.6pt; line-height:1.4;}
+  .say p:last-child{margin-bottom:0;}
+  .say b{color:var(--navy);}
+
+  .owns{margin:0 0 10pt;}
+  .owns .cap{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.2pt; color:var(--navy);
+    font-weight:600; margin:0 0 4pt;}
+  .owns .cap span{font-weight:400; color:var(--muted);}
+  .grid{display:flex; border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);}
+  .grid div{flex:1; padding:5pt 8pt 6pt 0;}
+  .grid div + div{border-left:.6pt solid var(--rule); padding-left:8pt;}
+  .grid span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;
+    min-height:2.1em;}
+  .grid p{margin:0; font-size:8.8pt; line-height:1.3;}
+  .grid .out span{color:var(--muted);}
+  .grid .out p{color:var(--muted); font-style:italic;}
+
+  .block{display:flex; gap:11pt; padding:7.5pt 0; border-top:.6pt solid var(--rule); break-inside:avoid; page-break-inside:avoid;}
+  .block.first{border-top:1pt solid var(--navy);}
+  .time{flex:0 0 54pt; font-family:"Avenir Next",Avenir,sans-serif; padding-top:1pt;}
+  .time .t{display:block; font-size:11.5pt; font-weight:600; color:var(--navy); letter-spacing:-.01em;}
+  .time .d{display:block; font-size:7pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-top:1pt;}
+  .body{flex:1; min-width:0;}
+  h2{font-size:12.6pt; margin:0 0 3.5pt; color:var(--navy); font-weight:600; letter-spacing:-.01em;}
+  ul{margin:0; padding-left:11pt;}
+  li{margin:0 0 2.5pt;}
+  li::marker{color:var(--gold);}
+  b{color:var(--navy); font-weight:600;}
+  .decide{margin-top:5pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    background:var(--wash); padding:5pt 7pt; border-left:2pt solid var(--navy);}
+  .decide i{font-style:normal; font-weight:600; color:var(--gold); letter-spacing:.1em;
+    text-transform:uppercase; font-size:6.8pt; margin-right:5pt;}
+
+  .card{margin-top:5pt; border:.6pt solid var(--rule); background:#fff; padding:6pt 9pt;
+    font-family:"SF Mono",Menlo,Consolas,monospace; font-size:8pt; line-height:1.68;}
+  .card k{color:var(--gold); font-weight:600; display:inline-block; width:58pt;}
+  .card n{color:var(--muted); font-style:italic;}
+
+  ol{margin:0; padding-left:13pt;}
+  ol li{margin:0 0 2.5pt;}
+  ol li::marker{color:var(--gold); font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt;}
+
+  .week{display:flex; gap:9pt;}
+  .week div{flex:1; border-top:2pt solid var(--gold); padding-top:5pt;}
+  .week span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt;
+    font-weight:600; color:var(--navy); margin-bottom:2pt;}
+  .week p{margin:0; font-size:8.8pt; line-height:1.32;}
+
+  .links{border-top:1pt solid var(--navy); margin-top:12pt; padding-top:8pt;}
+  .links h3{font-family:"Avenir Next",Avenir,sans-serif; font-size:9pt; color:var(--navy);
+    margin:0 0 6pt; font-weight:600;}
+  .lgrid{display:flex; gap:14pt;}
+  .lgrid > div{flex:1;}
+  .lgrid h4{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  .lgrid p{margin:0 0 3pt; font-size:8.8pt; line-height:1.32;}
+  .lgrid p em{font-style:normal; color:var(--muted); font-size:8pt;}
+
+
+  .pb{break-before:page;}
+  .secthead{border-bottom:1.6pt solid var(--navy); padding-bottom:6pt; margin-bottom:9pt;}
+  .secthead h2{font-size:17pt; margin:0 0 2pt;}
+  .secthead p{margin:0; font-size:9pt; color:var(--muted); font-family:"Avenir Next",Avenir,sans-serif;}
+  .rule3{display:flex; gap:9pt; margin:0 0 11pt;}
+  .rule3 div{flex:1; background:var(--wash); border-left:2.5pt solid var(--gold); padding:6pt 9pt;}
+  .rule3 span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;}
+  .rule3 p{margin:0; font-size:9pt; line-height:1.33;}
+  .rule3 b{color:var(--navy);}
+
+  .subh{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; font-weight:600;
+    color:var(--navy); margin:0 0 5pt; padding-bottom:3pt; border-bottom:.6pt solid var(--rule);}
+  .subh em{font-style:normal; font-weight:400; color:var(--muted);}
+
+  .sec{display:flex; align-items:baseline; gap:9pt; padding:5.5pt 0 5.5pt 8pt;
+    border-bottom:.6pt solid var(--rule); border-left:2.5pt solid var(--gold);}
+  .sec .nm{flex:0 0 118pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:9.4pt;
+    font-weight:600; color:var(--navy); line-height:1.25;}
+  .sec .ds{flex:1; font-size:9.2pt; line-height:1.34;}
+  .sec .ds i{font-style:normal; color:var(--muted);}
+  .sec .ow{flex:0 0 92pt; text-align:right; font-family:"Avenir Next",Avenir,sans-serif;
+    font-size:8.6pt; font-weight:600; color:var(--gold); line-height:1.25;}
+  .sec .ow em{display:block; font-style:normal; font-weight:400; font-size:7.4pt; color:var(--muted);}
+
+  .open{display:flex; flex-wrap:wrap; gap:0;}
+  .open > div{width:50%; display:flex; align-items:baseline; gap:7pt; padding:4.5pt 10pt 4.5pt 0;
+    border-bottom:.6pt solid var(--rule);}
+  .open .nm{flex:0 0 96pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    font-weight:600; color:var(--muted); line-height:1.25;}
+  .open .ds{flex:1; font-size:8.6pt; line-height:1.3; color:#3D4650;}
+  .open .ds i{font-style:normal; color:var(--muted);}
+
+  .gotcha{margin-top:10pt; border:.6pt solid var(--rule); background:#fff; padding:7pt 10pt;}
+  .gotcha span{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:3pt;}
+  .gotcha p{margin:0 0 4pt; font-size:9.2pt; line-height:1.36;}
+  .gotcha p:last-child{margin-bottom:0;}
+  .card,.decide,.week,.grid,.rule3,.gotcha,.lgrid,.sec,.owns,.say,.secthead,.open{break-inside:avoid; page-break-inside:avoid;}
+  .open > div{break-inside:avoid; page-break-inside:avoid;}
+  h2,h3,.subh{break-after:avoid; page-break-after:avoid;}
+  .superseded{border:1px solid var(--gold); background:var(--wash); border-radius:10px;
+    padding:9pt 12pt; margin:0 0 12pt;}
+  .superseded .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.6pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .superseded p{margin:0; font-size:9.6pt; line-height:1.4;}
+  footer{margin-top:9pt; padding-top:6pt; border-top:.6pt solid var(--rule);
+    font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt; color:var(--muted);
+    display:flex; justify-content:space-between;}
+
+  /* ---- screen + phone. Kept last: earlier rules would otherwise win. ---- */
+  @media screen {
+    body{ padding: 22px clamp(14px,4vw,40px) 40px; max-width: 8.5in; margin: 0 auto; }
+  }
+  @media screen and (max-width: 720px) {
+    body{ font-size: 15px; line-height: 1.5; padding: 16px 16px 40px; }
+    header{ display:block; }
+    .who{ text-align:left; margin-top:6px; font-size:12px; }
+    h1{ font-size: 26px; }
+    .say p{ font-size: 16px; }
+    .grid, .week, .lgrid, .rule3{ display:block; }
+    .grid > div, .week > div, .lgrid > div, .rule3 > div{
+      width:auto; border-left:0; padding-left:0; padding-right:0;
+      border-bottom:1px solid var(--rule); padding-top:8px; padding-bottom:8px; }
+    .rule3 > div{ border-left:3px solid var(--gold); padding-left:10px; margin-bottom:8px;
+      border-bottom:0; }
+    .week > div{ border-top:2px solid var(--gold); border-bottom:0; margin-bottom:8px; }
+    .grid{ border-top:0; }
+    .block{ display:block; }
+    .time{ margin-bottom:4px; }
+    .time .t{ display:inline; font-size:17px; }
+    .time .d{ display:inline; margin-left:8px; font-size:11px; }
+    .time .d br{ display:none; }
+    h2{ font-size: 19px; }
+    ul, ol{ padding-left: 18px; }
+    li{ margin-bottom: 7px; }
+    .card{ font-size: 12px; overflow-x:auto; }
+    .card k{ width:74px; }
+    .sec{ display:block; padding:9px 0 9px 10px; }
+    .sec .nm, .sec .ds, .sec .ow{ flex:none; }
+    .sec .ow{ text-align:left; margin-top:3px; }
+    .sec .ow em{ display:inline; margin-left:6px; }
+    .open{ display:block; }
+    .open > div{ width:auto; display:block; padding:9px 0; }
+    .open .nm{ margin-bottom:2px; }
+    .lgrid p, .lgrid h4{ font-size:14px; }
+    .lgrid > div{ margin-bottom:10px; }
+    footer{ display:block; font-size:11px; }
+    footer span{ display:block; margin-bottom:4px; }
+    a{ padding: 1px 0; }
+    .eyebrow, .say .k, .grid span, .decide i, .rule3 span, .lgrid h4,
+    .gotcha span, .sec .ow em, .time .d, .secthead p, .who{ font-size: 11.5px; letter-spacing:.09em; }
+    .secthead p, .who{ letter-spacing:0; font-size:12.5px; }
+    .subh{ font-size: 13px; }
+    .owns .cap{ font-size: 13px; }
+  }
+</style></head><body>
+
+<header>
+  <div>
+    <p class="eyebrow">Wall Street Warriors &middot; Wharton Global Investment Competition</p>
+    <h1>Monday lunch &mdash; 1:30 to 2:15</h1>
+  </div>
+  <div class="who"><b>Sep 21, 2026 &middot; At school</b><br>All five, in the same room<br>Coach P out</div>
+</header>
+
+<div class="say">
+  <span class="k">Read this out loud to start</span>
+  <p>&ldquo;The market closes at 3. Everything we vote in this room gets <b>placed today</b>, not tonight.</p>
+  <p>In seven days the account is real and there is no undo. So today we run the whole thing once &mdash; card, fit, case against, vote, placed, logged &mdash; while it still costs us nothing to get it wrong.&rdquo;</p>
+</div>
+
+<div class="owns">
+  <p class="cap">What each of you does today <span>&mdash; Wharton grades the write-ups, not how much money we make</span></p>
+  <div class="grid">
+    <div><span>Michael</span><p>Runs it. Keeps us to the clock.</p></div>
+    <div><span>Joe</span><p>The number. Your own math, not Yahoo's.</p></div>
+    <div><span>Dylan</span><p>Reads the case against.</p></div>
+    <div><span>Caleb</span><p>Pile A or Pile B. Fills the blank line.</p></div>
+    <div><span>Federico</span><p>Places both trades. Logs them.</p></div>
+  </div>
+</div>
+
+<div class="block first">
+  <div class="time"><span class="t">1:30</span><span class="d">4 min</span></div>
+  <div class="body">
+    <h2>Vote the practice card. It has been open three days.</h2>
+    <ul>
+      <li><b>First: check SGOV against this season's approved fund list</b> on the portal. It was not on last season's. If it isn't there, the card becomes <b>BIL</b> and we vote that instead. Ten seconds, one person looks.</li>
+      <li>Size is <b>5% of $300,000 &mdash; about $15,000.</b> Not 5% of what's already invested.</li>
+      <li>Three of five passes. Poll goes on the card's own thread.</li>
+      <li>Federico places it before 3. All of it is erased <b>Friday Sep 25 at 4pm ET</b>, which is the point &mdash; we're practicing the routine, not the money.</li>
+    </ul>
+    <div class="decide"><i>Decide now</i>SGOV or BIL, then vote. If nobody can load the approved list in this room, it's BIL, because BIL we know passes.</div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="time"><span class="t">1:34</span><span class="d">12 min<br>main thing</span></div>
+  <div class="body">
+    <h2>Microsoft, start to placed</h2>
+    <ul>
+      <li>Three of the five lines were written last night. Put the card on the screen and fill the rest <b>in this order</b>:</li>
+      <li><b>Caleb</b> &mdash; Pile A safety or Pile B growth. Name one out loud, then type it into FOR LAURA. If it serves neither, the card gets sent back and we move on. <em class="sans" style="font-style:normal;color:#6B7280;font-size:8.4pt;">(<a href="https://screenstakes.github.io/wall-street-warriors/client.html">how-to</a>)</em></li>
+      <li><b>Dylan</b> &mdash; read the case against. Out loud, before the vote, not after. <em class="sans" style="font-style:normal;color:#6B7280;font-size:8.4pt;">(<a href="https://screenstakes.github.io/wall-street-warriors/risk.html">how-to</a>)</em></li>
+      <li><b>Joe</b> &mdash; worth versus price. It has to be <b>your own DCF at 2.5% growth</b>, not the fair-value number off Yahoo. If a judge asks in December where it came from, &ldquo;a website&rdquo; is not an answer. <em class="sans" style="font-style:normal;color:#6B7280;font-size:8.4pt;">(<a href="https://screenstakes.github.io/wall-street-warriors/numbers.html">how-to</a>)</em></li>
+      <li><b>Vote.</b> Then Federico places it and pastes <b>the whole card</b> into the trade note box <b>before</b> hitting Confirm. That note is the thing Wharton reads.</li>
+      <li>The two lines everyone gets lazy on: <b>EXPECT</b> is a number and a date. <b>WRONG IF</b> is a number or a headline, a date, and what we do about it.</li>
+    </ul>
+    <div class="card">
+      <k>TRADE</k>Buy Microsoft, 3% of the portfolio<br>
+      <k>WHY</k>two sentences &mdash; what made today the day<br>
+      <k>FOR LAURA</k><n>Caleb fills this, right now, in this room</n><br>
+      <k>EXPECT</k>a number and a date<br>
+      <k>WRONG IF</k>a number or headline &middot; a date &middot; what we do<br>
+      <k>SOURCES</k>the filings, the proxy, and the AI we used<br>
+      <k>BY</k>your name &middot; 3 of 5
+    </div>
+    <div class="decide"><i>Done means</i>Placed before 3pm with the card in the note box. If it isn't placed today it wasn't a rehearsal, it was a meeting about a rehearsal. Build it on <a href="https://screenstakes.github.io/wall-street-warriors/card.html">the trade card page</a>.</div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="time"><span class="t">1:46</span><span class="d">6 min</span></div>
+  <div class="body">
+    <h2>Federico takes the log &mdash; he wasn't on Sunday's call</h2>
+    <ul>
+      <li>He now owns the <b>trade log, the rules checklist, the minutes, and the Oct 23 notes</b>. That last one is the first thing Wharton actually grades.</li>
+      <li>Do it live while Microsoft is still on the screen: one row in the Log, the Trade ID fills itself, then columns Q to X.</li>
+      <li><b>Minutes:</b> one row per meeting, filled today, pasted in the chat. The column that matters is <b>who does what, with a day and a time</b> &mdash; the rest is for December.</li>
+      <li>Two links, both on his phone: <a href="https://screenstakes.github.io/wall-street-warriors/minutes.html">the minutes how-to</a> and <a href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit">his sheet</a>.</li>
+    </ul>
+    <div class="decide"><i>Leave with</i>Both of today's trades in the Log, and today's minutes row pasted into the chat before the bell.</div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="time"><span class="t">1:52</span><span class="d">9 min</span></div>
+  <div class="body">
+    <h2>Split the market properly &mdash; the real decision today</h2>
+    <ul>
+      <li>Sunday we took one area each. Coach P's point stands: <b>one area each leaves most of the market uncovered.</b> So we move to <b>two or three areas each</b>, with fixed income owned separately.</li>
+      <li>There are eleven industries. We own five. <b>Six are sitting there unclaimed:</b> communication services, consumer discretionary, energy, materials, real estate, utilities.</li>
+      <li>Everyone claims a second, and a third if you want it. <b>Federico picks his first</b> &mdash; consumer staples is still open.</li>
+      <li>Somebody's name goes on <b>fixed income</b> (the Treasury notes and BIL, 40% of the whole portfolio). Right now nobody owns 40% of Laura's money.</li>
+      <li>Wharton requires <b>no sector minimum</b> &mdash; this isn't a rule we're passing. It's so research gets covered and so the December report can say who ran what.</li>
+    </ul>
+    <div class="decide"><i>Leave with</i>Every person has 2&ndash;3 areas written down, and fixed income has one named owner. Federico writes it into the minutes as we go.</div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="time"><span class="t">2:01</span><span class="d">5 min</span></div>
+  <div class="body">
+    <h2>Phones out. Five fixes, right now.</h2>
+    <ul>
+      <li><b>$300,000, not $500,000</b> &mdash; Joe: Portfolio <b>C3</b>. Dylan: Limits <b>D3</b>. Federico: Log <b>D3</b>. All three have to agree.</li>
+      <li><b>Joe:</b> the <b>744% weight</b> on your Portfolio tab is a formula dividing by an empty portfolio. It isn't a real number and it makes the dashboard lie.</li>
+      <li><b>Everyone:</b> clear your example rows. Select the cells and hit Delete &mdash; <b>don't delete the rows</b>, my dashboard reads them by position.</li>
+      <li><b>2.5% growth</b> on all five stocks. 4% says a company outgrows the entire country forever. Everyone using the same number matters more than which number.</li>
+      <li>The full six steps, with screenshots: <a href="https://screenstakes.github.io/wall-street-warriors/fixes.html">the fixes page</a>. Anything not done in this room doesn't get done.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="block">
+  <div class="time"><span class="t">2:06</span><span class="d">4 min</span></div>
+  <div class="body">
+    <h2>Before anyone stands up</h2>
+    <ol>
+      <li><b>Sunday 8pm is the big one</b> &mdash; we vote the entire starting portfolio. Come with your areas researched, not blank.</li>
+      <li><b>Caleb</b> posts his first Fit check in the chat before that call. That's the one thing blocking the vote.</li>
+      <li><b>Everybody fills their This week row</b> &mdash; four yellow cells and a check. It takes a minute and it's how the dashboard knows we're alive.</li>
+      <li><b>Federico</b> pastes the minutes row in the chat today, not tomorrow.</li>
+    </ol>
+    <div class="decide"><i>Housekeeping</i>Dylan's bringing pizza. Forty minutes of work, then eat.</div>
+  </div>
+</div>
+
+<div class="block" style="border-top:1pt solid var(--navy);">
+  <div class="time"><span class="t">After</span><span class="d">7 days</span></div>
+  <div class="body">
+    <h2>The week the money gets real</h2>
+    <div class="week">
+      <div><span>Fri Sep 25, 4pm ET</span><p>Practice account erased. Before then, find out how long a trade note can actually be &mdash; we don't want to discover the limit on Sep 28.</p></div>
+      <div><span>Sun Sep 27, 8pm</span><p>Weekly call, and we vote the whole starting portfolio. Refresh prices first; ours are from Sep 17. Check this season's approved fund list.</p></div>
+      <div><span>Mon Sep 28</span><p>Real trading starts at $300,000. From that morning: <b>no card, no trade.</b> Nobody clicks anything alone.</p></div>
+      <div><span>Thu Oct 23</span><p>Trading Notes Analysis &mdash; the first thing Wharton grades. It's built out of the cards we write starting today.</p></div>
+    </div>
+    <div class="gotcha" style="margin-top:10pt;">
+      <span>Worth remembering in the room</span>
+      <p><b>Standings barely matter.</b> Wharton picks the top 50 off the IPS and the final report, not the returns. Which means a well-written losing trade beats a lucky one with no note attached &mdash; and it means the ten minutes we spend on EXPECT and WRONG IF today are worth more than anything we could pick.</p>
+      <p><b>Roster locks Oct 9 at 5pm ET.</b> We submit Oct 6 or 7. Nobody joins after that, and dropping below four people is disqualification.</p>
+    </div>
+  </div>
+</div>
+
+<div class="links">
+  <h3>Everything you need, one tap each</h3>
+  <div class="lgrid">
+    <div>
+      <h4>Where we trade</h4>
+      <p><a href="https://app.stocktrak.com/login?clientname=Wharton">The trading site (WInS)</a><br><em>Login: WallStreetWarriors-10447873 &mdash; one account for all of us</em></p>
+      <p><a href="https://wghsinvcomp.smapply.us/">The Wharton portal</a><br><em>Rules, the approved fund list, the client case</em></p>
+    </div>
+    <div>
+      <h4>Today's pages</h4>
+      <p><a href="https://screenstakes.github.io/wall-street-warriors/card.html">Propose a trade</a> &mdash; builds the card and the WInS note</p>
+      <p><a href="https://screenstakes.github.io/wall-street-warriors/fixes.html">The six sheet fixes</a></p>
+      <p><a href="https://screenstakes.github.io/wall-street-warriors/minutes.html">Minutes how-to</a> &mdash; Federico</p>
+      <p><a href="https://screenstakes.github.io/wall-street-warriors/case.html">Laura's case</a> &mdash; what our client needs</p>
+    </div>
+    <div>
+      <h4>The five sheets</h4>
+      <p><a href="https://docs.google.com/spreadsheets/d/15I2v_2KLHGlGB8IQs0b1Ye5XHlRpZeCA4_0Qcc_lCYw/edit">Joe &mdash; the numbers</a></p>
+      <p><a href="https://docs.google.com/spreadsheets/d/1Rq2ZdyHtm8vxGg1tGDP4UxWAwcfKynmq6OuPFZvwgQ4/edit">Dylan &mdash; risk and the case against</a></p>
+      <p><a href="https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit">Caleb &mdash; Laura's case</a></p>
+      <p><a href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit">Federico &mdash; trade log and rules</a></p>
+      <p><a href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit">Michael &mdash; dashboard and submissions</a></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Stuck on anything? Ask Warren, bottom right of any page on the team site.</span>
+  <span class="sans">Wall Street Warriors &middot; Sep 21, 2026</span>
+</footer>
+
+</body></html>
