@@ -1,4 +1,19 @@
 /* Wall Street Warriors — shared behavior: dates, countdowns, ticker, icons, storage, calendar export. */
+/* If data.js did not load, every render below throws and the page still paints a complete-looking
+   shell with no navigation on a phone. Fail loudly instead. */
+if (!window.WSW || !window.WSW.data) {
+  window.WSW = window.WSW || {};
+  window.WSW.data = window.WSW.data || {};
+  document.addEventListener("DOMContentLoaded", function () {
+    var b = document.createElement("div");
+    b.setAttribute("role", "alert");
+    b.style.cssText = "position:fixed;inset:0 0 auto 0;z-index:9999;background:#8C2F1E;color:#fff;" +
+      "font:600 14px/1.45 system-ui,sans-serif;padding:12px 16px;text-align:center";
+    b.textContent = "This page could not load its data, so most of it is missing. Reload, and tell Michael if it keeps happening.";
+    document.body.insertBefore(b, document.body.firstChild);
+  });
+}
+
 (function (W) {
   "use strict";
   var D = W.data;

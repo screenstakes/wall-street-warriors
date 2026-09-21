@@ -533,7 +533,7 @@
     [["cal-mprev", curIdx - 1, "Previous month: "], ["cal-mnext", curIdx + 1, "Next month: "]].forEach(function (p, side) {
       var b = $(p[0]), ok = p[1] >= 0 && p[1] < mcards.length;
       b.disabled = !ok;
-      if (!ok) { b.innerHTML = ""; b.removeAttribute("aria-label"); return; }
+      if (!ok) { b.innerHTML = ""; return; }
       var label = esc(monthName(p[1], Math.floor(keys[p[1]] / 12) !== Math.floor(keys[curIdx] / 12)));
       b.innerHTML = side ? label + CHEV_R : CHEV_L + label;
       b.setAttribute("aria-label", p[2] + monthName(p[1], true));
