@@ -447,7 +447,7 @@ ol.flow.qs span{color:var(--ink)}
         <div class="fld"><label for="d-type">What kind of holding</label><select id="d-type"><option value="">pick one</option><option>Stock</option><option>ETF</option><option>Treasury</option></select></div>
         <div class="fld"><label for="d-goal">Which of Laura's goals</label><select id="d-goal"><option value="">pick one</option></select></div>
       </div>
-      <div class="fld"><label for="d-why">Why we bought it &mdash; copy the WHY line off the card in the thread</label><textarea id="d-why" rows="3" placeholder="Its revenue comes from software subscriptions and cloud contracts rather than advertising, so the cash flows are more predictable than most large technology companies"></textarea></div>
+      <div class="fld"><label for="d-why">Why we bought it &mdash; a full sentence, not a word. Copy the WHY line off the card in the thread.</label><textarea id="d-why" rows="3" placeholder="Its revenue comes from software subscriptions and cloud contracts rather than advertising, so the cash flows are more predictable than most large technology companies"></textarea><span class="hint" id="d-whyc"></span></div>
     </div>
     <div class="calc" id="d-calc">Fill these in and I'll check the vote against our rules.</div>
     <p class="hint">Nothing is remembered between the card and this form, on purpose. You may not be the person who wrote the card, and you are probably not on the same laptop. The last three are so this page can hand you the WInS note instead of making you go dig it out of the thread.</p>
@@ -869,8 +869,12 @@ ol.flow.qs span{color:var(--ink)}
     if (!s["d-price"]) n.push("the price");
     if (s["d-yes"] === undefined || s["d-yes"] === "") n.push("the vote");
     if (!s["d-date"]) n.push("the date");
+    if (!s["d-type"]) n.push("the kind of holding");
+    if (!s["d-goal"]) n.push("which of Laura's goals");
+    if (whyWords() < 6) n.push("the reason, as a full sentence");
     return n;
   }
+  function whyWords() { return (s["d-why"] || "").trim() ? s["d-why"].trim().split(/\s+/).length : 0; }
   function doneCalc() {
     var el = $("d-calc"); if (!el) return;
     var sh = parseFloat(s["d-shares"]), pr = parseFloat(s["d-price"]), yes = parseInt(s["d-yes"], 10);
@@ -894,6 +898,12 @@ ol.flow.qs span{color:var(--ink)}
       ". Note is in WInS.";
   }
   function doneRow() { return [s["d-date"] || "", s["d-tk"] || "", s["d-side"] || ""].join("\t"); }
+  /* A one-word answer used to get stitched in as "...of the portfolio. because." — a capital
+     letter and a real sentence are the minimum, and dneed() blocks the copy below that. */
+  function sentence(t) {
+    t = (t || "").trim().replace(/[.\s]+$/, "");
+    return t ? t.charAt(0).toUpperCase() + t.slice(1) + "." : "";
+  }
   /* Same shape as winsNote() on the propose side, built from this form instead: what we bought,
      why, the risk it carries, and the goal it serves. No price target and no exit trigger —
      Wharton's own example note has neither. */
@@ -905,7 +915,7 @@ ol.flow.qs span{color:var(--ink)}
     var a = selling
       ? "We are selling " + tk + ", " + pct + ", because it is no longer doing the job we bought it for."
       : "We are buying " + tk + " at " + pct + ".";
-    var why = s["d-why"] ? " " + s["d-why"].trim().replace(/[.\s]+$/, "") + "." : " [why]";
+    var why = whyWords() >= 6 ? " " + sentence(s["d-why"]) : " [the reason we bought it — write a full sentence]";
     var risk = RISK_BY_TYPE[s["d-type"]] ? " It should do that " + RISK_BY_TYPE[s["d-type"]] + "." : "";
     var client = g ? " This supports Laura's plan " + g.note + "." : " [what it is for]";
     return (a + why + risk + client).replace(/\s+/g, " ").trim();
@@ -914,11 +924,12 @@ ol.flow.qs span{color:var(--ink)}
     var n = dneed();
     $("d-gaps").hidden = !n.length;
     if (n.length) $("d-gaps").innerHTML = "<b>Still need:</b> " + n.join(", ") + ".";
+    var wc2 = $("d-whyc"); if (wc2) wc2.textContent = whyWords() ? whyWords() + " words" + (whyWords() < 6 ? " — needs to be a sentence" : "") : "";
     $("d-note").textContent = doneNote();
     var dw = doneNote().split(/\s+/).filter(Boolean).length;
     $("d-wc").textContent = "note: " + dw + " words (Wharton's own example is about 60)";
     $("d-wc").className = "wc" + (dw > 80 ? " over" : "");
-    $("c-note").disabled = !s["d-why"] || !s["d-goal"];
+    $("c-note").disabled = n.length > 0;
     $("d-reply").textContent = doneReply();
     $("d-row").textContent = doneRow() +
       "\n\nthen, in the same row:   D = " + (s["d-shares"] || "?") + " shares    E = " + (s["d-price"] || "?") + "    L = " + (s["d-yes"] || "?") + " yes votes";
