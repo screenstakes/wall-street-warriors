@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1737">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="description" content="What the official Wharton documents changed, and the exact cells to fix in the team Google Sheets.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trade Card">
+<meta property="og:title" content="Portal Fixes">
+<meta property="og:description" content="Exact cells, in order. Tick them off.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Portal Fixes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --navy:#142F63; --blue:#1E4B95; --strip:#0B1737;
+  --orange:#EFA24A; --orange-deep:#D98B2B; --orange-ink:#6E4209;
+  --page:#F3F5F8; --card:#FFFFFF; --well:#F2F4F8; --tint:#EAF0FB;
+  --ink:#12213D; --ink-2:#44516B; --ink-3:#6F7B93;
+  --line:#DDE2EA;
+  --ok-soft:#E1F1E8; --ok:#1F6B3A; --warn-soft:#FAEED8;
+  --ui:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@supports (height:100dvh){body{height:100dvh}}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 var(--body);display:flex;flex-direction:column}
+[hidden]{display:none!important}
+.top{background:var(--strip);color:#fff;padding:12px 16px 0}
+.brand{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--ui);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.brand a{font-weight:700;color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:36px;margin-block:-8px}
+.brand span{color:#AFC0E0}
+.chapters{max-width:720px;margin:10px auto 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.chapters::-webkit-scrollbar{display:none}
+.chapters button{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;color:#C9D4EA;font:600 13px/1 var(--ui);padding:0 10px;min-height:40px;cursor:pointer;white-space:nowrap}
+.chapters button[aria-current="true"]{color:#fff;border-bottom-color:var(--orange)}
+.chapters button:focus-visible,.nav button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.chip-home{display:none}
+main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-block:16px 20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{padding-top:calc(12px + env(safe-area-inset-top,0px))}
+.top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.screen{max-width:680px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.eyebrow.ex{color:var(--orange-ink)}
+.eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
+h1{font:700 27px/1.18 var(--ui);margin:0;text-wrap:balance;letter-spacing:-.01em;color:var(--navy)}
+p{margin:0;max-width:62ch}
+.small{font-size:14px;color:var(--ink-2)}
+b{font-weight:600}
+/* the four stops */
+ol.flow{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+ol.flow li{display:grid;grid-template-columns:26px 1fr;gap:2px 12px;align-items:start}
+ol.flow li::before{content:attr(data-n);grid-row:span 2;font:700 13px/26px var(--ui);color:#fff;background:var(--navy);border-radius:50%;width:26px;height:26px;text-align:center}
+ol.flow b{font:700 15px/1.3 var(--ui);color:var(--ink)}
+ol.flow span{font-size:15px;color:var(--ink-2);line-height:1.4}
+/* where things go */
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px/1.2 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+td:first-child{color:var(--ink-2);width:46%}
+td:last-child{font-weight:600;color:var(--navy)}
+tr.hl td{background:var(--tint)}
+.callout{background:var(--tint);border-left:3px solid var(--navy);border-radius:4px;padding:10px 12px;font-size:15px}
+.callout.ok{background:var(--ok-soft);border-left-color:var(--ok)}
+/* chat */
+.bubble{background:var(--tint);border-radius:4px 14px 14px 14px;padding:11px 14px;font-size:15px;line-height:1.45}
+.bubble .who{display:block;font:700 12px/1.2 var(--ui);letter-spacing:.04em;color:var(--blue);margin-bottom:4px}
+.bubble ol{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.tip{font-size:14px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:10px}
+.tip b{color:var(--ink)}
+.replies{display:flex;flex-direction:column;gap:6px}
+.reply{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:baseline;background:var(--well);border-radius:8px;padding:8px 12px;font-size:14.5px;line-height:1.4}
+.reply .who{font:700 13px/1.3 var(--ui);color:var(--blue)}
+/* minute by minute */
+.tl{display:flex;flex-direction:column}
+.tl div{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.42}
+.tl div:last-child{border-bottom:0}
+.tl time{font:600 13px/1.5 var(--mono);color:var(--orange-ink);white-space:nowrap}
+.tl q{quotes:"\201C" "\201D"}
+/* tasks */
+.tasks{display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:78px 1fr;gap:1px 12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.task .who{grid-row:span 2;font:700 14px/1.4 var(--ui);color:var(--navy)}
+.task .what{font-size:15px;line-height:1.35}
+.task .when{font-size:13px;color:var(--ink-2)}
+.task .when i{font-style:normal;font:600 12px/1 var(--mono);color:var(--blue)}
+/* the minutes row */
+.sheet{border:1px solid #C9D3E2;border-radius:6px;overflow:hidden}
+.sheet-cap{background:var(--strip);color:#fff;font:600 12px/1.2 var(--ui);letter-spacing:.05em;padding:8px 12px}
+.sheet dl{margin:0;display:grid;grid-template-columns:104px 1fr}
+.sheet dt,.sheet dd{margin:0;padding:6px 10px;border-top:1px solid #E6EAF1;font-size:13.5px;line-height:1.38}
+.sheet dt{font:600 12px/1.35 var(--ui);color:var(--ink-2);background:var(--well)}
+.sheet dd{background:#FEF6D8;color:#0B3DAF}
+/* per person */
+.roles{display:flex;flex-direction:column}
+.roles div{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+.roles div:last-child{border-bottom:0}
+.roles b{font:700 14px/1.45 var(--ui);color:var(--navy)}
+.small a{color:var(--blue);font-weight:600;text-underline-offset:2px;display:inline-block;padding:10px 0;margin:-10px 0}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:1px solid var(--line);border-radius:8px;padding:12px}
+.tile h3{font:700 15px/1.25 var(--ui);margin:0 0 6px;color:var(--ink)}
+.tile .tabname{font:600 13px/1.2 var(--mono);color:var(--blue)}
+.tile .when{font-size:13px;color:var(--ink-2);margin-top:2px}
+.lims{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.lims div{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:4px}
+.lims b{font:700 26px/1 var(--ui);color:var(--navy)}
+.lims span{font-size:13px;line-height:1.35;color:var(--ink-2)}
+.fig{margin:0}
+.fig svg{display:block;width:100%;height:auto;max-width:520px}
+.fig figcaption{font-size:13px;color:var(--ink-2);margin-top:6px}
+.lbl{font:600 11px var(--mono);fill:var(--ink)}
+.axis{font:500 11px var(--body);fill:var(--ink-2)}
+.z-ok{fill:var(--ok-soft)} .z-warn{fill:var(--warn-soft)} .z-bad{fill:#FAE5E2}
+.tick{stroke:var(--ink-2);stroke-width:1.5} .mk{fill:var(--navy)}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--orange-deep)}
+.callout b{font-weight:700}
+ol.flow.qs span{color:var(--ink)}
+/* nav */
+.nav{background:var(--card);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.nav-in{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.nav button{font:600 15px/1 var(--ui);border-radius:6px;padding:12px 18px;cursor:pointer;min-height:44px}
+#prev{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+#next{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+.nav button:disabled{opacity:.4;cursor:default}
+.prog{flex:1;display:flex;flex-direction:column;gap:5px;align-items:center}
+.prog span{font:600 12px/1 var(--mono);color:var(--ink-2)}
+.bar{width:100%;max-width:220px;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange-deep);width:0}
+@media (max-width:520px){
+  body{font-size:15px}
+  .top{padding-top:calc(6px + env(safe-area-inset-top,0px))}
+  .brand{display:none}
+  .chapters{margin-top:0;gap:0}
+  .chapters button{padding:0 8px;font-size:12.5px}
+  .chip-home{display:inline-flex;align-items:center;flex:0 0 auto;min-height:40px;padding:0 8px 0 0;color:#fff;font:700 12.5px/1 var(--ui);text-decoration:none;border-right:1px solid #2A3B63;margin-right:4px}
+  main{padding-block:8px 10px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+  h1{font-size:22px}
+  .screen{padding:16px 14px 14px;gap:11px}
+  .small,.tip{font-size:13.5px}
+  table{font-size:14px}
+  th,td{padding:7px 6px}
+  ol.flow span,.bubble,.callout,.tl div,.task .what,.roles div{font-size:14px}
+  .reply{grid-template-columns:62px 1fr;font-size:13.5px;padding:7px 10px}
+  .tl div{grid-template-columns:50px 1fr;gap:10px;padding:7px 0}
+  .tl time{font-size:12px}
+  .task,.roles div{grid-template-columns:66px 1fr;gap:1px 10px}
+  .roles div{gap:10px}
+  .task .who,.roles b{font-size:13px}
+  .sheet dl{grid-template-columns:88px 1fr}
+  .sheet dt,.sheet dd{font-size:12.5px;padding:5px 8px}
+  .sheet dt{font-size:11px}
+  .tile{padding:10px}
+  .tile h3{font-size:14px}
+  .tile .tabname,.tile .when{font-size:12px}
+  .lims b{font-size:22px}
+  .lims span{font-size:12.5px}
+  .fig figcaption{font-size:12.5px}
+  .nav button{padding:12px 14px}
+}
+@media (max-height:700px){
+  .chapters{margin-top:4px}
+  main{padding-block:10px 14px}
+  .screen{gap:10px;padding-block:16px 14px}
+  h1{font-size:21px}
+  .eyebrow{font-size:11px}
+  .nav{padding-top:8px}
+}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
+</style>
+<style>
+</style>
+<style>
+</style>
+<style>
+.wrap{max-width:760px;margin:0 auto;padding:0 0 40px}
+.lede{font:400 16px/1.55 var(--body);color:var(--ink-2);max-width:62ch;margin:0 0 6px}
+.why{background:var(--well);border-left:3px solid var(--blue);border-radius:0 9px 9px 0;padding:11px 14px;
+  font:400 14.5px/1.55 var(--body);color:var(--ink-2);margin:0 0 20px}
+.job{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 16px;overflow:hidden}
+.job.done{opacity:.55}
+.job.shipped .tick{display:none}
+.job.shipped{opacity:.6}
+.job-h{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--well);
+  border-bottom:1px solid var(--line)}
+.job-n{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;
+  font:700 15px/32px var(--ui);text-align:center}
+.job.done .job-n{background:var(--ok)}
+.job-t{flex:1;min-width:0}
+.job-t h2{font:700 18px/1.25 var(--ui);margin:0 0 3px;color:var(--navy)}
+.job-t p{font:400 14px/1.45 var(--body);color:var(--ink-2);margin:0}
+.tick{flex:0 0 auto;display:flex;align-items:center;gap:7px;font:600 13px/1 var(--ui);color:var(--ink-3);cursor:pointer;min-height:44px}
+.tick input{width:22px;height:22px;accent-color:var(--ok)}
+.job-b{padding:16px 18px}
+.where{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font:400 14.5px/1.5 var(--body);margin:0 0 14px}
+.where dt{font:700 12px/1.6 var(--ui);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.where dd{margin:0;color:var(--ink)}
+.where .cell{font:700 15px/1.4 var(--mono);color:#fff;background:var(--navy);border-radius:6px;padding:3px 9px;display:inline-block}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.steps li{counter-increment:st;position:relative;padding-left:36px;
+  font:400 15px/1.55 var(--body);color:var(--ink)}
+.steps li::before{content:counter(st);position:absolute;left:0;top:1px;
+  font:700 12px/22px var(--ui);color:var(--blue);background:var(--tint);
+  border-radius:50%;width:22px;height:22px;text-align:center}
+.steps b{color:var(--navy)}
+.paste{background:#0F1E3D;color:#EAF0FB;border-radius:9px;padding:11px 13px;margin:8px 0 0;
+  font:400 13.5px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.pastebtn{margin-top:8px}
+.cbtn{appearance:none;background:var(--navy);color:#fff;border:0;border-radius:99px;padding:10px 17px;
+  font:600 13.5px/1 var(--ui);min-height:44px;cursor:pointer}
+.cbtn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.warn{background:#FDF2EC;border:1px solid #F0C2B5;border-radius:9px;padding:11px 13px;margin-top:12px;
+  font:400 14px/1.5 var(--body);color:#8C2F1E}
+.warn b{font-weight:700}
+.link{color:var(--blue);font-weight:600}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);background:var(--strip);
+  color:#fff;font:600 14px/1.3 var(--ui);padding:11px 18px;border-radius:99px;opacity:0;pointer-events:none;
+  transition:opacity .18s,transform .18s;z-index:60}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.doneall{background:var(--ok-soft);border:1px solid #BEDFCB;border-radius:12px;padding:16px 18px;
+  font:400 15px/1.55 var(--body);color:var(--green-ink,#1F6B3A);margin-top:8px}
+@media (max-width:560px){
+  .job-h{flex-wrap:wrap}
+  .tick{width:100%;justify-content:flex-start;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+  .where{grid-template-columns:1fr;gap:2px 0}
+  .where dt{margin-top:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand"><a href="index.html">Wall Street Warriors</a><span>Portal fixes</span></div>
+  <div class="chapters"><a class="chip-home" href="index.html">&lsaquo; Site</a></div>
+</div>
+
+<main id="main">
+ <div class="wrap">
+
+  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">The real rules landed. Seven things to change.</h1>
+  <p class="lede">Every official page and PDF came out of the portal on Sep&nbsp;21. Most of what we built holds up. These seven don't, and two of them could cost a submission.</p>
+  <div class="why"><b>Do 1 and 2 before anything else.</b> Number&nbsp;1 is due in 32 days and the tab currently points at the wrong deliverable. Number&nbsp;2 is a format rule that decides whether the IPS is read at all.</div>
+
+  <!-- 1 -->
+  <div class="job" data-k="pf1">
+    <div class="job-h">
+      <span class="job-n">1</span>
+      <span class="job-t"><h2>The Oct 23 tab builds the wrong thing</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf1"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
+        <dt>Tab</dt><dd>Oct 23</dd>
+        <dt>Cells</dt><dd><span class="cell">C5</span> <span class="cell">D5</span> <span class="cell">E6:F8</span> <span class="cell">A11:A15</span></dd>
+      </dl>
+      <ol class="steps">
+        <li>Change <b>C5</b> to: <div class="paste" id="q1">The Trading Note, pasted EXACTLY as it appears in WInS</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q1">Copy</button></div></li>
+        <li>Change <b>D5</b> to: <div class="paste" id="q2">Reflection (100 words or fewer): why we did it · how it aligned with the strategy · how it supported Laura's goals, funding needs or risk</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q2">Copy</button></div></li>
+        <li>Delete the <b>Supported / Tested / Changed</b> dropdown sitting in <b>D6:D8</b>. It is a house idea, not a Wharton field, and it is taking the reflection column.</li>
+        <li>Put a word counter in <b>E6</b> and fill it down to E8: <div class="paste" id="q3">=IF(D6="",0,LEN(TRIM(D6))-LEN(SUBSTITUTE(TRIM(D6)," ",""))+1)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q3">Copy</button></div></li>
+        <li>Put the check in <b>F6</b>, fill down to F8: <div class="paste" id="q4">=IF(E6&gt;100,"CUT IT",IF(E6=0,"","ok"))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q4">Copy</button></div></li>
+        <li>Select <b>A11 to A15</b> (the five-section outline) and delete it. Put this in <b>A11</b> instead: <div class="paste" id="q5">There is no document to write. The submission is three notes copied out of WInS word for word, each with a reflection of 100 words or fewer. No strategy section, no holdings section, no "what we'd change".</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q5">Copy</button></div></li>
+        <li>In the Steps list further down, change <b>Draft the five sections</b> to <b>Write the three reflections</b>.</li>
+      </ol>
+      <div class="warn"><b>Why.</b> The tab was built from the old mid-project review, which Wharton retired. The real spec is three notes pasted exactly as they appear in WInS, each with a reflection of 100 words or fewer covering why you did it, how it aligned with the strategy, and how it supported Laura. That is the whole deliverable. Wharton also says outright: &ldquo;The Trading Notes must correspond to trades executed in WInS. Yes, we will verify this.&rdquo;</div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="job" data-k="pf2">
+    <div class="job-h">
+      <span class="job-n">2</span>
+      <span class="job-t"><h2>The IPS is 550 words, not 11 sections</h2><p>Caleb &mdash; Laura's case</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf2"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit" target="_blank" rel="noopener">Caleb &mdash; Laura's case</a></dd>
+        <dt>Tab</dt><dd>IPS</dd>
+        <dt>Cells</dt><dd><span class="cell">A6:B16</span> <span class="cell">F6:G7</span> <span class="cell">C18</span></dd>
+      </dl>
+      <div class="warn" style="margin:0 0 14px"><b>Do not insert or delete rows.</b> C18 and Michael's Dashboard read fixed cells. Type over what is there.</div>
+      <ol class="steps">
+        <li><b>A6</b>: <div class="paste" id="r1">Part 1 — Elevator Pitch (MAX 50 WORDS)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r1">Copy</button></div></li>
+        <li><b>A7</b>: <div class="paste" id="r2">Part 2 — The IPS (MAX 500 WORDS, one cohesive piece, no headings)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r2">Copy</button></div></li>
+        <li><b>A8</b>: <div class="paste" id="r3">Title page (1 page max): official team name identical to the roster, members as First Name + Last Initial, and the WInS username</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r3">Copy</button></div></li>
+        <li>Type these over <b>A9</b> down to <b>A15</b>, one per row. They are pass/fail: <div class="paste" id="r4">Times New Roman, 12 point
+Double-spaced
+1-inch margins all round
+Exported as PDF, under 5 MB
+Title page is 1 page; pitch + statement fit in 2 pages
+NO graphics, charts, images, attachments or external links anywhere
+NO footnotes and NO citations — sources are not cited in the IPS</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r4">Copy all seven</button></div></li>
+        <li><b>A16</b>: <div class="paste" id="r5">NOT in the IPS: reserve calculations, detailed projections, the facility-contribution range, the co-sponsor communication. Wharton says those are Final Report work.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r5">Copy</button></div></li>
+        <li>Word counters. <b>F6</b>: <div class="paste" id="r6">=IF(C6="",0,LEN(TRIM(C6))-LEN(SUBSTITUTE(TRIM(C6)," ",""))+1)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r6">Copy</button></div> then <b>G6</b>: <div class="paste" id="r7">=IF(F6&gt;50,"CUT IT",IF(F6=0,"","ok"))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r7">Copy</button></div></li>
+        <li><b>F7</b> is the same formula pointing at C7. <b>G7</b>: <div class="paste" id="r8">=IF(F7&gt;500,"CUT IT",IF(F7=0,"","ok"))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r8">Copy</button></div></li>
+        <li><b>C18</b>, replace the &ldquo;of 11&rdquo; counter: <div class="paste" id="r9">=IF(AND(F6&gt;0,F6&lt;=50,F7&gt;0,F7&lt;=500),"both parts in limit","not yet")</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r9">Copy</button></div></li>
+        <li>Then on <b>your own</b> sheet, Deliverables tab, cell <b>F8</b> tests for the old &ldquo;11&rdquo; and will never fire again. Replace it with a plain dropdown like the row above it.</li>
+      </ol>
+      <div class="warn"><b>Why.</b> Wharton: &ldquo;Submissions that do not meet the requirements below will not be considered for semifinal selection.&rdquo; Eleven sections into 500 words is 45 words each. Three of the eleven &mdash; the return-objective math, a paragraph per sector, and the 2031 co-sponsor range &mdash; are things Wharton explicitly says do not belong in the IPS at all.</div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="job" data-k="pf3">
+    <div class="job-h">
+      <span class="job-n">3</span>
+      <span class="job-t"><h2>The Rules tab has a rule that doesn't exist, and is missing six that do</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf3"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
+        <dt>Tab</dt><dd>Rules</dd>
+        <dt>Cells</dt><dd><span class="cell">B6:B10</span> <span class="cell">B15</span> <span class="cell">B18:B20</span></dd>
+      </dl>
+      <div class="warn" style="margin:0 0 14px"><b>Type over the rows. Do not add any.</b> C22 and C23 are locked to D6:D20 and Michael's Dashboard imports those two cells by name.</div>
+      <ol class="steps">
+        <li><b>B6</b> (was &ldquo;first trade by the deadline&rdquo; &mdash; no such rule exists): <div class="paste" id="s1">Never contact Laura Gao. Teams are not permitted to contact the client.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s1">Copy</button></div></li>
+        <li><b>B7</b>: <div class="paste" id="s2">No margin, no short selling, no stock-secured debt, no crypto, no derivatives (options, futures, swaps).</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s2">Copy</button></div></li>
+        <li><b>B8</b>: <div class="paste" id="s3">No single trade larger than 2x that security's current daily trading volume.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s3">Copy</button></div></li>
+        <li><b>B9</b> (was &ldquo;only securities on Wharton's approved list&rdquo;): <div class="paste" id="s4">Every buy is a permitted security: a stock at $5 or more, any ETF on WInS, or a government bond from the US, UK, Germany, France, Italy or the Netherlands.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s4">Copy</button></div></li>
+        <li><b>B10</b>: <div class="paste" id="s5">200 trades maximum for the whole competition. Every buy and every sell counts.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s5">Copy</button></div></li>
+        <li><b>B15</b> (the page range is invented &mdash; requirements land Nov 9): <div class="paste" id="s6">Final Report meets the requirements Wharton releases Nov 9 (Week 7).</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s6">Copy</button></div></li>
+        <li><b>B18</b>: <div class="paste" id="s7">Sources and supporting evidence go in the FINAL REPORT. The IPS carries no citations, footnotes or links.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s7">Copy</button></div></li>
+        <li><b>B19</b>: <div class="paste" id="s8">Portfolio frozen after Nov 6: no trades, no changes to holdings. The IPS strategy is final and may not be revised.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s8">Copy</button></div></li>
+        <li><b>B20</b>: <div class="paste" id="s9">All five members participate in the semifinal and final presentation, and the roster does not change after Oct 9.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s9">Copy</button></div></li>
+      </ol>
+      <div class="warn"><b>Why.</b> There is no approved list &mdash; any ETF on WInS is permitted, so SGOV was never at risk. There is no first-trade deadline this season. And six real rules were missing, including the two caps and the fact that the portfolio locks on Nov 6.</div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="job" data-k="pf4">
+    <div class="job-h">
+      <span class="job-n">4</span>
+      <span class="job-t"><h2>Commissions are missing, so Friday can never balance</h2><p>Federico, then Joe</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf4"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
+        <dt>Tab</dt><dd>Log, then Friday check</dd>
+        <dt>Cells</dt><dd><span class="cell">Q5:R79</span> <span class="cell">C5:C14</span></dd>
+      </dl>
+      <ol class="steps">
+        <li>On the <b>Log</b> tab, label <b>Q5</b> as <b>Type</b> and <b>R5</b> as <b>Commission</b>.</li>
+        <li>Give <b>Q6:Q79</b> a dropdown (Data &rarr; Data validation) with three options: <b>Stock</b>, <b>ETF</b>, <b>Treasury</b>.</li>
+        <li><b>R6</b>, then fill down to R79: <div class="paste" id="t1">=IF(B6="","",IF(Q6="Treasury",10,25))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="t1">Copy</button></div></li>
+        <li>On the <b>Friday check</b> tab, add this to the end of the cash formula in <b>C5</b> and fill down to C14: <div class="paste" id="t2">-SUM(Log!$R$6:$R$79)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="t2">Copy</button></div></li>
+        <li>Delete the note on that tab that says commissions aren't included.</li>
+      </ol>
+      <div class="warn"><b>Why.</b> $25 a stock trade and $10 a Treasury bond, confirmed official. Forty trades is $1,000 of drift, and the tab currently tells Federico to go hunting for a missing trade every time the difference isn't zero.</div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="job" data-k="pf5">
+    <div class="job-h">
+      <span class="job-n">5</span>
+      <span class="job-t"><h2>The trade counter starts at 1 with zero trades</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf5"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>Tab</dt><dd>Log</dd>
+        <dt>Cells</dt><dd><span class="cell">D81</span> <span class="cell">D82</span> <span class="cell">E81</span></dd>
+      </dl>
+      <ol class="steps">
+        <li><b>D81</b>: <div class="paste" id="u1">=COUNTA(B7:B79)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="u1">Copy</button></div></li>
+        <li><b>D82</b>: <div class="paste" id="u2">=COUNTIF(P7:P79,"✓")&" of "&COUNTA(B7:B79)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="u2">Copy</button></div></li>
+        <li><b>E81</b>: <div class="paste" id="u3">(Wharton's cap is 200 for the whole competition; every buy and every sell counts)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="u3">Copy</button></div></li>
+      </ol>
+      <div class="warn"><b>Why.</b> Row 6 is the seeded VOO example, so both counters were counting it as a real trade. Also: when you need more rows, <b>insert them above row 79</b>, never below it &mdash; Sheets only extends the formulas for inserts inside the range.</div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="job" data-k="pf6">
+    <div class="job-h">
+      <span class="job-n">6</span>
+      <span class="job-t"><h2>Nothing collects what the Oct 9 roster asks for</h2><p>Michael &mdash; Team leader and submissions</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf6"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit" target="_blank" rel="noopener">Michael &mdash; Team leader and submissions</a></dd>
+        <dt>Tab</dt><dd>New one, called <b>Roster</b>, before Deliverables</dd>
+      </dl>
+      <ol class="steps">
+        <li>Header row at <b>A3</b>: <div class="paste" id="v1">Full name	Email (must be unique)	Birthday (mm/dd/yyyy)	Anticipated graduation year	Confirmed with them ✓</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="v1">Copy the row</button></div></li>
+        <li>Rows 4 to 8: you, Caleb, Dylan, Joe, Federico.</li>
+        <li>Then below, one per row from <b>A10</b>: <div class="paste" id="v2">Official team name (goes on the roster AND the IPS title page — not the WInS username)
+WInS username
+School country
+School state
+School city
+Official school website URL</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="v2">Copy all six</button></div></li>
+        <li>Duplicate-email check in <b>B17</b>: <div class="paste" id="v3">=IF(COUNTA(B4:B8)=5,IF(SUMPRODUCT(1/COUNTIF(B4:B8,B4:B8))=5,"5 unique emails ✓","DUPLICATE EMAIL"),"missing emails")</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="v3">Copy</button></div></li>
+      </ol>
+      <div class="warn"><b>Why.</b> Wharton collects a birthday and a unique email for every student, plus the school's website URL and an official team name that is separate from the WInS username. Nobody has any of it. Chasing four teammates for birthdays takes days, the roster locks on submission, and the team name has to match on the IPS title page.</div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="job" data-k="pf7">
+    <div class="job-h">
+      <span class="job-n">7</span>
+      <span class="job-t"><h2>Coach P's page shows him a rule that doesn't exist</h2><p>Coach P &mdash; Season overview</p></span>
+      <label class="tick"><input type="checkbox" data-k="pf7"> Done</label>
+    </div>
+    <div class="job-b">
+      <dl class="where">
+        <dt>Tab</dt><dd>Overview</dd>
+        <dt>Cells</dt><dd><span class="cell">C28</span> <span class="cell">C29</span> <span class="cell">C30</span> <span class="cell">B44</span></dd>
+      </dl>
+      <ol class="steps">
+        <li><b>C28</b>, was &ldquo;Wharton requires one per team member: five&rdquo;: <div class="paste" id="w1">The team's own plan: one per member. Wharton requires no sector allocation and no minimum number of sectors.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w1">Copy</button></div></li>
+        <li><b>C29</b>, was &ldquo;Wharton requires at least one&rdquo;: <div class="paste" id="w2">The team's own plan: at least one. Not a Wharton rule.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w2">Copy</button></div></li>
+        <li><b>C30</b>: <div class="paste" id="w3">Wharton's cap is 200 for the whole competition.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w3">Copy</button></div></li>
+        <li><b>B44</b>: <div class="paste" id="w4">Wharton releases the Final Report requirements Nov 9 (Week 7). Watch for whether an advisor reflection is asked for.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w4">Copy</button></div></li>
+      </ol>
+      <div class="warn"><b>Why.</b> His read-only page currently tells him the team is at &ldquo;disqualification risk&rdquo; for something Wharton does not require. He's the advisor; he will act on it.</div>
+    </div>
+  </div>
+
+  <div class="doneall" id="allgood" hidden><b>That is all seven.</b> The sheets now match the official documents, and nothing prints a rule that does not exist.</div>
+
+ </div>
+</main>
+<script src="assets/data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  function toast(m) {
+    var t = $("toast");
+    if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role","status"); document.body.appendChild(t); }
+    t.textContent = m; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 1800);
+  }
+  function copy(text, msg) {
+    function ok() { toast(msg || "Copied"); }
+    function fb() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); ok(); } catch (e) { toast("Select it and copy by hand"); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fb);
+    else fb();
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy]"); if (!b) return;
+    var el = $(b.getAttribute("data-copy")); if (!el) return;
+    copy(el.textContent, "Copied — paste it into the cell");
+  });
+
+  /* ticks are per browser; this is a personal checklist, not a shared record */
+  function get() { try { return JSON.parse(localStorage.getItem("wsw:portalfixes") || "{}"); } catch (e) { return {}; } }
+  function set(v) { try { localStorage.setItem("wsw:portalfixes", JSON.stringify(v)); } catch (e) {} }
+  var state = get();
+  function paint() {
+    var all = true;
+    [].forEach.call(document.querySelectorAll(".job"), function (j) {
+      var k = j.getAttribute("data-k");
+      /* jobs that shipped inside the rebuilt sheet have no checkbox and are always done */
+      var on = j.classList.contains("shipped") ? true : !!state[k];
+      j.classList.toggle("done", on);
+      var cb = j.querySelector("input[type=checkbox]"); if (cb) cb.checked = on;
+      if (!on) all = false;
+    });
+    $("allgood").hidden = !all;
+  }
+  document.addEventListener("change", function (e) {
+    var cb = e.target.closest("input[type=checkbox][data-k]"); if (!cb) return;
+    state[cb.getAttribute("data-k")] = cb.checked; set(state); paint();
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
