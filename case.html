@@ -351,7 +351,8 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
   byId("hero").innerHTML =
     '<p class="who">Wharton 2018. Bestselling graphic novelist (<i>Messy Roots</i>), born in Wuhan, raised in Texas, and a tech product manager before that.</p>' +
     '<p class="quote">&ldquo;' + esc(C.quote) + "&rdquo;</p>" +
-    '<div class="proj"><span class="k">She is building</span><b>' + esc(C.project.name) + "</b><span>" + esc(C.project.where) + ", opening " + C.project.year + ". A small space where artists, writers and entrepreneurs live, work and teach for a while.</span></div>";
+    '<div class="proj"><span class="k">She is building</span><b>' + esc(C.project.name) + "</b><span>" + esc(C.project.where) + ", opening " + C.project.year + ". A small space where artists, writers and entrepreneurs live, work and teach for a while.</span></div>" +
+    '<p class="quote" style="font-style:normal"><b>Teams are not permitted to contact Laura Gao.</b> Wharton says so in bold on the Client page. No emails, no DMs, no tagging her.</p>';
 
   byId("verdict").innerHTML =
     '<div class="v"><span class="k">Reserve, 2033</span><span class="n">' + money(RES.cost) + '</span><span class="s">Set aside for the ten payments, laddered at 4%. In cash it would cost ' + money(M.reserve[0].cost) + ".</span></div>" +
