@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0B1737">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
-<meta name="description" content="What the official Wharton documents changed, and the exact cells to fix in the team Google Sheets.">
+<meta name="description" content="Five corrected files to import into the team Google Sheets, and the three small edits left over.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -249,33 +249,31 @@ ol.flow.qs span{color:var(--ink)}
 <main id="main">
  <div class="wrap">
 
-  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">The real rules landed. Seven things to change.</h1>
-  <p class="lede">Every official page and PDF came out of the portal on Sep&nbsp;21. Most of what we built holds up. These seven don't, and two of them could cost a submission.</p>
-  <div class="why"><b>Do 1 and 2 before anything else.</b> Number&nbsp;1 is due in 32 days and the tab currently points at the wrong deliverable. Number&nbsp;2 is a format rule that decides whether the IPS is read at all.</div>
+  <h1 style="font:700 28px/1.15 var(--ui);color:var(--navy);margin:0 0 10px">Five files to import. Then three small edits.</h1>
+  <p class="lede">The official rules changed enough that rebuilding beat hand-editing. The corrected files are on your Desktop in <b>Team docs &rsaquo; Corrected 2026-09-21</b>.</p>
+  <div class="why"><b>Import them the right way or the Dashboard breaks.</b> Never upload these as new files &mdash; a new upload gets a new file ID and every IMPORTRANGE link dies. Always open the <b>existing</b> sheet and use <b>File &rsaquo; Import &rsaquo; Upload</b>, then pick the option each job names below. Same file ID, same URL, same sharing, links intact.</div>
 
   <!-- 1 -->
   <div class="job" data-k="pf1">
     <div class="job-h">
       <span class="job-n">1</span>
-      <span class="job-t"><h2>The Oct 23 tab builds the wrong thing</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <span class="job-t"><h2>Federico &mdash; replace the whole sheet</h2><p>File &rsaquo; Import &rsaquo; <b>Replace spreadsheet</b></p></span>
       <label class="tick"><input type="checkbox" data-k="pf1"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
-        <dt>Tab</dt><dd>Oct 23</dd>
-        <dt>Cells</dt><dd><span class="cell">C5</span> <span class="cell">D5</span> <span class="cell">E6:F8</span> <span class="cell">A11:A15</span></dd>
+        <dt>Open</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
+        <dt>Import</dt><dd><span class="cell">Federico &mdash; Trade log and the rules.xlsx</span></dd>
+        <dt>Choose</dt><dd><span class="cell">Replace spreadsheet</span></dd>
       </dl>
       <ol class="steps">
-        <li>Change <b>C5</b> to: <div class="paste" id="q1">The Trading Note, pasted EXACTLY as it appears in WInS</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q1">Copy</button></div></li>
-        <li>Change <b>D5</b> to: <div class="paste" id="q2">Reflection (100 words or fewer): why we did it · how it aligned with the strategy · how it supported Laura's goals, funding needs or risk</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q2">Copy</button></div></li>
-        <li>Delete the <b>Supported / Tested / Changed</b> dropdown sitting in <b>D6:D8</b>. It is a house idea, not a Wharton field, and it is taking the reflection column.</li>
-        <li>Put a word counter in <b>E6</b> and fill it down to E8: <div class="paste" id="q3">=IF(D6="",0,LEN(TRIM(D6))-LEN(SUBSTITUTE(TRIM(D6)," ",""))+1)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q3">Copy</button></div></li>
-        <li>Put the check in <b>F6</b>, fill down to F8: <div class="paste" id="q4">=IF(E6&gt;100,"CUT IT",IF(E6=0,"","ok"))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q4">Copy</button></div></li>
-        <li>Select <b>A11 to A15</b> (the five-section outline) and delete it. Put this in <b>A11</b> instead: <div class="paste" id="q5">There is no document to write. The submission is three notes copied out of WInS word for word, each with a reflection of 100 words or fewer. No strategy section, no holdings section, no "what we'd change".</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="q5">Copy</button></div></li>
-        <li>In the Steps list further down, change <b>Draft the five sections</b> to <b>Write the three reflections</b>.</li>
+        <li>The <b>Oct 23 tab</b> was building the retired mid-project review. It is now three notes pasted exactly as they appear in WInS, each with a live word counter against the 100-word cap.</li>
+        <li>The <b>Rules tab</b> loses the approved-list rule and the first-trade deadline, which do not exist, and gains six real ones: no contact with Laura, the banned securities, the 2&times; volume cap, the permitted list, the 200-trade cap, and the Nov 6 freeze.</li>
+        <li>The <b>Log</b> gains a Type dropdown in <b>Q</b> and a commission in <b>R</b> ($25, or $10 for a Treasury), and a running commissions total.</li>
+        <li>The <b>Friday check</b> now subtracts commissions, so a difference that isn&rsquo;t $0 means a trade really is missing.</li>
+        <li>The trade counter no longer counts the example row as a real trade.</li>
       </ol>
-      <div class="warn"><b>Why.</b> The tab was built from the old mid-project review, which Wharton retired. The real spec is three notes pasted exactly as they appear in WInS, each with a reflection of 100 words or fewer covering why you did it, how it aligned with the strategy, and how it supported Laura. That is the whole deliverable. Wharton also says outright: &ldquo;The Trading Notes must correspond to trades executed in WInS. Yes, we will verify this.&rdquo;</div>
+      <div class="warn"><b>Safe to replace.</b> He took the job on Sep 19 and hasn&rsquo;t typed anything in yet. If he has logged the SGOV practice trade, re-enter that one row &mdash; practice is wiped Sep 25 anyway.</div>
     </div>
   </div>
 
@@ -283,34 +281,22 @@ ol.flow.qs span{color:var(--ink)}
   <div class="job" data-k="pf2">
     <div class="job-h">
       <span class="job-n">2</span>
-      <span class="job-t"><h2>The IPS is 550 words, not 11 sections</h2><p>Caleb &mdash; Laura's case</p></span>
+      <span class="job-t"><h2>Caleb &mdash; the IPS tab only</h2><p>File &rsaquo; Import &rsaquo; <b>Replace current sheet</b></p></span>
       <label class="tick"><input type="checkbox" data-k="pf2"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit" target="_blank" rel="noopener">Caleb &mdash; Laura's case</a></dd>
-        <dt>Tab</dt><dd>IPS</dd>
-        <dt>Cells</dt><dd><span class="cell">A6:B16</span> <span class="cell">F6:G7</span> <span class="cell">C18</span></dd>
+        <dt>Open</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit" target="_blank" rel="noopener">Caleb &mdash; Laura&rsquo;s case</a></dd>
+        <dt>Import</dt><dd><span class="cell">Caleb IPS tab only.xlsx</span></dd>
+        <dt>Choose</dt><dd><span class="cell">Replace current sheet</span></dd>
       </dl>
-      <div class="warn" style="margin:0 0 14px"><b>Do not insert or delete rows.</b> C18 and Michael's Dashboard read fixed cells. Type over what is there.</div>
+      <div class="warn" style="margin:0 0 14px"><b>Click the IPS tab before you import.</b> &ldquo;Replace current sheet&rdquo; replaces whichever tab is open. And do <b>not</b> replace his whole spreadsheet &mdash; he finished his Laura tab on Sep 20 and it would be wiped while he&rsquo;s away.</div>
       <ol class="steps">
-        <li><b>A6</b>: <div class="paste" id="r1">Part 1 — Elevator Pitch (MAX 50 WORDS)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r1">Copy</button></div></li>
-        <li><b>A7</b>: <div class="paste" id="r2">Part 2 — The IPS (MAX 500 WORDS, one cohesive piece, no headings)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r2">Copy</button></div></li>
-        <li><b>A8</b>: <div class="paste" id="r3">Title page (1 page max): official team name identical to the roster, members as First Name + Last Initial, and the WInS username</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r3">Copy</button></div></li>
-        <li>Type these over <b>A9</b> down to <b>A15</b>, one per row. They are pass/fail: <div class="paste" id="r4">Times New Roman, 12 point
-Double-spaced
-1-inch margins all round
-Exported as PDF, under 5 MB
-Title page is 1 page; pitch + statement fit in 2 pages
-NO graphics, charts, images, attachments or external links anywhere
-NO footnotes and NO citations — sources are not cited in the IPS</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r4">Copy all seven</button></div></li>
-        <li><b>A16</b>: <div class="paste" id="r5">NOT in the IPS: reserve calculations, detailed projections, the facility-contribution range, the co-sponsor communication. Wharton says those are Final Report work.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r5">Copy</button></div></li>
-        <li>Word counters. <b>F6</b>: <div class="paste" id="r6">=IF(C6="",0,LEN(TRIM(C6))-LEN(SUBSTITUTE(TRIM(C6)," ",""))+1)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r6">Copy</button></div> then <b>G6</b>: <div class="paste" id="r7">=IF(F6&gt;50,"CUT IT",IF(F6=0,"","ok"))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r7">Copy</button></div></li>
-        <li><b>F7</b> is the same formula pointing at C7. <b>G7</b>: <div class="paste" id="r8">=IF(F7&gt;500,"CUT IT",IF(F7=0,"","ok"))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r8">Copy</button></div></li>
-        <li><b>C18</b>, replace the &ldquo;of 11&rdquo; counter: <div class="paste" id="r9">=IF(AND(F6&gt;0,F6&lt;=50,F7&gt;0,F7&lt;=500),"both parts in limit","not yet")</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="r9">Copy</button></div></li>
-        <li>Then on <b>your own</b> sheet, Deliverables tab, cell <b>F8</b> tests for the old &ldquo;11&rdquo; and will never fire again. Replace it with a plain dropdown like the row above it.</li>
+        <li>Eleven sections become <b>a 50-word elevator pitch and a 500-word statement</b>, with a live word count and a CUT IT flag on each.</li>
+        <li>Seven format gates get their own rows, because missing any one of them means the IPS is not considered for semifinals: Times New Roman 12pt, double-spaced, 1-inch margins, PDF under 5MB, the page limits, no graphics or links, and no footnotes or citations.</li>
+        <li>A row naming what does <b>not</b> go in the IPS: reserve calculations, projections, the facility range, the co-sponsor communication. All Final Report work.</li>
       </ol>
-      <div class="warn"><b>Why.</b> Wharton: &ldquo;Submissions that do not meet the requirements below will not be considered for semifinal selection.&rdquo; Eleven sections into 500 words is 45 words each. Three of the eleven &mdash; the return-objective math, a paragraph per sector, and the 2031 co-sponsor range &mdash; are things Wharton explicitly says do not belong in the IPS at all.</div>
+      <div class="warn"><b>One dependent edit on your own sheet.</b> Deliverables cell <b>F8</b> tested for the old &ldquo;11&rdquo; section count. It now tests for &ldquo;both&rdquo; instead &mdash; that fix is in job 5 below.</div>
     </div>
   </div>
 
@@ -318,28 +304,22 @@ NO footnotes and NO citations — sources are not cited in the IPS</div><div cla
   <div class="job" data-k="pf3">
     <div class="job-h">
       <span class="job-n">3</span>
-      <span class="job-t"><h2>The Rules tab has a rule that doesn't exist, and is missing six that do</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <span class="job-t"><h2>Your Roster tab</h2><p>File &rsaquo; Import &rsaquo; <b>Insert new sheet(s)</b></p></span>
       <label class="tick"><input type="checkbox" data-k="pf3"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
-        <dt>Tab</dt><dd>Rules</dd>
-        <dt>Cells</dt><dd><span class="cell">B6:B10</span> <span class="cell">B15</span> <span class="cell">B18:B20</span></dd>
+        <dt>Open</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit" target="_blank" rel="noopener">Michael &mdash; Team leader and submissions</a></dd>
+        <dt>Import</dt><dd><span class="cell">Michael Roster tab only.xlsx</span></dd>
+        <dt>Choose</dt><dd><span class="cell">Insert new sheet(s)</span></dd>
       </dl>
-      <div class="warn" style="margin:0 0 14px"><b>Type over the rows. Do not add any.</b> C22 and C23 are locked to D6:D20 and Michael's Dashboard imports those two cells by name.</div>
       <ol class="steps">
-        <li><b>B6</b> (was &ldquo;first trade by the deadline&rdquo; &mdash; no such rule exists): <div class="paste" id="s1">Never contact Laura Gao. Teams are not permitted to contact the client.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s1">Copy</button></div></li>
-        <li><b>B7</b>: <div class="paste" id="s2">No margin, no short selling, no stock-secured debt, no crypto, no derivatives (options, futures, swaps).</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s2">Copy</button></div></li>
-        <li><b>B8</b>: <div class="paste" id="s3">No single trade larger than 2x that security's current daily trading volume.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s3">Copy</button></div></li>
-        <li><b>B9</b> (was &ldquo;only securities on Wharton's approved list&rdquo;): <div class="paste" id="s4">Every buy is a permitted security: a stock at $5 or more, any ETF on WInS, or a government bond from the US, UK, Germany, France, Italy or the Netherlands.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s4">Copy</button></div></li>
-        <li><b>B10</b>: <div class="paste" id="s5">200 trades maximum for the whole competition. Every buy and every sell counts.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s5">Copy</button></div></li>
-        <li><b>B15</b> (the page range is invented &mdash; requirements land Nov 9): <div class="paste" id="s6">Final Report meets the requirements Wharton releases Nov 9 (Week 7).</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s6">Copy</button></div></li>
-        <li><b>B18</b>: <div class="paste" id="s7">Sources and supporting evidence go in the FINAL REPORT. The IPS carries no citations, footnotes or links.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s7">Copy</button></div></li>
-        <li><b>B19</b>: <div class="paste" id="s8">Portfolio frozen after Nov 6: no trades, no changes to holdings. The IPS strategy is final and may not be revised.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s8">Copy</button></div></li>
-        <li><b>B20</b>: <div class="paste" id="s9">All five members participate in the semifinal and final presentation, and the roster does not change after Oct 9.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="s9">Copy</button></div></li>
+        <li>It adds a Roster tab and touches nothing else. Drag it so it sits before Deliverables.</li>
+        <li>It holds exactly what Wharton&rsquo;s Oct 9 form asks for: every name, a <b>unique email</b>, a <b>birthday</b>, and a graduation year, plus the team fields.</li>
+        <li>There is a duplicate-email check in <b>B10</b>, because Wharton requires one distinct address per student.</li>
+        <li>The <b>official team name</b> field is separate from the WInS username on purpose. It goes on the roster and has to match the IPS title page exactly.</li>
       </ol>
-      <div class="warn"><b>Why.</b> There is no approved list &mdash; any ETF on WInS is permitted, so SGOV was never at risk. There is no first-trade deadline this season. And six real rules were missing, including the two caps and the fact that the portfolio locks on Nov 6.</div>
+      <div class="warn"><b>Start filling this tonight.</b> Chasing four teammates for birthdays is the slowest thing on your list and the roster locks the moment you submit it.</div>
     </div>
   </div>
 
@@ -347,23 +327,21 @@ NO footnotes and NO citations — sources are not cited in the IPS</div><div cla
   <div class="job" data-k="pf4">
     <div class="job-h">
       <span class="job-n">4</span>
-      <span class="job-t"><h2>Commissions are missing, so Friday can never balance</h2><p>Federico, then Joe</p></span>
+      <span class="job-t"><h2>Dylan &mdash; the Limits tab only</h2><p>File &rsaquo; Import &rsaquo; <b>Replace current sheet</b></p></span>
       <label class="tick"><input type="checkbox" data-k="pf4"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit" target="_blank" rel="noopener">Federico &mdash; Trade log and the rules</a></dd>
-        <dt>Tab</dt><dd>Log, then Friday check</dd>
-        <dt>Cells</dt><dd><span class="cell">Q5:R79</span> <span class="cell">C5:C14</span></dd>
+        <dt>Open</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1Rq2ZdyHtm8vxGg1tGDP4UxWAwcfKynmq6OuPFZvwgQ4/edit" target="_blank" rel="noopener">Dylan &mdash; Risk and the bear case</a></dd>
+        <dt>Import</dt><dd><span class="cell">Dylan Limits tab only.xlsx</span></dd>
+        <dt>Choose</dt><dd><span class="cell">Replace current sheet</span></dd>
       </dl>
       <ol class="steps">
-        <li>On the <b>Log</b> tab, label <b>Q5</b> as <b>Type</b> and <b>R5</b> as <b>Commission</b>.</li>
-        <li>Give <b>Q6:Q79</b> a dropdown (Data &rarr; Data validation) with three options: <b>Stock</b>, <b>ETF</b>, <b>Treasury</b>.</li>
-        <li><b>R6</b>, then fill down to R79: <div class="paste" id="t1">=IF(B6="","",IF(Q6="Treasury",10,25))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="t1">Copy</button></div></li>
-        <li>On the <b>Friday check</b> tab, add this to the end of the cash formula in <b>C5</b> and fill down to C14: <div class="paste" id="t2">-SUM(Log!$R$6:$R$79)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="t2">Copy</button></div></li>
-        <li>Delete the note on that tab that says commissions aren't included.</li>
+        <li>Click the <b>Limits</b> tab first. His Bear case tab is untouched.</li>
+        <li>&ldquo;BELOW 5 &mdash; disqualification risk&rdquo; becomes &ldquo;only 3 of 5 &mdash; fine, not a Wharton rule&rdquo;, and &ldquo;NO STOCK &mdash; rule risk&rdquo; becomes &ldquo;no stock yet&rdquo;.</li>
+        <li>The sector and ETF counts stay &mdash; they are just relabelled as the team&rsquo;s own targets.</li>
       </ol>
-      <div class="warn"><b>Why.</b> $25 a stock trade and $10 a Treasury bond, confirmed official. Forty trades is $1,000 of drift, and the tab currently tells Federico to go hunting for a missing trade every time the difference isn't zero.</div>
+      <div class="warn"><b>Why it matters more than it looks.</b> A red warning for a rule that does not exist pushes someone to buy a stock they don&rsquo;t want just to clear it &mdash; which is the exact behaviour the real rules discourage.</div>
     </div>
   </div>
 
@@ -371,20 +349,20 @@ NO footnotes and NO citations — sources are not cited in the IPS</div><div cla
   <div class="job" data-k="pf5">
     <div class="job-h">
       <span class="job-n">5</span>
-      <span class="job-t"><h2>The trade counter starts at 1 with zero trades</h2><p>Federico &mdash; Trade log and the rules</p></span>
+      <span class="job-t"><h2>Three edits by hand on your own sheet</h2><p>Michael &mdash; Dashboard and Deliverables</p></span>
       <label class="tick"><input type="checkbox" data-k="pf5"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>Tab</dt><dd>Log</dd>
-        <dt>Cells</dt><dd><span class="cell">D81</span> <span class="cell">D82</span> <span class="cell">E81</span></dd>
+        <dt>Tabs</dt><dd>Dashboard, then Deliverables</dd>
+        <dt>Cells</dt><dd><span class="cell">A35</span> <span class="cell">A36</span> <span class="cell">C36</span> <span class="cell">F8</span> <span class="cell">A15:A20</span></dd>
       </dl>
       <ol class="steps">
-        <li><b>D81</b>: <div class="paste" id="u1">=COUNTA(B7:B79)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="u1">Copy</button></div></li>
-        <li><b>D82</b>: <div class="paste" id="u2">=COUNTIF(P7:P79,"✓")&" of "&COUNTA(B7:B79)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="u2">Copy</button></div></li>
-        <li><b>E81</b>: <div class="paste" id="u3">(Wharton's cap is 200 for the whole competition; every buy and every sell counts)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="u3">Copy</button></div></li>
+        <li>Dashboard <b>A35</b> and <b>A36</b>: change &ldquo;need 1+&rdquo; and &ldquo;need 5&rdquo; to <b>our target: 1+</b> and <b>our target: 5</b>.</li>
+        <li>Dashboard <b>C36</b>: <div class="paste" id="m1">=IF(ISNUMBER(B36),IF(B36&gt;=5,"ok","below our target of 5"),"")</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="m1">Copy</button></div></li>
+        <li>Deliverables <b>F8</b>, which tested for the old 11 sections: <div class="paste" id="m2">=IF(G8="✓","Submitted",IF(LEFT(Dashboard!B23,1)="—","Not started",IF(LEFT(Dashboard!B23,4)="both","Ready for team review","Drafting: "&Dashboard!B23)))</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="m2">Copy</button></div></li>
+        <li>Deliverables <b>A18</b> and <b>A19</b> are currently backwards &mdash; they tell you to put citations in the IPS, where they are forbidden, and keep links out of the Final Report, where they are required. Replace A18: <div class="paste" id="m3">IPS: no citations, no footnotes, no links, no charts. FINAL REPORT: every source and all supporting evidence included, and every number in Joe's Ledger.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="m3">Copy</button></div> and A19: <div class="paste" id="m4">IPS only: searched the PDF for "http" and found none. (The Final Report is allowed sources.)</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="m4">Copy</button></div></li>
       </ol>
-      <div class="warn"><b>Why.</b> Row 6 is the seeded VOO example, so both counters were counting it as a real trade. Also: when you need more rows, <b>insert them above row 79</b>, never below it &mdash; Sheets only extends the formulas for inserts inside the range.</div>
     </div>
   </div>
 
@@ -392,26 +370,20 @@ NO footnotes and NO citations — sources are not cited in the IPS</div><div cla
   <div class="job" data-k="pf6">
     <div class="job-h">
       <span class="job-n">6</span>
-      <span class="job-t"><h2>Nothing collects what the Oct 9 roster asks for</h2><p>Michael &mdash; Team leader and submissions</p></span>
+      <span class="job-t"><h2>Joe &mdash; two cells</h2><p>The numbers, Portfolio tab</p></span>
       <label class="tick"><input type="checkbox" data-k="pf6"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>File</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit" target="_blank" rel="noopener">Michael &mdash; Team leader and submissions</a></dd>
-        <dt>Tab</dt><dd>New one, called <b>Roster</b>, before Deliverables</dd>
+        <dt>Open</dt><dd><a class="link" href="https://docs.google.com/spreadsheets/d/15I2v_2KLHGlGB8IQs0b1Ye5XHlRpZeCA4_0Qcc_lCYw/edit" target="_blank" rel="noopener">Joe &mdash; The numbers</a></dd>
+        <dt>Tab</dt><dd>Portfolio</dd>
       </dl>
       <ol class="steps">
-        <li>Header row at <b>A3</b>: <div class="paste" id="v1">Full name	Email (must be unique)	Birthday (mm/dd/yyyy)	Anticipated graduation year	Confirmed with them ✓</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="v1">Copy the row</button></div></li>
-        <li>Rows 4 to 8: you, Caleb, Dylan, Joe, Federico.</li>
-        <li>Then below, one per row from <b>A10</b>: <div class="paste" id="v2">Official team name (goes on the roster AND the IPS title page — not the WInS username)
-WInS username
-School country
-School state
-School city
-Official school website URL</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="v2">Copy all six</button></div></li>
-        <li>Duplicate-email check in <b>B17</b>: <div class="paste" id="v3">=IF(COUNTA(B4:B8)=5,IF(SUMPRODUCT(1/COUNTIF(B4:B8,B4:B8))=5,"5 unique emails ✓","DUPLICATE EMAIL"),"missing emails")</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="v3">Copy</button></div></li>
+        <li><b>A48</b>: change &ldquo;ETFs held (need at least 1)&rdquo; to <b>ETFs held (our plan wants 1+)</b>, and <b>E48</b> from &ldquo;NEED AN ETF&rdquo; to <b>none yet</b>.</li>
+        <li>The example row uses <b>JPM</b>, which is on your own no-trade list. Change it to <b>MA</b> so nobody copies it.</li>
+        <li>Still outstanding from before: the <b>744%</b> weight, a formula dividing by an empty portfolio.</li>
       </ol>
-      <div class="warn"><b>Why.</b> Wharton collects a birthday and a unique email for every student, plus the school's website URL and an official team name that is separate from the WInS username. Nobody has any of it. Chasing four teammates for birthdays takes days, the roster locks on submission, and the team name has to match on the IPS title page.</div>
+      <div class="warn"><b>Not replacing Joe&rsquo;s sheet on purpose.</b> He has real work in it, and these are three cosmetic cells.</div>
     </div>
   </div>
 
@@ -419,25 +391,24 @@ Official school website URL</div><div class="pastebtn"><button class="cbtn" type
   <div class="job" data-k="pf7">
     <div class="job-h">
       <span class="job-n">7</span>
-      <span class="job-t"><h2>Coach P's page shows him a rule that doesn't exist</h2><p>Coach P &mdash; Season overview</p></span>
+      <span class="job-t"><h2>Coach P &mdash; upload it for the first time</h2><p>Upload as a new file</p></span>
       <label class="tick"><input type="checkbox" data-k="pf7"> Done</label>
     </div>
     <div class="job-b">
       <dl class="where">
-        <dt>Tab</dt><dd>Overview</dd>
-        <dt>Cells</dt><dd><span class="cell">C28</span> <span class="cell">C29</span> <span class="cell">C30</span> <span class="cell">B44</span></dd>
+        <dt>Import</dt><dd><span class="cell">Coach P &mdash; Season overview.xlsx</span></dd>
+        <dt>Choose</dt><dd>Upload as a <b>new</b> file &mdash; this one was never uploaded, so there is nothing to preserve</dd>
       </dl>
       <ol class="steps">
-        <li><b>C28</b>, was &ldquo;Wharton requires one per team member: five&rdquo;: <div class="paste" id="w1">The team's own plan: one per member. Wharton requires no sector allocation and no minimum number of sectors.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w1">Copy</button></div></li>
-        <li><b>C29</b>, was &ldquo;Wharton requires at least one&rdquo;: <div class="paste" id="w2">The team's own plan: at least one. Not a Wharton rule.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w2">Copy</button></div></li>
-        <li><b>C30</b>: <div class="paste" id="w3">Wharton's cap is 200 for the whole competition.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w3">Copy</button></div></li>
-        <li><b>B44</b>: <div class="paste" id="w4">Wharton releases the Final Report requirements Nov 9 (Week 7). Watch for whether an advisor reflection is asked for.</div><div class="pastebtn"><button class="cbtn" type="button" data-copy="w4">Copy</button></div></li>
+        <li>Paste your sheet&rsquo;s link into <b>C4</b>, click <b>D4</b> and Allow access.</li>
+        <li>Share it view-only with <b>ed.padalecki@mylcs.com</b>.</li>
+        <li>It no longer tells him the team is at &ldquo;disqualification risk&rdquo; for the sector rule, and the trade cap is described as this season&rsquo;s, not last season&rsquo;s.</li>
       </ol>
-      <div class="warn"><b>Why.</b> His read-only page currently tells him the team is at &ldquo;disqualification risk&rdquo; for something Wharton does not require. He's the advisor; he will act on it.</div>
+      <div class="warn"><b>This one was the quiet problem.</b> His page is read-only and he is the advisor &mdash; he would have acted on a rule that does not exist.</div>
     </div>
   </div>
 
-  <div class="doneall" id="allgood" hidden><b>That is all seven.</b> The sheets now match the official documents, and nothing prints a rule that does not exist.</div>
+  <div class="doneall" id="allgood" hidden><b>That is all of them.</b> The sheets match the official documents, and nothing prints a rule that does not exist.</div>
 
  </div>
 </main>
