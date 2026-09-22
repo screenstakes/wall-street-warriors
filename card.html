@@ -443,18 +443,25 @@ ol.flow.qs span{color:var(--ink)}
         <div class="fld"><label for="d-yes">Yes votes, out of 5</label><input id="d-yes" type="number" min="0" max="5" step="1" inputmode="numeric"></div>
         <div class="fld"><label for="d-date">Date it was placed</label><input id="d-date" type="date"></div>
       </div>
+      <div class="row2">
+        <div class="fld"><label for="d-type">What kind of holding</label><select id="d-type"><option value="">pick one</option><option>Stock</option><option>ETF</option><option>Treasury</option></select></div>
+        <div class="fld"><label for="d-goal">Which of Laura's goals</label><select id="d-goal"><option value="">pick one</option></select></div>
+      </div>
+      <div class="fld"><label for="d-why">Why we bought it &mdash; copy the WHY line off the card in the thread</label><textarea id="d-why" rows="3" placeholder="Its revenue comes from software subscriptions and cloud contracts rather than advertising, so the cash flows are more predictable than most large technology companies"></textarea></div>
     </div>
     <div class="calc" id="d-calc">Fill these in and I'll check the vote against our rules.</div>
-    <p class="hint">Nothing is remembered between the card and this form, on purpose. You may not be the person who wrote the card, and you are probably not on the same laptop.</p>
+    <p class="hint">Nothing is remembered between the card and this form, on purpose. You may not be the person who wrote the card, and you are probably not on the same laptop. The last three are so this page can hand you the WInS note instead of making you go dig it out of the thread.</p>
   </section>
 
   <section class="screen" data-ch="6" aria-labelledby="hd2" hidden>
     <div class="eyebrow">It went through</div>
     <h1 id="hd2" tabindex="-1">Three things to paste</h1>
     <div class="missing" id="d-gaps" hidden></div>
-    <div class="outhead"><h2>1. The note, into WInS &mdash; before you hit Confirm</h2></div>
-    <p class="small">This is the one Wharton grades, and it has to go in on the <b>Review Order</b> screen <b>before</b> you confirm. It is the paragraph at the top of the trade&rsquo;s own thread, the one starting &ldquo;We are buying&hellip;&rdquo;. Copy it from there and paste it into the <b>Trade Note</b> box.</p>
-    <p class="hint" style="margin-top:0"><b>Already confirmed without it?</b> Not fatal. In WInS go to <b>Transaction History &rarr; Add/View Notes</b> and add it to that trade now. A note can&rsquo;t be edited once saved, but more can be added, and the timestamp shows when. Do it the same day.</p>
+    <div class="outhead"><h2>1. The note, into WInS</h2><span class="wc" id="d-wc"></span></div>
+    <p class="small">This is the one Wharton grades. It goes in the <b>Trade Note</b> box on the <b>Review Order</b> screen, <b>before</b> you hit Confirm.</p>
+    <div class="out" id="d-note"></div>
+    <div><button class="cbtn" type="button" id="c-note">Copy the note</button></div>
+    <p class="hint" style="margin-top:10px"><b>Already confirmed without it?</b> Not fatal. In WInS go to <b>Transaction History &rarr; Add/View Notes</b> and add it to that trade now. A note can&rsquo;t be edited once saved, but more can be added, and the timestamp shows when. Do it the same day.</p>
     <div class="outhead"><h2>2. Reply in the trade's thread</h2></div>
     <div class="out" id="d-reply"></div>
     <div><button class="cbtn" type="button" id="c-reply">Copy the reply</button></div>
@@ -689,6 +696,14 @@ ol.flow.qs span{color:var(--ink)}
   function votesNeeded() { return (s.size > 10 || s.newKind) ? "4 of 5" : "3 of 5"; }
 
   function pileOf(id) { for (var i = 0; i < GOALS.length; i++) if (GOALS[i].id === id) return GOALS[i]; return null; }
+  (function fillDoneGoals() {
+    var sel = document.getElementById("d-goal"); if (!sel) return;
+    GOALS.forEach(function (g) {
+      var o = document.createElement("option");
+      o.value = g.id; o.textContent = g.pile + " — " + g.label;
+      sel.appendChild(o);
+    });
+  })();
   function goalsInPile() {
     var p = PILES.filter(function (x) { return x.tag === s.pile; })[0];
     return p ? p.items.map(function (it) { return { id: it.id, label: it.label, sub: it.sub }; }) : [];
@@ -724,7 +739,7 @@ ol.flow.qs span{color:var(--ink)}
     starters("wrong-starts", START_WRONG, "wrong");
     quickDates();
 
-    ["tk","co","why","exp","expd","wrong","wrongd","act","src","d-tk","d-side","d-shares","d-price","d-yes","d-date"].forEach(function (id) {
+    ["tk","co","why","exp","expd","wrong","wrongd","act","src","d-tk","d-side","d-shares","d-price","d-yes","d-date","d-type","d-goal","d-why"].forEach(function (id) {
       var el = $(id); if (!el) return;
       if (s[id]) el.value = s[id];
       el.addEventListener("input", function () {
@@ -879,10 +894,31 @@ ol.flow.qs span{color:var(--ink)}
       ". Note is in WInS.";
   }
   function doneRow() { return [s["d-date"] || "", s["d-tk"] || "", s["d-side"] || ""].join("\t"); }
+  /* Same shape as winsNote() on the propose side, built from this form instead: what we bought,
+     why, the risk it carries, and the goal it serves. No price target and no exit trigger —
+     Wharton's own example note has neither. */
+  function doneNote() {
+    var g = pileOf(s["d-goal"]), tk = s["d-tk"] || "[ticker]";
+    var sh = parseFloat(s["d-shares"]), pr = parseFloat(s["d-price"]);
+    var pct = (sh > 0 && pr > 0) ? (sh * pr / CASH * 100).toFixed(1) + "% of the portfolio" : "[size]";
+    var selling = (s["d-side"] || "").toLowerCase().indexOf("sell") === 0;
+    var a = selling
+      ? "We are selling " + tk + ", " + pct + ", because it is no longer doing the job we bought it for."
+      : "We are buying " + tk + " at " + pct + ".";
+    var why = s["d-why"] ? " " + s["d-why"].trim().replace(/[.\s]+$/, "") + "." : " [why]";
+    var risk = RISK_BY_TYPE[s["d-type"]] ? " It should do that " + RISK_BY_TYPE[s["d-type"]] + "." : "";
+    var client = g ? " This supports Laura's plan " + g.note + "." : " [what it is for]";
+    return (a + why + risk + client).replace(/\s+/g, " ").trim();
+  }
   function renderDone() {
     var n = dneed();
     $("d-gaps").hidden = !n.length;
     if (n.length) $("d-gaps").innerHTML = "<b>Still need:</b> " + n.join(", ") + ".";
+    $("d-note").textContent = doneNote();
+    var dw = doneNote().split(/\s+/).filter(Boolean).length;
+    $("d-wc").textContent = "note: " + dw + " words (Wharton's own example is about 60)";
+    $("d-wc").className = "wc" + (dw > 80 ? " over" : "");
+    $("c-note").disabled = !s["d-why"] || !s["d-goal"];
     $("d-reply").textContent = doneReply();
     $("d-row").textContent = doneRow() +
       "\n\nthen, in the same row:   D = " + (s["d-shares"] || "?") + " shares    E = " + (s["d-price"] || "?") + "    L = " + (s["d-yes"] || "?") + " yes votes";
@@ -962,13 +998,14 @@ ol.flow.qs span{color:var(--ink)}
     if (at === f.length - 1) {
       if (!confirm("Clear this and start another? What you have here will be gone.")) return;
       s = { mode: s.mode }; save();
-      ["tk","co","why","exp","expd","wrong","wrongd","act","src","d-tk","d-side","d-shares","d-price","d-yes","d-date"].forEach(function (id) { if ($(id)) $(id).value = ""; });
+      ["tk","co","why","exp","expd","wrong","wrongd","act","src","d-tk","d-side","d-shares","d-price","d-yes","d-date","d-type","d-goal","d-why"].forEach(function (id) { if ($(id)) $(id).value = ""; });
       build(); go(1); return;
     }
     if (!check(f[at])) return;
     go(at + 1);
   });
   $("c-card").addEventListener("click", function () { if (!$("c-card").disabled) W.copy(chatCard(), "Copied — post it as a new message"); });
+  $("c-note").addEventListener("click", function () { if (!$("c-note").disabled) W.copy(doneNote(), "Copied — paste into the WInS Trade Note box"); });
   $("c-reply").addEventListener("click", function () { if (!$("c-reply").disabled) W.copy(doneReply(), "Copied — reply in the trade's thread"); });
   $("c-row").addEventListener("click", function () { if (!$("c-row").disabled) W.copy(doneRow(), "Copied — paste into the first empty row, column A"); });
 
