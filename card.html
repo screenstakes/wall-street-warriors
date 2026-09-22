@@ -745,6 +745,7 @@ ol.flow.qs span{color:var(--ink)}
       el.addEventListener("input", function () {
         s[id] = id === "tk" || id === "d-tk" ? el.value.toUpperCase() : el.value;
         if (id === "tk" || id === "d-tk") el.value = s[id];
+        if (id === "d-tk") prefillDone();
         save(); clearFlags();
         if (id.indexOf("d-") === 0) doneCalc();
       });
@@ -900,6 +901,24 @@ ol.flow.qs span{color:var(--ink)}
   function doneRow() { return [s["d-date"] || "", s["d-tk"] || "", s["d-side"] || ""].join("\t"); }
   /* A one-word answer used to get stitched in as "...of the portfolio. because." — a capital
      letter and a real sentence are the minimum, and dneed() blocks the copy below that. */
+  /* The reasoning was settled in September. Typing a known ticker pulls its reason, kind and goal
+     out of data.js rather than making whoever places the trade invent one at the WInS screen.
+     Only fills blanks — anything already typed wins, because a later trade may have a new reason. */
+  var PICKS = D.picks || [];
+  function pickFor(tk) {
+    tk = (tk || "").trim().toUpperCase();
+    for (var i = 0; i < PICKS.length; i++) if (PICKS[i].tk === tk) return PICKS[i];
+    return null;
+  }
+  function prefillDone() {
+    var p = pickFor(s["d-tk"]); if (!p) return false;
+    var filled = false;
+    if (!s["d-type"]) { s["d-type"] = p.type; if ($("d-type")) $("d-type").value = p.type; filled = true; }
+    if (!s["d-goal"]) { s["d-goal"] = p.goal; if ($("d-goal")) $("d-goal").value = p.goal; filled = true; }
+    if (!(s["d-why"] || "").trim()) { s["d-why"] = p.why; if ($("d-why")) $("d-why").value = p.why; filled = true; }
+    if (filled) save();
+    return filled;
+  }
   function sentence(t) {
     t = (t || "").trim().replace(/[.\s]+$/, "");
     return t ? t.charAt(0).toUpperCase() + t.slice(1) + "." : "";
@@ -924,7 +943,11 @@ ol.flow.qs span{color:var(--ink)}
     var n = dneed();
     $("d-gaps").hidden = !n.length;
     if (n.length) $("d-gaps").innerHTML = "<b>Still need:</b> " + n.join(", ") + ".";
-    var wc2 = $("d-whyc"); if (wc2) wc2.textContent = whyWords() ? whyWords() + " words" + (whyWords() < 6 ? " — needs to be a sentence" : "") : "";
+    var pk = pickFor(s["d-tk"]);
+    var wc2 = $("d-whyc");
+    if (wc2) wc2.textContent = whyWords()
+      ? whyWords() + " words" + (whyWords() < 6 ? " — needs to be a sentence" : "") + (pk && s["d-why"] === pk.why ? " · from our research on " + pk.name : "")
+      : (pk ? "type the ticker above and our research fills this in" : "");
     $("d-note").textContent = doneNote();
     var dw = doneNote().split(/\s+/).filter(Boolean).length;
     $("d-wc").textContent = "note: " + dw + " words (Wharton's own example is about 60)";

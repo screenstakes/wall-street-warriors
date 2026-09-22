@@ -412,6 +412,33 @@ WSW.data = {
      of prose, about 60 words, with no price target, no date, no exit trigger, no sources, no author
      and no size. What gets pasted into WInS is the prose note at the bottom of card.html, not the
      whole card. */
+  /* The research is already done — the DCF run on 27 candidates, the filings and proxy checks, and
+     the Sep 20 sector split. Retyping a reason into the trade card that we already argued out in
+     September is how you end up with "because" in the one piece of text Wharton grades. So each
+     holding we actually intend to own carries its reason, its kind and the goal it serves, and
+     card.html fills those in when the ticker matches. Anyone can still overwrite them.
+     Sources: projects/wharton-team-docs/stock-research/ and the Sep 18 shortlist note. */
+  picks: [
+    { tk: "MSFT", name: "Microsoft", type: "Stock", goal: "facility",
+      why: "Its revenue comes from software subscriptions and cloud contracts rather than advertising, so the cash flows are more predictable than most large technology companies" },
+    { tk: "JNJ", name: "Johnson & Johnson", type: "Stock", goal: "facility",
+      why: "Demand for medicines and medical devices barely moves with the economy, which makes it one of the steadier things we can own on the growth side" },
+    { tk: "MA", name: "Mastercard", type: "Stock", goal: "facility",
+      why: "It takes a small cut of payment volume rather than lending the money, so it earns from spending without carrying the credit risk a bank would" },
+    { tk: "WM", name: "Waste Management", type: "Stock", goal: "facility",
+      why: "Waste collection is contracted and recurring, and the landfill network is close to impossible for a competitor to rebuild, so the revenue is unusually protected" },
+    { tk: "PG", name: "Procter & Gamble", type: "Stock", goal: "facility",
+      why: "People keep buying soap and detergent in any economy, and the brands are strong enough to raise prices when costs rise" },
+    { tk: "VOO", name: "Vanguard S&P 500 ETF", type: "ETF", goal: "facility",
+      why: "One low-cost fund holding the whole US market, so the growth side of the plan does not depend on our five individual picks being right" },
+    { tk: "VEA", name: "Vanguard FTSE Developed Markets ETF", type: "ETF", goal: "facility",
+      why: "Developed markets outside the United States, so the portfolio is not riding entirely on one country's economy" },
+    { tk: "BIL", name: "SPDR 1-3 Month T-Bill ETF", type: "ETF", goal: "dry",
+      why: "Treasury bills hold their value and earn about the short-term rate, so money waiting to be invested is not sitting idle" },
+    { tk: "SGOV", name: "iShares 0-3 Month Treasury Bond ETF", type: "ETF", goal: "dry",
+      why: "Treasury bills hold their value and earn about the short-term rate, so money waiting to be invested is not sitting idle" }
+  ],
+
   tradeCard: {
     intro: "Whoever proposes the trade writes the card, the same day. The card IS the trading note \u2014 it gets pasted into WInS before you hit Confirm, and Wharton grades it.",
     lines: [
