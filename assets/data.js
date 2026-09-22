@@ -1,6 +1,7 @@
 /* Wall Street Warriors — season data.
-   Everything the site shows comes from here. The Sep 15 materials are partly in: the client case
-   and the Competition Guide. Four portal pages are still missing: Deliverables, FAQs, WInS, Trading.
+   Everything the site shows comes from here. ALL portal pages and PDFs were pulled on 2026-09-21:
+   the client case, Competition Guide, Deliverables, Evaluation Criteria, FAQs, WInS and Trading.
+   The Rules and Roles page is the one that has NOT been re-pulled this season.
    Team process was reset on the Sep 20 call: weekly Sunday 8pm Zoom, trades voted by Google Chat poll
    on the card's own thread, sectors picked but provisional pending 2-3 areas each.
    Dates carry an Eastern Time offset: -04:00 through Oct 31, -05:00 from Nov 1, 2026. */
@@ -309,29 +310,30 @@ WSW.data = {
           {
               "page": "Deliverables",
               "holds": "IPS Requirements, Trading Notes Analysis Requirements, and the Evaluation Criteria",
-              "have": false
+              "have": true
           },
           {
               "page": "FAQs",
               "holds": "Competition FAQs",
-              "have": false
+              "have": true
           },
           {
               "page": "WInS",
               "holds": "Simulator setup and how-to",
-              "have": false
+              "have": true
           },
           {
               "page": "Trading",
-              "holds": "This season's trading requirements - approved list, commissions, caps, starting cash",
-              "have": false
+              "holds": "This season's trading requirements \u2014 permitted securities, commissions, the 200-trade cap, the 2x daily volume cap, starting cash",
+              "have": true
           }
       ]
   },
 
   /* Five jobs, built around the four things Wharton actually grades (three of the four are documents),
-     not around the portfolio. Everyone also owns one sector: the rules require at least one stock per
-     sector per member, and past final reports had to print who managed each sector. Every job has a
+     not around the portfolio. Everyone also owns one sector: NOT a Wharton rule — the official 2026-27
+     Trading page says there is no required sector allocation and no minimum number of sectors. It is our
+     own plan, so the research covers the market and the report can name who ran what. Every job has a
      backup, because after Oct 9 nobody can be added and 4 members is the disqualification floor. */
   roles: [
     { id: "lead", title: "Team leader and submissions", fixed: "michael", backup: "log",
@@ -404,16 +406,21 @@ WSW.data = {
      nobody can honestly say in October whether a trade supported, tested or refined the strategy.
      SOURCES carries the AI-citation rule, and uncited AI material is a dismissal risk.
      Log column mapping is Federico's sheet: TRADE->B,C,D,E,F,G  WHY->I  FOR LAURA->J  WRONG IF->K
-     BY->H  the vote->L. */
+     BY->H  the vote->L.
+     IMPORTANT, corrected 2026-09-21 against the official Trading Notes Analysis PDF: this labelled
+     card is an INTERNAL aid for the chat thread. Wharton's own trading-note example is four sentences
+     of prose, about 60 words, with no price target, no date, no exit trigger, no sources, no author
+     and no size. What gets pasted into WInS is the prose note at the bottom of card.html, not the
+     whole card. */
   tradeCard: {
     intro: "Whoever proposes the trade writes the card, the same day. The card IS the trading note \u2014 it gets pasted into WInS before you hit Confirm, and Wharton grades it.",
     lines: [
       { k: "TRADE",     what: "Buy or sell, the ticker, and the size as a percent of the portfolio.", note: "The page works out the dollars and checks it against 5 / 8 / 30." },
       { k: "WHY",       what: "Two sentences. What you saw that made today the day.", note: "" },
       { k: "FOR LAURA", what: "Pile A safety or Pile B growth. Name one.", note: "If it serves neither, it gets sent back." },
-      { k: "EXPECT",    what: "A number and a date. What should have happened, and by when.", note: "Written before the result, so in October we can prove whether we were right instead of remembering." },
-      { k: "WRONG IF",  what: "A number or a headline, a date, and what we do about it.", note: "Write the exit before you need it." },
-      { k: "SOURCES",   what: "Where it came from, including any AI we used.", note: "The rules require AI to be cited. Uncited material is a dismissal risk, so this line is never optional." },
+      { k: "EXPECT",    what: "The strategy assumption this trade is testing. Not a price, and not a date.", note: "In October we say whether the decision supported, tested or refined the strategy. Wharton: the focus is the quality of the reasoning, \"not simply whether an investment gained or lost value.\" Internal \u2014 it does not go in the WInS note." },
+      { k: "WRONG IF",  what: "A number or a headline, a date, and what we do about it.", note: "Write the exit before you need it. Internal \u2014 it does not go in the WInS note." },
+      { k: "SOURCES",   what: "Where it came from, including any AI we used.", note: "Internal, and it feeds the Final Report's works cited. NEVER in the IPS \u2014 citations are not permitted there. The AI-citation rule comes from the Rules and Roles page, which has not been re-pulled this season." },
       { k: "BY",        what: "Your name, and the votes it needs.", note: "3 of 5, or 4 of 5 over 10% of the portfolio." }
     ],
     after: "DONE: the date, the votes by name, any HOLD, and the shares at the price it filled."
@@ -455,15 +462,15 @@ WSW.data = {
         "Last few minutes: who does what, each with a day. Federico reads it back, writes the one row in his Minutes tab and posts it in the chat. Nobody else takes notes."
       ]
     },
-    /* The five things the report is scored on. Wharton's wording, from the archived Judging and
-       Evaluation page (2023-24) - the current rubric sits in SurveyMonkey Apply under Deliverables.
+    /* The five things that get scored, in Wharton's own words, from the 2026-27 Evaluation Criteria
+       page pulled 2026-09-21. The FAQ: they look for teams that score exceptionally well on ALL FIVE.
        Note #4: how we run ourselves is a scored line item, not admin. */
     criteria: [
-      { n: "Investment strategy", d: "A clear, creative thesis; disciplined planning across Laura\u2019s changing time horizons and cash-flow needs; appropriate diversification; consistency with our IPS." },
-      { n: "Client knowledge", d: "Tailored to Laura's goals closely enough that it would win her over as a client." },
-      { n: "Portfolio analysis", d: "Real understanding of the tools, with both numbers and judgement. Not jargon." },
-      { n: "Our competition experience", d: "How we worked together, how we made decisions, and what we learned. This is why the jobs and the journal exist." },
-      { n: "Creativity and presentation", d: "A compelling story, clean data, an authentic team voice." }
+      { n: "Investment Strategy", d: "Presents a clear and creative investment thesis; demonstrates disciplined planning across Laura's changing time horizons and cash-flow needs; uses appropriate diversification; and maintains consistency with the team's IPS." },
+      { n: "Client Knowledge and Objectives", d: "Tailors the strategy to Laura's circumstances, priorities, risk considerations, and residency goals; demonstrates a thoughtful understanding of the client; and presents recommendations that can earn her confidence." },
+      { n: "Portfolio Analysis", d: "Demonstrates understanding and effective use of investment concepts and tools; integrates quantitative and qualitative analysis; and uses reasonable assumptions and projections to evaluate funding reliability, the facility contribution, and financial flexibility under varying market outcomes." },
+      { n: "Articulation of Competition Experience", d: "Demonstrates teamwork, communication, and learning; clearly explains the team's research and decision-making process; and reflects meaningfully on the team's growth and response to challenges." },
+      { n: "Creativity and Presentation", d: "Presents a compelling, well-organized narrative in an authentic team voice; uses data effectively to support conclusions; demonstrates original thinking and meaningful reflection; and communicates Laura's potential facility contribution and investment uncertainty clearly and credibly to prospective co-sponsors." }
     ],
 
     /* Miss one of these and the report never gets read, however good it is. The trade log and rules
@@ -473,7 +480,7 @@ WSW.data = {
       "A Trading Note on every executed trade \u2014 Wharton verifies the notes against the trades",
       "Every deliverable in on time - skipping one has ended teams' seasons",
       "Only what the Trading page allows: stocks at $5 or more, ETFs, and Treasuries from the US, UK, Germany, France, Italy or the Netherlands",
-      "Inside the page range, with every required element",
+      "IPS: a 1-page title page, then 2 pages max for a 50-word pitch and a 500-word statement. Times New Roman 12pt, double-spaced, 1-inch margins, PDF under 5MB, no graphics and no citations",
       "Same advisor and same roster after the Oct 9 lock"
     ],
 
@@ -529,54 +536,56 @@ WSW.data = {
     { id: "ips-int",    date: "2026-10-30T17:00:00-04:00", kind: "internal",    title: "Internal: IPS draft", detail: "Complete Investment Policy Statement draft for Coach P to read (he can give feedback, not write it).", official: false },
     { id: "ips",        date: "2026-11-06T17:00:00-05:00", kind: "deliverable", title: "Investment Policy Statement due; trading ends", detail: "Wharton's competition portal lists both on Nov 6. The IPS defines the client's objectives, risk tolerance and the overall strategy.", official: true, deliverable: "ips" },
     { id: "report-int", date: "2026-11-27T17:00:00-05:00", kind: "internal",    title: "Internal: final report draft", detail: "Complete draft with every section, one week early. Thanksgiving is Nov 26, so this is really due before break.", official: false },
-    { id: "report",     date: "2026-12-04T17:00:00-05:00", kind: "deliverable", title: "Final report and school documentation due", detail: "Semifinalists are chosen from the IPS and this report. \"School documentation\" is defined on the FAQs page in SurveyMonkey Apply, not pulled into this site yet.", official: true, deliverable: "report" },
-    { id: "first-trade", tbd: true, window: "Early October", kind: "tbd",        title: "First-trade deadline", detail: "Last season teams had to execute at least one trade by Oct 10. This season's date is on the Trading page in SurveyMonkey Apply, not pulled into this site yet.", official: false, lastSeason: "Oct 10, 2025" },
-    { id: "top50",      tbd: true, window: "Winter (last season Jan 27)", kind: "tbd", title: "Top 50 semifinalists announced", detail: "Semifinalists must submit a signed consent and waiver (parent signature if under 18) and a letter on school letterhead.", official: false },
+    { id: "report",     date: "2026-12-04T17:00:00-05:00", kind: "deliverable", title: "Final report and school documentation due", detail: "Semifinalists are chosen from the IPS and this report. School documentation is a separate file submitted with the report. Wharton: do not wait until the last minute to request it.", official: true, deliverable: "report" },
+        { id: "top50",      tbd: true, window: "Winter (last season Jan 27)", kind: "tbd", title: "Top 50 semifinalists announced", detail: "Semifinalists must submit a signed consent and waiver (parent signature if under 18) and a letter on school letterhead.", official: false },
     { id: "semis",      tbd: true, window: "Late winter (last season: week of Mar 9)", kind: "tbd", title: "Virtual semifinals", detail: "A short presentation by video conference. Every team member must take part.", official: false },
     { id: "finale",     date: "2027-04-29T09:00:00-04:00", end: "2027-04-30T17:00:00-04:00", kind: "event", title: "Learning Day and Global Finale, Philadelphia", detail: "Top 10 teams present live or by video at the Wharton School. Travel and lodging are the team's own cost.", official: true }
   ],
 
   deliverables: [
-    { id: "roster", name: "Official Team Roster", due: "2026-10-09T17:00:00-04:00", what: "The final list of 4–6 members, submitted by the team leader in SurveyMonkey Apply.", why: "Locks the team. No additions after this.", build: ["Full name, school email and grade for all five members", "Advisor confirmation from Coach P"], tips: "Submit it early in the week. A Friday 5:00 p.m. ET deadline is 4:00 p.m. our time, during school." },
-    { id: "notes",  name: "Trading Notes Analysis", due: "2026-10-23T17:00:00-04:00", what: "Official (Competition Guide): select THREE Trading Notes and reflect on how those decisions supported, tested or refined the strategy. Due at the end of Week 4, two weeks before the IPS. In WInS, a trading note is attached to each trade (Transaction History → Add/View Notes). Past reports carried numbered trading notes: the trade, the thesis, which client goal it served, the risk, and what happened.", why: "This is where judges see whether trades follow the strategy or chase returns.", build: ["A note entered in WInS on every trade, the same day", "One journal entry per trade: date, ticker, size, thesis, client goal, risk, exit plan", "The analysis: what the trades say about the strategy so far, and the top holdings"], tips: "Full requirements live in SurveyMonkey Apply under Pages \u2192 Deliverables \u2014 not yet pulled into this site. The old mid-season review was 1–2 pages, double-spaced, on strategy, decision process and top holdings; expect something similar." },
-    { id: "ips",    name: "Investment Policy Statement", due: "2026-11-06T17:00:00-05:00", what: "Wharton's description: define your client's investment objectives, risk tolerance, and overall investment strategy.", why: "Half of what the top 50 is chosen on. Once the deadline passes the strategy is FINAL, trading ends and the portfolio freezes.", build: ["Client profile from the case", "Return objective, with the required-return math", "Risk tolerance: ability and willingness, separately", "Time horizon per goal, liquidity and payout schedule", "Taxes, legal and unique circumstances", "Target allocation and how the portfolio is monitored"], tips: "Write it in the client's language. A judge should be able to hand it to the client." },
-    { id: "report", name: "Comprehensive Final Report", due: "2026-12-04T17:00:00-05:00", what: "Official (Competition Guide): evaluate how the IPS strategy was implemented, and present the team's analysis and recommendations for Laura's operating commitment, facility contribution, financial flexibility and communication with co-sponsors across varying outcomes.", why: "The other half. Detailed requirements are not released until the beginning of Week 7 (about Nov 9), after the IPS is already locked. Past prescribed sections: title page, portfolio breakdown graphic, elevator pitch, what makes the strategy unique, advisor reflection, trading notes, WInS portfolio vs. recommended portfolio, analysis by holding or sector, conclusion, works cited.", build: ["Elevator pitch: the strategy in one paragraph", "Portfolio-level analysis: diversification, correlations, downside scenario", "Every holding tied to a client goal", "The story of how the team worked", "Works cited, including any AI-generated material"], tips: "Past format: 7–11 pages, double-spaced, 12-point Times New Roman, 1-inch margins, PDF under 5 MB, and a page count outside the range was disqualifying. Wharton's own requirements come at the start of Week 7, about Nov 9 — after the IPS is locked. Write it in chunks all season; teams that start in late November don't finish." }
+    { id: "roster", name: "Official Team Roster", due: "2026-10-09T17:00:00-04:00", what: "The final list of 4–6 members, submitted by the team leader in SurveyMonkey Apply. The official team name is set here too, and it is NOT the WInS username.", why: "Locks the team. No additions after this.", build: ["Per person: full name, a UNIQUE email address, birthday (month, day, year), and anticipated graduation year", "Per team: the official team name, school country, state, city, and Liberty Christian's official website URL", "Advisor confirmation from Coach P"], tips: "Submit it early in the week. A Friday 5:00 p.m. ET deadline is 4:00 p.m. our time, during school." },
+    { id: "notes",  name: "Trading Notes Analysis", due: "2026-10-23T17:00:00-04:00", what: "Official (Competition Guide): select THREE Trading Notes and reflect on how those decisions supported, tested or refined the strategy. Due at the end of Week 4, two weeks before the IPS. In WInS, a trading note is attached to each trade (Transaction History → Add/View Notes). Past reports carried numbered trading notes: the trade, the thesis, which client goal it served, the risk, and what happened.", why: "This is where judges see whether trades follow the strategy or chase returns.", build: ["A Trading Note in WInS on every executed trade", "Pick three notes that best show the strategy being put into practice \u2014 a position we later sold still counts", "Paste each note EXACTLY as it appears in WInS", "One reflection per note, 100 WORDS OR FEWER: why we decided it, how it aligned with the strategy, and how it supported Laura's goals, funding needs or risk"], tips: "No page count and no sections. Three notes, three 100-word reflections, nothing else. Wharton verifies the notes against our real WInS trades. Do NOT size the reserve, project to 2033, set the facility contribution or draft the co-sponsor pitch here \u2014 Wharton says those belong to the Final Report." },
+    { id: "ips",    name: "Investment Policy Statement", due: "2026-11-06T17:00:00-05:00", what: "Two parts. Page 1 is a title page, 1 page max: the official team name (same as the roster), member names as First Name + Last Initial, and the WInS username. Pages 2\u20133 are 2 pages max: a 50-word Investment Strategy Elevator Pitch and a 500-word Investment Policy Statement.", why: "One of the three evaluated deliverables. Once the deadline passes the strategy is FINAL and may not be revised, trading ends and the portfolio freezes.", build: ["Title page: official team name, names as First Name + Last Initial, WInS username", "Elevator pitch, 50 words max", "The statement, 500 words max: what we are trying to accomplish for Laura, why the strategy suits her, how it balances growth / liquidity / funding reliability / risk / flexibility, how it guides decisions as her needs change, and how it protects the ten payments while allowing a responsible facility contribution", "ONE cohesive statement \u2014 no required section headings", "Format check: Times New Roman, 12pt, double-spaced, 1-inch margins, PDF under 5MB"], tips: "No graphics, charts, images, attachments, external links, footnotes or citations. Sources are NOT cited in the IPS \u2014 they go in the Final Report. Wharton: submissions that do not meet these requirements will not be considered for semifinal selection. Strategy and framework only: no individual stock write-ups and no detailed calculations." },
+    { id: "report", name: "Comprehensive Final Report", due: "2026-12-04T17:00:00-05:00", what: "Official (Competition Guide): evaluate how the IPS strategy was implemented, and present the team's analysis and recommendations for Laura's operating commitment, facility contribution, financial flexibility and communication with co-sponsors across varying outcomes.", why: "The other half. Detailed requirements are not released until the beginning of Week 7 (about Nov 9), after the IPS is already locked. Past prescribed sections: title page, portfolio breakdown graphic, elevator pitch, what makes the strategy unique, advisor reflection, trading notes, WInS portfolio vs. recommended portfolio, analysis by holding or sector, conclusion, works cited.", build: ["Elevator pitch: the strategy in one paragraph", "Portfolio-level analysis: diversification, correlations, downside scenario", "Every holding tied to a client goal", "The story of how the team worked", "Works cited, including any AI-generated material"], tips: "Requirements are released Nov 9 and everything that follows is LAST season's format, which may change. Past format: 7–11 pages, double-spaced, 12-point Times New Roman, 1-inch margins, PDF under 5 MB, and a page count outside the range was disqualifying. Wharton's own requirements come at the start of Week 7, about Nov 9 — after the IPS is locked. Write it in chunks all season; teams that start in late November don't finish." }
   ],
 
   tradingRules: [
-    { rule: "Rankings",             value: "\"Your team's standings on WInS have little to do with the final outcome.\" Winners are chosen on the written deliverables.", status: "official", season: "2026–27" },
+    { rule: "Rankings",             value: "You are NOT evaluated on: your portfolio ranking, how many trades you make, whether you outperform other teams, or whether your portfolio makes money during the competition. The portfolio is evidence of the decisions we made.", status: "official", season: "2026–27" },
     { rule: "Practice period",      value: "Sep 15–25, 2026 (4:00 p.m. ET). All practice portfolios are removed.", status: "official", season: "2026–27" },
-    { rule: "Competition window",   value: "Sep 28 – Dec 4, 2026. The portal lists trading ending Nov 6 with the IPS.", status: "official", season: "2026–27" },
-    { rule: "Required activity",    value: "Teams \"must meet the required trading activity and portfolio management guidelines throughout the competition.\" The specifics live on the Trading page in SurveyMonkey Apply, which is not pulled into this site yet.", status: "verify", season: "2026–27" },
+    { rule: "Competition window",   value: "Trading runs Sep 28 – Nov 6. The season runs to Dec 4 for the Final Report. At Nov 6 the portfolio is FROZEN: no trades, no changes to holdings, and the IPS strategy is final and may not be revised.", status: "official", season: "2026–27" },
+    { rule: "Required activity",    value: "There is no minimum trading activity. The only caps are 200 trades for the season and no single trade over 2x the security's daily volume. Wharton: \"You should not be doing a lot of buying and selling of the stocks designated for the long-term portion of your portfolio.\"", status: "official", season: "2026–27" },
     { rule: "Trading notes",        value: "A note explaining each trade is added inside WInS (Transaction History → Add/View Notes). The Oct 23 deliverable is the written analysis of them.", status: "official", season: "current" },
     { rule: "Notes can't be edited", value: "StockTrak: students cannot edit or delete a trade note once it is saved, but more timestamped notes can be added to the same trade, and the full set exports to a spreadsheet. So the first note has to be right, and a later review can be appended to it.", status: "official", season: "2026\u201327" },
     { rule: "Style of strategy",    value: "Wharton's trading page: this is \"not a trading competition\"; the majority of the strategy should be a long-term, buy-and-hold approach.", status: "official", season: "current" },
-    { rule: "International stocks", value: "Domestic and international equities allowed; currency converts automatically. International fills can be delayed 15–30 minutes.", status: "official", season: "current" },
+    { rule: "International stocks", value: "Domestic and international equities allowed; currency converts automatically. International orders clear at the END of the applicable trading day — an order at 4:00 p.m. Monday may not clear until the end of Tuesday. Separately, open-position prices on screen lag 10–15 minutes; bid and ask are real time.", status: "official", season: "2026–27" },
     { rule: "Trading hours",        value: "9:30 a.m. – 4:00 p.m. ET on weekdays. After-hours U.S. orders fill at the next open.", status: "official", season: "current" },
-    { rule: "Starting cash",        value: "$300,000: what our WInS account starts with, and what every team sheet uses. Last season it was $500,000. If Wharton resets the account to a different amount on Sep 28, change one cell in Joe's, Federico's and Dylan's sheets.", status: "verify", season: "2026–27" },
-    { rule: "What we can buy",      value: "Any stock priced $5 or more on any exchange; ETFs from Wharton's approved list (at least one required); Treasuries from the approved list (optional).", status: "last", season: "2025–26" },
-    { rule: "Trade cap",            value: "200 trades. Each buy or sell counts as one. Matches the 0 / 200 on our dashboard.", status: "last", season: "2025–26" },
-    { rule: "Commissions",          value: "$25 per stock trade, $10 per Treasury trade, charged when the trade clears.", status: "last", season: "2025–26" },
-    { rule: "Volume limit",         value: "Orders capped relative to the stock's daily volume (last season's rules said twice daily volume).", status: "last", season: "2025–26" },
-    { rule: "Short selling, margin", value: "Not allowed.", status: "last", season: "2023–24" },
-    { rule: "First trade",          value: "At least one executed trade by early October (Oct 10 last season).", status: "last", season: "2025–26" },
-    { rule: "Position limit",       value: "StockTrak's default caps one position at 25% of the portfolio. Whether Wharton uses it is on the Rules tab.", status: "verify", season: "unknown" }
+    { rule: "Starting cash",        value: "$300,000 is the WInS simulator balance, and what every team sheet uses. Laura's extra $150,000 in 2028 is NEVER added to WInS. WInS gains and losses are never added to or subtracted from her long-term projections.", status: "official", season: "2026–27" },
+    { rule: "What we can buy",      value: "Cash; any stock priced $5 or more (or the local-currency equivalent) on any exchange available on WInS; ANY ETF available on WInS — there is no approved-fund list; government and Treasury bonds from the US, UK, Germany, France, Italy and the Netherlands.", status: "official", season: "2026–27" },
+    { rule: "Trade cap",            value: "200 trades for the whole competition. Each buy or sell counts as one. Matches the 0 / 200 on our dashboard.", status: "official", season: "2026–27" },
+    { rule: "Commissions",          value: "$25 flat per stock transaction, $10 per Treasury bond. Charged only on a trade that clears.", status: "official", season: "2026–27" },
+    { rule: "Volume limit",         value: "No single trade may exceed 2x the security's current daily trading volume.", status: "official", season: "2026–27" },
+    { rule: "Not permitted",        value: "Margin trading, short selling, stock-secured debt, CRYPTO, and derivatives (options, futures, swaps). Nothing outside the permitted list.", status: "official", season: "2026–27" },
+    { rule: "Bonds",                value: "Bond prices update once daily at the US market open, and bonds pay coupons every six months. The WInS dropdown shows face value, last price, last coupon date and accrued interest.", status: "official", season: "2026–27" },
+    { rule: "Position limit",       value: "Wharton sets NO position-size limit. Our 5 / 8 / 30 rules are our own. StockTrak may still enforce a platform default — confirm on the WInS Session Rules page.", status: "official", season: "2026–27" },
+    { rule: "Diversification",      value: "There is no required sector allocation and no minimum number of sectors. Diversification is still a principle: across asset classes, sectors, industries, market caps, regions, risk and funding purpose. \"The goal is to build an intentional mix of investments appropriate for your strategy, not simply to own a large number of securities.\"", status: "official", season: "2026–27" },
+    { rule: "Cancelling an order",  value: "Only OPEN orders can be cancelled (My Portfolio → Order History). Wharton on a filled mistake: \"run with it and not scramble to fix it. Trading errors are part of the learning process.\"", status: "official", season: "2026–27" },
+    { rule: "The client",           value: "Teams are NOT permitted to contact Laura Gao. No emails, no DMs, no tagging her.", status: "official", season: "2026–27" }
   ],
 
   /* Was "verify on Sep 15". The materials are out, so these are the questions still open and which
      portal page answers each. Everything marked Trading/Deliverables is a page we have not pulled in. */
   verifyChecklist: [
     { q: "Starting cash for the real 2026\u201327 contest, and which contest is selected in WInS", where: "done", answer: "$300,000. Confirmed on the Sep 20 call and it is what every team sheet uses." },
-    { q: "Minimum share price ($5 last season) and whether it applies to foreign listings in local currency", where: "Trading" },
-    { q: "Approved ETF and Treasury lists for 2026\u201327; is at least one ETF still required?", where: "Trading" },
-    { q: "Short selling, margin, options, futures, mutual funds, crypto: on or off", where: "Trading" },
-    { q: "Position limit percentage, volume limit, and whether practice trades count toward the trade cap", where: "Trading" },
-    { q: "Commission per stock, ETF and Treasury trade", where: "Trading" },
-    { q: "First-trade deadline and any minimum number of holdings or sectors", where: "Trading" },
-    { q: "The Evaluation Criteria \u2014 the actual rubric the judges score against", where: "Deliverables" },
-    { q: "IPS Requirements and Trading Notes Analysis Requirements: length, format, sections", where: "Deliverables" },
-    { q: "What \"school documentation\" due Dec 4 means", where: "FAQs" },
-    { q: "Whether every member needs their own SurveyMonkey Apply login for the roster", where: "FAQs" },
+    { q: "Minimum share price", where: "done", answer: "$5 or more, or the equivalent of $5 in the local currency. Official on the FAQ and Trading pages." },
+    { q: "Approved ETF and Treasury lists", where: "done", answer: "There is NO approved ETF list \u2014 any ETF available on WInS is permitted, and no minimum number is required. Government bonds cover the US, UK, Germany, France, Italy and the Netherlands." },
+    { q: "Short selling, margin, options, futures, crypto", where: "done", answer: "All banned. Not permitted: margin trading, short selling, stock-secured debt, crypto, derivatives (options, futures, swaps), and anything not on the permitted list." },
+    { q: "Position limit and volume limit", where: "done", answer: "No Wharton position limit. The caps are 200 trades for the season and no single trade over 2x the security's daily volume. Practice is wiped Sep 25, so nothing from it counts." },
+    { q: "Commissions", where: "done", answer: "$25 flat per stock transaction, $10 per Treasury bond, charged only on a trade that clears." },
+    { q: "First-trade deadline, minimum holdings or sectors", where: "done", answer: "None of the three exist in the 2026-27 materials. No first-trade deadline, no minimum holdings, and no required sector allocation or minimum number of sectors." },
+    { q: "The Evaluation Criteria", where: "done", answer: "Five: Investment Strategy, Client Knowledge and Objectives, Portfolio Analysis, Articulation of Competition Experience, Creativity and Presentation. Wharton looks for teams scoring exceptionally well on ALL five. They are on the Team page in full." },
+    { q: "IPS and Trading Notes Analysis requirements", where: "done", answer: "IPS: a 1-page title page, then a 50-word pitch and a 500-word statement in 2 pages, Times New Roman 12pt double-spaced, PDF under 5MB, no graphics and no citations. Trading Notes: three notes pasted exactly as they appear in WInS, each with a reflection of 100 words or fewer." },
+    { q: "What \"school documentation\" due Dec 4 means", where: "done", answer: "Official documentation from the school confirming the team complies with the rules, submitted as a SEPARATE file with the Final Report. Wharton: do not wait until the last minute to request it. Sample documentation is coming." },
+    { q: "Whether every member needs their own SurveyMonkey Apply login", where: "done", answer: "No. The leader submits. But every student needs a UNIQUE email address on the roster, plus their birthday and graduation year." },
     { q: "ANSWERED by the Competition Guide: a Trading Note goes into WInS with each trade; the Oct 23 deliverable is a written analysis of THREE of them.", where: "done" }
   ],
 
@@ -672,7 +681,7 @@ WSW.data = {
   ],
 
   announcements: [
-    { date: "2026-09-20", text: "First weekly call done. Sectors for now: Michael tech, Joe health care, Caleb financials, Dylan industrials, and consumer is open for Federico. Not final \u2014 one area each leaves too much of the market uncovered, so we\u2019re moving to two or three each with fixed income separate, and we settle it at Monday\u2019s lunch. Bitcoin is out: too volatile for what Laura said she wants. The SGOV practice card is still open and gets finished and voted Monday. From here the call is every Sunday at 8." },
+    { date: "2026-09-20", text: "First weekly call done. Sectors for now: Michael tech, Joe health care, Caleb financials, Dylan industrials, and consumer is open for Federico. Not final \u2014 one area each leaves too much of the market uncovered, so we\u2019re moving to two or three each with fixed income separate, and we settle it at Monday\u2019s lunch. Bitcoin is out: too volatile for what Laura said she wants. (Confirmed Sep 21 \u2014 Wharton bans crypto outright, so it was never a judgment call.) The SGOV practice card is still open and gets finished and voted Monday. From here the call is every Sunday at 8." },
     { date: "2026-09-16", text: "The case is out. Our client is Laura Gao \u2014 Wharton 2018, bestselling graphic novelist, building a creative residency in Taiwan in 2033. She invests $300,000 in 2027 and adds $150,000 in 2028, then owes ten fixed $50,000 payments from 2033 to 2042. Full case and the numbers are on the Case page; the Competition Guide is on the Playbook page." },
     { date: "2026-09-14", text: "Federico is in. We're five: Michael, Caleb, Dylan, Joe and Federico, one above Wharton's minimum." },
     { date: "2026-09-14", text: "Practice trading and the client case study arrive tomorrow, Sep 15. Michael will post the case in the chat once the SurveyMonkey Apply invite lands." },

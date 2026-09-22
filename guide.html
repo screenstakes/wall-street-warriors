@@ -643,11 +643,11 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       [["good", "A US stock index fund", "Fits: growth", "Hundreds of companies in one buy. Grows the pot while 2033 is still years away."],
        ["bad", "A stock that went viral on TikTok", "Doesn’t fit", "No reason tied to Laura. Judges will spot a hype pick right away."],
        ["good", "A US Treasury bond fund", "Fits: the safe part", "Safe and steady. In 2033 the bill money moves into bonds that come due one per year."],
-       ["bad", "Crypto", "Doesn’t fit", "Wild swings are the opposite of “high certainty.” It probably isn’t on Wharton’s approved list either."],
+       ["bad", "Crypto", "Not allowed", "Wharton bans crypto outright. It is also the opposite of “high certainty,” so it would not fit Laura even if it were allowed."],
        ["good", "A company we researched", "Fits: growth", "Fine, as long as we can say why it helps Laura and write a note on it."],
        ["bad", "Going all in on one hot stock", "Doesn’t fit", "If it crashes, Pile A gets hit. Spreading money out is the whole point."]].map(function (p, i) {
         return '<button class="pick ' + p[0] + '" type="button" id="pick-' + i + '" aria-expanded="false"><b>' + p[1] + '</b><span class="q">Fits Laura? Tap to check</span><span class="badge">' + p[2] + '</span><span class="v">' + p[3] + "</span></button>"; }).join("") + "</div>" +
-      '<p class="g-note plain">We can only buy from Wharton’s approved list (the Trading page on SurveyMonkey Apply). This is about Laura’s case in the competition, not advice for anyone’s real money.</p>',
+      '<p class="g-note plain">There is no approved list. Any stock at $5 or more on any exchange, any ETF on WInS, and government bonds from the US, UK, Germany, France, Italy or the Netherlands. This is about Laura’s case in the competition, not advice for anyone’s real money.</p>',
     mount: function () { $("picks").addEventListener("click", function (e) { var b = e.target.closest(".pick"); if (b) b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true")); }); } });
 
   var SLICES = [
@@ -661,7 +661,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     say: "An <b>example only</b>, not our final answer: 60% growth, 40% safe. Tap a slice to see the <b>trading note</b> we’d write for it.",
     html: '<div class="donut-wrap"><svg class="donut" id="donut" viewBox="0 0 220 220" role="img" aria-label="Example mix: 60% growth, 40% safe"></svg><div class="keys" id="keys"></div></div>' +
       '<article class="tnote" id="tnote" aria-live="polite"></article>' +
-      '<p class="g-note plain">We’d only buy funds on Wharton’s approved list, and every trade gets a note like this.</p>',
+      '<p class="g-note plain">Any ETF on WInS is allowed, and every trade gets a note like this.</p>',
     mount: function (draw) {
       var R = 80, C = 2 * Math.PI * R, start = 0, svg = "";
       SLICES.forEach(function (s, i) {
@@ -908,7 +908,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       if (t.stage === 3 && t.yes.length < 3) t.stage = 2;
       if (t.stage === 2 && t.yes.length >= 3) t.stage = 3;
       if (t.stage >= 1) m.push(msg("Dylan (example)", "Proposing a trade:" + tradeCard));
-      if (t.stage >= 2) m.push(msg("Risk owner", "Rules OK: under 10% of the portfolio, and the fund is on the approved list. Bear case posted."));
+      if (t.stage >= 2) m.push(msg("Risk owner", "Rules OK: under 10% of the portfolio, inside the 200-trade cap, and well under twice the fund's daily volume. Bear case posted."));
       if (t.held) { m.push(msg("Michael", "HOLD. We already own a US index fund. Do we need more?")); m.push(msg("Dylan (example)", "Yes. It\u2019s one fund, and it\u2019s below the example plan. This brings it back to 30%.")); m.push(msg("", "Votes start over", "hold")); }
       if (t.stage >= 3) m.push(msg("", "Approved \u00b7 " + t.yes.length + " of 5 yes", "ok"));
       if (t.stage >= 4) { m.push(msg("Federico", "Placing it now.")); m.push(msg("Federico", "Filled. I checked our holdings first, so no double buy.")); }

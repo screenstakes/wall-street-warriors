@@ -782,10 +782,12 @@ ol.flow.qs span{color:var(--ink)}
       : "We are buying " + tk + co + " at " + (s.size || "[size]") + "% of the portfolio.";
     var why = s.why ? " " + s.why.trim().replace(/[.\s]+$/, "") + "." : " [why]";
     var risk = RISK_BY_TYPE[s.type] ? " It should do that " + RISK_BY_TYPE[s.type] + "." : "";
-    var exp = s.exp ? " We expect it to " + s.exp.trim().replace(/[.\s]+$/, "") + (s.expd ? " by " + pretty(s.expd) : "") + "." : "";
-    var wrong = s.wrong ? " We would be wrong if " + s.wrong.trim().replace(/[.\s]+$/, "") + (s.wrongd ? ", which we check by " + pretty(s.wrongd) : "") + "." : "";
+    /* EXPECT and WRONG IF are deliberately NOT in the WInS note. Wharton's own example note is four
+       sentences of prose with no price target, no date and no exit trigger, and the Oct 23 analysis
+       says the focus is the reasoning, "not simply whether an investment gained or lost value."
+       They stay on the chat card, which is ours. */
     var client = g ? " This supports Laura's plan " + g.note + "." : " [what it is for]";
-    return (a + why + risk + exp + wrong + client).replace(/\s+/g, " ").trim();
+    return (a + why + risk + client).replace(/\s+/g, " ").trim();
   }
 
   function chatCard() {
@@ -835,8 +837,8 @@ ol.flow.qs span{color:var(--ink)}
     $("tid").textContent = tradeId();
     $("o-card").textContent = chatCard();
     var wds = winsNote().split(/\s+/).filter(Boolean).length;
-    $("wc").textContent = "note: " + wds + " words";
-    $("wc").className = "wc" + (wds > 100 ? " over" : "");
+    $("wc").textContent = "note: " + wds + " words (Wharton's own example is about 60)";
+    $("wc").className = "wc" + (wds > 80 ? " over" : "");
     $("c-card").disabled = need.length > 0;
     $("c-card").textContent = need.length ? "Finish the card first" : "Copy it for the chat";
   }

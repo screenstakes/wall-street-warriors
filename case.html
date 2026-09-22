@@ -356,7 +356,7 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
   byId("verdict").innerHTML =
     '<div class="v"><span class="k">Reserve, 2033</span><span class="n">' + money(RES.cost) + '</span><span class="s">Set aside for the ten payments, laddered at 4%. In cash it would cost ' + money(M.reserve[0].cost) + ".</span></div>" +
     '<div class="v"><span class="k">Portfolio, 2033</span><span class="n">' + money(BASE.v2033) + '</span><span class="s">At the start of 2033, at 7% a year on the ' + money(C.totalContributed) + " she puts in.</span></div>" +
-    '<div class="v accent"><span class="k">For the facility</span><span class="n">' + money(BASE.facility) + '</span><span class="s">' + Math.round(BASE.facility / BASE.v2033 * 100) + "% of the portfolio. This is the number she can promise co-sponsors.</span></div>";
+    '<div class="v accent"><span class="k">For the facility</span><span class="n">' + money(BASE.facility) + '</span><span class="s">' + Math.round(BASE.facility / BASE.v2033 * 100) + "% of the portfolio at 7%. She quotes co-sponsors a RANGE around this with a stated confidence, never one number.</span></div>";
   byId("verdict-line").innerHTML = "<b>The hurdle is certainty, not return.</b> Just covering the reserve needs " + pct(M.breakeven[0].r) + " a year holding cash, or " + pct(M.breakeven[1].r) + " laddered &mdash; she could lose money for six years and still make every payment. The job is to grow the rest without ever putting the ten payments at risk.";
 
   /* ---------- 2. timeline ---------- */
@@ -497,26 +497,31 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
   byId("take").innerHTML = M.takeaways.map(function (t) { return "<li><b>" + esc(t.h) + "</b><p>" + esc(t.d) + "</p></li>"; }).join("");
 
   /* ---------- 6. IPS builder ---------- */
+  /* Rebuilt 2026-09-21 against the official IPS Requirements PDF. The IPS is NOT a sectioned
+     document: it is a 50-word elevator pitch plus a 500-word statement, one cohesive piece.
+     The old eight-field version taught a structure Wharton does not ask for and had no word cap. */
   var IPS = [
-    { id: "summary", t: "Client summary", h: "Laura, the residency, the two contributions, the ten payments, and the 2031 conversation with co-sponsors." },
-    { id: "return", t: "Return objective", h: "There is barely one: 1.88% a year in cash, negative if laddered. Say so, then state the growth target you choose for the facility and why." },
-    { id: "ability", t: "Risk tolerance: ability", h: "High for the growth money until 2033, near zero for the reserve. Treat them as two different clients." },
-    { id: "willingness", t: "Risk tolerance: willingness", h: "“Thoughtful risks” but “protecting the capital required for her goals” — quote the case, then translate it into a maximum drawdown you would accept." },
-    { id: "horizon", t: "Time horizon and buckets", h: "Growth bucket 2027 → 2033 (six years). Reserve 2033 → 2042 (a ladder). The 2031 quote is the real de-risking date." },
-    { id: "liquidity", t: "Liquidity and payout schedule", h: "Ten $50,000 payments at the start of each year 2033–2042. What the reserve is held in, and how it changes as payments go out." },
-    { id: "unique", t: "Constraints and unique circumstances", h: "Payments are nominal, not inflation-linked. No outside funding for the reserve. Taxes and Taiwan law are out of scope. Define “high degree of certainty” as a number." },
-    { id: "allocation", t: "Target allocation and monitoring", h: "Percent by asset class for the growth bucket and for the reserve, the glide path to 2031 and 2033, the rebalancing rule, and what triggers a review." }
+    { id: "pitch", t: "Elevator pitch — 50 words max", max: 50, h: "The strategy in one breath. What we are trying to accomplish for Laura and why this approach suits her. Fifty words is about three sentences." },
+    { id: "statement", t: "Investment Policy Statement — 500 words max", max: 500, h: "One cohesive statement, no headings. Woven together: what we are trying to accomplish; why it suits her goals; how it balances growth, liquidity, funding reliability, risk and flexibility; how it guides decisions as her needs change; how it protects the ten payments while allowing a responsible facility contribution. No individual investments, no calculations, no citations." }
   ];
   var ips = W.store.get("ips", {});
   var ipsRoot = byId("case-ips");
   ipsRoot.innerHTML = IPS.map(function (s, i) {
-    return '<div class="field"><label for="ips-' + s.id + '">' + (i + 1) + ". " + esc(s.t) + '</label><span class="hint">' + esc(s.h) + '</span><textarea id="ips-' + s.id + '" data-ips="' + s.id + '"></textarea></div>';
+    return '<div class="field"><label for="ips-' + s.id + '">' + (i + 1) + ". " + esc(s.t) + '</label><span class="hint">' + esc(s.h) + '</span><textarea id="ips-' + s.id + '" data-ips="' + s.id + '" data-max="' + s.max + '"></textarea><span class="hint" id="ipswc-' + s.id + '"></span></div>';
   }).join("");
   var areas = Array.prototype.slice.call(ipsRoot.querySelectorAll("[data-ips]"));
+  function words(t) { return (t || "").trim() ? t.trim().split(/\s+/).length : 0; }
+  function ipsCount(a) {
+    var id = a.getAttribute("data-ips"), max = +a.getAttribute("data-max"), n = words(a.value), el = byId("ipswc-" + id);
+    if (!el) return;
+    el.textContent = n + " / " + max + " words" + (n > max ? " \u2014 CUT IT" : "");
+    el.style.color = n > max ? "#B3261E" : "";
+  }
   function ipsMeta() { var n = areas.filter(function (a) { return a.value.trim(); }).length; byId("case-ips-meta").textContent = n + " / " + IPS.length + " started"; }
   areas.forEach(function (a) {
     if (ips[a.getAttribute("data-ips")]) a.value = ips[a.getAttribute("data-ips")];
-    a.addEventListener("input", function () { ips[a.getAttribute("data-ips")] = a.value; W.store.set("ips", ips); ipsMeta(); });
+    ipsCount(a);
+    a.addEventListener("input", function () { ips[a.getAttribute("data-ips")] = a.value; W.store.set("ips", ips); ipsCount(a); ipsMeta(); });
   });
   ipsMeta();
   byId("case-ips-copy").addEventListener("click", function () {
@@ -526,7 +531,7 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
   });
   byId("case-ips-clear").addEventListener("click", function () {
     if (!confirm("Clear the IPS draft saved in this browser?")) return;
-    ips = {}; W.store.set("ips", ips); areas.forEach(function (a) { a.value = ""; }); ipsMeta(); W.toast("Draft cleared");
+    ips = {}; W.store.set("ips", ips); areas.forEach(function (a) { a.value = ""; ipsCount(a); }); ipsMeta(); W.toast("Draft cleared");
   });
 
   /* ---------- 7. folds: rules of the case, full text ---------- */

@@ -229,7 +229,7 @@
       <article class="card reveal" id="rules-fold-verify" data-fold="closed">
         <div class="card-head"><span class="ic" data-icon="check"></span><h2>Still open</h2><span class="spacer"></span><span class="meta" id="rules-verify-count"></span></div>
         <div class="card-body tight">
-          <p class="note rules-note">The Sep 15 materials are partly in. Each question below is answered by one of the four SurveyMonkey Apply pages not yet pulled into this site; once a page comes in, its answers go into the data file and the Trading rules tab stops saying “In the portal”.</p>
+          <p class="note rules-note">Every portal page and PDF was pulled on Sep 21, 2026, and the answers are below. The one page not re-pulled this season is Rules and Roles.</p>
           <ul class="checks" id="rules-verify-list"></ul>
         </div>
         <div class="card-foot">Checked items are saved in this browser only.</div>
@@ -346,7 +346,7 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { var a = tablist.querySelector(".is-active"); if (a) reveal(a, false); });
 
   /* ---------- 1. trading rules ---------- */
-  byId("rules-trading-note").textContent = "This year's trading requirements were released " + W.fmtDate(release.date, { weekday: true }) + " on the Trading page in SurveyMonkey Apply, which is not pulled into this site yet. Rows marked Last season are the 2025–26 rules and can change. Rows marked In the portal are answered there, and are tracked on the Still open tab.";
+  byId("rules-trading-note").textContent = "This year's trading requirements were released " + W.fmtDate(release.date, { weekday: true }) + " on the Trading page in SurveyMonkey Apply, and pulled into this site on Sep 21, 2026. Rows marked Official are this season's real rules.";
   byId("rules-trading-body").innerHTML = D.tradingRules.map(function (r) {
     return "<tr><td class=\"key\" data-label=\"Rule\">" + esc(r.rule) + "</td><td class=\"val\" data-label=\"What we know\">" + esc(r.value) + "</td><td class=\"stat\" data-label=\"Status\">" + chip(r.status) + "</td><td class=\"mono\" data-label=\"Season\">" + esc(r.season) + "</td></tr>";
   }).join("");
