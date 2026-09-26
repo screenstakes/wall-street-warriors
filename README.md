@@ -11,6 +11,7 @@ Team site for the 2026–27 Wharton Global High School Investment Competition. P
 | `case.html` | The case study pattern, past clients, required-return calculator, IPS builder |
 | `rules.html` | Trading rules, team rules, deliverables, AI policy, disqualifiers, the Sep 15 verify list |
 | `playbook.html` | How teams advance, judge quotes, deliverable plan, weekly rhythm, trade note builder |
+| `dozen.html` | Coach P's Nasdaq Dozen scored on ten tech names; data in `assets/dozen.js` |
 | `team.html` | Roster, roles, advisor, where we work, first meeting agenda |
 | `news.html` | Announcements, competition news, reading list, champions archive, official links |
 

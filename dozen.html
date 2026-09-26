@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>The Nasdaq Dozen · Wall Street Warriors</title>
+<meta name="description" content="Coach P's twelve fundamental tests run on ten tech names, scored from real data with every source named.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/warren.css?v=5">
+<style>
+.dz-stack{display:grid;gap:20px}
+.dz-lede{font-size:15px;line-height:1.6;color:var(--ink-2);max-width:74ch}
+.dz-lede + .dz-lede{margin-top:10px}
+.dz-lede b{color:var(--ink)}
+.dz-lede .hi{color:var(--navy);font-weight:700}
+
+/* the overview table */
+.dz-tw{overflow-x:auto}
+table.dz-ov{width:100%;border-collapse:collapse;font-size:14px;min-width:460px}
+table.dz-ov th{text-align:left;padding:9px 12px;font:600 11px/1.2 var(--ui);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line)}
+table.dz-ov th.n,table.dz-ov td.n{text-align:center}
+table.dz-ov td{padding:0;border-bottom:1px solid var(--line-2)}
+table.dz-ov tbody tr:hover td{background:var(--well)}
+table.dz-ov tbody tr[aria-selected="true"] td{background:#EEF3FB}
+table.dz-ov td button{display:block;width:100%;min-height:44px;background:none;border:0;padding:10px 12px;text-align:inherit;cursor:pointer;font:inherit;font-variant-numeric:tabular-nums}
+table.dz-ov td.tk button{font:700 14px/1.2 var(--mono);color:var(--navy);letter-spacing:.02em}
+table.dz-ov td.nm button{color:var(--ink-2);font-size:13.5px}
+.dz-v{display:inline-flex;align-items:center;font:700 10.5px/1 var(--ui);letter-spacing:.07em;text-transform:uppercase;padding:6px 8px;border-radius:4px;white-space:nowrap}
+.dz-v.go{color:var(--ok);background:var(--ok-soft)}
+.dz-v.line{color:var(--warn);background:var(--warn-soft)}
+.dz-v.no{color:var(--bad);background:var(--bad-soft)}
+.dz-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--ink-2)}
+.dz-legend span{display:inline-flex;align-items:center;gap:6px}
+.dz-key{width:16px;height:16px;border-radius:4px;display:grid;place-items:center;font:700 11px/1 var(--ui);flex:none}
+.dz-key.p{background:var(--ok-soft);color:var(--ok)}
+.dz-key.f{background:var(--bad-soft);color:var(--bad)}
+.dz-key.u{background:var(--warn-soft);color:var(--warn)}
+
+/* company picker + card */
+.dz-pick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.dz-pick button{min-height:44px;padding:0 13px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink-2);font:700 13px/1 var(--mono);letter-spacing:.03em;cursor:pointer}
+.dz-pick button:hover{background:var(--well)}
+.dz-pick button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.dz-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.dz-head h3{font:700 22px/1.15 var(--ui);color:var(--navy)}
+.dz-head .tk{font:700 13px/1 var(--mono);color:var(--ink-3);letter-spacing:.06em}
+.dz-head .tally{margin-left:auto;font:600 13px/1 var(--mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.dz-verdict{border-radius:var(--r);padding:12px 14px;font-size:14.5px;line-height:1.5;margin-bottom:14px}
+.dz-verdict b{font-weight:700}
+.dz-verdict.go{background:var(--ok-soft);color:var(--ink)}.dz-verdict.go b{color:var(--ok)}
+.dz-verdict.line{background:var(--warn-soft);color:var(--ink)}.dz-verdict.line b{color:var(--warn)}
+.dz-verdict.no{background:var(--bad-soft);color:var(--ink)}.dz-verdict.no b{color:var(--bad)}
+ol.dz-items{list-style:none;margin:0 0 14px;padding:0;counter-reset:dz;display:grid;gap:6px}
+ol.dz-items li{counter-increment:dz;display:grid;grid-template-columns:22px 22px 1fr;gap:10px;align-items:start;border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;background:var(--card)}
+ol.dz-items li::before{content:counter(dz);font:700 11px/20px var(--mono);color:var(--ink-3);text-align:center}
+ol.dz-items .mk{font:700 14px/20px var(--ui);text-align:center}
+ol.dz-items .mk.p{color:var(--ok)}
+ol.dz-items .mk.f{color:var(--bad)}
+ol.dz-items .mk.u{color:var(--warn)}
+ol.dz-items .t{display:block;font:600 13.5px/1.35 var(--ui);color:var(--ink);margin-bottom:2px}
+ol.dz-items .d{display:block;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+ol.dz-items .d b{color:var(--ink);font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums}
+.dz-say{background:var(--well);border-left:3px solid var(--orange);border-radius:0 var(--r) var(--r) 0;padding:12px 14px;font-size:14px;line-height:1.55;color:var(--ink-2)}
+.dz-say b{color:var(--navy)}
+
+/* blind spots */
+.dz-blind{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dz-blind li{border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;background:var(--well)}
+.dz-blind b{display:block;font:700 14px/1.3 var(--ui);color:var(--navy);margin-bottom:5px}
+.dz-blind span{display:block;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.dz-blind span em{font-style:normal;font-family:var(--mono);font-weight:600;color:var(--ink)}
+.dz-after{margin-top:14px;font-size:14.5px;line-height:1.6;color:var(--ink-2);max-width:74ch}
+.dz-after b{color:var(--ink)}
+
+/* sources */
+.dz-src{display:grid;gap:12px;font-size:14px;line-height:1.55;color:var(--ink-2);max-width:78ch}
+.dz-src b{color:var(--ink)}
+.dz-src ul{margin:6px 0 0;padding-left:18px;display:grid;gap:5px}
+
+@media (max-width:900px){.dz-blind{grid-template-columns:1fr}}
+@media (max-width:700px){
+  .dz-stack{gap:14px}
+  .card-body{padding:14px}
+  .dz-head h3{font-size:19px}
+  ol.dz-items li{grid-template-columns:18px 20px 1fr;gap:8px;padding:9px 10px}
+  table.dz-ov{min-width:0;font-size:13.5px}
+  table.dz-ov td.nm,table.dz-ov th.nm{display:none}
+  table.dz-ov th{padding:9px 6px}
+  table.dz-ov td button{padding:10px 6px}
+  .dz-v{padding:6px 7px;letter-spacing:.05em}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="guide.html">Guide</a>
+      <a href="rules.html">Rules</a>
+      <a href="dozen.html">Dozen</a>
+      <a href="card.html">Propose</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>The Nasdaq Dozen</h1>
+      <p>Coach P's twelve fundamental tests, run on ten tech names. Ten of the twelve are scored from real data; two need a ruling from him. The rule we used: more than 6 yes is a maybe-buy, under 6 is probably not, exactly 6 is a judgment call.</p>
+    </div>
+    <div class="right">
+      <a class="btn ghost sm" id="dz-doc" href="#" target="_blank" rel="noopener"><span data-icon="book"></span>Coach P's document</a>
+      <a class="btn ghost sm" href="case.html"><span data-icon="target"></span>Case page</a>
+    </div>
+  </div>
+
+  <div class="dz-stack">
+
+    <section class="card reveal" id="read-first" aria-labelledby="read-first-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="flag"></span><h2 id="read-first-h">Read this before the table</h2><span class="spacer"></span><span class="meta">10 names · 12 tests</span></div>
+      <div class="card-body">
+        <p class="dz-lede">The two highest scorers are <span class="hi">AMD at 9 of 10</span> and <span class="hi">Oracle at 8 of 10</span>. AMD keeps 15.58 cents of every sales dollar where Nvidia keeps 63.66, and its stock went up more than 4× in a year on 50% revenue growth. Oracle is burning $45.85B of free cash flow with debt at 252% of equity.</p>
+        <p class="dz-lede">Meanwhile <b>Apple and Alphabet score lowest, at 6</b>. The Dozen has no test for debt, no test for cash flow and no test for margin, so it cannot see the things that actually separate these companies. That is not a knock on the screen. It is what a screen is for: <b>use it to narrow the list, then value what survives.</b></p>
+      </div>
+    </section>
+
+    <section class="card reveal" id="scores" aria-labelledby="scores-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="scores-h">All ten, scored</h2><span class="spacer"></span><span class="meta" id="dz-ov-meta"></span></div>
+      <div class="card-body">
+        <div class="dz-tw">
+          <table class="dz-ov" id="dz-ov">
+            <thead><tr><th>Ticker</th><th class="nm">Company</th><th class="n">Yes</th><th class="n">No</th><th class="n">Open</th><th>Verdict</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="dz-legend">
+          <span><i class="dz-key p" aria-hidden="true">✓</i> Passes the test</span>
+          <span><i class="dz-key f" aria-hidden="true">✗</i> Fails it</span>
+          <span><i class="dz-key u" aria-hidden="true">?</i> No usable reading yet</span>
+          <span>Tap any row for that company's twelve.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reveal" id="company" aria-labelledby="company-h" data-fold="open">
+      <div class="card-head"><span class="ic" data-icon="chart"></span><h2 id="company-h">Company by company</h2><span class="spacer"></span><span class="meta">Pick a ticker</span></div>
+      <div class="card-body">
+        <div class="dz-pick" id="dz-pick" role="group" aria-label="Pick a company"></div>
+        <div id="dz-panel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="card reveal" id="blindspots" aria-labelledby="blindspots-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="blindspots-h">What the Dozen cannot see</h2><span class="spacer"></span><span class="meta">3 gaps</span></div>
+      <div class="card-body">
+        <ul class="dz-blind">
+          <li><b>Debt</b><span>Oracle scores 8 of 10 with debt at <em>252%</em> of equity. The only row that even hints at it is the ROE fail, and only because borrowing is what drove ROE from 82% to 41%.</span></li>
+          <li><b>Cash flow</b><span>Oracle is burning <em>$45.85B</em> of free cash flow. No test reads a cash flow statement, so that burn costs it nothing on this scorecard.</span></li>
+          <li><b>Margin and price level</b><span>AMD tops the page at 9 of 10 on a <em>15.58%</em> margin against Nvidia's <em>63.66%</em>, at a trailing P/E of <em>156.79</em>. ROE passing means rising, not high — AMD's rose off a 2.89% base.</span></li>
+        </ul>
+        <p class="dz-after">Two more things the scoring itself showed. Alphabet's one-time gain passes tests 2 and 5 and then fails test 6, because next year's forecast is lower than the year it inflated — the same event scored twice as good and once as bad. And Apple passes test 4 on a Buy rating whose own average price target, $328.22, sits <b>below</b> the current price. A rating is not the same as an opinion.</p>
+        <p class="dz-after">So the plan is the plan Coach P gave us, run in order: <b>the Dozen narrows, then we value the survivors</b> with the DCF and required-return work from the Wharton Essentials of Finance material, and only then does anything get a trade card. Of these ten, only Microsoft is on our Pile B shortlist today.</p>
+      </div>
+    </section>
+
+    <section class="card reveal" id="sources" aria-labelledby="sources-h" data-fold="closed">
+      <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="sources-h">Sources, caveats and what is still open</h2><span class="spacer"></span><span class="meta" id="dz-pulled"></span></div>
+      <div class="card-body">
+        <div class="dz-src">
+          <p><b>Where the numbers came from.</b> Tests 1, 2, 5, 6, 8 and 10 from finance.yahoo.com. Test 3 (ROE history) and test 4 (analyst consensus) from stockanalysis.com. Test 11 from Yahoo's insider-transactions page. All pulled <span id="dz-pulled-2"></span>.</p>
+          <p><b>Three honest caveats.</b></p>
+          <ul>
+            <li>Test 7 is derived, not read off a page: PEG = forward P/E ÷ 5-year growth, so growth = forward P/E ÷ PEG.</li>
+            <li>Test 11 uses Yahoo's <i>6-month</i> insider window because Yahoo does not publish a 3-month one. The Dozen asks for 3.</li>
+            <li>Yahoo and stockanalysis.com compute PEG differently (0.48 vs 0.36 for Nvidia), so every ratio here is Yahoo's, for consistency.</li>
+          </ul>
+          <p><b>Two questions for Coach P.</b> Test 9 is ambiguous as the document words it — the title says industry P/E but the text says to pass if <i>earnings</i> beat the industry, and the Walmart example fails for a <i>lower</i> P/E than its industry. Which direction is the pass? And test 12, weighted alpha, is a Barchart metric the document cuts off before defining a pass mark for. Both are marked open on every card above rather than guessed.</p>
+          <p><b>How this was built.</b> The scoring, the source pulls and the write-ups are the team's. Claude was used to assemble the page and check the arithmetic, which the competition's AI policy allows for brainstorming and requires us to say.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <span>Wall Street Warriors · Liberty Christian School · Wharton Global High School Investment Competition 2026–27</span>
+    <span>Fundamental screen recommended by Coach P · data pulled Sep 24–25, 2026 · <a href="news.html#sources">Sources</a></span>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/dozen.js"></script>
+<script src="assets/warren.js?v=5" defer></script>
+<script>
+(function (W, D) {
+  "use strict";
+  if (!D || !D.companies) return;
+
+  var byId = function (id) { return document.getElementById(id); };
+
+  function tally(rows) {
+    var t = { p: 0, f: 0, u: 0 };
+    rows.forEach(function (r) { t[r[0]]++; });
+    return t;
+  }
+
+  function verdict(t) {
+    if (t.p >= 7) return { cls: "go", label: "Could buy", text: "<b>" + t.p + " yes</b>, past the 6 mark. " + t.f + " no, " + t.u + " still open." };
+    if (t.p === 6) return { cls: "line", label: "Your call", text: "<b>Exactly 6 yes</b> — the line where it becomes a decision. " + t.f + " no, " + t.u + " still open." };
+    return { cls: "no", label: "Not there yet", text: "<b>" + t.p + " yes</b>, under the 6 mark. " + t.f + " no, " + t.u + " still open." };
+  }
+
+  var cur = 0;
+  var scored = D.companies.map(function (c) { return tally(c.rows); });
+
+  /* ---------- overview table ---------- */
+  var body = byId("dz-ov").tBodies[0];
+  body.innerHTML = D.companies.map(function (c, i) {
+    var t = scored[i], v = verdict(t);
+    function cell(cls, inner) { return '<td class="' + cls + '"><button type="button" data-i="' + i + '">' + inner + "</button></td>"; }
+    return '<tr data-row="' + i + '">' +
+      cell("tk", c.tk) + cell("nm", c.name) + cell("n", t.p) + cell("n", t.f) + cell("n", t.u) +
+      cell("", '<span class="dz-v ' + v.cls + '">' + v.label + "</span>") + "</tr>";
+  }).join("");
+  body.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-i]");
+    if (!b) return;
+    show(+b.getAttribute("data-i"));
+    byId("company").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  var couldBuy = scored.filter(function (t) { return t.p >= 7; }).length;
+  byId("dz-ov-meta").textContent = couldBuy + " over the line";
+
+  /* ---------- picker ---------- */
+  byId("dz-pick").innerHTML = D.companies.map(function (c, i) {
+    return '<button type="button" data-i="' + i + '" aria-pressed="' + (i === 0) + '">' + c.tk + "</button>";
+  }).join("");
+  byId("dz-pick").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-i]");
+    if (b) show(+b.getAttribute("data-i"));
+  });
+
+  /* ---------- one company ---------- */
+  function show(i) {
+    cur = i;
+    var c = D.companies[i], t = scored[i], v = verdict(t);
+
+    Array.prototype.forEach.call(byId("dz-pick").children, function (b, n) {
+      b.setAttribute("aria-pressed", n === i ? "true" : "false");
+    });
+    Array.prototype.forEach.call(body.rows, function (tr, n) {
+      if (n === i) tr.setAttribute("aria-selected", "true"); else tr.removeAttribute("aria-selected");
+    });
+
+    byId("dz-panel").innerHTML =
+      '<div class="dz-head"><h3>' + c.name + '</h3><span class="tk">' + c.tk + '</span>' +
+        '<span class="tally">' + t.p + " yes · " + t.f + " no · " + t.u + " open</span></div>" +
+      '<div class="dz-verdict ' + v.cls + '">' + v.text + "</div>" +
+      '<ol class="dz-items">' + c.rows.map(function (r, n) {
+        var glyph = r[0] === "p" ? "✓" : r[0] === "f" ? "✗" : "?";
+        return '<li><span class="mk ' + r[0] + '" aria-hidden="true">' + glyph + "</span>" +
+          '<span><span class="t">' + D.tests[n] + '</span><span class="d">' + r[1] + "</span></span></li>";
+      }).join("") + "</ol>" +
+      '<p class="dz-say"><b>Worth saying out loud.</b> ' + c.extra + "</p>";
+  }
+
+  /* ---------- meta ---------- */
+  var doc = byId("dz-doc");
+  if (D.meta && D.meta.doc) doc.href = D.meta.doc; else doc.remove();
+  byId("dz-pulled").textContent = "Pulled " + D.meta.pulled;
+  byId("dz-pulled-2").textContent = D.meta.pulled;
+
+  show(0);
+  if (W && W.fillIcons) W.fillIcons(document);
+})(window.WSW, window.DOZEN);
+</script>
+</body>
+</html>
