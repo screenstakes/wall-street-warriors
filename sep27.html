@@ -344,7 +344,7 @@
       <span>Three things that will bite if nobody says them</span>
       <p><b>If a name changed at 8:07</b>, its shares are <b>$9,000 divided by Friday's close, rounded down</b>. Joe does it on screen. Nothing else in the table moves.</p>
       <p><b>These fill at Monday's open, not Friday's price.</b> If something gapped up overnight the cost rises &mdash; that is what the $4,210 is for. If we somehow run short, <b>cut one share of VOO</b> and move on. Do not start re-planning.</p>
-      <p><b>Place the Treasuries last.</b> Bond prices only update once a day at the open, and a few hundred dollars either way there matters far less than anywhere else in the list.</p>
+      <p><b>Place the Treasuries last, and do not be surprised if they land late.</b> Bond prices update once a day, and StockTrak may book them at an end-of-day price rather than the open. That is also why the cash buffer matters: if the bond leg settles after the equities, a plan with no slack can bounce off &ldquo;insufficient buying power.&rdquo;</p>
     </div>
   </div>
 </div>
@@ -370,9 +370,16 @@
     <ul>
       <li><b>Federico shares his screen and types.</b> One person on the keyboard, everyone watching. Nobody places anything privately.</li>
       <li><b>Every order gets its WInS note before Confirm.</b> The note is the only thing Wharton actually reads, and it cannot be added afterwards. Build each one on the <a href="https://screenstakes.github.io/wall-street-warriors/card.html">trade card page</a> &mdash; it writes the note for you.</li>
-      <li><b>Michael, do this before the call:</b> log into WInS and try to enter a single order. If the ticket is accepted, cancel it and we are queuing tonight. If it is rejected because competition trading has not opened, we fall to the line below. <b>Two minutes, and it decides how this block runs.</b></li>
+      <li><b>Use MARKET orders.</b> Wharton's own guide says market orders stay open until they can fill; a <i>limit</i> order left on the default one-day duration can be dead before Monday. If the ticket shows a Duration field, set <b>GTC</b>.</li>
+      <li><b>Michael, do the four-minute check before the call</b> &mdash; it decides how this whole block runs. Details in the box below.</li>
     </ul>
-    <div class="decide"><i>If WInS will not take orders yet</i>Nothing about tonight changes except who types. The list is locked either way, and <b>Federico places it Monday at lunch</b> &mdash; the market is open until 3:00pm our time, so the open is not a deadline. Still no Tuesday meeting.</div>
+    <div class="gotcha" style="margin-top:8pt;">
+      <span>Michael &mdash; four minutes in WInS before 8:00, and one of these can break Monday</span>
+      <p><b>1. Session Rules first.</b> Portfolio Summary &rarr; Session Rules. Screenshot it. Check the <b>position limit</b>. Wharton's rules say there is none, but StockTrak ships a <b>25% default</b>, and if that one is live our <b>30% VOO order gets rejected</b>. If it is there, we split VOO into two orders. Also confirm $300,000 cash and the $25 / $10 commissions.</p>
+      <p><b>2. Then try one share.</b> Market buy, 1 share, any name on the list. If it is accepted or goes <i>pending</i>, <b>cancel it</b> and we queue everything tonight &mdash; cancelling is free, because commissions only charge on a trade that clears. If it comes back <b>&ldquo;the competition hasn't started yet&rdquo;</b>, queuing is off and Federico places Monday. Any other rejection means the gate is open and the input was just wrong.</p>
+      <p><b>3. Test a bond separately.</b> A working stock ticket does not prove a working bond ticket.</p>
+    </div>
+    <div class="decide"><i>If WInS will not take orders yet</i>Nothing about tonight changes except who types. The list is locked either way and <b>Federico places it Monday at lunch</b> &mdash; the market runs to 3:00pm our time, so the open is not a deadline. <b>There is no first-trade deadline in this year's rules and returns are not graded</b>, so even Tuesday would be a non-event. Still no Tuesday meeting.</div>
   </div>
 </div>
 
@@ -382,7 +389,9 @@
     <h2>Before anyone logs off</h2>
     <ul>
       <li><b>Roster, and this one has a hard lock.</b> Everyone sends Michael their birthday and the email they want on the submission, tonight. <b>Oct 9 and nobody can be added after it.</b></li>
-      <li><b>Michael and Caleb are out Monday.</b> Federico checks the fills and posts a screenshot in the chat. If something did not fill, he says so &mdash; he does not fix it alone.</li>
+      <li><b>Michael and Caleb are out Monday.</b> Federico checks the fills at lunch and posts a screenshot. If something did not fill he says so in the chat &mdash; he does not fix it alone.</li>
+      <li><b>Expect them to fill one at a time, not all at 9:30.</b> WInS will not let you buy more shares than have actually traded that day, so in the first minutes of a session big orders sit pending until enough volume prints. <b>A pending order Monday morning is normal and is not broken.</b> Nobody re-places anything.</li>
+      <li><b>There is no undo.</b> Day trading is switched off, so a wrong fill cannot be reversed the same day. Wharton's own advice is to run with it and write it up rather than scramble &mdash; and the write-up is the part that is graded.</li>
       <li><b>Whoever proposed a name writes its note the same day.</b> No note, no trade next time.</li>
       <li><b>Next Sunday, 8:00pm, same two links.</b> Everyone's sheet filled in by Friday so the call reviews finished work.</li>
     </ul>
