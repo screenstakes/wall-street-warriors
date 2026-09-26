@@ -98,6 +98,11 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
 .q .why{font-size:13px;line-height:1.5;color:var(--ink-2);margin:0}
 .q ul{margin:2px 0 0;padding-left:18px;font-size:13px;line-height:1.45;color:var(--ink-2)}
 .q ul li{margin-top:4px}
+.pile{font:700 10.5px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:4px 8px;white-space:nowrap}
+.pile.a{background:#E6EAF2;color:#3C4A66}
+.pile.b{background:#FAEED8;color:#6E4209}
+.pile.c{background:#E4EBF7;color:#1E4B95}
+.verdict .k .pile{margin-left:6px;vertical-align:1px}
 @media (max-width:900px){.qs{grid-template-columns:1fr}}
 @media (max-width:700px){.q .why{display:none}}
 
@@ -355,9 +360,9 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
     '<p class="quote" style="font-style:normal"><b>Teams are not permitted to contact Laura Gao.</b> Wharton says so in bold on the Client page. No emails, no DMs, no tagging her.</p>';
 
   byId("verdict").innerHTML =
-    '<div class="v"><span class="k">Reserve, 2033</span><span class="n">' + money(RES.cost) + '</span><span class="s">Set aside for the ten payments, laddered at 4%. In cash it would cost ' + money(M.reserve[0].cost) + ".</span></div>" +
+    '<div class="v"><span class="k">Reserve, 2033<span class="pile a">Pile A</span></span><span class="n">' + money(RES.cost) + '</span><span class="s">Set aside for the ten payments, laddered at 4%. In cash it would cost ' + money(M.reserve[0].cost) + ".</span></div>" +
     '<div class="v"><span class="k">Portfolio, 2033</span><span class="n">' + money(BASE.v2033) + '</span><span class="s">At the start of 2033, at 7% a year on the ' + money(C.totalContributed) + " she puts in.</span></div>" +
-    '<div class="v accent"><span class="k">For the facility</span><span class="n">' + money(BASE.facility) + '</span><span class="s">' + Math.round(BASE.facility / BASE.v2033 * 100) + "% of the portfolio at 7%. She quotes co-sponsors a RANGE around this with a stated confidence, never one number.</span></div>";
+    '<div class="v accent"><span class="k">For the facility<span class="pile b">Pile B</span></span><span class="n">' + money(BASE.facility) + '</span><span class="s">' + Math.round(BASE.facility / BASE.v2033 * 100) + "% of the portfolio at 7%. She quotes co-sponsors a RANGE around this with a stated confidence, never one number.</span></div>";
   byId("verdict-line").innerHTML = "<b>The hurdle is certainty, not return.</b> Just covering the reserve needs " + pct(M.breakeven[0].r) + " a year holding cash, or " + pct(M.breakeven[1].r) + " laddered &mdash; she could lose money for six years and still make every payment. The job is to grow the rest without ever putting the ten payments at risk.";
 
   /* ---------- 2. timeline ---------- */
@@ -440,10 +445,15 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
   }).join("");
 
   /* ---------- 3. the three questions ---------- */
+  /* Each obligation is one pile's job. The ids come from data.js: operating -> A, facility and
+     cosponsor -> B. Pile C answers none of them, on purpose - see the note below. */
+  var Q_PILE = { operating: "a", facility: "b", cosponsor: "b" };
   byId("qs").innerHTML = C.obligations.map(function (o) {
-    return '<div class="q' + (o.mandatory ? " must" : "") + '"><h3>' + esc(o.name) + '<span class="chip ' + (o.mandatory ? "decide" : "watch") + '">' + (o.mandatory ? "mandatory" : "our call") + "</span></h3>" +
+    var pl = Q_PILE[o.id];
+    return '<div class="q' + (o.mandatory ? " must" : "") + '"><h3>' + esc(o.name) + (pl ? '<span class="pile ' + pl + '">Pile ' + pl.toUpperCase() + "</span>" : "") + '<span class="chip ' + (o.mandatory ? "decide" : "watch") + '">' + (o.mandatory ? "mandatory" : "our call") + "</span></h3>" +
       '<p class="what">' + esc(o.what) + '</p><p class="why">' + esc(o.detail) + "</p><ul>" + o.asks.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ul></div>";
-  }).join("");
+  }).join("") +
+    '<p class="note" style="grid-column:1/-1"><b>Where Pile C fits:</b> it does not answer one of these, and that is deliberate. <b>Pile A and Pile B are Laura\u2019s promises</b> \u2014 the ten payments and the building. <b>Pile C is ours</b>: cash and short-term Treasuries (BIL, SGOV) kept so we can buy something that gets cheap, and so money from a sale has somewhere safe to wait. Coach P pushed for it on Sep 20. It belongs in our trading notes and our IPS, not in her three questions. The plain-English version of all three is on the <a href="guide.html">Guide</a>.</p>';
 
   /* ---------- 4. numbers: chart, tables, explorer ---------- */
   function chart(vb, x0, kx, rowY, rowGap, thick, phone) {
@@ -464,7 +474,7 @@ details.fold.big > .past,details.fold.big > .card-foot{border-top:1px solid var(
   }
   byId("ch-desk").innerHTML = chart({ w: 1000, h: 280 }, 110, 1.0, 50, 44, 22, false);
   byId("ch-phone").innerHTML = chart({ w: 340, h: 316 }, 44, 0.31, 52, 52, 18, true);
-  byId("ch-cap").innerHTML = "Gray is the reserve, fixed at " + money(RES.cost) + " whatever the market does. Blue is what is left for the facility. The 7% row is the central case; at 5% it is " + k(M.projections[0].facility) + ", at 9% " + k(M.projections[4].facility) + ".";
+  byId("ch-cap").innerHTML = "Gray is the reserve \u2014 <b>Pile A</b> \u2014 fixed at " + money(RES.cost) + " whatever the market does. Blue is what is left for the facility, <b>Pile B</b>. The 7% row is the central case; at 5% it is " + k(M.projections[0].facility) + ", at 9% " + k(M.projections[4].facility) + ".";
 
   var cash = M.reserve[0].cost;
   byId("t-reserve").querySelector("tbody").innerHTML = M.reserve.map(function (x) {

@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>The Guide · Wall Street Warriors</title>
-<meta name="description" content="Laura Gao's case in 21 plain steps: the money, the two piles, how WInS connects to her real money, our plan, how we win, and who does what.">
+<meta name="description" content="Laura Gao's case in plain steps: the three piles — safety, growth and flex — how WInS connects to her real money, our plan, how we win, and who does what.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,9 @@
   --g-ground:var(--page); --g-card:var(--card); --g-ink:var(--navy); --g-ink-2:var(--ink-2); --g-ink-3:#5B6780;
   --g-line:var(--line); --g-well:var(--well);
   --g-dep:var(--blue); --g-dep-2:#6F95D2; --g-grow:#B9CDEB;
-  --g-a:var(--slate); --g-a-soft:#E6EAF2; --g-paid:#9AA6BD;
-  --g-b:var(--orange-deep); --g-b-soft:#FBEEDC;
+  --g-a:var(--slate); --g-a-soft:#E6EAF2; --g-a-ink:#3C4A66; --g-paid:#9AA6BD;
+  --g-b:var(--orange-deep); --g-b-soft:#FBEEDC; --g-b-ink:var(--orange-ink);
+  --g-c:#3B78CC; --g-c-soft:#E4EBF7; --g-c-ink:#1E4B95;
   --g-g1:var(--blue); --g-g2:#4F7BC4; --g-g3:#7E9FD6; --g-s1:#5E6E8F; --g-s2:#8E9AB3;
   --g-yes:var(--ok); --g-yes-soft:var(--ok-soft); --g-no:var(--bad); --g-no-soft:var(--bad-soft);
   --g-r1:#BCCBE6; --g-r2:#A9BDE0; --g-r3:#7C9CD1; --g-r4:#4F7BC4; --g-r5:var(--blue);
@@ -54,7 +55,7 @@
 .seg.first{border-radius:var(--r) 0 0 10px}.seg.last{border-radius:0 10px 10px 0}.seg.only{border-radius:var(--r)}
 .seg.dep{background:var(--g-dep)}.seg.dep2{background:var(--g-dep-2)}
 .seg.grow{background:repeating-linear-gradient(135deg,var(--g-grow) 0 7px,var(--g-dep-2) 7px 14px)}
-.seg.a{background:var(--g-a)}.seg.b{background:var(--g-b)}
+.seg.a{background:var(--g-a)}.seg.b{background:var(--g-b)}.seg.c{background:var(--g-c)}
 .empty{position:absolute;inset:0;display:grid;place-items:center;font:600 15px/1 var(--g-display);color:var(--g-ink-3)}
 .legend{display:grid;gap:9px;margin:0;padding:0;list-style:none}
 .legend li{display:grid;grid-template-columns:16px 1fr auto;gap:10px;align-items:center;font-size:15px;color:var(--g-ink-2)}
@@ -81,7 +82,27 @@ input[type=range]{width:100%;accent-color:var(--g-ink);height:40px;margin:0;curs
 @media (max-width:520px){.seg-btns.four{--n:2 !important}.seg-btns button{padding:10px 4px;font-size:14px}}
 .g-note{border-radius:var(--r);padding:14px 16px;font-size:14.5px;line-height:1.55;color:var(--g-ink-2);margin:0}
 .g-note b{color:var(--g-ink)}
-.g-note.a{background:var(--g-a-soft)}.g-note.b{background:var(--g-b-soft)}.g-note.plain{background:var(--g-well)}
+.g-note.a{background:var(--g-a-soft)}.g-note.b{background:var(--g-b-soft)}.g-note.c{background:var(--g-c-soft)}.g-note.plain{background:var(--g-well)}
+/* ---- starting mix, grouped by pile ---- */
+.mixbar{display:flex;height:54px;border-radius:var(--r);overflow:hidden;gap:2px;background:var(--g-well)}
+.mixbar span{display:grid;place-items:center;font:700 15px/1 var(--g-display);color:#fff}
+.mixrows{display:grid;gap:8px}
+.mixrow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;font-size:14.5px;color:var(--g-ink-2)}
+.mixrow .dot{width:12px;height:12px;border-radius:3px;align-self:center}
+.mixrow b{color:var(--g-ink);font:700 15px/1.3 var(--g-display);font-variant-numeric:tabular-nums}
+.mixrow .tk{font:600 12.5px/1.4 var(--g-display);color:var(--g-ink-3);display:block}
+@media (max-width:420px){.mixbar span{font-size:13px}}
+
+/* ---- the three piles ---- */
+.piles{display:grid;gap:10px}
+.pile-row{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--g-card);border:1px solid var(--g-line);border-left:5px solid var(--tone);border-radius:var(--r-lg);padding:14px 16px}
+.pile-row .eq{width:40px;height:40px;border-radius:50%;background:var(--tone);color:#fff;display:grid;place-items:center;font:700 21px/1 var(--g-display)}
+.pile-row h4{font:700 17px/1.2 var(--g-display);color:var(--g-ink);margin:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pile-row h4 em{font:700 11.5px/1 var(--g-display);letter-spacing:.07em;text-transform:uppercase;font-style:normal;color:var(--tone-ink);background:var(--soft);border-radius:99px;padding:5px 9px}
+.pile-row p{margin:5px 0 0;font-size:14.5px;line-height:1.55;color:var(--g-ink-2)}
+.pile-row p b{color:var(--g-ink)}
+.pile-row .holds{display:block;margin-top:8px;font:600 12.5px/1.45 var(--g-display);color:var(--g-ink-3)}
+@media (max-width:460px){.pile-row{grid-template-columns:1fr;gap:10px}.pile-row .eq{width:34px;height:34px;font-size:18px}}
 .who{display:inline-flex;align-items:center;gap:6px;font:700 13px/1 var(--ui);color:var(--g-ink);background:var(--g-b-soft);border-radius:4px;padding:4px 9px 4px 4px;vertical-align:middle}
 .who i{width:20px;height:20px;border-radius:50%;background:var(--g-av-b);color:var(--g-av-ink);font:700 10px/20px var(--g-display);text-align:center;font-style:normal}
 
@@ -389,7 +410,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   <div class="page-title">
     <div>
       <h1>The Guide</h1>
-      <p>Laura's case in 21 plain steps. Start here if the Case page feels like too much, or send it to a teammate who hasn't read the case yet.</p>
+      <p>Laura's case in <span id="stepcount">plain</span> steps, starting with the three piles. Start here if the Case page feels like too much, or send it to a teammate who hasn't read the case yet.</p>
     </div>
     <div class="right">
       <a class="btn ghost sm" href="case.html"><span data-icon="book"></span>The full case page</a>
@@ -401,7 +422,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     <div class="tabs" id="chapters" role="tablist" aria-label="Chapters"></div>
 
     <section class="card reveal" aria-labelledby="ghead">
-      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="ghead">The story</h2><span class="spacer"></span><span class="meta" id="gmeta">Step 1 of 21</span></div>
+      <div class="card-head"><span class="ic" data-icon="book"></span><h2 id="ghead">The story</h2><span class="spacer"></span><span class="meta" id="gmeta">Step 1</span></div>
       <div class="card-body g-body">
         <div id="text" aria-live="polite"></div>
         <section class="pot" id="pot" aria-label="The money">
@@ -423,7 +444,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   </div>
   <aside class="stack" id="guide-rail" aria-label="Chapters">
     <article class="card reveal rail-card">
-      <div class="card-head"><span class="ic" data-icon="list"></span><h3>Chapters</h3><span class="spacer"></span><span class="meta" id="rail-meta">Step 1 of 21</span></div>
+      <div class="card-head"><span class="ic" data-icon="list"></span><h3>Chapters</h3><span class="spacer"></span><span class="meta" id="rail-meta">Step 1</span></div>
       <ol class="chap-list" id="chaplist"></ol>
       <div class="card-foot rail-foot"><div class="progress gprog" aria-hidden="true"><i></i></div><span class="pct" id="rail-pct">5%</span></div>
     </article>
@@ -495,6 +516,31 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     pot: function () { return { when: "2026, right now", total: "$0", segs: [], empty: "Nothing invested yet" }; },
     html: '<p class="g-note plain">Right now is <b>2026</b>. The case calls it <b>Year 0</b>, which just means nothing has happened yet. She hasn’t given us a dollar.</p>' });
 
+  /* The map before the journey. Coach P asked about the piles by name, so they get named
+     before a single number lands. PILES is the same three, in the same order and the same
+     words, as the trade card on card.html \u2014 if one changes, change both. */
+  var PILES = [
+    { k: "a", tag: "Safety", name: "Pile A", job: "Has to be there.",
+      what: "The ten payments Laura owes her art house: <b>$50,000 a year, 2033 to 2042</b>. Every one of them, with what the case calls <b>a high degree of certainty</b>.",
+      holds: "Treasuries \u2014 loans to the US government. An individual stock almost never belongs in Pile A." },
+    { k: "b", tag: "Growth", name: "Pile B", job: "Make it bigger.",
+      what: "Whatever this grows into by 2033 is what she can put toward <b>the building itself</b> in Taiwan. There is no target here, so more is better.",
+      holds: "Index funds and the individual companies each of us researches." },
+    { k: "c", tag: "Flex", name: "Pile C", job: "Stay ready.",
+      what: "Cash, basically. It does two jobs: <b>money ready to buy with</b> when something gets cheap, and <b>somewhere safe for money to wait</b> after we sell something.",
+      holds: "Short-term Treasuries \u2014 BIL and SGOV. They barely move, and we can sell them any day." }
+  ];
+  S({ ch: "The story", title: "Every dollar has one of three jobs.",
+    say: "This is the whole plan on one screen, before any numbers. Every dollar we buy for Laura sits in <b>one of three piles</b>. Pick up nothing else from this page and pick up this.",
+    html: '<div class="piles">' + PILES.map(function (p) {
+        return '<div class="pile-row" style="--tone:var(--g-' + p.k + ');--soft:var(--g-' + p.k + '-soft);--tone-ink:var(--g-' + p.k + '-ink)">' +
+          '<span class="eq" aria-hidden="true">' + p.name.slice(-1) + '</span>' +
+          '<div><h4>' + p.name + ' \u00b7 ' + p.job + '<em>' + p.tag + '</em></h4>' +
+          '<p>' + p.what + '</p><span class="holds">' + p.holds + '</span></div></div>';
+      }).join("") + '</div>' +
+      '<p class="g-note plain"><b>A pile is a job, not a bank account.</b> Until 2033 it is all one pot in one account, invested to one recipe. Saying which pile a holding is in is us saying <b>what that money is for</b> \u2014 and every trading note we turn in has to say it.</p>' +
+      '<p class="g-note c"><b>Why three, when the case only describes two?</b> Laura\u2019s case names the reserve (A) and the contribution (B). <b>Coach P asked us to add the third on Sep 20</b>, and he was right: a portfolio holding no cash has to sell something before it can do anything. Pile C is how we buy a dip without touching her bill money.</p>' });
+
   S({ ch: "The story", title: "She gives us money, twice.",
     say: "<b>$300K</b> at the start of 2027, then <b>$150K</b> more at the start of 2028. That’s <b>$450K</b> in all. After that, nobody adds or takes anything out until 2033.",
     pot: function () { return { when: "2027 and 2028", segs: [{ cls: "dep", v: 300, label: "First deposit, 2027" }, { cls: "dep2", v: 150, label: "Second deposit, 2028" }] }; } });
@@ -517,11 +563,12 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
         : "<b>2033:</b> at 7% a year it has grown to about $661K. That’s " + k(g) + " the investments made.";
     } });
 
-  S({ ch: "The story", title: "In 2033, we split it into two piles.",
-    say: "One pile pays her bills. The other is what’s left, and we decide how much of it goes to the building.",
+  S({ ch: "The story", title: "In 2033, A and B stop sharing an account.",
+    say: "Up to here the piles were <b>jobs</b>. In 2033 two of them become real, separate money. Pile A gets carved out first, because those bills are a promise. Pile B is whatever is left over.",
     pot: function () { var t = potAt(2033, RATE); return { when: "Start of 2033 (example)", segs: [{ cls: "a", v: RESERVE, label: "Pile A: the bills" }, { cls: "b", v: t - RESERVE, label: "Pile B: the leftover" }] }; },
     html: '<p class="g-note a"><b>Pile A is the bills.</b> She promised the art house $50K a year for 10 years, 2033 to 2042. This pile has to cover every one with a high degree of certainty. The case calls it the <b>operating reserve</b>. Example numbers: 7% growth a year, bonds paying about 4%.</p>' +
-      '<p class="g-note b"><b>Pile B is the leftover.</b> We recommend how much of it she puts toward the building, and she keeps the rest as a cushion.</p>' });
+      '<p class="g-note b"><b>Pile B is the leftover.</b> We recommend how much of it she puts toward the building, and she keeps the rest as a cushion.</p>' +
+      '<p class="g-note c"><b>Pile C has no slice here, on purpose.</b> Flex money was never a destination \u2014 it is what makes the years in between workable. In our plan it shrinks as 2033 gets close, because by then there is nothing left to stay flexible about, and the cash goes where it is owed: <b>A first, then B</b>.</p>' });
 
   S({ ch: "The story", title: "Watch Pile A pay the bills.",
     say: "Each column is one year. Every year $50K goes out, so the pile shrinks. It’s kept in <b>bonds</b> (loans to the government that pay back on a set date). If they pay about 4%, the pile earns a little while it waits. Tap a year or press Play.",
@@ -567,7 +614,8 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
         '<article class="cmp"><h3>WInS</h3><p class="sub">The trading simulator. Sep 28 to Nov 6. A demo for the judges.</p><span class="big" id="w-total"></span><div class="minibar" id="w-bar"><div></div><div></div></div><ul class="legend" id="w-leg"></ul></article>' +
         '<article class="cmp"><h3>Laura’s money</h3><p class="sub">In a spreadsheet, not WInS. 2027 to 2042. Her real plan.</p><span class="big" id="l-total"></span><div class="minibar" id="l-bar"><div></div><div></div></div><ul class="legend" id="l-leg"></ul></article>' +
       "</div>" +
-      '<div class="link"><span class="eq">=</span><span><b>Same recipe, different dollars.</b> WInS uses practice money, not Laura’s. Only the percentages have to match.</span></div>',
+      '<div class="link"><span class="eq">=</span><span><b>Same recipe, different dollars.</b> WInS uses practice money, not Laura’s. Only the percentages have to match.</span></div>' +
+      '<p class="g-note plain"><b>Watch out for the $300,000.</b> Our WInS account starts at $300,000, and the first thing Laura hands over is also $300,000. <b>That is a coincidence.</b> They are separate money: the $150,000 she adds in 2028 never appears in WInS, and Wharton says in writing that what WInS gains or loses is never added to or subtracted from her projections.</p>',
     mount: function (draw) { $("mix").addEventListener("input", function () { ui.mix = +this.value; draw(); }); },
     update: function () {
       var safe = ui.mix / 100; $("mix").value = ui.mix;
@@ -623,7 +671,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
        ["All ten payments must be funded… with a high degree of certainty.", "The bill money has to be <b>almost guaranteed</b>."]].map(function (c, i) {
         return '<button class="clue" type="button" id="clue-' + i + '" aria-expanded="false"><q>' + c[0] + '</q><span class="tap">Tap to see what it means</span><span class="mean">' + c[1] + "</span></button>"; }).join("") + "</div>" +
       '<div class="panel"><span style="font:700 15px/1.3 var(--ui)">So the answer depends on the pile:</span>' +
-      '<div class="seg-btns" id="pile" role="group" aria-label="Which money" style="--n:2"><button type="button" id="pile-a" data-pile="a">Bill money<small>Pile A</small></button><button type="button" id="pile-g" data-pile="g">Growth money<small>before 2033</small></button></div>' +
+      '<div class="seg-btns" id="pile" role="group" aria-label="Which money" style="--n:3"><button type="button" id="pile-a" data-pile="a">Bill money<small>Pile A</small></button><button type="button" id="pile-g" data-pile="g">Growth money<small>Pile B</small></button><button type="button" id="pile-c" data-pile="c">Flex money<small>Pile C</small></button></div>' +
       '<div class="scale"><div class="mk" id="mk"><span id="mk-t"></span></div><div class="stops"><i></i><i></i><i></i><i></i><i></i></div><div class="lab"><span>Very safe</span><span>Risky</span></div></div>' +
       '<p class="cap" id="pile-cap" style="min-height:0"></p></div>',
     mount: function (draw) {
@@ -631,9 +679,14 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       $("pile").addEventListener("click", function (e) { var b = e.target.closest("[data-pile]"); if (!b) return; ui.pile = b.getAttribute("data-pile"); draw(); });
     },
     update: function () {
-      var a = ui.pile === "a";
-      $("mk-t").textContent = a ? "Very low risk" : "Medium to higher"; clampPin($("mk"), $("mk").parentNode, a ? 10 : 70);
-      $("pile-cap").innerHTML = a ? "<b>Bill money:</b> once it’s set aside in 2033, it has to be there, so we take almost no risk with it." : "<b>Growth money:</b> before 2033 it’s all one pot. While 2033 is years away we can take smart risks, then start getting safer before 2031.";
+      var RISK = {
+        a: { at: 10, mark: "Very low risk", cap: "<b>Bill money:</b> once it’s set aside in 2033, it has to be there, so we take almost no risk with it." },
+        g: { at: 70, mark: "Medium to higher", cap: "<b>Growth money:</b> while 2033 is years away we can take smart risks, then start getting safer before 2031. This is the only pile allowed to have a bad year." },
+        c: { at: 4, mark: "Lowest of the three", cap: "<b>Flex money:</b> even steadier than Pile A, because we might spend it next week. It is not trying to earn anything — it is trying to still be worth what we put in, on whatever day we want it." }
+      };
+      var r = RISK[ui.pile] || RISK.a;
+      $("mk-t").textContent = r.mark; clampPin($("mk"), $("mk").parentNode, r.at);
+      $("pile-cap").innerHTML = r.cap;
       pressGroup($("pile"), "data-pile", ui.pile);
     } });
 
@@ -651,14 +704,14 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     mount: function () { $("picks").addEventListener("click", function (e) { var b = e.target.closest(".pick"); if (b) b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true")); }); } });
 
   var SLICES = [
-    { name: "US stock index fund", pct: 30, grp: "Growth", color: "--g-g1", why: "Laura has years before 2033, usually enough time to recover from bad years.", goal: "Growth for Pile B, the building.", risk: "Stocks can drop 20% or more in a bad year. That’s why we start getting safer before 2031." },
-    { name: "International stock fund", pct: 15, grp: "Growth", color: "--g-g2", why: "Spreads our growth beyond just US companies.", goal: "Growth for Pile B.", risk: "Other countries’ markets and currencies can move differently from the US." },
-    { name: "Stocks we researched", pct: 15, grp: "Growth", color: "--g-g3", why: "Companies with a clear reason to grow, each one researched.", goal: "Growth for Pile B, and it shows judges our analysis.", risk: "One company can drop fast, so no single stock gets big." },
-    { name: "Treasury bond fund", pct: 25, grp: "Safe", color: "--g-s1", why: "Treasuries are loans to the US government. They swing much less than stocks, and the bills need high certainty.", goal: "The safe part now. In 2033, Pile A moves into bonds that come due one per year.", risk: "When new bonds pay more, older bonds are worth a bit less. We accept that because it swings far less than stocks." },
-    { name: "Short-term Treasuries", pct: 15, grp: "Safe", color: "--g-s2", why: "Treasuries that come due within a year or two. They barely move, so they’re a cushion when stocks have a rough stretch.", goal: "Protecting the safe part.", risk: "Very low. It just doesn’t grow much." }
+    { name: "US stock index fund", pct: 30, grp: "Pile B \u00b7 Growth", tk: "VOO", color: "--g-g1", why: "Laura has years before 2033, usually enough time to recover from bad years.", goal: "Growth for Pile B, the building.", risk: "Stocks can drop 20% or more in a bad year. That’s why we start getting safer before 2031." },
+    { name: "International stock fund", pct: 15, grp: "Pile B \u00b7 Growth", tk: "VEA", color: "--g-g2", why: "Spreads our growth beyond just US companies.", goal: "Growth for Pile B.", risk: "Other countries’ markets and currencies can move differently from the US." },
+    { name: "Stocks we researched", pct: 15, grp: "Pile B \u00b7 Growth", tk: "our picks", color: "--g-g3", why: "Companies with a clear reason to grow, each one researched.", goal: "Growth for Pile B, and it shows judges our analysis.", risk: "One company can drop fast, so no single stock gets big." },
+    { name: "Treasury notes", pct: 25, grp: "Pile A \u00b7 Safety", tk: "bought in WInS", color: "--g-s1", why: "Treasuries are loans to the US government. They swing much less than stocks, and the bills need high certainty. We buy actual notes rather than a bond fund, because <b>a note pays its face value on a known date and a fund never matures</b> \u2014 that is what turns \u201cprobably enough\u201d into a date on a calendar.", goal: "Pile A. The first two rungs of the ladder now; the IPS says the other eight get bought out of Pile B by 2031.", risk: "When new bonds pay more, older bonds are worth a bit less. We accept that because it swings far less than stocks." },
+    { name: "Short-term Treasuries", pct: 15, grp: "Pile C \u00b7 Flex", tk: "BIL, SGOV", color: "--g-s2", why: "Treasury bills that come due within months. They barely move, and we can sell them on any trading day.", goal: "Pile C. Money ready to buy with, and somewhere safe for money to wait after we sell something.", risk: "Very low, and it is not meant to grow. The real cost is what this money would have earned in Pile B \u2014 that is the price of being able to act." }
   ];
   S({ ch: "Our plan", title: "What our starting mix could look like.",
-    say: "An <b>example only</b>, not our final answer: 60% growth, 40% safe. Tap a slice to see the <b>trading note</b> we’d write for it.",
+    say: "An <b>example only</b>, not our final answer: 60% growth, 40% safe. Every line carries the pile it belongs to. Tap a slice to see the <b>trading note</b> we’d write for it.",
     html: '<div class="donut-wrap"><svg class="donut" id="donut" viewBox="0 0 220 220" role="img" aria-label="Example mix: 60% growth, 40% safe"></svg><div class="keys" id="keys"></div></div>' +
       '<article class="tnote" id="tnote" aria-live="polite"></article>' +
       '<p class="g-note plain">Any ETF on WInS is allowed, and every trade gets a note like this.</p>',
@@ -671,7 +724,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       });
       svg += '<text class="ctr1" x="110" y="112" text-anchor="middle">60 / 40</text><text class="ctr2" x="110" y="132" text-anchor="middle">growth / safe</text>';
       $("donut").innerHTML = svg;
-      $("keys").innerHTML = SLICES.map(function (s, i) { return '<button class="key" type="button" id="key-' + i + '" data-slice="' + i + '"><span class="sw" data-c="' + s.color + '"></span><span>' + s.name + "</span><b>" + s.pct + "%</b></button>"; }).join("");
+      $("keys").innerHTML = SLICES.map(function (s, i) { return '<button class="key" type="button" id="key-' + i + '" data-slice="' + i + '"><span class="sw" data-c="' + s.color + '"></span><span>' + s.name + "</span><b>" + s.pct + '%</b><span class="grp">' + s.grp + "</span></button>"; }).join("");
       function pick(e) { var b = e.target.closest("[data-slice]"); if (!b) return; ui.slice = +b.getAttribute("data-slice"); draw(); }
       $("donut").addEventListener("click", pick); $("keys").addEventListener("click", pick);
     },
@@ -680,8 +733,29 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       Array.prototype.forEach.call($("keys").querySelectorAll(".sw"), function (s) { s.style.background = css(s.getAttribute("data-c")); });
       pressGroup($("keys"), "data-slice", ui.slice);
       var s = SLICES[ui.slice];
-      $("tnote").innerHTML = '<span class="t">Example trading note</span><p><b>Bought:</b>' + s.name + ", " + s.pct + "% of the portfolio</p><p><b>Why:</b>" + s.why + "</p><p><b>Which goal:</b>" + s.goal + "</p><p><b>Risk:</b>" + s.risk + "</p>";
+      $("tnote").innerHTML = '<span class="t">Example trading note</span><p><b>Bought:</b>' + s.name + " (" + s.tk + "), " + s.pct + "% of the portfolio</p><p><b>Which pile:</b>" + s.grp + "</p><p><b>Why:</b>" + s.why + "</p><p><b>Which goal:</b>" + s.goal + "</p><p><b>Risk:</b>" + s.risk + "</p>";
     } });
+
+  /* The same five lines as SLICES, folded into the three piles. Percentages are derived from
+     SLICES so the two slides can never drift apart. */
+  var BYPILE = [
+    { k: "b", name: "Pile B \u00b7 Growth", hold: "VOO 30% \u00b7 VEA 15% \u00b7 the companies we research 15%", does: "Grows into what she puts into the building." },
+    { k: "a", name: "Pile A \u00b7 Safety", hold: "Treasury notes due late 2032 and late 2033 \u2014 the first two rungs of the ladder", does: "Becomes the ten $50,000 payments." },
+    { k: "c", name: "Pile C \u00b7 Flex", hold: "BIL, SGOV", does: "Ready to buy with, and where money waits after a sale." }
+  ];
+  var PILEPCT = { b: 0, a: 0, c: 0 };
+  SLICES.forEach(function (x) { PILEPCT[x.grp.indexOf("Pile A") === 0 ? "a" : x.grp.indexOf("Pile C") === 0 ? "c" : "b"] += x.pct; });
+
+  S({ ch: "Our plan", title: "The same mix, sorted by pile.",
+    say: "The same example mix as the last screen, grouped by what the money is <b>for</b> instead of what it <b>is</b>. If somebody asks what our strategy is, this is the screen to show them.",
+    html: '<div class="mixbar" role="img" aria-label="' + BYPILE.map(function (x) { return x.name + " " + PILEPCT[x.k] + "%"; }).join(", ") + '">' +
+        BYPILE.map(function (x) { return '<span style="flex:' + PILEPCT[x.k] + ';background:var(--g-' + x.k + ')">' + PILEPCT[x.k] + '%</span>'; }).join("") + '</div>' +
+      '<div class="mixrows">' + BYPILE.map(function (x) {
+        return '<div class="mixrow"><span class="dot" style="background:var(--g-' + x.k + ')"></span>' +
+          '<span>' + x.does + '<span class="tk">' + x.hold + '</span></span><b>' + PILEPCT[x.k] + '%</b></div>';
+      }).join("") + '</div>' +
+      '<p class="g-note c"><b>Pile C is 15%, and that is a real decision, not spare change.</b> Every dollar parked in BIL or SGOV is a dollar not growing in Pile B. We are paying that on purpose, so that the answer to \u201cthis looks cheap, can we buy it\u201d is never \u201conly if we sell something first.\u201d</p>' +
+      '<p class="g-note plain"><b>One open question, worth knowing before Sunday.</b> The stock slice inside Pile B is 15% of the portfolio. At about 3% a name, that is roughly <b>five companies</b>. On Friday all five of us pitch ten names each, so <b>50 names go in and the plan has room for about five</b>. Either the top 15 is a shortlist we keep cutting on the Sunday call, or the fund and bond mix has to shrink \u2014 and the 25% in Treasuries is what makes Laura\u2019s ten payments believable, so it is the last place we take from.</p>' });
 
   var MIX = { 2027: 60, 2028: 60, 2029: 55, 2030: 45, 2031: 30, 2032: 25, 2033: 25 };
   var MIXCAP = {
@@ -804,7 +878,8 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
       "<li><div><b>How big is Pile A, and what do we keep it in?</b><span>Safe enough that every bill gets paid. Put a number on how sure we are.</span></div></li>" +
       "<li><div><b>How much of Pile B can go to the building?</b><span>Leave her some cushion. Don’t spend every dollar.</span></div></li>" +
       "<li><div><b>What does she promise co‑sponsors in 2031?</b><span>A range, plus how sure we are, plus a short pitch she could actually send.</span></div></li>" +
-      "</ol>" });
+      "</ol>" +
+      '<p class="g-note c"><b>Pile C is not one of the three.</b> Laura\u2019s case asks about A and B \u2014 those are her promises. Pile C is <b>ours</b>: it is how we run the portfolio for six years without being forced to sell a good holding at a bad moment to raise cash. It shows up in our trading notes and our IPS, not in her three questions.</p>' });
 
   /* one sector each (Wharton: at least one stock per sector per member, held all season) plus the
      five jobs, both straight out of data.js so the Team page and the Guide can never disagree */
@@ -958,9 +1033,13 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   S({ ch: "Our team", title: "Words you’ll see, translated.",
     say: "Same story, fancier words.",
     html: '<dl class="words">' +
-      "<div><dt>Operating reserve</dt><dd>Pile A. The money set aside for the ten $50K bills.</dd></div>" +
+      "<div><dt>Pile A \u00b7 Safety</dt><dd>The money that has to be there for the ten $50K payments, 2033 to 2042. Treasuries. An individual stock almost never belongs here.</dd></div>" +
+      "<div><dt>Pile B \u00b7 Growth</dt><dd>The money that grows into what she puts toward the building in 2033. Index funds and the companies we research.</dd></div>" +
+      "<div><dt>Pile C \u00b7 Flex</dt><dd>Cash and short-term Treasuries (BIL, SGOV). Money ready to buy with, and where money waits after a sale. Coach P asked for this one on Sep 20.</dd></div>" +
+      "<div><dt>Dry powder</dt><dd>What people call Pile C money. Cash kept on purpose so you can act without selling something else first.</dd></div>" +
+      "<div><dt>Operating reserve</dt><dd>The case\u2019s formal name for Pile A. The money set aside for the ten $50K bills.</dd></div>" +
       "<div><dt>Operating commitment</dt><dd>The bills themselves: $50K a year, 2033 to 2042.</dd></div>" +
-      "<div><dt>Facility contribution</dt><dd>The part of Pile B she gives toward the building.</dd></div>" +
+      "<div><dt>Facility contribution</dt><dd>The case\u2019s formal name for what comes out of Pile B \u2014 the part she gives toward the building.</dd></div>" +
       "<div><dt>Co‑sponsors</dt><dd>Other people or groups helping pay for the building.</dd></div>" +
       "<div><dt>Ladder</dt><dd>Safe bonds lined up so one pays out each year, right when a bill is due.</dd></div>" +
       "<div><dt>Risk tolerance</dt><dd>How big a drop the plan can handle. For Laura it depends on the pile.</dd></div>" +
@@ -984,19 +1063,19 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
   STEPS.forEach(function (s, i) { if (!CHAPTERS.length || CHAPTERS[CHAPTERS.length - 1].name !== s.ch) CHAPTERS.push({ name: s.ch, first: i }); });
 
   var i = 0;
-  try { var saved = parseInt(localStorage.getItem("two-piles-step-v3"), 10); if (saved >= 0 && saved < STEPS.length) i = saved; } catch (e) {}
+  try { var saved = parseInt(localStorage.getItem("three-piles-step-v1"), 10); if (saved >= 0 && saved < STEPS.length) i = saved; } catch (e) {}
 
   function drawPot(view) {
     var pot = $("pot");
     pot.hidden = !view;
     if (!view) return;
     var segs = view.segs.filter(function (s) { return s.v > 0.5; }), bar = $("bar");
-    while (bar.querySelectorAll(".seg").length < 2) { var d = document.createElement("div"); d.className = "seg"; bar.appendChild(d); }
+    while (bar.querySelectorAll(".seg").length < Math.max(2, segs.length)) { var d = document.createElement("div"); d.className = "seg"; bar.appendChild(d); }
     Array.prototype.forEach.call(bar.querySelectorAll(".seg"), function (n, j) {
       var s = segs[j];
       if (!s) { n.style.width = "0"; n.style.display = "none"; return; }
       n.style.display = "block";
-      n.className = "seg " + s.cls + (segs.length === 1 ? " only" : j === 0 ? " first" : " last");
+      n.className = "seg " + s.cls + (segs.length === 1 ? " only" : j === 0 ? " first" : j === segs.length - 1 ? " last" : "");
       n.style.width = (s.v / MAX * 100) + "%";
     });
     var e = bar.querySelector(".empty");
@@ -1005,7 +1084,7 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     bar.setAttribute("aria-label", segs.length ? segs.map(function (s) { return s.label + " " + k(s.v); }).join(", ") : view.empty);
     $("when").textContent = view.when;
     $("total").textContent = view.total || k(total);
-    var tok = { dep: "--g-dep", dep2: "--g-dep-2", grow: "--g-dep-2", a: "--g-a", b: "--g-b" };
+    var tok = { dep: "--g-dep", dep2: "--g-dep-2", grow: "--g-dep-2", a: "--g-a", b: "--g-b", c: "--g-c" };
     $("legend").hidden = !view.segs.length;
     $("legend").innerHTML = view.segs.map(function (s) {
       return '<li><span class="sw" style="background:' + css(tok[s.cls]) + (s.cls === "grow" ? ";background-image:repeating-linear-gradient(135deg," + css("--g-grow") + " 0 4px," + css("--g-dep-2") + " 4px 8px)" : "") + '"></span><span>' + s.label + '</span><span class="amt">' + k(s.v) + "</span></li>";
@@ -1039,9 +1118,10 @@ details.fold2{border-top:1px solid var(--g-line);padding-top:4px}
     Array.prototype.forEach.call($("chaplist").querySelectorAll("[data-chap]"), function (b, j) { b.classList.toggle("is-active", j === chIdx); b.classList.toggle("done", j < chIdx); });
     Array.prototype.forEach.call($("chapters").children, function (b, j) { b.classList.toggle("is-active", j === chIdx); b.setAttribute("aria-selected", String(j === chIdx)); });
     var cur = $("chapters").children[chIdx]; if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest", inline: "nearest" });
-    try { localStorage.setItem("two-piles-step-v3", String(i)); } catch (e) {}
+    try { localStorage.setItem("three-piles-step-v1", String(i)); } catch (e) {}
   }
 
+  if ($("stepcount")) $("stepcount").textContent = STEPS.length + " plain";
   $("chapters").innerHTML = CHAPTERS.map(function (c, j) { return '<button type="button" class="tab" role="tab" id="ch-' + j + '" aria-selected="false">' + c.name + "</button>"; }).join("");
   $("chaplist").innerHTML = CHAPTERS.map(function (c, j) {
     var last = (CHAPTERS[j + 1] ? CHAPTERS[j + 1].first : STEPS.length);
