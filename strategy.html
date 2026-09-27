@@ -121,21 +121,30 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .huge em{font-style:normal; color:var(--orange)}
 
 /* ---------- interactive timeline ---------- */
-.tw{margin-top:clamp(14px,2.2vw,22px)}
-.tyr{display:flex; align-items:baseline; gap:clamp(10px,1.6vw,16px); flex-wrap:wrap}
-.tyr .y{font:700 clamp(38px,7vw,72px)/1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; letter-spacing:-.03em}
-.tyr .ev{font-size:clamp(14px,2vw,19px); line-height:1.4; color:var(--orange); font-weight:600; max-width:30ch}
-.tbar{display:flex; height:clamp(44px,6vw,64px); border-radius:12px; overflow:hidden; gap:3px; margin-top:clamp(12px,1.8vw,18px); background:rgba(255,255,255,.07)}
-.tbar span{display:grid; place-items:center; width:0; transition:width .5s var(--ease), background .4s; font:700 clamp(11px,1.5vw,15px)/1 var(--ui); color:#0B1737; white-space:nowrap; overflow:hidden}
-.tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(11px,1.6vw,16px); font-size:clamp(12.5px,1.6vw,15.5px); color:var(--ink-3)}
-.tmeta b{display:block; font:700 clamp(15px,2.1vw,21px)/1.1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; margin-top:3px}
-.tctl{display:flex; align-items:center; gap:clamp(11px,1.8vw,18px); margin-top:clamp(14px,2.2vw,20px)}
+.tw{margin-top:clamp(10px,1.6vw,18px)}
+.tscroll{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; margin:0 -4px; padding:0 4px}
+.tscroll svg{display:block; width:100%; min-width:760px; height:auto}
+.tscroll text{font-family:var(--ui)}
+.t-yrlab{fill:#8FA1C2; font-weight:600}
+.t-yrlab.is-now{fill:#fff}
+.t-sub{fill:#6E80A3}
+.t-amt{fill:#fff; font-weight:700}
+.t-note{fill:#C6D2E8}
+.t-ax{stroke:#42557E; stroke-width:1.4}
+.t-ev{opacity:0; transition:opacity .45s var(--ease), transform .45s var(--ease)}
+.t-ev.shown{opacity:1}
+.t-head{transition:transform .5s var(--ease)}
+.tyr{display:flex; align-items:baseline; gap:clamp(10px,1.6vw,16px); flex-wrap:wrap; margin-top:clamp(8px,1.2vw,14px)}
+.tyr .y{font:700 clamp(30px,5vw,50px)/1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; letter-spacing:-.03em}
+.tyr .ev{font-size:clamp(13.5px,1.85vw,18px); line-height:1.4; color:var(--orange); font-weight:600; max-width:34ch}
+.tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(9px,1.4vw,14px); font-size:clamp(12px,1.5vw,14.5px); color:var(--ink-3)}
+.tmeta b{display:block; font:700 clamp(15px,2vw,20px)/1.1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; margin-top:3px}
+.tctl{display:flex; align-items:center; gap:clamp(11px,1.8vw,18px); margin-top:clamp(11px,1.7vw,16px)}
 .tplay{flex:none; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.1); color:#fff; font-size:15px; cursor:pointer; display:grid; place-items:center; transition:background .2s}
 .tplay:hover{background:rgba(255,255,255,.2)}
 #tr{display:block; width:100%; min-width:0; margin:0; -webkit-appearance:none; appearance:none; height:6px; border-radius:99px; background:rgba(255,255,255,.18); outline:none; cursor:pointer}
 #tr::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px; border-radius:50%; background:var(--orange); border:3px solid #0B1737; box-shadow:0 2px 10px rgba(0,0,0,.5); cursor:pointer}
 #tr::-moz-range-thumb{width:26px; height:26px; border-radius:50%; background:var(--orange); border:3px solid #0B1737; cursor:pointer}
-.tticks{display:flex; justify-content:space-between; font:700 11px/1 var(--mono); color:var(--ink-3); margin-top:7px; padding:0 2px}
 
 /* ---------- timeline ---------- */
 .tl{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(9px,1.4vw,14px); margin-top:clamp(18px,2.6vw,28px)}
@@ -288,24 +297,22 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 
   <section class="slide" id="tl-slide">
     <p class="kicker">Drag it, or press play</p>
-    <h2>The whole plan, 2026 to 2042.</h2>
+    <h2>Every dollar in and out, 2026 to 2042.</h2>
     <div class="tw">
+      <div class="tscroll" id="t-scroll"><svg id="t-svg" viewBox="0 0 1000 300" role="img" aria-label="Cash flow timeline from 2026 to 2042"></svg></div>
       <div class="tyr"><span class="y" id="t-year">2026</span><span class="ev" id="t-ev"></span></div>
-      <div class="tbar" id="t-bar"><span id="t-s1"></span><span id="t-s2"></span></div>
       <div class="tmeta">
-        <div id="t-m1">In the pot<b>&mdash;</b></div>
-        <div id="t-m2">Paid to Laura so far<b>$0</b></div>
-        <div id="t-m3">Still owed<b>$500,000</b></div>
+        <div>She has put in<b id="t-m1">$0</b></div>
+        <div>Paid out to her<b id="t-m2">$0</b></div>
+        <div>Still owed<b id="t-m3">$500,000</b></div>
       </div>
       <div class="tctl">
         <button class="tplay" id="t-play" aria-label="Play the timeline">&#9654;</button>
         <div style="flex:1;min-width:0">
           <input type="range" id="tr" min="2026" max="2042" step="1" value="2026" aria-label="Year">
-          <div class="tticks"><span>2026</span><span>2033</span><span>2042</span></div>
         </div>
       </div>
     </div>
-    <p class="tiny">Watch <b>2031</b>. She has to promise co-sponsors a number two years before she needs the money, so the plan has to be steady by then &mdash; not in 2033.</p>
   </section>
 
   <section class="slide">
@@ -402,53 +409,86 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 
   /* ---------- the interactive timeline ---------- */
   (function(){
+    var svg=document.getElementById("t-svg"); if(!svg) return;
+    var range=document.getElementById("tr"), play=document.getElementById("t-play"), scroll=document.getElementById("t-scroll");
     var yEl=document.getElementById("t-year"), evEl=document.getElementById("t-ev");
-    var s1=document.getElementById("t-s1"), s2=document.getElementById("t-s2");
     var m1=document.getElementById("t-m1"), m2=document.getElementById("t-m2"), m3=document.getElementById("t-m3");
-    var range=document.getElementById("tr"), play=document.getElementById("t-play");
-    if(!range) return;
-    var RESERVE=421767, FACILITY=238835, timer=null;
-    var GROW={2027:60,2028:60,2029:55,2030:45,2031:30,2032:25};
-    var EV={2026:"Year 0. She has not given us a dollar yet.",
+    var BLUE="#6FA8DC", ORANGE="#EFA24A", AX=176, SCALE=2500, timer=null;
+    function x(yr){ return 46+56*(yr-2026); }
+    function money(n){ return "$"+Math.round(n).toLocaleString("en-US"); }
+    function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+    function T(px,py,txt,cls,anchor,size){
+      return '<text x="'+px+'" y="'+py+'" class="'+(cls||"")+'" text-anchor="'+(anchor||"middle")+'" font-size="'+(size||14)+'">'+esc(txt)+'</text>';
+    }
+    var EV={2026:"Year 0. Nothing invested yet.",
             2027:"She puts in $300,000.",
-            2028:"She adds $150,000. That is everything \u2014 nobody adds another dollar.",
-            2029:"We start easing toward safer.",
-            2030:"Safer again. Nothing dramatic.",
+            2028:"She adds $150,000. That is every dollar she will ever add.",
+            2029:"Growing. Nobody touches it.",
+            2030:"Still growing.",
             2031:"She tells co-sponsors a number. The plan has to be steady by now.",
             2032:"Last year before the split.",
-            2033:"The split. The reserve is set aside and the first $50,000 goes out.",
-            2042:"The tenth and last payment. The reserve empties out, exactly as planned."};
-    function pot(y){ if(y<2027) return 0; var v=300000*Math.pow(1.07,y-2027); if(y>=2028) v+=150000*Math.pow(1.07,y-2028); return v; }
-    function reserveLeft(y){ var r=RESERVE; for(var k=2033;k<=y;k++){ r-=50000; if(k<y) r*=1.04; } return Math.max(0,r); }
-    function money(n){ return "$"+Math.round(n).toLocaleString("en-US"); }
+            2033:"The reserve is set aside, then the first $50,000 goes out.",
+            2042:"The tenth and final payment. Done."};
+
+    var h='<defs>'+
+      '<marker id="ain" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="'+BLUE+'"/></marker>'+
+      '<marker id="aout" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="'+ORANGE+'"/></marker>'+
+      '</defs>';
+    /* growth band */
+    h+='<g class="t-ev" data-y="2027"><rect x="'+x(2027)+'" y="150" width="'+(x(2033)-x(2027))+'" height="20" fill="'+BLUE+'" opacity=".14" rx="3"/>'+
+       T(x(2030),164,"six years of growth","t-sub","middle",13)+'</g>';
+    /* axis */
+    h+='<line x1="'+x(2026)+'" y1="'+AX+'" x2="960" y2="'+AX+'" class="t-ax"/>';
+    for(var yr=2026;yr<=2042;yr++){
+      h+='<line x1="'+x(yr)+'" y1="'+(AX-5)+'" x2="'+x(yr)+'" y2="'+(AX+5)+'" class="t-ax"/>';
+      h+=T(x(yr),200,String(yr),"t-yrlab y-"+yr,"middle",14);
+      h+=T(x(yr),218,"Yr "+(yr-2026),"t-sub","middle",11.5);
+    }
+    /* inflows */
+    [[2027,300000],[2028,150000]].forEach(function(p){
+      var top=AX-p[1]/SCALE;
+      h+='<g class="t-ev" data-y="'+p[0]+'">'+
+         '<line x1="'+x(p[0])+'" y1="'+AX+'" x2="'+x(p[0])+'" y2="'+top+'" stroke="'+BLUE+'" stroke-width="3.5" marker-end="url(#ain)"/>'+
+         T(x(p[0]),top-14,"+"+money(p[1]),"t-amt","middle",17)+'</g>';
+    });
+    /* 2031 marker */
+    h+='<g class="t-ev" data-y="2031">'+
+       '<line x1="'+x(2031)+'" y1="'+(AX-10)+'" x2="'+x(2031)+'" y2="118" stroke="#8FA1C2" stroke-width="1.2"/>'+
+       '<rect x="'+(x(2031)-6)+'" y="'+(AX-6)+'" width="12" height="12" fill="#0B1737" stroke="#fff" stroke-width="2.2" transform="rotate(45 '+x(2031)+' '+AX+')"/>'+
+       T(x(2031),110,"quote co-sponsors a range","t-note","middle",13.5)+'</g>';
+    /* outflows */
+    for(yr=2033;yr<=2042;yr++){
+      h+='<g class="t-ev" data-y="'+yr+'"><line x1="'+x(yr)+'" y1="232" x2="'+x(yr)+'" y2="'+(232+50000/SCALE)+'" stroke="'+ORANGE+'" stroke-width="3" marker-end="url(#aout)"/></g>';
+    }
+    h+='<g class="t-ev" data-y="2033">'+T(x(2033)-16,250,"−$50,000 a year","t-amt","end",15)+'</g>';
+    h+='<g class="t-ev" data-y="2042">'+
+       '<path d="M'+x(2033)+' 268 v5 H'+x(2042)+' v-5" fill="none" stroke="#8FA1C2" stroke-width="1.2"/>'+
+       T((x(2033)+x(2042))/2,290,"ten payments = $500,000","t-sub","middle",13)+'</g>';
+    /* playhead */
+    h+='<g class="t-head" id="t-head"><line x1="0" y1="44" x2="0" y2="262" stroke="'+ORANGE+'" stroke-width="2" opacity=".55"/>'+
+       '<circle cx="0" cy="'+AX+'" r="6" fill="'+ORANGE+'"/></g>';
+    svg.innerHTML=h;
+
+    var head=document.getElementById("t-head");
+    var groups=[].slice.call(svg.querySelectorAll(".t-ev"));
     function paint(y){
       yEl.textContent=y;
-      evEl.textContent=EV[y] || ("Payment "+(y-2032)+" of 10. The reserve keeps shrinking on schedule.");
-      var a,b,la,lb,ca,cb;
-      if(y<2027){ s1.style.width="0"; s2.style.width="0"; m1.innerHTML="In the pot<b>Nothing yet</b>"; }
-      else if(y<2033){
-        var g=GROW[y], t=pot(y);
-        a=g; b=100-g; la=g+"% growth"; lb=b+"% safe"; ca="var(--b)"; cb="var(--a)";
-        m1.innerHTML="In the pot<b>"+money(t)+"</b>";
-      } else {
-        var left=reserveLeft(y), tot=left+FACILITY;
-        a=tot?left/tot*100:0; b=100-a;
-        la="Reserve left"; lb="Went to the building"; ca="var(--a)"; cb="var(--b)";
-        m1.innerHTML="Reserve left<b>"+money(left)+"</b>";
-      }
-      if(y>=2027){
-        s1.style.width=a+"%"; s1.style.background=ca; s1.textContent=a>17?la:"";
-        s2.style.width=b+"%"; s2.style.background=cb; s2.textContent=b>17?lb:"";
-      }
-      var paid=y<2033?0:Math.min(10,y-2032)*50000;
-      m2.innerHTML="Paid to Laura so far<b>"+money(paid)+"</b>";
-      m3.innerHTML="Still owed<b>"+money(500000-paid)+"</b>";
+      evEl.textContent=EV[y] || ("Payment "+(y-2032)+" of ten.");
+      head.setAttribute("transform","translate("+x(y)+",0)");
+      groups.forEach(function(g){ g.classList.toggle("shown", +g.getAttribute("data-y")<=y); });
+      [].forEach.call(svg.querySelectorAll(".t-yrlab"),function(t){ t.classList.toggle("is-now", t.classList.contains("y-"+y)); });
+      var inn = y>=2028?450000 : y>=2027?300000 : 0;
+      var paid = y<2033?0:Math.min(10,y-2032)*50000;
+      m1.textContent=money(inn); m2.textContent=money(paid); m3.textContent=money(500000-paid);
       range.value=y;
+      if(scroll.scrollWidth>scroll.clientWidth){
+        var f=x(y)/1000*scroll.scrollWidth;
+        scroll.scrollTo({left:Math.max(0,f-scroll.clientWidth/2),behavior:"smooth"});
+      }
     }
     function stop(){ if(timer){ clearInterval(timer); timer=null; play.innerHTML="&#9654;"; } }
     range.addEventListener("input",function(){ stop(); paint(+this.value); });
-    play.addEventListener("click",function(e){
-      e.stopPropagation();
+    play.addEventListener("click",function(){
       if(timer){ stop(); return; }
       if(+range.value>=2042) paint(2026);
       play.innerHTML="&#10073;&#10073;";
@@ -456,7 +496,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
         var v=+range.value;
         if(v>=2042){ stop(); return; }
         paint(v+1);
-      },820);
+      },780);
     });
     paint(2026);
   })();
