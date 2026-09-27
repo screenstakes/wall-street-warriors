@@ -123,6 +123,16 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .huge{font:700 clamp(58px,15vw,150px)/.9 var(--ui); letter-spacing:-.04em; color:#fff; font-variant-numeric:tabular-nums}
 .huge em{font-style:normal; color:var(--orange)}
 
+/* ---------- the big pile badge ---------- */
+.phead{display:flex; align-items:center; gap:clamp(13px,2vw,20px); margin-bottom:clamp(12px,1.8vw,18px)}
+.plet{flex:none; width:clamp(58px,8.2vw,88px); height:clamp(58px,8.2vw,88px); border-radius:clamp(14px,2vw,22px);
+  background:var(--t); color:#0B1737; font:700 clamp(34px,5.4vw,54px)/1 var(--ui); display:grid; place-items:center;
+  box-shadow:0 10px 30px -14px var(--t)}
+.pname{display:block; font:700 clamp(23px,3.6vw,38px)/1 var(--ui); color:#fff; letter-spacing:-.02em}
+.pdesc{display:block; font-size:clamp(13px,1.8vw,17px); color:var(--ink-3); margin-top:5px}
+.ppct{margin-left:auto; font:700 clamp(30px,5.2vw,54px)/1 var(--ui); color:var(--t); font-variant-numeric:tabular-nums; letter-spacing:-.03em}
+@media (max-width:520px){.ppct{font-size:30px}}
+
 /* ---------- one slide per pile ---------- */
 .pwhy{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(10px,1.6vw,16px); margin-top:clamp(12px,1.8vw,18px)}
 .pbox{padding:clamp(13px,1.9vw,20px) clamp(14px,2vw,22px)}
@@ -258,7 +268,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   </section>
 
   <section class="slide">
-    <p class="kicker">Pile A &middot; the safe money &middot; 25%</p>
+    <div class="phead" style="--t:var(--a)"><span class="plet">A</span><div><span class="pname">Pile A</span><span class="pdesc">the safe money</span></div><span class="ppct">25%</span></div>
     <h2>Ten bonds. One for each payment.</h2>
     <div class="rows">
       <div class="row glass" style="--t:var(--a)"><span class="tag">Inside it</span><span class="tx">Government bonds — <b>one that pays back in each year, 2033 through 2042</b></span><span class="nu">$50,000 each</span></div>
@@ -271,7 +281,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   </section>
 
   <section class="slide">
-    <p class="kicker">Pile B &middot; the growing money &middot; 60%</p>
+    <div class="phead" style="--t:var(--b)"><span class="plet">B</span><div><span class="pname">Pile B</span><span class="pdesc">the growing money</span></div><span class="ppct">60%</span></div>
     <h2>Two funds and five companies.</h2>
     <div class="rows">
       <div class="row glass" style="--t:var(--b)"><span class="tag">30%</span><span class="tx"><b>US index fund</b> — one purchase, owns the 500 biggest US companies</span><span class="nu">VOO</span></div>
@@ -285,7 +295,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   </section>
 
   <section class="slide">
-    <p class="kicker">Pile C &middot; the spare cash &middot; 15%</p>
+    <div class="phead" style="--t:var(--c)"><span class="plet">C</span><div><span class="pname">Pile C</span><span class="pdesc">the spare cash</span></div><span class="ppct">15%</span></div>
     <h2>Cash that is allowed to sit still.</h2>
     <div class="rows">
       <div class="row glass" style="--t:var(--c)"><span class="tag">Inside it</span><span class="tx">Short-term government bills — <b>paid back within months</b>, and sellable any day</span><span class="nu">15%</span></div>
