@@ -556,7 +556,7 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
       "</defs>";
     /* growth band, step 2 */
     h+='<g class="t-ev" data-s="2"><rect x="'+x(2027)+'" y="142" width="'+(x(2033)-x(2027))+'" height="18" fill="'+BLUE+'" opacity=".13" rx="3"/>'+
-       T(x(2030),155,"six years of growth","t-sub","middle",12.5)+"</g>";
+       T(x(2030),155,"Pile B growing \u00b7 six years","t-sub","middle",12.5)+"</g>";
     /* axis */
     h+='<line x1="'+x(2026)+'" y1="'+AX+'" x2="962" y2="'+AX+'" class="t-ax"/>';
     for(var yr=2026;yr<=2042;yr++){
@@ -581,6 +581,11 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
        '<line x1="'+x(2030)+'" y1="'+(AX-8)+'" x2="'+x(2030)+'" y2="66" stroke="#6FA8DC" stroke-width="1.2" stroke-dasharray="3 3"/>'+
        '<circle cx="'+x(2030)+'" cy="'+AX+'" r="5.5" fill="#0B1737" stroke="'+BLUE+'" stroke-width="2.4"/>'+
        T(x(2030),58,"Pile C buys the dip","t-note","middle",13)+"</g>";
+    /* Pile B lands, step 6 */
+    h+='<g class="t-ev" data-s="6">'+
+       '<line x1="'+x(2033)+'" y1="'+(AX-26)+'" x2="'+x(2033)+'" y2="108" stroke="'+ORANGE+'" stroke-width="1.2"/>'+
+       '<circle cx="'+x(2033)+'" cy="'+(AX-26)+'" r="5" fill="'+ORANGE+'"/>'+
+       T(x(2033)+14,104,"Pile B \u2192 the building","t-amt","start",13.5)+"</g>";
     /* 2031 marker, step 5 */
     h+='<g class="t-ev" data-s="5">'+
        '<line x1="'+x(2031)+'" y1="'+(AX-10)+'" x2="'+x(2031)+'" y2="132" stroke="#8FA1C2" stroke-width="1.2"/>'+
