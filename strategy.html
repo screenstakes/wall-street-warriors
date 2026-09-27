@@ -120,6 +120,23 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .huge{font:700 clamp(58px,15vw,150px)/.9 var(--ui); letter-spacing:-.04em; color:#fff; font-variant-numeric:tabular-nums}
 .huge em{font-style:normal; color:var(--orange)}
 
+/* ---------- interactive timeline ---------- */
+.tw{margin-top:clamp(14px,2.2vw,22px)}
+.tyr{display:flex; align-items:baseline; gap:clamp(10px,1.6vw,16px); flex-wrap:wrap}
+.tyr .y{font:700 clamp(38px,7vw,72px)/1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; letter-spacing:-.03em}
+.tyr .ev{font-size:clamp(14px,2vw,19px); line-height:1.4; color:var(--orange); font-weight:600; max-width:30ch}
+.tbar{display:flex; height:clamp(44px,6vw,64px); border-radius:12px; overflow:hidden; gap:3px; margin-top:clamp(12px,1.8vw,18px); background:rgba(255,255,255,.07)}
+.tbar span{display:grid; place-items:center; width:0; transition:width .5s var(--ease), background .4s; font:700 clamp(11px,1.5vw,15px)/1 var(--ui); color:#0B1737; white-space:nowrap; overflow:hidden}
+.tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(11px,1.6vw,16px); font-size:clamp(12.5px,1.6vw,15.5px); color:var(--ink-3)}
+.tmeta b{display:block; font:700 clamp(15px,2.1vw,21px)/1.1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; margin-top:3px}
+.tctl{display:flex; align-items:center; gap:clamp(11px,1.8vw,18px); margin-top:clamp(14px,2.2vw,20px)}
+.tplay{flex:none; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.1); color:#fff; font-size:15px; cursor:pointer; display:grid; place-items:center; transition:background .2s}
+.tplay:hover{background:rgba(255,255,255,.2)}
+#tr{display:block; width:100%; min-width:0; margin:0; -webkit-appearance:none; appearance:none; height:6px; border-radius:99px; background:rgba(255,255,255,.18); outline:none; cursor:pointer}
+#tr::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px; border-radius:50%; background:var(--orange); border:3px solid #0B1737; box-shadow:0 2px 10px rgba(0,0,0,.5); cursor:pointer}
+#tr::-moz-range-thumb{width:26px; height:26px; border-radius:50%; background:var(--orange); border:3px solid #0B1737; cursor:pointer}
+.tticks{display:flex; justify-content:space-between; font:700 11px/1 var(--mono); color:var(--ink-3); margin-top:7px; padding:0 2px}
+
 /* ---------- timeline ---------- */
 .tl{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(9px,1.4vw,14px); margin-top:clamp(18px,2.6vw,28px)}
 .tl div{padding:clamp(12px,1.8vw,19px); border-top:3px solid var(--t)}
@@ -208,25 +225,25 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
       <span class="glass" style="--w:15%;--t:var(--c);background:var(--c)">15%</span>
     </div>
     <div class="legend">
-      <div style="--t:var(--b)"><i></i><span><b>Pile B</b> &mdash; VOO 30, VEA 15, five stocks 15</span></div>
-      <div style="--t:var(--a)"><i></i><span><b>Pile A</b> &mdash; Treasury notes, real maturity dates</span></div>
-      <div style="--t:var(--c)"><i></i><span><b>Pile C</b> &mdash; short-term Treasury bills</span></div>
+      <div style="--t:var(--b)"><i></i><span><b>Pile B</b> &mdash; the 500 biggest US companies 30, big companies outside the US 15, our five 15</span></div>
+      <div style="--t:var(--a)"><i></i><span><b>Pile A</b> &mdash; loans to the US government with a payback date</span></div>
+      <div style="--t:var(--c)"><i></i><span><b>Pile C</b> &mdash; the same, but paid back within months</span></div>
     </div>
-    <p class="tiny">The Treasury ladder is <b>one</b> idea even though it is two orders. That is why ten orders is nine ideas.</p>
+    <p class="tiny">An <b>index fund</b> is one thing you buy that owns hundreds of companies at once, so nothing rides on a single one. Ours are <b>VOO</b> (the 500 biggest US companies) and <b>VEA</b> (big companies outside the US).</p>
   </section>
 
   <section class="slide">
     <p class="kicker">Pile B · the stock sleeve</p>
     <h2>Five names. One idea.</h2>
-    <p class="sub"><b>People keep paying them in bad years.</b> Subscriptions, medicine, card swipes, trash pickup, soap. That mirrors what Laura needs — money that shows up on schedule.</p>
+    <p class="sub"><b>People keep paying them in bad years.</b> Subscriptions, medicine, card swipes, trash pickup, soap. That mirrors what Laura needs — money that shows up on schedule. These five sit <i>on top of</i> the index fund, not instead of it.</p>
     <div class="rows">
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Tech</span><span class="tx"><b>Microsoft</b> — subscriptions and cloud contracts, not one-off sales</span><span class="nu">17 sh</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Health</span><span class="tx"><b>Johnson &amp; Johnson</b> — medicine sells in any economy</span><span class="nu">33 sh</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Finance</span><span class="tx"><b>Mastercard</b> — a cut of every swipe, and it never lends</span><span class="nu">15 sh</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Industry</span><span class="tx"><b>Waste Management</b> — contracted pickups, landfills nobody can rebuild</span><span class="nu">43 sh</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Consumer</span><span class="tx"><b>Procter &amp; Gamble</b> — soap and detergent in any economy</span><span class="nu">61 sh</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Tech</span><span class="tx"><b>Microsoft</b> — subscriptions and cloud contracts, not one-off sales</span><span class="nu">17 shares</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Health</span><span class="tx"><b>Johnson &amp; Johnson</b> — medicine sells in any economy</span><span class="nu">33 shares</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Finance</span><span class="tx"><b>Mastercard</b> — a cut of every swipe, and it never lends</span><span class="nu">15 shares</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Industry</span><span class="tx"><b>Waste Management</b> — contracted pickups, landfills nobody can rebuild</span><span class="nu">43 shares</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Consumer</span><span class="tx"><b>Procter &amp; Gamble</b> — soap and detergent in any economy</span><span class="nu">61 shares</span></div>
     </div>
-    <p class="tiny">3% each, $9,000 each. If we cannot say how a name behaves <b>differently from the S&amp;P 500</b>, it does not go in — VOO already owns it.</p>
+    <p class="tiny">3% of the money each, about <b>$9,000 a company</b>. The share counts are just $9,000 divided by Friday’s price. If we cannot say how a company behaves <b>differently from the index fund</b>, it does not go in — the fund already owns it.</p>
   </section>
 
   <section class="slide">
@@ -269,16 +286,26 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
     </div>
   </section>
 
-  <section class="slide">
-    <p class="kicker">It is not a fixed picture</p>
-    <h2>Safer every year, on purpose.</h2>
-    <div class="tl">
-      <div class="glass" style="--t:var(--b)"><div class="yr">2027</div><div class="wh">60% growth. 2033 is far away.</div></div>
-      <div class="glass" style="--t:var(--b)"><div class="yr">2029</div><div class="wh">55%. Start adding ladder rungs.</div></div>
-      <div class="glass" style="--t:var(--a)"><div class="yr">2031</div><div class="wh">30%. She quotes co-sponsors, so the range has to be tight.</div></div>
-      <div class="glass" style="--t:var(--a)"><div class="yr">2033</div><div class="wh">Every payment matched. The rest builds.</div></div>
+  <section class="slide" id="tl-slide">
+    <p class="kicker">Drag it, or press play</p>
+    <h2>The whole plan, 2026 to 2042.</h2>
+    <div class="tw">
+      <div class="tyr"><span class="y" id="t-year">2026</span><span class="ev" id="t-ev"></span></div>
+      <div class="tbar" id="t-bar"><span id="t-s1"></span><span id="t-s2"></span></div>
+      <div class="tmeta">
+        <div id="t-m1">In the pot<b>&mdash;</b></div>
+        <div id="t-m2">Paid to Laura so far<b>$0</b></div>
+        <div id="t-m3">Still owed<b>$500,000</b></div>
+      </div>
+      <div class="tctl">
+        <button class="tplay" id="t-play" aria-label="Play the timeline">&#9654;</button>
+        <div style="flex:1;min-width:0">
+          <input type="range" id="tr" min="2026" max="2042" step="1" value="2026" aria-label="Year">
+          <div class="tticks"><span>2026</span><span>2033</span><span>2042</span></div>
+        </div>
+      </div>
     </div>
-    <p class="tiny">De-risking by <b>2031 and not 2033</b> is the one move most teams will miss. She has to promise a number two years early.</p>
+    <p class="tiny">Watch <b>2031</b>. She has to promise co-sponsors a number two years before she needs the money, so the plan has to be steady by then &mdash; not in 2033.</p>
   </section>
 
   <section class="slide">
@@ -369,9 +396,70 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
     x0 = y0 = null;
   }, {passive:true});
   document.getElementById("stage").addEventListener("click", function(e){
-    if (e.target.closest("button")) return;
+    if (e.target.closest("button, input, label, a, .tctl")) return;
     go(e.clientX > window.innerWidth * 0.5 ? i+1 : i-1);
   });
+
+  /* ---------- the interactive timeline ---------- */
+  (function(){
+    var yEl=document.getElementById("t-year"), evEl=document.getElementById("t-ev");
+    var s1=document.getElementById("t-s1"), s2=document.getElementById("t-s2");
+    var m1=document.getElementById("t-m1"), m2=document.getElementById("t-m2"), m3=document.getElementById("t-m3");
+    var range=document.getElementById("tr"), play=document.getElementById("t-play");
+    if(!range) return;
+    var RESERVE=421767, FACILITY=238835, timer=null;
+    var GROW={2027:60,2028:60,2029:55,2030:45,2031:30,2032:25};
+    var EV={2026:"Year 0. She has not given us a dollar yet.",
+            2027:"She puts in $300,000.",
+            2028:"She adds $150,000. That is everything \u2014 nobody adds another dollar.",
+            2029:"We start easing toward safer.",
+            2030:"Safer again. Nothing dramatic.",
+            2031:"She tells co-sponsors a number. The plan has to be steady by now.",
+            2032:"Last year before the split.",
+            2033:"The split. The reserve is set aside and the first $50,000 goes out.",
+            2042:"The tenth and last payment. The reserve empties out, exactly as planned."};
+    function pot(y){ if(y<2027) return 0; var v=300000*Math.pow(1.07,y-2027); if(y>=2028) v+=150000*Math.pow(1.07,y-2028); return v; }
+    function reserveLeft(y){ var r=RESERVE; for(var k=2033;k<=y;k++){ r-=50000; if(k<y) r*=1.04; } return Math.max(0,r); }
+    function money(n){ return "$"+Math.round(n).toLocaleString("en-US"); }
+    function paint(y){
+      yEl.textContent=y;
+      evEl.textContent=EV[y] || ("Payment "+(y-2032)+" of 10. The reserve keeps shrinking on schedule.");
+      var a,b,la,lb,ca,cb;
+      if(y<2027){ s1.style.width="0"; s2.style.width="0"; m1.innerHTML="In the pot<b>Nothing yet</b>"; }
+      else if(y<2033){
+        var g=GROW[y], t=pot(y);
+        a=g; b=100-g; la=g+"% growth"; lb=b+"% safe"; ca="var(--b)"; cb="var(--a)";
+        m1.innerHTML="In the pot<b>"+money(t)+"</b>";
+      } else {
+        var left=reserveLeft(y), tot=left+FACILITY;
+        a=tot?left/tot*100:0; b=100-a;
+        la="Reserve left"; lb="Went to the building"; ca="var(--a)"; cb="var(--b)";
+        m1.innerHTML="Reserve left<b>"+money(left)+"</b>";
+      }
+      if(y>=2027){
+        s1.style.width=a+"%"; s1.style.background=ca; s1.textContent=a>17?la:"";
+        s2.style.width=b+"%"; s2.style.background=cb; s2.textContent=b>17?lb:"";
+      }
+      var paid=y<2033?0:Math.min(10,y-2032)*50000;
+      m2.innerHTML="Paid to Laura so far<b>"+money(paid)+"</b>";
+      m3.innerHTML="Still owed<b>"+money(500000-paid)+"</b>";
+      range.value=y;
+    }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; play.innerHTML="&#9654;"; } }
+    range.addEventListener("input",function(){ stop(); paint(+this.value); });
+    play.addEventListener("click",function(e){
+      e.stopPropagation();
+      if(timer){ stop(); return; }
+      if(+range.value>=2042) paint(2026);
+      play.innerHTML="&#10073;&#10073;";
+      timer=setInterval(function(){
+        var v=+range.value;
+        if(v>=2042){ stop(); return; }
+        paint(v+1);
+      },820);
+    });
+    paint(2026);
+  })();
 
   var start = parseInt((location.hash||"").replace("#",""), 10);
   if (start >= 1 && start <= slides.length) i = start - 1;
