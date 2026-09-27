@@ -134,6 +134,13 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
 .ckpl{display:inline-block; font:700 10px/1 var(--ui); letter-spacing:.08em; padding:4px 7px; border-radius:99px; background:var(--t); color:#0B1737; margin-right:9px}
 @media (max-width:620px){table.ck th:nth-child(2),table.ck td:nth-child(2){display:none}}
 
+/* ---------- a warning callout ---------- */
+.warn{margin-top:clamp(13px,1.9vw,19px); padding:clamp(13px,1.9vw,19px) clamp(15px,2.1vw,22px);
+  border:1.5px solid rgba(239,162,74,.55); border-radius:14px; background:rgba(239,162,74,.10)}
+.warn h3{font:700 10.5px/1 var(--ui); letter-spacing:.15em; text-transform:uppercase; color:var(--orange); margin-bottom:8px}
+.warn p{margin:0; font-size:clamp(13px,1.75vw,16.5px); line-height:1.5; color:var(--ink-2)}
+.warn p b{color:#fff; font-weight:600}
+
 /* ---------- the bond example ---------- */
 .bex{display:grid; gap:clamp(8px,1.2vw,11px); margin-top:clamp(14px,2vw,20px)}
 .bex .r{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; align-items:baseline; padding:clamp(10px,1.5vw,15px) clamp(13px,1.9vw,20px)}
@@ -301,16 +308,17 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
 
   <section class="slide">
     <p class="kicker">Pile A &middot; how you actually buy one</p>
-    <h2>Bonds do not have tickers.</h2>
-    <p class="sub">They have a <b>code and a date</b>. Here is a real one, the kind we would buy for the 2033 payment.</p>
+    <h2>You pick it off a list.</h2>
+    <p class="sub">There is no ticker to type. In WInS you open <b>Trade Bonds</b>, set the type, and choose from a dropdown that reads <b>issuer &mdash; interest rate &mdash; the month it pays back</b>.</p>
     <div class="bex">
-      <div class="r glass"><span><b>US Treasury 3.500% due 15 Feb 2033</b> &mdash; you search this code</span><b>91282CGM7</b></div>
-      <div class="r glass"><span>You ask for this much <b>face value</b></span><b>$50,000</b></div>
-      <div class="r glass"><span>What it costs today, because its 3.5% interest is below what new bonds pay</span><b>about $45,600</b></div>
-      <div class="r glass"><span>Interest it pays you, every February and August</span><b>$1,750 a year</b></div>
-      <div class="r glass hi"><span>What the government hands over on <b>15 Feb 2033</b></span><b>$50,000</b></div>
+      <div class="r glass"><span><b>1.</b> Trade Bonds &rarr; Type <i>Bonds</i> &rarr; Region <i>North America</i> &rarr; Exchange <i>United States</i></span><b>set up</b></div>
+      <div class="r glass"><span><b>2.</b> Pick one whose payback month matches a payment year. Entries look like <i>ALLIED SIGNAL INC &mdash; 9.065% &mdash; Jun 2033</i></span><b>the list</b></div>
+      <div class="r glass hi"><span><b>3.</b> Type the <b>face value</b> you want. That is the number that arrives on the date.</span><b>$50,000</b></div>
     </div>
-    <p class="tiny"><b>The bit that trips everyone up:</b> you do not buy &ldquo;a bond&rdquo;, you buy <b>an amount of face value</b>. Ask for $50,000 of face and $50,000 is what arrives on the date &mdash; that is the whole reason the payment is certain.</p>
+    <div class="warn">
+      <h3>Watch out &mdash; the list will let us break a rule</h3>
+      <p>Most of that dropdown is <b>corporate</b> bonds: Altria, Amgen, 21st Century Fox. We are <b>not allowed to own them</b>. Wharton permits <b>&ldquo;Treasury bonds from the United States, United Kingdom, Germany, France, Italy, and the Netherlands&rdquo;</b> and nothing else. WInS will happily sell us one anyway, so check the issuer says US Treasury before hitting Buy.</p>
+    </div>
   </section>
 
   <section class="slide">
