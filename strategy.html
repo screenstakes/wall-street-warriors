@@ -193,6 +193,7 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
 .t-ev.shown{opacity:1}
 .t-rung{fill:#9AB0D4; transition:fill .45s var(--ease), opacity .45s var(--ease)}
 .t-rung.spent{fill:none; stroke:#5E6E8F; stroke-width:1.5; stroke-dasharray:2 2}
+.t-rung.gap{fill:none; stroke:#EFA24A; stroke-width:1.6}
 .t-head{transition:transform .55s var(--ease)}
 .tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(10px,1.5vw,16px); font-size:clamp(12px,1.5vw,14.5px); color:var(--ink-3)}
 .tmeta b{display:block; font:700 clamp(15px,2vw,20px)/1.1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; margin-top:3px}
@@ -295,29 +296,50 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
 
   <section class="slide">
     <div class="phead" style="--t:var(--a)"><span class="plet">A</span><div><span class="pname">Pile A</span><span class="pdesc">the safe money</span></div><span class="ppct">25%</span></div>
-    <h2>Ten bonds. One for each payment.</h2>
+    <h2>Seven payments get their own bond. Three cannot.</h2>
     <div class="rows">
-      <div class="row glass" style="--t:var(--a)"><span class="tag">Inside it</span><span class="tx">Government bonds — <b>one that pays back in each year, 2033 through 2042</b></span><span class="nu">$50,000 each</span></div>
-      <div class="row glass" style="--t:var(--a)"><span class="tag">So far</span><span class="tx">We buy the first two now, then <b>one more every year</b></span><span class="nu">2 of 10</span></div>
+      <div class="row glass" style="--t:var(--a)"><span class="tag">Matched</span><span class="tx"><b>2036 to 2042</b> — a US Treasury matures in every one of those years, so each payment has its own bond</span><span class="nu">7 of 10</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Cannot</span><span class="tx"><b>2033, 2034, 2035</b> — <b>nothing on Wharton’s approved list matures in those years.</b> It jumps from Feb 2031 straight to Feb 2036.</span><span class="nu">3 of 10</span></div>
+      <div class="row glass" style="--t:var(--c)"><span class="tag">So</span><span class="tx">Those three are funded by a bond that <b>matures early</b> — the Feb 2031 Treasury — and waits in bills until each payment is due</span><span class="nu">the fix</span></div>
     </div>
     <div class="pwhy">
-      <div class="pbox glass"><h3>What we choose</h3><p>Only <b>how fast we buy them</b>. The amount and the date are fixed the moment we buy — there is nothing to pick and nothing to get wrong.</p></div>
-      <div class="pbox glass"><h3>Why it is built this way</h3><p>These ten payments <b>have to happen</b>. A bond with a date on it turns &ldquo;probably enough&rdquo; into a calendar entry, so we never have to sell or hope.</p></div>
+      <div class="pbox glass"><h3>What we choose</h3><p>Which bonds, and how fast we buy them. <b>The list is fixed</b> — 41 US Treasuries, and we cannot add to it.</p></div>
+      <div class="pbox glass"><h3>Why the hole exists</h3><p>Nearly all of them are <b>30-year bonds</b>, and the Treasury <b>stopped issuing 30-year bonds between 2001 and 2006</b>. Nothing was issued then, so nothing matures 2032 to 2035. A real gap in the market, not a mistake.</p></div>
     </div>
   </section>
 
   <section class="slide">
     <p class="kicker">Pile A &middot; how you actually buy one</p>
-    <h2>You pick it off a list.</h2>
-    <p class="sub">There is no ticker to type. In WInS you open <b>Trade Bonds</b>, set the type, and choose from a dropdown that reads <b>issuer &mdash; interest rate &mdash; the month it pays back</b>.</p>
+    <h2>Five things nobody tells you.</h2>
     <div class="bex">
-      <div class="r glass"><span><b>1.</b> Trade Bonds &rarr; Type <i>Bonds</i> &rarr; Region <i>North America</i> &rarr; Exchange <i>United States</i></span><b>set up</b></div>
-      <div class="r glass"><span><b>2.</b> Pick one whose payback month matches a payment year. Entries look like <i>ALLIED SIGNAL INC &mdash; 9.065% &mdash; Jun 2033</i></span><b>the list</b></div>
-      <div class="r glass hi"><span><b>3.</b> Type the <b>face value</b> you want. That is the number that arrives on the date.</span><b>$50,000</b></div>
+      <div class="r glass hi"><span><b>1.</b> Set the type dropdown to <b>Treasury</b>, not Corporate. That one setting is the only thing stopping us buying a bond the rules forbid.</span><b>the guardrail</b></div>
+      <div class="r glass"><span><b>2.</b> Pick from the preset list. It reads <i>T-BOND 4.500% 15-Feb-2036</i> — no ticker, no code.</span><b>the list</b></div>
+      <div class="r glass"><span><b>3.</b> The price shows as about <b>$1,000, not 100</b>. That is dollars per bond. Divide by 10 for the normal quote.</span><b>per bond</b></div>
+      <div class="r glass"><span><b>4.</b> Quantity is in <b>UNITS</b>, and one unit is $1,000 of face. Want $36,000 back? Buy <b>36 units</b>.</span><b>units</b></div>
+      <div class="r glass"><span><b>5.</b> <b>Accrued interest gets added</b> to the bill, and bonds are <b>market orders only</b> that fill in the evening, not live.</span><b>expect drift</b></div>
     </div>
-    <div class="warn">
-      <h3>Watch out &mdash; the list will let us break a rule</h3>
-      <p>Most of that dropdown is <b>corporate</b> bonds: Altria, Amgen, 21st Century Fox. We are <b>not allowed to own them</b>. Wharton permits <b>&ldquo;Treasury bonds from the United States, United Kingdom, Germany, France, Italy, and the Netherlands&rdquo;</b> and nothing else. WInS will happily sell us one anyway, so check the issuer says US Treasury before hitting Buy.</p>
+    <p class="tiny"><b>So place the bonds last</b>, and leave cash spare. You will not know the exact fill price when you press Confirm, and the accrued interest grows every day between ordering and filling.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">The question under all of this</p>
+    <h2>Do the bonds have to pay her?</h2>
+    <div class="bond">
+      <div class="bcard glass">
+        <div class="bk">What we actually buy</div>
+        <dl>
+          <div class="br"><dt>We lend</dt><dd>about $38,000</dd></div>
+          <div class="br"><dt>They pay back</dt><dd>$50,000</dd></div>
+          <div class="br"><dt>On this date</dt><dd>Jan 2033</dd></div>
+          <div class="br"><dt>Plus interest, twice a year</dt><dd>until then</dd></div>
+        </dl>
+      </div>
+      <div class="qa" style="margin-top:0">
+        <div class="q glass"><div class="qq">Are they required to pay?</div><div class="aa"><b>Yes.</b> A bond is a legal debt. The US government has <b>never missed a Treasury payment</b> — which is why finance calls it the <i>risk-free rate</i> and measures everything else against it.</div></div>
+        <div class="q glass"><div class="qq">So it is 100% certain?</div><div class="aa"><b>Nothing is literally 100%.</b> The real risk is not refusal, it is a political fight over the debt ceiling delaying a payment. The US was downgraded in 2011 and again in 2023 — and still has not missed one.</div></div>
+        <div class="q glass"><div class="qq">But interest rates change. Does that break it?</div><div class="aa"><b>No — the $50,000 is locked the day we buy.</b> We agree the price now for a fixed amount on a fixed date, and that promise does not move afterwards. Rates change what a bond would <i>sell</i> for, and what the <b>next</b> one costs us — not what the ones we already own pay out.</div></div>
+        <div class="q glass"><div class="qq">Then where is the actual risk?</div><div class="aa"><b>Selling early.</b> Hold it to the date and you get the full $50,000. Sell before, and you get whatever the market pays that day, which can be less. <b>So we never sell Pile A early — and that is what Pile C is for.</b></div></div>
+      </div>
     </div>
   </section>
 
@@ -370,28 +392,6 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
     </div>
   </section>
 
-  <section class="slide">
-    <p class="kicker">The question under all of this</p>
-    <h2>Do the bonds have to pay her?</h2>
-    <div class="bond">
-      <div class="bcard glass">
-        <div class="bk">What we actually buy</div>
-        <dl>
-          <div class="br"><dt>We lend</dt><dd>about $38,000</dd></div>
-          <div class="br"><dt>They pay back</dt><dd>$50,000</dd></div>
-          <div class="br"><dt>On this date</dt><dd>Jan 2033</dd></div>
-          <div class="br"><dt>Plus interest, twice a year</dt><dd>until then</dd></div>
-        </dl>
-      </div>
-      <div class="qa" style="margin-top:0">
-        <div class="q glass"><div class="qq">Are they required to pay?</div><div class="aa"><b>Yes.</b> A bond is a legal debt. The US government has <b>never missed a Treasury payment</b> — which is why finance calls it the <i>risk-free rate</i> and measures everything else against it.</div></div>
-        <div class="q glass"><div class="qq">So it is 100% certain?</div><div class="aa"><b>Nothing is literally 100%.</b> The real risk is not refusal, it is a political fight over the debt ceiling delaying a payment. The US was downgraded in 2011 and again in 2023 — and still has not missed one.</div></div>
-        <div class="q glass"><div class="qq">But interest rates change. Does that break it?</div><div class="aa"><b>No — the $50,000 is locked the day we buy.</b> We agree the price now for a fixed amount on a fixed date, and that promise does not move afterwards. Rates change what a bond would <i>sell</i> for, and what the <b>next</b> one costs us — not what the ones we already own pay out.</div></div>
-        <div class="q glass"><div class="qq">Then where is the actual risk?</div><div class="aa"><b>Selling early.</b> Hold it to the date and you get the full $50,000. Sell before, and you get whatever the market pays that day, which can be less. <b>So we never sell Pile A early — and that is what Pile C is for.</b></div></div>
-      </div>
-    </div>
-  </section>
-
   <section class="slide" id="tl-slide">
     <p class="kicker" id="t-kick">Step 1 of 8</p>
     <h2 id="t-head2">Year 0. Nothing is invested yet.</h2>
@@ -407,20 +407,21 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
   </section>
 
   <section class="slide">
-    <p class="kicker">Monday, 9:30am &middot; the whole first day</p>
+    <p class="kicker">Monday &middot; the whole first day</p>
     <h2>Everything we place.</h2>
     <table class="ck">
       <tr><th>Buy</th><th>Pile</th><th style="text-align:right">Amount</th><th style="text-align:right">Cost</th></tr>
       <tr><td><b>VOO</b> &mdash; US index fund</td><td><span class="ckpl" style="--t:var(--b)">B</span></td><td class="n">84 shares</td><td class="n">$59,706</td></tr>
       <tr><td><b>VEA</b> &mdash; international fund</td><td><span class="ckpl" style="--t:var(--b)">B</span></td><td class="n">417 shares</td><td class="n">$29,957</td></tr>
       <tr><td><b>Our fifteen companies</b> &mdash; picked tonight</td><td><span class="ckpl" style="--t:var(--b)">B</span></td><td class="n">$6,000 each</td><td class="n">$90,000</td></tr>
-      <tr><td><b>Two Treasury notes</b> &mdash; due 2032 and 2033</td><td><span class="ckpl" style="--t:var(--a)">A</span></td><td class="n">face value</td><td class="n">$71,000</td></tr>
+      <tr><td><b>T-BOND 5.375% 15-Feb-2031</b> &mdash; funds the 2033 payment</td><td><span class="ckpl" style="--t:var(--a)">A</span></td><td class="n">35 units</td><td class="n">$35,594</td></tr>
+      <tr><td><b>T-BOND 4.500% 15-Feb-2036</b> &mdash; matches the 2036 payment</td><td><span class="ckpl" style="--t:var(--a)">A</span></td><td class="n">37 units</td><td class="n">$35,184</td></tr>
       <tr><td><b>BIL</b> &mdash; short-term bills</td><td><span class="ckpl" style="--t:var(--c)">C</span></td><td class="n">491 shares</td><td class="n">$44,985</td></tr>
       <tr class="sub"><td>Commissions &mdash; $25 a stock, $10 a bond, twenty orders</td><td></td><td></td><td class="n">$470</td></tr>
-      <tr class="sub"><td>Cash left over, which is Pile C doing its job</td><td></td><td></td><td class="n">$3,882</td></tr>
+      <tr class="sub"><td>Cash left, which is Pile C and covers the accrued interest</td><td></td><td></td><td class="n">$4,104</td></tr>
       <tr class="tot"><td>Total</td><td></td><td></td><td class="n">$300,000</td></tr>
     </table>
-    <p class="tiny"><b>Before you hit Confirm on any of them:</b> type the note. That note is the only thing Wharton ever reads. <b>Use market orders</b>, place them on the call, and they fill Monday at the open on their own.</p>
+    <p class="tiny"><b>Order the bonds last.</b> Everything else fills at Monday’s open; the bonds settle in the evening at a price we will not see beforehand, which is what the spare cash is for.</p>
   </section>
 
   <section class="slide">
@@ -547,15 +548,15 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
       {yr:2028, h:"$150,000 more. That is every dollar she will ever add.",
        s:"$450,000 in total. From here nobody puts money in and nobody takes money out until 2033. It just has to grow."},
       {yr:2029, h:"Every year we buy one more bond that expires later.",
-       s:"A Treasury is a loan to the government with a <b>payback date</b>. We buy one for each future payment year, so 2033's payment already has its money waiting."},
+       s:"A Treasury is a loan to the government with a <b>payback date</b>. We buy one for each payment year we can \u2014 <b>2036 to 2042</b>. Nothing on the approved list matures 2033 to 2035, so those three are funded by a bond that matures early and waits."},
       {yr:2030, h:"This is where Pile C earns its keep.",
        s:"The market drops. We buy more shares with the cash in Pile C <b>instead of selling a bond early</b> — which is the one thing that would put her payments at risk."},
       {yr:2031, h:"She has to tell her helpers a number.",
        s:"Other people are chipping in for the building. In 2031 she must tell them <b>roughly how much she will put in</b>, so they know what is left to cover. Because we started getting safer in 2029, that number is <b>tight instead of a guess</b>."},
       {yr:2033, h:"The first bond expires. That is payment one.",
        s:"We do not sell anything. The bond simply matures, hands over $50,000, and she pays the art house. Everything left over is hers to build with."},
-      {yr:2042, h:"One bond expires every year until the tenth.",
-       s:"Ten bonds, ten payments, ten dates known in advance. The reserve empties out to almost exactly zero, which is how you know the maths worked."}
+      {yr:2042, h:"Then one bond expires a year, right to the tenth.",
+       s:"Seven payments matched to their own bond, three funded from one that matured early. The reserve empties to almost exactly zero, which is how you know the maths worked."}
     ];
 
     var h='<defs>'+
@@ -580,10 +581,12 @@ table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0;
          T(x(p[0]),top-13,"+"+money(p[1]),"t-amt","middle",16)+"</g>";
     });
     /* the ladder: one bond per payment year, appears step 3 */
-    h+='<g class="t-ev" data-s="3">'+T(x(2033)-14,232,"Pile A \u00b7 one bond per payment","t-sub","end",12)+"</g>";
+    h+='<g class="t-ev" data-s="3">'+T(x(2033)-14,232,"Pile A \u00b7 a bond for each payment","t-sub","end",12)+"</g>";
     for(yr=2033;yr<=2042;yr++){
-      h+='<g class="t-ev" data-s="3"><rect id="rung-'+yr+'" class="t-rung" x="'+(x(yr)-9)+'" y="222" width="18" height="11" rx="2.5"/></g>';
+      var gap = yr<2036 ? " gap" : "";   /* 2033-35: no Treasury matures then, so no bond of its own */
+      h+='<g class="t-ev" data-s="3"><rect id="rung-'+yr+'" class="t-rung'+gap+'" x="'+(x(yr)-9)+'" y="222" width="18" height="11" rx="2.5"/></g>';
     }
+    h+='<g class="t-ev" data-s="3">'+T((x(2033)+x(2035))/2,249,"no bond exists \u2014 funded early","t-sub","middle",10.5)+"</g>";
     /* Pile C moment, step 4 */
     h+='<g class="t-ev" data-s="4">'+
        '<line x1="'+x(2030)+'" y1="'+(AX-8)+'" x2="'+x(2030)+'" y2="66" stroke="#6FA8DC" stroke-width="1.2" stroke-dasharray="3 3"/>'+
