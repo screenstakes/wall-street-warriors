@@ -147,12 +147,12 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .t-ax{stroke:#42557E; stroke-width:1.4}
 .t-ev{opacity:0; transition:opacity .5s var(--ease)}
 .t-ev.shown{opacity:1}
-.t-rung{fill:#9AB0D4; transition:fill .45s var(--ease), opacity .45s var(--ease)}
+.t-rung{fill:#9AB0D4; transition:fill .3s var(--ease), opacity .3s var(--ease)}
 .t-rung.spent{fill:none; stroke:#5E6E8F; stroke-width:1.5; stroke-dasharray:2 2}
-.t-head{transition:transform .65s var(--ease)}
-.t-fade{transition:opacity .26s var(--ease), transform .26s var(--ease)}
+.t-head{transition:transform .42s var(--ease)}
+.t-fade{transition:opacity .15s var(--ease), transform .15s var(--ease)}
 .t-fade.swap{opacity:0; transform:translateY(9px)}
-.t-ev{transition:opacity .6s var(--ease)}
+.t-ev{transition:opacity .34s var(--ease)}
 .tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(10px,1.5vw,16px); font-size:clamp(12px,1.5vw,14.5px); color:var(--ink-3)}
 .tmeta b{display:block; font:700 clamp(15px,2vw,20px)/1.1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; margin-top:3px}
 
@@ -485,6 +485,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
     var h='<defs>'+
       '<linearGradient id="gpot" x1="0" y1="0" x2="0" y2="1">'+
       '<stop offset="0%" stop-color="'+BLUE+'" stop-opacity=".42"/><stop offset="100%" stop-color="'+BLUE+'" stop-opacity=".06"/></linearGradient>'+
+      '<marker id="ain" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="'+BLUE+'"/></marker>'+
       '<marker id="aout" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="'+ORANGE+'"/></marker>'+
       "</defs>";
 
@@ -498,16 +499,18 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
     h+='<path d="'+dl+'" fill="none" stroke="'+BLUE+'" stroke-width="2.5"/></g>';
 
     /* ---- deposits: dots on the curve ---- */
-    h+='<g class="t-ev" data-s="1"><circle cx="'+x(2027)+'" cy="'+py(POT[2027])+'" r="6" fill="#0B1737" stroke="'+BLUE+'" stroke-width="3"/>'+
-       T(x(2027)+13,py(POT[2027])+22,"+$300,000 in","t-amt","start",15)+"</g>";
-    h+='<g class="t-ev" data-s="2"><circle cx="'+x(2028)+'" cy="'+py(POT[2028])+'" r="6" fill="#0B1737" stroke="'+BLUE+'" stroke-width="3"/>'+
-       T(x(2028)+13,py(POT[2028])+22,"+$150,000 more","t-amt","start",15)+"</g>";
+    h+='<g class="t-ev" data-s="1">'+
+       '<line x1="'+x(2027)+'" y1="'+AX+'" x2="'+x(2027)+'" y2="'+py(POT[2027])+'" stroke="'+BLUE+'" stroke-width="3.5" marker-end="url(#ain)"/>'+
+       T(x(2027)+13,py(POT[2027])+26,"+$300,000 in","t-amt","start",15)+"</g>";
+    h+='<g class="t-ev" data-s="2">'+
+       '<line x1="'+x(2028)+'" y1="'+py(POT[2028]-150000)+'" x2="'+x(2028)+'" y2="'+py(POT[2028])+'" stroke="'+BLUE+'" stroke-width="3.5" marker-end="url(#ain)"/>'+
+       T(x(2028),py(POT[2028])-17,"+$150,000 more","t-amt","middle",15)+"</g>";
 
     /* ---- Pile C moment, well above the curve ---- */
     h+='<g class="t-ev" data-s="5">'+
-       '<line x1="'+x(2030)+'" y1="60" x2="'+x(2030)+'" y2="'+(py(POT[2030])-6)+'" stroke="'+BLUE+'" stroke-width="1.2" stroke-dasharray="3 3"/>'+
+       '<line x1="'+x(2030)+'" y1="48" x2="'+x(2030)+'" y2="'+(py(POT[2030])-6)+'" stroke="'+BLUE+'" stroke-width="1.2" stroke-dasharray="3 3"/>'+
        '<circle cx="'+x(2030)+'" cy="'+py(POT[2030])+'" r="5" fill="'+BLUE+'"/>'+
-       T(x(2030)+14,52,"Pile C buys the dip","t-note","end",13)+"</g>";
+       T(x(2030),40,"Pile C buys the dip","t-note","middle",13)+"</g>";
     /* ---- 2031 marker, lower and to the right ---- */
     h+='<g class="t-ev" data-s="6">'+
        '<line x1="'+x(2031)+'" y1="84" x2="'+x(2031)+'" y2="'+(py(POT[2031])-7)+'" stroke="#8FA1C2" stroke-width="1.2"/>'+
@@ -556,7 +559,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
       var id = el.id;
       if (tweens[id]) cancelAnimationFrame(tweens[id]);
       if (from === to) { el.textContent = fmt(to); return; }
-      var t0 = null, D = 520;
+      var t0 = null, D = 380;
       function frame(ts){
         if (t0 === null) t0 = ts;
         var k = Math.min(1, (ts - t0) / D), e = 1 - Math.pow(1 - k, 3);
@@ -576,7 +579,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
         kick.textContent="Step "+(step+1)+" of "+STEPS.length;
         head2.textContent=S.h; say.innerHTML=S.s;
         fades.forEach(function(el){ el.classList.remove("swap"); });
-      },260);
+      },150);
       headG.setAttribute("transform","translate("+x(y)+",0)");
       groups.forEach(function(g){ g.classList.toggle("shown", +g.getAttribute("data-s")<=step); });
       [].forEach.call(svg.querySelectorAll(".t-yrlab"),function(t){ t.classList.toggle("is-now", t.classList.contains("y-"+y)); });
@@ -590,7 +593,8 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
       shown.in=inn; shown.owed=owed; shown.left=left;
       if(scroll.scrollWidth>scroll.clientWidth){
         var f=x(y)/1000*scroll.scrollWidth;
-        scroll.scrollTo({left:Math.max(0,f-scroll.clientWidth/2),behavior:"smooth"});
+        var want=Math.max(0,f-scroll.clientWidth/2);
+        if(Math.abs(scroll.scrollLeft-want)>24) scroll.scrollTo({left:want,behavior:"smooth"});
       }
     }
     slide.fragments={ max:STEPS.length-1, get:function(){return step;},
