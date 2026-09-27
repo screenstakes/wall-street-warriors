@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1737">
+<meta name="robots" content="noindex, nofollow">
+<title>Our strategy · Wall Street Warriors</title>
+<meta name="description" content="The whole strategy in twelve screens. Three piles, the five names, and every rule behind them.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@600;700&display=swap">
+<style>
+:root{
+  --navy:#142F63; --deep:#0B1737; --deep-2:#142650; --blue:#1E4B95;
+  --orange:#EFA24A; --orange-deep:#D98B2B; --gold:#E9C57A;
+  --a:#9AB0D4; --b:#EFA24A; --c:#6FA8DC;
+  --ink:#FFFFFF; --ink-2:#C6D2E8; --ink-3:#8FA1C2;
+  --ui:"Montserrat","Avenir Next",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.22,.8,.26,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:
+    radial-gradient(1100px 700px at 12% -10%, #1E4B95 0%, transparent 60%),
+    radial-gradient(900px 620px at 100% 108%, #24407e 0%, transparent 62%),
+    linear-gradient(160deg,var(--deep) 0%,var(--deep-2) 58%,#0d1c40 100%);
+  background-attachment:fixed;
+  color:var(--ink); font-family:var(--body);
+  overflow:hidden; -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- stage ---------- */
+#stage{position:fixed; inset:0; display:grid; place-items:center; padding:clamp(20px,4.5vw,64px); overflow:hidden}
+.slide{
+  position:absolute; inset:clamp(20px,4.5vw,64px);
+  display:flex; flex-direction:column; justify-content:center;
+  max-width:1060px; margin:0 auto;
+  opacity:0; visibility:hidden; transform:translateY(22px) scale(.985);
+  transition:opacity .5s var(--ease), transform .6s var(--ease), visibility 0s linear .6s;
+  pointer-events:none;
+}
+.slide.on{opacity:1; visibility:visible; transform:none; pointer-events:auto; transition-delay:0s}
+.slide.out{transform:translateY(-16px) scale(.99)}
+
+/* staggered children */
+.slide > *{opacity:0; transform:translateY(16px); transition:opacity .5s var(--ease), transform .55s var(--ease)}
+.slide.on > *{opacity:1; transform:none}
+.slide.on > *:nth-child(1){transition-delay:.06s}
+.slide.on > *:nth-child(2){transition-delay:.14s}
+.slide.on > *:nth-child(3){transition-delay:.22s}
+.slide.on > *:nth-child(4){transition-delay:.30s}
+.slide.on > *:nth-child(5){transition-delay:.38s}
+.slide.on > *:nth-child(6){transition-delay:.46s}
+
+/* ---------- type ---------- */
+.kicker{font:700 clamp(10px,1.35vw,12.5px)/1 var(--ui); letter-spacing:.19em; text-transform:uppercase; color:var(--orange); margin-bottom:clamp(12px,1.8vw,20px)}
+h1{font:700 clamp(30px,6.4vw,66px)/1.06 var(--ui); letter-spacing:-.022em; text-wrap:balance}
+h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-wrap:balance}
+.sub{font-size:clamp(16px,2.25vw,23px); line-height:1.52; color:var(--ink-2); max-width:40ch; margin-top:clamp(14px,2vw,22px); text-wrap:pretty}
+.sub b{color:#fff; font-weight:600}
+.tiny{font-size:clamp(12.5px,1.55vw,15px); line-height:1.5; color:var(--ink-3); margin-top:clamp(14px,2vw,20px); max-width:52ch}
+
+/* ---------- glass ---------- */
+.glass{
+  background:linear-gradient(145deg,rgba(255,255,255,.115),rgba(255,255,255,.045));
+  border:1px solid rgba(255,255,255,.17);
+  border-radius:16px; backdrop-filter:blur(13px) saturate(150%); -webkit-backdrop-filter:blur(13px) saturate(150%);
+  box-shadow:0 16px 44px -22px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+/* ---------- pile cards ---------- */
+.piles{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(10px,1.5vw,16px); margin-top:clamp(18px,2.6vw,30px)}
+.pile{padding:clamp(14px,2vw,22px); border-top:3px solid var(--t); display:flex; flex-direction:column; gap:6px}
+.pile .lt{font:700 clamp(22px,3.4vw,34px)/1 var(--ui); color:var(--t)}
+.pile .nm{font:700 clamp(14px,1.9vw,18px)/1.2 var(--ui); color:#fff}
+.pile .jb{font-size:clamp(12.5px,1.6vw,15px); line-height:1.45; color:var(--ink-2)}
+.pile .pc{margin-top:auto; padding-top:8px; font:700 clamp(17px,2.4vw,24px)/1 var(--mono); color:#fff}
+
+/* ---------- the bar ---------- */
+.bar{display:flex; height:clamp(56px,8vw,86px); border-radius:13px; overflow:hidden; gap:3px; margin-top:clamp(18px,2.6vw,28px)}
+.bar span{display:grid; place-items:center; width:0; transition:width 1.05s var(--ease); font:700 clamp(14px,2vw,21px)/1 var(--ui); color:#0B1737; white-space:nowrap}
+.slide.on .bar span{width:var(--w)}
+.legend{display:flex; flex-wrap:wrap; gap:clamp(12px,2.4vw,30px); margin-top:clamp(14px,2vw,20px)}
+.legend div{display:flex; align-items:baseline; gap:9px; font-size:clamp(13px,1.7vw,16px); color:var(--ink-2)}
+.legend i{width:11px; height:11px; border-radius:3px; background:var(--t); flex:none; transform:translateY(1px)}
+.legend b{color:#fff; font-weight:600}
+
+/* ---------- rows ---------- */
+.rows{display:grid; gap:clamp(8px,1.2vw,12px); margin-top:clamp(16px,2.4vw,26px)}
+.row{display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:clamp(11px,1.8vw,18px); align-items:center; padding:clamp(12px,1.7vw,18px) clamp(14px,2vw,22px); min-width:0}
+.row .tag{font:700 11px/1 var(--ui); letter-spacing:.08em; text-transform:uppercase; padding:6px 10px; border-radius:99px; background:var(--t); color:#0B1737; white-space:nowrap}
+.row .tx{font-size:clamp(14px,1.9vw,18px); line-height:1.45; color:var(--ink-2); min-width:0; overflow-wrap:anywhere}
+.row .tx b{color:#fff; font-weight:600}
+.row .nu{font:700 clamp(15px,2.1vw,21px)/1 var(--mono); color:#fff; white-space:nowrap}
+
+/* ---------- Q&A ---------- */
+.qa{display:grid; gap:clamp(9px,1.4vw,14px); margin-top:clamp(16px,2.4vw,26px)}
+.q{padding:clamp(13px,1.9vw,20px) clamp(15px,2.2vw,24px)}
+.q .qq{font:600 clamp(14.5px,2vw,19px)/1.35 var(--ui); color:#fff; margin-bottom:5px}
+.q .aa{font-size:clamp(13px,1.75vw,16.5px); line-height:1.5; color:var(--ink-2)}
+.q .aa b{color:var(--orange); font-weight:600}
+
+/* ---------- split ---------- */
+.split{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(11px,1.7vw,18px); margin-top:clamp(16px,2.4vw,26px)}
+.col{padding:clamp(14px,2vw,22px)}
+.col h3{font:700 clamp(13px,1.7vw,16px)/1.2 var(--ui); letter-spacing:.06em; text-transform:uppercase; margin-bottom:11px}
+.col.yes h3{color:#7BDCA4} .col.no h3{color:var(--orange)}
+.col li{list-style:none; font-size:clamp(13.5px,1.8vw,17px); line-height:1.45; color:var(--ink-2); padding-left:19px; position:relative; margin-bottom:9px}
+.col li:last-child{margin-bottom:0}
+.col li::before{content:""; position:absolute; left:0; top:.52em; width:7px; height:7px; border-radius:50%}
+.col.yes li::before{background:#7BDCA4} .col.no li::before{background:var(--orange)}
+.col li b{color:#fff; font-weight:600}
+
+/* ---------- big number ---------- */
+.huge{font:700 clamp(58px,15vw,150px)/.9 var(--ui); letter-spacing:-.04em; color:#fff; font-variant-numeric:tabular-nums}
+.huge em{font-style:normal; color:var(--orange)}
+
+/* ---------- timeline ---------- */
+.tl{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(9px,1.4vw,14px); margin-top:clamp(18px,2.6vw,28px)}
+.tl div{padding:clamp(12px,1.8vw,19px); border-top:3px solid var(--t)}
+.tl .yr{font:700 clamp(17px,2.5vw,26px)/1 var(--mono); color:#fff}
+.tl .wh{font-size:clamp(12.5px,1.6vw,15px); line-height:1.42; color:var(--ink-2); margin-top:7px}
+
+/* ---------- chrome ---------- */
+#dots{position:fixed; left:0; right:0; bottom:clamp(14px,2.4vw,24px); display:flex; justify-content:center; gap:8px; z-index:5}
+#dots button{width:8px; height:8px; padding:0; border:0; border-radius:50%; background:rgba(255,255,255,.26); cursor:pointer; transition:all .35s var(--ease)}
+#dots button[aria-current="true"]{background:var(--orange); width:26px; border-radius:99px}
+.nav{position:fixed; top:50%; transform:translateY(-50%); width:clamp(42px,5vw,54px); height:clamp(42px,5vw,54px); border-radius:50%; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); color:#fff; font-size:20px; cursor:pointer; display:grid; place-items:center; z-index:5; transition:background .25s, opacity .25s}
+.nav:hover{background:rgba(255,255,255,.18)}
+.nav:disabled{opacity:.2; cursor:default}
+#prev{left:clamp(10px,1.8vw,22px)} #next{right:clamp(10px,1.8vw,22px)}
+#count{position:fixed; top:clamp(14px,2.4vw,24px); right:clamp(16px,2.6vw,28px); font:700 12px/1 var(--mono); color:var(--ink-3); letter-spacing:.1em; z-index:5}
+#brand{position:fixed; top:clamp(14px,2.4vw,24px); left:clamp(16px,2.6vw,28px); font:700 12px/1 var(--ui); letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); z-index:5}
+:focus-visible{outline:2px solid var(--orange); outline-offset:3px}
+
+@media (max-width:860px){
+  .piles{grid-template-columns:1fr; gap:9px}
+  .pile{flex-direction:row; align-items:center; gap:12px; border-top:0; border-left:3px solid var(--t)}
+  .pile .jb{display:none}
+  .pile .pc{margin:0 0 0 auto; padding:0}
+  .tl{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .nav{display:none}
+  .row{grid-template-columns:auto minmax(0,1fr); gap:10px}
+  .row .nu{grid-column:2; margin-top:2px}
+  .tl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .split{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  .slide,.slide > *,.bar span{transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<div id="brand">Wall Street Warriors</div>
+<div id="count"></div>
+
+<main id="stage" aria-live="polite">
+
+  <section class="slide">
+    <p class="kicker">Sunday, September 27</p>
+    <h1>Our strategy,<br>start to finish.</h1>
+    <p class="sub">Twelve screens. By the end you will know <b>every dollar we buy tomorrow and why</b>.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">The client</p>
+    <h2>Laura owes ten payments. Then she builds.</h2>
+    <p class="sub"><b>$50,000 a year, 2033 to 2042.</b> Those have to happen, and no outside money is allowed to cover them. Whatever is left over builds her artists' residency in Taiwan.</p>
+    <div class="rows">
+      <div class="row glass" style="--t:var(--a)"><span class="tag">Must</span><span class="tx">Ten payments. The case calls it <b>a high degree of certainty</b></span><span class="nu">$500,000</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Then</span><span class="tx">Everything left goes toward the building</span><span class="nu">no target</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">The thing nobody had worked out</p>
+    <h2>She can already afford it.</h2>
+    <div class="huge" style="margin-top:.3em">$282,682</div>
+    <p class="sub">That is what all ten payments are worth <b>today</b>. She is putting in about $420,000. <b>She is roughly 150% funded before we buy anything.</b></p>
+    <p class="tiny">So the question was never whether she can be safe. It is how much safety to buy, and when.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">The one idea</p>
+    <h2>Every dollar gets a job.</h2>
+    <p class="sub">Not three accounts. <b>Three jobs.</b> Until 2033 it is one pot, and naming a holding's pile is naming what that money is for.</p>
+    <div class="piles">
+      <div class="pile glass" style="--t:var(--a)"><span class="lt">A</span><span class="nm">Safety</span><span class="jb">Pays the ten. Cannot fail.</span><span class="pc">25%</span></div>
+      <div class="pile glass" style="--t:var(--b)"><span class="lt">B</span><span class="nm">Growth</span><span class="jb">Becomes the building.</span><span class="pc">60%</span></div>
+      <div class="pile glass" style="--t:var(--c)"><span class="lt">C</span><span class="nm">Flex</span><span class="jb">Stops forced selling.</span><span class="pc">15%</span></div>
+    </div>
+    <p class="tiny">Wharton lists the ways a team may diversify. The last one is <b>&ldquo;funding purposes.&rdquo;</b> This is that, in their own words.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">The mix</p>
+    <h2>Ten orders. Nine ideas.</h2>
+    <div class="bar">
+      <span class="glass" style="--w:60%;--t:var(--b);background:var(--b)">60%</span>
+      <span class="glass" style="--w:25%;--t:var(--a);background:var(--a)">25%</span>
+      <span class="glass" style="--w:15%;--t:var(--c);background:var(--c)">15%</span>
+    </div>
+    <div class="legend">
+      <div style="--t:var(--b)"><i></i><span><b>Pile B</b> &mdash; VOO 30, VEA 15, five stocks 15</span></div>
+      <div style="--t:var(--a)"><i></i><span><b>Pile A</b> &mdash; Treasury notes, real maturity dates</span></div>
+      <div style="--t:var(--c)"><i></i><span><b>Pile C</b> &mdash; short-term Treasury bills</span></div>
+    </div>
+    <p class="tiny">The Treasury ladder is <b>one</b> idea even though it is two orders. That is why ten orders is nine ideas.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Pile B · the stock sleeve</p>
+    <h2>Five names. One idea.</h2>
+    <p class="sub"><b>People keep paying them in bad years.</b> Subscriptions, medicine, card swipes, trash pickup, soap. That mirrors what Laura needs — money that shows up on schedule.</p>
+    <div class="rows">
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Tech</span><span class="tx"><b>Microsoft</b> — subscriptions and cloud contracts, not one-off sales</span><span class="nu">17 sh</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Health</span><span class="tx"><b>Johnson &amp; Johnson</b> — medicine sells in any economy</span><span class="nu">33 sh</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Finance</span><span class="tx"><b>Mastercard</b> — a cut of every swipe, and it never lends</span><span class="nu">15 sh</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Industry</span><span class="tx"><b>Waste Management</b> — contracted pickups, landfills nobody can rebuild</span><span class="nu">43 sh</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">Consumer</span><span class="tx"><b>Procter &amp; Gamble</b> — soap and detergent in any economy</span><span class="nu">61 sh</span></div>
+    </div>
+    <p class="tiny">3% each, $9,000 each. If we cannot say how a name behaves <b>differently from the S&amp;P 500</b>, it does not go in — VOO already owns it.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Pile A · why this works</p>
+    <h2>We buy bonds that <span style="color:var(--orange)">expire</span>.</h2>
+    <p class="sub">A Treasury note pays its face value on a known date. <b>A bond fund never matures.</b> That is what turns &ldquo;probably enough&rdquo; into a date on a calendar.</p>
+    <div class="rows">
+      <div class="row glass" style="--t:var(--a)"><span class="tag">Now</span><span class="tx">Two rungs, maturing late 2032 and 2033. <b>The first layer, not the finished job</b></span><span class="nu">25%</span></div>
+      <div class="row glass" style="--t:var(--a)"><span class="tag">Each year</span><span class="tx">Add a rung, so every payment ends up with its own bond</span><span class="nu">grows</span></div>
+    </div>
+    <p class="tiny">Unmatched, the 2033 lump sum we would need is anywhere from <b>$402,560 to $500,000</b> depending on rates. Matching kills that $97,440 of guesswork.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Pile C · the part that was vague</p>
+    <h2>Cash moves on three triggers. Nothing else.</h2>
+    <div class="rows">
+      <div class="row glass" style="--t:var(--c)"><span class="tag">1</span><span class="tx">Funding <b>next year's ladder rung</b></span><span class="nu">annual</span></div>
+      <div class="row glass" style="--t:var(--c)"><span class="tag">2</span><span class="tx">Rebalancing when a pile drifts <b>5 points</b> off target</span><span class="nu">monthly check</span></div>
+      <div class="row glass" style="--t:var(--c)"><span class="tag">3</span><span class="tx">S&amp;P 500 <b>down 20%</b> from its high — deploy half into Pile B</span><span class="nu">declared now</span></div>
+    </div>
+    <p class="tiny"><b>Why 15%, and when it changes:</b> three-month bills pay 4.2%, so holding cash costs us almost nothing today. If bills fall below 3%, Pile C drops to 5%. Tied to the rate, not to habit — at 2021's 0.05% this would have been indefensible.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Answering &ldquo;a high degree of certainty&rdquo;</p>
+    <h2>We put a number on it.</h2>
+    <div class="huge" style="margin-top:.28em">97<span style="color:var(--orange)">%</span></div>
+    <p class="sub">Two tests that must both pass: <b>every payment matched by a bond maturing in time</b>, and at least 97 of 100 simulated futures funding all ten.</p>
+    <p class="tiny">Our plan currently measures <b>97.4%</b>. The case makes us define certainty ourselves, so we define it as a rule we can be held to.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">The three questions everyone asks</p>
+    <h2>Already answered.</h2>
+    <div class="qa">
+      <div class="q glass"><div class="qq">Should we add real estate?</div><div class="aa"><b>No.</b> REITs move almost exactly with the stock market — beta 0.98 — and fell <i>harder</i> than stocks in 2008, 2020 and 2022. It looks like diversification and is not.</div></div>
+      <div class="q glass"><div class="qq">Should Pile A hold corporate bonds?</div><div class="aa"><b>We are not allowed to.</b> Wharton permits government bonds and ETFs only. The single route is a corporate bond fund, and a fund never matures — which is the entire point of Pile A.</div></div>
+      <div class="q glass"><div class="qq">Is 15% in cash too much?</div><div class="aa"><b>Not while bills pay 4.2%.</b> Six-year cost is small, and it means we never sell Laura's bond money early. Below 3% it shrinks to 5%.</div></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">It is not a fixed picture</p>
+    <h2>Safer every year, on purpose.</h2>
+    <div class="tl">
+      <div class="glass" style="--t:var(--b)"><div class="yr">2027</div><div class="wh">60% growth. 2033 is far away.</div></div>
+      <div class="glass" style="--t:var(--b)"><div class="yr">2029</div><div class="wh">55%. Start adding ladder rungs.</div></div>
+      <div class="glass" style="--t:var(--a)"><div class="yr">2031</div><div class="wh">30%. She quotes co-sponsors, so the range has to be tight.</div></div>
+      <div class="glass" style="--t:var(--a)"><div class="yr">2033</div><div class="wh">Every payment matched. The rest builds.</div></div>
+    </div>
+    <p class="tiny">De-risking by <b>2031 and not 2033</b> is the one move most teams will miss. She has to promise a number two years early.</p>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Tonight</p>
+    <h2>Confirm it, then place it.</h2>
+    <div class="split">
+      <div class="col yes glass">
+        <h3>Settled</h3>
+        <ul>
+          <li>Three piles, <b>60 / 25 / 15</b></li>
+          <li>Treasuries with <b>maturity dates</b></li>
+          <li>The <b>five names</b>, 3% each</li>
+          <li><b>No REIT, no corporates, no Taiwan</b></li>
+          <li>Certainty means <b>97%</b></li>
+          <li>Pile C moves on <b>three triggers</b></li>
+        </ul>
+      </div>
+      <div class="col no glass">
+        <h3>The call</h3>
+        <ul>
+          <li>Each of us defends our sector's name</li>
+          <li><b>One vote</b> on the whole list, 4 of 5</li>
+          <li>Place all ten orders <b>on the call</b></li>
+          <li>They fill Monday at the open</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<button class="nav" id="prev" aria-label="Previous">&#8249;</button>
+<button class="nav" id="next" aria-label="Next">&#8250;</button>
+<div id="dots" role="tablist" aria-label="Slides"></div>
+
+<script>
+(function(){
+  var slides = [].slice.call(document.querySelectorAll(".slide"));
+  var dots = document.getElementById("dots");
+  var prev = document.getElementById("prev"), next = document.getElementById("next");
+  var count = document.getElementById("count");
+  var i = 0, busy = false;
+
+  slides.forEach(function(s, n){
+    var b = document.createElement("button");
+    b.setAttribute("role","tab");
+    b.setAttribute("aria-label","Slide " + (n+1));
+    b.addEventListener("click", function(){ go(n); });
+    dots.appendChild(b);
+  });
+
+  function go(n){
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    if (n === i || busy) return;
+    busy = true; setTimeout(function(){ busy = false; }, 260);
+    var old = slides[i];
+    old.classList.add("out");
+    old.classList.remove("on");
+    setTimeout(function(){ old.classList.remove("out"); }, 600);
+    i = n;
+    slides[i].classList.add("on");
+    render();
+  }
+  function render(){
+    [].forEach.call(dots.children, function(b, n){ b.setAttribute("aria-current", String(n === i)); });
+    count.textContent = (i+1) + " / " + slides.length;
+    prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+    try { history.replaceState(null, "", "#" + (i+1)); } catch(e){}
+  }
+
+  prev.addEventListener("click", function(){ go(i-1); });
+  next.addEventListener("click", function(){ go(i+1); });
+
+  document.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { e.preventDefault(); go(i+1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(i-1); }
+    else if (e.key === "Home") { go(0); }
+    else if (e.key === "End") { go(slides.length-1); }
+  });
+
+  /* tap left/right thirds, and swipe */
+  var x0 = null, y0 = null;
+  document.addEventListener("touchstart", function(e){ x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  document.addEventListener("touchend", function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? i+1 : i-1);
+    x0 = y0 = null;
+  }, {passive:true});
+  document.getElementById("stage").addEventListener("click", function(e){
+    if (e.target.closest("button")) return;
+    go(e.clientX > window.innerWidth * 0.5 ? i+1 : i-1);
+  });
+
+  var start = parseInt((location.hash||"").replace("#",""), 10);
+  if (start >= 1 && start <= slides.length) i = start - 1;
+  slides[i].classList.add("on");
+  render();
+})();
+</script>
+</body>
+</html>
