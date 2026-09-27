@@ -123,7 +123,7 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 /* ---------- interactive timeline ---------- */
 .tw{margin-top:clamp(10px,1.6vw,18px)}
 .tscroll{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; margin:0 -4px; padding:0 4px}
-.tscroll svg{display:block; width:100%; min-width:760px; height:auto}
+.tscroll svg{display:block; width:100%; min-width:780px; height:auto}
 .tscroll text{font-family:var(--ui)}
 .t-yrlab{fill:#8FA1C2; font-weight:600}
 .t-yrlab.is-now{fill:#fff}
@@ -131,20 +131,13 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .t-amt{fill:#fff; font-weight:700}
 .t-note{fill:#C6D2E8}
 .t-ax{stroke:#42557E; stroke-width:1.4}
-.t-ev{opacity:0; transition:opacity .45s var(--ease), transform .45s var(--ease)}
+.t-ev{opacity:0; transition:opacity .5s var(--ease)}
 .t-ev.shown{opacity:1}
-.t-head{transition:transform .5s var(--ease)}
-.tyr{display:flex; align-items:baseline; gap:clamp(10px,1.6vw,16px); flex-wrap:wrap; margin-top:clamp(8px,1.2vw,14px)}
-.tyr .y{font:700 clamp(30px,5vw,50px)/1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; letter-spacing:-.03em}
-.tyr .ev{font-size:clamp(13.5px,1.85vw,18px); line-height:1.4; color:var(--orange); font-weight:600; max-width:34ch}
-.tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(9px,1.4vw,14px); font-size:clamp(12px,1.5vw,14.5px); color:var(--ink-3)}
+.t-rung{fill:#9AB0D4; transition:fill .45s var(--ease), opacity .45s var(--ease)}
+.t-rung.spent{fill:none; stroke:#5E6E8F; stroke-width:1.5; stroke-dasharray:2 2}
+.t-head{transition:transform .55s var(--ease)}
+.tmeta{display:flex; gap:clamp(14px,3vw,36px); flex-wrap:wrap; margin-top:clamp(10px,1.5vw,16px); font-size:clamp(12px,1.5vw,14.5px); color:var(--ink-3)}
 .tmeta b{display:block; font:700 clamp(15px,2vw,20px)/1.1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; margin-top:3px}
-.tctl{display:flex; align-items:center; gap:clamp(11px,1.8vw,18px); margin-top:clamp(11px,1.7vw,16px)}
-.tplay{flex:none; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.1); color:#fff; font-size:15px; cursor:pointer; display:grid; place-items:center; transition:background .2s}
-.tplay:hover{background:rgba(255,255,255,.2)}
-#tr{display:block; width:100%; min-width:0; margin:0; -webkit-appearance:none; appearance:none; height:6px; border-radius:99px; background:rgba(255,255,255,.18); outline:none; cursor:pointer}
-#tr::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px; border-radius:50%; background:var(--orange); border:3px solid #0B1737; box-shadow:0 2px 10px rgba(0,0,0,.5); cursor:pointer}
-#tr::-moz-range-thumb{width:26px; height:26px; border-radius:50%; background:var(--orange); border:3px solid #0B1737; cursor:pointer}
 
 /* ---------- timeline ---------- */
 .tl{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(9px,1.4vw,14px); margin-top:clamp(18px,2.6vw,28px)}
@@ -296,21 +289,15 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   </section>
 
   <section class="slide" id="tl-slide">
-    <p class="kicker">Drag it, or press play</p>
-    <h2>Every dollar in and out, 2026 to 2042.</h2>
+    <p class="kicker" id="t-kick">Step 1 of 8</p>
+    <h2 id="t-head2">Year 0. Nothing is invested yet.</h2>
     <div class="tw">
-      <div class="tscroll" id="t-scroll"><svg id="t-svg" viewBox="0 0 1000 300" role="img" aria-label="Cash flow timeline from 2026 to 2042"></svg></div>
-      <div class="tyr"><span class="y" id="t-year">2026</span><span class="ev" id="t-ev"></span></div>
+      <div class="tscroll" id="t-scroll"><svg id="t-svg" viewBox="0 0 1000 310" role="img" aria-label="Cash flow timeline from 2026 to 2042"></svg></div>
+      <p class="sub" id="t-say" style="margin-top:clamp(10px,1.6vw,16px)"></p>
       <div class="tmeta">
         <div>She has put in<b id="t-m1">$0</b></div>
-        <div>Paid out to her<b id="t-m2">$0</b></div>
+        <div>Bonds still to expire<b id="t-m2">0 of 10</b></div>
         <div>Still owed<b id="t-m3">$500,000</b></div>
-      </div>
-      <div class="tctl">
-        <button class="tplay" id="t-play" aria-label="Play the timeline">&#9654;</button>
-        <div style="flex:1;min-width:0">
-          <input type="range" id="tr" min="2026" max="2042" step="1" value="2026" aria-label="Year">
-        </div>
       </div>
     </div>
   </section>
@@ -365,8 +352,16 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   });
 
   function go(n){
+    /* a slide can hold the Next button and step through its own stages first */
+    var cur = slides[i], f = cur && cur.fragments;
+    if (f) {
+      if (n === i + 1 && f.get() < f.max) { f.set(f.get() + 1); return; }
+      if (n === i - 1 && f.get() > 0)     { f.set(f.get() - 1); return; }
+    }
     n = Math.max(0, Math.min(slides.length - 1, n));
     if (n === i || busy) return;
+    var tf = slides[n].fragments;
+    if (tf) tf.set(n > i ? 0 : tf.max);
     busy = true; setTimeout(function(){ busy = false; }, 260);
     var old = slides[i];
     old.classList.add("out");
@@ -379,7 +374,9 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   function render(){
     [].forEach.call(dots.children, function(b, n){ b.setAttribute("aria-current", String(n === i)); });
     count.textContent = (i+1) + " / " + slides.length;
-    prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+    var f2 = slides[i].fragments;
+    prev.disabled = i === 0 && !(f2 && f2.get() > 0);
+    next.disabled = i === slides.length - 1 && !(f2 && f2.get() < f2.max);
     try { history.replaceState(null, "", "#" + (i+1)); } catch(e){}
   }
 
@@ -407,98 +404,124 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
     go(e.clientX > window.innerWidth * 0.5 ? i+1 : i-1);
   });
 
-  /* ---------- the interactive timeline ---------- */
+  /* ---------- the timeline, advanced by the deck's own Next ---------- */
   (function(){
     var svg=document.getElementById("t-svg"); if(!svg) return;
-    var range=document.getElementById("tr"), play=document.getElementById("t-play"), scroll=document.getElementById("t-scroll");
-    var yEl=document.getElementById("t-year"), evEl=document.getElementById("t-ev");
+    var slide=document.getElementById("tl-slide"), scroll=document.getElementById("t-scroll");
+    var kick=document.getElementById("t-kick"), head2=document.getElementById("t-head2"), say=document.getElementById("t-say");
     var m1=document.getElementById("t-m1"), m2=document.getElementById("t-m2"), m3=document.getElementById("t-m3");
-    var BLUE="#6FA8DC", ORANGE="#EFA24A", AX=176, SCALE=2500, timer=null;
-    function x(yr){ return 46+56*(yr-2026); }
+    var BLUE="#6FA8DC", ORANGE="#EFA24A", SLATE="#9AB0D4", AX=168, SCALE=2500;
+    function x(yr){ return 52+55*(yr-2026); }
     function money(n){ return "$"+Math.round(n).toLocaleString("en-US"); }
     function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
     function T(px,py,txt,cls,anchor,size){
-      return '<text x="'+px+'" y="'+py+'" class="'+(cls||"")+'" text-anchor="'+(anchor||"middle")+'" font-size="'+(size||14)+'">'+esc(txt)+'</text>';
+      return '<text x="'+px+'" y="'+py+'" class="'+(cls||"")+'" text-anchor="'+(anchor||"middle")+'" font-size="'+(size||14)+'">'+esc(txt)+"</text>";
     }
-    var EV={2026:"Year 0. Nothing invested yet.",
-            2027:"She puts in $300,000.",
-            2028:"She adds $150,000. That is every dollar she will ever add.",
-            2029:"Growing. Nobody touches it.",
-            2030:"Still growing.",
-            2031:"She tells co-sponsors a number. The plan has to be steady by now.",
-            2032:"Last year before the split.",
-            2033:"The reserve is set aside, then the first $50,000 goes out.",
-            2042:"The tenth and final payment. Done."};
+
+    var STEPS=[
+      {yr:2026, h:"Year 0. Nothing is invested yet.",
+       s:"Right now she has not handed us a dollar. The whole competition happens inside this one year."},
+      {yr:2027, h:"$300,000 arrives. We buy everything at once.",
+       s:"Ten orders in one week: two Treasuries, the two index funds, our five companies, and the bills. <b>60% growth, 25% safety, 15% flexible.</b>"},
+      {yr:2028, h:"$150,000 more. That is every dollar she will ever add.",
+       s:"$450,000 in total. From here nobody puts money in and nobody takes money out until 2033. It just has to grow."},
+      {yr:2029, h:"Every year we buy one more bond that expires later.",
+       s:"A Treasury is a loan to the government with a <b>payback date</b>. We buy one for each future payment year, so 2033's payment already has its money waiting."},
+      {yr:2030, h:"This is where Pile C earns its keep.",
+       s:"The market drops. We buy more shares with the cash in Pile C <b>instead of selling a bond early</b> — which is the one thing that would put her payments at risk."},
+      {yr:2031, h:"She promises co-sponsors a number.",
+       s:"Two years before she needs the money. Because we have been getting safer since 2029, the range she can quote is <b>tight instead of a guess</b>."},
+      {yr:2033, h:"The first bond expires. That is payment one.",
+       s:"We do not sell anything. The bond simply matures, hands over $50,000, and she pays the art house. Everything left over is hers to build with."},
+      {yr:2042, h:"One bond expires every year until the tenth.",
+       s:"Ten bonds, ten payments, ten dates known in advance. The reserve empties out to almost exactly zero, which is how you know the maths worked."}
+    ];
 
     var h='<defs>'+
       '<marker id="ain" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="'+BLUE+'"/></marker>'+
       '<marker id="aout" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="'+ORANGE+'"/></marker>'+
-      '</defs>';
-    /* growth band */
-    h+='<g class="t-ev" data-y="2027"><rect x="'+x(2027)+'" y="150" width="'+(x(2033)-x(2027))+'" height="20" fill="'+BLUE+'" opacity=".14" rx="3"/>'+
-       T(x(2030),164,"six years of growth","t-sub","middle",13)+'</g>';
+      "</defs>";
+    /* growth band, step 2 */
+    h+='<g class="t-ev" data-s="2"><rect x="'+x(2027)+'" y="142" width="'+(x(2033)-x(2027))+'" height="18" fill="'+BLUE+'" opacity=".13" rx="3"/>'+
+       T(x(2030),155,"six years of growth","t-sub","middle",12.5)+"</g>";
     /* axis */
-    h+='<line x1="'+x(2026)+'" y1="'+AX+'" x2="960" y2="'+AX+'" class="t-ax"/>';
+    h+='<line x1="'+x(2026)+'" y1="'+AX+'" x2="962" y2="'+AX+'" class="t-ax"/>';
     for(var yr=2026;yr<=2042;yr++){
       h+='<line x1="'+x(yr)+'" y1="'+(AX-5)+'" x2="'+x(yr)+'" y2="'+(AX+5)+'" class="t-ax"/>';
-      h+=T(x(yr),200,String(yr),"t-yrlab y-"+yr,"middle",14);
-      h+=T(x(yr),218,"Yr "+(yr-2026),"t-sub","middle",11.5);
+      h+=T(x(yr),190,String(yr),"t-yrlab y-"+yr,"middle",13.5);
+      h+=T(x(yr),206,"Yr "+(yr-2026),"t-sub","middle",11);
     }
     /* inflows */
-    [[2027,300000],[2028,150000]].forEach(function(p){
+    [[2027,300000,1],[2028,150000,2]].forEach(function(p){
       var top=AX-p[1]/SCALE;
-      h+='<g class="t-ev" data-y="'+p[0]+'">'+
+      h+='<g class="t-ev" data-s="'+p[2]+'">'+
          '<line x1="'+x(p[0])+'" y1="'+AX+'" x2="'+x(p[0])+'" y2="'+top+'" stroke="'+BLUE+'" stroke-width="3.5" marker-end="url(#ain)"/>'+
-         T(x(p[0]),top-14,"+"+money(p[1]),"t-amt","middle",17)+'</g>';
+         T(x(p[0]),top-13,"+"+money(p[1]),"t-amt","middle",16)+"</g>";
     });
-    /* 2031 marker */
-    h+='<g class="t-ev" data-y="2031">'+
-       '<line x1="'+x(2031)+'" y1="'+(AX-10)+'" x2="'+x(2031)+'" y2="118" stroke="#8FA1C2" stroke-width="1.2"/>'+
-       '<rect x="'+(x(2031)-6)+'" y="'+(AX-6)+'" width="12" height="12" fill="#0B1737" stroke="#fff" stroke-width="2.2" transform="rotate(45 '+x(2031)+' '+AX+')"/>'+
-       T(x(2031),110,"quote co-sponsors a range","t-note","middle",13.5)+'</g>';
-    /* outflows */
+    /* the ladder: one bond per payment year, appears step 3 */
+    h+='<g class="t-ev" data-s="3">'+T(x(2033)-14,232,"one bond per payment","t-sub","end",12)+"</g>";
     for(yr=2033;yr<=2042;yr++){
-      h+='<g class="t-ev" data-y="'+yr+'"><line x1="'+x(yr)+'" y1="232" x2="'+x(yr)+'" y2="'+(232+50000/SCALE)+'" stroke="'+ORANGE+'" stroke-width="3" marker-end="url(#aout)"/></g>';
+      h+='<g class="t-ev" data-s="3"><rect id="rung-'+yr+'" class="t-rung" x="'+(x(yr)-9)+'" y="222" width="18" height="11" rx="2.5"/></g>';
     }
-    h+='<g class="t-ev" data-y="2033">'+T(x(2033)-16,250,"−$50,000 a year","t-amt","end",15)+'</g>';
-    h+='<g class="t-ev" data-y="2042">'+
-       '<path d="M'+x(2033)+' 268 v5 H'+x(2042)+' v-5" fill="none" stroke="#8FA1C2" stroke-width="1.2"/>'+
-       T((x(2033)+x(2042))/2,290,"ten payments = $500,000","t-sub","middle",13)+'</g>';
+    /* Pile C moment, step 4 */
+    h+='<g class="t-ev" data-s="4">'+
+       '<line x1="'+x(2030)+'" y1="'+(AX-8)+'" x2="'+x(2030)+'" y2="108" stroke="#6FA8DC" stroke-width="1.2" stroke-dasharray="3 3"/>'+
+       '<circle cx="'+x(2030)+'" cy="'+AX+'" r="5.5" fill="#0B1737" stroke="'+BLUE+'" stroke-width="2.4"/>'+
+       T(x(2030)-12,100,"Pile C buys the dip","t-note","end",13)+"</g>";
+    /* 2031 marker, step 5 */
+    h+='<g class="t-ev" data-s="5">'+
+       '<line x1="'+x(2031)+'" y1="'+(AX-10)+'" x2="'+x(2031)+'" y2="132" stroke="#8FA1C2" stroke-width="1.2"/>'+
+       '<rect x="'+(x(2031)-6)+'" y="'+(AX-6)+'" width="12" height="12" fill="#0B1737" stroke="#fff" stroke-width="2.2" transform="rotate(45 '+x(2031)+" "+AX+')"/>'+
+       T(x(2031)+12,124,"quote co-sponsors","t-note","start",13)+"</g>";
+    /* payments */
+    for(yr=2033;yr<=2042;yr++){
+      var st = yr===2033?6:7;
+      h+='<g class="t-ev" data-s="'+st+'"><line x1="'+x(yr)+'" y1="246" x2="'+(246+50000/SCALE)+'" y2="'+(246+50000/SCALE)+'" style="display:none"/>'+
+         '<line x1="'+x(yr)+'" y1="246" x2="'+x(yr)+'" y2="'+(246+50000/SCALE)+'" stroke="'+ORANGE+'" stroke-width="3" marker-end="url(#aout)"/></g>';
+    }
+    h+='<g class="t-ev" data-s="6">'+T(x(2033)-14,262,"−$50,000 to Laura","t-amt","end",14)+"</g>";
+    h+='<g class="t-ev" data-s="7">'+
+       '<path d="M'+x(2033)+' 280 v5 H'+x(2042)+' v-5" fill="none" stroke="#8FA1C2" stroke-width="1.2"/>'+
+       T((x(2033)+x(2042))/2,300,"ten bonds, ten payments, $500,000","t-sub","middle",12.5)+"</g>";
     /* playhead */
-    h+='<g class="t-head" id="t-head"><line x1="0" y1="44" x2="0" y2="262" stroke="'+ORANGE+'" stroke-width="2" opacity=".55"/>'+
+    h+='<g class="t-head" id="t-head"><line x1="0" y1="66" x2="0" y2="272" stroke="'+ORANGE+'" stroke-width="2" opacity=".5"/>'+
        '<circle cx="0" cy="'+AX+'" r="6" fill="'+ORANGE+'"/></g>';
     svg.innerHTML=h;
 
-    var head=document.getElementById("t-head");
+    var headG=document.getElementById("t-head");
     var groups=[].slice.call(svg.querySelectorAll(".t-ev"));
-    function paint(y){
-      yEl.textContent=y;
-      evEl.textContent=EV[y] || ("Payment "+(y-2032)+" of ten.");
-      head.setAttribute("transform","translate("+x(y)+",0)");
-      groups.forEach(function(g){ g.classList.toggle("shown", +g.getAttribute("data-y")<=y); });
+    var step=0;
+
+    function paint(){
+      var S=STEPS[step], y=S.yr;
+      kick.textContent="Step "+(step+1)+" of "+STEPS.length;
+      head2.textContent=S.h; say.innerHTML=S.s;
+      headG.setAttribute("transform","translate("+x(y)+",0)");
+      groups.forEach(function(g){ g.classList.toggle("shown", +g.getAttribute("data-s")<=step); });
       [].forEach.call(svg.querySelectorAll(".t-yrlab"),function(t){ t.classList.toggle("is-now", t.classList.contains("y-"+y)); });
-      var inn = y>=2028?450000 : y>=2027?300000 : 0;
-      var paid = y<2033?0:Math.min(10,y-2032)*50000;
-      m1.textContent=money(inn); m2.textContent=money(paid); m3.textContent=money(500000-paid);
-      range.value=y;
+      /* bonds consumed as payments happen */
+      var spent = step>=7 ? 10 : step>=6 ? 1 : 0;
+      for(var k=0;k<10;k++){
+        var r=document.getElementById("rung-"+(2033+k));
+        if(r) r.classList.toggle("spent", k<spent);
+      }
+      var inn = step>=2?450000 : step>=1?300000 : 0;
+      var paid = spent*50000;
+      m1.textContent=money(inn);
+      m2.textContent=(step>=3?(10-spent):0)+" of 10";
+      m3.textContent=money(500000-paid);
       if(scroll.scrollWidth>scroll.clientWidth){
         var f=x(y)/1000*scroll.scrollWidth;
         scroll.scrollTo({left:Math.max(0,f-scroll.clientWidth/2),behavior:"smooth"});
       }
     }
-    function stop(){ if(timer){ clearInterval(timer); timer=null; play.innerHTML="&#9654;"; } }
-    range.addEventListener("input",function(){ stop(); paint(+this.value); });
-    play.addEventListener("click",function(){
-      if(timer){ stop(); return; }
-      if(+range.value>=2042) paint(2026);
-      play.innerHTML="&#10073;&#10073;";
-      timer=setInterval(function(){
-        var v=+range.value;
-        if(v>=2042){ stop(); return; }
-        paint(v+1);
-      },780);
-    });
-    paint(2026);
+    /* the deck asks before it changes slide */
+    slide.fragments = {
+      max: STEPS.length-1,
+      get: function(){ return step; },
+      set: function(n){ step=Math.max(0,Math.min(STEPS.length-1,n)); paint(); }
+    };
+    paint();
   })();
 
   var start = parseInt((location.hash||"").replace("#",""), 10);
