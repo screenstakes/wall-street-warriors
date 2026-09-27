@@ -123,6 +123,14 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .huge{font:700 clamp(58px,15vw,150px)/.9 var(--ui); letter-spacing:-.04em; color:#fff; font-variant-numeric:tabular-nums}
 .huge em{font-style:normal; color:var(--orange)}
 
+/* ---------- one slide per pile ---------- */
+.pwhy{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(10px,1.6vw,16px); margin-top:clamp(12px,1.8vw,18px)}
+.pbox{padding:clamp(13px,1.9vw,20px) clamp(14px,2vw,22px)}
+.pbox h3{font:700 10.5px/1 var(--ui); letter-spacing:.15em; text-transform:uppercase; color:var(--orange); margin-bottom:9px}
+.pbox p{margin:0; font-size:clamp(13px,1.75vw,16.5px); line-height:1.5; color:var(--ink-2)}
+.pbox p b{color:#fff; font-weight:600}
+@media (max-width:820px){.pwhy{grid-template-columns:minmax(0,1fr)}}
+
 /* ---------- the bond card ---------- */
 .bond{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr); gap:clamp(12px,2vw,22px); margin-top:clamp(12px,1.8vw,18px); align-items:start}
 .bcard{padding:clamp(15px,2.2vw,24px); border-left:4px solid var(--a)}
@@ -250,40 +258,43 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   </section>
 
   <section class="slide">
-    <p class="kicker">Pile B &middot; the five stocks</p>
-    <h2>Five slots. We fill them tonight.</h2>
-    <p class="sub"><b>One per sector, and whoever researched that sector picks the name.</b> Everyone pitches first, then we vote.</p>
-    <p class="tiny" style="margin-top:clamp(8px,1.2vw,12px)"><b>Where the 15% comes from:</b> five names at 3% each. That is <b>the last slice of Pile B</b>, not a separate pile — the other 45% of Pile B is the two index funds. <b>30 + 15 + 15 = 60.</b></p>
+    <p class="kicker">Pile A &middot; the safe money &middot; 25%</p>
+    <h2>Ten bonds. One for each payment.</h2>
     <div class="rows">
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Tech</span><span class="tx">Michael picks</span><span class="nu">3% &middot; ~$9,000</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Health</span><span class="tx">Joe picks</span><span class="nu">3% &middot; ~$9,000</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Finance</span><span class="tx">Caleb picks</span><span class="nu">3% &middot; ~$9,000</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Industry</span><span class="tx">Dylan picks</span><span class="nu">3% &middot; ~$9,000</span></div>
-      <div class="row glass" style="--t:var(--b)"><span class="tag">Consumer</span><span class="tx">Federico picks</span><span class="nu">3% &middot; ~$9,000</span></div>
+      <div class="row glass" style="--t:var(--a)"><span class="tag">Inside it</span><span class="tx">Government bonds — <b>one that pays back in each year, 2033 through 2042</b></span><span class="nu">$50,000 each</span></div>
+      <div class="row glass" style="--t:var(--a)"><span class="tag">So far</span><span class="tx">We buy the first two now, then <b>one more every year</b></span><span class="nu">2 of 10</span></div>
     </div>
-    <p class="tiny"><b>The idea we are looking for:</b> businesses people keep paying in bad years &mdash; subscriptions, medicine, card swipes, trash pickup. That mirrors what Laura needs, money that shows up on schedule. <b>The test:</b> if we cannot say how a company behaves differently from the index fund, it does not go in, because the fund already owns it.</p>
+    <div class="pwhy">
+      <div class="pbox glass"><h3>What we choose</h3><p>Only <b>how fast we buy them</b>. The amount and the date are fixed the moment we buy — there is nothing to pick and nothing to get wrong.</p></div>
+      <div class="pbox glass"><h3>Why it is built this way</h3><p>These ten payments <b>have to happen</b>. A bond with a date on it turns &ldquo;probably enough&rdquo; into a calendar entry, so we never have to sell or hope.</p></div>
+    </div>
   </section>
 
   <section class="slide">
-    <p class="kicker">Pile A &middot; the safe money</p>
-    <h2>One bond for each payment.</h2>
-    <p class="sub">A bond is a <b>loan to the government</b>. You lend money now, they pay you back a fixed amount on a fixed date. So we buy <b>ten of them</b> &mdash; one that pays back in 2033, one in 2034, and so on to 2042.</p>
+    <p class="kicker">Pile B &middot; the growing money &middot; 60%</p>
+    <h2>Two funds and five companies.</h2>
     <div class="rows">
-      <div class="row glass" style="--t:var(--a)"><span class="tag">Right now</span><span class="tx">We buy the first two, paying back in <b>2032 and 2033</b>. That is a start, not the finished job.</span><span class="nu">25%</span></div>
-      <div class="row glass" style="--t:var(--a)"><span class="tag">Every year</span><span class="tx">Buy one more, until all ten payments have their own bond</span><span class="nu">grows</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">30%</span><span class="tx"><b>US index fund</b> — one purchase, owns the 500 biggest US companies</span><span class="nu">VOO</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">15%</span><span class="tx"><b>International fund</b> — big companies outside the US</span><span class="nu">VEA</span></div>
+      <div class="row glass" style="--t:var(--b)"><span class="tag">15%</span><span class="tx"><b>Five companies we pick</b> — 3% each, one per sector</span><span class="nu">tonight</span></div>
     </div>
-    <p class="tiny"><b>Why this is the whole trick.</b> When 2033 comes we do not have to sell anything, and we do not have to hope the market is up. The bond reaches its date and hands over the money by itself.</p>
+    <div class="pwhy">
+      <div class="pbox glass"><h3>What we choose</h3><p><b>Only the five names.</b> The two funds are already agreed. 30 + 15 + 15 = 60, so the five are the last slice of this pile, not a pile of their own.</p></div>
+      <div class="pbox glass"><h3>Why it is built this way</h3><p>This is what becomes <b>the building</b>. The funds do the heavy lifting safely; the five are where we show our own research — and each has to behave <b>differently from the fund</b>, or it adds nothing.</p></div>
+    </div>
   </section>
 
   <section class="slide">
-    <p class="kicker">Pile C &middot; the spare cash</p>
-    <h2>The cash only moves for three reasons.</h2>
+    <p class="kicker">Pile C &middot; the spare cash &middot; 15%</p>
+    <h2>Cash that is allowed to sit still.</h2>
     <div class="rows">
-      <div class="row glass" style="--t:var(--c)"><span class="tag">1</span><span class="tx">Buying <b>next year's bond</b></span><span class="nu">once a year</span></div>
-      <div class="row glass" style="--t:var(--c)"><span class="tag">2</span><span class="tx">One pile has drifted too big or too small, so we <b>top up the small one</b></span><span class="nu">checked monthly</span></div>
-      <div class="row glass" style="--t:var(--c)"><span class="tag">3</span><span class="tx">The stock market falls <b>20%</b> &mdash; we buy while it is cheap</span><span class="nu">agreed now</span></div>
+      <div class="row glass" style="--t:var(--c)"><span class="tag">Inside it</span><span class="tx">Short-term government bills — <b>paid back within months</b>, and sellable any day</span><span class="nu">15%</span></div>
+      <div class="row glass" style="--t:var(--c)"><span class="tag">It moves</span><span class="tx">Buying next year's bond &middot; topping up a pile that drifted small &middot; the market falls <b>20%</b></span><span class="nu">3 reasons</span></div>
     </div>
-    <p class="tiny"><b>Why 15%, and when it changes.</b> Cash pays <b>4.2% a year</b> right now just sitting there, so holding it costs us almost nothing &mdash; and it means we <b>never have to sell Laura's bonds early</b>. If that rate drops below 3%, we cut Pile C to 5%.</p>
+    <div class="pwhy">
+      <div class="pbox glass"><h3>What we choose</h3><p><b>When to spend it</b>, and only for those three reasons. Its size is tied to the rate: cash pays <b>4.2%</b> today, so holding it is nearly free. Below 3% we cut this pile to 5%.</p></div>
+      <div class="pbox glass"><h3>Why it is built this way</h3><p>So we are <b>never forced to sell Pile A early</b>. Selling a bond before its date is the one move that would break the certainty — this pile exists to make sure we never have to.</p></div>
+    </div>
   </section>
 
   <section class="slide">
