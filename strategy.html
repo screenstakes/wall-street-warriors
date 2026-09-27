@@ -123,6 +123,25 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
 .huge{font:700 clamp(58px,15vw,150px)/.9 var(--ui); letter-spacing:-.04em; color:#fff; font-variant-numeric:tabular-nums}
 .huge em{font-style:normal; color:var(--orange)}
 
+/* ---------- the order checklist ---------- */
+table.ck{width:100%; border-collapse:collapse; font-size:clamp(13px,1.75vw,16.5px); margin-top:clamp(12px,1.8vw,18px)}
+table.ck th{text-align:left; padding:0 10px 8px 0; font:700 10.5px/1 var(--ui); letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); border-bottom:1px solid rgba(255,255,255,.16)}
+table.ck td{padding:clamp(8px,1.2vw,11px) 10px clamp(8px,1.2vw,11px) 0; border-bottom:1px solid rgba(255,255,255,.08); color:var(--ink-2); vertical-align:baseline}
+table.ck td b{color:#fff; font-weight:600}
+table.ck td.n{text-align:right; font-family:var(--mono); color:#fff; white-space:nowrap; font-weight:700}
+table.ck tr.sub td{color:var(--ink-3); border-bottom:0; padding-top:10px}
+table.ck tr.tot td{border-top:1.5px solid rgba(255,255,255,.3); border-bottom:0; color:#fff; font-weight:700; padding-top:11px}
+.ckpl{display:inline-block; font:700 10px/1 var(--ui); letter-spacing:.08em; padding:4px 7px; border-radius:99px; background:var(--t); color:#0B1737; margin-right:9px}
+@media (max-width:620px){table.ck th:nth-child(2),table.ck td:nth-child(2){display:none}}
+
+/* ---------- the bond example ---------- */
+.bex{display:grid; gap:clamp(8px,1.2vw,11px); margin-top:clamp(14px,2vw,20px)}
+.bex .r{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; align-items:baseline; padding:clamp(10px,1.5vw,15px) clamp(13px,1.9vw,20px)}
+.bex .r span{font-size:clamp(13px,1.75vw,16.5px); color:var(--ink-2)}
+.bex .r b{font:700 clamp(14px,1.95vw,19px)/1 var(--ui); color:#fff; font-variant-numeric:tabular-nums; white-space:nowrap}
+.bex .r.hi{border-left:4px solid var(--orange)}
+.bex .r.hi b{color:var(--orange)}
+
 /* ---------- the big pile badge ---------- */
 .phead{display:flex; align-items:center; gap:clamp(13px,2vw,20px); margin-bottom:clamp(12px,1.8vw,18px)}
 .plet{flex:none; width:clamp(58px,8.2vw,88px); height:clamp(58px,8.2vw,88px); border-radius:clamp(14px,2vw,22px);
@@ -281,6 +300,20 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
   </section>
 
   <section class="slide">
+    <p class="kicker">Pile A &middot; how you actually buy one</p>
+    <h2>Bonds do not have tickers.</h2>
+    <p class="sub">They have a <b>code and a date</b>. Here is a real one, the kind we would buy for the 2033 payment.</p>
+    <div class="bex">
+      <div class="r glass"><span><b>US Treasury 3.500% due 15 Feb 2033</b> &mdash; you search this code</span><b>91282CGM7</b></div>
+      <div class="r glass"><span>You ask for this much <b>face value</b></span><b>$50,000</b></div>
+      <div class="r glass"><span>What it costs today, because its 3.5% interest is below what new bonds pay</span><b>about $45,600</b></div>
+      <div class="r glass"><span>Interest it pays you, every February and August</span><b>$1,750 a year</b></div>
+      <div class="r glass hi"><span>What the government hands over on <b>15 Feb 2033</b></span><b>$50,000</b></div>
+    </div>
+    <p class="tiny"><b>The bit that trips everyone up:</b> you do not buy &ldquo;a bond&rdquo;, you buy <b>an amount of face value</b>. Ask for $50,000 of face and $50,000 is what arrives on the date &mdash; that is the whole reason the payment is certain.</p>
+  </section>
+
+  <section class="slide">
     <div class="phead" style="--t:var(--b)"><span class="plet">B</span><div><span class="pname">Pile B</span><span class="pdesc">the growing money</span></div><span class="ppct">60%</span></div>
     <h2>Two funds and fifteen companies.</h2>
     <div class="rows">
@@ -363,6 +396,23 @@ h2{font:700 clamp(24px,4.6vw,44px)/1.12 var(--ui); letter-spacing:-.018em; text-
         <div>Still owed<b id="t-m3">$500,000</b></div>
       </div>
     </div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">Monday, 9:30am &middot; the whole first day</p>
+    <h2>Everything we place.</h2>
+    <table class="ck">
+      <tr><th>Buy</th><th>Pile</th><th style="text-align:right">Amount</th><th style="text-align:right">Cost</th></tr>
+      <tr><td><b>VOO</b> &mdash; US index fund</td><td><span class="ckpl" style="--t:var(--b)">B</span></td><td class="n">84 shares</td><td class="n">$59,706</td></tr>
+      <tr><td><b>VEA</b> &mdash; international fund</td><td><span class="ckpl" style="--t:var(--b)">B</span></td><td class="n">417 shares</td><td class="n">$29,957</td></tr>
+      <tr><td><b>Our fifteen companies</b> &mdash; picked tonight</td><td><span class="ckpl" style="--t:var(--b)">B</span></td><td class="n">$6,000 each</td><td class="n">$90,000</td></tr>
+      <tr><td><b>Two Treasury notes</b> &mdash; due 2032 and 2033</td><td><span class="ckpl" style="--t:var(--a)">A</span></td><td class="n">face value</td><td class="n">$71,000</td></tr>
+      <tr><td><b>BIL</b> &mdash; short-term bills</td><td><span class="ckpl" style="--t:var(--c)">C</span></td><td class="n">491 shares</td><td class="n">$44,985</td></tr>
+      <tr class="sub"><td>Commissions &mdash; $25 a stock, $10 a bond, twenty orders</td><td></td><td></td><td class="n">$470</td></tr>
+      <tr class="sub"><td>Cash left over, which is Pile C doing its job</td><td></td><td></td><td class="n">$3,882</td></tr>
+      <tr class="tot"><td>Total</td><td></td><td></td><td class="n">$300,000</td></tr>
+    </table>
+    <p class="tiny"><b>Before you hit Confirm on any of them:</b> type the note. That note is the only thing Wharton ever reads. <b>Use market orders</b>, place them on the call, and they fill Monday at the open on their own.</p>
   </section>
 
   <section class="slide">
