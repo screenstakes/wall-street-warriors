@@ -2,7 +2,7 @@
 <html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Thursday lunch · vote and place — Wall Street Warriors</title>
+<title>Thursday — step by step</title>
 <style>
   @page { size: letter; margin: 0.5in; }
   :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
@@ -231,189 +231,206 @@
   @media screen and (max-width:720px){
     .me p,.copy{font-size:14.5px;} .script{font-size:14.5px;} .me .k,.copy .tag{font-size:11.5px;}
   }
+
+  @media print{
+    body{font-size:9.2pt; line-height:1.34;}
+    h1{font-size:17pt;} h2{font-size:11.4pt; margin-bottom:2.5pt;}
+    .block{padding:5.5pt 0;} .say{padding:6pt 9pt; margin-bottom:7pt;}
+    .say p{font-size:9.6pt; line-height:1.34;}
+    .rule3{margin-bottom:8pt;} .rule3 div{padding:5pt 8pt;} .rule3 p{font-size:8.2pt; line-height:1.28;}
+    header{padding-bottom:5pt; margin-bottom:8pt;}
+    table.ord{font-size:8pt;} table.ord td{padding:2.3pt 6pt 2.3pt 0;}
+    .decide{font-size:8pt; padding:4pt 6pt; margin-top:4pt;}
+    .grid div{padding:4pt 7pt 4.5pt 0;} .grid p{font-size:8.2pt; line-height:1.26;}
+    .links{margin-top:8pt; padding-top:6pt;} .lgrid p{font-size:8.2pt; line-height:1.26;}
+    ul{padding-left:10pt;} li{margin-bottom:1.8pt;}
+  }
+
+  /* step cards */
+  .pre{background:var(--wash); border:1.2pt solid var(--gold); padding:10pt 13pt; margin:0 0 13pt;}
+  .pre h3{font-family:"Avenir Next",Avenir,sans-serif; font-size:9pt; color:var(--navy); margin:0 0 6pt; font-weight:600;}
+  .pre ol{margin:0; padding-left:0; list-style:none; counter-reset:pre;}
+  .pre li{counter-increment:pre; margin:0 0 5pt; padding-left:22pt; position:relative; font-size:10pt; line-height:1.4;}
+  .pre li::before{content:counter(pre); position:absolute; left:0; top:0.5pt;
+    font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt; font-weight:600; color:#fff;
+    background:var(--gold); width:14pt; height:14pt; border-radius:99px; text-align:center; line-height:14pt;}
+  .pre li:last-child{margin-bottom:0;}
+
+  .st{display:grid; grid-template-columns:46pt 1fr; gap:12pt; padding:11pt 0;
+      border-top:.8pt solid var(--rule); break-inside:avoid; page-break-inside:avoid;}
+  .st.one{border-top:1.6pt solid var(--navy);}
+  .st .n{font-family:"Avenir Next",Avenir,sans-serif; font-size:27pt; font-weight:600;
+    color:var(--navy); line-height:.86; letter-spacing:-.03em;}
+  .st .n small{display:block; font-size:8pt; font-weight:600; color:var(--gold);
+    letter-spacing:.07em; margin-top:4pt; line-height:1.3;}
+  .st h2{font-size:14pt; margin:0 0 6pt;}
+  .st .do{margin:0 0 6pt; font-size:10pt; line-height:1.45;}
+  .sayb{border-left:3pt solid var(--gold); background:var(--wash); padding:7pt 11pt; margin:0 0 6pt;}
+  .sayb p{margin:0 0 5pt; font-size:10.6pt; line-height:1.42; font-style:italic; color:#23292F;}
+  .sayb p:last-child{margin:0;}
+  .sayb p b{font-style:normal;}
+  .sayb .lbl{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:600;
+    margin-bottom:5pt; font-style:normal;}
+  .done{font-family:"Avenir Next",Avenir,sans-serif; font-size:9pt; color:var(--navy);
+    background:#EDEAE1; padding:5pt 9pt; display:block;}
+  .done b{color:var(--gold); letter-spacing:.08em; text-transform:uppercase; font-size:6.8pt; margin-right:6pt;}
+  @media screen and (max-width:720px){
+    .st{grid-template-columns:34pt 1fr; gap:9px;}
+    .st .n{font-size:24px;} .st .n small{font-size:10.5px;}
+    .st h2{font-size:18px;} .st .do{font-size:15px;}
+    .sayb p{font-size:16px;} .done{font-size:13.5px;} .done b{font-size:10.5px;}
+    .pre li{font-size:15px;}
+  }
 </style></head><body>
 
 <header>
   <div>
-    <p class="eyebrow">Wall Street Warriors · Thursday October 1 · fishbowl</p>
-    <h1>Vote and place — 1:30 to 2:05</h1>
+    <p class="eyebrow">Thursday October 1 · the fishbowl · just for you</p>
+    <h1>Seven steps</h1>
   </div>
   <div class="who">
-    <b>For you. Team version: <a href="oct1.html" style="color:#9A7326">oct1.html</a> · <a href="now.html" style="color:#9A7326">now.html</a></b><br>
-    Lunch 1:30–2:10 · market closes 3:00<br>
-    You place the orders in between
+    <b>1:35 to 2:05 at the table</b><br>
+    Then you place, alone, by 3:00<br>
+    Team copy: <a href="oct1.html">oct1.html</a>
   </div>
 </header>
 
-<div class="me">
-  <span class="k">Before you walk in — four things, two minutes</span>
-  <p><b>1.</b> Attach the PDF to the chat tonight, not the link. It is on your Desktop in <b>School/</b>.</p>
-  <p><b>2.</b> Post the ETF overlap answer to Coach P. He asked Tuesday morning and it is the only thing he has ever asked that got silence.</p>
-  <p><b>3.</b> Text Caleb directly tonight. He said "Ok will" about his two stocks on Tuesday afternoon and has sent nothing since.</p>
-  <p><b>4.</b> Have WInS already open in a tab before lunch ends. You have <b>50 minutes</b> between 2:10 and the 3:00 close and you do not want to spend five of them logging in.</p>
+<div class="pre">
+  <h3>Tonight, before you sleep — three things</h3>
+  <ol>
+    <li>Attach <b>Wall Street Warriors - Oct 1 agenda.pdf</b> to the group chat. It is on your Desktop in School/.</li>
+    <li>Text Caleb directly. Not the group. He said "Ok will" on Tuesday and has sent nothing.</li>
+    <li>Paste the ETF overlap answer to Coach P. It is the one question he has asked that got silence.</li>
+  </ol>
 </div>
 
-<div class="me">
-  <span class="k">Read this before anything else — why the card matters</span>
-  <p>You asked what the point of the trade card is if you are just going to place everything anyway. Fair question. The card does <b>two</b> things, and only one of them is voting.</p>
-  <p><b>One: it is how a yes gets recorded without a meeting.</b> That is the part you can skip tomorrow, because you <i>are</i> meeting.</p>
-  <p><b>Two: it is the graded deliverable.</b> On Oct 23 you submit three Trading Notes from real executed trades plus a 100-word reflection on each. Wharton verifies the trades. The note is what you type into WInS when you place the order, and the card is where the reasoning gets written down <b>while you still remember it</b>. Skip the cards and on Oct 22 you will be reconstructing why you bought NVDA from memory. That is the whole reason it exists.</p>
-  <p>So tomorrow: the <b>meeting</b> does the voting, and you write the <b>cards</b> as you place. Not before. Not instead.</p>
-</div>
-
-<div class="rule3">
-  <div><span>The one fact that decides tomorrow</span><p>Lunch ends <b>2:10</b>. Market closes <b>3:00</b>. You have <b>50 minutes</b> to place. Meeting tomorrow is <b>faster</b> than voting in the chat, which would not clear until Friday.</p></div>
-  <div><span>What is actually left</span><p><b>Federico is the only one who has not presented.</b> The other eight names are posted with full numbers. This is not a research meeting.</p></div>
-  <div><span>Be honest about this</span><p><b>All ten names fit the budget.</b> Ten × $6,000 is $60,000 and you have $64,313. Nothing gets cut. The vote is a safety check, not a competition.</p></div>
-</div>
-
-<div class="me">
-  <span class="k">Your worry, answered</span>
-  <p>You said you think people will just pick whatever because they do not care. You are half right, and the reason is arithmetic, not attitude. <b>Every name fits.</b> There is no scarcity, so there is nothing to argue about, and people can feel that a vote with no tradeoff is theatre.</p>
-  <p>So do not pretend it is a cut. Say out loud that everything fits and the only question is whether a name <b>breaks a rule</b> or is <b>obviously wrong</b>. That turns a fake thirty-minute debate into a real ten-minute check, and people engage with it because it is honest.</p>
-  <p>If you ever want a vote with real stakes, the move is to size by conviction instead of equally — six names at $7,500 and four at $4,500. <b>Do not do that tomorrow.</b> You are behind and demoralised; equal sizing is the right call this week.</p>
-</div>
-
-<div class="say">
-  <span class="k">Send this to the Google Chat tonight</span>
-  <div class="copy">
-    <span class="tag">copy from here</span>
-    <p>Tomorrow, lunch, fishbowl. We start at 1:35 and we are done by 2:05.</p>
-    <p>What happens: Federico presents his two, we vote on all the names, and I place every approved order before the market closes at 3. By tomorrow afternoon we own a real portfolio instead of talking about one.</p>
-    <p>Nothing to prepare except Federico. Everyone else already posted their numbers, so do not build anything.</p>
-    <p>Caleb, I need your two financials names tonight. Five numbers each off Yahoo Finance, same seven bullets as everyone used. If they are not in by lunch we vote without them and your $12,000 just waits until they are.</p>
-    <p>Agenda is attached.</p>
-  </div>
-  <p style="margin:7pt 0 0; font-size:8.6pt; color:var(--muted); font-family:'Avenir Next',Avenir,sans-serif;">
-    Attach <b style="color:var(--navy)">Wall Street Warriors - Oct 1 agenda.pdf</b> from your Desktop, in School/.
-    If someone would rather have a link, it is screenstakes.github.io/wall-street-warriors/oct1.html</p>
-  <div style="display:none">
-  </div>
-</div>
-
-<div class="block first">
-  <div class="time"><span class="t">1:35</span><span class="d">3 min</span></div>
-  <div class="body">
-    <h2>Frame it. Do not apologise twice.</h2>
-    <div class="script">
-      <b>Say:</b> Tuesday was disorganised and that is on me, I did not have an agenda. Today I do. Thirty minutes, we vote, I place the orders before three. After today the hard part is behind us and this becomes maintenance.
-      <br><br><b>Then:</b> Everything we are voting on fits the budget, so nothing is getting cut. The only question on each name is whether it breaks a rule or is obviously wrong. If you have no objection, say nothing and we move.
+<div class="st one">
+  <div class="n">1<small>1:35<br>3 MIN</small></div>
+  <div>
+    <h2>Start it</h2>
+    <p class="do">Everyone sits down. You talk first and you do not hand the floor to anyone yet.</p>
+    <div class="sayb">
+      <span class="lbl">Say</span>
+      <p>Tuesday was disorganised and that is on me, I did not have an agenda. Today I do. Thirty minutes, we vote, I place the orders before three.</p>
+      <p>Everything we are voting on fits the budget, so nothing is getting cut. The only question on each name is whether it breaks a rule or is obviously wrong. No objection, say nothing, we move.</p>
     </div>
-    <div class="decide"><i>Do not</i> relitigate Tuesday, ask how everyone feels, or explain the piles again. You own the frame for ninety seconds, then you start.</div>
+    <span class="done"><b>Done when</b> nobody is still talking about Tuesday.</span>
   </div>
 </div>
 
-<div class="block">
-  <div class="time"><span class="t">1:38</span><span class="d">5 min</span></div>
-  <div class="body">
-    <h2>Federico — the last presentation</h2>
-    <ul>
-      <li>AMZN and BKNG. His numbers are already in the chat, so this is him walking them, not reading them out.</li>
-      <li>Five minutes, then questions. He is the last person who owes a pitch.</li>
-    </ul>
-    <div class="script"><b>Say:</b> Federico you are the last one, five minutes, then we vote on everything.</div>
-  </div>
-</div>
-
-<div class="block">
-  <div class="time"><span class="t">1:43</span><span class="d">12 min</span></div>
-  <div class="body">
-    <h2>Vote the names</h2>
-    <table class="ord">
-      <tr><th>#</th><th>Ticker</th><th>Pitched by</th><th>Sector</th><th style="text-align:right">Size</th><th>Vote</th></tr>
-      <tr><td class="n">1</td><td class="tk">GOOG</td><td>Michael</td><td>Tech</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">2</td><td class="tk">NVDA</td><td>Michael</td><td>Tech</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">3</td><td class="tk">JNJ</td><td>Joe</td><td>Health</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">4</td><td class="tk">MDT</td><td>Joe</td><td>Health</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">5</td><td class="tk">GEV</td><td>Dylan</td><td>Industrials</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">6</td><td class="tk">ETN</td><td>Dylan</td><td>Industrials</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">7</td><td class="tk">AMZN</td><td>Federico</td><td>Consumer</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr><td class="n">8</td><td class="tk">BKNG</td><td>Federico</td><td>Consumer</td><td class="n">$6,000</td><td>&nbsp;</td></tr>
-      <tr class="sub"><td class="n">9–10</td><td class="tk">?</td><td>Caleb</td><td>Finance</td><td class="n">$12,000</td><td>only if sent</td></tr>
-      <tr class="tot"><td></td><td>approved</td><td>needs 3 of 5 each</td><td></td><td class="n">$48,000</td><td></td></tr>
-    </table>
-    <div class="script"><b>Run it like this:</b> ticker, who pitched it, "any objection?", pause two seconds, next. Do not invite discussion — invite objections. An objection has to be a sentence, not a vibe.</div>
-    <div class="decide"><i>Hard rule, say it once</i> <b>No crypto, no leveraged or inverse funds, no options, no shorting.</b> Wharton bans all four outright. CONI and SNDQ in the practice round were exactly this.</div>
-  </div>
-</div>
-
-<div class="block">
-  <div class="time"><span class="t">1:55</span><span class="d">6 min</span></div>
-  <div class="body">
-    <h2>The core portfolio — this one needs 4 of 5</h2>
-    <p style="margin:0 0 4pt">Your own pinned rule: <b>4 of 5 for anything over 10% of the portfolio or a new kind of investment.</b> Four of these trip it, so this is a real vote, not a formality.</p>
-    <table class="ord">
-      <tr><th>What</th><th>How much</th><th style="text-align:right">About</th><th style="text-align:right">% port</th><th>Needs</th></tr>
-      <tr><td class="tk">VOO</td><td>84 shares</td><td class="n">$59,706</td><td class="n">19.9%</td><td>4 of 5</td></tr>
-      <tr><td class="tk">VEA</td><td>417 shares</td><td class="n">$29,957</td><td class="n">10.0%</td><td>3 of 5</td></tr>
-      <tr><td class="tk">T‑bond 5.375% Feb 2031</td><td>35 units</td><td class="n">$35,600</td><td class="n">11.9%</td><td>4 of 5</td></tr>
-      <tr><td class="tk">T‑bond 4.500% Feb 2036</td><td>37 units</td><td class="n">$35,200</td><td class="n">11.7%</td><td>4 of 5</td></tr>
-      <tr><td class="tk">BIL</td><td>820 shares</td><td class="n">$75,128</td><td class="n">25.0%</td><td>4 of 5</td></tr>
-      <tr class="tot"><td>5 orders</td><td>+ $95 commissions</td><td class="n">$235,687</td><td class="n">79%</td><td></td></tr>
-    </table>
-    <div class="script"><b>Say, and do not soften it:</b> Nobody has actually voted on these. They were in the deck on the 27th as my proposal and we never got to a vote, so this is the real decision.
-    <br><br><b>Then the sixty seconds that matter:</b> VOO is the 500 biggest US companies at 0.03%. VEA is developed markets outside the US at 0.06%, and it is there because Laura's building is in Taiwan while the portfolio is in dollars, so some non-US exposure hedges that. The alternatives were VTI instead of VOO, which is basically a tie, and VXUS instead of VEA, which adds emerging markets and more volatility than she needs. If anyone wants a different fund, now is the cheap time to say it.
-    <br><br><b>Then:</b> Bonds cover Laura's ten payments, the funds grow the rest, BIL is the reserve. Four yeses because most of these are over ten percent. Hands up.</div>
-    <div class="me" style="margin-top:7pt">
-      <span class="k">Why this one is worth getting right</span>
-      <p>VOO and VEA together are <b>$89,664</b> — about <b>fifteen times</b> the size of any single stock name you are voting on. They have had the least scrutiny of anything in the portfolio. This is also exactly what Coach P asked for on Sep 24 when he said he had not seen how the portfolio would be constructed.</p>
-      <p>Do not buy SPY. Same index as VOO at roughly three times the fee. That is the one answer here that is simply wrong.</p>
+<div class="st">
+  <div class="n">2<small>1:38<br>5 MIN</small></div>
+  <div>
+    <h2>Federico presents</h2>
+    <p class="do">He is the last person who owes a pitch. AMZN and BKNG. His numbers are already in the chat.</p>
+    <div class="sayb">
+      <span class="lbl">Say</span>
+      <p>Federico, you are the last one. Five minutes, then we vote on everything.</p>
     </div>
-    <div class="decide"><i>If Dylan raises VOO at 20%</i> He is right to and it is in his bear case. Answer it: the bonds already cover her payments, so this block is building money with a seven year runway, and VOO is the cheapest way to hold it at 0.03%. Then <b>Federico writes the ruling in the minutes.</b> Do not leave it unanswered.</div>
+    <span class="done"><b>Done when</b> he has walked both names.</span>
   </div>
 </div>
 
-<div class="block">
-  <div class="time"><span class="t">2:01</span><span class="d">4 min</span></div>
-  <div class="body">
-    <h2>Roster, then get out</h2>
-    <div class="owns">
-      <div class="grid">
-        <div><span>Everyone, out loud</span><p><b>Birthday</b> and an email you check. Type it as they say it. Roster due <b>Oct 9</b>.</p></div>
-        <div><span>You</span><p>Place everything by <b>3:00</b>. Write the Trading Note in WInS as you place each one.</p></div>
-        <div><span>Federico</span><p>Minutes today, including the VOO ruling. <b>Coach P asked for these.</b></p></div>
-        <div><span>Dylan</span><p>One bear case on the whole opening portfolio.</p></div>
-        <div><span>Joe</span><p>Checks the confirmations against the approved list.</p></div>
-        <div><span>Caleb</span><p>Two financials names, five numbers, Yahoo, <b>by Friday</b>.</p></div>
-      </div>
-    </div>
-    <div class="script"><b>Last line:</b> I am placing all of this before three. I will post every confirmation in the chat. Check that yours is right.</div>
-  </div>
-</div>
-
-<div class="block">
-  <div class="time"><span class="t">2:10</span><span class="d"><i>to 3:00</i></span></div>
-  <div class="body">
-    <h2>You, alone, placing</h2>
-    <ul>
-      <li><b>Keep the dollar target, change the share count</b> if a price moved. $59,706 of VOO matters; 84 shares does not.</li>
-      <li>Bond quantity is <b>units of $1,000 face</b> — 35, not 35000. Type dropdown must say <b>Treasury</b>, never Corporate.</li>
-      <li>WInS runs on a <b>15–20 minute delay</b>. A blank fill price is normal. Do not re-place an order because you cannot see it yet.</li>
-      <li><b>Write the Trading Note in WInS as you go.</b> One or two sentences on why. Three of these get submitted Oct 23 and Wharton checks them against real trades.</li>
-    </ul>
+<div class="st">
+  <div class="n">3<small>1:43<br>12 MIN</small></div>
+  <div>
+    <h2>Go down the eight</h2>
+    <p class="do">One at a time. Ticker, who pitched it, "any objection?", <b>count to two in your head</b>, next. Do not open a discussion — ask for objections. An objection has to be a sentence.</p>
     <table class="ord">
-      <tr><th>Running total</th><th></th><th style="text-align:right">$</th><th style="text-align:right">% of port</th></tr>
-      <tr><td>core five</td><td>+ $95 commissions</td><td class="n">$235,687</td><td class="n">79.2%</td></tr>
-      <tr><td>eight names</td><td>+ $200 commissions</td><td class="n">$48,200</td><td class="n">16.1%</td></tr>
-      <tr><td>held for Caleb</td><td>two slots</td><td class="n">$16,113</td><td class="n">5.4%</td></tr>
-      <tr class="tot"><td>placed by 3:00</td><td>13 orders</td><td class="n">$283,887</td><td class="n">94.6%</td></tr>
+      <tr><th>#</th><th>Say this</th><th style="text-align:right">Yes / no</th></tr>
+      <tr><td class="n">1</td><td><b>GOOG</b>, mine. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">2</td><td><b>NVDA</b>, mine. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">3</td><td><b>JNJ</b>, Joe's. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">4</td><td><b>MDT</b>, Joe's. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">5</td><td><b>GEV</b>, Dylan's. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">6</td><td><b>ETN</b>, Dylan's. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">7</td><td><b>AMZN</b>, Federico's. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr><td class="n">8</td><td><b>BKNG</b>, Federico's. Any objection?</td><td class="n">&nbsp;</td></tr>
+      <tr class="tot"><td></td><td>Each needs 3 of 5. $6,000 each.</td><td class="n">$48,000</td></tr>
     </table>
+    <span class="done"><b>Done when</b> all eight have a tick or a cross next to them.</span>
   </div>
 </div>
 
-<div class="me">
-  <span class="k">After tomorrow — Coach P's Google Form idea</span>
-  <p>He is right and it solves the Caleb problem structurally. A plain Google Form is ordinary Workspace, not Cloud, so the under-18 block does not touch it. Responses land in a sheet and you stop copy-pasting.</p>
-  <p>Eight questions: <b>Your name</b> (dropdown) · <b>Ticker</b> · <b>What it does, one sentence</b> · <b>Revenue growth YoY</b> · <b>Profit margin</b> · <b>Trailing P/E and the sector normal</b> · <b>Debt to equity</b> · <b>The one thing that could go wrong</b> · <b>How it helps Laura's payments from 2033</b>. Make every field required.</p>
-  <p>The real win is not tidiness. <b>A form is pass or fail.</b> Caleb cannot submit a screenshot of a chart and call it done, and you can see at a glance who has not filed. Build it this weekend, not tonight.</p>
+<div class="st">
+  <div class="n">4<small>1:55<br>6 MIN</small></div>
+  <div>
+    <h2>The big vote</h2>
+    <p class="do">This is the only real vote of the day. It needs <b>four yeses</b>, not three, because most of it is over 10% of the portfolio.</p>
+    <div class="sayb">
+      <span class="lbl">Say — and do not soften it</span>
+      <p>Nobody has actually voted on these. They were in the deck on the 27th as my proposal and we never got to a vote.</p>
+      <p>VOO is the 500 biggest US companies at 0.03%. VEA is developed markets outside the US — it is there because Laura's building is in Taiwan while our money is in dollars. The alternatives were VTI instead of VOO, basically a tie, and VXUS instead of VEA, which adds emerging markets and more swing than she needs. <b>If you want a different fund, now is the cheap time to say it.</b></p>
+      <p>Bonds cover Laura's ten payments, the funds grow the rest, BIL is the reserve. Four yeses. Hands up.</p>
+    </div>
+    <table class="ord">
+      <tr><th>Buy</th><th>How much</th><th style="text-align:right">About</th></tr>
+      <tr><td class="tk">VOO</td><td>84 shares</td><td class="n">$59,706</td></tr>
+      <tr><td class="tk">VEA</td><td>417 shares</td><td class="n">$29,957</td></tr>
+      <tr><td class="tk">T‑bond 5.375% Feb 2031</td><td>35 units</td><td class="n">$35,600</td></tr>
+      <tr><td class="tk">T‑bond 4.500% Feb 2036</td><td>37 units</td><td class="n">$35,200</td></tr>
+      <tr><td class="tk">BIL</td><td>820 shares</td><td class="n">$75,128</td></tr>
+      <tr class="tot"><td>5 orders</td><td>+ $95 commissions</td><td class="n">$235,687</td></tr>
+    </table>
+    <span class="done"><b>Done when</b> you have counted four hands out loud.</span>
+  </div>
+</div>
+
+<div class="st">
+  <div class="n">5<small>2:01<br>4 MIN</small></div>
+  <div>
+    <h2>Go around for birthdays</h2>
+    <p class="do">Phone out, type as they talk. <b>Birthday and an email they actually check.</b> Roster is due Oct 9 and this is the easy way to get it.</p>
+    <div class="sayb">
+      <span class="lbl">Say</span>
+      <p>Last thing. Birthday and an email you actually check. Going around the table, I am typing it now.</p>
+    </div>
+    <span class="done"><b>Done when</b> you have five birthdays and five emails in your phone.</span>
+  </div>
+</div>
+
+<div class="st">
+  <div class="n">6<small>2:05<br>30 SEC</small></div>
+  <div>
+    <h2>Close it</h2>
+    <div class="sayb">
+      <span class="lbl">Say</span>
+      <p>I am placing all of this before three. I will post every confirmation in the chat — check that yours is right.</p>
+      <p>Federico, minutes today, Coach P asked for them. Dylan, one bear case on the whole portfolio. Caleb, your two names by Friday.</p>
+    </div>
+    <span class="done"><b>Done when</b> everyone leaves owing exactly one thing.</span>
+  </div>
+</div>
+
+<div class="st">
+  <div class="n">7<small>2:10<br>TO 3:00</small></div>
+  <div>
+    <h2>You place, alone</h2>
+    <p class="do">Fifty minutes, thirteen orders. <b>Do the five funds and bonds first</b>, then the eight stocks. Write a one-line Trading Note in WInS as each one goes in — three of those get submitted on Oct 23 and Wharton checks them against the account.</p>
+    <table class="ord">
+      <tr><th>Order</th><th>What</th><th style="text-align:right">Target $</th></tr>
+      <tr><td class="n">1–2</td><td class="tk">VOO 84 sh, VEA 417 sh</td><td class="n">$89,663</td></tr>
+      <tr><td class="n">3–4</td><td class="tk">T‑bond Feb 2031 × 35, Feb 2036 × 37</td><td class="n">$70,800</td></tr>
+      <tr><td class="n">5</td><td class="tk">BIL 820 sh</td><td class="n">$75,128</td></tr>
+      <tr><td class="n">6–13</td><td class="tk">The eight approved names</td><td class="n">$6,000 ea</td></tr>
+      <tr class="tot"><td>13 orders</td><td>cash left $16,113, held for Caleb's two</td><td class="n">$283,887</td></tr>
+    </table>
+    <div class="decide"><i>Four things that go wrong</i>
+      <b>1.</b> If a price moved, keep the <b>dollar</b> target and change the share count.
+      <b>2.</b> Bond quantity is units of $1,000 face — type <b>35</b>, not 35000.
+      <b>3.</b> The type dropdown must say <b>Treasury</b>, never Corporate.
+      <b>4.</b> WInS runs 15–20 minutes behind. A blank fill price is normal — <b>do not place it again.</b></div>
+    <span class="done"><b>Done when</b> thirteen confirmations are posted in the chat.</span>
+  </div>
 </div>
 
 <div class="links">
-  <h3>Still owed to Coach P</h3>
+  <h3>If it goes sideways</h3>
   <div class="lgrid">
-    <div><h4>The ETF overlap answer</h4><p>He asked Tuesday 8:06am. VOO and VEA overlap near zero — VEA excludes the US. The real overlap is VOO against your own picks: all eight are S&P 500 members, so $59,706 of VOO already holds ~$4,478 NVDA, ~$2,388 GOOG, ~$2,388 AMZN. Worst combined is NVDA at ~3.5%, inside your 5% cap.</p></div>
-    <div><h4>Meeting notes</h4><p>He asked today. The Fathom link is a recording, not minutes. Federico owns the Minutes tab — that is the thing to send.</p></div>
-    <div><h4>Open during the meeting</h4><p><a href="strategy.html" target="_blank"><b>Strategy deck</b></a> · <a href="guide.html" target="_blank">Guide</a> · <a href="case.html" target="_blank">Case study</a></p></div>
+    <div><h4>Nobody objects to anything</h4><p>Good. That is the expected outcome — everything fits the budget. Move faster, do not fish for debate.</p></div>
+    <div><h4>You only get three hands on step 4</h4><p>Place the eight stocks anyway, and get the fourth yes in the chat tonight. The funds can go in Friday.</p></div>
+    <div><h4>It runs long</h4><p>Cut step 5. Collect birthdays in the chat. Never cut step 4.</p></div>
   </div>
 </div>
 </body></html>
