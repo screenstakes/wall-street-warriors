@@ -1,0 +1,397 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sunday October 4 — Wall Street Warriors</title>
+<style>
+  @page { size: letter; margin: 0.5in; }
+  :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
+         --ground:#FCFAF6; --rule:#DED6C6; --wash:#F4EFE4; --link:#1F4E8C; }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--ground); color:var(--ink);
+       font-family:Charter,"Iowan Old Style",Georgia,serif; font-size:10.2pt; line-height:1.44;}
+  a{color:var(--link); text-decoration:none; border-bottom:.5pt solid rgba(31,78,140,.4);}
+  .sans{font-family:"Avenir Next",Avenir,"Helvetica Neue",sans-serif;}
+
+  header{border-bottom:1.6pt solid var(--navy); padding-bottom:7pt; margin-bottom:10pt;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16pt;}
+  .eyebrow{font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  h1{font-size:19pt; line-height:1.03; margin:0; color:var(--navy); font-weight:600; letter-spacing:-.012em;}
+  .who{font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt; color:var(--muted);
+    text-align:right; line-height:1.55;}
+  .who b{color:var(--navy); font-weight:600;}
+
+  .say{background:var(--wash); border-left:2.5pt solid var(--gold); padding:8pt 11pt; margin:0 0 9pt;}
+  .say .k{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:4pt;}
+  .say p{margin:0 0 4pt; font-size:10.6pt; line-height:1.4;}
+  .say p:last-child{margin-bottom:0;}
+  .say b{color:var(--navy);}
+
+  .owns{margin:0 0 10pt;}
+  .owns .cap{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.2pt; color:var(--navy);
+    font-weight:600; margin:0 0 4pt;}
+  .owns .cap span{font-weight:400; color:var(--muted);}
+  .grid{display:flex; border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);}
+  .grid div{flex:1; padding:5pt 8pt 6pt 0;}
+  .grid div + div{border-left:.6pt solid var(--rule); padding-left:8pt;}
+  .grid span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;
+    min-height:2.1em;}
+  .grid p{margin:0; font-size:8.8pt; line-height:1.3;}
+  .grid .out span{color:var(--muted);}
+  .grid .out p{color:var(--muted); font-style:italic;}
+
+  .block{display:flex; gap:11pt; padding:7.5pt 0; border-top:.6pt solid var(--rule); break-inside:avoid; page-break-inside:avoid;}
+  .block.first{border-top:1pt solid var(--navy);}
+  .time{flex:0 0 54pt; font-family:"Avenir Next",Avenir,sans-serif; padding-top:1pt;}
+  .time .t{display:block; font-size:11.5pt; font-weight:600; color:var(--navy); letter-spacing:-.01em;}
+  .time .d{display:block; font-size:7pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-top:1pt;}
+  .body{flex:1; min-width:0;}
+  h2{font-size:12.6pt; margin:0 0 3.5pt; color:var(--navy); font-weight:600; letter-spacing:-.01em;}
+  ul{margin:0; padding-left:11pt;}
+  li{margin:0 0 2.5pt;}
+  li::marker{color:var(--gold);}
+  b{color:var(--navy); font-weight:600;}
+  .decide{margin-top:5pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    background:var(--wash); padding:5pt 7pt; border-left:2pt solid var(--navy);}
+  .decide i{font-style:normal; font-weight:600; color:var(--gold); letter-spacing:.1em;
+    text-transform:uppercase; font-size:6.8pt; margin-right:5pt;}
+
+  .card{margin-top:5pt; border:.6pt solid var(--rule); background:#fff; padding:6pt 9pt;
+    font-family:"SF Mono",Menlo,Consolas,monospace; font-size:8pt; line-height:1.68;}
+  .card k{color:var(--gold); font-weight:600; display:inline-block; width:58pt;}
+  .card n{color:var(--muted); font-style:italic;}
+
+  ol{margin:0; padding-left:13pt;}
+  ol li{margin:0 0 2.5pt;}
+  ol li::marker{color:var(--gold); font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt;}
+
+  .week{display:flex; gap:9pt;}
+  .week div{flex:1; border-top:2pt solid var(--gold); padding-top:5pt;}
+  .week span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt;
+    font-weight:600; color:var(--navy); margin-bottom:2pt;}
+  .week p{margin:0; font-size:8.8pt; line-height:1.32;}
+
+  .links{border-top:1pt solid var(--navy); margin-top:12pt; padding-top:8pt;}
+  .links h3{font-family:"Avenir Next",Avenir,sans-serif; font-size:9pt; color:var(--navy);
+    margin:0 0 6pt; font-weight:600;}
+  .lgrid{display:flex; gap:14pt;}
+  .lgrid > div{flex:1;}
+  .lgrid h4{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  .lgrid p{margin:0 0 3pt; font-size:8.8pt; line-height:1.32;}
+  .lgrid p em{font-style:normal; color:var(--muted); font-size:8pt;}
+
+
+  .pb{break-before:page;}
+  .secthead{border-bottom:1.6pt solid var(--navy); padding-bottom:6pt; margin-bottom:9pt;}
+  .secthead h2{font-size:17pt; margin:0 0 2pt;}
+  .secthead p{margin:0; font-size:9pt; color:var(--muted); font-family:"Avenir Next",Avenir,sans-serif;}
+  .rule3{display:flex; gap:9pt; margin:0 0 11pt;}
+  .rule3 div{flex:1; background:var(--wash); border-left:2.5pt solid var(--gold); padding:6pt 9pt;}
+  .rule3 span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;}
+  .rule3 p{margin:0; font-size:9pt; line-height:1.33;}
+  .rule3 b{color:var(--navy);}
+
+  .subh{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; font-weight:600;
+    color:var(--navy); margin:0 0 5pt; padding-bottom:3pt; border-bottom:.6pt solid var(--rule);}
+  .subh em{font-style:normal; font-weight:400; color:var(--muted);}
+
+  .sec{display:flex; align-items:baseline; gap:9pt; padding:5.5pt 0 5.5pt 8pt;
+    border-bottom:.6pt solid var(--rule); border-left:2.5pt solid var(--gold);}
+  .sec .nm{flex:0 0 118pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:9.4pt;
+    font-weight:600; color:var(--navy); line-height:1.25;}
+  .sec .ds{flex:1; font-size:9.2pt; line-height:1.34;}
+  .sec .ds i{font-style:normal; color:var(--muted);}
+  .sec .ow{flex:0 0 92pt; text-align:right; font-family:"Avenir Next",Avenir,sans-serif;
+    font-size:8.6pt; font-weight:600; color:var(--gold); line-height:1.25;}
+  .sec .ow em{display:block; font-style:normal; font-weight:400; font-size:7.4pt; color:var(--muted);}
+
+  .open{display:flex; flex-wrap:wrap; gap:0;}
+  .open > div{width:50%; display:flex; align-items:baseline; gap:7pt; padding:4.5pt 10pt 4.5pt 0;
+    border-bottom:.6pt solid var(--rule);}
+  .open .nm{flex:0 0 96pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    font-weight:600; color:var(--muted); line-height:1.25;}
+  .open .ds{flex:1; font-size:8.6pt; line-height:1.3; color:#3D4650;}
+  .open .ds i{font-style:normal; color:var(--muted);}
+
+  .gotcha{margin-top:10pt; border:.6pt solid var(--rule); background:#fff; padding:7pt 10pt;}
+  .gotcha span{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:3pt;}
+  .gotcha p{margin:0 0 4pt; font-size:9.2pt; line-height:1.36;}
+  .gotcha p:last-child{margin-bottom:0;}
+  .card,.decide,.week,.grid,.rule3,.gotcha,.lgrid,.sec,.owns,.say,.secthead,.open{break-inside:avoid; page-break-inside:avoid;}
+  .open > div{break-inside:avoid; page-break-inside:avoid;}
+  h2,h3,.subh{break-after:avoid; page-break-after:avoid;}
+  .superseded{border:1px solid var(--gold); background:var(--wash); border-radius:10px;
+    padding:9pt 12pt; margin:0 0 12pt;}
+  .superseded .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.6pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .superseded p{margin:0; font-size:9.6pt; line-height:1.4;}
+  footer{margin-top:9pt; padding-top:6pt; border-top:.6pt solid var(--rule);
+    font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt; color:var(--muted);
+    display:flex; justify-content:space-between;}
+
+  /* ---- screen + phone. Kept last: earlier rules would otherwise win. ---- */
+  @media screen {
+    body{ padding: 22px clamp(14px,4vw,40px) 40px; max-width: 8.5in; margin: 0 auto; }
+  }
+  @media screen and (max-width: 720px) {
+    body{ font-size: 15px; line-height: 1.5; padding: 16px 16px 40px; }
+    header{ display:block; }
+    .who{ text-align:left; margin-top:6px; font-size:12px; }
+    h1{ font-size: 26px; }
+    .say p{ font-size: 16px; }
+    .grid, .week, .lgrid, .rule3{ display:block; }
+    .grid > div, .week > div, .lgrid > div, .rule3 > div{
+      width:auto; border-left:0; padding-left:0; padding-right:0;
+      border-bottom:1px solid var(--rule); padding-top:8px; padding-bottom:8px; }
+    .rule3 > div{ border-left:3px solid var(--gold); padding-left:10px; margin-bottom:8px;
+      border-bottom:0; }
+    .week > div{ border-top:2px solid var(--gold); border-bottom:0; margin-bottom:8px; }
+    .grid{ border-top:0; }
+    .block{ display:block; }
+    .time{ margin-bottom:4px; }
+    .time .t{ display:inline; font-size:17px; }
+    .time .d{ display:inline; margin-left:8px; font-size:11px; }
+    .time .d br{ display:none; }
+    h2{ font-size: 19px; }
+    ul, ol{ padding-left: 18px; }
+    li{ margin-bottom: 7px; }
+    .card{ font-size: 12px; overflow-x:auto; }
+    .card k{ width:74px; }
+    .sec{ display:block; padding:9px 0 9px 10px; }
+    .sec .nm, .sec .ds, .sec .ow{ flex:none; }
+    .sec .ow{ text-align:left; margin-top:3px; }
+    .sec .ow em{ display:inline; margin-left:6px; }
+    .open{ display:block; }
+    .open > div{ width:auto; display:block; padding:9px 0; }
+    .open .nm{ margin-bottom:2px; }
+    .lgrid p, .lgrid h4{ font-size:14px; }
+    .lgrid > div{ margin-bottom:10px; }
+    footer{ display:block; font-size:11px; }
+    footer span{ display:block; margin-bottom:4px; }
+    a{ padding: 1px 0; }
+    .eyebrow, .say .k, .grid span, .decide i, .rule3 span, .lgrid h4,
+    .gotcha span, .sec .ow em, .time .d, .secthead p, .who{ font-size: 11.5px; letter-spacing:.09em; }
+    .secthead p, .who{ letter-spacing:0; font-size:12.5px; }
+    .subh{ font-size: 13px; }
+    .owns .cap{ font-size: 13px; }
+  }
+
+  /* the opening order list */
+  table.ord{width:100%; border-collapse:collapse; margin-top:5pt; font-size:8.8pt;}
+  table.ord th{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; text-align:left;
+    border-bottom:.6pt solid var(--rule); padding:0 6pt 3pt 0;}
+  table.ord td{padding:3.2pt 6pt 3.2pt 0; border-bottom:.6pt solid var(--rule); vertical-align:baseline;}
+  table.ord td.n{font-family:"SF Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap;}
+  table.ord td.tk{font-family:"Avenir Next",Avenir,sans-serif; font-weight:600; color:var(--navy);}
+  table.ord tr.sub td{border-bottom:0; color:var(--muted); font-size:8.2pt; padding-top:5pt;}
+  table.ord tr.tot td{border-top:1pt solid var(--navy); border-bottom:0; font-weight:600; color:var(--navy); padding-top:5pt;}
+  .pl{display:inline-block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+    letter-spacing:.06em; text-transform:uppercase; font-weight:600; border-radius:99px; padding:2pt 5pt;}
+  .pl.a{background:#E6EAF2; color:#3C4A66;} .pl.b{background:#FAEED8; color:#6E4209;} .pl.c{background:#E4EBF7; color:#1E4B95;}
+  .time .d i{font-style:normal;}
+  .swap{border:1.2pt solid var(--gold); background:var(--wash); padding:8pt 11pt; margin:9pt 0;}
+  .swap .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .swap p{margin:0 0 4pt; font-size:10pt; line-height:1.4;} .swap p:last-child{margin:0;}
+  .vs{display:flex; gap:7pt; align-items:baseline; margin-top:4pt; flex-wrap:wrap;}
+  .vs .in,.vs .ch{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; padding:2.5pt 7pt; border-radius:3pt;}
+  .vs .in{background:#EDEAE1; color:var(--navy); font-weight:600;}
+  .vs .ch{border:.8pt dashed var(--gold); color:var(--gold); font-weight:600;}
+  .vs em{font-style:normal; color:var(--muted); font-size:8pt;}
+  @media screen and (max-width:720px){
+    table.ord{font-size:13px;} table.ord th{font-size:11px;}
+    table.ord td{padding:6px 6px 6px 0;} .swap p{font-size:15px;}
+    .vs .in,.vs .ch{font-size:13px;}
+    .swap .k{font-size:11.5px; letter-spacing:.09em;}
+    .time .d i::before{content:"\00a0\00b7\00a0";}
+    .pl{font-size:11px; letter-spacing:.06em; padding:3px 7px;}
+  }
+
+  /* just-for-Michael additions */
+  .me{background:#1C3557; color:#EFE9DC; padding:9pt 12pt; margin:0 0 10pt; border-radius:3pt;}
+  .me .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:#C6A961; font-weight:600; margin-bottom:4pt;}
+  .me p{margin:0 0 5pt; font-size:10pt; line-height:1.45; color:#EFE9DC;}
+  .me p:last-child{margin:0;} .me b{color:#fff;}
+  .copy{border:1.2pt dashed var(--gold); background:#fff; padding:9pt 12pt; margin:6pt 0 0;
+    font-size:9.6pt; line-height:1.5;}
+  .copy p{margin:0 0 7pt;} .copy p:last-child{margin:0;}
+  .copy .tag{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:6pt;}
+  .script{border-left:2.5pt solid var(--navy); padding:5pt 0 5pt 9pt; margin:5pt 0 0; font-size:10pt;
+    line-height:1.45; font-style:italic; color:#2E3742;}
+  .script b{font-style:normal;}
+  @media screen and (max-width:720px){
+    .me p,.copy{font-size:14.5px;} .script{font-size:14.5px;} .me .k,.copy .tag{font-size:11.5px;}
+  }
+
+  @media print{
+    body{font-size:9.2pt; line-height:1.34;}
+    h1{font-size:17pt;} h2{font-size:11.4pt; margin-bottom:2.5pt;}
+    .block{padding:5.5pt 0;} .say{padding:6pt 9pt; margin-bottom:7pt;}
+    .say p{font-size:9.6pt; line-height:1.34;}
+    .rule3{margin-bottom:8pt;} .rule3 div{padding:5pt 8pt;} .rule3 p{font-size:8.2pt; line-height:1.28;}
+    header{padding-bottom:5pt; margin-bottom:8pt;}
+    table.ord{font-size:8pt;} table.ord td{padding:2.3pt 6pt 2.3pt 0;}
+    .decide{font-size:8pt; padding:4pt 6pt; margin-top:4pt;}
+    .grid div{padding:4pt 7pt 4.5pt 0;} .grid p{font-size:8.2pt; line-height:1.26;}
+    .links{margin-top:8pt; padding-top:6pt;} .lgrid p{font-size:8.2pt; line-height:1.26;}
+    ul{padding-left:10pt;} li{margin-bottom:1.8pt;}
+  }
+</style></head><body>
+
+<header><div><p class="eyebrow">Weekly call · Sunday, October 4 · 8:00–9:00 CT</p><h1>We place the orders tonight</h1></div><div class="who"><b>Everyone</b><br>Zoom — Michael sends the link in the chat by 7:45<br>Nothing to prepare except Joe</div></header>
+<div class="say"><span class="k">What tonight is</span>
+<p><b>By nine o'clock we own a portfolio.</b></p>
+<p>The last three meetings ran out of meeting before they ran out of agenda, and all three failed the same way: we tried to collect opinions and make a decision in the same hour.</p>
+<p>The form already did the collecting. Voting closed at 6pm. So tonight is not a voting meeting — it is a read-the-result-and-place-the-orders meeting, and that is the only reason an hour is enough.</p>
+</div>
+<div class="rule3">
+<div><span>What changed</span><p>Voting closed at <b>6pm</b>. The result is already in. Tonight is not a vote.</p></div>
+<div><span>What is different about a Sunday</span><p>Orders placed while the market is shut <b>fill at Monday’s open</b>. We can place them on this call.</p></div>
+<div><span>Where we stand</span><p>Day 8 of trading. <b>$300,000, all of it still cash.</b></p></div>
+</div>
+<div class="block first">
+<div class="time"><span class="t">8:00</span><span class="d">3 min</span></div>
+<div class="body">
+<h2>Open, and the case against</h2>
+<ul>
+<li>Michael states the goal and nothing else. No recap of the week.</li>
+<li>Then <b>Dylan gets 60 seconds</b> to argue against the whole package before a single order goes in. That is his job on this team and it has not been used yet. It is also graded — criterion 4 is the decision process, and a plan that was never challenged scores worse than one that was.</li>
+</ul>
+<div class="decide"><i>Say it</i> One thing tonight. By nine we own a portfolio. We are not voting — voting closed at six. We are reading the result and placing the orders.</div>
+<div class="decide"><i>Done when</i> Everyone has heard the goal and Dylan has made his case.</div>
+</div></div>
+<div class="block">
+<div class="time"><span class="t">8:03</span><span class="d">7 min</span></div>
+<div class="body">
+<h2>The core five — the 79% we do not own</h2>
+<ul>
+<li>VOO, VEA, both Treasuries, BIL. <b>$235,687, 79% of the portfolio.</b> Needs 4 of 5 under our own rule.</li>
+<li>If it cleared: say so and move on. Do not re-litigate it.</li>
+<li><b>Dylan already has an objection on the table and it gets ruled on tonight either way.</b> He argued VOO should go in at 10% now and be revisited at the IPS, rather than 20% on day one. He is the only person who posted a case against <i>before</i> the vote, which is exactly how the process is supposed to work — so it gets a real answer, not a shrug. Either we change the number or we say why we are not, and it goes in the minutes.</li>
+<li>If it did not: name the one line somebody objected to, three minutes, re-vote live. <b>Then place everything that did clear and hold only the line that did not.</b> One objection to BIL is not a reason to own nothing.</li>
+</ul>
+<div class="decide"><i>Say it</i> Core five came back [N] of 5. That clears our own bar, so it goes in tonight.</div>
+<div class="decide"><i>Done when</i> Either it is going in tonight, or you can name the exact line that is blocked and why.</div>
+</div></div>
+<div class="block">
+<div class="time"><span class="t">8:10</span><span class="d">17 min</span></div>
+<div class="body">
+<h2>The ten names</h2>
+<ul>
+<li>Michael reads the approval list top to bottom. Anything at or above <b>3 of 5</b> is a buy.</li>
+<li>Unanimous names get zero seconds. Say the ticker, say 'in', move on.</li>
+<li>Split names get two minutes, and the person who voted against speaks first.</li>
+<li>A name nobody can agree on gets <b>held, not argued</b>. There are five more slots and ten more weeks.</li>
+</ul>
+<div class="decide"><i>Say it</i> Rule for this part: if a name voted four to nothing either way we skip it. Only the ones that split within one get two minutes. Otherwise we do not finish.</div>
+<div class="decide"><i>Done when</i> Every one of the ten is either BUY or HOLD and nobody is still talking.</div>
+</div></div>
+<div class="block">
+<div class="time"><span class="t">8:27</span><span class="d">18 min</span></div>
+<div class="body">
+<h2>Place the orders — screen shared</h2>
+<ul>
+<li><b>Everything except BIL goes in tonight.</b> BIL waits for Monday so it can absorb whatever the market does at the open — see the box above.</li>
+<li><b>Michael</b> shares the WInS screen and keys every order. Nobody else touches the account — there is one shared login.</li>
+<li><b>Joe</b> calls the share count before each one: floor of $6,000 divided by the live price, rounded <i>down</i>. Bonds are in units of $1,000 face — type 35, not 35000, and the dropdown must say Treasury.</li>
+<li><b>Federico</b> types the trading note into the Zoom chat as each order goes in; Michael pastes it into WInS. Notes cannot be edited after they are saved, and three of them are the whole Oct 23 deliverable.</li>
+<li><b>Dylan</b> watches for anything that contradicts what we just voted.</li>
+<li><b>Market orders only.</b> A limit order placed on a Sunday with the default one-day duration may expire against a session that never happened — Wharton’s own guide contradicts itself on this. Do not risk it.</li>
+<li>Bonds go <b>last</b>, on their own screen: Portfolio Simulation → Bonds. Quantity is in $1,000 units and the price excludes accrued interest and commission until you hit Review Order.</li>
+<li>A queued order still sitting <i>Open</i> at 9:35 Monday is also normal. No single trade may exceed <b>2× that security’s daily volume</b>, and volume is near zero at the bell — so a big order waits for the tape to catch up. <b>The failure mode is re-placing an order that was already working.</b> Do not.</li>
+<li><b>A blank fill price tonight is correct, not broken.</b> Order History will show Status <i>Open</i> and Price <i>MKT</i> until Monday’s open. Transaction History stays empty — it only lists trades that actually cleared. Do not panic and re-place anything.</li>
+</ul>
+<div class="decide"><i>Say it</i> I am sharing my screen. Joe calls the share count, Federico writes the note, I place it. Say stop if you see something wrong.</div>
+<div class="gotcha"><span>One catch, and it is a real one</span>
+<p>If we key share counts off Friday's close and Monday opens higher, we spend more than we planned. Our cash buffer is $4,064, which is 1.4% of the portfolio. <b>A 1.5% gap up overdraws the account.</b></p>
+<table class="ord"><tr><th>Monday opens</th><th style="text-align:right">We spend</th><th style="text-align:right">Cash left</th><th></th></tr>
+<tr><td class="tk">Monday opens flat</td><td class="n">$295,936</td><td class="n">$4,064</td><td></td></tr>
+<tr><td class="tk">+0.5%</td><td class="n">$297,413</td><td class="n">$2,586</td><td></td></tr>
+<tr><td class="tk">+1.0%</td><td class="n">$298,891</td><td class="n">$1,108</td><td>thin</td></tr>
+<tr><td class="tk">+1.5%</td><td class="n">$300,369</td><td class="n">−$369</td><td>overdrawn</td></tr>
+<tr><td class="tk">+2.0%</td><td class="n">$301,847</td><td class="n">−$1,847</td><td>overdrawn</td></tr>
+</table>
+<p class="subh" style="margin-top:7pt">And a second reason, which I only found tonight</p>
+<p>WInS enforces a <b>position limit</b> — the most of the portfolio you are allowed to hold in one security. StockTrak's default is <b>25%</b>, and Wharton sets ours.</p>
+<p><b>BIL at 820 shares is $75,128, which is 25.04%.</b> It is measured against portfolio <i>value</i>, which is $299,655 once commissions come out — so it is really 25.07%. That order does not get a warning. It gets rejected and shows up as <b>System Cancelled</b>.</p>
+<p>Even 818 shares fails. <b>810 clears at 24.77%</b> and costs us about $916 of BIL we did not need. And the check runs when the order <i>executes</i> Monday, not when I click Confirm tonight, so sizing it Monday against real cash is the only way to be sure.</p>
+<table class="ord"><tr><th>BIL</th><th style="text-align:right">Value</th><th style="text-align:right">of portfolio</th><th></th></tr>
+<tr><td class="tk">820 sh</td><td class="n">$75,128</td><td class="n">25.07%</td><td>rejected</td></tr>
+<tr><td class="tk">818 sh</td><td class="n">$74,945</td><td class="n">25.01%</td><td>rejected</td></tr>
+<tr><td class="tk">815 sh</td><td class="n">$74,670</td><td class="n">24.92%</td><td>clears</td></tr>
+<tr><td class="tk">810 sh</td><td class="n">$74,212</td><td class="n">24.77%</td><td>clears</td></tr>
+</table>
+</div>
+<div class="decide"><i>Done when</i> Order history shows a ticket for every line, and the cash left matches what the sheet says it should be.</div>
+</div></div>
+<div class="block">
+<div class="time"><span class="t">8:45</span><span class="d">6 min</span></div>
+<div class="body">
+<h2>Roster — due Friday, and nobody owns it</h2>
+<ul>
+<li>The official roster is due <b>Friday Oct 9, 5pm ET — 4pm our time, during school</b>. Wharton's words: <i>we will not grant any deadline extensions.</i></li>
+<li>It is exactly nine fields. Four per person: <b>full legal name, a unique email, birthday with month day and year, anticipated graduation year.</b> The other five are the school's and already settled.</li>
+<li>The birthday is the one nobody volunteers and the one that stalls it. Get it tonight while everyone is on the call.</li>
+<li><b>I am not submitting it tonight.</b> The roster locks the moment it is submitted — after that we can never add anybody. We are five of a maximum six, so clicking early permanently throws away the sixth seat and leaves us one person above the disqualification floor until December. I submit Tuesday or Wednesday.</li>
+<li>One more thing that is not on anyone's list: the school documentation due in December needs a letter on school letterhead signed by an <b>administrator</b> — a principal, not Coach P. That is an October ask, not a December one, and the team name on it has to match the roster.</li>
+</ul>
+<div class="decide"><i>Say it</i> Everybody drop four things in the chat right now: your full legal name, an email only you use, your birthday with the year, and your graduation year.</div>
+<div class="decide"><i>Done when</i> Four entries in the chat besides mine. Screenshot it.</div>
+</div></div>
+<div class="block">
+<div class="time"><span class="t">8:51</span><span class="d">5 min</span></div>
+<div class="body">
+<h2>What each person owes by next Sunday</h2>
+<ul>
+<li><b>Joe</b> — reconcile cash against the trade log on Friday. Cash only moves on a buy, a sell, a commission or a coupon, so a mismatch is the alarm.</li>
+<li><b>Dylan</b> — the bear-case sheet has been header-only since Sep 20. One column filled in for whatever we bought tonight.</li>
+<li><b>Federico</b> — minutes from tonight, posted. Coach P asked for them on Sep 30 and has not had them.</li>
+<li><b>Caleb</b> — first pass at Laura's case for the IPS. It is due Nov 6 and it is the biggest graded thing we have.</li>
+<li><b>Michael</b> — submit the roster Tuesday, and send Coach P the overlap answer he asked for on Sep 29.</li>
+</ul>
+<div class="decide"><i>Say it</i> One line each, then we are done.</div>
+<div class="decide"><i>Done when</i> Five names, five sentences, all said out loud on the call.</div>
+</div></div>
+<div class="block">
+<div class="time"><span class="t">8:58</span><span class="d">2 min</span></div>
+<div class="body">
+<h2>Close</h2>
+<ul>
+<li>End on time. A meeting that runs long teaches people the end time is optional.</li>
+</ul>
+<div class="decide"><i>Say it</i> Next call same time next Sunday. If you owe something it is in the minutes Federico is posting tonight.</div>
+<div class="decide"><i>Done when</i> Call ends at 9:00.</div>
+</div></div>
+<div class="block"><div class="time"><span class="t">Why</span><span class="d"><i>tonight works</i></span></div><div class="body">
+<h2>We can place the orders on the call. They fill at Monday's open.</h2>
+<ul>
+<li>Straight from Wharton's trading page: <b>orders placed while the market is closed fill at the next open.</b> So we do not have to wait for Monday lunch and hope I am free. We key every order at 8:28 with all of us watching, and they execute Monday morning.</li>
+<li>That matters for more than convenience. Criterion 4 grades our decision process, and “the whole team watched every order go in” is a better answer than “the leader did it alone at lunch”.</li>
+<li>Place everything except BIL on the call — VOO, VEA, the ten names, both Treasuries. That is <b>$220,783</b> and it leaves <b>$79,217</b>.</li>
+<li>I place BIL on Monday, sized to whatever cash is actually there minus a $4,000 buffer. BIL is a three-month Treasury-bill fund — it moves pennies, so there is no cost to waiting a day, and it absorbs the gap whatever the gap turns out to be.</li>
+<li>Run it forward and the buffer survives everything: a 1% gap leaves 796 shares of BIL and $4,057 cash, a 3% gap leaves 748 shares and $4,046. <b>The buffer never breaks, because BIL is the shock absorber.</b></li>
+</ul></div></div>
+<div class="block"><div class="time"><span class="t">If</span><span class="d"><i>someone is out</i></span></div><div class="body">
+<h2>Decisions still happen</h2>
+<p style="margin:0 0 4pt">Decisions still get made if somebody cannot make it. Here is exactly how, so nobody has to improvise at 8:05.</p>
+<table class="ord"><tr><th>Situation</th><th>What we do</th></tr>
+<tr><td class="tk" style="width:30%">Four of us are on</td><td>Everything runs as written. A vote already cast in the form counts whether or not that person is on the call — an absence is not a no.</td></tr>
+<tr><td class="tk" style="width:30%">Someone is missing and did not vote</td><td>The core five needs 4 of 5, so the four present have to agree. If we do, it goes in. If one of us objects to one line, we place every line nobody objects to and hold just that one. One objection to BIL is not a reason to own nothing.</td></tr>
+<tr><td class="tk" style="width:30%">Someone is on the call but never voted</td><td>Michael reads them the two that matter — the core five, and any name that split — and they answer live. Three minutes.</td></tr>
+<tr><td class="tk" style="width:30%">Fewer than four of us are on</td><td>No decisions. Michael posts the result in the thread and we take thumbs up, which is what we have done since September.</td></tr>
+</table></div></div>
+<div class="links"><h3>If you are wondering</h3><div class="lgrid">
+<div><h4>Why we are not voting tonight</h4><p>Because we tried that three times and ran out of meeting every time. The form did the collecting so the call can do the deciding.</p></div>
+<div><h4>Why the hurry</h4><p>There is none, and that is the point. Nothing in the rules rewards trading early. The risk is <em>drift</em> — we are eight days in owning nothing because we keep running out of agenda.</p></div>
+<div><h4>Everything with sources</h4><p><a href="vote.html">vote.html</a> has all ten names, the corrected numbers, and the case for and against placing it all at once.</p></div>
+</div></div>
+</body></html>
