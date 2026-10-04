@@ -430,9 +430,25 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
     var r = stage.getBoundingClientRect();
     var x = ev ? ev.clientX - r.left : r.width / 2;
     var y = ev ? ev.clientY - r.top  : r.height / 2;
-    tip.style.left = Math.max(80, Math.min(r.width - 80, x)) + "px";
-    tip.style.top  = Math.max(52, y - 8) + "px";
+    // The card clips its overflow, so the tooltip has to stay inside the stage.
+    // Measure it rather than assuming a width — it is up to 250px wide and the
+    // old fixed 80px guess let it hang off the left edge.
     tip.hidden = false;
+    var tw = tip.offsetWidth, th = tip.offsetHeight, pad = 6;
+    var half = tw / 2 + pad;
+    tip.style.left = (r.width < tw + pad * 2
+      ? r.width / 2
+      : Math.max(half, Math.min(r.width - half, x))) + "px";
+    // The CSS transform is translate(-50%,-115%), so for a given `top`:
+    //   visual top    = top - 1.15 * th
+    //   visual bottom = top - 0.15 * th
+    // Clamp against those, rather than trying to flip the tooltip below the
+    // pointer — flipping still left it 2px over the edge on a phone.
+    var minTop = th * 1.15 + pad;
+    var maxTop = r.height - pad + th * 0.15;
+    tip.style.top = (minTop > maxTop
+      ? (minTop + maxTop) / 2
+      : Math.max(minTop, Math.min(maxTop, y - 8))) + "px";
   }
   function hideTip() { tip.hidden = true; }
 

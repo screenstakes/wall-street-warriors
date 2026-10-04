@@ -70,6 +70,38 @@ setTimeout(function () {
   ck(tip.hasAttribute("hidden"), "leaving hides the tooltip");
 
   // click -> description
+  // the card clips overflow, so the tooltip must stay inside the stage for
+  // EVERY wedge, not just the one we happened to hover
+  out.push("");
+  out.push("tooltip stays inside the card");
+  var stage = q(".piestage"), sb = stage.getBoundingClientRect();
+  var escaped = [], tested = 0;
+  // Sweep the pointer right across the stage for every wedge. Firing at each
+  // wedge's bounding-box centre never reaches the edges, which is exactly
+  // where the clamp fails — an earlier version of this check passed against
+  // the known-broken build because of that.
+  hits.forEach(function (hh, i) {
+    for (var f = 0; f <= 1.0001; f += 0.125) {
+      var px = sb.left + sb.width * f;
+      var py = sb.top + sb.height * (f < 0.5 ? 0.12 : 0.88);
+      fire(hh, "pointerover", { clientX: px, clientY: py });
+      fire(hh, "pointermove", { clientX: px, clientY: py });
+      var t = tip.getBoundingClientRect();
+      tested++;
+      if (t.left < sb.left - 1 || t.right > sb.right + 1 ||
+          t.top < sb.top - 1 || t.bottom > sb.bottom + 1) {
+        escaped.push("w" + i + "@" + f.toFixed(3) +
+          " L" + Math.round(t.left - sb.left) + " R" + Math.round(t.right - sb.right) +
+          " T" + Math.round(t.top - sb.top) + " B" + Math.round(t.bottom - sb.bottom));
+      }
+    }
+    fire(hh, "pointerout");
+  });
+  ck(escaped.length === 0,
+     escaped.length ? escaped.length + "/" + tested + " positions escape the card -> " +
+                      escaped.slice(0, 3).join(" | ")
+                    : "tooltip stays inside at all " + tested + " pointer positions");
+
   out.push("");
   out.push("click selects and describes");
   var before = q(".detail") ? q(".detail").textContent.trim() : "";
