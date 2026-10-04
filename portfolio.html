@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>The portfolio · Wall Street Warriors</title>
+<meta name="description" content="What the $300,000 is made of, what each pile does, the ten spots for our own names, and the one share count that would get rejected.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/warren.css?v=5">
+<style>
+/* pile tokens — validated with the dataviz palette checker, light mode, all pairs */
+.p-a{--c:#3860ac}
+.p-b{--c:#D98B2B}
+.p-c{--c:#20a89b}
+.p-x{--c:#B9C3D6}
+
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--c);
+  margin-right:9px;vertical-align:-1px;flex:none}
+
+/* ---- figures ---- */
+.fig{margin:0}
+.fig svg{display:block;width:100%;height:auto}
+.fig figcaption{font-size:13px;line-height:1.5;color:var(--ink-2);margin-top:10px}
+
+.donut{max-width:240px;margin:0 auto}
+.donut .sl{fill:none;stroke:var(--c)}
+.donut .d1{font:700 26px var(--mono);fill:var(--ink)}
+.donut .d2{font:600 11px var(--ui);fill:var(--ink-3);letter-spacing:.03em}
+
+.dwrap{display:grid;grid-template-columns:240px 1fr;gap:22px;align-items:center}
+.legend{list-style:none;margin:0;padding:0}
+.legend li{display:flex;align-items:baseline;gap:0;padding:9px 0;border-top:1px solid var(--line-2);font-size:14px}
+.legend li:first-child{border-top:0}
+.legend .nm{flex:1 1 auto;color:var(--ink);font-weight:600}
+.legend .vl{font:600 13.5px var(--mono);color:var(--ink-2);white-space:nowrap}
+.legend .pc{font:700 13.5px var(--mono);color:var(--ink);min-width:58px;text-align:right}
+
+.bars .bl{font:600 12px var(--ui);fill:var(--ink)}
+.bars .bv{font:600 11.5px var(--mono);fill:var(--ink-2)}
+.bars .bt{fill:var(--line-2)}
+.bars .bf{fill:var(--c)}
+
+.meter{max-width:520px}
+.meter .mt{fill:var(--line-2)}
+.meter .mf{fill:var(--c)}
+.meter .mx{fill:var(--bad-soft)}
+.meter .ml{stroke:var(--bad);stroke-width:2}
+.meter .mk{font:700 10.5px var(--ui);fill:var(--bad)}
+.meter .mok{font:700 11px var(--mono);fill:#fff}
+.meter .mbad{font:600 10.5px var(--ui);fill:var(--bad)}
+.meter .max{font:600 10.5px var(--mono);fill:var(--ink-3)}
+.meter .mtick{stroke:var(--ink-3);stroke-width:1}
+
+/* ---- the ten spots ---- */
+.sgrp{border-top:1px solid var(--line-2);padding:14px 0 2px}
+.sgrp:first-child{border-top:0;padding-top:0}
+.sh{display:flex;align-items:baseline;gap:10px;font:700 13px var(--ui);color:var(--ink);margin-bottom:9px}
+.sh span{font:600 11px var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.slot{border:1px solid var(--line);border-radius:var(--r);padding:11px 12px;background:var(--well)}
+.slot .st{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.slot .st b{font:700 14px var(--mono);color:var(--ink)}
+.slot .st span{font-size:12px;color:var(--ink-2)}
+.slot .sm{font:700 15px var(--mono);color:var(--ink);margin-top:6px}
+.slot .sb{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.slot.lead{border-color:var(--ok);background:var(--ok-soft)}
+.slot.lead .sb{color:var(--ok)}
+.slot.tied{border-color:var(--warn);background:var(--warn-soft)}
+.slot.tied .sb{color:var(--warn)}
+
+.job{padding:13px 0;border-top:1px solid var(--line-2)}
+.job:first-child{border-top:0;padding-top:0}
+.jh{display:flex;align-items:baseline;gap:0;margin-bottom:4px}
+.jh b{flex:1 1 auto;font-size:14.5px;color:var(--ink)}
+.jp{font:700 14px var(--mono);color:var(--ink)}
+.job p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+
+.note{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.note b{color:var(--ink)}
+td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+table tfoot td{font-weight:700;border-top:2px solid var(--line)}
+
+@media (max-width:700px){
+  /* m-stack gives every cell its own line, which triples the table's height.
+     Put each number back on one line with its own label. */
+  table.m-stack td.num{display:flex;justify-content:space-between;align-items:baseline;
+    gap:12px;text-align:left;padding-top:3px;padding-bottom:3px}
+  table.m-stack td.num::before{margin-bottom:0;flex:none}
+  table.m-stack td[data-label="Holds"]{padding-top:6px}
+  /* site.css stacks table/tbody/tr/td but not tfoot, so the footer keeps a
+     table formatting context and its cells shrink-to-fit. */
+  table.m-stack tfoot{display:block}
+  table.m-stack tfoot td{border-top:0}
+  table.m-stack tfoot tr{border-top:2px solid var(--line)}
+  .dwrap{grid-template-columns:1fr;justify-items:center;gap:16px}
+  .legend{width:100%}
+  .srow{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  /* the viewBox shrinks on a phone, so user units shrink with it —
+     bump SVG type or it falls under the 10px floor */
+  .bars .bl{font-size:13.5px}
+  .bars .bv{font-size:13px}
+  .meter .mk,.meter .mbad,.meter .max{font-size:12px}
+  .meter .mok{font-size:12.5px}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="library.html">Library</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="guide.html">Guide</a>
+      <a href="rules.html">Rules</a>
+      <a href="dozen.html">Dozen</a>
+      <a href="card.html">Propose</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>The portfolio</h1>
+      <p>What the $300,000 is made of, what each pile is for, and the ten spots waiting on our own names.</p>
+    </div>
+  </div>
+
+  <div class="stack">
+
+    <section class="card reveal" style="--i:1" aria-labelledby="mix-h">
+      <div class="card-head"><span class="ic" data-icon="chart"></span><h2 id="mix-h">What it is made of</h2></div>
+      <div class="card-body">
+        <figure class="fig">
+          <div class="dwrap">
+            <svg class="donut" viewBox="0 0 240 240" role="img" aria-label="Donut: Pile A · Safety 23.60%; Pile B · Growth 49.89%; Pile C · Flex 24.74%; cash and fees 1.78%"><circle class="sl p-a" cx="120" cy="120" r="84" stroke-width="30" stroke-dasharray="121.558 406.230" stroke-dashoffset="-0.000" transform="rotate(-90 120 120)"><title>Pile A · Safety — $70,800, 23.60%</title></circle><circle class="sl p-b" cx="120" cy="120" r="84" stroke-width="30" stroke-dasharray="260.301 267.487" stroke-dashoffset="-124.558" transform="rotate(-90 120 120)"><title>Pile B · Growth — $149,663, 49.89%</title></circle><circle class="sl p-c" cx="120" cy="120" r="84" stroke-width="30" stroke-dasharray="127.561 400.227" stroke-dashoffset="-387.859" transform="rotate(-90 120 120)"><title>Pile C · Flex — $74,212, 24.74%</title></circle><circle class="sl p-x" cx="120" cy="120" r="84" stroke-width="30" stroke-dasharray="6.368 521.419" stroke-dashoffset="-518.419" transform="rotate(-90 120 120)"><title>Cash and fees — $5,325, 1.78%</title></circle><text class="d1" x="120" y="122" text-anchor="middle">$300,000</text><text class="d2" x="120" y="142" text-anchor="middle">invested at the open</text></svg>
+            <ul class="legend">
+              <li><span class="sw p-a"></span><span class="nm">Pile A · Safety</span><span class="vl">$70,800</span><span class="pc">23.60%</span></li><li><span class="sw p-b"></span><span class="nm">Pile B · Growth</span><span class="vl">$149,663</span><span class="pc">49.89%</span></li><li><span class="sw p-c"></span><span class="nm">Pile C · Flex</span><span class="vl">$74,212</span><span class="pc">24.74%</span></li><li><span class="sw p-x"></span><span class="nm">Cash and fees</span><span class="vl">$5,325</span><span class="pc">1.78%</span></li>
+            </ul>
+          </div>
+          <figcaption><b>Pile B reads 49.89% on day one, not 60%.</b> It reaches 59.89% ($179,663) only when the last five $6,000 slots are funded out of Pile C. &ldquo;Pile B is 60%&rdquo; has never meant $180,000 of our own stock picks &mdash; half of Pile B is VOO and VEA.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card reveal" style="--i:2" aria-labelledby="jobs-h">
+      <div class="card-head"><span class="ic" data-icon="target"></span><h2 id="jobs-h">What each pile does</h2></div>
+      <div class="card-body"><div class="job"><div class="jh"><span class="sw p-a"></span><b>Pile A · Safety</b><span class="jp">23.60%</span></div><p>Laura's ten $50,000 payments, 2033–42. This money has a job and a date, so it cannot be exposed to a bad year.</p></div><div class="job"><div class="jh"><span class="sw p-b"></span><b>Pile B · Growth</b><span class="jp">49.89%</span></div><p>The money that has to grow, because the 2033 building fund comes out of it. Broad funds first, then our own researched names.</p></div><div class="job"><div class="jh"><span class="sw p-c"></span><b>Pile C · Flex</b><span class="jp">24.74%</span></div><p>Ours, not Laura's. It answers none of her three case questions — it exists so that 'this looks cheap, can we buy it' is never 'only if we sell something first.'</p></div></div>
+    </section>
+
+    <section class="card reveal" style="--i:3" aria-labelledby="lines-h">
+      <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="lines-h">Every holding, by size</h2></div>
+      <div class="card-body">
+        <figure class="fig">
+          <svg class="bars" viewBox="0 0 360 238" role="img" aria-label="Bar chart of every holding by dollar size: BIL — 1–3 month T-bills $74,212; Our ten companies $60,000; VOO — Vanguard S&amp;P 500 $59,706; Treasury 5.375% · Feb 2031 $35,600; Treasury 4.500% · Feb 2036 $35,200; VEA — Vanguard Developed Markets $29,957"><text class="bl" x="0" y="15">BIL — T-bills</text><text class="bv" x="360" y="15" text-anchor="end">$74,212 · 24.74%</text><rect class="bt" x="0" y="21" width="360" height="16" rx="3"/><rect class="bf p-c" x="0" y="21" width="360.00" height="16" rx="3"><title>BIL — 1–3 month T-bills — $74,212, 24.74% of the portfolio (810 × $91.62, price back-derived)</title></rect><text class="bl" x="0" y="53">Our ten companies</text><text class="bv" x="360" y="53" text-anchor="end">$60,000 · 20.00%</text><rect class="bt" x="0" y="59" width="360" height="16" rx="3"/><rect class="bf p-b" x="0" y="59" width="291.06" height="16" rx="3"><title>Our ten companies — $60,000, 20.00% of the portfolio ($6,000 each)</title></rect><text class="bl" x="0" y="91">VOO — S&amp;P 500 fund</text><text class="bv" x="360" y="91" text-anchor="end">$59,706 · 19.90%</text><rect class="bt" x="0" y="97" width="360" height="16" rx="3"/><rect class="bf p-b" x="0" y="97" width="289.63" height="16" rx="3"><title>VOO — Vanguard S&amp;P 500 — $59,706, 19.90% of the portfolio (84 × $710.79)</title></rect><text class="bl" x="0" y="129">Treasury · Feb 2031</text><text class="bv" x="360" y="129" text-anchor="end">$35,600 · 11.87%</text><rect class="bt" x="0" y="135" width="360" height="16" rx="3"/><rect class="bf p-a" x="0" y="135" width="172.69" height="16" rx="3"><title>Treasury 5.375% · Feb 2031 — $35,600, 11.87% of the portfolio (estimate — 35 × $1,000 face)</title></rect><text class="bl" x="0" y="167">Treasury · Feb 2036</text><text class="bv" x="360" y="167" text-anchor="end">$35,200 · 11.73%</text><rect class="bt" x="0" y="173" width="360" height="16" rx="3"/><rect class="bf p-a" x="0" y="173" width="170.75" height="16" rx="3"><title>Treasury 4.500% · Feb 2036 — $35,200, 11.73% of the portfolio (estimate — 37 × $1,000 face)</title></rect><text class="bl" x="0" y="205">VEA — Developed mkts</text><text class="bv" x="360" y="205" text-anchor="end">$29,957 · 9.99%</text><rect class="bt" x="0" y="211" width="360" height="16" rx="3"/><rect class="bf p-b" x="0" y="211" width="145.32" height="16" rx="3"><title>VEA — Vanguard Developed Markets — $29,957, 9.99% of the portfolio (417 × $71.84)</title></rect></svg>
+          <figcaption>15 orders in total &mdash; 13 stock and ETF trades at $25 and 2 Treasury trades at $10, so $345 in commissions. Bond costs are estimates; the real ones come off the screen and the units get adjusted.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card reveal" style="--i:4" aria-labelledby="slots-h">
+      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="slots-h">The ten spots</h2>
+        <span class="sep"></span><span class="meta">$6,000 each</span></div>
+      <div class="card-body">
+        <p class="note" style="margin:0 0 14px"><b>Provisional &mdash; 3 of 5 ballots were in when this was built.</b> Five of us put forward two names each, one pair per sector. Green means a name is ahead on the ballots returned so far; amber means that sector is tied and Michael breaks it on the call. Nothing here is placed until the tally is final.</p>
+        <div class="sgrp"><div class="sh">Health Care<span>Joe</span></div><div class="srow"><div class="slot lead"><div class="st"><b>JNJ</b><span>Johnson &amp; Johnson</span></div><div class="sm">$6,000</div><div class="sb">3 of 3 ballots</div></div><div class="slot behind"><div class="st"><b>MDT</b><span>Medtronic</span></div><div class="sm">$6,000</div><div class="sb">1 of 3 ballots</div></div></div></div><div class="sgrp"><div class="sh">Industrials<span>Dylan</span></div><div class="srow"><div class="slot lead"><div class="st"><b>GEV</b><span>GE Vernova</span></div><div class="sm">$6,000</div><div class="sb">3 of 3 ballots</div></div><div class="slot behind"><div class="st"><b>ETN</b><span>Eaton</span></div><div class="sm">$6,000</div><div class="sb">1 of 3 ballots</div></div></div></div><div class="sgrp"><div class="sh">Consumer Discretionary<span>Federico</span></div><div class="srow"><div class="slot tied"><div class="st"><b>AMZN</b><span>Amazon</span></div><div class="sm">$6,000</div><div class="sb">2 of 3 ballots</div></div><div class="slot tied"><div class="st"><b>BKNG</b><span>Booking Holdings</span></div><div class="sm">$6,000</div><div class="sb">2 of 3 ballots</div></div></div></div><div class="sgrp"><div class="sh">Tech &amp; Communication<span>Michael</span></div><div class="srow"><div class="slot lead"><div class="st"><b>GOOG</b><span>Alphabet</span></div><div class="sm">$6,000</div><div class="sb">2 of 3 ballots</div></div><div class="slot lead"><div class="st"><b>NVDA</b><span>NVIDIA</span></div><div class="sm">$6,000</div><div class="sb">3 of 3 ballots</div></div></div></div><div class="sgrp"><div class="sh">Financials<span>Caleb</span></div><div class="srow"><div class="slot tied"><div class="st"><b>HOOD</b><span>Robinhood</span></div><div class="sm">$6,000</div><div class="sb">2 of 3 ballots</div></div><div class="slot tied"><div class="st"><b>IBKR</b><span>Interactive Brokers</span></div><div class="sm">$6,000</div><div class="sb">2 of 3 ballots</div></div></div></div>
+      </div>
+      <div class="card-foot">Ten names at $6,000 is 2% of the portfolio each. The five remaining slots that take Pile B to its target get funded out of Pile C later, by trade card.</div>
+    </section>
+
+    <section class="card reveal" style="--i:5" aria-labelledby="lim-h">
+      <div class="card-head"><span class="ic" data-icon="shield"></span><h2 id="lim-h">The one number that would be rejected</h2></div>
+      <div class="card-body">
+        <figure class="fig">
+          <svg class="meter" viewBox="0 0 360 88" role="img" aria-label="Meter: BIL at 810 shares is 24.74% of the portfolio, under the 25% position limit. At 820 shares it is 25.04%, over the limit, and the simulator cancels it."><text class="mk" x="300.00" y="12" text-anchor="middle">limit 25%</text><rect class="mt" x="0" y="20" width="360" height="24" rx="3"/><rect class="mx" x="300.00" y="16" width="0.51" height="32"/><rect class="mf p-c" x="0" y="20" width="296.85" height="24" rx="3"><title>BIL at 810 shares — $74,212, 24.74% of the portfolio</title></rect><line class="ml" x1="300.00" y1="14" x2="300.00" y2="50"/><text class="mok" x="148.42" y="37" text-anchor="middle">810 sh · 24.74%</text><line class="mtick" x1="0" y1="48" x2="0" y2="53"/><line class="mtick" x1="360" y1="48" x2="360" y2="53"/><text class="max" x="0" y="64">0%</text><text class="max" x="360" y="64" text-anchor="end">30%</text><text class="mbad" x="360" y="82" text-anchor="end">820 sh = 25.04% · rejected</text></svg>
+          <figcaption><b>810 shares clears. 820 does not.</b> The simulator caps any single position at 25% and does not warn you &mdash; it returns <i>System Cancelled</i> after you have keyed the order. This is why BIL is sized last, against real cash, rather than off Friday&rsquo;s close.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card reveal" style="--i:6" aria-labelledby="tbl-h">
+      <div class="card-head"><span class="ic" data-icon="wallet"></span><h2 id="tbl-h">The numbers</h2></div>
+      <div class="card-body tight">
+        <div class="table-wrap">
+          <table class="m-stack">
+            <thead><tr><th>Holding</th><th class="num">Quantity</th><th class="num">Amount</th><th class="num">Share</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Holding"><span class="sw p-b"></span>VOO — Vanguard S&amp;P 500</td><td class="num" data-label="Quantity">84 shares</td><td class="num" data-label="Amount">$59,706</td><td class="num" data-label="Share">19.90%</td></tr><tr><td data-label="Holding"><span class="sw p-b"></span>VEA — Vanguard Developed Markets</td><td class="num" data-label="Quantity">417 shares</td><td class="num" data-label="Amount">$29,957</td><td class="num" data-label="Share">9.99%</td></tr><tr><td data-label="Holding"><span class="sw p-b"></span>Our ten companies</td><td class="num" data-label="Quantity">10 names</td><td class="num" data-label="Amount">$60,000</td><td class="num" data-label="Share">20.00%</td></tr><tr><td data-label="Holding"><span class="sw p-a"></span>Treasury 5.375% · Feb 2031</td><td class="num" data-label="Quantity">35 units</td><td class="num" data-label="Amount">$35,600</td><td class="num" data-label="Share">11.87%</td></tr><tr><td data-label="Holding"><span class="sw p-a"></span>Treasury 4.500% · Feb 2036</td><td class="num" data-label="Quantity">37 units</td><td class="num" data-label="Amount">$35,200</td><td class="num" data-label="Share">11.73%</td></tr><tr><td data-label="Holding"><span class="sw p-c"></span>BIL — 1–3 month T-bills</td><td class="num" data-label="Quantity">810 shares</td><td class="num" data-label="Amount">$74,212</td><td class="num" data-label="Share">24.74%</td></tr>
+              <tr><td data-label="Holding">Commissions &mdash; 13 &times; $25, 2 &times; $10</td><td class="num" data-label="Quantity">15 orders</td><td class="num" data-label="Amount">$345</td><td class="num" data-label="Share">&mdash;</td></tr>
+              <tr><td data-label="Holding">Cash left &mdash; absorbs the bond pricing we cannot see yet</td><td class="num" data-label="Quantity">&mdash;</td><td class="num" data-label="Amount">$4,980</td><td class="num" data-label="Share">&mdash;</td></tr>
+            </tbody>
+            <tfoot><tr><td data-label="Holding">Total</td><td class="num" data-label="Quantity">&mdash;</td><td class="num" data-label="Amount">$300,000</td><td class="num" data-label="Share">100%</td></tr></tfoot>
+          </table>
+        </div>
+        <div class="table-wrap" style="margin-top:18px">
+          <table class="m-stack">
+            <thead><tr><th>Pile</th><th class="num">Amount</th><th class="num">Share</th><th>Holds</th></tr></thead>
+            <tbody><tr><td data-label="Pile"><span class="sw p-a"></span><b>Pile A · Safety</b></td><td class="num" data-label="Amount">$70,800</td><td class="num" data-label="Share">23.60%</td><td data-label="Holds">Two Treasury notes held to maturity.</td></tr><tr><td data-label="Pile"><span class="sw p-b"></span><b>Pile B · Growth</b></td><td class="num" data-label="Amount">$149,663</td><td class="num" data-label="Share">49.89%</td><td data-label="Holds">VOO, VEA and ten companies at $6,000 each.</td></tr><tr><td data-label="Pile"><span class="sw p-c"></span><b>Pile C · Flex</b></td><td class="num" data-label="Amount">$74,212</td><td class="num" data-label="Share">24.74%</td><td data-label="Holds">T-bills, sized last against real cash.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-foot">BIL is carried at whole dollars because its unit price is derived from the order table, not quoted. Everything fills at Monday&rsquo;s open, so these are order sizes, not fills.</div>
+    </section>
+
+  </div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/warren.js?v=5" defer></script>
+</body>
+</html>
