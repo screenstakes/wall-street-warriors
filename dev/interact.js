@@ -112,8 +112,10 @@ setTimeout(function () {
   // the now/later split must not be colour-alone
   out.push("");
   out.push("status encoding");
-  var later = qa('.pie .wedge[data-when="later"]');
-  ck(later.length > 0, later.length + " wedges marked not-yet");
+  // hatch means "Pile B money not in stocks yet" — which includes the five
+  // empty slots, whose dollars ARE placed Monday as BIL
+  var later = qa('.pie .wedge.t-s');
+  ck(later.length === 11, later.length + " hatched wedges (10 named + 5 empty slots)");
   var textured = later.filter(function (w) {
     // the fill now comes from a class, so check the computed value
     return /url\(/.test(getComputedStyle(w).fill || "");
