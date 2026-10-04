@@ -123,6 +123,24 @@ setTimeout(function () {
 
   // keyboard
   out.push("");
+  out.push("hover vs focus ownership");
+  // focusing one wedge and hovering another must not pop two slices, and the
+  // mouse must not destroy a keyboard user's tooltip
+  wedges[0].focus();
+  var hA = hits[8], rA = hA.getBoundingClientRect();
+  fire(hA, "pointerover", { clientX: rA.left + rA.width/2, clientY: rA.top + rA.height/2 });
+  var popped = qa(".pie .wedge.is-hot");
+  ck(popped.length === 1, popped.length + " wedge(s) popped while one is focused (want 1)");
+  ck(popped[0] === wedges[8], "the popped one is the hovered wedge, not the focused one");
+  ck(!tip.hasAttribute("hidden"), "tooltip is showing while hovering");
+  fire(hA, "pointerout");
+  ck(document.activeElement === wedges[0], "focus survived the hover");
+  ck(!tip.hasAttribute("hidden"),
+     "tooltip falls back to the focused wedge instead of vanishing");
+  ck(qa(".pie .wedge.is-hot").length === 0, "nothing is popped once the mouse leaves");
+  wedges[0].blur();
+
+  out.push("");
   out.push("keyboard");
   var w0 = wedges[0];
   w0.focus();

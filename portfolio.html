@@ -50,9 +50,10 @@
 .pie .wlab{font:700 13px var(--mono);fill:#fff;pointer-events:none;
   paint-order:stroke;stroke:rgba(0,0,0,.18);stroke-width:2.5}
 
-.pietip{position:absolute;z-index:5;pointer-events:none;min-width:150px;max-width:250px;
+.pietip{position:absolute;left:0;top:0;z-index:5;pointer-events:none;
+  min-width:150px;max-width:250px;width:max-content;
   background:var(--ink);color:#fff;border-radius:var(--r);padding:9px 11px;
-  box-shadow:var(--shadow-lg);transform:translate(-50%,-115%)}
+  box-shadow:var(--shadow-lg)}
 .pietip .tv{font:700 16px var(--mono);line-height:1.15}
 .pietip .tn{font:600 12.5px var(--ui);opacity:.86;margin-top:2px}
 .pietip .tw{font:600 11px var(--ui);opacity:.72;margin-top:4px;letter-spacing:.03em;
@@ -65,6 +66,8 @@
 .pkn{flex:1 1 auto;font:600 13px var(--ui);color:var(--ink);white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
 .pkv{font:600 12px var(--mono);color:var(--ink-2);white-space:nowrap}
+.pknote{margin:10px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.pknote b{color:var(--ink)}
 
 .plegend{display:grid;gap:14px}
 .lgrp{border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;background:var(--well)}
@@ -290,7 +293,7 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
               <svg class="pie" viewBox="0 0 460 460" role="img" aria-label="Pie of the whole $300,000 portfolio, 17 holdings. Use the table below for every value."><defs><pattern id="hatch-s" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="hb t-s" width="7" height="7"/><line class="hs t-s" x1="0" y1="0" x2="0" y2="7"/></pattern></defs><g class="arcs"><path class="wedge t-a" id="w-t31" data-i="0" data-name="Treasury 5.375% · Feb 2031" data-when="tonight" d="M 230.00 230.00 L 231.22 30.00 A 200.00 200.00 0 0 1 364.78 82.24 Z" style="--dx:0.3642;--dy:-0.9313" role="button" tabindex="0" aria-label="Treasury 5.375% · Feb 2031. $35,600, 11.87% of the portfolio. Placing tonight."/><path class="wedge t-a" id="w-t36" data-i="1" data-name="Treasury 4.500% · Feb 2036" data-when="tonight" d="M 230.00 230.00 L 366.58 83.90 A 200.00 200.00 0 0 1 429.12 211.21 Z" style="--dx:0.8976;--dy:-0.4409" role="button" tabindex="0" aria-label="Treasury 4.500% · Feb 2036. $35,200, 11.73% of the portfolio. Placing tonight."/><path class="wedge t-b" id="w-voo" data-i="2" data-name="VOO — S&amp;P 500 fund" data-when="tonight" d="M 230.00 230.00 L 429.33 213.65 A 200.00 200.00 0 0 1 310.53 413.07 Z" style="--dx:0.8591;--dy:0.5118" role="button" tabindex="0" aria-label="VOO — S&amp;P 500 fund. $59,706, 19.90% of the portfolio. Placing tonight."/><path class="wedge t-b" id="w-vea" data-i="3" data-name="VEA — Developed markets" data-when="tonight" d="M 230.00 230.00 L 308.28 414.04 A 200.00 200.00 0 0 1 187.72 425.48 Z" style="--dx:0.0944;--dy:0.9955" role="button" tabindex="0" aria-label="VEA — Developed markets. $29,957, 9.99% of the portfolio. Placing tonight."/><path class="wedge t-s hl-s" id="w-JNJ" data-i="4" data-name="JNJ — Johnson &amp; Johnson" data-when="later" d="M 230.00 230.00 L 185.33 424.95 A 200.00 200.00 0 0 1 163.55 418.64 Z" style="--dx:-0.2782;--dy:0.9605" role="button" tabindex="0" aria-label="JNJ — Johnson &amp; Johnson. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-MDT" data-i="5" data-name="MDT — Medtronic" data-when="later" d="M 230.00 230.00 L 161.25 417.81 A 200.00 200.00 0 0 1 140.43 408.82 Z" style="--dx:-0.3964;--dy:0.9181" role="button" tabindex="0" aria-label="MDT — Medtronic. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-GEV" data-i="6" data-name="GEV — GE Vernova" data-when="later" d="M 230.00 230.00 L 138.25 407.71 A 200.00 200.00 0 0 1 118.72 396.19 Z" style="--dx:-0.5084;--dy:0.8611" role="button" tabindex="0" aria-label="GEV — GE Vernova. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-ETN" data-i="7" data-name="ETN — Eaton" data-when="later" d="M 230.00 230.00 L 116.70 394.81 A 200.00 200.00 0 0 1 98.77 380.93 Z" style="--dx:-0.6123;--dy:0.7906" role="button" tabindex="0" aria-label="ETN — Eaton. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-AMZN" data-i="8" data-name="AMZN — Amazon" data-when="later" d="M 230.00 230.00 L 96.94 379.31 A 200.00 200.00 0 0 1 80.89 363.29 Z" style="--dx:-0.7066;--dy:0.7077" role="button" tabindex="0" aria-label="AMZN — Amazon. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-BKNG" data-i="9" data-name="BKNG — Booking Holdings" data-when="later" d="M 230.00 230.00 L 79.27 361.46 A 200.00 200.00 0 0 1 65.36 343.55 Z" style="--dx:-0.7897;--dy:0.6135" role="button" tabindex="0" aria-label="BKNG — Booking Holdings. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-GOOG" data-i="10" data-name="GOOG — Alphabet" data-when="later" d="M 230.00 230.00 L 63.99 341.53 A 200.00 200.00 0 0 1 52.43 322.02 Z" style="--dx:-0.8603;--dy:0.5097" role="button" tabindex="0" aria-label="GOOG — Alphabet. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-NVDA" data-i="11" data-name="NVDA — NVIDIA" data-when="later" d="M 230.00 230.00 L 51.32 319.85 A 200.00 200.00 0 0 1 42.29 299.04 Z" style="--dx:-0.9174;--dy:0.3979" role="button" tabindex="0" aria-label="NVDA — NVIDIA. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-HOOD" data-i="12" data-name="HOOD — Robinhood" data-when="later" d="M 230.00 230.00 L 41.47 296.74 A 200.00 200.00 0 0 1 35.12 274.97 Z" style="--dx:-0.9601;--dy:0.2797" role="button" tabindex="0" aria-label="HOOD — Robinhood. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-IBKR" data-i="13" data-name="IBKR — Interactive Brokers" data-when="later" d="M 230.00 230.00 L 34.59 272.59 A 200.00 200.00 0 0 1 31.02 250.19 Z" style="--dx:-0.9876;--dy:0.1572" role="button" tabindex="0" aria-label="IBKR — Interactive Brokers. $6,000, 2.00% of the portfolio. Not yet."/><path class="wedge t-s hl-s" id="w-bilw" data-i="14" data-name="Five empty slots — parked in BIL" data-when="monday" d="M 230.00 230.00 L 30.79 247.76 A 200.00 200.00 0 0 1 57.15 129.38 Z" style="--dx:-0.9761;--dy:-0.2174" role="button" tabindex="0" aria-label="Five empty slots — parked in BIL. $30,000, 10.00% of the portfolio. Placing Monday."/><path class="wedge t-c" id="w-bil" data-i="15" data-name="BIL — the flex reserve" data-when="monday" d="M 230.00 230.00 L 58.40 127.27 A 200.00 200.00 0 0 1 206.53 31.38 Z" style="--dx:-0.5434;--dy:-0.8395" role="button" tabindex="0" aria-label="BIL — the flex reserve. $44,212, 14.74% of the portfolio. Placing Monday."/><path class="wedge t-x" id="w-cash" data-i="16" data-name="Cash and commissions" data-when="rest" d="M 230.00 230.00 L 208.96 31.11 A 200.00 200.00 0 0 1 228.78 30.00 Z" style="--dx:-0.0557;--dy:-0.9984" role="button" tabindex="0" aria-label="Cash and commissions. $5,325, 1.78% of the portfolio. Left over."/></g><text class="wlab" x="275.2" y="118.5" text-anchor="middle">11.9%</text><text class="wlab" x="341.3" y="179.3" text-anchor="middle">11.7%</text><text class="wlab" x="336.5" y="297.5" text-anchor="middle">19.9%</text><text class="wlab" x="241.7" y="357.4" text-anchor="middle">10.0%</text><text class="wlab" x="109.0" y="207.0" text-anchor="middle">10.0%</text><text class="wlab" x="162.6" y="129.9" text-anchor="middle">14.7%</text><g class="hits"><path class="hit" data-for="w-t31" data-i="0" d="M 230.00 230.00 L 230.00 16.00 A 214.00 214.00 0 0 1 375.18 72.78 Z"/><path class="hit" data-for="w-t36" data-i="1" d="M 230.00 230.00 L 375.18 72.78 A 214.00 214.00 0 0 1 443.17 211.20 Z"/><path class="hit" data-for="w-voo" data-i="2" d="M 230.00 230.00 L 443.17 211.20 A 214.00 214.00 0 0 1 314.96 426.41 Z"/><path class="hit" data-for="w-vea" data-i="3" d="M 230.00 230.00 L 314.96 426.41 A 214.00 214.00 0 0 1 183.48 438.88 Z"/><path class="hit" data-for="w-JNJ" data-i="4" d="M 230.00 230.00 L 183.48 438.88 A 214.00 214.00 0 0 1 157.67 431.40 Z"/><path class="hit" data-for="w-MDT" data-i="5" d="M 230.00 230.00 L 157.67 431.40 A 214.00 214.00 0 0 1 132.99 420.75 Z"/><path class="hit" data-for="w-GEV" data-i="6" d="M 230.00 230.00 L 132.99 420.75 A 214.00 214.00 0 0 1 109.85 407.09 Z"/><path class="hit" data-for="w-ETN" data-i="7" d="M 230.00 230.00 L 109.85 407.09 A 214.00 214.00 0 0 1 88.60 390.63 Z"/><path class="hit" data-for="w-AMZN" data-i="8" d="M 230.00 230.00 L 88.60 390.63 A 214.00 214.00 0 0 1 69.59 371.65 Z"/><path class="hit" data-for="w-BKNG" data-i="9" d="M 230.00 230.00 L 69.59 371.65 A 214.00 214.00 0 0 1 53.10 350.42 Z"/><path class="hit" data-for="w-GOOG" data-i="10" d="M 230.00 230.00 L 53.10 350.42 A 214.00 214.00 0 0 1 39.40 327.30 Z"/><path class="hit" data-for="w-NVDA" data-i="11" d="M 230.00 230.00 L 39.40 327.30 A 214.00 214.00 0 0 1 28.71 302.65 Z"/><path class="hit" data-for="w-HOOD" data-i="12" d="M 230.00 230.00 L 28.71 302.65 A 214.00 214.00 0 0 1 21.19 276.84 Z"/><path class="hit" data-for="w-IBKR" data-i="13" d="M 230.00 230.00 L 21.19 276.84 A 214.00 214.00 0 0 1 16.97 250.30 Z"/><path class="hit" data-for="w-bilw" data-i="14" d="M 230.00 230.00 L 16.97 250.30 A 214.00 214.00 0 0 1 45.72 121.21 Z"/><path class="hit" data-for="w-bil" data-i="15" d="M 230.00 230.00 L 45.72 121.21 A 214.00 214.00 0 0 1 206.18 17.33 Z"/><path class="hit" data-for="w-cash" data-i="16" d="M 230.00 230.00 L 206.18 17.33 A 214.00 214.00 0 0 1 230.00 16.00 Z"/></g></svg>
               <div class="pietip" hidden aria-hidden="true"></div>
             </div>
-            <div class="pilekey" aria-label="Which colour is which pile"><div class="pk"><span class="ksw t-a"></span><span class="pkn">Pile A · Safety</span><span class="pkv">$70,800 · 23.60%</span></div><div class="pk"><span class="ksw t-b"></span><span class="pkn">Pile B · Growth</span><span class="pkv">$179,663 · 59.89%</span></div><div class="pk"><span class="ksw t-c"></span><span class="pkn">Pile C · Flex</span><span class="pkv">$44,212 · 14.74%</span></div><div class="pk"><span class="ksw t-x"></span><span class="pkn">Not invested</span><span class="pkv">$5,325 · 1.78%</span></div></div>
+            <div class="pilekey" aria-label="Which colour is which pile"><div class="pk"><span class="ksw t-a"></span><span class="pkn">Pile A · Safety</span><span class="pkv">$70,800 · 23.60%</span></div><div class="pk"><span class="ksw t-b"></span><span class="pkn">Pile B · Growth</span><span class="pkv">$179,663 · 59.89%</span></div><div class="pk"><span class="ksw t-c"></span><span class="pkn">Pile C · Flex</span><span class="pkv">$44,212 · 14.74%</span></div><div class="pk"><span class="ksw t-x"></span><span class="pkn">Not invested</span><span class="pkv">$5,325 · 1.78%</span></div></div><p class="pknote">Counted by <b>where the money is going</b>, so the five empty slots count as Pile B even though the dollars sit in BIL today. The table further down counts by <b>what it is invested in right now</b>, which is why Pile B reads 49.89% and Pile C 24.74% there. Same $300,000, two honest views.</p>
             <div class="detail" role="region" aria-live="polite" aria-label="Selected holding">
               <p class="dhint">Tap a slice &mdash; or hover it on a computer &mdash; to see what it is and why it is in the portfolio. Arrow keys move between slices.</p>
             </div>
@@ -324,7 +327,7 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
           <div class="dopts"><span class="dopt">Write the trigger. Keep the 15%.</span><span class="dopt">Shrink Pile C. Move it to Pile B.</span></div>
         </div>
       </div>
-      <div class="card-foot"><b>The flex pile is not free.</b> Holding $45,000 in bills rather than growth, over the 7 years until Laura&rsquo;s 2033 building money is due, is about <b>$17,905</b> &mdash; $59,217 at 4% a year against $77,122 at 8%. Those rates are an illustration, not a forecast. An option that costs $17,905 has to buy something we can name, and Pile C still has no written trigger.</div>
+      <div class="card-foot"><b>The flex pile is not free.</b> Holding $44,212 in bills rather than growth, over the 7 years until Laura&rsquo;s 2033 building money is due, is about <b>$17,592</b> &mdash; $58,180 at 4% a year against $75,772 at 8%. Those rates are an illustration, not a forecast. An option that costs $17,592 has to buy something we can name, and Pile C still has no written trigger.</div>
     </section>
 
     <section class="card reveal" style="--i:2" aria-labelledby="jobs-h">
@@ -371,7 +374,7 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
             <tbody>
               <tr data-i="0"><td data-label="Holding"><span class="ksw t-a"></span>Treasury 5.375% · Feb 2031</td><td data-label="Pile">Pile A · Safety</td><td class="num" data-label="Amount">$35,600</td><td class="num" data-label="Share">11.87%</td><td data-label="When">Placing tonight</td></tr><tr data-i="1"><td data-label="Holding"><span class="ksw t-a"></span>Treasury 4.500% · Feb 2036</td><td data-label="Pile">Pile A · Safety</td><td class="num" data-label="Amount">$35,200</td><td class="num" data-label="Share">11.73%</td><td data-label="When">Placing tonight</td></tr><tr data-i="2"><td data-label="Holding"><span class="ksw t-b"></span>VOO — S&amp;P 500 fund</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$59,706</td><td class="num" data-label="Share">19.90%</td><td data-label="When">Placing tonight</td></tr><tr data-i="3"><td data-label="Holding"><span class="ksw t-b"></span>VEA — Developed markets</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$29,957</td><td class="num" data-label="Share">9.99%</td><td data-label="When">Placing tonight</td></tr><tr data-i="4"><td data-label="Holding"><span class="ksw t-s is-later"></span>JNJ — Johnson &amp; Johnson</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="5"><td data-label="Holding"><span class="ksw t-s is-later"></span>MDT — Medtronic</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="6"><td data-label="Holding"><span class="ksw t-s is-later"></span>GEV — GE Vernova</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="7"><td data-label="Holding"><span class="ksw t-s is-later"></span>ETN — Eaton</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="8"><td data-label="Holding"><span class="ksw t-s is-later"></span>AMZN — Amazon</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="9"><td data-label="Holding"><span class="ksw t-s is-later"></span>BKNG — Booking Holdings</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="10"><td data-label="Holding"><span class="ksw t-s is-later"></span>GOOG — Alphabet</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="11"><td data-label="Holding"><span class="ksw t-s is-later"></span>NVDA — NVIDIA</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="12"><td data-label="Holding"><span class="ksw t-s is-later"></span>HOOD — Robinhood</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="13"><td data-label="Holding"><span class="ksw t-s is-later"></span>IBKR — Interactive Brokers</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$6,000</td><td class="num" data-label="Share">2.00%</td><td data-label="When">Not yet</td></tr><tr data-i="14"><td data-label="Holding"><span class="ksw t-s is-later"></span>Five empty slots — parked in BIL</td><td data-label="Pile">Pile B · Growth</td><td class="num" data-label="Amount">$30,000</td><td class="num" data-label="Share">10.00%</td><td data-label="When">Placing Monday</td></tr><tr data-i="15"><td data-label="Holding"><span class="ksw t-c"></span>BIL — the flex reserve</td><td data-label="Pile">Pile C · Flex</td><td class="num" data-label="Amount">$44,212</td><td class="num" data-label="Share">14.74%</td><td data-label="When">Placing Monday</td></tr><tr data-i="16"><td data-label="Holding"><span class="ksw t-x"></span>Cash and commissions</td><td data-label="Pile">Not invested</td><td class="num" data-label="Amount">$5,325</td><td class="num" data-label="Share">1.78%</td><td data-label="When">Left over</td></tr>
             </tbody>
-            <tfoot><tr><td data-label="Holding">Total &mdash; 15 orders, $345 commissions, $4,980 cash</td><td data-label="Pile">&mdash;</td><td class="num" data-label="Amount">$300,000</td><td class="num" data-label="Share">100%</td><td data-label="When">&mdash;</td></tr></tfoot>
+            <tfoot><tr><td data-label="Holding">Total &mdash; 15 orders, $345 commissions, $4,980 cash</td><td data-label="Pile">&mdash;</td><td class="num" data-label="Amount">$300,000</td><td class="num" data-label="Share">100%*</td><td data-label="When">&mdash;</td></tr></tfoot>
           </table>
         </div>
         <div class="table-wrap" style="margin-top:18px">
@@ -381,7 +384,7 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
           </table>
         </div>
       </div>
-      <div class="card-foot">BIL is carried at whole dollars because its unit price is derived from the order table, not quoted. Everything fills at Monday&rsquo;s open, so these are order sizes, not fills.</div>
+      <div class="card-foot">*Shares are rounded to two places and sum to 100.01%; the dollars are exact and sum to $300,000. BIL is carried at whole dollars because its unit price is derived from the order table, not quoted. Everything fills at Monday&rsquo;s open, so these are order sizes, not fills.</div>
     </section>
 
   </div>
@@ -416,9 +419,21 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
     return n;
   }
 
-  function hot(i, on) {
-    if (i < 0 || !wedges[i]) return;
-    wedges[i].classList.toggle("is-hot", !!on);
+  // hover and focus are two independent sources of "hot". Tracking one flag
+  // let a focused wedge and a hovered wedge both pop out at once, and let a
+  // stray mouse wipe out a keyboard user's tooltip.
+  var hov = -1, foc = -1;
+  function paintHot() {
+    // only hover pops a wedge out. Focus already has its own ring
+    // (.wedge:focus-visible), so popping it too put two slices out at once.
+    for (var j = 0; j < wedges.length; j++) {
+      wedges[j].classList.toggle("is-hot", j === hov);
+    }
+  }
+  function refreshTip(ev) {
+    var i = hov >= 0 ? hov : foc;
+    if (i < 0) { tip.hidden = true; return; }
+    showTip(i, ev);
   }
 
   function showTip(i, ev) {
@@ -427,28 +442,30 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
     tip.appendChild(el("div", "tv", d.v + "  ·  " + d.p));   // value leads
     tip.appendChild(el("div", "tn", d.n));                   // label follows
     tip.appendChild(el("div", "tw", d.w));
+    // Measure from a fixed origin. When the tooltip was positioned with `left`,
+    // its shrink-to-fit width was capped by (stage width - left), so it rewrapped
+    // as it moved and the measurement used to size it was already stale.
+    tip.hidden = false;
+    tip.style.transform = "translate(0px,0px)";
+    var pad = 6, tw = tip.offsetWidth, th = tip.offsetHeight;
     var r = stage.getBoundingClientRect();
     var x = ev ? ev.clientX - r.left : r.width / 2;
     var y = ev ? ev.clientY - r.top  : r.height / 2;
-    // The card clips its overflow, so the tooltip has to stay inside the stage.
-    // Measure it rather than assuming a width — it is up to 250px wide and the
-    // old fixed 80px guess let it hang off the left edge.
-    tip.hidden = false;
-    var tw = tip.offsetWidth, th = tip.offsetHeight, pad = 6;
-    var half = tw / 2 + pad;
-    tip.style.left = (r.width < tw + pad * 2
-      ? r.width / 2
-      : Math.max(half, Math.min(r.width - half, x))) + "px";
-    // The CSS transform is translate(-50%,-115%), so for a given `top`:
-    //   visual top    = top - 1.15 * th
-    //   visual bottom = top - 0.15 * th
-    // Clamp against those, rather than trying to flip the tooltip below the
-    // pointer — flipping still left it 2px over the edge on a phone.
-    var minTop = th * 1.15 + pad;
-    var maxTop = r.height - pad + th * 0.15;
-    tip.style.top = (minTop > maxTop
-      ? (minTop + maxTop) / 2
-      : Math.max(minTop, Math.min(maxTop, y - 8))) + "px";
+
+    // 1. keep it inside the stage, because the card clips overflow
+    var left = Math.max(pad, Math.min(r.width  - tw - pad, x - tw / 2));
+    var top  = Math.max(pad, Math.min(r.height - th - pad, y - th - 10));
+
+    // 2. and inside the viewport, because the stage can be scrolled off-screen
+    var vw = document.documentElement.clientWidth;
+    var vh = document.documentElement.clientHeight;
+    var over;
+    if ((over = pad - (r.top + top)) > 0) top += over;
+    if ((over = (r.top + top + th) - (vh - pad)) > 0) top -= over;
+    if ((over = pad - (r.left + left)) > 0) left += over;
+    if ((over = (r.left + left + tw) - (vw - pad)) > 0) left -= over;
+
+    tip.style.transform = "translate(" + Math.round(left) + "px," + Math.round(top) + "px)";
   }
   function hideTip() { tip.hidden = true; }
 
@@ -479,18 +496,20 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
 
   hits.forEach(function (h) {
     var i = parseInt(h.getAttribute("data-i"), 10);
-    h.addEventListener("pointerover", function (e) { hot(i, true); showTip(i, e); });
-    h.addEventListener("mouseover",   function (e) { hot(i, true); showTip(i, e); });
-    h.addEventListener("pointermove", function (e) { showTip(i, e); });
-    h.addEventListener("mousemove",   function (e) { showTip(i, e); });
-    h.addEventListener("pointerout",  function () { hot(i, false); hideTip(); });
-    h.addEventListener("mouseout",    function () { hot(i, false); hideTip(); });
+    function enter(e) { hov = i; paintHot(); refreshTip(e); }
+    function leave()  { if (hov === i) hov = -1; paintHot(); refreshTip(null); }
+    h.addEventListener("pointerover", enter);
+    h.addEventListener("mouseover",   enter);
+    h.addEventListener("pointermove", function (e) { if (hov === i) refreshTip(e); });
+    h.addEventListener("mousemove",   function (e) { if (hov === i) refreshTip(e); });
+    h.addEventListener("pointerout",  leave);
+    h.addEventListener("mouseout",    leave);
     h.addEventListener("click",       function () { select(i); });
   });
 
   wedges.forEach(function (w, i) {
-    w.addEventListener("focus", function () { hot(i, true); showTip(i, null); });
-    w.addEventListener("blur",  function () { hot(i, false); hideTip(); });
+    w.addEventListener("focus", function () { foc = i; paintHot(); refreshTip(null); });
+    w.addEventListener("blur",  function () { if (foc === i) foc = -1; paintHot(); refreshTip(null); });
     w.addEventListener("keydown", function (e) {
       var k = e.key;
       if (k === "Enter" || k === " " || k === "Spacebar") { e.preventDefault(); select(i); return; }
