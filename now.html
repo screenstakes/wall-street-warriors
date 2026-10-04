@@ -262,6 +262,12 @@
     .settled{columns:1;} .lp{font-size:13.5px;} .lp th{font-size:11px;} .lp td{padding:7px 7px 7px 0;}
     .lp td.d{font-size:12.5px;}
   }
+
+/* this page is self-contained — it does not load site.css, so the
+   scroller class has to be defined here or the wide table scrolls
+   the whole page sideways on a phone */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-wrap table{min-width:560px}
 </style></head><body>
 
 <header>
