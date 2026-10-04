@@ -29,7 +29,8 @@
 .pie .wedge.hl-s{fill:url(#hatch-s)}
 
 .sw{display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--c);
-  margin-right:9px;vertical-align:-1px;flex:none}
+  margin-right:9px;vertical-align:-1px;flex:none;
+  box-shadow:inset 0 0 0 1px rgba(18,33,61,.16)}
 
 /* ---- the big pie ---- */
 .piewrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
@@ -66,10 +67,6 @@
   overflow:hidden;text-overflow:ellipsis}
 .pkv{font:600 12px var(--mono);color:var(--ink-2);white-space:nowrap}
 
-.kp{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:4px;
-  background:var(--gray-soft);color:var(--ink-2);font:700 10.5px var(--mono);flex:none}
-.kk.is-sel .kp{background:rgba(255,255,255,.22);color:#fff}
-
 .plegend{display:grid;gap:14px}
 .lgrp{border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;background:var(--well)}
 .lgh{display:flex;align-items:baseline;gap:10px}
@@ -82,7 +79,9 @@
   font:600 12px var(--ui);color:var(--ink-2)}
 .kk:hover,.kk:focus-visible{border-color:var(--blue);color:var(--ink);outline:none}
 .kk.is-sel{background:var(--ink);color:#fff;border-color:var(--ink)}
-.ksw{width:10px;height:10px;border-radius:2px;background:var(--c);flex:none}
+/* inset, so a pale swatch stays visible without changing the box size */
+.ksw{width:10px;height:10px;border-radius:2px;background:var(--c);flex:none;
+  box-shadow:inset 0 0 0 1px rgba(18,33,61,.16)}
 .ksw.is-later{background:repeating-linear-gradient(45deg,var(--c),var(--c) 2px,
   transparent 2px,transparent 4px),var(--card)}
 
@@ -295,7 +294,7 @@ table tfoot td{font-weight:700;border-top:2px solid var(--line)}
               <p class="dhint">Tap a slice &mdash; or hover it on a computer &mdash; to see what it is and why it is in the portfolio. Arrow keys move between slices.</p>
             </div>
           </div>
-          <div><div class="plegend"><div class="lgrp"><div class="lgh"><b>Placing tonight</b><span class="lgv">$160,463 · 53.49%</span></div><div class="lgn">Keyed live on the call, fills at Monday's open.</div><div class="lgk"><button type="button" class="kk" data-jump="0"><span class="ksw t-a"></span>T-note 2031<span class="kp">A</span></button><button type="button" class="kk" data-jump="1"><span class="ksw t-a"></span>T-note 2036<span class="kp">A</span></button><button type="button" class="kk" data-jump="2"><span class="ksw t-b"></span>VOO<span class="kp">B</span></button><button type="button" class="kk" data-jump="3"><span class="ksw t-b"></span>VEA<span class="kp">B</span></button></div></div><div class="lgrp"><div class="lgh"><b>Placing Monday</b><span class="lgv">$74,212 · 24.74%</span></div><div class="lgn">One order of 810 shares, sized last against real cash so a gap up cannot overdraw us. It is drawn as two slices because the money is doing two different jobs.</div><div class="lgk"><button type="button" class="kk" data-jump="14"><span class="ksw t-cw"></span>BIL waiting<span class="kp">C</span></button><button type="button" class="kk" data-jump="15"><span class="ksw t-c"></span>BIL reserve<span class="kp">C</span></button></div></div><div class="lgrp"><div class="lgh"><b>Not yet</b><span class="lgv">$60,000 · 20.00%</span></div><div class="lgn">Waiting on the final tally and on the team's timing vote.</div><div class="lgk"><button type="button" class="kk" data-jump="4"><span class="ksw t-s is-later"></span>JNJ<span class="kp">B</span></button><button type="button" class="kk" data-jump="5"><span class="ksw t-s is-later"></span>MDT<span class="kp">B</span></button><button type="button" class="kk" data-jump="6"><span class="ksw t-s is-later"></span>GEV<span class="kp">B</span></button><button type="button" class="kk" data-jump="7"><span class="ksw t-s is-later"></span>ETN<span class="kp">B</span></button><button type="button" class="kk" data-jump="8"><span class="ksw t-s is-later"></span>AMZN<span class="kp">B</span></button><button type="button" class="kk" data-jump="9"><span class="ksw t-s is-later"></span>BKNG<span class="kp">B</span></button><button type="button" class="kk" data-jump="10"><span class="ksw t-s is-later"></span>GOOG<span class="kp">B</span></button><button type="button" class="kk" data-jump="11"><span class="ksw t-s is-later"></span>NVDA<span class="kp">B</span></button><button type="button" class="kk" data-jump="12"><span class="ksw t-s is-later"></span>HOOD<span class="kp">B</span></button><button type="button" class="kk" data-jump="13"><span class="ksw t-s is-later"></span>IBKR<span class="kp">B</span></button></div></div><div class="lgrp"><div class="lgh"><b>Left over</b><span class="lgv">$5,325 · 1.78%</span></div><div class="lgn">Not invested — it absorbs bond pricing we cannot see yet.</div><div class="lgk"><button type="button" class="kk" data-jump="16"><span class="ksw t-x"></span>Cash &amp; fees<span class="kp">—</span></button></div></div></div></div>
+          <div><div class="plegend"><div class="lgrp"><div class="lgh"><b>Placing tonight</b><span class="lgv">$160,463 · 53.49%</span></div><div class="lgn">Keyed live on the call, fills at Monday's open.</div><div class="lgk"><button type="button" class="kk" data-jump="0"><span class="ksw t-a"></span>T-note 2031</button><button type="button" class="kk" data-jump="1"><span class="ksw t-a"></span>T-note 2036</button><button type="button" class="kk" data-jump="2"><span class="ksw t-b"></span>VOO</button><button type="button" class="kk" data-jump="3"><span class="ksw t-b"></span>VEA</button></div></div><div class="lgrp"><div class="lgh"><b>Placing Monday</b><span class="lgv">$74,212 · 24.74%</span></div><div class="lgn">One order of 810 shares, sized last against real cash so a gap up cannot overdraw us. It is drawn as two slices because the money is doing two different jobs.</div><div class="lgk"><button type="button" class="kk" data-jump="14"><span class="ksw t-cw"></span>BIL waiting</button><button type="button" class="kk" data-jump="15"><span class="ksw t-c"></span>BIL reserve</button></div></div><div class="lgrp"><div class="lgh"><b>Not yet</b><span class="lgv">$60,000 · 20.00%</span></div><div class="lgn">Waiting on the final tally and on the team's timing vote.</div><div class="lgk"><button type="button" class="kk" data-jump="4"><span class="ksw t-s is-later"></span>JNJ</button><button type="button" class="kk" data-jump="5"><span class="ksw t-s is-later"></span>MDT</button><button type="button" class="kk" data-jump="6"><span class="ksw t-s is-later"></span>GEV</button><button type="button" class="kk" data-jump="7"><span class="ksw t-s is-later"></span>ETN</button><button type="button" class="kk" data-jump="8"><span class="ksw t-s is-later"></span>AMZN</button><button type="button" class="kk" data-jump="9"><span class="ksw t-s is-later"></span>BKNG</button><button type="button" class="kk" data-jump="10"><span class="ksw t-s is-later"></span>GOOG</button><button type="button" class="kk" data-jump="11"><span class="ksw t-s is-later"></span>NVDA</button><button type="button" class="kk" data-jump="12"><span class="ksw t-s is-later"></span>HOOD</button><button type="button" class="kk" data-jump="13"><span class="ksw t-s is-later"></span>IBKR</button></div></div><div class="lgrp"><div class="lgh"><b>Left over</b><span class="lgv">$5,325 · 1.78%</span></div><div class="lgn">Not invested — it absorbs bond pricing we cannot see yet.</div><div class="lgk"><button type="button" class="kk" data-jump="16"><span class="ksw t-x"></span>Cash &amp; fees</button></div></div></div></div>
         </div>
       </div>
       <div class="card-foot"><b>$160,463 (53.49%) goes in tonight</b> across 4 orders, $74,212 (24.74%) on Monday as BIL, and <b>$60,000 (20.00%) is not going in yet</b> &mdash; the 10 company slots, drawn with diagonal stripes, which wait on the final tally. Pile B reads <b>49.89%</b> on day one, not 60%: it reaches 59.89% ($179,663) only when the last five $6,000 slots are funded out of Pile C, and &ldquo;Pile B is 60%&rdquo; has never meant $180,000 of our own stock picks. <a class="jump" href="#bil">Why a quarter of it is T-bills &rarr;</a></div>
