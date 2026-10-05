@@ -61,9 +61,11 @@ setTimeout(function () {
   ck(bad.length === 0, bad.length ? "card mismatches: " + bad.slice(0, 4).join("; ")
      : "all 10 cards: count, IN/OUT, card state and the five lit chips agree with the ballots");
 
-  ck(cleared.length === 8, cleared.length + " names cleared " + NEEDS + " of 5 (recounted here)");
-  ck(cleared.indexOf("HOOD") === -1 && cleared.indexOf("ETN") === -1,
-     "HOOD and ETN are the two that did not clear");
+  // 9, not 8: Dylan ticked only GEV, wrote "buy both", and confirmed on the
+  // Oct 4 call that he meant both. That is what put Eaton in at 3 of 5.
+  ck(cleared.length === 9, cleared.length + " names cleared " + NEEDS + " of 5 (recounted here)");
+  ck(cleared.indexOf("HOOD") === -1, "Robinhood is the only name that did not clear");
+  ck(cleared.indexOf("ETN") !== -1, "Eaton is in, on Dylan's corrected ballot");
   ck(q(".vnum").textContent.indexOf(String(cleared.length)) === 0,
      "the big number is the recount (" + q(".vnum").textContent.trim() + ")");
   var money = qa(".vmoney b").map(function (b) { return b.textContent.trim(); });
