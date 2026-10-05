@@ -183,6 +183,30 @@
   }
 
   /* the opening order list */
+  .st>div{min-width:0;}
+  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;
+    max-width:100%; min-width:0;}
+  table.vt{width:100%; border-collapse:collapse; margin:7pt 0 3pt; font-size:8.4pt;}
+  table.vt th{background:#0B2A5B; color:#fff; font-size:7.2pt; letter-spacing:.03em;
+    text-transform:uppercase; padding:4pt 5pt; text-align:left; border:.4pt solid #0B2A5B;}
+  table.vt td{padding:4pt 5pt; border:.4pt solid #D7DCE5; vertical-align:middle;}
+  table.vt td.vsec{font-size:7.4pt; color:#5B6780; white-space:nowrap;}
+  table.vt td.vnm b{font-size:9pt;}
+  table.vt .vsub{color:#5B6780; font-size:7.6pt;}
+  table.vt th.vp, table.vt td.vp{text-align:center; width:7%;}
+  table.vt td.vy{color:#1B7549; font-weight:700;}
+  table.vt td.vn{color:#B4BBC7;}
+  table.vt th.vct, table.vt td.vct{text-align:center; white-space:nowrap; font-size:8pt;}
+  table.vt th.vrs, table.vt td.vrs{text-align:center; font-weight:700; width:8%;}
+  table.vt tr.vin td{background:#E8F5EC;}
+  table.vt tr.vin td.vrs{color:#1B7549;}
+  table.vt tr.vout td{background:#FBECEA; color:#7A3A33;}
+  table.vt tr.vout td.vrs{color:#AD2A20;}
+  p.vnote{font-size:8.2pt; color:#444; margin:2pt 0 0;}
+  @media screen and (max-width:700px){
+    table.vt{font-size:12px; min-width:560px;} table.vt th{font-size:10px;}
+    table.vt td.vsec,table.vt .vsub{font-size:10px;}
+  }
   table.ord{width:100%; border-collapse:collapse; margin-top:5pt; font-size:8.8pt;}
   table.ord th{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.1em;
     text-transform:uppercase; color:var(--gold); font-weight:600; text-align:left;
@@ -317,19 +341,131 @@
 <div class="st">
 <div class="stn">2<small>8:22<br>5 MIN</small></div>
 <div>
-<h2>Where the vote landed, and three answers to confirm</h2>
-<p class="do">I read the result. Anything at <b>3 of 5</b> or better is a buy; the core five needed <b>4 of 5</b>.</p>
-<div class="sayb"><span class="lbl">Say</span><p>Here is what came back. One thing I need from three of you, then we key orders. I am not re-opening the vote.</p></div>
+<h2>The result — all five voted</h2>
+<p class="do"><b>The core five: 5 of 5 yes, no changes.</b> VOO, VEA, both Treasuries and BIL are approved. They go in.</p>
+<div class="sayb"><span class="lbl">Say</span><p>All five are in. Here is where it landed. I am not re-opening any of it, but three of you wrote something that does not match what you ticked, and those three change the answer.</p></div>
+<div class="table-wrap"><table class="vt"><tr><th class="vsec">Sector</th><th class="vnm">Name</th>
+<th class="vp">Dylan</th>
+<th class="vp">Joe</th>
+<th class="vp">Caleb</th>
+<th class="vp">Michael</th>
+<th class="vp">Federico</th>
+<th class="vct">Yes</th><th class="vrs">Result</th></tr>
+<tr class="vin">
+<td class="vsec">Health Care</td>
+<td class="vnm"><b>JNJ</b> <span class="vsub">Johnson &amp; Johnson</span></td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">4 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vin">
+<td class="vsec"></td>
+<td class="vnm"><b>MDT</b> <span class="vsub">Medtronic</span></td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">3 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vin">
+<td class="vsec">Industrials</td>
+<td class="vnm"><b>GEV</b> <span class="vsub">GE Vernova</span></td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">5 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vout">
+<td class="vsec"></td>
+<td class="vnm"><b>ETN</b> <span class="vsub">Eaton</span></td>
+<td class="vp vn">&middot;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">2 of 5</td>
+<td class="vrs">OUT</td></tr>
+<tr class="vin">
+<td class="vsec">Consumer Discretionary</td>
+<td class="vnm"><b>AMZN</b> <span class="vsub">Amazon</span></td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">3 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vin">
+<td class="vsec"></td>
+<td class="vnm"><b>BKNG</b> <span class="vsub">Booking Holdings</span></td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">4 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vin">
+<td class="vsec">Tech &amp; Communication</td>
+<td class="vnm"><b>GOOG</b> <span class="vsub">Alphabet</span></td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">4 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vin">
+<td class="vsec"></td>
+<td class="vnm"><b>NVDA</b> <span class="vsub">NVIDIA</span></td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vct">4 of 5</td>
+<td class="vrs">IN</td></tr>
+<tr class="vout">
+<td class="vsec">Financials</td>
+<td class="vnm"><b>HOOD</b> <span class="vsub">Robinhood</span></td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vn">&middot;</td>
+<td class="vct">2 of 5</td>
+<td class="vrs">OUT</td></tr>
+<tr class="vin">
+<td class="vsec"></td>
+<td class="vnm"><b>IBKR</b> <span class="vsub">Interactive Brokers</span></td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vn">&middot;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vp vy">&#10003;</td>
+<td class="vct">4 of 5</td>
+<td class="vrs">IN</td></tr>
+</table></div>
+<p class="vnote">Nine cleared 3 of 5 and get bought at $6,000 each &mdash; $54,000. <b>Eaton is the only one out.</b> Amazon/Booking and Alphabet/NVIDIA both came out 3&ndash;3, but all four cleared on their own, so there is nothing to break.</p>
 <ul>
-<li><b>Three sector results rest on an answer that contradicts the reasoning typed beside it.</b> I am not guessing what anyone meant, so this is thirty seconds each and it goes in the minutes. Criterion 4 grades exactly this.</li>
-<li><b>Dylan, Industrials.</b> You selected <i>only GEV</i> and wrote &amp;ldquo;I think we should buy both.&amp;rdquo; Which did you mean? If it is both, ETN crosses the line and gets bought.</li>
-<li><b>Dylan, Consumer.</b> You selected <i>only BKNG</i> and wrote &amp;ldquo;we should just get VOO &amp;mdash; we already get a lot of Amazon through VOO.&amp;rdquo; That reads as <i>neither</i>. If it is neither, the AMZN/BKNG tie disappears and Amazon wins it outright.</li>
-<li><b>Caleb, Tech.</b> You selected <i>buy both</i> and wrote about &amp;ldquo;nvidia and apple.&amp;rdquo; Apple is not on the ballot &amp;mdash; the pair is Alphabet and NVIDIA. Does your yes still stand for Alphabet?</li>
-<li><b>Two sectors are tied and I break them</b> unless the answers above settle it: Amazon vs Booking, and Robinhood vs Interactive Brokers.</li>
-<li><b>Dylan withdrew his own objection on the ballot.</b> He argued VOO should go in at 10% now rather than 20% on day one, then voted yes on the core five as is and left the change box empty. That is his call to make and it is settled — thirty seconds on the record, not a debate. Nobody re-opens it on his behalf.</li>
+<li><b>Eight of the ten cleared 3 of 5.</b> JNJ, MDT, GEV, AMZN, BKNG, GOOG, NVDA, IBKR. <b>Eaton and Robinhood are out</b>, both at 2 of 5.</li>
+<li><b>Nothing for me to break.</b> Alphabet and NVIDIA tied at 4 each, and both cleared on their own, so both get bought. Every other sector had a clear winner and in three of them the runner-up cleared too.</li>
+<li><b>Eight names, not ten: $48,000, not $60,000.</b> The spare $12,000 stays in BIL until we pick two more.</li>
+<li><b>Timing: 3 of 5 said core five Monday, the ten stocks the week after.</b> Joe wanted it all Monday, Federico wanted Tuesday. Majority carries.</li>
+<li><b>A correction I owe you on that vote.</b> The ballot implied splitting costs extra commission. It does not — eight positions bought once each is $25 apiece whether it happens over one day or two. Only buying the <i>same</i> position twice costs more. The split still stands on the market-timing argument, not on fees.</li>
+<li><b>Three answers that contradict their own reasoning. Each one changes a name.</b></li>
+<li><b>Dylan, Industrials. This is the one that matters.</b> You ticked <i>only GEV</i> and wrote &amp;ldquo;I think we should buy both.&amp;rdquo; If you meant both, <b>Eaton goes to 3 and we buy nine names, not eight.</b> It is the only answer tonight that changes what we place.</li>
+<li><b>Dylan, Consumer.</b> You ticked <i>only BKNG</i> and wrote &amp;ldquo;we should just get VOO.&amp;rdquo; That reads as neither. Booking would drop to 3 and still clear, so it changes nothing tonight &amp;mdash; but say which you meant, because it goes in the minutes.</li>
+<li><b>Caleb, Tech.</b> You ticked <i>buy both</i> and wrote about &amp;ldquo;nvidia and apple.&amp;rdquo; Apple is not on the ballot &amp;mdash; the pair is Alphabet and NVIDIA. Alphabet would still clear at 3 either way, so nothing moves, but I want it on the record that your yes was for Alphabet.</li>
 </ul>
 <div class="decide"><i>Two rules</i> <b>Market orders only</b>, and <b>BIL waits for Monday</b> — 820 shares trips the 25% position limit and it is the only line that can absorb a Monday gap.</div>
-<span class="done"><b>Done when</b> Everyone has heard the same list.</span>
+<span class="done"><b>Done when</b> Everyone has heard the same list and the three answers are settled.</span>
 </div></div>
 <div class="st">
 <div class="stn">3<small>8:27<br>23 MIN</small></div>
