@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light">
 <title>The vote &middot; Wall Street Warriors</title>
-<meta name="description" content="Every answer from the ballot: who voted for what, why, and the eight names that cleared.">
+<meta name="description" content="Every answer from the ballot: who voted for what, why, and the nine names that cleared.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,9 @@ body{background:
   radial-gradient(760px 480px at 92% 2%, #FFF2E2 0%, rgba(255,242,226,0) 58%),
   #F4F6FA}
 main.shell{padding-bottom:72px}
-.vstack{display:grid;gap:30px}
+/* minmax(0,1fr), not the default auto: a grid track sized by its item's
+   min-content lets one wide child widen EVERY card on the page. */
+.vstack{display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
 .glass{background:rgba(255,255,255,.70);backdrop-filter:blur(22px) saturate(150%);
   -webkit-backdrop-filter:blur(22px) saturate(150%);
   border:1px solid rgba(255,255,255,.9);border-radius:24px;

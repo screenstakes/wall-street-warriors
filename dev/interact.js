@@ -164,8 +164,15 @@ setTimeout(function () {
   out.push("status encoding");
   // hatch means "Pile B money not in stocks yet" — which includes the five
   // empty slots, whose dollars ARE placed Monday as BIL
-  var later = qa('.pie .wedge.t-s');
-  ck(later.length === 11, later.length + " hatched wedges (10 named + 5 empty slots)");
+  // After the Oct 4 vote the nine named companies are placed Tuesday like
+  // everything else, so they are no longer hatched. Only the money with no
+  // name on it is: the one parked slice of open slots.
+  var named = qa('.pie .wedge.t-s');
+  ck(named.length === 9, named.length + " named company wedges, none of them hatched");
+  ck(named.every(function (w) { return !/url\(/.test(getComputedStyle(w).fill || ""); }),
+     "the nine named wedges are solid - they go in on Tuesday");
+  var later = qa('.pie .wedge.t-p');
+  ck(later.length === 1, later.length + " hatched wedge (the open slots parked in BIL)");
   var textured = later.filter(function (w) {
     // the fill now comes from a class, so check the computed value
     return /url\(/.test(getComputedStyle(w).fill || "");

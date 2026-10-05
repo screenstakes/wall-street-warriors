@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Tuesday &middot; Wall Street Warriors</title>
+<meta name="description" content="The order sheet for Tuesday: what gets keyed, in what order, and the one thing the meeting has to decide.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/warren.css?v=5">
+<style>
+body{background:
+  radial-gradient(900px 520px at 12% -5%, #E8F0FF 0%, rgba(232,240,255,0) 62%),
+  radial-gradient(760px 480px at 92% 2%, #FFF2E2 0%, rgba(255,242,226,0) 58%),
+  #F4F6FA}
+main.shell{padding-bottom:72px}
+/* minmax(0,1fr), not the default auto: a grid track sized by its item's
+   min-content lets one wide child widen EVERY card on the page. */
+.vstack{display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
+.glass{background:rgba(255,255,255,.70);backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.9);border-radius:24px;
+  box-shadow:0 1px 2px rgba(16,32,64,.05),0 16px 40px -22px rgba(16,32,64,.30)}
+
+.verdict{padding:40px 32px 34px;text-align:center}
+.vnum{font:700 104px/.86 var(--mono);color:var(--navy);letter-spacing:-.04em}
+.vnum small{font:600 24px var(--ui);color:var(--ink-3);letter-spacing:0;margin-left:10px}
+.vlead{font:700 26px/1.25 var(--ui);color:var(--ink);margin:16px 0 0}
+.vsub{font:400 18px/1.55 var(--body);color:var(--ink-2);margin:12px auto 0;max-width:30em}
+.vsub b{color:var(--ink)}
+.vmoney{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+.vmoney div{padding:14px 22px;border-radius:16px;background:rgba(255,255,255,.75);
+  border:1px solid var(--line)}
+.vmoney b{display:block;font:700 25px var(--mono);color:var(--ink);letter-spacing:-.02em}
+.vmoney span{display:block;font:600 12.5px var(--ui);color:var(--ink-2);margin-top:3px}
+.vcorr{margin:20px auto 0;max-width:40em;padding:13px 18px;border-radius:14px;
+  background:var(--warn-soft);font:500 14.5px/1.55 var(--ui);color:#7A4E07;text-align:left}
+
+.sect{padding:26px 28px}
+.sect h2{margin:0;font:700 23px var(--ui);color:var(--ink)}
+.sect p.k{margin:8px 0 0;font:400 15.5px/1.55 var(--body);color:var(--ink-2)}
+
+/* ---- the one decision ---- */
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px;
+  margin-top:20px;align-items:start}
+.opt{padding:19px 20px;border-radius:18px;background:rgba(255,255,255,.72);
+  border:1px solid var(--line)}
+.opt.is-rec{border:2px solid var(--ok);background:var(--ok-soft)}
+.oh{display:flex;flex-direction:column;gap:7px}
+.obadge{align-self:flex-start;padding:4px 11px;border-radius:999px;
+  font:700 11px var(--ui);letter-spacing:.07em;text-transform:uppercase;
+  background:rgba(16,32,64,.06);color:var(--ink-2)}
+.opt.is-rec .obadge{background:var(--ok);color:#fff}
+.oh h3{margin:0;font:700 19px/1.25 var(--ui);color:var(--ink)}
+.osplit{margin:9px 0 0;font:600 15px var(--ui);color:var(--ink)}
+ul.olist{list-style:none;margin:14px 0 0;padding:0}
+ul.olist li{display:flex;align-items:baseline;gap:9px;padding:7px 0;
+  border-top:1px solid var(--line-2)}
+ul.olist li:first-child{border-top:0}
+ul.olist b{font:700 14px var(--mono);min-width:50px;color:var(--ink)}
+ul.olist span{flex:1 1 auto;font-size:13.5px;color:var(--ink-2)}
+ul.olist em{font:700 14.5px var(--mono);font-style:normal;color:var(--ink)}
+.owhy,.oagainst{margin:13px 0 0;font:400 14.5px/1.6 var(--body);color:var(--ink-2)}
+.owhy b,.oagainst b{color:var(--ink)}
+
+/* ---- the order sheet ---- */
+table.os{width:100%;border-collapse:collapse;font-size:14.5px;min-width:0}
+table.os th{background:var(--navy);color:#fff;font:700 11px var(--ui);letter-spacing:.05em;
+  text-transform:uppercase;padding:10px 10px;text-align:left}
+table.os td{padding:12px 10px;border-bottom:1px solid var(--line-2);vertical-align:top}
+table.os td.tk b{display:block;font:700 17px var(--mono);color:var(--ink)}
+table.os td.tk span{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+table.os td.pl i{font-style:normal;display:inline-block;width:22px;height:22px;
+  line-height:22px;text-align:center;border-radius:6px;font:700 11.5px var(--ui);color:#fff}
+.p-a{background:#3860ac} .p-b{background:#D98B2B} .p-c{background:#20a89b}
+table.os td.qt{white-space:nowrap;font:600 14px var(--mono);color:var(--ink)}
+table.os td.dl{white-space:nowrap;font:700 15px var(--mono);color:var(--ink);text-align:right}
+table.os td.nt{font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.fill{display:inline-block;min-width:56px;border-bottom:2px solid var(--line);
+  margin-right:7px}
+tr.sep td{background:var(--well);font:700 11.5px var(--ui);letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-2);padding:8px 10px}
+tr.tot td{background:rgba(16,32,64,.02);font-weight:600}
+tr.grand td{background:var(--navy);color:#fff;font-weight:700}
+tr.grand td.dl{color:#fff;font-size:17px}
+
+/* ---- lists ---- */
+ul.checks{list-style:none;margin:20px 0 0;padding:0}
+ul.checks li{padding:16px 0;border-top:1px solid var(--line-2)}
+ul.checks li:first-child{border-top:0}
+.ct{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ct b{font:600 17px var(--ui);color:var(--ink)}
+.ct .why{font:600 11.5px var(--ui);letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;background:var(--bad-soft);color:var(--bad)}
+ul.checks p{margin:8px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
+
+ul.run{list-style:none;margin:20px 0 0;padding:0}
+ul.run li{display:flex;align-items:flex-start;gap:16px;padding:14px 0;
+  border-top:1px solid var(--line-2)}
+ul.run li:first-child{border-top:0}
+.mins{flex:0 0 54px;text-align:right;font:700 26px/1 var(--mono);color:var(--navy);
+  letter-spacing:-.02em}
+.mins small{display:block;font:600 10.5px var(--ui);color:var(--ink-3);letter-spacing:.06em;
+  text-transform:uppercase;margin-top:3px}
+.rl b{display:block;font:600 17px var(--ui);color:var(--ink)}
+.rl i{display:block;font-style:normal;font:400 14.5px/1.55 var(--body);color:var(--ink-2);
+  margin-top:3px}
+
+ul.how{list-style:none;margin:20px 0 0;padding:0}
+ul.how li{padding:14px 0;border-top:1px solid var(--line-2)}
+ul.how li:first-child{border-top:0}
+ul.how b{font:600 17px var(--ui);color:var(--ink)}
+ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
+
+@media (max-width:700px){
+  .verdict{padding:32px 20px 28px}
+  .vnum{font-size:84px}
+  .vlead{font-size:22px}
+  .vmoney div{flex:1 1 140px;padding:13px 16px}
+  .sect{padding:22px 18px}
+  /* the dollar column is the whole point of the sheet, so it must never be the
+     thing that scrolls off. Pile and Note go instead, and the table fits. */
+  table.os{font-size:13.5px;table-layout:fixed;min-width:0}
+  table.os th,table.os td{padding:10px 6px}
+  table.os td.nt,table.os th.nt,table.os td.pl,table.os th.pl{display:none}
+  table.os th.wh,table.os td.tk{width:42%}
+  table.os th.qh,table.os td.qt{width:28%}
+  table.os th.dh,table.os td.dl{width:30%}
+  table.os td.tk b{font-size:15.5px}
+  table.os td.tk span{font-size:12px}
+  table.os td.dl{font-size:14px}
+  .fill{min-width:38px}
+  .mins{flex-basis:44px;font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> &middot; Wharton Global High School Investment Competition 2026&ndash;27</span>
+    <span class="phase"><i></i><span data-today>Today</span> &middot; <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="library.html">Library</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="guide.html">Guide</a>
+      <a href="rules.html">Rules</a>
+      <a href="dozen.html">Dozen</a>
+      <a href="card.html">Propose</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="vstack">
+
+    <section class="glass verdict">
+      <div class="vnum">14<small>orders</small></div>
+      <p class="vlead">keyed in one session</p>
+      <p class="vsub">Two funds, 9 companies, two Treasuries and the bills.
+        <b>Tuesday 1:00pm, in person</b>, placed Tuesday afternoon, straight after the meeting.</p>
+      <div class="vmoney">
+        <div><b>$288,675</b><span>into securities</span></div>
+        <div><b>$320</b><span>commissions</span></div>
+        <div><b>$11,005</b><span>cash left</span></div>
+      </div>
+      <p class="vcorr">1pm Central is inside market hours, which run 8:30am to 3:00pm
+        Central. Orders keyed after this meeting fill <b>Tuesday</b>, not Wednesday
+        morning.</p>
+    </section>
+
+    <section class="glass sect" aria-labelledby="d-h">
+      <h2 id="d-h">The one thing to decide</h2>
+      <p class="k">How the $54,000 splits between the 9 names. The total is the
+        same either way, so nothing else in the sheet moves.</p>
+      <div class="opts"><div class="opt is-rec"><div class="oh"><span class="obadge">Recommended</span><h3>Overweight GE Vernova only</h3></div><p class="osplit">GEV $8,000, the other eight $5,750 each</p><ul class="olist"><li><b>GEV</b><span>GE Vernova</span><em>$8,000</em></li><li><b>JNJ</b><span>Johnson &amp; Johnson</span><em>$5,750</em></li><li><b>BKNG</b><span>Booking Holdings</span><em>$5,750</em></li><li><b>GOOG</b><span>Alphabet</span><em>$5,750</em></li><li><b>NVDA</b><span>NVIDIA</span><em>$5,750</em></li><li><b>IBKR</b><span>Interactive Brokers</span><em>$5,750</em></li><li><b>MDT</b><span>Medtronic</span><em>$5,750</em></li><li><b>ETN</b><span>Eaton</span><em>$5,750</em></li><li><b>AMZN</b><span>Amazon</span><em>$5,750</em></li></ul><p class="owhy"><b>Why.</b> GEV is the only unanimous name — 5 of 5, and 3 of 5 put it in their top three. That is a real conviction signal and it is the only one in the data. Below it, JNJ, NVDA and MDT are separated by nothing: two votes each out of five.</p><p class="oagainst"><b>Against it.</b> It gives up Caleb's point that more than one name deserves a bigger position.</p></div><div class="opt"><div class="oh"><span class="obadge">The alternative</span><h3>Overweight the top three</h3></div><p class="osplit">GEV, JNJ and NVDA $8,000 each, the other six $5,000 each</p><ul class="olist"><li><b>GEV</b><span>GE Vernova</span><em>$8,000</em></li><li><b>JNJ</b><span>Johnson &amp; Johnson</span><em>$8,000</em></li><li><b>BKNG</b><span>Booking Holdings</span><em>$5,000</em></li><li><b>GOOG</b><span>Alphabet</span><em>$5,000</em></li><li><b>NVDA</b><span>NVIDIA</span><em>$8,000</em></li><li><b>IBKR</b><span>Interactive Brokers</span><em>$5,000</em></li><li><b>MDT</b><span>Medtronic</span><em>$5,000</em></li><li><b>ETN</b><span>Eaton</span><em>$5,000</em></li><li><b>AMZN</b><span>Amazon</span><em>$5,000</em></li></ul><p class="owhy"><b>Why.</b> What Caleb proposed on the call and Michael agreed to in principle. Top three by the tiebreaker question, with the tie at two votes broken by the main approval count: JNJ 4 and NVDA 4 beat MDT 3.</p><p class="oagainst"><b>Against it.</b> Two of the three are chosen by a one-vote margin on a tiebreaker nobody expected to use. And NVDA is the name Federico argued against on the call — he said it does not fit a three-to-five year horizon. Putting a top-three position in it contradicts our own stated research.</p></div></div>
+    </section>
+
+    <section class="glass sect" aria-labelledby="o-h">
+      <h2 id="o-h">The order sheet</h2>
+      <p class="k">Key them top to bottom. Share counts come from Tuesday&rsquo;s price,
+        so the blanks get filled at the table.</p>
+      <div class="table-wrap" style="margin-top:18px">
+        <table class="os">
+          <thead><tr><th class="wh">What</th><th class="pl">Pile</th>
+            <th class="qh">Quantity</th>
+            <th class="dh" style="text-align:right">Dollars</th>
+            <th class="nt">Note</th></tr></thead>
+          <tbody><tr><td class="tk"><b>VOO</b><span>Vanguard S&amp;P 500</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt">84 shares</td><td class="dl">$59,706</td><td class="nt">Quantity already worked out. Key it as 84 shares, not as a dollar amount.</td></tr><tr><td class="tk"><b>VEA</b><span>Vanguard Developed Markets</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt">417 shares</td><td class="dl">$29,957</td><td class="nt">Same — 417 shares.</td></tr><tr class="sep"><td colspan="5">The nine names &mdash; $54,000 at the recommended split</td></tr><tr><td class="tk"><b>GEV</b><span>GE Vernova</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$8,000</td><td class="nt">Industrials &middot; cleared 5 of 5</td></tr><tr><td class="tk"><b>JNJ</b><span>Johnson &amp; Johnson</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Health Care &middot; cleared 4 of 5</td></tr><tr><td class="tk"><b>BKNG</b><span>Booking Holdings</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Consumer Discretionary &middot; cleared 4 of 5</td></tr><tr><td class="tk"><b>GOOG</b><span>Alphabet</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Tech &amp; Communication &middot; cleared 4 of 5</td></tr><tr><td class="tk"><b>NVDA</b><span>NVIDIA</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Tech &amp; Communication &middot; cleared 4 of 5</td></tr><tr><td class="tk"><b>IBKR</b><span>Interactive Brokers</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Financials &middot; cleared 4 of 5</td></tr><tr><td class="tk"><b>MDT</b><span>Medtronic</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Health Care &middot; cleared 3 of 5</td></tr><tr><td class="tk"><b>ETN</b><span>Eaton</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Industrials &middot; cleared 3 of 5</td></tr><tr><td class="tk"><b>AMZN</b><span>Amazon</span></td><td class="pl"><i class="p-b">B</i></td><td class="qt"><span class="fill">&nbsp;</span>shares</td><td class="dl">$5,750</td><td class="nt">Consumer Discretionary &middot; cleared 3 of 5</td></tr><tr class="sep"><td colspan="5">Then the two Treasuries, then BIL last</td></tr><tr><td class="tk"><b>T31</b><span>Treasury 5.375% · Feb 2031</span></td><td class="pl"><i class="p-a">A</i></td><td class="qt">35 units</td><td class="dl">$35,600</td><td class="nt">35 units of $1,000 face. The cost is an estimate until it is on screen; if the fill differs, the gap comes out of cash, not out of another line.</td></tr><tr><td class="tk"><b>T36</b><span>Treasury 4.500% · Feb 2036</span></td><td class="pl"><i class="p-a">A</i></td><td class="qt">37 units</td><td class="dl">$35,200</td><td class="nt">37 units of $1,000 face. Same — estimate until filled.</td></tr><tr><td class="tk"><b>BIL</b><span>SPDR 1–3 Month T-Bill ETF</span></td><td class="pl"><i class="p-c">C</i></td><td class="qt">810 shares</td><td class="dl">$74,212</td><td class="nt">KEY THIS LAST, against whatever cash is actually left. 810 shares and not 820: 820 is 25.04% of the account and StockTrak cancels it with no warning.</td></tr><tr class="tot"><td>Securities</td><td></td><td></td><td class="dl">$288,675</td><td class="nt">14 orders</td></tr><tr class="tot"><td>Commissions</td><td></td><td></td><td class="dl">$320</td><td class="nt">12 &times; $25, 2 &times; $10</td></tr><tr class="tot"><td>Cash left</td><td></td><td></td><td class="dl">$11,005</td><td class="nt">includes the $6,000 Robinhood freed up, which cannot fit in BIL</td></tr><tr class="grand"><td>Total</td><td></td><td></td><td class="dl">$300,000</td><td class="nt"></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass sect" aria-labelledby="h-h">
+      <h2 id="h-h">How to key it</h2>
+      <ul class="how"><li><b>Shares come from Tuesday&#x27;s price, not from this sheet.</b><p>Pull the quote inside WInS at the moment you key it. Shares = the dollar budget divided by the price, rounded <b>down</b>. Never round up — that is how an order gets cancelled for insufficient cash.</p></li><li><b>Key BIL last.</b><p>Everything else has a fixed quantity. BIL is the only line sized against whatever cash is actually left, so it absorbs the Treasury fills we cannot see until the orders are in.</p></li><li><b>One login, one person typing.</b><p>Michael keys every order. Nobody else is in the account at the same time.</p></li><li><b>Write the note as you go.</b><p>Federico types each trading note while the order is being keyed. Notes cannot be edited once saved, and three of them are the whole Oct 23 deliverable.</p></li><li><b>1pm Central is inside market hours.</b><p>The market is open 8:30am to 3:00pm Central. Orders keyed after the meeting fill <b>Tuesday</b>, not Wednesday morning.</p></li></ul>
+    </section>
+
+    <section class="glass sect" aria-labelledby="c-h">
+      <h2 id="c-h">4 things to confirm first</h2>
+      <p class="k">None of these take more than a minute, and every one of them is
+        something that cannot be fixed afterwards.</p>
+      <ul class="checks"><li><div class="ct"><b>The 25% position limit, on screen</b><span class="why">Nobody has looked. Flagged Sep 27.</span></div><p>Portfolio Simulation &rarr; Portfolio Summary &rarr; Session Rules. Read the Position Limit row and screenshot it. Every share count below assumes 25%. If it says something else, BIL changes and so does the cash line.</p></li><li><div class="ct"><b>Joe&#x27;s roster details</b><span class="why">The roster locks on Oct 9 and cannot be corrected after.</span></div><p>Full name, email, date of birth, graduation year. He has missed both calls and he is the only one still missing.</p></li><li><div class="ct"><b>Federico&#x27;s email, spelled back to him</b><span class="why">Confirm by text, not from the recording.</span></div><p>He read it out as fefemancio1717@gmail.com. One wrong character on the roster is the one mistake that cannot be fixed later.</p></li><li><div class="ct"><b>Two ballot answers, for the minutes</b><span class="why">Thirty seconds each. It goes in the minutes, which are graded.</span></div><p>Dylan ticked only BKNG in Consumer and wrote &ldquo;we should just get VOO&rdquo;. Caleb ticked buy both in Tech and wrote about &ldquo;nvidia and apple&rdquo; — Apple is not on the ballot. Neither changes a name.</p></li></ul>
+    </section>
+
+    <section class="glass sect" aria-labelledby="r-h">
+      <h2 id="r-h">Run of show</h2>
+      <p class="k">50 minutes. The vote is not re-opened.</p>
+      <ul class="run"><li><span class="mins">5<small>min</small></span><span class="rl"><b>Where it landed</b><i>Nine names, $54,000. Robinhood is the only one out. Eaton is in because Dylan corrected his ballot on Sunday. Nobody re-opens the vote.</i></span></li><li><span class="mins">10<small>min</small></span><span class="rl"><b>Settle the split</b><i>One decision: the weighting. Recommendation first, Caleb&#x27;s version second, then a show of hands. The total is $54,000 either way.</i></span></li><li><span class="mins">5<small>min</small></span><span class="rl"><b>The four confirmations</b><i>Position limit screenshot, Joe&#x27;s details, Federico&#x27;s email, the two answers for the minutes.</i></span></li><li><span class="mins">25<small>min</small></span><span class="rl"><b>Key the orders</b><i>Michael keys, Caleb reads the share count back before each one, Federico writes the trading note. BIL last. Say stop if a number looks wrong.</i></span></li><li><span class="mins">5<small>min</small></span><span class="rl"><b>What is next</b><i>Six company slots still open. Who researches what, and when we look at them.</i></span></li></ul>
+    </section>
+
+  </div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/warren.js?v=5" defer></script>
+</body>
+</html>
