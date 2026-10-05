@@ -11,12 +11,13 @@ set -u
 cd "$(dirname "$0")/.." || exit 1
 PAGE="${1:-portfolio.html}"
 WIDTH="${2:-1200}"
+PROBE="${3:-dev/interact.js}"   # a page with its own checks passes its own probe
 OUT="dev/out"; mkdir -p "$OUT/pages"
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 [ -f "$PAGE" ] || { echo "no such page: $PAGE"; exit 1; }
 
-sed 's#</body>#<script src="dev/interact.js"></script></body>#' "$PAGE" \
+sed "s#</body>#<script src=\"$PROBE\"></script></body>#" "$PAGE" \
   > "$OUT/pages/_i-$PAGE"
 [ -e "$OUT/pages/assets" ] || ln -s ../../../assets "$OUT/pages/assets" 2>/dev/null
 [ -e "$OUT/pages/dev" ] || ln -s ../.. "$OUT/pages/dev" 2>/dev/null
@@ -29,7 +30,7 @@ REPORT=$(nice -n 10 "$CHROME" --headless --disable-gpu --hide-scrollbars \
 
 if [ -z "$REPORT" ]; then
   echo "interact: no report — the page threw before the probe ran, or the"
-  echo "          selectors found nothing. Width=$WIDTH Page=$PAGE"
+  echo "          selectors found nothing. Width=$WIDTH Page=$PAGE Probe=$PROBE"
   exit 1
 fi
 

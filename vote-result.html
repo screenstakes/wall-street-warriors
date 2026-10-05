@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>The vote, in full · Wall Street Warriors</title>
+<meta name="description" content="Every answer from the ballot: who voted for what, why they said it, and what cleared.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/warren.css?v=5">
+<style>
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.hero .b{border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;background:var(--well)}
+.hero .bv{font:700 26px/1.05 var(--mono);color:var(--ink)}
+.hero .bl{font:600 12px var(--ui);color:var(--ink-2);margin-top:4px;line-height:1.35}
+.hero .b.good{background:var(--ok-soft);border-color:var(--ok)}
+.hero .b.good .bv{color:var(--ok)}
+.hero .b.bad{background:var(--bad-soft);border-color:var(--bad)}
+.hero .b.bad .bv{color:var(--bad)}
+
+table.vm{width:100%;border-collapse:collapse;font-size:14px}
+table.vm th{background:var(--navy);color:#fff;font:700 11px var(--ui);letter-spacing:.04em;
+  text-transform:uppercase;padding:9px 8px;text-align:left;position:sticky;top:0;z-index:2}
+table.vm th.v,table.vm td.v{text-align:center;width:8.5%}
+table.vm th.ct,table.vm td.ct{text-align:center;white-space:nowrap;width:6%}
+table.vm th.rs,table.vm td.rs{text-align:center;white-space:nowrap;width:8%;padding-right:14px}
+table.vm td.v,table.vm td.ct,table.vm td.rs{vertical-align:middle}
+table.vm td{padding:0;border-bottom:1px solid var(--line-2)}
+table.vm td.tk{padding:10px 8px}
+table.vm td.tk b{font:700 15px var(--mono);color:var(--ink)}
+table.vm td.tk .co{display:block;font-size:12.5px;color:var(--ink-2);margin-top:1px}
+tr.secrow td{background:var(--well);padding:7px 8px;font:700 11.5px var(--ui);
+  letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--line)}
+tr.secrow .by{float:right;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink-3)}
+tr.nm.inn td.rs{color:var(--ok);font-weight:700}
+tr.nm.out td{background:var(--bad-soft)}
+tr.nm.out td.rs{color:var(--bad);font-weight:700}
+tr.nm.inn.sel td,tr.nm.out.sel td{background:var(--info-soft)}
+td.ct{font:700 14px var(--mono);color:var(--ink)}
+td.ct span{font-weight:500;color:var(--ink-3);font-size:12px}
+td.rs{font:700 12px var(--ui);letter-spacing:.04em}
+
+button.c{width:100%;min-height:44px;border:0;background:none;cursor:pointer;
+  font:700 17px/1 var(--ui);padding:0}
+button.c.y{color:var(--ok)}
+button.c.n{color:#C3CAD4}
+button.c:hover,button.c:focus-visible{background:var(--info-soft);outline:none}
+button.c.on{background:var(--ink);color:#fff}
+button.c.cf::after{content:"";display:block;width:5px;height:5px;border-radius:50%;
+  background:var(--warn);margin:3px auto 0}
+
+.detail{margin-top:16px;border:1px solid var(--line);border-radius:var(--r);
+  padding:15px 17px;background:var(--card);min-height:120px}
+.detail .dh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.detail .dh b{font-size:17px;color:var(--ink)}
+.detail .dp{font:600 13px var(--mono);color:var(--ink-2)}
+.detail .chip{display:inline-block;padding:3px 10px;border-radius:999px;
+  font:700 11px var(--ui);letter-spacing:.04em;text-transform:uppercase;margin-top:8px;margin-right:7px}
+.detail .chip.yes{background:var(--ok-soft);color:var(--ok)}
+.detail .chip.no{background:var(--gray-soft);color:var(--ink-2)}
+.detail .chip.warn{background:var(--warn-soft);color:var(--warn)}
+.detail q{display:block;margin:11px 0 0;font:400 15.5px/1.6 var(--body);color:var(--ink);
+  padding-left:13px;border-left:3px solid var(--line)}
+.detail .dn{margin:10px 0 0;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.detail .hint{color:var(--ink-3);font-size:14px}
+
+.who{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.who button{min-height:40px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;
+  background:var(--card);cursor:pointer;font:600 13.5px var(--ui);color:var(--ink-2)}
+.who button:hover,.who button:focus-visible{border-color:var(--blue);color:var(--ink);outline:none}
+.who button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+ul.plain{list-style:none;margin:0;padding:0}
+ul.plain li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-top:1px solid var(--line-2)}
+ul.plain li:first-child{border-top:0}
+.tn{flex:1 1 auto;font-weight:600;color:var(--ink)}
+.tw{color:var(--ink-2);font-size:13.5px}
+.tc{font:700 15px var(--mono);color:var(--ink);min-width:28px;text-align:right}
+.t3n{flex:1 1 auto;color:var(--ink-2)}
+.t3w{font-size:13px;color:var(--ink-3)}
+ul.plain li b{font:700 14px var(--mono);min-width:48px}
+
+.note{font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.mob{display:none}
+@media (max-width:700px){
+  /* site.css puts min-width:600px on every table. This one fits a phone
+     once the count and result columns move into the name cell. */
+  table.vm{font-size:13px;table-layout:fixed;min-width:0}
+  table.vm td.tk .co{display:none}
+  table.vm td.tk .mob{display:block;font:700 11px var(--ui);letter-spacing:.03em;
+    margin-top:3px;white-space:nowrap}
+  tr.nm.inn td.tk .mob{color:var(--ok)}
+  tr.nm.out td.tk .mob{color:var(--bad)}
+  /* the verdict rides in the name cell instead, so the whole grid fits a phone
+     with nothing to scroll sideways for */
+  table.vm th.ct,table.vm td.ct,table.vm th.rs,table.vm td.rs{display:none}
+  /* table-layout:fixed obeys the FIRST row's widths, so both columns are stated */
+  table.vm th.nmh,table.vm td.tk{width:24%}
+  table.vm th.v,table.vm td.v{width:15.2%}
+  table.vm td.tk{padding:9px 6px}
+  table.vm td.tk b{font-size:14px}
+  table.vm th{padding:8px 3px;font-size:10px}
+  button.c{font-size:16px}
+  .hero .bv{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> · Wharton Global High School Investment Competition 2026–27</span>
+    <span class="phase"><i></i><span data-today>Today</span> · <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="library.html">Library</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="guide.html">Guide</a>
+      <a href="rules.html">Rules</a>
+      <a href="dozen.html">Dozen</a>
+      <a href="card.html">Propose</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="page-title">
+    <div>
+      <h1>The vote, in full</h1>
+      <p>All five ballots. Tap any tick to read why that person voted that way.</p>
+    </div>
+  </div>
+
+  <div class="stack">
+
+    <section class="card reveal" style="--i:1" aria-labelledby="r-h">
+      <div class="card-head"><span class="ic" data-icon="check"></span><h2 id="r-h">Where it landed</h2></div>
+      <div class="card-body">
+        <div class="hero">
+          <div class="b good"><div class="bv">8</div><div class="bl">names got 3 or more votes</div></div>
+          <div class="b bad"><div class="bv">2</div><div class="bl">did not — ETN and HOOD</div></div>
+          <div class="b"><div class="bv">$48,000</div><div class="bl">8 names at $6,000 each</div></div>
+          <div class="b"><div class="bv">$12,000</div><div class="bl">stays in BIL until we pick more</div></div>
+        </div>
+        <p class="note" style="margin-top:14px"><b>The core five passed 5 of 5</b>, needing 4. VOO, VEA, both Treasuries and BIL are approved, with nobody asking for a change. <b>Buying:</b> GEV, JNJ, BKNG, GOOG, NVDA, IBKR, MDT, AMZN.</p>
+      </div>
+    </section>
+
+    <section class="card reveal" style="--i:2" aria-labelledby="m-h">
+      <div class="card-head"><span class="ic" data-icon="users"></span><h2 id="m-h">Who voted for what</h2>
+        <span class="sep"></span><span class="meta">tap any cell</span></div>
+      <div class="card-body">
+        <div class="who" id="who"></div>
+        <div class="table-wrap">
+          <table class="vm">
+            <thead><tr><th class="nmh">Name</th><th class="v">Dylan</th><th class="v">Joe</th><th class="v">Caleb</th><th class="v">Michael</th><th class="v">Federico</th><th class="ct">Yes</th><th class="rs">Result</th></tr></thead>
+            <tbody><tr class="secrow"><td class="sec" colspan="8">Health Care<span class="by">put forward by Joe</span></td></tr><tr class="nm inn" data-t="JNJ"><td class="tk"><b>JNJ</b><span class="co">Johnson &amp; Johnson</span><span class="mob">4/5 &middot; IN</span></td><td class="v"><button class="c y" data-w="Dylan" data-k="hc" data-t="JNJ" aria-label="Dylan on JNJ: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="hc" data-t="JNJ" aria-label="Joe on JNJ: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Caleb" data-k="hc" data-t="JNJ" aria-label="Caleb on JNJ: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Michael" data-k="hc" data-t="JNJ" aria-label="Michael on JNJ: no">&middot;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="hc" data-t="JNJ" aria-label="Federico on JNJ: yes">&#10003;</button></td><td class="ct">4<span>/5</span></td><td class="rs">IN</td></tr><tr class="nm inn" data-t="MDT"><td class="tk"><b>MDT</b><span class="co">Medtronic</span><span class="mob">3/5 &middot; IN</span></td><td class="v"><button class="c n" data-w="Dylan" data-k="hc" data-t="MDT" aria-label="Dylan on MDT: no">&middot;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="hc" data-t="MDT" aria-label="Joe on MDT: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Caleb" data-k="hc" data-t="MDT" aria-label="Caleb on MDT: no">&middot;</button></td><td class="v"><button class="c y" data-w="Michael" data-k="hc" data-t="MDT" aria-label="Michael on MDT: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="hc" data-t="MDT" aria-label="Federico on MDT: yes">&#10003;</button></td><td class="ct">3<span>/5</span></td><td class="rs">IN</td></tr><tr class="secrow"><td class="sec" colspan="8">Industrials<span class="by">put forward by Dylan</span></td></tr><tr class="nm inn" data-t="GEV"><td class="tk"><b>GEV</b><span class="co">GE Vernova</span><span class="mob">5/5 &middot; IN</span></td><td class="v"><button class="c y cf" data-w="Dylan" data-k="ind" data-t="GEV" aria-label="Dylan on GEV: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="ind" data-t="GEV" aria-label="Joe on GEV: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Caleb" data-k="ind" data-t="GEV" aria-label="Caleb on GEV: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Michael" data-k="ind" data-t="GEV" aria-label="Michael on GEV: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="ind" data-t="GEV" aria-label="Federico on GEV: yes">&#10003;</button></td><td class="ct">5<span>/5</span></td><td class="rs">IN</td></tr><tr class="nm out" data-t="ETN"><td class="tk"><b>ETN</b><span class="co">Eaton</span><span class="mob">2/5 &middot; OUT</span></td><td class="v"><button class="c n cf" data-w="Dylan" data-k="ind" data-t="ETN" aria-label="Dylan on ETN: no">&middot;</button></td><td class="v"><button class="c n" data-w="Joe" data-k="ind" data-t="ETN" aria-label="Joe on ETN: no">&middot;</button></td><td class="v"><button class="c y" data-w="Caleb" data-k="ind" data-t="ETN" aria-label="Caleb on ETN: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Michael" data-k="ind" data-t="ETN" aria-label="Michael on ETN: no">&middot;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="ind" data-t="ETN" aria-label="Federico on ETN: yes">&#10003;</button></td><td class="ct">2<span>/5</span></td><td class="rs">OUT</td></tr><tr class="secrow"><td class="sec" colspan="8">Consumer Discretionary<span class="by">put forward by Federico</span></td></tr><tr class="nm inn" data-t="AMZN"><td class="tk"><b>AMZN</b><span class="co">Amazon</span><span class="mob">3/5 &middot; IN</span></td><td class="v"><button class="c n cf" data-w="Dylan" data-k="con" data-t="AMZN" aria-label="Dylan on AMZN: no">&middot;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="con" data-t="AMZN" aria-label="Joe on AMZN: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Caleb" data-k="con" data-t="AMZN" aria-label="Caleb on AMZN: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Michael" data-k="con" data-t="AMZN" aria-label="Michael on AMZN: no">&middot;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="con" data-t="AMZN" aria-label="Federico on AMZN: yes">&#10003;</button></td><td class="ct">3<span>/5</span></td><td class="rs">IN</td></tr><tr class="nm inn" data-t="BKNG"><td class="tk"><b>BKNG</b><span class="co">Booking Holdings</span><span class="mob">4/5 &middot; IN</span></td><td class="v"><button class="c y cf" data-w="Dylan" data-k="con" data-t="BKNG" aria-label="Dylan on BKNG: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="con" data-t="BKNG" aria-label="Joe on BKNG: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Caleb" data-k="con" data-t="BKNG" aria-label="Caleb on BKNG: no">&middot;</button></td><td class="v"><button class="c y" data-w="Michael" data-k="con" data-t="BKNG" aria-label="Michael on BKNG: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="con" data-t="BKNG" aria-label="Federico on BKNG: yes">&#10003;</button></td><td class="ct">4<span>/5</span></td><td class="rs">IN</td></tr><tr class="secrow"><td class="sec" colspan="8">Tech &amp; Communication<span class="by">put forward by Michael</span></td></tr><tr class="nm inn" data-t="GOOG"><td class="tk"><b>GOOG</b><span class="co">Alphabet</span><span class="mob">4/5 &middot; IN</span></td><td class="v"><button class="c y" data-w="Dylan" data-k="tec" data-t="GOOG" aria-label="Dylan on GOOG: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Joe" data-k="tec" data-t="GOOG" aria-label="Joe on GOOG: no">&middot;</button></td><td class="v"><button class="c y cf" data-w="Caleb" data-k="tec" data-t="GOOG" aria-label="Caleb on GOOG: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Michael" data-k="tec" data-t="GOOG" aria-label="Michael on GOOG: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="tec" data-t="GOOG" aria-label="Federico on GOOG: yes">&#10003;</button></td><td class="ct">4<span>/5</span></td><td class="rs">IN</td></tr><tr class="nm inn" data-t="NVDA"><td class="tk"><b>NVDA</b><span class="co">NVIDIA</span><span class="mob">4/5 &middot; IN</span></td><td class="v"><button class="c y" data-w="Dylan" data-k="tec" data-t="NVDA" aria-label="Dylan on NVDA: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="tec" data-t="NVDA" aria-label="Joe on NVDA: yes">&#10003;</button></td><td class="v"><button class="c y cf" data-w="Caleb" data-k="tec" data-t="NVDA" aria-label="Caleb on NVDA: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Michael" data-k="tec" data-t="NVDA" aria-label="Michael on NVDA: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Federico" data-k="tec" data-t="NVDA" aria-label="Federico on NVDA: no">&middot;</button></td><td class="ct">4<span>/5</span></td><td class="rs">IN</td></tr><tr class="secrow"><td class="sec" colspan="8">Financials<span class="by">put forward by Caleb</span></td></tr><tr class="nm out" data-t="HOOD"><td class="tk"><b>HOOD</b><span class="co">Robinhood</span><span class="mob">2/5 &middot; OUT</span></td><td class="v"><button class="c n" data-w="Dylan" data-k="fin" data-t="HOOD" aria-label="Dylan on HOOD: no">&middot;</button></td><td class="v"><button class="c y" data-w="Joe" data-k="fin" data-t="HOOD" aria-label="Joe on HOOD: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Caleb" data-k="fin" data-t="HOOD" aria-label="Caleb on HOOD: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Michael" data-k="fin" data-t="HOOD" aria-label="Michael on HOOD: no">&middot;</button></td><td class="v"><button class="c n" data-w="Federico" data-k="fin" data-t="HOOD" aria-label="Federico on HOOD: no">&middot;</button></td><td class="ct">2<span>/5</span></td><td class="rs">OUT</td></tr><tr class="nm inn" data-t="IBKR"><td class="tk"><b>IBKR</b><span class="co">Interactive Brokers</span><span class="mob">4/5 &middot; IN</span></td><td class="v"><button class="c y" data-w="Dylan" data-k="fin" data-t="IBKR" aria-label="Dylan on IBKR: yes">&#10003;</button></td><td class="v"><button class="c n" data-w="Joe" data-k="fin" data-t="IBKR" aria-label="Joe on IBKR: no">&middot;</button></td><td class="v"><button class="c y" data-w="Caleb" data-k="fin" data-t="IBKR" aria-label="Caleb on IBKR: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Michael" data-k="fin" data-t="IBKR" aria-label="Michael on IBKR: yes">&#10003;</button></td><td class="v"><button class="c y" data-w="Federico" data-k="fin" data-t="IBKR" aria-label="Federico on IBKR: yes">&#10003;</button></td><td class="ct">4<span>/5</span></td><td class="rs">IN</td></tr></tbody>
+          </table>
+        </div>
+        <div class="detail" id="det" role="region" aria-live="polite">
+          <p class="hint">Tap a tick to read that person's reasoning. Tap a name on the left to see everyone's. The amber dots mark the 3 answers where what someone ticked does not match what they wrote.</p>
+        </div>
+      </div>
+      <div class="card-foot">A tick means that person voted to buy that name — either on its own or as part of &ldquo;buy both&rdquo;. A name needed 3 of 5.</div>
+    </section>
+
+    <section class="card reveal" style="--i:3" aria-labelledby="t-h">
+      <div class="card-head"><span class="ic" data-icon="clock"></span><h2 id="t-h">How to place them</h2></div>
+      <div class="card-body"><ul class="plain"><li><span class="tn">Core five Monday, the ten stocks the week after</span><span class="tw">Dylan, Caleb, Michael</span><span class="tc">3</span></li><li><span class="tn">All of it Monday — one day, one decision, cheapest</span><span class="tw">Joe</span><span class="tc">1</span></li><li><span class="tn">Something else — I will explain below</span><span class="tw">Federico</span><span class="tc">1</span></li></ul></div>
+      <div class="card-foot">Splitting the order costs nothing extra in commissions — each position is bought once either way, at $25 a trade. Only buying the same position twice costs more.</div>
+    </section>
+
+    <section class="card reveal" style="--i:4" aria-labelledby="c-h">
+      <div class="card-head"><span class="ic" data-icon="star"></span><h2 id="c-h">If we could only buy three</h2></div>
+      <div class="card-body"><ul class="plain"><li><b>GEV</b><span class="t3n">GE Vernova</span><span class="t3w">Dylan, Caleb, Federico</span></li><li><b>HOOD</b><span class="t3n">Robinhood</span><span class="t3w">Joe, Caleb</span></li><li><b>JNJ</b><span class="t3n">Johnson &amp; Johnson</span><span class="t3w">Dylan, Caleb</span></li><li><b>MDT</b><span class="t3n">Medtronic</span><span class="t3w">Joe, Michael</span></li><li><b>NVDA</b><span class="t3n">NVIDIA</span><span class="t3w">Joe, Michael</span></li><li><b>AMZN</b><span class="t3n">Amazon</span><span class="t3w">Federico</span></li><li><b>BKNG</b><span class="t3n">Booking Holdings</span><span class="t3w">Michael</span></li><li><b>GOOG</b><span class="t3n">Alphabet</span><span class="t3w">Dylan</span></li><li><b>IBKR</b><span class="t3n">Interactive Brokers</span><span class="t3w">Federico</span></li></ul></div>
+      <div class="card-foot">A tiebreaker question on the ballot. It did not need to be used — every tie cleared on its own.</div>
+    </section>
+
+  </div>
+</main>
+
+<script id="vd" type="application/json">{"voters": ["Dylan", "Joe", "Caleb", "Michael", "Federico"], "full": {"Dylan": "Dylan Wroan", "Joe": "Joe Brown", "Caleb": "Caleb Hamels", "Michael": "Michael Fitzgerald", "Federico": "Federico Mancini"}, "sub": {"Dylan": "Fri Oct 3, 6:09pm", "Joe": "Sat Oct 4, 10:39am", "Caleb": "Sat Oct 4, 12:40pm", "Michael": "Sat Oct 4, 8:20pm", "Federico": "Sat Oct 4, 8:32pm"}, "sectors": {"hc": "Health Care", "ind": "Industrials", "con": "Consumer Discretionary", "tec": "Tech & Communication", "fin": "Financials"}, "names": {"JNJ": {"n": "Johnson & Johnson", "sec": "Health Care", "key": "hc", "side": "A", "cnt": 4, "inn": true, "yes": ["Dylan", "Joe", "Caleb", "Federico"]}, "MDT": {"n": "Medtronic", "sec": "Health Care", "key": "hc", "side": "B", "cnt": 3, "inn": true, "yes": ["Joe", "Michael", "Federico"]}, "GEV": {"n": "GE Vernova", "sec": "Industrials", "key": "ind", "side": "A", "cnt": 5, "inn": true, "yes": ["Dylan", "Joe", "Caleb", "Michael", "Federico"]}, "ETN": {"n": "Eaton", "sec": "Industrials", "key": "ind", "side": "B", "cnt": 2, "inn": false, "yes": ["Caleb", "Federico"]}, "AMZN": {"n": "Amazon", "sec": "Consumer Discretionary", "key": "con", "side": "A", "cnt": 3, "inn": true, "yes": ["Joe", "Caleb", "Federico"]}, "BKNG": {"n": "Booking Holdings", "sec": "Consumer Discretionary", "key": "con", "side": "B", "cnt": 4, "inn": true, "yes": ["Dylan", "Joe", "Michael", "Federico"]}, "GOOG": {"n": "Alphabet", "sec": "Tech & Communication", "key": "tec", "side": "A", "cnt": 4, "inn": true, "yes": ["Dylan", "Caleb", "Michael", "Federico"]}, "NVDA": {"n": "NVIDIA", "sec": "Tech & Communication", "key": "tec", "side": "B", "cnt": 4, "inn": true, "yes": ["Dylan", "Joe", "Caleb", "Michael"]}, "HOOD": {"n": "Robinhood", "sec": "Financials", "key": "fin", "side": "A", "cnt": 2, "inn": false, "yes": ["Joe", "Caleb"]}, "IBKR": {"n": "Interactive Brokers", "sec": "Financials", "key": "fin", "side": "B", "cnt": 4, "inn": true, "yes": ["Dylan", "Caleb", "Michael", "Federico"]}}, "picks": {"Dylan": {"hc": {"pick": "A", "why": "I think we should do JNJ because they have a long history of growth and a strong profit margin. I wouldn't do MDT for now because of the uncertainty with some of there adds."}, "ind": {"pick": "A", "why": "I think we should buy both because they're both strong companies but have different strengths. It also gives us more exposure to the growing demand for electricity."}, "con": {"pick": "B", "why": "We should just get VOO because It's cheaper, has strong margins, and we already get a lot of Amazon through VOO."}, "tec": {"pick": "both", "why": "I think we should buy both because they're both strong companies with good growth. Even though we already own some through VOO, buying both gives us more exposure to tech."}, "fin": {"pick": "B", "why": "I think that we should only get IBKR because it has steady growth and a much less risky business model. Hoods high valuation makes it more risky."}}, "Joe": {"hc": {"pick": "both", "why": "Health Care is a constantly increasing sector for obvious reasons with worldwide development. And as healthcare advances away from covid 19, companies preparing to change their focus as going to bloom, if successful of course."}, "ind": {"pick": "A", "why": "The world needs electricity. Every where is constantly expanding and for expansion some sort of technology and electricity is needed."}, "con": {"pick": "both", "why": "This is where the big money is. As the economy develops everyone will spend more and more money on consumer goods, this has been proven time and time again."}, "tec": {"pick": "B", "why": "AI is the future of the world. For the next few years Nvidia will still have a monopoly over AI chips and tech so for now its a very beneficial buy."}, "fin": {"pick": "A", "why": "Robinhood is on a turnaround and steadily increasing at an amazing rate. Financials is literally just big money corporations that own many companies making their assets more spread out and possibly more profitable from the future of consumerism."}}, "Caleb": {"hc": {"pick": "A", "why": "Johnson's stock looks really good with real growth. Medtronic legit has been dying out and going knowhere for the last 5 years until we see growth we shouldn't invest In that company"}, "ind": {"pick": "both", "why": "GeV looks like a really promising company with still more growth to be seen. Eaton looks not as promising but a still good company to keep some money in"}, "con": {"pick": "A", "why": "Amzn is really ahead of the loop on tech applying drones and more things everyday so I feel like the stock could be crazy still in next 10 years. Bkng I don't see the hype for and feel like it won't be promising and growing in next uears"}, "tec": {"pick": "both", "why": "Booth really good, they both are ahead of the tech game with nvidia and apple going to be main producers of tech supply's especially with the upcoming years"}, "fin": {"pick": "both", "why": "They both are on top of the retail brokerage apps. One thing Robinhood is ahead of a lot of other company's with them having prediction markets, getting their own credit card, and 0$ commission fees"}}, "Michael": {"hc": {"pick": "B", "why": "I think the continuation of diabetes drugs will continue to be used and thrive until 2033 and has a solid growth rate with almost 10%. I would go with MDT"}, "ind": {"pick": "A", "why": "I think the economy will lean towards sustainable energy like wind turbines and stay that way for a while. go with GEV"}, "con": {"pick": "B", "why": "I think bookings is underrated with a solid dividend and similar growth rate to amazon"}, "tec": {"pick": "both", "why": "I think buying both can increase the value of out portfolio significantly because of the AI bible and its continuation to thrive."}, "fin": {"pick": "B", "why": "They are both fairly risky but would stick with IBKR just for interest and solid dividends"}}, "Federico": {"hc": {"pick": "both", "why": "The health care is very important and the stock are gonna be useful for us in a long term"}, "ind": {"pick": "both", "why": "Love those two stocks. Good value and growth prospect."}, "con": {"pick": "both", "why": "They are both market movers, in the long term they can do really good. Buying both means being covered in different economic scenarios."}, "tec": {"pick": "A", "why": "I don't trust Nvidia in the long term. I would not keep it more the 3-5 years."}, "fin": {"pick": "B", "why": "I would buy just one. The couple looks too risky to me."}}}, "pairs": {"hc": ["JNJ", "MDT"], "ind": ["GEV", "ETN"], "con": ["AMZN", "BKNG"], "tec": ["GOOG", "NVDA"], "fin": ["HOOD", "IBKR"]}, "timing": {"Dylan": {"a": "Core five Monday, the ten stocks the week after", "w": "It saves on commissions while giving us some time to see how the market reacts before buying the individual stocks."}, "Joe": {"a": "All of it Monday — one day, one decision, cheapest", "w": "The actual strategy used in terms of buying times in the simulation doesn't matter all that much as long as we have a reason to buy what we buy. We need numbers to build our portfolio case at the end of the event so lets just get our buys on."}, "Caleb": {"a": "Core five Monday, the ten stocks the week after", "w": "Everything at once isn't good. It matters what the stock does that day/week in order to buy it. Also did we look at earnings and when each company has them so we don't get screwed if we buy before and it crashes"}, "Michael": {"a": "Core five Monday, the ten stocks the week after", "w": "I think fees could kill us"}, "Federico": {"a": "Something else — I will explain below", "w": "Core five Tuesday. Nothing on Monday."}}, "top3": {"Dylan": ["JNJ", "GEV", "GOOG"], "Joe": ["MDT", "NVDA", "HOOD"], "Caleb": ["JNJ", "GEV", "HOOD"], "Michael": ["MDT", "BKNG", "NVDA"], "Federico": ["GEV", "AMZN", "IBKR"]}, "conflicts": {"Dylan|ind": "Ticked only GEV, wrote “we should buy both”. If he meant both, Eaton clears and it is nine names, not eight. The only answer tonight that changes what gets placed.", "Dylan|con": "Ticked only BKNG, wrote “we should just get VOO”, which reads as neither. Booking would still clear at 3, so nothing moves.", "Caleb|tec": "Ticked buy both, wrote about “nvidia and apple”. Apple is not on the ballot. Alphabet clears either way."}}</script>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/warren.js?v=5" defer></script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById("vd").textContent);
+  var det = document.getElementById("det");
+  var cells = [].slice.call(document.querySelectorAll("button.c"));
+  var rows = [].slice.call(document.querySelectorAll("tr.nm"));
+  var who = document.getElementById("who");
+
+  function el(t, c, x) {
+    var n = document.createElement(t);
+    if (c) n.className = c;
+    if (x != null) n.textContent = x;      // never innerHTML: this is form data
+    return n;
+  }
+  function clear() {
+    cells.forEach(function (c) { c.classList.remove("on"); });
+    rows.forEach(function (r) { r.classList.remove("sel"); });
+    [].slice.call(who.children).forEach(function (b) { b.classList.remove("on"); });
+    det.textContent = "";
+  }
+  function pickWord(p, side, a, b) {
+    if (p === "both") return "Buy both";
+    return "Buy only " + (p === "A" ? a : b);
+  }
+
+  // one cell: this person, this sector
+  function showCell(w, k, t) {
+    clear();
+    var nd = D.names[t], pk = D.picks[w][k], pair = D.pairs[k];
+    var yes = pk.pick === nd.side || pk.pick === "both";
+    document.querySelector('button.c[data-w="' + w + '"][data-k="' + k + '"][data-t="' + t + '"]').classList.add("on");
+    var h = el("div", "dh");
+    h.appendChild(el("b", null, D.full[w]));
+    h.appendChild(el("span", "dp", D.sectors[k]));
+    det.appendChild(h);
+    det.appendChild(el("span", "chip " + (yes ? "yes" : "no"),
+      yes ? "Voted to buy " + t : "Did not vote for " + t));
+    det.appendChild(el("span", "chip no", pickWord(pk.pick, nd.side, pair[0], pair[1])));
+    var cf = D.conflicts[w + "|" + k];
+    if (cf) det.appendChild(el("span", "chip warn", "Answer and reason disagree"));
+    det.appendChild(el("q", null, pk.why));
+    if (cf) det.appendChild(el("p", "dn", cf));
+    det.appendChild(el("p", "dn", "Submitted " + D.sub[w] + "."));
+  }
+
+  // one name: everyone's reasoning for it
+  function showName(t) {
+    clear();
+    var nd = D.names[t];
+    document.querySelector('tr.nm[data-t="' + t + '"]').classList.add("sel");
+    var h = el("div", "dh");
+    h.appendChild(el("b", null, t + " — " + nd.n));
+    h.appendChild(el("span", "dp", nd.cnt + " of 5"));
+    det.appendChild(h);
+    det.appendChild(el("span", "chip " + (nd.inn ? "yes" : "no"),
+      nd.inn ? "Cleared — we buy it" : "Did not clear"));
+    det.appendChild(el("p", "dn", nd.yes.length
+      ? "Voted for it: " + nd.yes.join(", ") + "."
+      : "Nobody voted for it."));
+    D.voters.forEach(function (w) {
+      var pk = D.picks[w][nd.key];
+      var yes = pk.pick === nd.side || pk.pick === "both";
+      var p = el("p", "dn");
+      p.appendChild(el("b", null, D.full[w] + (yes ? " — yes" : " — no") + ". "));
+      p.appendChild(document.createTextNode(pk.why));
+      det.appendChild(p);
+    });
+  }
+
+  // one person: every answer they gave
+  function showWho(w) {
+    clear();
+    [].slice.call(who.children).forEach(function (b) {
+      if (b.getAttribute("data-w") === w) b.classList.add("on");
+    });
+    var h = el("div", "dh");
+    h.appendChild(el("b", null, D.full[w]));
+    h.appendChild(el("span", "dp", "submitted " + D.sub[w]));
+    det.appendChild(h);
+    det.appendChild(el("span", "chip yes", "Core five: yes, place all five"));
+    Object.keys(D.sectors).forEach(function (k) {
+      var pk = D.picks[w][k], pair = D.pairs[k];
+      var p = el("p", "dn");
+      p.appendChild(el("b", null, D.sectors[k] + " — " + pickWord(pk.pick, "A", pair[0], pair[1]) + ". "));
+      p.appendChild(document.createTextNode(pk.why));
+      det.appendChild(p);
+    });
+    var t = el("p", "dn");
+    t.appendChild(el("b", null, "Timing — " + D.timing[w].a + ". "));
+    t.appendChild(document.createTextNode(D.timing[w].w));
+    det.appendChild(t);
+    det.appendChild(el("p", "dn", "Top three: " + D.top3[w].join(", ") + "."));
+  }
+
+  cells.forEach(function (c) {
+    c.addEventListener("click", function () {
+      showCell(c.getAttribute("data-w"), c.getAttribute("data-k"), c.getAttribute("data-t"));
+    });
+  });
+  rows.forEach(function (r) {
+    var td = r.querySelector("td.tk");
+    td.style.cursor = "pointer";
+    td.setAttribute("tabindex", "0");
+    td.setAttribute("role", "button");
+    td.setAttribute("aria-label", "Everyone's reasoning for " + r.getAttribute("data-t"));
+    function go() { showName(r.getAttribute("data-t")); }
+    td.addEventListener("click", go);
+    td.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); go(); }
+    });
+  });
+  D.voters.forEach(function (w) {
+    var b = el("button", null, D.full[w]);
+    b.type = "button";
+    b.setAttribute("data-w", w);
+    b.addEventListener("click", function () { showWho(w); });
+    who.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
