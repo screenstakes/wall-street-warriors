@@ -4,7 +4,10 @@
 <meta name="robots" content="noindex">
 <title>Tuesday — step by step</title>
 <style>
-  @page { size: letter; margin: 0.5in; }
+  /* 0.6in all round. At 0.5in the ink ran flush to the right edge and a
+     reprint through another print dialog clipped it; 0.6in clears every
+     printer's unprintable border and keeps full-width boxes centred. */
+  @page { size: letter; margin: 0.6in; }
   :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
          --ground:#FCFAF6; --rule:#DED6C6; --wash:#F4EFE4; --link:#1F4E8C; }
   *{box-sizing:border-box;}
@@ -430,6 +433,13 @@
     table.key2 thead{display:table-header-group;}
     table.key2 tr{break-inside:avoid; page-break-inside:avoid;}
     table.bal tr{break-inside:avoid; page-break-inside:avoid;}
+  }
+
+  @media print{
+    /* pull the gutter in so left and right ink margins match */
+    .st{grid-template-columns:30pt 1fr; gap:8pt;}
+    .st .stn{font-size:22pt;}
+    .st .stn small{font-size:7.2pt;}
   }
 </style></head><body>
 

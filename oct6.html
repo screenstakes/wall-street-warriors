@@ -4,7 +4,10 @@
 <meta name="robots" content="noindex">
 <title>Tuesday October 6 — Wall Street Warriors</title>
 <style>
-  @page { size: letter; margin: 0.5in; }
+  /* 0.6in all round. At 0.5in the ink ran flush to the right edge and a
+     reprint through another print dialog clipped it; 0.6in clears every
+     printer's unprintable border and keeps full-width boxes centred. */
+  @page { size: letter; margin: 0.6in; }
   :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
          --ground:#FCFAF6; --rule:#DED6C6; --wash:#F4EFE4; --link:#1F4E8C; }
   *{box-sizing:border-box;}
@@ -353,6 +356,13 @@
     .key{font-size:10.5px; gap:3px 8px;} .fig .cap,.fig .read{font-size:12px;}
     .horiz li{font-size:12px; flex-wrap:wrap;} .horiz li b{font-size:10.5px;}
     .horiz p{font-size:12px;}
+  }
+
+  @media print{
+    /* pull the gutter in so left and right ink margins match */
+    .block{gap:8pt;}
+    .time{flex:0 0 38pt;}
+    .time .t{font-size:10.5pt;}
   }
 </style></head><body>
 
