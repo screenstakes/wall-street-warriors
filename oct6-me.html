@@ -421,6 +421,16 @@
     table.key2 td.nm b{font-size:12.5px;} table.key2 td.nm span{display:none;}
     table.key2 td.n.q{font-size:12px;}
   }
+
+  @media print{
+    /* the keying table is the one page he types from — it must not split.
+       Starting it on a fresh sheet lets all 17 rows land together. */
+    .fig.keyfig{break-before:page; page-break-before:always;}
+    .fig{break-inside:avoid-page;}
+    table.key2 thead{display:table-header-group;}
+    table.key2 tr{break-inside:avoid; page-break-inside:avoid;}
+    table.bal tr{break-inside:avoid; page-break-inside:avoid;}
+  }
 </style></head><body>
 
 <header><div><p class="eyebrow">Order meeting · Tuesday, October 6 · just for you</p><h1>6 steps</h1></div><div class="who"><b>Michael</b><br>1:00–1:50 CT<br>In person, at school<br>Team copy: <a href="oct6.html">oct6.html</a></div></header>
@@ -730,11 +740,11 @@
 <li><b>1pm Central is inside market hours</b> — the market runs 8:30am to 3:00pm Central — so these fill today, not Wednesday morning.</li>
 <li><b>If we are behind at 1:40:</b> keep keying. The last item comes off the agenda, not this one.</li>
 </ul>
-<div class="fig">
+<div class="fig keyfig">
 <h4>Key these 14, in this order</h4>
 <p class="cap">Share counts are worked out from <b>Monday October 5, at the close</b>. They are a head start, not the number to key — <b>recompute each one off Tuesday&rsquo;s quote and round DOWN.</b> The budget column is the part that does not change.</p>
 <div class="table-wrap"><table class="key2">
-<tr><th class="s">#</th><th class="hn">Ticker</th><th>Budget</th><th>Mon close</th><th>Shares</th><th>Cost</th><th>Weight</th></tr>
+<thead><tr><th class="s">#</th><th class="hn">Ticker</th><th>Budget</th><th>Mon close</th><th>Shares</th><th>Cost</th><th>Weight</th></tr></thead><tbody>
 <tr>
 <td class="s">1</td>
 <td class="nm"><b>VOO</b><span>Vanguard S&amp;P 500</span></td>
@@ -864,7 +874,7 @@
 <tr class="tot"><td class="s"></td><td class="nm"><b>Total</b></td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n q">14 orders</td><td class="n">$287,354</td><td class="n">95.8%</td></tr>
 <tr class="tot"><td class="s"></td><td class="nm"><b>Commissions</b></td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n q">&mdash;</td><td class="n">$320</td><td class="n">&mdash;</td></tr>
 <tr class="tot"><td class="s"></td><td class="nm"><b>Cash left</b></td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n q">&mdash;</td><td class="n">$12,326</td><td class="n">4.1%</td></tr>
-</table></div>
+</tbody></table></div>
 <ul>
 <li><b>Market orders, every line.</b></li>
 <li><b>Shares = budget &divide; Tuesday&rsquo;s price, rounded DOWN.</b> Never up — rounding up is how an order comes back cancelled for insufficient cash.</li>
