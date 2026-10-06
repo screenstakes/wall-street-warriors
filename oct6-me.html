@@ -441,6 +441,16 @@
     .st .stn{font-size:22pt;}
     .st .stn small{font-size:7.2pt;}
   }
+
+  @media print{
+    /* a bordered card must never be severed by a page break: the rules
+       run off the bottom edge with no closure and resume headless. */
+    .gotcha{break-inside:avoid; page-break-inside:avoid;}
+    .fig{break-inside:avoid; page-break-inside:avoid;}
+    .links{break-inside:avoid; page-break-inside:avoid;}
+    .pre{break-inside:avoid; page-break-inside:avoid;}
+    .say{break-inside:avoid; page-break-inside:avoid;}
+  }
 </style></head><body>
 
 <header><div><p class="eyebrow">Order meeting · Tuesday, October 6 · just for you</p><h1>6 steps</h1></div><div class="who"><b>Michael</b><br>1:00–1:50 CT<br>In person, at school<br>Team copy: <a href="oct6.html">oct6.html</a></div></header>
@@ -611,6 +621,7 @@
 <p class="vnote" style="font-size:8pt;color:#5B6780;margin:3pt 0 0">Same nine names, same $54,000 either way. The largest difference any single name sees between the two columns is <b>$2,250</b>.</p>
 <div class="gotcha"><span>If someone wants to re-open the weighting</span>
 <p><b>We do not need another vote. The ballots answer it, and reading them is not re-opening them.</b></p>
+</div>
 <div class="fig">
 <h4>Every ballot, counted three ways</h4>
 <p class="cap">Each bar is the five of us. The line is &ldquo;did anyone vote against it&rdquo; &mdash; everything left of it is opposition. <b>GE Vernova is the only bar that starts at the line.</b></p>
@@ -697,6 +708,7 @@
 <li><b>Federico</b><i>&ldquo;I would not keep it more the 3-5 years&rdquo;</i></li>
 </ul></div>
 </div>
+<div class="gotcha"><span>What that tells us</span>
 <ul>
 <li><b>A &ldquo;both&rdquo; is not conviction.</b> Eleven of our twenty-five answers were &ldquo;buy both&rdquo;, and the reasons say why &mdash; <i>covered in different economic scenarios</i>. The tally counts that the same as choosing one on purpose.</li>
 <li><b>GEV is the only name nobody voted against.</b> That is stronger than unanimous, and it is the whole case for it carrying the bigger position.</li>
@@ -704,7 +716,8 @@
 <li><b>All five of us wrote a multi-year horizon without being asked</b> &mdash; so that is our real criterion. NVDA is the only name with a written objection on exactly that, which is why it does not get a top-three position.</li>
 <li><b>IBKR has the most solo picks, but read the reasons.</b> They are about Robinhood being risky, not Interactive Brokers being great. A vote against something does not earn an overweight.</li>
 </ul>
-<p class="subh" style="margin-top:8pt">Most of the IPS is already written</p>
+</div>
+<div class="gotcha"><span>Most of the IPS is already written</span>
 <ul>
 <li>Hold for years, not months. All five said so unprompted.</li>
 <li>Growth with demand that lasts.</li>
