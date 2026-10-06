@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oct 4 minutes &middot; Wall Street Warriors</title>
+<meta name="description" content="The written record of the October 4 call: what was decided, the objections raised and answered, and the three things the automatic summary got wrong.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+body{background:
+  radial-gradient(900px 520px at 12% -5%, #E8F0FF 0%, rgba(232,240,255,0) 62%),
+  radial-gradient(760px 480px at 92% 2%, #FFF2E2 0%, rgba(255,242,226,0) 58%),
+  #F4F6FA}
+main.shell{padding-bottom:72px}
+/* minmax(0,1fr), not auto: a track sized by its item's min-content lets one wide
+   child widen EVERY card on the page. */
+.vstack{display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
+.glass{background:rgba(255,255,255,.70);backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.9);border-radius:24px;
+  box-shadow:0 1px 2px rgba(16,32,64,.05),0 16px 40px -22px rgba(16,32,64,.30)}
+.card{padding:30px 26px}
+.card h2{font:700 25px/1.25 var(--ui);color:var(--ink);margin:0 0 8px}
+
+.verdict{padding:40px 28px 32px;text-align:center}
+.vnum{font:700 92px/.86 var(--mono);color:var(--navy);letter-spacing:-.04em}
+.vnum small{font:600 21px var(--ui);color:var(--ink-3);letter-spacing:0;margin-left:9px}
+.vlead{font:700 25px/1.25 var(--ui);color:var(--ink);margin:16px 0 0}
+.vsub{font:400 17px/1.55 var(--body);color:var(--ink-2);margin:12px auto 0;max-width:30em}
+.vsub b{color:var(--ink)}
+.vmeta{margin:22px auto 0;max-width:34em;display:grid;gap:7px;text-align:left}
+.vmeta div{font:400 15px/1.5 var(--body);color:var(--ink-2)}
+.vmeta b{color:var(--ink);font-weight:600}
+.recbtn{display:inline-block;margin-top:20px;padding:11px 20px;border-radius:999px;
+  background:var(--navy);color:#fff;font:600 15px var(--ui);text-decoration:none}
+
+.ts{display:inline-block;font:600 12px/1 var(--mono);color:var(--navy);
+  background:rgba(30,75,149,.09);border-radius:999px;padding:5px 9px;
+  text-decoration:none;white-space:nowrap;min-height:22px}
+.ts:hover{background:rgba(30,75,149,.17)}
+.dcite{margin:12px 0 0}
+
+ol.decs{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.dec{padding:22px 20px;border-radius:18px;background:rgba(255,255,255,.55);
+  border:1px solid rgba(16,32,64,.08);border-left:5px solid var(--navy)}
+.dec.open{border-left-color:#E08A2B;background:rgba(255,246,235,.72)}
+.dh{display:flex;gap:12px;align-items:flex-start;
+  font:700 20px/1.3 var(--ui);color:var(--ink)}
+.dn{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--navy);
+  color:#fff;font:700 14px/28px var(--mono);text-align:center}
+.dec.open .dn{background:#E08A2B}
+.dbody{font:400 17px/1.55 var(--body);color:var(--ink-2);margin:12px 0 0}
+.dbody b{color:var(--ink)}
+.ddetail{font:400 15px/1.55 var(--body);color:var(--ink-3);margin:10px 0 0}
+
+p.why{font:400 15px/1.5 var(--body);color:var(--ink-3);margin:0 0 16px}
+ol.quotes{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ol.quotes li{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;
+  padding:14px 16px;border-radius:14px;background:rgba(16,32,64,.045)}
+.who{font:700 13px var(--ui);color:var(--navy);text-transform:uppercase;
+  letter-spacing:.06em}
+.said{font:400 17px/1.5 var(--body);color:var(--ink)}
+.outcome{font:400 16px/1.55 var(--body);color:var(--ink-2);margin:16px 0 0;
+  padding-top:14px;border-top:1px solid rgba(16,32,64,.1)}
+.outcome b{color:var(--ink)}
+
+ol.corr{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+ol.corr li{padding:20px;border-radius:18px;background:rgba(255,255,255,.55);
+  border:1px solid rgba(16,32,64,.08)}
+.cwrong,.cright{display:flex;gap:10px;align-items:flex-start;
+  font:600 17px/1.4 var(--ui)}
+.cwrong{color:#A33}
+.cright{color:#1C7A52;margin-top:8px}
+.xm,.ck{flex:0 0 auto;width:22px;height:22px;border-radius:50%;text-align:center;
+  font:700 13px/22px var(--mono);color:#fff}
+.xm{background:#A33} .ck{background:#1C7A52}
+.cbody{font:400 16px/1.55 var(--body);color:var(--ink-2);margin:12px 0 0}
+.cbody b{color:var(--ink)}
+
+ol.surf{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+ol.surf h3{font:700 19px/1.3 var(--ui);color:var(--ink);margin:0}
+.sbody{font:400 16px/1.55 var(--body);color:var(--ink-2);margin:9px 0 0}
+.sbody b{color:var(--ink)}
+.sting{font:400 15px/1.55 var(--body);color:var(--ink);margin:10px 0 0;
+  padding:12px 14px;border-radius:12px;background:rgba(224,138,43,.12)}
+
+/* site.css sets table{min-width:600px}; a table meant for a phone must undo it
+   and declare its own column widths. */
+table.acts{width:100%;min-width:0;border-collapse:collapse;table-layout:fixed}
+table.acts th,table.acts td{text-align:left;vertical-align:top;padding:13px 8px;
+  border-bottom:1px solid rgba(16,32,64,.1)}
+table.acts th{font:700 12px var(--ui);color:var(--ink-3);text-transform:uppercase;
+  letter-spacing:.06em}
+table.acts col.c1{width:23%} table.acts col.c2{width:50%}
+table.acts col.c3{width:27%}
+td.who{font:700 15px/1.35 var(--ui);color:var(--navy);
+  text-transform:none;letter-spacing:0}
+td.what{font:600 15px/1.35 var(--ui);color:var(--ink)}
+.wnote{display:block;font:400 14px/1.45 var(--body);color:var(--ink-3);
+  margin-top:5px}
+td.when{font:600 14px/1.35 var(--mono);color:var(--ink-2)}
+
+ol.opts{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:16px}
+ol.opts li{padding:18px;border-radius:16px;background:rgba(255,255,255,.6);
+  border:1px solid rgba(16,32,64,.1)}
+.olabel{font:700 13px var(--ui);color:var(--ink-3);text-transform:uppercase;
+  letter-spacing:.06em}
+.oval{font:700 20px/1.3 var(--mono);color:var(--ink);margin-top:6px}
+.owhy{font:400 15px/1.5 var(--body);color:var(--ink-2);margin:9px 0 0}
+.ofoot{font:400 16px/1.55 var(--body);color:var(--ink);margin:18px 0 0;
+  padding:14px 16px;border-radius:14px;background:rgba(224,138,43,.14)}
+
+ul.links{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.links a{display:block;padding:13px 16px;border-radius:13px;
+  background:rgba(30,75,149,.07);color:var(--navy);text-decoration:none;
+  font:600 16px var(--ui);min-height:24px}
+ul.links a:hover{background:rgba(30,75,149,.14)}
+
+.sechead{font:700 13px var(--ui);color:var(--ink-3);text-transform:uppercase;
+  letter-spacing:.09em;margin:0 0 4px}
+code{font:600 14px var(--mono);background:rgba(16,32,64,.07);padding:2px 6px;
+  border-radius:5px}
+
+@media (max-width:560px){
+  .verdict{padding:32px 20px 26px}
+  .vnum{font-size:72px}
+  .card{padding:24px 18px}
+  .dec{padding:18px 16px}
+  table.acts col.c1{width:27%} table.acts col.c2{width:44%}
+  table.acts col.c3{width:29%}
+}
+</style>
+</head>
+<body>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages"><a href="index.html">Dashboard</a><a href="library.html">Library</a><a href="portfolio.html">Portfolio</a><a href="calendar.html">Calendar</a><a href="case.html">Case Study</a><a href="guide.html">Guide</a><a href="rules.html">Rules</a><a href="dozen.html">Dozen</a><a href="card.html">Propose</a><a href="playbook.html">Playbook</a><a href="team.html">Team</a><a href="news.html">Newsroom</a></nav>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="vstack">
+
+    <section class="glass verdict">
+      <div class="vnum">4<small>decisions</small></div>
+      <p class="vlead">and one still open</p>
+      <p class="vsub">The written record of the October 4 call. Every line below
+        carries a timestamp into the recording, so <b>nothing here has to be taken
+        on trust</b>.</p>
+      <div class="vmeta">
+        <div><b>When.</b> Sunday, October 4, 2026, 8:10 – 9:07 pm Central</div>
+        <div><b>Where.</b> Zoom, recorded</div>
+        <div><b>Present.</b> Michael Fitzgerald, Dylan Wroan, Caleb Hamels, Federico Maria Mancini</div>
+        <div><b>Absent.</b> Joe Brown — did not attend. He was at home with family and asked to be texted anything needing his reply.</div>
+        <div><b>Left early.</b> Federico gave notice at 24:43 that he had 15 minutes and left at 51:55, before the Eaton correction was settled and before the meeting date was fixed.</div>
+        <div>Timestamps link into the recording. The speaker label <code>k</code> in Fathom's transcript is <b>Caleb</b>.</div>
+      </div>
+      <a class="recbtn" href="https://fathom.video/calls/847982144" target="_blank" rel="noopener">Open the recording</a>
+    </section>
+
+    <section class="glass card">
+      <p class="sechead">What was decided</p>
+      <h2>Five things came out of this call.</h2>
+      <p class="why">Four are settled. The fifth is the one Tuesday has to finish,
+        and it is marked.</p>
+      <ol class="decs"><li class="dec"><div class="dh"><span class="dn">1</span>Nine of the ten balloted names cleared the 3-of-5 bar.</div><p class="dbody">The ballot closed during the call — Federico filed the fifth and last response at about 15:00. Michael then read the result back sector by sector. <b>Robinhood is the only name out</b>, at 2 of 5.</p><p class="ddetail">Health Care and Industrials were read aloud and are quoted below. The full per-sector tally lives on vote-result.html, which is built from the same ballot data this page cross-checks against.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2066" target="_blank" rel="noopener">34:26</a></p></li><li class="dec"><div class="dh"><span class="dn">2</span>Eaton is in, because Dylan corrected his own ballot out loud.</div><p class="dbody">Michael noticed that Dylan had ticked <b>buy only GEV</b> while his written reason said to buy both, and stopped to ask about it. That one exchange moved Eaton from 2 votes to 3 and into the portfolio.</p><p class="ddetail">Recorded precisely, because the Google Forms export still says eight names and anyone re-running the tally on it gets the wrong answer: Dylan said he must have misclicked and that he thought it was both, and said he would reread the form. The call moved on — Federico left four minutes later — so he did not read it back and confirm. The correction is his spoken word, which is why it is minuted here.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=3081" target="_blank" rel="noopener">51:21</a></p></li><li class="dec"><div class="dh"><span class="dn">3</span>Nothing is placed on Monday. Orders go in Tuesday.</div><p class="dbody">The ballot had said core five on Monday, 3 of 5. The call overruled it on Federico's argument and nobody dissented.</p><p class="ddetail">This is a case of the discussion beating the form, and it is worth the rubric seeing: the team voted one way on paper, heard a reason, and changed its mind in the room.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=1380" target="_blank" rel="noopener">23:00</a></p></li><li class="dec"><div class="dh"><span class="dn">4</span>Meet Tuesday Oct 6 at 1pm, in person, then key the orders.</div><p class="dbody">Federico proposed a lunch meeting at one to settle what to buy, with the orders keyed straight after. Michael agreed and added Coach P so the team could hear his input.</p><p class="ddetail">Caleb misheard this as Wednesday at the very end of the call and was corrected on the spot.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=3144" target="_blank" rel="noopener">52:24</a></p></li><li class="dec open"><div class="dh"><span class="dn">5</span>How the $54,000 splits across nine names was NOT decided.</div><p class="dbody">Caleb proposed favouring the top three. Michael said it made sense. <b>No vote was taken and no numbers were fixed</b>, and Federico had already left when it was discussed in full.</p><p class="ddetail">This is the one decision Tuesday has to make. Recording it as open rather than agreed is the difference between a team that decided something and a team that assumed it.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2678" target="_blank" rel="noopener">44:38</a></p></li></ol>
+    </section>
+
+    <section class="glass card">
+      <p class="sechead">Challenges raised and answered</p>
+      <h2>The part the rubric actually grades.</h2>
+      <p class="why">Criterion 4 is Articulation of Competition Experience: the
+        decision-making process, and the response to challenges. An objection that
+        was raised, answered and overruled only counts if somebody wrote it down.</p>
+    </section>
+
+    <section class="glass card"><h2>Caleb objected to Medtronic. He was answered, and overruled.</h2><p class="why">A challenge raised, met with a reason, and settled by the vote that already stood. This is the shape of thing criterion 4 asks for.</p><ol class="quotes"><li><span class="who">Caleb</span><span class="said">You know, Medtronic looked terrible.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2146" target="_blank" rel="noopener">35:46</a></li><li><span class="who">Caleb</span><span class="said">Yo, look at their stock, guys. It&#x27;s been dying for the last five years.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2149" target="_blank" rel="noopener">35:49</a></li><li><span class="who">Caleb</span><span class="said">Maybe this is a low and it could spike up. It&#x27;s just, it never really seemed promising.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2206" target="_blank" rel="noopener">36:46</a></li><li><span class="who">Michael</span><span class="said">Federico, do you think MDT is still good?</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2206" target="_blank" rel="noopener">36:46</a></li><li><span class="who">Federico</span><span class="said">I still want to buy it. The value is still good. It&#x27;s not overpriced. I think it&#x27;s a good stock. We can keep it for also longer.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2217" target="_blank" rel="noopener">36:57</a></li></ol><p class="outcome"><b>Outcome.</b> MDT stood at 3 of 5 and stays in. Caleb&#x27;s objection is on the record and was not withdrawn.</p></section><section class="glass card"><h2>Federico explained his no vote on NVIDIA. It was never a rejection.</h2><p class="why">The Fathom summary reports NVIDIA as rejected. It cleared 4 of 5. Michael was asking one member to explain one vote.</p><ol class="quotes"><li><span class="who">Michael</span><span class="said">Federico, is there any reason you said no to NVIDIA?</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2814" target="_blank" rel="noopener">46:54</a></li><li><span class="who">Federico</span><span class="said">I think it&#x27;s a good stock. I will actually buy it. But the stuff we need to make clear is how long do we need to keep it.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2823" target="_blank" rel="noopener">47:03</a></li><li><span class="who">Federico</span><span class="said">NVIDIA is a good stock only if we keep it for like two years, and we&#x27;re very, very sure we&#x27;re paying attention to how it&#x27;s doing.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2823" target="_blank" rel="noopener">47:03</a></li><li><span class="who">Federico</span><span class="said">I&#x27;m trying to build a portfolio from like three to five years. So I don&#x27;t think in that range NVIDIA will be a good stock.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2823" target="_blank" rel="noopener">47:03</a></li></ol><p class="outcome"><b>Outcome.</b> NVDA is in at 4 of 5. His reasoning is the standing argument against giving it a top-three weighting on Tuesday.</p></section><section class="glass card"><h2>Federico&#x27;s argument for avoiding Monday, in his own words.</h2><p class="why">It overturned a ballot result, so the reason belongs in the record and not just the outcome.</p><ol class="quotes"><li><span class="who">Federico</span><span class="said">The beginning and the end of the week — Monday — it just gets crazy because of the after hours, because people buy stuff during the weekend.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=1380" target="_blank" rel="noopener">23:00</a></li><li><span class="who">Federico</span><span class="said">The volume on Monday and Friday is just not the right one. It&#x27;s going to get inflated and then deflated in the middle of the week.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=1380" target="_blank" rel="noopener">23:00</a></li><li><span class="who">Federico</span><span class="said">Buying with an inflated volume will not let you see the real value of the stocks.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=1380" target="_blank" rel="noopener">23:00</a></li></ol><p class="outcome"><b>Outcome.</b> Accepted without objection. The ballot&#x27;s Monday result was dropped.</p></section><section class="glass card"><h2>Caleb&#x27;s weighting proposal, as he actually put it.</h2><p class="why">It is one of the two options on Tuesday&#x27;s table, so the minute should carry his words rather than someone&#x27;s summary of them.</p><ol class="quotes"><li><span class="who">Caleb</span><span class="said">I think you should favour our top three, and then split evenly the rest of the money to the other ones.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2678" target="_blank" rel="noopener">44:38</a></li><li><span class="who">Caleb</span><span class="said">Favour our top three with maybe like 8k each, and then give all the other ones more like five.</span><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2702" target="_blank" rel="noopener">45:02</a></li></ol><p class="outcome"><b>Outcome.</b> Michael said it made sense. No vote, no figures fixed, and Federico was not in the room for it.</p></section>
+
+    <section class="glass card">
+      <p class="sechead">Corrections</p>
+      <h2>3 things the automatic summary got wrong.</h2>
+      <p class="why">That summary was sent to Coach P before anyone read it. These
+        are the corrections, each against the recording.</p>
+      <ol class="corr"><li><div class="cwrong"><span class="xm" aria-hidden="true">×</span><span>Eaton was rejected.</span></div><div class="cright"><span class="ck" aria-hidden="true">✓</span><span>It passed, 3 of 5.</span></div><p class="cbody">It had two votes until Michael caught the contradiction in Dylan's ballot. Michael, on tape: <b>“'Cause then ETN would pass.”</b> It is in the portfolio.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=3100" target="_blank" rel="noopener">51:40</a></p></li><li><div class="cwrong"><span class="xm" aria-hidden="true">×</span><span>NVIDIA was rejected.</span></div><div class="cright"><span class="ck" aria-hidden="true">✓</span><span>It cleared 4 of 5.</span></div><p class="cbody">Michael asked Federico to explain his own single no vote. One member explaining one dissenting vote is not the team rejecting a name.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2814" target="_blank" rel="noopener">46:54</a></p></li><li><div class="cwrong"><span class="xm" aria-hidden="true">×</span><span>Federico said the things Michael said, after the 40-minute mark.</span></div><div class="cright"><span class="ck" aria-hidden="true">✓</span><span>About fifteen minutes of Michael&#x27;s speech is filed under Federico.</span></div><p class="cbody">Fathom duplicates one block and attributes a copy to each of them. The tell is self-address: <b>“Federico, is there any reason you said no to NVIDIA?”</b> is attributed to Federico. So is <b>“Federico, do you think we should still present the rest of our stocks?”</b></p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2814" target="_blank" rel="noopener">46:54</a></p></li></ol>
+    </section>
+
+    <section class="glass card">
+      <p class="sechead">Raised on the call, written down nowhere else</p>
+      <h2>Four things worth knowing before Tuesday.</h2>
+      <ol class="surf"><li><h3>Coach P leans toward spreading the purchases out.</h3><p class="sbody">Michael, on the call: <b>“He was definitely leaning towards kind of spacing it out, but I think commissions could kind of eat us on that.”</b></p><p class="sting">The commissions reason does not hold. Each position is bought once either way, at $25 a trade — only splitting one single position into tranches costs more. All-at-once is still the right call on the evidence, but if Coach P raises this at 1pm the team needs the real answer, not the one that is arithmetically wrong.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2823" target="_blank" rel="noopener">47:03</a></p></li><li><h3>Federico proposed presenting the remaining stock research next Sunday.</h3><p class="sbody">After Tuesday's orders, present the rest of the slideshow and plan the following week's trades.</p><p class="sting">This is the only existing plan for the six open company slots, worth $36,000. It is not on any page and nobody owns it.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=3275" target="_blank" rel="noopener">54:35</a></p></li><li><h3>Dylan&#x27;s email was read aloud and the recording disagrees with the roster.</h3><p class="sbody">Fathom transcribed it as <code>icott.com</code>. The roster has <code>icloud.com</code>.</p><p class="sting">Nobody has seen it typed. One wrong character on the roster is the single mistake that cannot be fixed after submission, so get it by text and copy it from the text.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=2059" target="_blank" rel="noopener">34:19</a></p></li><li><h3>Caleb lost his client research in the sheet swap and asked for a day.</h3><p class="sbody">His words: <b>“All these questions are different, so you gotta give me a day to do this.”</b></p><p class="sting">He owns the IPS, due Nov 6, and nobody has started it. A member who has just lost work is the one to check on first.</p><p class="dcite"><a class="ts" href="https://fathom.video/calls/847982144?timestamp=1753" target="_blank" rel="noopener">29:13</a></p></li></ol>
+    </section>
+
+    <section class="glass card">
+      <p class="sechead">Still open</p>
+      <h2>The only thing Tuesday has to decide</h2>
+      <p class="dbody">How the $54,000 splits across the nine names. The total is the same either way.</p>
+      <ol class="opts"><li><div class="olabel">On the order sheet</div><div class="oval">GE Vernova $8,000, the other eight $5,750 each</div><p class="owhy">GEV is the only unanimous name. Below it the next three are separated by nothing.</p></li><li><div class="olabel">Caleb&#x27;s version</div><div class="oval">Top three $8,000, the other six $5,000 each</div><p class="owhy">Proposed at 44:38 and agreed in principle. It puts a top-three position in NVDA, which is the name Federico argued against.</p></li></ol>
+      <p class="ofoot">Federico may miss the meeting. His pick between these two needs to come by text before 1pm, or the decision gets taken with two of five absent and no written proxy.</p>
+    </section>
+
+    <section class="glass card">
+      <p class="sechead">Who owes what</p>
+      <h2>Actions out of this meeting.</h2>
+      <table class="acts">
+        <colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup>
+        <thead><tr><th>Who</th><th>What</th><th>When</th></tr></thead>
+        <tbody><tr><td class="who">Michael</td><td class="what">Submit the roster<span class="wnote">Due Fri Oct 9 and it locks on the click. Joe&#x27;s legal name is the only field still missing.</span></td><td class="when">Tue/Wed Oct 6–7</td></tr><tr><td class="who">Michael</td><td class="what">Send Coach P the correction to the Fathom summary<span class="wnote">He has the wrong version. This page is the correction — send the link.</span></td><td class="when">Before Tuesday</td></tr><tr><td class="who">Federico</td><td class="what">Post the minutes of this meeting<span class="wnote">The job he was assigned on the call. This page is a stand-in, not a replacement — he should still keep the record going.</span></td><td class="when">Monday Oct 5</td></tr><tr><td class="who">Dylan</td><td class="what">One column of the bear-case sheet<span class="wnote">The Microsoft column is header-only and all five questions are blank.</span></td><td class="when">Wednesday</td></tr><tr><td class="who">Caleb</td><td class="what">Read the client case<span class="wnote">He also owns the IPS, due Nov 6, and lost research in the sheet swap.</span></td><td class="when">Tuesday</td></tr><tr><td class="who">Joe</td><td class="what">Cash check against the log<span class="wnote">He missed this call and the one before it.</span></td><td class="when">Friday</td></tr><tr><td class="who">Everyone</td><td class="what">Fill in week one on the new sheet<span class="wnote">Three boxes. Nobody had filled in the old one, which is why it was shortened.</span></td><td class="when">Before Tuesday</td></tr></tbody>
+      </table>
+    </section>
+
+    <section class="glass card">
+      <p class="sechead">Related</p>
+      <h2>Where the rest of it lives.</h2>
+      <ul class="links"><li><a href="tuesday.html">The order sheet for Tuesday</a></li><li><a href="vote-result.html">Every ballot, in full</a></li><li><a href="portfolio.html">The portfolio</a></li><li><a href="oct6.html">Tuesday&#x27;s agenda</a></li><li><a href="minutes.html">What minute-taking is</a></li></ul>
+    </section>
+
+  </div>
+</main>
+</body>
+</html>
