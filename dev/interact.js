@@ -159,26 +159,29 @@ setTimeout(function () {
   var rows = qa("table tbody tr");
   ck(rows.length >= 15, rows.length + " table rows — every slice reachable without hovering");
 
-  // the now/later split must not be colour-alone
+  // status must not be colour-alone
   out.push("");
   out.push("status encoding");
-  // hatch means "Pile B money not in stocks yet" — which includes the five
-  // empty slots, whose dollars ARE placed Monday as BIL
-  // After the Oct 4 vote the nine named companies are placed Tuesday like
-  // everything else, so they are no longer hatched. Only the money with no
-  // name on it is: the one parked slice of open slots.
+  // hatch meant "Pile B money not in stocks yet". After the Oct 4 vote only the
+  // five parked slots carried it; on Oct 6 the room dropped those slots and put
+  // the money into the nine names, so nothing is hatched any more. Status
+  // (Wednesday / last / left over) rides on the legend groups, the table's
+  // When column and each wedge's aria-label instead.
   var named = qa('.pie .wedge.t-s');
-  ck(named.length === 9, named.length + " named company wedges, none of them hatched");
+  ck(named.length === 9, named.length + " named company wedges, each with its own budget");
   ck(named.every(function (w) { return !/url\(/.test(getComputedStyle(w).fill || ""); }),
-     "the nine named wedges are solid - they go in on Tuesday");
+     "the nine named wedges are solid - they go in on Wednesday");
   var later = qa('.pie .wedge.t-p');
-  ck(later.length === 1, later.length + " hatched wedge (the open slots parked in BIL)");
-  var textured = later.filter(function (w) {
-    // the fill now comes from a class, so check the computed value
-    return /url\(/.test(getComputedStyle(w).fill || "");
+  ck(later.length === 0, later.length + " hatched wedges (the parked slots are gone since Oct 6)");
+  var whens = {};
+  wedges.forEach(function (w) {
+    var k = w.getAttribute("data-when") || "";
+    whens[k] = (whens[k] || 0) + 1;
   });
-  ck(textured.length === later.length,
-     "every not-yet wedge carries a texture, so status is not colour-alone");
+  ck(whens.wednesday === 13 && whens.last === 1 && whens.rest === 1,
+     "status is carried in data-when: " + JSON.stringify(whens));
+  ck(wedges.every(function (w) { return /Placing Wednesday|Left over/.test(w.getAttribute("aria-label") || ""); }),
+     "every wedge announces its status in its aria-label, so status is not colour-alone");
 
   out.push("");
   out.push("================================================");

@@ -42,6 +42,13 @@ main.shell{padding-bottom:72px}
 .vcorr{margin:20px auto 0;max-width:40em;padding:13px 18px;border-radius:14px;
   background:var(--warn-soft);font:500 14.5px/1.55 var(--ui);color:#7A4E07;text-align:left}
 
+/* ---- the superseded card: first thing on the page, big and short ---- */
+.superseded{padding:26px 28px;background:var(--warn-soft);border-color:rgba(149,88,0,.28)}
+.superseded .k{display:block;font:700 11.5px var(--ui);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--warn)}
+.superseded p{margin:8px 0 0;font:700 24px/1.3 var(--ui);color:var(--ink)}
+.superseded a{color:var(--warn);text-decoration:underline;text-underline-offset:3px}
+
 .sect{padding:26px 28px}
 .sect h2{margin:0;font:700 23px var(--ui);color:var(--ink)}
 .sect p.k{margin:8px 0 0;font:400 15.5px/1.55 var(--body);color:var(--ink-2)}
@@ -120,6 +127,8 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
 
 @media (max-width:700px){
   .verdict{padding:32px 20px 28px}
+  .superseded{padding:22px 18px}
+  .superseded p{font-size:20px}
   .vnum{font-size:84px}
   .vlead{font-size:22px}
   .vmoney div{flex:1 1 140px;padding:13px 16px}
@@ -174,6 +183,11 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
 
 <main class="shell">
   <div class="vstack">
+
+    <section class="glass superseded" aria-label="Superseded">
+      <span class="k">Superseded</span>
+      <p>This was Tuesday’s sheet. The meeting happened, the room changed the split, and nothing was keyed. The live sheet is <a href="wednesday.html">wednesday.html</a>.</p>
+    </section>
 
     <section class="glass verdict">
       <div class="vnum">14<small>orders</small></div>

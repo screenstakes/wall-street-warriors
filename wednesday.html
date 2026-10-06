@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Wednesday &middot; Wall Street Warriors</title>
+<meta name="description" content="The order sheet for Wednesday: what the Tuesday meeting changed, the split across the nine names, and the 14 orders in keying order.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/warren.css?v=5">
+<style>
+body{background:
+  radial-gradient(900px 520px at 12% -5%, #E8F0FF 0%, rgba(232,240,255,0) 62%),
+  radial-gradient(760px 480px at 92% 2%, #FFF2E2 0%, rgba(255,242,226,0) 58%),
+  #F4F6FA}
+main.shell{padding-bottom:72px}
+/* minmax(0,1fr), not the default auto: a grid track sized by its item's
+   min-content lets one wide child widen EVERY card on the page. */
+.vstack{display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
+.glass{background:rgba(255,255,255,.70);backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.9);border-radius:24px;
+  box-shadow:0 1px 2px rgba(16,32,64,.05),0 16px 40px -22px rgba(16,32,64,.30)}
+
+.verdict{padding:40px 32px 34px;text-align:center}
+.vnum{font:700 96px/.9 var(--mono);color:var(--navy);letter-spacing:-.04em}
+.vnum small{display:block;font:600 20px var(--ui);color:var(--ink-3);letter-spacing:0;margin-top:12px}
+.vlead{font:700 26px/1.25 var(--ui);color:var(--ink);margin:16px 0 0}
+.vsub{font:400 18px/1.55 var(--body);color:var(--ink-2);margin:12px auto 0;max-width:30em}
+.vsub b{color:var(--ink)}
+.vmoney{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+.vmoney div{padding:14px 22px;border-radius:16px;background:rgba(255,255,255,.75);
+  border:1px solid var(--line)}
+.vmoney b{display:block;font:700 25px var(--mono);color:var(--ink);letter-spacing:-.02em}
+.vmoney span{display:block;font:600 12.5px var(--ui);color:var(--ink-2);margin-top:3px}
+.vcorr{margin:20px auto 0;max-width:40em;padding:13px 18px;border-radius:14px;
+  background:var(--warn-soft);font:500 15px/1.55 var(--ui);color:#7A4E07}
+.vlinks{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 0}
+.vlinks a{display:inline-flex;align-items:center;min-height:38px;padding:0 16px;
+  border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.8);
+  font:600 13.5px var(--ui);color:var(--blue);text-decoration:none}
+.vlinks a:hover{border-color:var(--blue)}
+
+.sect{padding:26px 28px}
+.sect h2{margin:0;font:700 23px var(--ui);color:var(--ink)}
+.sect p.k{margin:8px 0 0;font:400 15.5px/1.55 var(--body);color:var(--ink-2)}
+.sect p.k b{color:var(--ink)}
+.more{display:inline-flex;align-items:center;min-height:38px;margin-top:14px;
+  font:600 15px var(--ui);color:var(--blue);text-decoration:none}
+.more:hover{text-decoration:underline}
+
+/* ---- the split ---- */
+.tiers{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:18px}
+.tier{padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.72);
+  border:1px solid var(--line)}
+.tier.is-top{border:2px solid var(--navy)}
+.th{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tbadge{padding:4px 11px;border-radius:999px;font:700 11px var(--ui);letter-spacing:.07em;
+  text-transform:uppercase;background:rgba(16,32,64,.06);color:var(--ink-2)}
+.tier.is-top .tbadge{background:var(--navy);color:#fff}
+.th b{font:700 15px var(--mono);color:var(--ink-2)}
+ul.tlist{list-style:none;margin:12px 0 0;padding:0}
+ul.tlist li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line-2)}
+ul.tlist li:first-child{border-top:0}
+ul.tlist li>b{font:700 16px var(--mono);min-width:56px;color:var(--ink)}
+ul.tlist li>span{flex:1 1 auto;min-width:0}
+ul.tlist i{display:block;font-style:normal;font:600 14.5px var(--ui);color:var(--ink)}
+ul.tlist em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-2);margin-top:2px}
+ul.tlist strong{font:700 17px var(--mono);color:var(--ink);white-space:nowrap}
+.twhy{margin:12px 0 0;font:400 14.5px/1.55 var(--body);color:var(--ink-2)}
+
+/* ---- the order sheet ---- */
+table.os{width:100%;border-collapse:collapse;font-size:14.5px;min-width:0}
+table.os th{background:var(--navy);color:#fff;font:700 11px var(--ui);letter-spacing:.05em;
+  text-transform:uppercase;padding:10px 10px;text-align:left;vertical-align:bottom}
+table.os th.r{text-align:right}
+table.os td{padding:12px 10px;border-bottom:1px solid var(--line-2);vertical-align:top}
+table.os td.tk b{display:block;font:700 17px var(--mono);color:var(--ink)}
+table.os td.tk span{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+table.os td.pl i{font-style:normal;display:inline-block;width:22px;height:22px;
+  line-height:22px;text-align:center;border-radius:6px;font:700 11.5px var(--ui);color:#fff}
+.p-a{background:#3860ac} .p-b{background:#D98B2B} .p-c{background:#20a89b}
+table.os td.dl{white-space:nowrap;font:700 15px var(--mono);color:var(--ink);text-align:right}
+table.os td.cl,table.os td.xl{white-space:nowrap;font:500 14px var(--mono);color:var(--ink-2);text-align:right}
+table.os td.qt{text-align:right;white-space:nowrap}
+table.os td.qt b{display:block;font:700 16px var(--mono);color:var(--ink)}
+table.os td.qt small{display:block;font:600 10.5px var(--ui);letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:2px}
+tr.sep td{background:var(--well);font:700 11.5px var(--ui);letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-2);padding:8px 10px}
+tr.nr td{background:var(--well);font:400 13px/1.5 var(--body);color:var(--ink-2);padding:7px 10px 9px}
+tr.tot td{background:rgba(16,32,64,.02);font-weight:600}
+tr.tot td.tk,tr.grand td.tk{font:600 14.5px var(--ui);color:var(--ink)}
+tr.grand td{background:var(--navy);color:#fff;font-weight:700}
+tr.grand td.tk{color:#fff}
+tr.grand td.dl{color:#fff;font-size:17px}
+
+/* ---- the overlap ---- */
+table.ov{width:100%;border-collapse:collapse;font-size:14px;min-width:0;margin-top:16px}
+table.ov th{background:var(--navy);color:#fff;font:700 11px var(--ui);letter-spacing:.05em;
+  text-transform:uppercase;padding:9px 8px;text-align:right;vertical-align:bottom}
+table.ov th:first-child{text-align:left}
+table.ov td{padding:10px 8px;border-bottom:1px solid var(--line-2);vertical-align:middle;
+  text-align:right;font:500 14px var(--mono);color:var(--ink-2);white-space:nowrap}
+table.ov td.tk{text-align:left}
+table.ov td b{font-weight:700;color:var(--ink)}
+table.ov i{font-style:normal;font-weight:700}
+table.ov i.ok{color:var(--ok)}
+table.ov i.no{color:var(--bad)}
+.src{margin:12px 0 0;font:500 13px/1.5 var(--ui);color:var(--ink-3)}
+
+/* ---- Pile C ---- */
+ul.chg{list-style:none;margin:12px 0 0;padding:0}
+ul.chg li{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-top:1px solid var(--line-2)}
+ul.chg li:first-child{border-top:0}
+ul.chg b{font:700 15px var(--mono);min-width:50px;color:var(--ink)}
+ul.chg span{flex:1 1 auto;font:600 14.5px var(--ui);color:var(--ink)}
+ul.chg em{font:600 14px var(--mono);font-style:normal;color:var(--ink-2);white-space:nowrap}
+
+/* ---- the Fed ---- */
+dl.fed{display:grid;gap:10px;margin:16px 0 0}
+dl.fed div{display:flex;gap:12px;align-items:baseline}
+dl.fed dt{flex:0 0 96px;font:700 11px var(--ui);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+dl.fed dd{margin:0;font:500 15px/1.5 var(--body);color:var(--ink)}
+
+/* ---- lists ---- */
+ul.checks{list-style:none;margin:20px 0 0;padding:0}
+ul.checks li{padding:16px 0;border-top:1px solid var(--line-2)}
+ul.checks li:first-child{border-top:0}
+.ct{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ct b{font:600 17px var(--ui);color:var(--ink)}
+.ct .why{font:600 11.5px var(--ui);letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;background:var(--bad-soft);color:var(--bad)}
+ul.checks p{margin:8px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
+
+ul.run{list-style:none;margin:20px 0 0;padding:0}
+ul.run li{display:flex;align-items:flex-start;gap:16px;padding:14px 0;
+  border-top:1px solid var(--line-2)}
+ul.run li:first-child{border-top:0}
+.mins{flex:0 0 54px;text-align:right;font:700 26px/1 var(--mono);color:var(--navy);
+  letter-spacing:-.02em}
+.mins small{display:block;font:600 10.5px var(--ui);color:var(--ink-3);letter-spacing:.06em;
+  text-transform:uppercase;margin-top:3px}
+.rl b{display:block;font:600 17px var(--ui);color:var(--ink)}
+.rl i{display:block;font-style:normal;font:400 14.5px/1.55 var(--body);color:var(--ink-2);
+  margin-top:3px}
+
+ul.how{list-style:none;margin:20px 0 0;padding:0}
+ul.how li{padding:14px 0;border-top:1px solid var(--line-2)}
+ul.how li:first-child{border-top:0}
+ul.how b{font:600 17px/1.3 var(--ui);color:var(--ink)}
+ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
+
+@media (max-width:700px){
+  .verdict{padding:32px 20px 28px}
+  .vnum{font-size:62px}
+  .vnum small{font-size:17px}
+  .vlead{font-size:22px}
+  .vmoney div{flex:1 1 140px;padding:13px 16px}
+  .sect{padding:22px 18px}
+  /* the budget and the share count are the whole point of the sheet, so they
+     must never be the things that scroll off. Pile, Close and Cost go instead,
+     and the table fits. */
+  table.os{font-size:13.5px;table-layout:fixed;min-width:0}
+  table.os th,table.os td{padding:10px 6px}
+  table.os td.pl,table.os th.pl,table.os td.cl,table.os th.ch,
+  table.os td.xl,table.os th.xh{display:none}
+  table.os th.wh,table.os td.tk{width:42%}
+  table.os th.bh,table.os td.dl{width:30%}
+  table.os th.sh,table.os td.qt{width:28%}
+  table.os td.tk b{font-size:15.5px}
+  table.os td.tk span{font-size:12px}
+  table.os td.dl{font-size:14px}
+  table.os td.qt b{font-size:15px}
+  table.ov{table-layout:fixed;font-size:12.5px}
+  table.ov th,table.ov td{padding:9px 5px;font-size:12.5px}
+  table.ov th{font-size:10px;white-space:normal}
+  table.ov th:nth-child(1),table.ov td:nth-child(1){width:17%}
+  table.ov th:nth-child(2),table.ov td:nth-child(2){width:20%}
+  table.ov th:nth-child(3),table.ov td:nth-child(3){width:19%}
+  table.ov th:nth-child(4),table.ov td:nth-child(4){width:22%}
+  table.ov th:nth-child(5),table.ov td:nth-child(5){width:22%}
+  ul.tlist li>b{min-width:50px;font-size:15px}
+  ul.tlist strong{font-size:15.5px}
+  /* the 96px basis is a width in a row and would become a HEIGHT once the
+     row turns into a column: a 100px gap under each label on a phone. */
+  dl.fed div{flex-direction:column;gap:3px}
+  dl.fed dt{flex-basis:auto}
+  .mins{flex-basis:44px;font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> &middot; Wharton Global High School Investment Competition 2026&ndash;27</span>
+    <span class="phase"><i></i><span data-today>Today</span> &middot; <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="library.html">Library</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="guide.html">Guide</a>
+      <a href="rules.html">Rules</a>
+      <a href="dozen.html">Dozen</a>
+      <a href="card.html">Propose</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+  <div class="vstack">
+
+    <section class="glass verdict">
+      <div class="vnum">$88,500<small>into the nine names</small></div>
+      <p class="vlead">Tuesday&rsquo;s meeting changed the plan</p>
+      <p class="vsub">Nothing was keyed on Tuesday. <b>14 orders</b> go in Wednesday Oct 7, at lunch.</p>
+      <div class="vmoney">
+        <div><b>$293,956</b><span>into securities</span></div>
+        <div><b>$320</b><span>commissions</span></div>
+        <div><b>$5,724</b><span>cash left</span></div>
+      </div>
+      <p class="vcorr">Up from $54,000. BIL drops from 810 shares to 492.</p>
+      <p class="vlinks">
+        <a href="oct6-minutes.html">What the meeting decided</a>
+        <a href="tuesday.html">Tuesday&rsquo;s sheet (superseded)</a>
+      </p>
+    </section>
+
+    <section class="glass sect" aria-labelledby="d-h">
+      <h2 id="d-h">What the room decided</h2>
+      <ul class="how"><li><b>The nine names get $88,500, not $54,000.</b><p>Federico&#x27;s point carried the room: at $5,000 a name, a 10% move is $500. The $30,000 that was parked inside BIL for five more companies, and the $6,000 Robinhood freed up, move into the names we already voted in — $90,000 with the old $54,000. $1,500 of that stays in cash on purpose: GEV and JNJ stop at $14,000 and NVIDIA at $9,500 so every name stays under our 5% cap once VOO&#x27;s share is counted. Nobody is researching five more names.</p></li><li><b>GE Vernova and Johnson &amp; Johnson carry the most. NVIDIA a step below. The six others share equally.</b><p>A hybrid of Caleb&#x27;s Oct 4 model: $14,000, $14,000, $9,500, then six at $8,500. GE Vernova is the only name nobody voted against. JNJ is the room&#x27;s call, not the ballot&#x27;s — the minutes need one sentence on why, from whoever argued it. NVIDIA stops at $9,500 because VOO already holds $5,154 of it. $9,846 is the ceiling, not the order; one dollar more than that breaks our own 5% cap.</p></li><li><b>BIL drops from 810 shares to about 492.</b><p>It is Pile C only now: 15% of the account, with the written trigger from Oct 5. The 25% position limit, never confirmed on screen, no longer touches anything — the biggest line is VOO at 19.9%.</p></li><li><b>Orders go in Wednesday at lunch, not Tuesday.</b><p>Michael held them until the math was done. 1:00pm Central is inside market hours, so they fill Wednesday.</p></li></ul>
+    </section>
+
+    <section class="glass sect" aria-labelledby="s-h">
+      <h2 id="s-h">The split</h2>
+      <p class="k">$88,500 across the 9 names, in three tiers.</p>
+      <div class="tiers"><div class="tier is-top"><div class="th"><span class="tbadge">Top</span><b>$28,000</b></div><ul class="tlist"><li><b>GEV</b><span><i>GE Vernova</i><em>Industrials &middot; cleared 5 of 5</em></span><strong>$14,000</strong></li><li><b>JNJ</b><span><i>Johnson &amp; Johnson</i><em>Health Care &middot; cleared 4 of 5</em></span><strong>$14,000</strong></li></ul><p class="twhy">GE Vernova is the only name nobody voted against. Johnson &amp; Johnson is the room’s call.</p></div><div class="tier is-mid"><div class="th"><span class="tbadge">Middle</span><b>$9,500</b></div><ul class="tlist"><li><b>NVDA</b><span><i>NVIDIA</i><em>Tech &amp; Communication &middot; cleared 4 of 5</em></span><strong>$9,500</strong></li></ul><p class="twhy">NVIDIA is capped by the VOO overlap: direct dollars plus what VOO already carries stay under the 5% cap.</p></div><div class="tier is-rest"><div class="th"><span class="tbadge">The rest</span><b>$51,000</b></div><ul class="tlist"><li><b>BKNG</b><span><i>Booking Holdings</i><em>Consumer Discretionary &middot; cleared 4 of 5</em></span><strong>$8,500</strong></li><li><b>GOOG</b><span><i>Alphabet</i><em>Tech &amp; Communication &middot; cleared 4 of 5</em></span><strong>$8,500</strong></li><li><b>IBKR</b><span><i>Interactive Brokers</i><em>Financials &middot; cleared 4 of 5</em></span><strong>$8,500</strong></li><li><b>MDT</b><span><i>Medtronic</i><em>Health Care &middot; cleared 3 of 5</em></span><strong>$8,500</strong></li><li><b>ETN</b><span><i>Eaton</i><em>Industrials &middot; cleared 3 of 5</em></span><strong>$8,500</strong></li><li><b>AMZN</b><span><i>Amazon</i><em>Consumer Discretionary &middot; cleared 3 of 5</em></span><strong>$8,500</strong></li></ul><p class="twhy">The six others share equally.</p></div></div>
+    </section>
+
+    <section class="glass sect" aria-labelledby="o-h">
+      <h2 id="o-h">The order sheet</h2>
+      <p class="k">Key them top to bottom. <b>Four lines are a fixed quantity: VOO 84, VEA 417, the 2031 note 35 units, the 2036 note 37 units — key those numbers as printed.</b> The nine names and BIL are a budget: shares = budget &divide; the live quote, rounded down.</p>
+      <div class="table-wrap" style="margin-top:18px">
+        <table class="os">
+          <thead><tr><th class="wh">What</th><th class="pl">Pile</th>
+            <th class="bh r">Budget</th>
+            <th class="ch r">Close</th>
+            <th class="sh r">Shares at close</th>
+            <th class="xh r">Cost at close</th></tr></thead>
+          <tbody><tr><td class="tk"><b>VOO</b><span>Vanguard S&amp;P 500</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$59,706</td><td class="cl">$716.20</td><td class="qt"><b>84</b><small>shares</small></td><td class="xl">$60,161</td></tr><tr class="nr"><td colspan="6">Quantity is fixed. Key 84 shares, not a dollar amount.</td></tr><tr><td class="tk"><b>VEA</b><span>Vanguard Developed Markets</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$29,957</td><td class="cl">$71.11</td><td class="qt"><b>417</b><small>shares</small></td><td class="xl">$29,653</td></tr><tr class="nr"><td colspan="6">Quantity is fixed. Key 417 shares.</td></tr><tr class="sep"><td colspan="6">The nine names &mdash; $88,500</td></tr><tr><td class="tk"><b>GEV</b><span>GE Vernova</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$14,000</td><td class="cl">$1,029.21</td><td class="qt"><b>13</b><small>shares</small></td><td class="xl">$13,380</td></tr><tr><td class="tk"><b>JNJ</b><span>Johnson &amp; Johnson</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$14,000</td><td class="cl">$254.78</td><td class="qt"><b>54</b><small>shares</small></td><td class="xl">$13,758</td></tr><tr><td class="tk"><b>NVDA</b><span>NVIDIA</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$9,500</td><td class="cl">$239.24</td><td class="qt"><b>39</b><small>shares</small></td><td class="xl">$9,330</td></tr><tr><td class="tk"><b>BKNG</b><span>Booking Holdings</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$157.63</td><td class="qt"><b>53</b><small>shares</small></td><td class="xl">$8,354</td></tr><tr><td class="tk"><b>GOOG</b><span>Alphabet</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$344.59</td><td class="qt"><b>24</b><small>shares</small></td><td class="xl">$8,270</td></tr><tr><td class="tk"><b>IBKR</b><span>Interactive Brokers</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$90.58</td><td class="qt"><b>93</b><small>shares</small></td><td class="xl">$8,424</td></tr><tr><td class="tk"><b>MDT</b><span>Medtronic</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$87.09</td><td class="qt"><b>97</b><small>shares</small></td><td class="xl">$8,448</td></tr><tr><td class="tk"><b>ETN</b><span>Eaton</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$445.09</td><td class="qt"><b>19</b><small>shares</small></td><td class="xl">$8,457</td></tr><tr><td class="tk"><b>AMZN</b><span>Amazon</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$256.29</td><td class="qt"><b>33</b><small>shares</small></td><td class="xl">$8,458</td></tr><tr class="sep"><td colspan="6">Then the two Treasuries, then BIL last</td></tr><tr><td class="tk"><b>T31</b><span>Treasury 5.375% · Feb 2031</span></td><td class="pl"><i class="p-a">A</i></td><td class="dl">$35,600</td><td class="cl">&mdash;</td><td class="qt"><b>35</b><small>units</small></td><td class="xl">$35,600</td></tr><tr class="nr"><td colspan="6">35 units of $1,000 face. Type 35, not 35,000. The dropdown must say Treasury. Cost is an estimate until it is on screen; any gap comes out of cash.</td></tr><tr><td class="tk"><b>T36</b><span>Treasury 4.500% · Feb 2036</span></td><td class="pl"><i class="p-a">A</i></td><td class="dl">$35,200</td><td class="cl">&mdash;</td><td class="qt"><b>37</b><small>units</small></td><td class="xl">$35,200</td></tr><tr class="nr"><td colspan="6">37 units of $1,000 face. Same.</td></tr><tr><td class="tk"><b>BIL</b><span>SPDR 1–3 Month T-Bill ETF</span></td><td class="pl"><i class="p-c">C</i></td><td class="dl">$44,993</td><td class="cl">$91.45</td><td class="qt"><b>492</b><small>shares</small></td><td class="xl">$44,993</td></tr><tr class="nr"><td colspan="6">KEY THIS LAST, and 492 is the number — never more. The extra cash you will see on screen is the nine rounding down plus the two Treasuries not yet settled; it is not room for more BIL. Key fewer only if cash on screen minus about $70,800 for the two notes is under $45,000. Pile C only now, 15% of the account, nowhere near the 25% limit.</td></tr><tr class="tot"><td class="tk">Securities, at budget</td><td class="pl"></td><td class="dl">$293,956</td><td class="cl"></td><td class="qt"><small>14 orders</small></td><td class="xl"></td></tr><tr class="tot"><td class="tk">Commissions</td><td class="pl"></td><td class="dl">$320</td><td class="cl"></td><td class="qt"><small>12 &times; $25</small><small>2 &times; $10</small></td><td class="xl"></td></tr><tr class="tot"><td class="tk">Cash left</td><td class="pl"></td><td class="dl">$5,724</td><td class="cl"></td><td class="qt"></td><td class="xl"></td></tr><tr class="grand"><td class="tk">Total</td><td class="pl"></td><td class="dl">$300,000</td><td class="cl"></td><td class="qt"></td><td class="xl"></td></tr><tr class="nr"><td colspan="6">Closes are Tuesday October 6, at the close (stockanalysis.com, official 4:00pm ET closes). Shares are recomputed off Wednesday’s live quote, rounded down.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass sect" aria-labelledby="v-h">
+      <h2 id="v-h">Coach P is right: VOO already holds all nine.</h2>
+      <p class="k">That is what an S&amp;P 500 fund is. The question is not whether, it is how much — and whether any name&#x27;s TOTAL crosses our 5% cap once VOO&#x27;s share is counted. Only NVIDIA comes close: we own $5,154 of it through VOO before buying a share, more than any other company. That is why it is $9,500 and not more.</p>
+      <p class="k"><b>The rule.</b> Our 5%-at-purchase cap is applied to direct dollars PLUS what VOO carries.</p>
+      <p class="k">VEA holds nothing US, so it overlaps none of the nine — checked against all 3,891 names in Vanguard&#x27;s file.</p>
+      <div class="table-wrap">
+        <table class="ov">
+          <thead><tr><th>Name</th><th>Direct</th><th>Via VOO</th><th>Total</th><th>Of $300,000</th></tr></thead>
+          <tbody><tr><td class="tk"><b>NVDA</b></td><td class="n">$9,500</td><td class="n">$5,154</td><td class="n"><b>$14,654</b></td><td class="n"><b>4.88%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>JNJ</b></td><td class="n">$14,000</td><td class="n">$543</td><td class="n"><b>$14,543</b></td><td class="n"><b>4.85%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>GEV</b></td><td class="n">$14,000</td><td class="n">$235</td><td class="n"><b>$14,235</b></td><td class="n"><b>4.75%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>GOOG</b></td><td class="n">$8,500</td><td class="n">$3,270</td><td class="n"><b>$11,770</b></td><td class="n"><b>3.92%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>AMZN</b></td><td class="n">$8,500</td><td class="n">$2,200</td><td class="n"><b>$10,700</b></td><td class="n"><b>3.57%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>ETN</b></td><td class="n">$8,500</td><td class="n">$150</td><td class="n"><b>$8,650</b></td><td class="n"><b>2.88%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>BKNG</b></td><td class="n">$8,500</td><td class="n">$106</td><td class="n"><b>$8,606</b></td><td class="n"><b>2.87%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>MDT</b></td><td class="n">$8,500</td><td class="n">$100</td><td class="n"><b>$8,600</b></td><td class="n"><b>2.87%</b> <i class="ok">✓</i></td></tr><tr><td class="tk"><b>IBKR</b></td><td class="n">$8,500</td><td class="n">$36</td><td class="n"><b>$8,536</b></td><td class="n"><b>2.85%</b> <i class="ok">✓</i></td></tr></tbody>
+        </table>
+      </div>
+      <p class="k"><b>NVIDIA is our largest single-company exposure no matter what we key: $9,500 direct plus $5,154 inside VOO.</b></p>
+      <p class="src">&#10003; = at or under the 5% cap, direct plus VOO. Together the nine are 19.75% of the fund. Weights: SSGA SPY holdings file, the same index as VOO; cross-checked to Vanguard&#x27;s Aug 31 VOO file &middot; as of October 5, 2026.</p>
+      <a class="more" href="overlap.html">The full answer &rarr;</a>
+    </section>
+
+    <section class="glass sect" aria-labelledby="p-h">
+      <h2 id="p-h">Coach P&#x27;s second idea: shrink the reserve itself.</h2>
+      <p class="k"><b>Status.</b> Not decided. Nobody voted. It is a plan change under our own rule, so it needs 4 of 5 — and Joe was not in the room.</p>
+      <p class="k">Our take: yes, to 10% — the size of its own largest trigger. One Treasury rung at the 5.5% bar is ~$30,000, and a VOO add is $6,000–12,000. A reserve bigger than the biggest thing it can buy is just money not working. Put the freed ~$15,000 into VEA: it overlaps none of the nine, it is the part of the world we are most underweight, and it has no cap problem.</p>
+      <p class="k">Tomorrow&#x27;s sheet keeps 15%. Deciding it on Sunday&#x27;s call costs one BIL sale and one VEA buy — $50 — and keeps the record clean.</p>
+      <p class="k"><b>If the room says yes tomorrow with Joe&#x27;s thumbs-up in the chat, exactly two lines change:</b></p>
+      <ul class="chg"><li><b>VEA</b><span>417 shares → 627 shares</span><em>about $44,586</em></li><li><b>BIL</b><span>492 shares → 328 shares</span><em>about $29,996</em></li></ul>
+    </section>
+
+    <section class="glass sect" aria-labelledby="f-h">
+      <h2 id="f-h">The Fed minutes land at 1:00pm Central on Wednesday — the minute lunch starts.</h2>
+      <p class="k">They are the minutes of the September 15–16 meeting, the one that raised rates a quarter point to 3.75–4.00%, the first hike since 2023. Released 2:00pm Eastern, 1:00pm ours. Minutes are the least market-moving thing the Fed publishes: Fed researchers measure them at under half the impact of the rate statement, stock prices on average do not move either way, and whatever wiggle happens is a few tenths of a percent that fades within 15 to 60 minutes. Noise on a portfolio we hold for years.</p>
+      <dl class="fed">
+        <div><dt>What to do</dt><dd>The run of show already starts keying at about 1:10, after the read-back, so the noisiest minutes pass on their own. Funds first, then the nine, then the bonds, then BIL. Do not hold the orders for the minutes.</dd></div>
+        <div><dt>Also clear</dt><dd>Nothing else is in the way: no CPI, no jobs report, the 10-year auction closes at noon our time, and none of the nine reports earnings this week (JNJ is Oct 13, IBKR Oct 15, the rest late October or November). Monday Oct 12 the bond market is closed for Columbus Day; stocks are open.</dd></div>
+        <div><dt>Source</dt><dd>federalreserve.gov, October 2026 events page; FRBSF working paper 2025-30 (Acosta, Ajello, Loria, Bauer, Miranda-Agrippino); NY Fed Economic Policy Review, Dec 2013 (Rosa).</dd></div>
+      </dl>
+    </section>
+
+    <section class="glass sect" aria-labelledby="c-h">
+      <h2 id="c-h">Before keying</h2>
+      <p class="k">3 things, none of them more than a minute, and none of them
+        fixable afterwards.</p>
+      <ul class="checks"><li><div class="ct"><b>Joe&#x27;s thumbs-up on the split, in the chat, before lunch</b><span class="why">He was not there</span></div><p>Four of five were in the room. Posting the table tonight and getting Joe&#x27;s reaction by 12:30 makes it 5 of 5 on the record, and criterion 4 grades the record. Ask for a reaction, not a reply.</p></li><li><div class="ct"><b>The 25% position limit, on screen — now a one-minute formality</b><span class="why">Open since Sep 27</span></div><p>Portfolio Simulation → Portfolio Summary → Session Rules. Screenshot the row. Nothing on this sheet is above 19.9%, so the answer cannot change an order, but it closes a question that has been open since Sep 27.</p></li><li><div class="ct"><b>Who writes the trading notes</b><span class="why">Graded</span></div><p>Someone who is not keying types each note as the order goes in — Federico, or Dylan. Notes cannot be edited once saved and three of them are the whole Oct 23 deliverable. The note for each name should say why its size is what it is: GEV and JNJ highest, NVDA capped at $9,500 by the overlap.</p></li></ul>
+    </section>
+
+    <section class="glass sect" aria-labelledby="r-h">
+      <h2 id="r-h">Run of show</h2>
+      <p class="k">41 minutes. Nothing is re-opened.</p>
+      <ul class="run"><li><span class="mins">3<small>min</small></span><span class="rl"><b>Read the four decisions back</b><i>Nine names at $88,500. GEV and JNJ on top, NVDA below, six equal. BIL to 492. Nobody re-opens anything.</i></span></li><li><span class="mins">2<small>min</small></span><span class="rl"><b>Joe&#x27;s reaction is in, or it is not</b><i>If it is, the split is 5 of 5. If it is not, it is 4 of 5 and still passes — say so out loud and move on.</i></span></li><li><span class="mins">5<small>min</small></span><span class="rl"><b>Pile C — Coach P&#x27;s idea</b><i>Say what it is, say it waits for Sunday unless the room wants it now and Joe has reacted. Two lines change if yes.</i></span></li><li><span class="mins">28<small>min</small></span><span class="rl"><b>Key the orders</b><i>Funds, then the nine, then the two Treasuries, then BIL last. Caleb reads back the count you just worked out off the live quote — not the one printed here — and the budget it came from. Say stop if a number looks wrong.</i></span></li><li><span class="mins">3<small>min</small></span><span class="rl"><b>Post &#x27;placed&#x27; in the chat</b><i>Screenshot the holdings page. That screenshot is the first entry of the trade log.</i></span></li></ul>
+    </section>
+
+    <section class="glass sect" aria-labelledby="h-h">
+      <h2 id="h-h">How to key</h2>
+      <ul class="how"><li><b>For the nine names and BIL, shares come from Wednesday&#x27;s price, not from this sheet.</b><p>Pull the quote inside WInS at the moment you key it. Shares = the dollar budget divided by the price, rounded DOWN. Never up — rounding up is how an order comes back cancelled for insufficient cash. VOO 84, VEA 417 and the two notes (35 and 37 units) are fixed quantities: key those exactly as printed.</p></li><li><b>Key BIL last.</b><p>Everything else has a fixed quantity or a fixed budget. BIL is the only line sized against whatever cash is actually left.</p></li><li><b>One login, one person typing.</b><p>Michael keys every order. Nobody else is in the account at the same time.</p></li><li><b>Market orders, every line. Treasuries settle in the evening.</b><p>A blank fill price on a bond is normal until it settles.</p></li><li><b>1pm Central is inside market hours.</b><p>The market is open 8:30am to 3:00pm Central. Orders keyed at lunch fill Wednesday.</p></li></ul>
+    </section>
+
+  </div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/warren.js?v=5" defer></script>
+</body>
+</html>
