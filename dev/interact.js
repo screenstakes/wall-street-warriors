@@ -180,7 +180,7 @@ setTimeout(function () {
   });
   ck(whens.wednesday === 13 && whens.last === 1 && whens.rest === 1,
      "status is carried in data-when: " + JSON.stringify(whens));
-  ck(wedges.every(function (w) { return /Placing Wednesday|Left over/.test(w.getAttribute("aria-label") || ""); }),
+  ck(wedges.every(function (w) { return /Filling Thursday|Left over/.test(w.getAttribute("aria-label") || ""); }),
      "every wedge announces its status in its aria-label, so status is not colour-alone");
 
   out.push("");
