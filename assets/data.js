@@ -419,6 +419,29 @@ WSW.data = {
      card.html fills those in when the ticker matches. Anyone can still overwrite them.
      Sources: projects/wharton-team-docs/stock-research/ and the Sep 18 shortlist note. */
   picks: [
+    // The nine names the Oct 3-4 ballot cleared, keyed Wed Oct 7. Each `why` is
+    // this team's own written ballot reason, compressed to one sentence. The
+    // source is projects/wharton-team-docs/vote-page/data.py, where every
+    // voter's words are kept verbatim.
+    { tk: "GEV", name: "GE Vernova", type: "Stock", goal: "facility",
+      why: "It builds the turbines and grid equipment that electricity demand runs on, and every one of us voted for it" },
+    { tk: "JNJ", name: "Johnson & Johnson", type: "Stock", goal: "facility",
+      why: "Demand for medicines and medical devices barely moves with the economy, and it has a long history of growth and a strong profit margin" },
+    { tk: "NVDA", name: "NVIDIA", type: "Stock", goal: "facility",
+      why: "It supplies most of the chips that AI runs on, which is the fastest-growing demand in technology right now" },
+    { tk: "BKNG", name: "Booking Holdings", type: "Stock", goal: "facility",
+      why: "It takes a cut of travel booked on its platforms without owning the hotels, and it pays a dividend on top of growth close to Amazon's" },
+    { tk: "GOOG", name: "Alphabet", type: "Stock", goal: "facility",
+      why: "Search and YouTube advertising fund a cloud and AI business that is still growing, and the stock is cheaper against its own sector than it looks" },
+    { tk: "IBKR", name: "Interactive Brokers", type: "Stock", goal: "facility",
+      why: "It earns interest and commissions on client accounts rather than lending its own money, so the growth is steadier and the business model is less risky" },
+    { tk: "MDT", name: "Medtronic", type: "Stock", goal: "facility",
+      why: "Its diabetes and device lines should keep selling through 2033 at close to ten percent growth, though one of us argued it has gone nowhere for five years" },
+    { tk: "ETN", name: "Eaton", type: "Stock", goal: "facility",
+      why: "It supplies the electrical systems buildings and data centres need, which is the same demand GE Vernova serves from a different angle" },
+    { tk: "AMZN", name: "Amazon", type: "Stock", goal: "facility",
+      why: "Retail scale plus AWS means it earns from both consumer spending and cloud computing, and consumer spending has grown through every cycle" },
+
     { tk: "MSFT", name: "Microsoft", type: "Stock", goal: "facility",
       why: "Its revenue comes from software subscriptions and cloud contracts rather than advertising, so the cash flows are more predictable than most large technology companies" },
     { tk: "JNJ", name: "Johnson & Johnson", type: "Stock", goal: "facility",
