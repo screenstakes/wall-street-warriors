@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E4B95">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Keying &middot; Wall Street Warriors</title>
+<meta name="description" content="The doing sheet: the 14 orders one at a time, the budget for each, the trading note ready to copy, and what to do when a price is not what the sheet says.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E4B95'/%3E%3Cpath d='M12 44 L26 30 L34 38 L52 18' stroke='%23EFA24A' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/warren.css?v=5">
+<style>
+body{background:
+  radial-gradient(900px 520px at 12% -5%, #E8F0FF 0%, rgba(232,240,255,0) 62%),
+  radial-gradient(760px 480px at 92% 2%, #FFF2E2 0%, rgba(255,242,226,0) 58%),
+  #F4F6FA}
+main.shell{padding-top:0;padding-bottom:96px}
+/* minmax(0,1fr), not the default auto: a grid track sized by its item's
+   min-content lets one wide child widen EVERY card on the page. */
+.vstack{display:grid;grid-template-columns:minmax(0,1fr);gap:26px}
+.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  border:1px solid rgba(255,255,255,.9);border-radius:24px;
+  box-shadow:0 1px 2px rgba(16,32,64,.05),0 16px 40px -22px rgba(16,32,64,.30)}
+
+/* ------------------------------------------------------------- the header */
+.top{padding:34px 28px 28px;text-align:center}
+.top h1{font:700 46px/1 var(--ui);color:var(--navy);letter-spacing:-.03em;margin:0}
+.twhen{margin:12px 0 0;font:600 17px/1.45 var(--ui);color:var(--ink-2)}
+.rule{margin:24px 0 0;padding:22px 20px;border-radius:20px;background:var(--navy);
+  color:#fff;font:700 27px/1.28 var(--ui);letter-spacing:-.01em}
+.rule small{display:block;margin-top:10px;font:500 14.5px/1.5 var(--body);color:#C9D8F2;
+  letter-spacing:0}
+.prog{margin:22px 0 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  justify-content:center}
+.pnum{font:700 36px/1 var(--ui);color:var(--ink);letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums}
+.pnum small{font:600 15px var(--ui);color:var(--ink-2);letter-spacing:0;margin-left:7px}
+.reset{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;
+  border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.85);
+  font:600 13.5px var(--ui);color:var(--ink-2);cursor:pointer}
+.reset:hover{border-color:var(--blue);color:var(--blue)}
+.pbar{height:12px;border-radius:999px;background:rgba(16,32,64,.09);overflow:hidden;
+  margin:14px 0 0}
+.pbar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ok);
+  transition:width .18s ease}
+.vmoney{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.vmoney div{flex:1 1 150px;padding:13px 14px;border-radius:16px;
+  background:rgba(255,255,255,.8);border:1px solid var(--line)}
+.vmoney b{display:block;font:700 22px var(--mono);color:var(--ink);letter-spacing:-.04em}
+.vmoney span{display:block;font:600 12.5px var(--ui);color:var(--ink-2);margin-top:3px}
+.vsum{margin:12px 0 0;font:500 14px/1.5 var(--ui);color:var(--ink-3)}
+.vlinks{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0 0}
+.vlinks a{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;
+  border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.88);
+  font:700 14.5px var(--ui);color:var(--blue);text-decoration:none}
+.vlinks a.warn{color:#7A4E07;background:var(--warn-soft);border-color:#EBD6A8}
+.vlinks a:hover{border-color:var(--blue)}
+
+/* -------------------------------------------------------------- sections */
+.sect{padding:24px 26px}
+.sect h2{margin:0;font:700 24px var(--ui);color:var(--ink)}
+.sect p.k{margin:8px 0 0;font:400 15.5px/1.6 var(--body);color:var(--ink-2)}
+
+ul.rules{list-style:none;margin:16px 0 0;padding:0;counter-reset:r}
+ul.rules li{padding:13px 0 13px 40px;border-top:1px solid var(--line-2);position:relative;
+  counter-increment:r}
+ul.rules li:first-child{border-top:0}
+ul.rules li::before{content:counter(r);position:absolute;left:0;top:13px;width:27px;height:27px;
+  border-radius:9px;background:var(--navy);color:#fff;font:700 13px/27px var(--mono);
+  text-align:center}
+ul.rules b{display:block;font:600 17px/1.35 var(--ui);color:var(--ink)}
+ul.rules p{margin:4px 0 0;font:400 14.5px/1.55 var(--body);color:var(--ink-2)}
+
+/* ----------------------------------------------------------- deliverable */
+.deliv{border:2px solid var(--gold-deep,#B97E12)}
+.deliv h2{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.deliv h2 span{font:700 11px var(--ui);letter-spacing:.09em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;background:var(--warn-soft);color:#7A4E07}
+ul.picks{list-style:none;margin:16px 0 0;padding:0}
+ul.picks li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;
+  border-top:1px solid var(--line-2)}
+ul.picks li:first-child{border-top:0}
+ul.picks b{flex:0 0 62px;font:700 19px var(--mono);color:var(--ink)}
+ul.picks p{margin:0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
+
+/* ------------------------------------------------------------ the orders */
+.ohead2{padding:22px 26px 20px}
+.ohead2 h2{margin:0;font:700 24px var(--ui);color:var(--ink)}
+.ords{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.ord{padding:22px 22px 20px}
+.ord.is-done{background:rgba(236,250,242,.82);border-color:#BFE4CE}
+.ohead{display:flex;align-items:center;gap:14px}
+.onum{flex:0 0 52px;height:52px;border-radius:16px;background:var(--navy);color:#fff;
+  font:700 26px/52px var(--mono);text-align:center;letter-spacing:-.02em}
+.ord.is-done .onum{background:var(--ok)}
+.oid{min-width:0}
+.oid b{display:block;font:700 30px/1.05 var(--mono);color:var(--ink);letter-spacing:-.02em}
+.oid span{display:block;font:500 14.5px/1.35 var(--ui);color:var(--ink-2);margin-top:4px}
+.ochips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0}
+.ochips i{font-style:normal;font:700 11.5px/1 var(--ui);letter-spacing:.07em;
+  text-transform:uppercase;padding:7px 11px;border-radius:999px;color:#fff}
+.p-a{background:#3860AC} .p-b{background:#B5741F} .p-c{background:#18837A}
+.ochips i.kd{background:rgba(16,32,64,.07);color:var(--ink-2)}
+.ochips i.ct{background:transparent;color:var(--ink-3);border:1px solid var(--line);
+  padding:6px 10px}
+
+.dmark{margin:14px 0 0;padding:12px 15px;border-radius:14px;background:var(--warn-soft);
+  border:1px solid #EBD6A8;font:700 14.5px/1.45 var(--ui);color:#7A4E07}
+.dmark span{margin-right:7px}
+
+.obud{margin:16px 0 0;padding:18px 18px 16px;border-radius:18px;background:var(--well);
+  border:1px solid var(--line)}
+.obud .lbl{display:block;font:700 11.5px var(--ui);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+.obud b{display:block;font:700 54px/1 var(--mono);color:var(--ink);letter-spacing:-.065em;
+  margin-top:7px;font-variant-numeric:tabular-nums}
+.obud em{display:block;font-style:normal;font:600 14px var(--ui);color:var(--ink-2);
+  margin-top:8px}
+
+.oqty{margin:12px 0 0;padding:16px 18px;border-radius:18px;border:2px solid}
+.oqty .qb{display:inline-block;font:700 11.5px/1 var(--ui);letter-spacing:.1em;
+  text-transform:uppercase;padding:7px 11px;border-radius:999px;color:#fff}
+.oqty b{display:block;font:700 19px/1.35 var(--ui);margin-top:11px}
+.oqty em{display:block;font-style:normal;font:400 14.5px/1.55 var(--body);margin-top:7px}
+.oqty.is-fixed{border-color:#2B6CB8;background:#EAF2FC}
+.oqty.is-fixed .qb{background:#1E4B95}
+.oqty.is-fixed b{color:#143866}
+.oqty.is-fixed em{color:#3B5578}
+.oqty.is-calc{border-color:#CBD3E0;background:rgba(255,255,255,.7)}
+.oqty.is-calc .qb{background:#4B5872}
+.oqty.is-calc b{color:var(--ink)}
+.oqty.is-calc em{color:var(--ink-3)}
+
+/* the same "!" tile the trouble cards use: the caution is never colour alone,
+   and screen readers get the word Caution in front of it. */
+.cwarn{display:flex;gap:11px;align-items:flex-start;margin:12px 0 0;padding:13px 15px;
+  border-radius:16px;border:1px solid #EBD6A8;background:rgba(253,248,237,.95)}
+.cwarn .gl{flex:0 0 26px;height:26px;border-radius:8px;background:var(--warn);color:#fff;
+  text-align:center;font:700 15px/26px var(--ui)}
+.cwarn p{margin:0;font:600 14.5px/1.55 var(--ui);color:#6B4505}
+
+.nwrap{margin:16px 0 0}
+.nhead{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap}
+.nl{font:700 11.5px var(--ui);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3)}
+button.copy{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  padding:0 20px;border-radius:999px;border:1px solid var(--navy);background:var(--navy);
+  color:#fff;font:700 14.5px var(--ui);cursor:pointer}
+button.copy:hover{background:var(--blue-deep)}
+button.copy.is-copied{background:var(--ok);border-color:var(--ok)}
+.note{margin:10px 0 0;padding:14px 15px;border-radius:14px;background:#F2F4F8;
+  border:1px solid var(--line);font:500 14px/1.6 var(--mono);color:var(--ink);
+  white-space:pre-wrap;overflow-wrap:anywhere}
+.nfoot{margin:9px 0 0;font:400 13.5px/1.5 var(--body);color:var(--ink-3)}
+
+button.tick{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;
+  min-height:56px;margin:18px 0 0;border-radius:16px;border:2px solid var(--line);
+  background:rgba(255,255,255,.9);font:700 17px var(--ui);color:var(--ink-2);cursor:pointer}
+button.tick .box{width:24px;height:24px;border-radius:7px;border:2px solid var(--ink-3);
+  background:#fff;font:700 16px/21px var(--ui);color:#fff;text-align:center}
+button.tick.is-on{border-color:var(--ok);background:var(--ok-soft);color:#14603B}
+button.tick.is-on .box{background:var(--ok);border-color:var(--ok)}
+
+/* -------------------------------------------------------------- trouble */
+.tbs{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:18px}
+.tb{padding:17px 18px;border-radius:18px;border:1px solid var(--line);
+  background:rgba(255,255,255,.72)}
+.tb h3{display:flex;gap:11px;align-items:flex-start;margin:0;
+  font:700 18.5px/1.35 var(--ui);color:var(--ink)}
+.tb .gl{flex:0 0 26px;height:26px;border-radius:8px;text-align:center;
+  font:700 15px/26px var(--ui);color:#fff}
+.tb.is-ok{border-color:#BFE0CD;background:rgba(241,250,245,.85)}
+.tb.is-ok .gl{background:var(--ok)}
+.tb.is-warn{border-color:#EBD6A8;background:rgba(253,248,237,.9)}
+.tb.is-warn .gl{background:var(--warn)}
+.tb .ta{margin:10px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
+.tdo{margin:13px 0 0;padding:13px 15px;border-radius:13px;background:rgba(255,255,255,.9);
+  border:1px solid var(--line)}
+.tdo .dl{display:block;font:700 11px var(--ui);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3)}
+.tdo p{margin:5px 0 0;font:600 15.5px/1.55 var(--ui);color:var(--ink)}
+
+/* ---------------------------------------------------------- the sticky bar
+   The site's own .mbar already owns the bottom of a phone screen, so this
+   rides the top instead: the count and the way out, wherever he has scrolled
+   to. It is a child of <main>, which has no overflow, so sticky works. */
+.sbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;margin:0 0 22px;padding:9px 10px 9px 16px;
+  border-radius:0 0 18px 18px;background:rgba(18,33,61,.97);color:#fff;
+  box-shadow:0 10px 26px -18px rgba(16,32,64,.75)}
+.sbar .sp{display:flex;align-items:baseline;gap:9px;min-width:0}
+.sbar .sn{font:700 21px/1 var(--mono);letter-spacing:-.02em}
+.sbar .sl{font:600 12.5px/1.25 var(--ui);color:#C9D3E6}
+.sbar a{display:inline-flex;align-items:center;min-height:40px;padding:0 15px;
+  border-radius:999px;background:rgba(255,255,255,.16);color:#fff;text-decoration:none;
+  font:700 13px var(--ui);white-space:nowrap}
+.sbar a:hover{background:rgba(255,255,255,.26)}
+
+@media (max-width:700px){
+  .top{padding:28px 18px 24px}
+  .top h1{font-size:38px}
+  .twhen{font-size:16px}
+  .rule{font-size:23px;padding:19px 17px}
+  .sect,.ohead2{padding:20px 17px}
+  .ord{padding:18px 16px 16px}
+  .onum{flex-basis:44px;height:44px;font:700 22px/44px var(--mono)}
+  .oid b{font-size:26px}
+  /* the budget is the number he works from: it shrinks last and never wraps */
+  .obud b{font-size:44px}
+  .oqty b{font-size:17.5px}
+  .vmoney div{flex:1 1 112px;padding:11px 12px}
+  .vmoney b{font-size:19px}
+  ul.picks li{flex-direction:column;gap:5px}
+  ul.picks b{flex-basis:auto}
+  .tb h3{font-size:17px}
+  .tdo p{font-size:15px}
+  .sbar{padding:9px 8px 9px 13px;margin-inline:-16px;border-radius:0}
+  .sbar .sn{font-size:19px}
+}
+@media (max-width:360px){
+  .obud b{font-size:38px}
+  .oid b{font-size:23px}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="shell">
+    <span><b>Liberty Christian School</b> &middot; Wharton Global High School Investment Competition 2026&ndash;27</span>
+    <span class="phase"><i></i><span data-today>Today</span> &middot; <b data-phase>Phase</b></span>
+  </div>
+</div>
+<header class="brandbar">
+  <div class="shell">
+    <a class="brand" href="index.html" aria-label="Wall Street Warriors home">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="index.html">Dashboard</a>
+      <a href="library.html">Library</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="case.html">Case Study</a>
+      <a href="guide.html">Guide</a>
+      <a href="rules.html">Rules</a>
+      <a href="dozen.html">Dozen</a>
+      <a href="card.html">Propose</a>
+      <a href="playbook.html">Playbook</a>
+      <a href="team.html">Team</a>
+      <a href="news.html">Newsroom</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" role="region" aria-label="Deadline countdowns"></div>
+
+<main class="shell">
+
+  <div class="sbar">
+    <span class="sp"><span class="sn"><b data-count>0</b>/14</span><span class="sl">orders keyed</span></span>
+    <a href="#trouble">When it goes wrong &rarr;</a>
+  </div>
+
+  <div class="vstack">
+
+    <section class="glass top">
+      <h1>Keying</h1>
+      <p class="twhen">Wednesday October 7, at lunch. Start keying at 1:15.</p>
+      <p class="rule">Shares = budget &divide; the price on screen, rounded DOWN.
+        <small>Prices on this page are Tuesday October 6, at the close. They are a head start, never the number to key.</small></p>
+      <p class="prog">
+        <span class="pnum"><b data-count>0</b> of 14 <small>keyed</small></span>
+        <button type="button" class="reset" data-reset>Start over</button>
+      </p>
+      <div class="pbar" role="progressbar" aria-label="Orders keyed" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0" data-pbar><i data-bar></i></div>
+      <div class="vmoney">
+        <div><b>$293,956</b><span>into securities</span></div>
+        <div><b>$320</b><span>commissions</span></div>
+        <div><b>$5,724</b><span>cash left</span></div>
+      </div>
+      <p class="vsum">$293,956 + $320 + $5,724 = $300,000.</p>
+      <p class="vlinks">
+        <a href="wednesday.html">Why we are buying this</a>
+        <a class="warn" href="#trouble">When it goes wrong</a>
+      </p>
+    </section>
+
+    <section class="glass sect" aria-labelledby="r-h">
+      <h2 id="r-h">The 6 rules</h2>
+      <p class="k">Read these once before the first order, not during it.</p>
+      <ul class="rules"><li><b>Market orders, every line.</b><p>No limit orders. We are not trying to time an entry.</p></li><li><b>Shares come from the live quote, rounded down.</b><p>Only the nine companies get divided. Five lines have their quantity printed on the row and you key it as printed: VOO 84, VEA 417, the two notes at 35 and 37 units, and BIL 492 — and BIL is the one number that may go DOWN if the cash is short.</p></li><li><b>Key them in this order.</b><p>Funds, the nine companies, the two Treasuries, BIL last.</p></li><li><b>Caleb reads the count back before you press Confirm.</b><p>He says the number and the budget it came from. This is the only check between a typo and a wrong position.</p></li><li><b>Paste the note BEFORE you confirm.</b><p>It cannot be edited afterwards.</p></li><li><b>One person in the account.</b><p>Michael keys every order. Nobody else is logged in.</p></li></ul>
+    </section>
+
+    <section class="glass sect deliv" aria-labelledby="d-h">
+      <h2 id="d-h">Three of these are the October 23 deliverable. Pick them now, not later. <span>Oct 23</span></h2>
+      <p class="k">The Trading Notes Analysis is three notes and 100 words of reflection each — three, for the whole month. WInS will not let you edit a note after you save it, so the three have to be right the first time. These are the three to slow down for:</p>
+      <ul class="picks"><li><b>T31</b><p>A Treasury note is the strongest argument in the whole case: it repays a fixed amount on a fixed date, so Laura&#x27;s certainty is structural rather than a probability. Wharton&#x27;s own example note is a Treasury.</p></li><li><b>GEV</b><p>The only name every one of us voted for. It shows a real research decision with the team behind it.</p></li><li><b>BIL</b><p>A reserve with a written trigger. Most teams cannot defend holding cash, and we can.</p></li></ul>
+    </section>
+
+    <section class="glass ohead2" aria-labelledby="o-h">
+      <h2 id="o-h">The fourteen orders</h2>
+      <p class="k">In this order, top to bottom. One card, one order. Tick it when it is in.</p>
+    </section>
+
+    <div class="ords"><article class="glass ord" id="o1" data-ord="1"><div class="ohead"><span class="onum" aria-hidden="true">1</span><div class="oid"><b>VOO</b><span>Vanguard S&amp;P 500 ETF</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">ETF</i><i class="ct">Order 1 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$59,706</b><em>19.90% of the portfolio</em></div><div class="oqty is-fixed"><span class="qb">FIXED</span><b>FIXED QUANTITY &mdash; key exactly 84 shares</b><em>Type that number. Do not divide anything.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 65 words</span><button type="button" class="copy" data-copy="n1" data-label="Copy note" aria-label="Copy the VOO trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n1">We are buying VOO (Vanguard S&amp;P 500 ETF) at 19.90% of the portfolio. One low-cost fund holding the whole US market, so the growth side of the plan does not depend on our nine individual picks being right. It should do that though it falls with the whole market it tracks. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="1" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o2" data-ord="2"><div class="ohead"><span class="onum" aria-hidden="true">2</span><div class="oid"><b>VEA</b><span>Vanguard FTSE Developed Markets ETF</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">ETF</i><i class="ct">Order 2 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$29,957</b><em>9.99% of the portfolio</em></div><div class="oqty is-fixed"><span class="qb">FIXED</span><b>FIXED QUANTITY &mdash; key exactly 417 shares</b><em>Type that number. Do not divide anything.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 58 words</span><button type="button" class="copy" data-copy="n2" data-label="Copy note" aria-label="Copy the VEA trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n2">We are buying VEA (Vanguard FTSE Developed Markets ETF) at 9.99% of the portfolio. Developed markets outside the United States, so the portfolio is not riding entirely on one country&#x27;s economy. It should do that though it falls with the whole market it tracks. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="2" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o3" data-ord="3"><div class="ohead"><span class="onum" aria-hidden="true">3</span><div class="oid"><b>GEV</b><span>GE Vernova</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 3 of 14</i></p><p class="dmark"><span aria-hidden="true">&#9733;</span>One of the three for Oct 23 &mdash; slow down here</p><div class="obud"><span class="lbl">The budget</span><b>$14,000</b><em>4.67% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $14,000 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($1,029.21) that was 13 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 62 words</span><button type="button" class="copy" data-copy="n3" data-label="Copy note" aria-label="Copy the GEV trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n3">We are buying GEV (GE Vernova) at 4.67% of the portfolio. It builds the turbines and grid equipment that electricity demand runs on, and every one of us voted for it. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="3" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o4" data-ord="4"><div class="ohead"><span class="onum" aria-hidden="true">4</span><div class="oid"><b>JNJ</b><span>Johnson &amp; Johnson</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 4 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$14,000</b><em>4.67% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $14,000 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($254.78) that was 54 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 67 words</span><button type="button" class="copy" data-copy="n4" data-label="Copy note" aria-label="Copy the JNJ trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n4">We are buying JNJ (Johnson &amp; Johnson) at 4.67% of the portfolio. Demand for medicines and medical devices barely moves with the economy, and it has a long history of growth and a strong profit margin. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="4" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o5" data-ord="5"><div class="ohead"><span class="onum" aria-hidden="true">5</span><div class="oid"><b>NVDA</b><span>NVIDIA</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 5 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$9,500</b><em>3.17% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $9,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($239.24) that was 39 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 60 words</span><button type="button" class="copy" data-copy="n5" data-label="Copy note" aria-label="Copy the NVDA trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n5">We are buying NVDA (NVIDIA) at 3.17% of the portfolio. It supplies most of the chips that AI runs on, which is the fastest-growing demand in technology right now. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="5" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o6" data-ord="6"><div class="ohead"><span class="onum" aria-hidden="true">6</span><div class="oid"><b>BKNG</b><span>Booking Holdings</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 6 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$8,500</b><em>2.83% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $8,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($157.63) that was 53 shares &mdash; recompute it.</em></div><div class="cwarn"><span class="gl" aria-hidden="true">!</span><p><span class="sr">Caution. </span>$158 is the right price. It split 25-for-1 in April, so it is not the $4,000 stock you may remember.</p></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 68 words</span><button type="button" class="copy" data-copy="n6" data-label="Copy note" aria-label="Copy the BKNG trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n6">We are buying BKNG (Booking Holdings) at 2.83% of the portfolio. It takes a cut of travel booked on its platforms without owning the hotels, and it pays a dividend on top of growth close to Amazon&#x27;s. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="6" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o7" data-ord="7"><div class="ohead"><span class="onum" aria-hidden="true">7</span><div class="oid"><b>GOOG</b><span>Alphabet</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 7 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$8,500</b><em>2.83% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $8,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($344.59) that was 24 shares &mdash; recompute it.</em></div><div class="cwarn"><span class="gl" aria-hidden="true">!</span><p><span class="sr">Caution. </span>GOOG, not GOOGL. Both exist and only one is on our ballot.</p></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 55 words</span><button type="button" class="copy" data-copy="n7" data-label="Copy note" aria-label="Copy the GOOG trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n7">We are buying GOOG (Alphabet) at 2.83% of the portfolio. Search and YouTube advertising fund a cloud and AI business that is still growing. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="7" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o8" data-ord="8"><div class="ohead"><span class="onum" aria-hidden="true">8</span><div class="oid"><b>IBKR</b><span>Interactive Brokers</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 8 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$8,500</b><em>2.83% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $8,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($90.58) that was 93 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 68 words</span><button type="button" class="copy" data-copy="n8" data-label="Copy note" aria-label="Copy the IBKR trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n8">We are buying IBKR (Interactive Brokers) at 2.83% of the portfolio. It earns interest and commissions on client accounts rather than lending its own money, so the growth is steadier and the business model is less risky. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="8" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o9" data-ord="9"><div class="ohead"><span class="onum" aria-hidden="true">9</span><div class="oid"><b>MDT</b><span>Medtronic</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 9 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$8,500</b><em>2.83% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $8,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($87.09) that was 97 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 69 words</span><button type="button" class="copy" data-copy="n9" data-label="Copy note" aria-label="Copy the MDT trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n9">We are buying MDT (Medtronic) at 2.83% of the portfolio. Its diabetes and device lines should keep selling through 2033 at close to ten percent growth, though one of us argued it has gone nowhere for five years. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="9" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o10" data-ord="10"><div class="ohead"><span class="onum" aria-hidden="true">10</span><div class="oid"><b>ETN</b><span>Eaton</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 10 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$8,500</b><em>2.83% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $8,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($445.09) that was 19 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 63 words</span><button type="button" class="copy" data-copy="n10" data-label="Copy note" aria-label="Copy the ETN trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n10">We are buying ETN (Eaton) at 2.83% of the portfolio. It supplies the electrical systems buildings and data centres need, which is the same demand GE Vernova serves from a different angle. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="10" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o11" data-ord="11"><div class="ohead"><span class="onum" aria-hidden="true">11</span><div class="oid"><b>AMZN</b><span>Amazon</span></div></div><p class="ochips"><i class="p-b">Pile B</i><i class="kd">Stock</i><i class="ct">Order 11 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$8,500</b><em>2.83% of the portfolio</em></div><div class="oqty is-calc"><span class="qb">WORK IT OUT</span><b>Shares = $8,500 &divide; price on screen, rounded down</b><em>At Tuesday&rsquo;s close ($256.29) that was 33 shares &mdash; recompute it.</em></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 63 words</span><button type="button" class="copy" data-copy="n11" data-label="Copy note" aria-label="Copy the AMZN trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n11">We are buying AMZN (Amazon) at 2.83% of the portfolio. Retail scale plus AWS means it earns from both consumer spending and cloud computing, and consumer spending has grown through every cycle. It should do that though a single company can fall a long way on its own news. This supports Laura&#x27;s plan by growing the money that becomes the 2033 building fund.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="11" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o12" data-ord="12"><div class="ohead"><span class="onum" aria-hidden="true">12</span><div class="oid"><b>T31</b><span>Treasury 5.375% maturing February 2031</span></div></div><p class="ochips"><i class="p-a">Pile A</i><i class="kd">Treasury</i><i class="ct">Order 12 of 14</i></p><p class="dmark"><span aria-hidden="true">&#9733;</span>One of the three for Oct 23 &mdash; slow down here</p><div class="obud"><span class="lbl">The budget</span><b>$35,600</b><em>11.87% of the portfolio</em></div><div class="oqty is-fixed"><span class="qb">FIXED</span><b>FIXED QUANTITY &mdash; key exactly 35 units</b><em>Type that number. Do not divide anything.</em></div><div class="cwarn"><span class="gl" aria-hidden="true">!</span><p><span class="sr">Caution. </span>The type dropdown must read Treasury, never Corporate. Quantity is UNITS of $1,000 face: type 35, not 35,000. The price shows about $1,000 per bond and accrued interest is added to the bill. No fill price appears until it settles this evening — that is correct, do not key it twice.</p></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 73 words</span><button type="button" class="copy" data-copy="n12" data-label="Copy note" aria-label="Copy the T31 trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n12">We are buying 35 units of the Treasury 5.375% maturing February 2031 at 11.87% of the portfolio. A Treasury note repays a fixed amount on a fixed date, so it matches Laura&#x27;s payment calendar instead of being relied on to grow. It should do that though changes in interest rates move its value before it matures. This supports Laura&#x27;s plan by covering her fixed $50,000 payments with money whose date is already certain.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="12" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o13" data-ord="13"><div class="ohead"><span class="onum" aria-hidden="true">13</span><div class="oid"><b>T36</b><span>Treasury 4.500% maturing February 2036</span></div></div><p class="ochips"><i class="p-a">Pile A</i><i class="kd">Treasury</i><i class="ct">Order 13 of 14</i></p><div class="obud"><span class="lbl">The budget</span><b>$35,200</b><em>11.73% of the portfolio</em></div><div class="oqty is-fixed"><span class="qb">FIXED</span><b>FIXED QUANTITY &mdash; key exactly 37 units</b><em>Type that number. Do not divide anything.</em></div><div class="cwarn"><span class="gl" aria-hidden="true">!</span><p><span class="sr">Caution. </span>Same screen, same traps. Type 37, not 37,000, and check the dropdown still says Treasury.</p></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 74 words</span><button type="button" class="copy" data-copy="n13" data-label="Copy note" aria-label="Copy the T36 trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n13">We are buying 37 units of the Treasury 4.500% maturing February 2036 at 11.73% of the portfolio. It is the second rung of the ladder, and since nothing matures between 2032 and 2035 it matures early and the money waits in bills. It should do that though changes in interest rates move its value before it matures. This supports Laura&#x27;s plan by covering her fixed $50,000 payments with money whose date is already certain.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="13" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article><article class="glass ord" id="o14" data-ord="14"><div class="ohead"><span class="onum" aria-hidden="true">14</span><div class="oid"><b>BIL</b><span>SPDR 1-3 Month T-Bill ETF</span></div></div><p class="ochips"><i class="p-c">Pile C</i><i class="kd">ETF</i><i class="ct">Order 14 of 14</i></p><p class="dmark"><span aria-hidden="true">&#9733;</span>One of the three for Oct 23 &mdash; slow down here</p><div class="obud"><span class="lbl">The budget</span><b>$44,993</b><em>15.00% of the portfolio</em></div><div class="oqty is-fixed"><span class="qb">FIXED</span><b>FIXED QUANTITY &mdash; key exactly 492 shares</b><em>Type that number. Do not divide anything.</em></div><div class="cwarn"><span class="gl" aria-hidden="true">!</span><p><span class="sr">Caution. </span>Key this against the cash actually on screen. Short? Cut shares until it fits — BIL is the only line allowed to shrink. Extra cash? Still key 492 and leave the rest.</p></div><div class="nwrap"><div class="nhead"><span class="nl">Trading note &middot; 77 words</span><button type="button" class="copy" data-copy="n14" data-label="Copy note" aria-label="Copy the BIL trading note"><span class="cl">Copy note</span></button></div><div class="note" id="n14">We are buying BIL (SPDR 1-3 Month T-Bill ETF) at 15.00% of the portfolio. Treasury bills hold their value and earn about the short-term rate, so money we have not committed yet stays ready to buy with. It should do that though it barely grows, and money parked there too long loses to inflation. This supports Laura&#x27;s plan by keeping a reserve we can deploy on a written trigger without selling a good position to afford it.</div><p class="nfoot">Paste it before you press Confirm. It cannot be edited afterwards.</p></div><button type="button" class="tick" data-tick="14" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="tl">Keyed &#10003;</span></button></article></div>
+
+    <section class="glass sect" id="trouble" aria-labelledby="t-h">
+      <h2 id="t-h">When it goes wrong</h2>
+      <p class="k">12 things that can happen at the table, most likely first. Every one
+        of them has a single action.</p>
+      <div class="tbs"><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>The price is not what this page says.</h3><p class="ta">Expected, and not a problem. These are Tuesday&#x27;s closing prices and today is Wednesday. The budget is the ceiling; the share count is whatever the budget buys at the live quote.</p><div class="tdo"><span class="dl">Do this</span><p>Shares = budget divided by the price on screen, rounded DOWN. Key that.</p></div></article><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>The division does not come out even.</h3><p class="ta">It never will. Round DOWN, every time, on every line.</p><div class="tdo"><span class="dl">Do this</span><p>Never round up. Rounding up is how an order comes back cancelled for insufficient cash, and then you have lost the time as well as the order.</p></div></article><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>The price went up and I can afford fewer shares than the page shows.</h3><p class="ta">Then you buy fewer shares. Nothing else on the sheet moves.</p><div class="tdo"><span class="dl">Do this</span><p>Do not top it up from another line, and do not round up to reach the number printed here. The leftover dollars stay in cash and BIL absorbs them at the end.</p></div></article><article class="tb is-warn"><h3><span class="gl" aria-hidden="true">!</span>The order came back INSUFFICIENT CASH.</h3><p class="ta">You rounded up, or there is less cash than you expect because an earlier line cost more than its estimate.</p><div class="tdo"><span class="dl">Do this</span><p>Drop one share and key it again. If it fails twice, drop one more. Do not move on with the line unplaced.</p></div></article><article class="tb is-warn"><h3><span class="gl" aria-hidden="true">!</span>The order came back SYSTEM CANCELLED.</h3><p class="ta">That is the position limit, and it should not happen today — the biggest line is VOO at 19.9% and the cap is 25%.</p><div class="tdo"><span class="dl">Do this</span><p>Screenshot it and stop keying that line. That screenshot finally answers the 25% question we have had open since September. Tell the team, then carry on with the next order.</p></div></article><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>I am at BIL and there is not enough cash left.</h3><p class="ta">This is exactly why BIL is last. It is the shock absorber for every surprise above it, including the two bond prices you cannot see until they settle.</p><div class="tdo"><span class="dl">Do this</span><p>Cut BIL shares until it fits. Never cut a stock or a bond to protect BIL — the reserve is the one line that is allowed to shrink.</p></div></article><article class="tb is-warn"><h3><span class="gl" aria-hidden="true">!</span>I am at BIL and there is MORE cash than expected.</h3><p class="ta">Also normal — every stock above rounded down, so a few hundred dollars pile up.</p><div class="tdo"><span class="dl">Do this</span><p>Still key 492 shares, not more. The extra stays in cash. More BIL is a bigger reserve than the team voted for, and the Sunday call may shrink it anyway.</p></div></article><article class="tb is-warn"><h3><span class="gl" aria-hidden="true">!</span>The bond screen looks nothing like the stock screen.</h3><p class="ta">It is a different screen. Three things catch people out.</p><div class="tdo"><span class="dl">Do this</span><p>The type dropdown must read Treasury, never Corporate. Quantity is UNITS of $1,000 face, so type 35, not 35,000. The price shows about $1,000 per bond rather than the normal quote, and accrued interest is added to the bill.</p></div></article><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>The bond shows no fill price after I confirm.</h3><p class="ta">Normal. Bonds settle in the evening, not at the moment you key them.</p><div class="tdo"><span class="dl">Do this</span><p>A blank fill price and a status of Open is correct. Do not key it a second time.</p></div></article><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>I cannot find the ticker.</h3><p class="ta">All nine companies are US-listed members of the S&amp;P 500, so every one of them is there.</p><div class="tdo"><span class="dl">Do this</span><p>Check the spelling against this page. Alphabet is GOOG, not GOOGL. Booking is BKNG and trades near $158 because it split 25-for-1 in April, so that price is right.</p></div></article><article class="tb is-warn"><h3><span class="gl" aria-hidden="true">!</span>The holdings page is empty after I key an order.</h3><p class="ta">WInS shows positions on a 15 to 20 minute delay.</p><div class="tdo"><span class="dl">Do this</span><p>Do not key it again. Check Order History instead — the order being listed is the proof it went in.</p></div></article><article class="tb is-ok"><h3><span class="gl" aria-hidden="true">✓</span>Lunch is nearly over and I am not finished.</h3><p class="ta">Then stop. An order keyed wrong is worse than an order keyed tomorrow, and the market shuts at 3:00 so you cannot finish after school.</p><div class="tdo"><span class="dl">Do this</span><p>Note which line you stopped on, post it in the chat, and key the rest at lunch tomorrow. Nothing in the plan breaks because a line went in a day late.</p></div></article></div>
+    </section>
+
+  </div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/warren.js?v=5" defer></script>
+<script>
+/* The tick, the counter and the copy button.
+   localStorage throws in private browsing and can be empty on a first visit, so
+   every read and write is wrapped and the page renders correctly either way. */
+(function () {
+  var KEY = "wsw-keying-2026-10-07";
+  var TOTAL = 14;
+
+  function closest(node, sel) {
+    var el = node && node.nodeType === 1 ? node : (node && node.parentElement);
+    return el && el.closest ? el.closest(sel) : null;
+  }
+
+  function read() {
+    try {
+      var raw = window.localStorage.getItem(KEY);
+      if (!raw) return {};
+      var o = JSON.parse(raw);
+      return (o && typeof o === "object" && !(o instanceof Array)) ? o : {};
+    } catch (err) { return {}; }
+  }
+  function write(s) {
+    try { window.localStorage.setItem(KEY, JSON.stringify(s)); } catch (err) {}
+  }
+
+  var state = read();
+
+  function paint() {
+    var ticks = document.querySelectorAll("[data-tick]"), n = 0, i;
+    for (i = 0; i < ticks.length; i++) {
+      var b = ticks[i], on = state[b.getAttribute("data-tick")] === 1;
+      if (on) n++;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.classList.toggle("is-on", on);
+      var box = b.querySelector(".box");
+      if (box) box.textContent = on ? "\u2713" : "";
+      var card = closest(b, ".ord");
+      if (card) card.classList.toggle("is-done", on);
+    }
+    var cs = document.querySelectorAll("[data-count]");
+    for (i = 0; i < cs.length; i++) cs[i].textContent = String(n);
+    var bars = document.querySelectorAll("[data-bar]");
+    for (i = 0; i < bars.length; i++) bars[i].style.width = (n / TOTAL * 100) + "%";
+    var pb = document.querySelector("[data-pbar]");
+    if (pb) pb.setAttribute("aria-valuenow", String(n));
+  }
+
+  function restore(btn) {
+    var l = btn.querySelector(".cl");
+    if (l) l.textContent = btn.getAttribute("data-label") || "Copy note";
+    btn.classList.remove("is-copied");
+  }
+  function flip(btn) {
+    var l = btn.querySelector(".cl");
+    if (l) l.textContent = "Copied";
+    btn.classList.add("is-copied");
+    if (btn._t) clearTimeout(btn._t);
+    btn._t = setTimeout(function () { restore(btn); }, 2000);
+  }
+  /* Documented fallback: if neither clipboard path is allowed, the note itself
+     is selected so a long-press or Cmd-C copies exactly the same text. */
+  function manual(box, btn) {
+    var l = btn.querySelector(".cl");
+    if (l) l.textContent = "Selected \u2014 copy it";
+    try {
+      var r = document.createRange();
+      r.selectNodeContents(box);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+    } catch (err) {}
+    if (btn._t) clearTimeout(btn._t);
+    btn._t = setTimeout(function () { restore(btn); }, 4000);
+  }
+  function legacy(text, box, btn) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0";
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      ok = document.execCommand("copy");
+    } catch (err) { ok = false; }
+    document.body.removeChild(ta);
+    if (ok) flip(btn); else manual(box, btn);
+  }
+  function copy(btn) {
+    var box = document.getElementById(btn.getAttribute("data-copy"));
+    if (!box) return;
+    var text = box.textContent;   /* exactly the note on screen, nothing else */
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { flip(btn); },
+          function () { legacy(text, box, btn); });
+        return;
+      }
+    } catch (err) {}
+    legacy(text, box, btn);
+  }
+
+  document.addEventListener("click", function (ev) {
+    var t = closest(ev.target, "[data-tick]");
+    if (t) {
+      var id = t.getAttribute("data-tick");
+      if (state[id] === 1) { delete state[id]; } else { state[id] = 1; }
+      write(state);
+      paint();
+      return;
+    }
+    if (closest(ev.target, "[data-reset]")) {
+      state = {};
+      write(state);
+      paint();
+      return;
+    }
+    var c = closest(ev.target, "[data-copy]");
+    if (c) copy(c);
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
