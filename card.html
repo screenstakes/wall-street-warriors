@@ -855,9 +855,13 @@ ol.flow.qs span{color:var(--ink)}
       ". The copy button unlocks once it is complete — a half-written note goes into WInS and cannot be taken back.";
     $("tid").textContent = tradeId();
     $("o-card").textContent = chatCard();
-    var wds = winsNote().split(/\s+/).filter(Boolean).length;
-    $("wc").textContent = "note: " + wds + " words (Wharton's own example is about 60)";
-    $("wc").className = "wc" + (wds > 80 ? " over" : "");
+    /* WInS's Trade Notes box is a HARD 300-CHARACTER limit, not a word count. It
+       truncates silently, mid-word, and the note cannot be edited after the order
+       is saved. Counting words here is what hid that on 2026-10-07. */
+    var nchars = winsNote().length;
+    $("wc").textContent = "note: " + nchars + " / 300 characters"
+      + (nchars > 300 ? " — WInS will CUT IT OFF. Shorten the why." : "");
+    $("wc").className = "wc" + (nchars > 300 ? " over" : "");
     $("c-card").disabled = need.length > 0;
     $("c-card").textContent = need.length ? "Finish the card first" : "Copy it for the chat";
   }
@@ -949,8 +953,9 @@ ol.flow.qs span{color:var(--ink)}
       ? whyWords() + " words" + (whyWords() < 6 ? " — needs to be a sentence" : "") + (pk && s["d-why"] === pk.why ? " · from our research on " + pk.name : "")
       : (pk ? "type the ticker above and our research fills this in" : "");
     $("d-note").textContent = doneNote();
-    var dw = doneNote().split(/\s+/).filter(Boolean).length;
-    $("d-wc").textContent = "note: " + dw + " words (Wharton's own example is about 60)";
+    var dw = doneNote().length;
+    $("d-wc").textContent = "note: " + dw + " / 300 characters"
+      + (dw > 300 ? " — WInS will CUT IT OFF. Shorten the why." : "");
     $("d-wc").className = "wc" + (dw > 80 ? " over" : "");
     $("c-note").disabled = n.length > 0;
     $("d-reply").textContent = doneReply();
