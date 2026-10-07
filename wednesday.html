@@ -28,6 +28,20 @@ main.shell{padding-bottom:72px}
   border:1px solid rgba(255,255,255,.9);border-radius:24px;
   box-shadow:0 1px 2px rgba(16,32,64,.05),0 16px 40px -22px rgba(16,32,64,.30)}
 
+/* the placed banner: first card, because the orders are in and nothing below
+   makes sense without that */
+.placed{padding:30px 28px 26px;text-align:center;border:2px solid var(--ok)}
+.pchip{display:inline-flex;align-items:center;gap:8px;margin:0;padding:7px 15px;
+  border-radius:999px;background:var(--ok);color:#fff;
+  font:700 12.5px var(--ui);letter-spacing:.08em;text-transform:uppercase}
+.placed h2{margin:14px 0 0;font:700 38px/1.1 var(--ui);color:var(--ink);letter-spacing:-.025em}
+.plead{margin:12px auto 0;max-width:34em;font:600 17px/1.5 var(--ui);color:var(--ink-2)}
+.pmoney{margin:12px auto 0;max-width:34em;font:400 16px/1.55 var(--body);color:var(--ink-2)}
+.pmoney b{font:700 17px var(--mono);color:var(--ink)}
+.pest{margin:14px auto 0;max-width:36em;padding:11px 16px;border-radius:14px;
+  background:var(--warn-soft);border:1px solid #EBD6A8;
+  font:600 14.5px/1.5 var(--ui);color:#6B4505}
+
 .verdict{padding:40px 32px 34px;text-align:center}
 .vnum{font:700 96px/.9 var(--mono);color:var(--navy);letter-spacing:-.04em}
 .vnum small{display:block;font:600 20px var(--ui);color:var(--ink-3);letter-spacing:0;margin-top:12px}
@@ -158,6 +172,10 @@ ul.how b{font:600 17px/1.3 var(--ui);color:var(--ink)}
 ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
 
 @media (max-width:700px){
+  .placed{padding:24px 16px 22px}
+  .placed h2{font-size:29px}
+  .plead{font-size:16px}
+  .pmoney{font-size:15px}
   .verdict{padding:32px 20px 28px}
   .vnum{font-size:62px}
   .vnum small{font-size:17px}
@@ -231,18 +249,37 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
 <main class="shell">
   <div class="vstack">
 
+    <section class="glass placed" aria-labelledby="pl-h">
+      <p class="pchip"><span aria-hidden="true">&#10003;</span>Placed</p>
+      <h2 id="pl-h">All 14 orders are in.</h2>
+      <p class="plead">PLACED Wednesday Oct 7 evening — all 14 open, filling at Thursday&#x27;s open</p>
+      <p class="pmoney">The figures on this sheet are the plan as voted. The orders were keyed
+        at slightly less, because every company line divides into its budget and rounds down.
+        <a href="keying.html">The keying record</a> has what was sent, order by order, and
+        <a href="portfolio.html">the portfolio page</a> owns the totals.</p>
+      <p class="vcorr">BIL went in at 450 shares, not the 492 this sheet
+        plans: the two Treasuries cost $3,097 more than the estimates here, and BIL is the
+        one line allowed to absorb it. That puts Pile C at 13.72% rather than 15%, and
+        the trim needs ratifying on Sunday.</p>
+      <p class="vlinks">
+        <a class="pill" href="keying.html"><b>Keying &mdash; the record of what was sent</b></a>
+        <a href="portfolio.html">The whole portfolio</a>
+      </p>
+    </section>
+
     <section class="glass verdict">
       <div class="vnum">$88,500<small>into the nine names</small></div>
       <p class="vlead">Tuesday&rsquo;s meeting changed the plan</p>
-      <p class="vsub">Nothing was keyed on Tuesday. <b>14 orders</b> go in Wednesday Oct 7 evening, after the close — they fill at Thursday&#x27;s open.</p>
+      <p class="vsub">Nothing was keyed on Tuesday. All <b>14 orders</b> went in on
+        Wednesday evening instead, and they execute at Thursday&rsquo;s open.</p>
       <div class="vmoney">
-        <div><b>$293,961</b><span>into securities</span></div>
+        <div><b>$293,198</b><span>securities, at budget</span></div>
         <div><b>$320</b><span>commissions</span></div>
-        <div><b>$5,719</b><span>cash left</span></div>
+        <div><b>$6,482</b><span>cash left, at budget</span></div>
       </div>
-      <p class="vcorr">Up from $54,000. BIL drops from 810 shares to 492.</p>
+      <p class="vcorr">Up from $54,000. BIL dropped from 810 shares to 450.</p>
       <p class="vlinks">
-        <a class="pill" href="keying.html"><b>Keying sheet &mdash; open this while you type</b></a> <a href="oct6-minutes.html">What the meeting decided</a>
+        <a href="oct6-minutes.html">What the meeting decided</a>
         <a href="tuesday.html">Tuesday&rsquo;s sheet (superseded)</a>
       </p>
     </section>
@@ -260,7 +297,7 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
 
     <section class="glass sect" aria-labelledby="o-h">
       <h2 id="o-h">The order sheet</h2>
-      <p class="k">Key them top to bottom. <b>Four lines are a fixed quantity: VOO 84, VEA 417, the 2031 note 35 units, the 2036 note 37 units — key those numbers as printed.</b> The nine names and BIL are a budget: shares = budget &divide; the live quote, rounded down.</p>
+      <p class="k">They were keyed top to bottom. <b>Four lines were a fixed quantity: VOO 84, VEA 417, the 2031 note 35 units, the 2036 note 37 units — keyed as printed.</b> The nine names and BIL were a budget: shares = budget &divide; the live quote, rounded down. The quantity and price each order actually went in at are on <a href="keying.html">the keying record</a>.</p>
       <div class="table-wrap" style="margin-top:18px">
         <table class="os">
           <thead><tr><th class="wh">What</th><th class="pl">Pile</th>
@@ -268,7 +305,7 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
             <th class="ch r">Close</th>
             <th class="sh r">Shares at close</th>
             <th class="xh r">Cost at close</th></tr></thead>
-          <tbody><tr><td class="tk"><b>VOO</b><span>Vanguard S&amp;P 500</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$59,706</td><td class="cl">$714.41</td><td class="qt"><b>84</b><small>shares</small></td><td class="xl">$60,010</td></tr><tr class="nr"><td colspan="6">Quantity is fixed. Key 84 shares, not a dollar amount.</td></tr><tr><td class="tk"><b>VEA</b><span>Vanguard Developed Markets</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$29,957</td><td class="cl">$70.27</td><td class="qt"><b>417</b><small>shares</small></td><td class="xl">$29,303</td></tr><tr class="nr"><td colspan="6">Quantity is fixed. Key 417 shares.</td></tr><tr class="sep"><td colspan="6">The nine names &mdash; $88,500</td></tr><tr><td class="tk"><b>GEV</b><span>GE Vernova</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$14,000</td><td class="cl">$998.30</td><td class="qt"><b>14</b><small>shares</small></td><td class="xl">$13,976</td></tr><tr><td class="tk"><b>JNJ</b><span>Johnson &amp; Johnson</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$14,000</td><td class="cl">$258.37</td><td class="qt"><b>54</b><small>shares</small></td><td class="xl">$13,952</td></tr><tr><td class="tk"><b>NVDA</b><span>NVIDIA</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$9,500</td><td class="cl">$237.37</td><td class="qt"><b>40</b><small>shares</small></td><td class="xl">$9,495</td></tr><tr><td class="tk"><b>BKNG</b><span>Booking Holdings</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$155.88</td><td class="qt"><b>54</b><small>shares</small></td><td class="xl">$8,418</td></tr><tr><td class="tk"><b>GOOG</b><span>Alphabet</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$347.34</td><td class="qt"><b>24</b><small>shares</small></td><td class="xl">$8,336</td></tr><tr><td class="tk"><b>IBKR</b><span>Interactive Brokers</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$87.79</td><td class="qt"><b>96</b><small>shares</small></td><td class="xl">$8,428</td></tr><tr><td class="tk"><b>MDT</b><span>Medtronic</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$85.50</td><td class="qt"><b>99</b><small>shares</small></td><td class="xl">$8,465</td></tr><tr><td class="tk"><b>ETN</b><span>Eaton</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$431.50</td><td class="qt"><b>19</b><small>shares</small></td><td class="xl">$8,199</td></tr><tr><td class="tk"><b>AMZN</b><span>Amazon</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$259.90</td><td class="qt"><b>32</b><small>shares</small></td><td class="xl">$8,317</td></tr><tr class="sep"><td colspan="6">Then the two Treasuries, then BIL last</td></tr><tr><td class="tk"><b>T31</b><span>Treasury 5.375% · Feb 2031</span></td><td class="pl"><i class="p-a">A</i></td><td class="dl">$35,600</td><td class="cl">&mdash;</td><td class="qt"><b>35</b><small>units</small></td><td class="xl">$35,600</td></tr><tr class="nr"><td colspan="6">35 units of $1,000 face. Type 35, not 35,000. The dropdown must say Treasury. Cost is an estimate until it is on screen; any gap comes out of cash.</td></tr><tr><td class="tk"><b>T36</b><span>Treasury 4.500% · Feb 2036</span></td><td class="pl"><i class="p-a">A</i></td><td class="dl">$35,200</td><td class="cl">&mdash;</td><td class="qt"><b>37</b><small>units</small></td><td class="xl">$35,200</td></tr><tr class="nr"><td colspan="6">37 units of $1,000 face. Same.</td></tr><tr><td class="tk"><b>BIL</b><span>SPDR 1–3 Month T-Bill ETF</span></td><td class="pl"><i class="p-c">C</i></td><td class="dl">$44,998</td><td class="cl">$91.46</td><td class="qt"><b>492</b><small>shares</small></td><td class="xl">$44,998</td></tr><tr class="nr"><td colspan="6">KEY THIS LAST, and 492 is the number — never more. The extra cash you will see on screen is the nine rounding down plus the two Treasuries not yet settled; it is not room for more BIL. Key fewer only if cash on screen minus about $70,800 for the two notes is under $45,000. Pile C only now, 15% of the account, nowhere near the 25% limit.</td></tr><tr class="tot"><td class="tk">Securities, at budget</td><td class="pl"></td><td class="dl">$293,961</td><td class="cl"></td><td class="qt"><small>14 orders</small></td><td class="xl"></td></tr><tr class="tot"><td class="tk">Commissions</td><td class="pl"></td><td class="dl">$320</td><td class="cl"></td><td class="qt"><small>12 &times; $25</small><small>2 &times; $10</small></td><td class="xl"></td></tr><tr class="tot"><td class="tk">Cash left</td><td class="pl"></td><td class="dl">$5,719</td><td class="cl"></td><td class="qt"></td><td class="xl"></td></tr><tr class="grand"><td class="tk">Total</td><td class="pl"></td><td class="dl">$300,000</td><td class="cl"></td><td class="qt"></td><td class="xl"></td></tr><tr class="nr"><td colspan="6">Closes are Wednesday October 7, at the close (stockanalysis.com 4:00pm ET closing-auction prices, cross-checked on Yahoo Finance and against stockanalysis.com&#x27;s own daily history table). Shares are recomputed off Wednesday’s live quote, rounded down.</td></tr></tbody>
+          <tbody><tr><td class="tk"><b>VOO</b><span>Vanguard S&amp;P 500</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$59,706</td><td class="cl">$714.41</td><td class="qt"><b>84</b><small>shares</small></td><td class="xl">$60,010</td></tr><tr class="nr"><td colspan="6">Quantity is fixed. Key 84 shares, not a dollar amount.</td></tr><tr><td class="tk"><b>VEA</b><span>Vanguard Developed Markets</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$29,957</td><td class="cl">$70.27</td><td class="qt"><b>417</b><small>shares</small></td><td class="xl">$29,303</td></tr><tr class="nr"><td colspan="6">Quantity is fixed. Key 417 shares.</td></tr><tr class="sep"><td colspan="6">The nine names &mdash; $88,500</td></tr><tr><td class="tk"><b>GEV</b><span>GE Vernova</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$14,000</td><td class="cl">$998.30</td><td class="qt"><b>14</b><small>shares</small></td><td class="xl">$13,976</td></tr><tr><td class="tk"><b>JNJ</b><span>Johnson &amp; Johnson</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$14,000</td><td class="cl">$258.37</td><td class="qt"><b>54</b><small>shares</small></td><td class="xl">$13,952</td></tr><tr><td class="tk"><b>NVDA</b><span>NVIDIA</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$9,500</td><td class="cl">$237.37</td><td class="qt"><b>40</b><small>shares</small></td><td class="xl">$9,495</td></tr><tr><td class="tk"><b>BKNG</b><span>Booking Holdings</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$155.88</td><td class="qt"><b>54</b><small>shares</small></td><td class="xl">$8,418</td></tr><tr><td class="tk"><b>GOOG</b><span>Alphabet</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$347.34</td><td class="qt"><b>24</b><small>shares</small></td><td class="xl">$8,336</td></tr><tr><td class="tk"><b>IBKR</b><span>Interactive Brokers</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$87.79</td><td class="qt"><b>96</b><small>shares</small></td><td class="xl">$8,428</td></tr><tr><td class="tk"><b>MDT</b><span>Medtronic</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$85.50</td><td class="qt"><b>99</b><small>shares</small></td><td class="xl">$8,465</td></tr><tr><td class="tk"><b>ETN</b><span>Eaton</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$431.50</td><td class="qt"><b>19</b><small>shares</small></td><td class="xl">$8,199</td></tr><tr><td class="tk"><b>AMZN</b><span>Amazon</span></td><td class="pl"><i class="p-b">B</i></td><td class="dl">$8,500</td><td class="cl">$259.90</td><td class="qt"><b>32</b><small>shares</small></td><td class="xl">$8,317</td></tr><tr class="sep"><td colspan="6">Then the two Treasuries, then BIL last</td></tr><tr><td class="tk"><b>T31</b><span>Treasury 5.375% · Feb 2031</span></td><td class="pl"><i class="p-a">A</i></td><td class="dl">$35,536</td><td class="cl">&mdash;</td><td class="qt"><b>35</b><small>units</small></td><td class="xl">$35,536</td></tr><tr class="nr"><td colspan="6">35 units of $1,000 face. Type 35, not 35,000. The dropdown must say Treasury. Cost is an estimate until it is on screen; any gap comes out of cash.</td></tr><tr><td class="tk"><b>T36</b><span>Treasury 4.500% · Feb 2036</span></td><td class="pl"><i class="p-a">A</i></td><td class="dl">$38,342</td><td class="cl">&mdash;</td><td class="qt"><b>37</b><small>units</small></td><td class="xl">$38,342</td></tr><tr class="nr"><td colspan="6">37 units of $1,000 face. Same.</td></tr><tr><td class="tk"><b>BIL</b><span>SPDR 1–3 Month T-Bill ETF</span></td><td class="pl"><i class="p-c">C</i></td><td class="dl">$41,157</td><td class="cl">$91.46</td><td class="qt"><b>450</b><small>shares</small></td><td class="xl">$41,157</td></tr><tr class="nr"><td colspan="6">Keyed last, and keyed at 450 rather than the 492 planned here — the two Treasuries cost $3,097 more than the estimates on this sheet, and BIL is the one line allowed to absorb it. That leaves Pile C at 13.72% of the account rather than 15%, still nowhere near the 25% limit, and the trim needs ratifying on Sunday.</td></tr><tr class="tot"><td class="tk">Securities, at budget</td><td class="pl"></td><td class="dl">$293,198</td><td class="cl"></td><td class="qt"><small>14 orders</small></td><td class="xl"></td></tr><tr class="tot"><td class="tk">Commissions</td><td class="pl"></td><td class="dl">$320</td><td class="cl"></td><td class="qt"><small>12 &times; $25</small><small>2 &times; $10</small></td><td class="xl"></td></tr><tr class="tot"><td class="tk">Cash left</td><td class="pl"></td><td class="dl">$6,482</td><td class="cl"></td><td class="qt"></td><td class="xl"></td></tr><tr class="grand"><td class="tk">Total</td><td class="pl"></td><td class="dl">$300,000</td><td class="cl"></td><td class="qt"></td><td class="xl"></td></tr><tr class="nr"><td colspan="6">Closes are Wednesday October 7, at the close (stockanalysis.com 4:00pm ET closing-auction prices, cross-checked on Yahoo Finance and against stockanalysis.com&#x27;s own daily history table). Shares are recomputed off Wednesday’s live quote, rounded down.</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -295,7 +332,7 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
       <p class="k">Our take: yes, to 10% — the size of its own largest trigger. One Treasury rung at the 5.5% bar is ~$30,000, and a VOO add is $6,000–12,000. A reserve bigger than the biggest thing it can buy is just money not working. Put the freed ~$15,000 into VEA: it overlaps none of the nine, it is the part of the world we are most underweight, and it has no cap problem.</p>
       <p class="k">Tomorrow&#x27;s sheet keeps 15%. Deciding it on Sunday&#x27;s call costs one BIL sale and one VEA buy — $50 — and keeps the record clean.</p>
       <p class="k"><b>If the room says yes tomorrow with Joe&#x27;s thumbs-up in the chat, exactly two lines change:</b></p>
-      <ul class="chg"><li><b>VEA</b><span>417 shares → 630 shares</span><em>about $44,270</em></li><li><b>BIL</b><span>492 shares → 328 shares</span><em>about $29,999</em></li></ul>
+      <ul class="chg"><li><b>VEA</b><span>417 shares → 575 shares</span><em>about $40,405</em></li><li><b>BIL</b><span>450 shares → 328 shares</span><em>about $29,999</em></li></ul>
     </section>
 
     <section class="glass sect" aria-labelledby="f-h">
@@ -309,7 +346,7 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
     </section>
 
     <section class="glass sect" aria-labelledby="c-h">
-      <h2 id="c-h">Before keying</h2>
+      <h2 id="c-h">What had to be true before keying</h2>
       <p class="k">3 things, none of them more than a minute, and none of them
         fixable afterwards.</p>
       <ul class="checks"><li><div class="ct"><b>Joe&#x27;s thumbs-up on the split, in the chat, before lunch</b><span class="why">He was not there</span></div><p>Four of five were in the room. Posting the table tonight and getting Joe&#x27;s reaction by 12:30 makes it 5 of 5 on the record, and criterion 4 grades the record. Ask for a reaction, not a reply.</p></li><li><div class="ct"><b>The 25% position limit, on screen — now a one-minute formality</b><span class="why">Open since Sep 27</span></div><p>Portfolio Simulation → Portfolio Summary → Session Rules. Screenshot the row. Nothing on this sheet is above 19.9%, so the answer cannot change an order, but it closes a question that has been open since Sep 27.</p></li><li><div class="ct"><b>Who writes the trading notes</b><span class="why">Graded</span></div><p>Someone who is not keying types each note as the order goes in — Federico, or Dylan. Notes cannot be edited once saved and three of them are the whole Oct 23 deliverable. The note for each name should say why its size is what it is: GEV and JNJ highest, NVDA capped at $9,500 by the overlap.</p></li></ul>
@@ -317,13 +354,14 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
 
     <section class="glass sect" aria-labelledby="r-h">
       <h2 id="r-h">Run of show</h2>
-      <p class="k">32 minutes. Nothing is re-opened.</p>
+      <p class="k">32 minutes, as it was planned. It ran in the evening rather than at
+        lunch, and nothing was re-opened.</p>
       <ul class="run"><li><span class="mins">2<small>min</small></span><span class="rl"><b>Read the four decisions back</b><i>Nine names at the budgets below. GEV and JNJ on top, NVDA below, six equal. BIL to its share count. Nothing is re-opened.</i></span></li><li><span class="mins">2<small>min</small></span><span class="rl"><b>Check Joe has reacted</b><i>If he has, the split is 5 of 5 on the record. If he has not, it is 4 of 5 and still passes — note which it was, because the record is graded.</i></span></li><li><span class="mins">25<small>min</small></span><span class="rl"><b>Key the orders</b><i>Funds, then the nine, then the two Treasuries, then BIL last. Shares come from the price on screen, rounded down. Paste the trading note before Confirm — it cannot be edited afterwards.</i></span></li><li><span class="mins">3<small>min</small></span><span class="rl"><b>Post it in the chat</b><i>Screenshot Order History. That screenshot is the first entry of the trade log, and it is the proof the orders are in even though nothing fills until Thursday.</i></span></li></ul>
     </section>
 
     <section class="glass sect" aria-labelledby="h-h">
-      <h2 id="h-h">How to key</h2>
-      <ul class="how"><li><b>For the nine names and BIL, shares come from Wednesday&#x27;s price, not from this sheet.</b><p>Pull the quote inside WInS at the moment you key it. Shares = the dollar budget divided by the price, rounded DOWN. Never up — rounding up is how an order comes back cancelled for insufficient cash. VOO 84, VEA 417, the two notes (35 and 37 units) and BIL 492 have their quantity printed: key those exactly as printed. BIL is the only printed number that may go DOWN, and only if cash is short.</p></li><li><b>Key BIL last.</b><p>Everything else has a fixed quantity or a fixed budget. BIL is the line that absorbs the difference, and the only one that may be keyed smaller if cash runs short on Thursday.</p></li><li><b>One login, one person typing.</b><p>Michael keys every order. Nobody else is in the account at the same time.</p></li><li><b>Market orders, every line. Treasuries settle in the evening.</b><p>A blank fill price on a bond is normal until it settles.</p></li><li><b>Keyed after the close, so they fill at the next open.</b><p>The market runs 8:30am to 3:00pm Central. An order keyed in the evening sits queued and executes at Thursday&#x27;s open. You cannot see the fill price when you key it, which is the one thing that changes — see BIL.</p></li></ul>
+      <h2 id="h-h">How it was keyed</h2>
+      <ul class="how"><li><b>For the nine names and BIL, shares come from Wednesday&#x27;s price, not from this sheet.</b><p>The quote came off WInS at the moment each order was keyed. Shares = the dollar budget divided by the price, rounded DOWN. Never up — rounding up is how an order comes back cancelled for insufficient cash. VOO 84, VEA 417, the two notes (35 and 37 units) and BIL 450 had their quantity printed and were keyed as printed. BIL is the only printed number allowed to go DOWN, and it did: 450 rather than 492, because the two Treasuries cost more than this sheet estimated.</p></li><li><b>Key BIL last.</b><p>Everything else has a fixed quantity or a fixed budget. BIL is the line that absorbs the difference, and the only one that may be keyed smaller if cash runs short on Thursday.</p></li><li><b>One login, one person typing.</b><p>Michael keys every order. Nobody else is in the account at the same time.</p></li><li><b>Market orders, every line. Treasuries settle in the evening.</b><p>A blank fill price on a bond is normal until it settles.</p></li><li><b>Keyed after the close, so they fill at the next open.</b><p>The market runs 8:30am to 3:00pm Central. An order keyed in the evening sits queued and executes at Thursday&#x27;s open. You cannot see the fill price when you key it, which is the one thing that changes — see BIL.</p></li></ul>
     </section>
 
   </div>
