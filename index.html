@@ -111,7 +111,15 @@
 .dash-phase{display:grid;gap:14px;padding:18px}
 .dash-phase .now{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
 .dash-phase .now .pill{font:700 11px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;color:#fff;background:var(--orange-deep);padding:7px 9px;border-radius:4px;white-space:nowrap}
-.dash-phase .now p{font-size:14.5px;color:var(--ink-2);max-width:62ch}
+.dash-phase .now p{font-size:14.5px;color:var(--ink-2);max-width:62ch;text-wrap:balance}
+/* The TODAY marker draws 22px ABOVE the bar (.today top:-6 plus its ::after
+   top:-16), but .dash-phase only puts 14px between the paragraph and the bar,
+   so the label was printing on top of the sentence above it. Pad the season
+   block instead of moving the marker, which is positioned off the bar. */
+.dash-phase .season{padding-top:16px}
+/* the announcements are long paragraphs; 12px was not enough separation */
+.card.green .ann + .ann{margin-top:16px;padding-top:16px}
+.card.green .ann time{margin-bottom:6px}
 .dash-phase .now p b{color:var(--ink)}
 
 .dash-status{list-style:none;margin:0;padding:0}
