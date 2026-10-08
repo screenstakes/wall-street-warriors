@@ -254,15 +254,12 @@ h3.sub{margin:14px 18px 6px}
 
     <!-- 2. our sheets -->
     <section class="card reveal" aria-labelledby="team-sheets-h" id="sheets">
-      <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="team-sheets-h">Our sheets</h2><span class="sep"></span><span class="meta" id="sheets-meta"></span><span class="spacer"></span><span id="sheets-folder"></span></div>
-      <div class="sheets-how">
-        <div><b>1</b><span>Open your sheet signed in to your <strong>school</strong> Google account.</span></div>
-        <div><b>2</b><span>Every Friday, go to the <strong>This week</strong> tab and fill in this week's yellow cells.</span></div>
-        <div><b>3</b><span>Pick <strong>✓</strong> in the Done column. Michael's dashboard sees it.</span></div>
+      <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="team-sheets-h">The sheets are retired</h2></div>
+      <div class="card-body">
+        <p>Everyone had a Google Sheet built for their job. In three weeks they collected entries in three cells, and nobody ever ticked a weekly box &mdash; so every dashboard reading them showed an empty cell from September on. They are not deleted and the files are still in Michael&rsquo;s Drive, but nothing on this site points at them any more.</p>
+        <p><b>The record lives where the work happens instead.</b> Decisions go in the <a href="oct6-minutes.html">minutes</a>. Trades go in <a href="keying.html">the orders we sent</a>, which carries the note for every one. Everything still owed, with a name and a date on it, is on <a href="now.html">Where we are</a> &mdash; and that same list drives <b>Owes now</b> on the <a href="index.html">dashboard</a>.</p>
+        <p>Your job did not change with the sheet. It is on your card on the dashboard, with the how-to page for it.</p>
       </div>
-      <div class="tabs sheets-tabs" id="sheets-tabs" role="tablist" aria-label="Whose sheet"></div>
-      <div id="sheets-panel" role="tabpanel" aria-labelledby="sheets-tabs"></div>
-      <div class="card-foot">Don't rename tabs or move columns: Michael's dashboard reads them. Delete the example row at the top of each tab before you start.</div>
     </section>
 
     <div class="grid main-rail">
@@ -379,42 +376,7 @@ h3.sub{margin:14px 18px 6px}
 
   function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
 
-  /* 2. our sheets: one tab per person, the panel shows their sheet */
-  var F = D.files;
-  var roleOf = function (id) { return D.roles.filter(function (r) { return r.id === id; })[0] || {}; };
-  var sel = W.store.get("sheet", F.list[0].id);
-  if (!F.list.some(function (f) { return f.id === sel; })) sel = F.list[0].id;
-  $("sheets-tabs").innerHTML = F.list.map(function (f) {
-    var m = W.member(f.id) || { name: f.id };
-    return '<button type="button" class="tab" role="tab" id="st-' + f.id + '" data-sheet="' + f.id + '" aria-controls="sheets-panel">' + esc(m.name) + "</button>";
-  }).join("");
-  function drawSheet() {
-    var f = F.list.filter(function (x) { return x.id === sel; })[0], m = W.member(f.id) || { name: f.id }, r = roleOf(f.role);
-    var bk = r.backup ? roleOf(r.backup) : null;
-    var bkName = bk ? (F.list.filter(function (x) { return x.role === bk.id; }).map(function (x) { return (W.member(x.id) || {}).name; })[0] || bk.title) : "";
-    $("sheets-panel").setAttribute("aria-labelledby", "st-" + sel);
-    Array.prototype.forEach.call($("sheets-tabs").children, function (t) {
-      var on = t.getAttribute("data-sheet") === sel; t.classList.toggle("is-active", on); t.setAttribute("aria-selected", on ? "true" : "false"); t.tabIndex = on ? 0 : -1;
-    });
-    var open = f.url ? '<a class="btn" href="' + esc(f.url) + '" target="_blank" rel="noopener">' + W.icon("link") + "Open " + esc(m.name) + "'s sheet</a>" : '<span class="soon">Link coming</span>';
-    $("sheets-panel").innerHTML = '<div class="sheet-panel"><div class="sheet-left">' +
-      '<div class="sheet-who"><span class="av" aria-hidden="true">' + esc(m.name.charAt(0)) + "</span><div><h3>" + esc(m.name) + "</h3><span>" + esc(f.job) + "</span></div></div>" +
-      (r.owns ? "<p><b>Owns:</b> " + esc(r.owns) + "</p>" : "") +
-      "<p><b>Every week:</b> " + esc(f.week) + "</p>" +
-      (bkName ? "<p><b>Backup:</b> " + esc(bkName) + "</p>" : "") + open + "</div>" +
-      '<div><p class="sheet-tabs-cap">The tabs in ' + esc(m.name) + "'s sheet</p><ul class=\"sheet-tabs-list\">" +
-      f.tabs.map(function (t) { return "<li><b>" + esc(t[0]) + "</b><span>" + esc(t[1]) + "</span></li>"; }).join("") + "</ul></div></div>";
-  }
-  $("sheets-tabs").addEventListener("click", function (e) { var t = e.target.closest("[data-sheet]"); if (!t) return; sel = t.getAttribute("data-sheet"); W.store.set("sheet", sel); drawSheet(); });
-  $("sheets-tabs").addEventListener("keydown", function (e) {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-    var ids = F.list.map(function (x) { return x.id; }), i = ids.indexOf(sel);
-    sel = ids[(i + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length]; W.store.set("sheet", sel); drawSheet(); $("st-" + sel).focus();
-  });
-  drawSheet();
-  var linked = F.list.filter(function (x) { return x.url; }).length;
-  $("sheets-meta").textContent = linked === F.list.length ? F.list.length + " Google Sheets" : linked === 0 ? "Links coming soon" : linked + " of " + F.list.length + " linked";
-  if (F.folder) { $("sheets-folder").innerHTML = '<a class="btn light sm" href="' + esc(F.folder) + '" target="_blank" rel="noopener">Open the folder</a>'; $("sheets-meta").classList.add("team-desk"); }
+  /* the per-person sheets were retired on Oct 7; nothing renders them now */
 
   /* sectors, decision rules, meeting shape, the four phases, and the scoring criteria */
   $("team-sectors").innerHTML =
@@ -455,7 +417,7 @@ h3.sub{margin:14px 18px 6px}
   var advRule = D.teamRules.filter(function (r) { return r.rule === "Advisor"; })[0];
   $("team-adv-rule").textContent = advRule ? advRule.value : "";
   $("team-adv-m").textContent = T.advisor.name;
-  var CO = F.coach;
+  var CO = D.files.coach;
   $("team-coach").innerHTML = "<b>" + esc(CO.title) + ".</b> " + esc(CO.what) + (CO.url ? ' <a href="' + esc(CO.url) + '" target="_blank" rel="noopener">Open it</a>' : "");
 
   /* 5. where we work */

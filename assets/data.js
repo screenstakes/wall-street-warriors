@@ -364,26 +364,38 @@ WSW.data = {
      follows a trade: case against, fit check, number, log, then Michael's dashboard.
      guide: an optional how-to page for that job, linked next to the job name;
      guideLabel replaces the link text "How-to" when the page covers only part of the job. */
+  /* RETIRED 2026-10-07. The five per-person sheets were never used: an audit
+     found 30 tabs and about 1,600 cells with entries in three of them, and
+     nobody ever ticked a weekly box, so every dashboard reading them showed an
+     empty cell from September on. The files still exist in Drive; the site no
+     longer sends anyone to them. `job`, `week`, `guide` and `owes` below are
+     still live — they describe the job, which did not go away with the sheet. */
+  filesRetired: true,
   files: {
     folder: "",
     list: [
       { id: "caleb", job: "Laura's case", title: "Caleb — Laura's case", url: "https://docs.google.com/spreadsheets/d/14x4_n_DWi6GHIYjGW57T5murzIr24M786P7NStcjMNc/edit", role: "client", guide: "client.html",
+        owes: 'Start the IPS: a 50-word pitch and a 500-word statement', owesDue: 'Due Nov 6',
         week: "Reply to every trade card with the goal it serves, or send it back. From week 5, draft the IPS.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Laura", "The client on one page, and what each fact means for a trade"], ["Fit check", "One row per trade card: which of Laura's goals it serves"], ["IPS", "The 50-word elevator pitch and the 500-word statement, to draft Oct 24 to 30, and who feeds you each one"], ["Works cited", "Every source as we use it, including any AI"]],
         has: ["Laura, our client, on one page", "Does each trade help Laura? One row per trade", "The Investment Policy Statement: a 50-word pitch and a 500-word statement, one cohesive piece with no required sections"] },
       { id: "joe", job: "The numbers", title: "Joe — The numbers", url: "https://docs.google.com/spreadsheets/d/15I2v_2KLHGlGB8IQs0b1Ye5XHlRpZeCA4_0Qcc_lCYw/edit", role: "numbers", guide: "numbers.html",
+        owes: 'React to the split in the chat, so the record shows 5 of 5', owesDue: 'Now',
         week: "Update the Portfolio tab, value one idea the team liked, and add every new number to the Ledger.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Learn 1 to 4", "Growth, the reserve, weight, DCF: a worked example, one to finish, one blank, each with a check"], ["Laura", "Her real numbers: six blanks that say Correct when they're right"], ["Portfolio", "What we hold, against the 5% / 8% / 30% limits"], ["Valuation", "A value for one stock. Copy the tab for each idea"], ["Ledger", "Every number that goes in a deliverable, with its source"]],
         has: ["Four short math lessons that check your work", "Laura's real numbers: Pile A (her reserve) and Pile B (money for the building)", "Our portfolio and a value for each stock we pitch"] },
       { id: "dylan", job: "Risk, and the case against each trade", title: "Dylan — Risk and the bear case", url: "https://docs.google.com/spreadsheets/d/1Rq2ZdyHtm8vxGg1tGDP4UxWAwcfKynmq6OuPFZvwgQ4/edit", role: "risk", guide: "risk.html",
+        owes: 'The bear case on the opening portfolio, as one argument', owesDue: 'Sunday Oct 11',
         week: "Post the case against each trade before its vote, and the week's biggest position and worst case.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Limits", "Every holding against our limits: 5% to start, 8% max, 30% per sector"], ["Bear case", "One column per trade, five questions, 150 words. Column B is a finished example"]],
         has: ["Every stock we own checked against our limits: 5% to start, 8% max, 30% per sector", "The case against each trade, posted before the vote", "Our own diversification check across the sectors we cover \u2014 Wharton sets no sector minimum, so this one is our choice"] },
-      { id: "federico", job: "Trade log and the rules", title: "Federico — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit", role: "log", guide: "minutes.html", guideLabel: "Meeting how-to",
+      { id: "federico", job: "Trade log and the rules", title: "Federico — Trade log and the rules", url: "https://docs.google.com/spreadsheets/d/1O5-pNOinVtHO2glJ5saYiQ59NkfCG-cuPYLemGkDH_A/edit", role: "log", guide: "minutes.html",
+        owes: 'Post the minutes, then the three Trading Notes', owesDue: 'Due Oct 23', guideLabel: "Meeting how-to",
         week: "Download the WInS file on Friday and check it against the Log. Post the minutes after Sunday\u2019s call.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Log", "One row per trade. The Trade ID fills itself in, and columns Q to X hold the job, the expectation and what actually happened"], ["Friday check", "Ten minutes: download the WInS file and check it matches the Log"], ["Rules", "Wharton's real 2026–27 rules. Nothing is submitted until it says Ready"], ["Minutes", "The team's only meeting notes — including what we considered and did NOT do"], ["Oct 23", "The three notes for the Trading Notes Analysis, with a word counter"], ["Links", "The simulator, the portal and the official PDFs"]],
         has: ["One row per trade, finished on Friday rather than the same day", "A Trade ID that matches the chat card and the WInS note", "The rules checklist, the minutes and the Oct 23 notes"] },
       { id: "michael", job: "Team leader and submissions", title: "Michael — Team leader and submissions", url: "https://docs.google.com/spreadsheets/d/1BzihhvurG8pQWLJAjdCDcQSXCoJH3joDtuycbe-moZg/edit", role: "lead", guide: "leader.html",
+        owes: "Confirm Thursday's fills, then submit the roster", owesDue: 'Thu Oct 8 and Fri Oct 9',
         week: "Post the questions the night before, run the meeting, check the dashboard and the portal.",
         tabs: [["This week", "Your row for the week: yellow cells, then ✓"], ["Dashboard", "Reads the other four sheets live: weeks done, IPS progress, rules and risk flags"], ["Deliverables", "The four things due to Wharton. Status fills itself in"], ["Team grid", "Who did their week. Fills itself in"], ["Agreement", "The one-page team agreement, signed by all five"]],
         has: ["A live dashboard that reads everyone's sheet", "The four deliverables and where each one stands", "The team grid and the team agreement"] }
