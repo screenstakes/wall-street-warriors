@@ -148,6 +148,7 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
   .mins{flex-basis:44px;font-size:22px}
 }
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
@@ -163,20 +164,48 @@ ul.how p{margin:6px 0 0;font:400 15px/1.6 var(--body);color:var(--ink-2)}
       <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#1E4B95"/><path d="M12 44 L26 30 L34 38 L52 18" stroke="#EFA24A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span><span class="t">Wall Street Warriors</span><span class="s">Team Command</span></span>
     </a>
-    <nav class="nav" aria-label="Pages">
-      <a href="index.html">Dashboard</a>
-      <a href="library.html">Library</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="calendar.html">Calendar</a>
-      <a href="case.html">Case Study</a>
-      <a href="guide.html">Guide</a>
-      <a href="rules.html">Rules</a>
-      <a href="dozen.html">Dozen</a>
-      <a href="card.html">Propose</a>
-      <a href="playbook.html">Playbook</a>
-      <a href="team.html">Team</a>
-      <a href="news.html">Newsroom</a>
-    </nav>
+<nav class="nav" data-nav aria-label="Main">
+  <ul class="nav-bar">
+    <li><a href="index.html">Dashboard</a></li>
+    <li class="nav-group is-trail" data-nav-group>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-portfolio">Portfolio<span class="nav-caret" aria-hidden="true"></span></button>
+      <ul class="nav-panel" id="nav-portfolio" data-nav-panel>
+        <li><a href="portfolio.html"><b>The portfolio</b><span>What the $300,000 is made of</span></a></li>
+        <li><a href="keying.html"><b>The orders we sent</b><span>All 14, with the note on each</span></a></li>
+        <li><a href="wednesday.html"><b>Why we bought it</b><span>The decision sheet</span></a></li>
+        <li><a href="overlap.html"><b>VOO overlap</b><span>The answer to Coach P</span></a></li>
+        <li><a href="vote-result.html"><b>The vote</b><span>Every ballot, in full</span></a></li>
+      </ul>
+    </li>
+    <li class="nav-group" data-nav-group>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-this-week">This week<span class="nav-caret" aria-hidden="true"></span></button>
+      <ul class="nav-panel" id="nav-this-week" data-nav-panel>
+        <li><a href="now.html"><b>Where we are</b><span>Every open loop, with a name</span></a></li>
+        <li><a href="calendar.html"><b>Calendar</b><span>Every date this season</span></a></li>
+        <li><a href="oct6-minutes.html"><b>Oct 6 minutes</b><span>The last meeting</span></a></li>
+        <li><a href="oct4-minutes.html"><b>Oct 4 minutes</b><span>The call that closed the vote</span></a></li>
+      </ul>
+    </li>
+    <li class="nav-group" data-nav-group>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-the-case">The case<span class="nav-caret" aria-hidden="true"></span></button>
+      <ul class="nav-panel" id="nav-the-case" data-nav-panel>
+        <li><a href="case.html"><b>Case study</b><span>Laura Gao, and what she needs</span></a></li>
+        <li><a href="strategy.html"><b>Our strategy</b><span>The deck, 15 slides</span></a></li>
+        <li><a href="guide.html"><b>The Guide</b><span>The case in plain steps</span></a></li>
+        <li><a href="rules.html"><b>Rules</b><span>What Wharton allows</span></a></li>
+      </ul>
+    </li>
+    <li class="nav-group" data-nav-group>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-team">Team<span class="nav-caret" aria-hidden="true"></span></button>
+      <ul class="nav-panel" id="nav-team" data-nav-panel>
+        <li><a href="team.html"><b>Team</b><span>Roster, jobs and sheets</span></a></li>
+        <li><a href="playbook.html"><b>Playbook</b><span>How teams advance</span></a></li>
+        <li><a href="news.html"><b>Newsroom</b><span>Champions and links</span></a></li>
+      </ul>
+    </li>
+    <li><a href="library.html">Library</a></li>
+  </ul>
+</nav>
   </div>
 </header>
 <div class="strip" role="region" aria-label="Deadline countdowns"></div>

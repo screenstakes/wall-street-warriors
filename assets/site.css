@@ -58,16 +58,68 @@ button{font:inherit;color:inherit}
 .brand .mark svg{width:30px;height:30px}
 .brand .t{display:block;font:700 20px/1.1 var(--ui);letter-spacing:-.01em}
 .brand .s{display:block;font:500 11px/1.2 var(--ui);letter-spacing:.14em;text-transform:uppercase;color:#C9D8F2;margin-top:3px}
+/* ---------- navigation: a DISCLOSURE, not a menu ----------
+   W3C APG's disclosure-navigation pattern. A <button aria-expanded> plus a
+   plain list of links. No role="menu" anywhere: that announces a menu to a
+   screen reader and promises arrow/Home/End interaction we do not implement.
+   Lists keep their semantics inside <nav> even with list-style:none, so no
+   role="list" either.
+   The panel is shown by JS toggling [hidden], never by CSS :hover — if CSS
+   could open it, aria-expanded would go stale and the button would lie. */
 .nav{display:flex;gap:2px;flex-wrap:wrap}
-.nav a{position:relative;color:#E6EEFA;text-decoration:none;font:600 13.5px/1 var(--ui);padding:12px 12px;border-radius:4px;transition:color .15s,background .15s}
-.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
-.nav a.is-active{color:#fff}
-.nav a.is-active::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;background:var(--orange);border-radius:2px}
+.nav-bar{display:flex;gap:2px;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+.nav-bar > li{position:relative}
+.nav a,.nav-toggle{position:relative;display:block;color:#E6EEFA;text-decoration:none;
+  font:600 13.5px/1 var(--ui);padding:12px 12px;border-radius:4px;
+  background:none;border:0;cursor:pointer;transition:color .15s,background .15s}
+.nav a:hover,.nav-toggle:hover{background:rgba(255,255,255,.1);color:#fff}
+.nav-toggle{display:inline-flex;align-items:center;gap:6px}
+/* a chevron from two borders. Rotate ONLY — a translate inside the same
+   transform runs in the rotated frame and drags the glyph off centre. */
+.nav-caret{pointer-events:none;width:6px;height:6px;border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-3px;
+  transition:transform .15s;opacity:.75}
+.nav-toggle[aria-expanded=true] .nav-caret{transform:rotate(-135deg);margin-top:2px;opacity:1}
+.nav-toggle[aria-expanded=true]{background:rgba(255,255,255,.14);color:#fff}
+.nav a.is-active,.nav-group.is-trail > .nav-toggle{color:#fff}
+.nav a.is-active::after,.nav-group.is-trail > .nav-toggle::after{content:"";position:absolute;
+  left:12px;right:12px;bottom:6px;height:2px;background:var(--orange);border-radius:2px}
+/* the panel. NO margin between button and panel — WCAG 1.4.13 requires the
+   pointer to be able to travel onto it, so the bridge is padding, not a gap. */
+/* Default is STATIC: with no JavaScript the panels are simply part of the bar,
+   so every link is visible and reachable. The dropdown behaviour is layered on
+   only once html.js is set, which the inline script in <head> does. */
+.nav-panel{margin:0;padding:6px;list-style:none;background:rgba(255,255,255,.06);
+  border-radius:10px}
+html.js .nav-panel{position:absolute;top:100%;left:0;z-index:60;min-width:272px;
+  background:var(--blue-deep,#14325e);border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 18px 40px -18px rgba(8,18,40,.65)}
+html.js .nav-toggle{cursor:pointer}
+/* with no JS the toggle cannot do anything, so do not pretend it can */
+html:not(.js) .nav-toggle{cursor:default}
+html:not(.js) .nav-caret{display:none}
+.nav-panel a{padding:9px 11px;border-radius:7px;font-weight:600;white-space:normal}
+.nav-panel a b{display:block;font:600 13.5px/1.25 var(--ui);color:#fff}
+.nav-panel a span{display:block;font:400 12px/1.4 var(--body);color:#AFC4E4;margin-top:2px}
+.nav-panel a:hover b,.nav-panel a:focus-visible b{color:#fff}
+.nav-panel a[aria-current=page]{background:rgba(255,255,255,.12)}
+.nav-panel a[aria-current=page]::after{display:none}
+.nav-toggle:focus-visible,.nav a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+/* [hidden] must win over any display rule above it */
+[hidden]{display:none!important}
+/* With JS off the panels stay open and everything is reachable. The inline
+   classList.add("js") in <head> means no flash of open panels when JS is on. */
+html.js .nav-panel{display:none}
+html.js .nav-panel:not([hidden]){display:block}
+@media (prefers-reduced-motion:reduce){.nav-caret,.nav a,.nav-toggle{transition:none!important}}
 @media (max-width:900px){
   .brandbar .shell{padding-bottom:4px}
-  .nav{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{white-space:nowrap;padding:10px 10px}
+  /* was overflow-x:auto with 12 flat links. An absolutely positioned panel is
+     CLIPPED by a scroll container, so with six items it wraps instead. */
+  .nav{width:100%;padding-bottom:4px}
+  .nav-bar{flex-wrap:wrap}
+  .nav-bar > li > a,.nav-toggle{white-space:nowrap;padding:10px 10px}
+  .nav-panel{min-width:240px}
 }
 
 /* ticker strip: countdowns instead of index prices */

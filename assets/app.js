@@ -188,10 +188,33 @@ if (!window.WSW || !window.WSW.data) {
 
   /* ---------- mobile shell: bottom tab bar, "More" sheet, compact date + phase in the header ---------- */
   function mobileShell(here) {
-    var tabs = [["index.html", "Home", "home"], ["calendar.html", "Calendar", "calendar"], ["case.html", "Case", "book"], ["rules.html", "Rules", "shield"]];
-    var more = [["library.html", "Library", "Every page we use, grouped", "list"], ["portfolio.html", "Portfolio", "What the $300,000 is made of", "chart"], ["card.html", "Propose a trade", "Write the card before you trade", "edit"], ["guide.html", "The Guide", "The case in 21 plain steps", "book"], ["dozen.html", "Nasdaq Dozen", "Coach P's twelve tests, scored", "list"], ["playbook.html", "Playbook", "How teams advance, trade notes", "star"], ["team.html", "Team", "Roster, sheets, team rules", "users"], ["news.html", "Newsroom", "Champions, reading list, links", "news"]];
+    /* The four tabs are the pages opened most; everything else is in More,
+       grouped under the same headings as the desktop nav so the two
+       navigations tell the same story. */
+    var tabs = [["index.html", "Home", "home"], ["portfolio.html", "Portfolio", "chart"], ["now.html", "This week", "list"], ["calendar.html", "Calendar", "calendar"]];
+    var more = [
+      ["#", "Portfolio", "", ""],
+      ["keying.html", "The orders we sent", "All 14, with the note on each", "list"],
+      ["wednesday.html", "Why we bought it", "The decision sheet", "chart"],
+      ["overlap.html", "VOO overlap", "The answer to Coach P", "chart"],
+      ["vote-result.html", "The vote", "Every ballot, in full", "list"],
+      ["#", "This week", "", ""],
+      ["oct6-minutes.html", "Oct 6 minutes", "The last meeting", "book"],
+      ["oct4-minutes.html", "Oct 4 minutes", "The call that closed the vote", "book"],
+      ["#", "The case", "", ""],
+      ["case.html", "Case study", "Laura Gao, and what she needs", "book"],
+      ["strategy.html", "Our strategy", "The deck, 15 slides", "chart"],
+      ["guide.html", "The Guide", "The case in plain steps", "book"],
+      ["rules.html", "Rules", "What Wharton allows", "shield"],
+      ["#", "Team", "", ""],
+      ["team.html", "Team", "Roster, jobs and sheets", "users"],
+      ["playbook.html", "Playbook", "How teams advance", "star"],
+      ["news.html", "Newsroom", "Champions and links", "news"],
+      ["#", "Everything", "", ""],
+      ["library.html", "Library", "Every page on this site", "list"]
+    ];
     if (here === "") here = "index.html";
-    var inMore = more.some(function (m) { return m[0] === here; });
+    var inMore = more.some(function (m) { return m[0] !== "#" && m[0] === here; });
 
     var bar = document.createElement("nav");
     bar.className = "mbar"; bar.setAttribute("aria-label", "Pages");
@@ -207,8 +230,12 @@ if (!window.WSW || !window.WSW.data) {
       return '<a class="msheet-row' + (on ? " is-active" : "") + '" href="' + href + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + (on ? ' aria-current="page"' : "") +
         '><span class="msheet-ic">' + W.icon(icon) + "</span><span><b>" + title + "</b><small>" + sub + "</small></span></a>";
     }
-    sheet.innerHTML = '<div class="msheet-grab" aria-hidden="true"></div><div class="msheet-k">More pages</div>' +
-      more.map(function (m) { return row(m[0], m[1], m[2], m[3], false, m[0] === here); }).join("") +
+    sheet.innerHTML = '<div class="msheet-grab" aria-hidden="true"></div>' +
+      more.map(function (m) {
+        /* a "#" href is a group heading, not a link */
+        if (m[0] === "#") return '<div class="msheet-k">' + m[1] + "</div>";
+        return row(m[0], m[1], m[2], m[3], false, m[0] === here);
+      }).join("") +
       '<div class="msheet-k">Quick links</div>' +
       row(D.team.simulator.url, "Open WInS", "The simulator, one shared team login", "chart", true) +
       row(D.team.portal.url, "SurveyMonkey Apply", "Case study and every submission", "link", true);
@@ -238,12 +265,121 @@ if (!window.WSW || !window.WSW.data) {
   }
 
   /* ---------- shell ---------- */
+  /* ---------- grouped navigation (disclosure, not menu) ----------
+     W3C APG disclosure-navigation. Click is the contract; hover is an
+     enhancement layered on top, because hover is not available to touch or
+     keyboard users (NN/g). Escape and close-on-focus-leave are required by
+     WCAG 1.4.13 Content on Hover or Focus. Opening is never done in CSS —
+     if CSS could open a panel, aria-expanded would go stale and the button
+     would be lying about its own state. */
+  function initNav() {
+    var nav = document.querySelector("[data-nav]");
+    if (!nav) return;
+    var groups = Array.prototype.slice.call(nav.querySelectorAll("[data-nav-group]"));
+    if (!groups.length) return;
+    var OPEN_DELAY = 300, CLOSE_DELAY = 500;   /* NN/g: 0.3-0.5s open, 0.5s close */
+    var openTimer, closeTimer;
+
+    function btn(g) { return g.querySelector("[aria-expanded]"); }
+    function panel(g) { return g.querySelector("[data-nav-panel]"); }
+    function isOpen(g) { return btn(g).getAttribute("aria-expanded") === "true"; }
+    function clearTimers() { clearTimeout(openTimer); clearTimeout(closeTimer); }
+
+    function open(g) {
+      groups.forEach(function (o) { if (o !== g) close(o); });
+      btn(g).setAttribute("aria-expanded", "true");
+      var pn = panel(g);
+      pn.hidden = false;
+      /* a panel on a group near the right edge would run off screen; flip it */
+      pn.style.left = "0"; pn.style.right = "auto";
+      var r = pn.getBoundingClientRect();
+      if (r.right > document.documentElement.clientWidth - 8) {
+        pn.style.left = "auto"; pn.style.right = "0";
+      }
+    }
+    function close(g) {
+      btn(g).setAttribute("aria-expanded", "false");
+      panel(g).hidden = true;
+    }
+    function closeAll() { groups.forEach(close); }
+
+    groups.forEach(close);   /* ships open so it works with JS off; JS closes */
+
+    /* Enter and Space come free from a real <button> — do not re-handle them */
+    nav.addEventListener("click", function (e) {
+      var t = e.target.closest ? e.target.closest("[aria-expanded]") : null;
+      if (!t || !nav.contains(t)) return;
+      clearTimers();
+      var g = t.closest("[data-nav-group]");
+      if (isOpen(g)) close(g); else open(g);
+    });
+
+    nav.addEventListener("keydown", function (e) {
+      var g = e.target.closest ? e.target.closest("[data-nav-group]") : null;
+      if (e.key === "Escape") {
+        var o = (g && isOpen(g)) ? g : groups.filter(isOpen)[0];
+        if (!o) return;
+        clearTimers(); close(o); btn(o).focus(); e.preventDefault(); return;
+      }
+      if (!g) return;
+      var links = Array.prototype.slice.call(panel(g).querySelectorAll("a"));
+      var i = links.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") {
+        if (e.target === btn(g)) { open(g); if (links[0]) links[0].focus(); e.preventDefault(); }
+        else if (i > -1 && links[i + 1]) { links[i + 1].focus(); e.preventDefault(); }
+      } else if (e.key === "ArrowUp") {
+        if (i === 0) { btn(g).focus(); e.preventDefault(); }
+        else if (i > 0) { links[i - 1].focus(); e.preventDefault(); }
+      }
+    });
+
+    /* focus left the nav entirely, or a pointer went down outside it */
+    nav.addEventListener("focusout", function (e) {
+      if (!nav.contains(e.relatedTarget)) { clearTimers(); closeAll(); }
+    });
+    document.addEventListener("pointerdown", function (e) {
+      if (!nav.contains(e.target)) { clearTimers(); closeAll(); }
+    });
+
+    /* Hover, enhancement only. Two guards against the tap-opens-then-closes
+       bug: any-hover (not hover, so a tablet with a mouse still gets it) and
+       pointerType, because some Android browsers claim hover capability. */
+    if (window.matchMedia && window.matchMedia("(any-hover: hover)").matches) {
+      groups.forEach(function (g) {
+        g.addEventListener("pointerenter", function (e) {
+          if (e.pointerType !== "mouse") return;
+          clearTimers();
+          openTimer = setTimeout(function () { open(g); }, OPEN_DELAY);
+        });
+        g.addEventListener("pointerleave", function (e) {
+          if (e.pointerType !== "mouse") return;
+          clearTimers();
+          closeTimer = setTimeout(function () { close(g); }, CLOSE_DELAY);
+        });
+      });
+    }
+
+    /* crossing into the phone breakpoint must not leave a panel open behind
+       display:none, where aria-expanded would go stale */
+    if (window.matchMedia) {
+      var mq = window.matchMedia("(min-width: 700px)");
+      var onChange = function () { clearTimers(); closeAll(); };
+      if (mq.addEventListener) mq.addEventListener("change", onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    }
+  }
+
   function initShell() {
     var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
     Array.prototype.forEach.call(document.querySelectorAll(".nav a"), function (a) {
       var href = (a.getAttribute("href") || "").toLowerCase();
-      if (href === here || (here === "" && href === "index.html")) { a.classList.add("is-active"); a.setAttribute("aria-current", "page"); }
+      if (href === here || (here === "" && href === "index.html")) {
+        a.classList.add("is-active"); a.setAttribute("aria-current", "page");
+        var g = a.closest ? a.closest(".nav-group") : null;
+        if (g) g.classList.add("is-trail");
+      }
     });
+    initNav();
     var today = document.querySelector("[data-today]");
     if (today) today.textContent = W.now().toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
     var ph = document.querySelector("[data-phase]");
