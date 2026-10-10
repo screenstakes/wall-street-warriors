@@ -312,7 +312,7 @@
           <li><b>Registered</b><span>Coach P registered Wall Street Warriors before registration closed on Sep 11.</span><span class="chip done">Done</span></li>
           <li><b>Trading account</b><span>One shared WInS login for the team. Wharton says not to create separate student accounts; get the login from Michael.</span><span class="chip done">Done</span></li>
           <li><b>Team leader</b><span>Michael. Gets Wharton's emails, submits every deliverable, and is locked in after Sep 28.</span><span class="chip done">Done</span></li>
-          <li><b>Roster</b><span id="status-roster">All five confirmed: Michael, Caleb, Dylan, Joe and Federico. That's one above Wharton's minimum of four. Official roster due Oct 9.</span><span class="chip done">Five</span></li>
+          <li><b>Roster</b><span id="status-roster">Submitted Friday Oct 9 through SurveyMonkey Apply, all five names: Michael, Caleb, Dylan, Joe and Federico. It locked on the click, so the team is five for the rest of the season — one above Wharton's floor of four, and the sixth seat is gone.</span><span class="chip done">&#10003; In</span></li>
           <li><b>Write the card before you trade</b><span>Tap it out on the <a href="card.html">trade card page</a> and it hands you the WInS note, the chat card and Federico's log row. The note cannot be edited once it is saved.</span><span class="chip done">New</span></li>
           <li><b>The Nasdaq Dozen</b><span>Coach P's twelve fundamental tests, run on ten tech names and scored from real data. <a href="dozen.html">The scorecard is here</a>; two tests need a ruling from him before they can be scored.</span><span class="chip done">New</span></li>
           <li><b>Case study</b><span>Out now. Our client is Laura Gao. Read <a href="guide.html">the Guide</a> first (21 plain steps), then the <a href="case.html">Case page</a> for the numbers.</span><span class="chip done">Out</span></li>
@@ -323,10 +323,10 @@
       <section class="card reveal" style="--i:6" aria-labelledby="week-h">
         <div class="card-head"><span class="ic" data-icon="list"></span><h2 id="week-h">This week</h2><span class="sep"></span><span class="meta">Oct 5–11</span></div>
         <ul class="checks" id="week">
-          <li><label for="w1"><input type="checkbox" id="w1"><span><b>Orders are in — confirm the fills at lunch Thursday</b><small>All 14 were keyed Wednesday evening and execute at Thursday’s open, 8:30am Central. Check Order History: if a line failed, re-key that one line a share smaller, and BIL is the line to shrink if cash is short. <a href="keying.html">The record of what was sent</a>.</small></span></label></li>
+          <li><label for="w1"><input type="checkbox" id="w1"><span><b>All 14 orders filled at Thursday’s open</b><small>Confirmed on the dashboard: Trades Made went from 0/200 with every order queued to 14/200 once they executed, and that counter counts executions. No line failed, so nothing was re-keyed and BIL stays at 450. <a href="keying.html">The record of what was sent</a>.</small></span></label></li>
           <li><label for="w1b"><input type="checkbox" id="w1b"><span><b>Sunday: ratify the BIL trim</b><small>BIL went in at 450 rather than 492, so Pile C is 13.72% and not 15%. A plan change needs 4 of 5, and nobody voted on this one.</small></span></label></li>
           <li><label for="w2"><input type="checkbox" id="w2"><span><b>Joe: react to the split, for the record</b><small>Nine names at $88,500 — GEV and JNJ $14,000, NVDA $9,500, six at $8,500. The orders went in on 4 of 5; a reaction now still makes it 5 of 5 on the record, and the record is what criterion 4 grades.</small></span></label></li>
-          <li><label for="w3"><input type="checkbox" id="w3"><span><b>Roster goes in Wed or Thu, never Friday</b><small>It locks on the click. Still needed: Joe’s legal name, Dylan’s date of birth and graduation year, both emails in writing.</small></span></label></li>
+          <li><label for="w3"><input type="checkbox" id="w3"><span><b>Roster submitted, Friday Oct 9</b><small>In before the 5:00pm ET deadline with all five names. It locked on the click: no additions for the rest of the season, and a removal needs a written request from Coach P plus Wharton’s approval.</small></span></label></li>
           <li><label for="w4"><input type="checkbox" id="w4"><span><b>Michael: send Coach P the correction to the Oct 4 summary</b><small>It is drafted. The record it points at is <a href="oct4-minutes.html">oct4-minutes.html</a>.</small></span></label></li>
           <li><label for="w5"><input type="checkbox" id="w5"><span><b>Sunday call: Pile C size</b><small>Coach P’s idea, 15% to 10% with the freed money into VEA. A plan change, so 4 of 5. The case is on <a href="wednesday.html">wednesday.html</a>.</small></span></label></li>
         </ul>
@@ -401,10 +401,14 @@
   var official = W.upcoming(0, { internal: false });
   var next = official[0];
   var subs = W.store.get("deliverables", {});
-  var done = D.deliverables.filter(function (d) { return subs[d.id]; }).length;
+  /* A deliverable that is actually in is true for the whole team, so it is a
+     fact in data.js and not a checkbox each person ticks in their own browser.
+     Without this every teammate saw "0 / 4 submitted" after the roster went in. */
+  var isIn = function (d) { return !!(d.submitted || subs[d.id]); };
+  var done = D.deliverables.filter(isIn).length;
   var confirmed = D.team.members.filter(function (m) { return m.status === "confirmed"; }).length;
   var maybe = D.team.members.filter(function (m) { return m.status === "maybe"; }).length;
-  var nextDeliv = D.deliverables.filter(function (d) { return !subs[d.id]; })[0];
+  var nextDeliv = D.deliverables.filter(function (d) { return !isIn(d); })[0];
 
   var SHORT = { release: "Case study out, Sep 15", "practice-end": "Practice wiped, Sep 25", trading: "Trading begins, Sep 28", roster: "Roster due, Oct 9", notes: "Trading Notes, Oct 23", ips: "IPS due, Nov 6", report: "Final report, Dec 4", finale: "Global Finale, Apr 29" };
   if (next) {
