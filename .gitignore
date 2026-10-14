@@ -1,1 +1,6 @@
 dev/out/
+
+# transient probe files written by dev/check_gaps.py and dev/render_widths.sh
+_gapprobe.html
+_probe.html
+_v.html
