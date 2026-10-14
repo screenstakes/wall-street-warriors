@@ -1,0 +1,480 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Thursday October 15, run of show &mdash; Michael</title>
+<style>
+  /* 0.6in all round. At 0.5in the ink ran flush to the right edge and a
+     reprint through another print dialog clipped it; 0.6in clears every
+     printer's unprintable border and keeps full-width boxes centred. */
+  @page { size: letter; margin: 0.6in; }
+  :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
+         --ground:#FCFAF6; --rule:#DED6C6; --wash:#F4EFE4; --link:#1F4E8C; }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--ground); color:var(--ink);
+       font-family:Charter,"Iowan Old Style",Georgia,serif; font-size:10.2pt; line-height:1.44;}
+  a{color:var(--link); text-decoration:none; border-bottom:.5pt solid rgba(31,78,140,.4);}
+  .sans{font-family:"Avenir Next",Avenir,"Helvetica Neue",sans-serif;}
+
+  header{border-bottom:1.6pt solid var(--navy); padding-bottom:7pt; margin-bottom:10pt;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16pt;}
+  .eyebrow{font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  h1{font-size:19pt; line-height:1.03; margin:0; color:var(--navy); font-weight:600; letter-spacing:-.012em;}
+  .who{font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt; color:var(--muted);
+    text-align:right; line-height:1.55;}
+  .who b{color:var(--navy); font-weight:600;}
+
+  .say{background:var(--wash); border-left:2.5pt solid var(--gold); padding:8pt 11pt; margin:0 0 9pt;}
+  .say .k{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:4pt;}
+  .say p{margin:0 0 4pt; font-size:10.6pt; line-height:1.4;}
+  .say p:last-child{margin-bottom:0;}
+  .say b{color:var(--navy);}
+
+  .owns{margin:0 0 10pt;}
+  .owns .cap{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.2pt; color:var(--navy);
+    font-weight:600; margin:0 0 4pt;}
+  .owns .cap span{font-weight:400; color:var(--muted);}
+  .grid{display:flex; border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);}
+  .grid div{flex:1; padding:5pt 8pt 6pt 0;}
+  .grid div + div{border-left:.6pt solid var(--rule); padding-left:8pt;}
+  .grid span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;
+    min-height:2.1em;}
+  .grid p{margin:0; font-size:8.8pt; line-height:1.3;}
+  .grid .out span{color:var(--muted);}
+  .grid .out p{color:var(--muted); font-style:italic;}
+
+  .block{display:flex; gap:11pt; padding:7.5pt 0; border-top:.6pt solid var(--rule); break-inside:avoid; page-break-inside:avoid;}
+  .block.first{border-top:1pt solid var(--navy);}
+  .time{flex:0 0 54pt; font-family:"Avenir Next",Avenir,sans-serif; padding-top:1pt;}
+  .time .t{display:block; font-size:11.5pt; font-weight:600; color:var(--navy); letter-spacing:-.01em;}
+  .time .d{display:block; font-size:7pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-top:1pt;}
+  .body{flex:1; min-width:0;}
+  h2{font-size:12.6pt; margin:0 0 3.5pt; color:var(--navy); font-weight:600; letter-spacing:-.01em;}
+  ul{margin:0; padding-left:11pt;}
+  li{margin:0 0 2.5pt;}
+  li::marker{color:var(--gold);}
+  b{color:var(--navy); font-weight:600;}
+  .decide{margin-top:5pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    background:var(--wash); padding:5pt 7pt; border-left:2pt solid var(--navy);}
+  .decide i{font-style:normal; font-weight:600; color:var(--gold); letter-spacing:.1em;
+    text-transform:uppercase; font-size:6.8pt; margin-right:5pt;}
+
+  .card{margin-top:5pt; border:.6pt solid var(--rule); background:#fff; padding:6pt 9pt;
+    font-family:"SF Mono",Menlo,Consolas,monospace; font-size:8pt; line-height:1.68;}
+  .card k{color:var(--gold); font-weight:600; display:inline-block; width:58pt;}
+  .card n{color:var(--muted); font-style:italic;}
+
+  ol{margin:0; padding-left:13pt;}
+  ol li{margin:0 0 2.5pt;}
+  ol li::marker{color:var(--gold); font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt;}
+
+  .week{display:flex; gap:9pt;}
+  .week div{flex:1; border-top:2pt solid var(--gold); padding-top:5pt;}
+  .week span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt;
+    font-weight:600; color:var(--navy); margin-bottom:2pt;}
+  .week p{margin:0; font-size:8.8pt; line-height:1.32;}
+
+  .links{border-top:1pt solid var(--navy); margin-top:12pt; padding-top:8pt;}
+  .links h3{font-family:"Avenir Next",Avenir,sans-serif; font-size:9pt; color:var(--navy);
+    margin:0 0 6pt; font-weight:600;}
+  .lgrid{display:flex; gap:14pt;}
+  .lgrid > div{flex:1;}
+  .lgrid h4{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  .lgrid p{margin:0 0 3pt; font-size:8.8pt; line-height:1.32;}
+  .lgrid p em{font-style:normal; color:var(--muted); font-size:8pt;}
+
+
+  .pb{break-before:page;}
+  .secthead{border-bottom:1.6pt solid var(--navy); padding-bottom:6pt; margin-bottom:9pt;}
+  .secthead h2{font-size:17pt; margin:0 0 2pt;}
+  .secthead p{margin:0; font-size:9pt; color:var(--muted); font-family:"Avenir Next",Avenir,sans-serif;}
+  .rule3{display:flex; gap:9pt; margin:0 0 11pt;}
+  .rule3 div{flex:1; background:var(--wash); border-left:2.5pt solid var(--gold); padding:6pt 9pt;}
+  .rule3 span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;}
+  .rule3 p{margin:0; font-size:9pt; line-height:1.33;}
+  .rule3 b{color:var(--navy);}
+
+  .subh{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; font-weight:600;
+    color:var(--navy); margin:0 0 5pt; padding-bottom:3pt; border-bottom:.6pt solid var(--rule);}
+  .subh em{font-style:normal; font-weight:400; color:var(--muted);}
+
+  .sec{display:flex; align-items:baseline; gap:9pt; padding:5.5pt 0 5.5pt 8pt;
+    border-bottom:.6pt solid var(--rule); border-left:2.5pt solid var(--gold);}
+  .sec .nm{flex:0 0 118pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:9.4pt;
+    font-weight:600; color:var(--navy); line-height:1.25;}
+  .sec .ds{flex:1; font-size:9.2pt; line-height:1.34;}
+  .sec .ds i{font-style:normal; color:var(--muted);}
+  .sec .ow{flex:0 0 92pt; text-align:right; font-family:"Avenir Next",Avenir,sans-serif;
+    font-size:8.6pt; font-weight:600; color:var(--gold); line-height:1.25;}
+  .sec .ow em{display:block; font-style:normal; font-weight:400; font-size:7.4pt; color:var(--muted);}
+
+  .open{display:flex; flex-wrap:wrap; gap:0;}
+  .open > div{width:50%; display:flex; align-items:baseline; gap:7pt; padding:4.5pt 10pt 4.5pt 0;
+    border-bottom:.6pt solid var(--rule);}
+  .open .nm{flex:0 0 96pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    font-weight:600; color:var(--muted); line-height:1.25;}
+  .open .ds{flex:1; font-size:8.6pt; line-height:1.3; color:#3D4650;}
+  .open .ds i{font-style:normal; color:var(--muted);}
+
+  .gotcha{margin-top:10pt; border:.6pt solid var(--rule); background:#fff; padding:7pt 10pt;}
+  .gotcha span{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:3pt;}
+  .gotcha p{margin:0 0 4pt; font-size:9.2pt; line-height:1.36;}
+  .gotcha p:last-child{margin-bottom:0;}
+  .card,.decide,.week,.grid,.rule3,.gotcha,.lgrid,.sec,.owns,.say,.secthead,.open{break-inside:avoid; page-break-inside:avoid;}
+  .open > div{break-inside:avoid; page-break-inside:avoid;}
+  h2,h3,.subh{break-after:avoid; page-break-after:avoid;}
+  .superseded{border:1px solid var(--gold); background:var(--wash); border-radius:10px;
+    padding:9pt 12pt; margin:0 0 12pt;}
+  .superseded .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.6pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .superseded p{margin:0; font-size:9.6pt; line-height:1.4;}
+  footer{margin-top:9pt; padding-top:6pt; border-top:.6pt solid var(--rule);
+    font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt; color:var(--muted);
+    display:flex; justify-content:space-between;}
+
+  /* ---- screen + phone. Kept last: earlier rules would otherwise win. ---- */
+  @media screen {
+    body{ padding: 22px clamp(14px,4vw,40px) 40px; max-width: 8.5in; margin: 0 auto; }
+  }
+  @media screen and (max-width: 720px) {
+    body{ font-size: 15px; line-height: 1.5; padding: 16px 16px 40px; }
+    header{ display:block; }
+    .who{ text-align:left; margin-top:6px; font-size:12px; }
+    h1{ font-size: 26px; }
+    .say p{ font-size: 16px; }
+    .grid, .week, .lgrid, .rule3{ display:block; }
+    .grid > div, .week > div, .lgrid > div, .rule3 > div{
+      width:auto; border-left:0; padding-left:0; padding-right:0;
+      border-bottom:1px solid var(--rule); padding-top:8px; padding-bottom:8px; }
+    .rule3 > div{ border-left:3px solid var(--gold); padding-left:10px; margin-bottom:8px;
+      border-bottom:0; }
+    .week > div{ border-top:2px solid var(--gold); border-bottom:0; margin-bottom:8px; }
+    .grid{ border-top:0; }
+    .block{ display:block; }
+    .time{ margin-bottom:4px; }
+    .time .t{ display:inline; font-size:17px; }
+    .time .d{ display:inline; margin-left:8px; font-size:11px; }
+    .time .d br{ display:none; }
+    h2{ font-size: 19px; }
+    ul, ol{ padding-left: 18px; }
+    li{ margin-bottom: 7px; }
+    .card{ font-size: 12px; overflow-x:auto; }
+    .card k{ width:74px; }
+    .sec{ display:block; padding:9px 0 9px 10px; }
+    .sec .nm, .sec .ds, .sec .ow{ flex:none; }
+    .sec .ow{ text-align:left; margin-top:3px; }
+    .sec .ow em{ display:inline; margin-left:6px; }
+    .open{ display:block; }
+    .open > div{ width:auto; display:block; padding:9px 0; }
+    .open .nm{ margin-bottom:2px; }
+    .lgrid p, .lgrid h4{ font-size:14px; }
+    .lgrid > div{ margin-bottom:10px; }
+    footer{ display:block; font-size:11px; }
+    footer span{ display:block; margin-bottom:4px; }
+    a{ padding: 1px 0; }
+    .eyebrow, .say .k, .grid span, .decide i, .rule3 span, .lgrid h4,
+    .gotcha span, .sec .ow em, .time .d, .secthead p, .who{ font-size: 11.5px; letter-spacing:.09em; }
+    .secthead p, .who{ letter-spacing:0; font-size:12.5px; }
+    .subh{ font-size: 13px; }
+    .owns .cap{ font-size: 13px; }
+  }
+
+  /* the opening order list */
+  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;
+    max-width:100%; min-width:0;}
+  table.vt{width:100%; border-collapse:collapse; margin:7pt 0 3pt; font-size:8.4pt;}
+  table.vt th{background:#0B2A5B; color:#fff; font-size:7.2pt; letter-spacing:.03em;
+    text-transform:uppercase; padding:4pt 5pt; text-align:left; border:.4pt solid #0B2A5B;}
+  table.vt td{padding:4pt 5pt; border:.4pt solid #D7DCE5; vertical-align:middle;}
+  table.vt td.vsec{font-size:7.4pt; color:#5B6780; white-space:nowrap;}
+  table.vt td.vnm b{font-size:9pt;}
+  table.vt .vsub{color:#5B6780; font-size:7.6pt;}
+  table.vt th.vp, table.vt td.vp{text-align:center; width:7%;}
+  table.vt td.vy{color:#1B7549; font-weight:700;}
+  table.vt td.vn{color:#B4BBC7;}
+  table.vt th.vct, table.vt td.vct{text-align:center; white-space:nowrap; font-size:8pt;}
+  table.vt th.vrs, table.vt td.vrs{text-align:center; font-weight:700; width:8%;}
+  table.vt tr.vin td{background:#E8F5EC;}
+  table.vt tr.vin td.vrs{color:#1B7549;}
+  table.vt tr.vout td{background:#FBECEA; color:#7A3A33;}
+  table.vt tr.vout td.vrs{color:#AD2A20;}
+  p.vnote{font-size:8.2pt; color:#444; margin:2pt 0 0;}
+  @media screen and (max-width:700px){
+    table.vt{font-size:12px; min-width:560px;} table.vt th{font-size:10px;}
+    table.vt td.vsec,table.vt .vsub{font-size:10px;}
+  }
+  table.ord{width:100%; border-collapse:collapse; margin-top:5pt; font-size:8.8pt;}
+  table.ord th{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; text-align:left;
+    border-bottom:.6pt solid var(--rule); padding:0 6pt 3pt 0;}
+  table.ord td{padding:3.2pt 6pt 3.2pt 0; border-bottom:.6pt solid var(--rule); vertical-align:baseline;}
+  table.ord td.n{font-family:"SF Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap;}
+  table.ord td.tk{font-family:"Avenir Next",Avenir,sans-serif; font-weight:600; color:var(--navy);}
+  table.ord tr.sub td{border-bottom:0; color:var(--muted); font-size:8.2pt; padding-top:5pt;}
+  table.ord tr.tot td{border-top:1pt solid var(--navy); border-bottom:0; font-weight:600; color:var(--navy); padding-top:5pt;}
+  .pl{display:inline-block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+    letter-spacing:.06em; text-transform:uppercase; font-weight:600; border-radius:99px; padding:2pt 5pt;}
+  .pl.a{background:#E6EAF2; color:#3C4A66;} .pl.b{background:#FAEED8; color:#6E4209;} .pl.c{background:#E4EBF7; color:#1E4B95;}
+  .time .d i{font-style:normal;}
+  .swap{border:1.2pt solid var(--gold); background:var(--wash); padding:8pt 11pt; margin:9pt 0;}
+  .swap .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .swap p{margin:0 0 4pt; font-size:10pt; line-height:1.4;} .swap p:last-child{margin:0;}
+  .vs{display:flex; gap:7pt; align-items:baseline; margin-top:4pt; flex-wrap:wrap;}
+  .vs .in,.vs .ch{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; padding:2.5pt 7pt; border-radius:3pt;}
+  .vs .in{background:#EDEAE1; color:var(--navy); font-weight:600;}
+  .vs .ch{border:.8pt dashed var(--gold); color:var(--gold); font-weight:600;}
+  .vs em{font-style:normal; color:var(--muted); font-size:8pt;}
+  @media screen and (max-width:720px){
+    table.ord{font-size:13px;} table.ord th{font-size:11px;}
+    table.ord td{padding:6px 6px 6px 0;} .swap p{font-size:15px;}
+    .vs .in,.vs .ch{font-size:13px;}
+    .swap .k{font-size:11.5px; letter-spacing:.09em;}
+    .time .d i::before{content:"\00a0\00b7\00a0";}
+    .pl{font-size:11px; letter-spacing:.06em; padding:3px 7px;}
+  }
+
+  /* just-for-Michael additions */
+  .me{background:#1C3557; color:#EFE9DC; padding:9pt 12pt; margin:0 0 10pt; border-radius:3pt;}
+  .me .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:#C6A961; font-weight:600; margin-bottom:4pt;}
+  .me p{margin:0 0 5pt; font-size:10pt; line-height:1.45; color:#EFE9DC;}
+  .me p:last-child{margin:0;} .me b{color:#fff;}
+  .copy{border:1.2pt dashed var(--gold); background:#fff; padding:9pt 12pt; margin:6pt 0 0;
+    font-size:9.6pt; line-height:1.5;}
+  .copy p{margin:0 0 7pt;} .copy p:last-child{margin:0;}
+  .copy .tag{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:6pt;}
+  .script{border-left:2.5pt solid var(--navy); padding:5pt 0 5pt 9pt; margin:5pt 0 0; font-size:10pt;
+    line-height:1.45; font-style:italic; color:#2E3742;}
+  .script b{font-style:normal;}
+  @media screen and (max-width:720px){
+    .me p,.copy{font-size:14.5px;} .script{font-size:14.5px;} .me .k,.copy .tag{font-size:11.5px;}
+  }
+
+  @media print{
+    body{font-size:9.2pt; line-height:1.34;}
+    h1{font-size:17pt;} h2{font-size:11.4pt; margin-bottom:2.5pt;}
+    .block{padding:5.5pt 0;} .say{padding:6pt 9pt; margin-bottom:7pt;}
+    .say p{font-size:9.6pt; line-height:1.34;}
+    .rule3{margin-bottom:8pt;} .rule3 div{padding:5pt 8pt;} .rule3 p{font-size:8.2pt; line-height:1.28;}
+    header{padding-bottom:5pt; margin-bottom:8pt;}
+    table.ord{font-size:8pt;} table.ord td{padding:2.3pt 6pt 2.3pt 0;}
+    .decide{font-size:8pt; padding:4pt 6pt; margin-top:4pt;}
+    .grid div{padding:4pt 7pt 4.5pt 0;} .grid p{font-size:8.2pt; line-height:1.26;}
+    .links{margin-top:8pt; padding-top:6pt;} .lgrid p{font-size:8.2pt; line-height:1.26;}
+    ul{padding-left:10pt;} li{margin-bottom:1.8pt;}
+  }
+
+  /* Phone: the agenda's job is "which names are in", not "who voted how".
+     Dropping the five per-voter columns removes the horizontal scroll that
+     was carrying the Result column off screen — the one column that is the
+     answer. The per-ballot detail lives on vote-result.html, and the note
+     below only appears when the columns are hidden. */
+  .vphone{display:none;}
+  @media screen and (max-width:720px){
+    table.vt{min-width:0; width:100%;}
+    table.vt th.vp, table.vt td.vp{display:none;}
+    table.vt td.vnm{width:auto;}
+    .vphone{display:block;}
+  }
+
+  /* ---- the ballot figure -------------------------------------------------
+     A diverging stacked bar per name. The zero line is "did anyone vote
+     against it", so everything left of the line is opposition and everything
+     right of it is support. GE Vernova is the only bar that starts at the
+     line, which is the whole point of the figure.
+     Poles validated against this page's surface #FCFAF6:
+       #2F5E9E / #AD2A20 — lightness band, chroma floor, CVD separation,
+       normal-vision floor and 3:1 contrast all pass.
+     The neutral is low-contrast by design (a diverging midpoint reads as
+     "nothing"), so every segment is also given its number in the columns at
+     the right — identity is never carried by colour alone. */
+  .fig{border:.6pt solid var(--rule); background:#fff; padding:9pt 10pt 8pt;
+       margin:8pt 0 4pt;}
+  .fig h4{font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt;
+       letter-spacing:.09em; text-transform:uppercase; color:var(--navy);
+       margin:0 0 2pt; font-weight:600;}
+  .fig .cap{font-size:8.4pt; color:var(--muted); margin:0 0 7pt; line-height:1.4;}
+  .key{display:flex; flex-wrap:wrap; gap:3pt 9pt; margin:0 0 7pt;
+       font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt;
+       color:var(--muted);}
+  .key span{display:inline-flex; align-items:center; gap:3.5pt;}
+  .key i{width:9pt; height:7pt; border-radius:1.5pt; display:inline-block;}
+  .k-a{background:#2F5E9E;} .k-b{background:#BFB6A1;} .k-c{background:#AD2A20;}
+  table.bal{width:100%; min-width:0; border-collapse:collapse;
+       table-layout:fixed; font-size:8.6pt;}
+  table.bal th{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+       letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+       font-weight:600; text-align:center; padding:0 0 3pt; border:0;}
+  table.bal th.hn{text-align:left;}
+  table.bal td{padding:2.2pt 0; border:0; border-top:.4pt solid #EFEAE0;
+       vertical-align:middle;}
+  table.bal tr:first-child td{border-top:0;}
+  table.bal td.nm{width:26%; padding-right:4pt; line-height:1.15;}
+  table.bal td.nm b{font-size:9pt; color:var(--navy);}
+  table.bal td.nm span{display:block; font-size:7pt; color:var(--muted);}
+  table.bal td.bar{width:42%;}
+  table.bal td.bar svg{display:block; width:100%; height:auto;}
+  table.bal td.n{width:10.6%; text-align:center; font-size:9.4pt;
+       font-variant-numeric:tabular-nums; font-weight:600;}
+  table.bal td.n.z{color:var(--ink); font-weight:700;}
+  table.bal td.n.a{color:#2F5E9E;} table.bal td.n.c{color:#AD2A20;}
+  table.bal td.n.b{color:#6B7280;}
+  table.bal tr.out td.nm b{color:#8A3A32;}
+  .outchip{display:block; font-style:normal; color:#AD2A20;
+       font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+       letter-spacing:.06em; font-weight:700; line-height:1.3;}
+  .fig .read{font-size:8.6pt; color:var(--ink); margin:7pt 0 0;
+       padding-top:6pt; border-top:.5pt solid var(--rule); line-height:1.45;}
+  .horiz{margin:7pt 0 0; padding-top:6pt; border-top:.5pt solid var(--rule);}
+  .horiz p{margin:0 0 4pt; font-size:8.4pt; color:var(--muted);}
+  .horiz ul{margin:0; padding:0; list-style:none;}
+  .horiz li{display:flex; gap:6pt; align-items:baseline; padding:1.6pt 0;
+       border-top:.4pt solid #F2EDE3; font-size:8.8pt;}
+  .horiz li:first-child{border-top:0;}
+  .horiz li b{font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt;
+       letter-spacing:.05em; text-transform:uppercase; color:var(--navy);
+       min-width:52pt; font-weight:600;}
+  .horiz li i{color:var(--ink); font-style:italic;}
+  @media screen and (max-width:720px){
+    table.bal{font-size:12px;}
+    /* the bar is the point of the figure, so it gets the width on a phone.
+       Company names are dropped here — the tickers are enough, and the full
+       names are in the order table above. */
+    table.bal td.nm{width:17%;} table.bal td.bar{width:51%;}
+    table.bal td.n{width:10.6%; font-size:13.5px;}
+    table.bal td.nm b{font-size:13px;} table.bal td.nm span{display:none;}
+    .outchip{font-size:10px;}
+    table.bal th{font-size:10.5px;}
+    .key{font-size:10.5px; gap:3px 8px;} .fig .cap,.fig .read{font-size:12px;}
+    .horiz li{font-size:12px; flex-wrap:wrap;} .horiz li b{font-size:10.5px;}
+    .horiz p{font-size:12px;}
+  }
+
+  @media print{
+    /* pull the gutter in so left and right ink margins match */
+    .block{gap:8pt;}
+    .time{flex:0 0 38pt;}
+    .time .t{font-size:10.5pt;}
+  }
+
+  @media print{
+    /* a bordered card must never be severed by a page break: the rules
+       run off the bottom edge with no closure and resume headless. */
+    .gotcha{break-inside:avoid; page-break-inside:avoid;}
+    .fig{break-inside:avoid; page-break-inside:avoid;}
+    .links{break-inside:avoid; page-break-inside:avoid;}
+    .pre{break-inside:avoid; page-break-inside:avoid;}
+    .say{break-inside:avoid; page-break-inside:avoid;}
+  }
+</style></head><body>
+
+<div class="superseded"><span class="k">Michael only</span><p>Your script for running Thursday's lunch meeting. The team's version is <a href="oct15.html">oct15.html</a> &mdash; that is the one to share. <b>When the meeting is over, replace this banner with a link to the minutes.</b></p></div>
+
+<header><div><p class="eyebrow">Run of show &middot; Thursday, October 15 &middot; 1:00&ndash;1:45 CT</p><h1>You are chairing this one</h1></div><div class="who"><b>Before you walk in</b><br>WInS open and logged in<br><a href="oct15.html">oct15.html</a> on a screen<br>This page on your phone</div></header>
+
+<div class="say"><span class="k">The one thing to get right</span>
+<p><b>Do not let this become a meeting about the loss.</b> Four people are going to walk in having seen a red number, and one of them has already suggested selling NVDA to take profit in a position that is down 5.59%.</p>
+<p>Say the first item fast and firmly, then move. <b>The loss is one morning, it is not graded, and we have four pieces of graded work behind.</b> Everything after that is easier.</p>
+</div>
+
+<div class="rule3">
+<div><span>If you only get three things done</span><p>Open the <b>three Week emails</b>. Read <b>Session Rules</b>. Name the <b>three Oct 23 notes</b>. All on screen, all in ten minutes.</p></div>
+<div><span>What gets cut first</span><p>Item 6, Pile C, moves to Sunday if you run late. It is the only one with no deadline attached.</p></div>
+<div><span>What never gets cut</span><p>Item 3. The Oct 23 deadline lands on homecoming and nobody else has noticed.</p></div>
+</div>
+
+<div class="block first">
+<div class="time"><span class="t">Card</span><span class="d">keep open</span></div>
+<div class="body">
+<h2>Every number you might be asked for</h2>
+<div class="table-wrap"><table class="ord">
+<tr><th style="width:42%">If someone asks</th><th>The number</th></tr>
+<tr><td class="tk">How much are we down?</td><td><b>$2,347.47</b>, or &minus;0.78%. Account is $297,652.53.</td></tr>
+<tr><td class="tk">How much of that is today?</td><td><b>$2,528.10.</b> More than the whole week. We were <b>up $442</b> before this morning.</td></tr>
+<tr><td class="tk">How much is just fees?</td><td><b>$320</b> &mdash; 14% of the drawdown. $25 a stock, $10 a bond.</td></tr>
+<tr><td class="tk">What is a trade going to cost us?</td><td><b>$50</b> round trip, which is <b>0.60%</b> of a typical $8,400 position.</td></tr>
+<tr><td class="tk">How much cash do we have?</td><td>$8,267 cash, but <b>$49,451 deployable</b> counting BIL. That is <b>16.6%</b>.</td></tr>
+<tr><td class="tk">Where does Pile C kick in?</td><td><b>VOO at $641.09.</b> It closed at $707.43. We are <b>9.4% away</b>.</td></tr>
+<tr><td class="tk">What is actually down?</td><td>GEV &minus;6.6% today, ETN &minus;4.8%, IBKR &minus;4.0%, NVDA &minus;3.3%.</td></tr>
+<tr><td class="tk">What is up?</td><td>JNJ <b>+2.09%</b>, BKNG <b>+1.97%</b>, MDT <b>+1.29%</b>. Bonds and BIL flat.</td></tr>
+<tr><td class="tk">How long do we have?</td><td><b>17 trading days.</b> Trading freezes Nov 6 and holdings lock.</td></tr>
+<tr><td class="tk">How many trades left?</td><td><b>186 of 200.</b> Trade count is not the constraint. Commissions are.</td></tr>
+</table></div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">If</span><span class="d">Caleb</span></div>
+<div class="body">
+<h2>&ldquo;If there is significant gain in NVIDIA, sell it and take profit&rdquo;</h2>
+<div class="decide"><i>Say it</i> There is no gain. NVDA is <b>down 5.59%</b>, and it was down 3.3% just this morning. There is nothing to take.</div>
+<ul>
+<li><b>Be quick and kind about it.</b> He wrote that on Thursday, before any of this, and he is reasoning from a portfolio he has not seen. Correct the fact, do not make it a thing.</li>
+<li><b>Then use it,</b> because the instinct behind it is the one worth addressing: only <b>two</b> of our twelve equity lines are up at all, MDT and BKNG. &ldquo;Take profits&rdquo; is not available as a strategy on a book that is down.</li>
+<li><b>That also answers Coach P's second and third P</b> without having to argue with him. Partials on gains and protect your profits both need profits.</li>
+</ul>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">If</span><span class="d">the room</span></div>
+<div class="body">
+<h2>&ldquo;We should sell the ones that are losing&rdquo;</h2>
+<div class="decide"><i>Say it</i> That is selling the half of the portfolio that fell, on the day it fell, and paying 0.60% a position to do it. Give me a reason that is not the price and I will put it on the list.</div>
+<ul>
+<li><b>Point at the other half.</b> JNJ, BKNG and MDT were all up today and both Treasuries did not move. The book did what it was designed to do. Selling the part that fell is dismantling the design.</li>
+<li><b>Then the real argument:</b> we are not scored on this. Read them the line from the Guide &mdash; <i>&ldquo;whether your portfolio makes money during the competition&rdquo;</i> is on the list of things we are explicitly <b>not</b> evaluated on.</li>
+<li><b>Land it:</b> a loss with a written reason scores. A gain with no reason does not. That is the whole competition.</li>
+</ul>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">If</span><span class="d">Coach P</span></div>
+<div class="body">
+<h2>&ldquo;This is why I said not to go all in&rdquo;</h2>
+<div class="decide"><i>Say it</i> We did not go all in, and it is our fault he cannot see it. Then give him the trigger level, because that is the question he actually asked.</div>
+<ul>
+<li><b>Own the reporting failure first.</b> His screen says Buying Power $8,267 because StockTrak files BIL under equities. Our flex money is invisible to him. That is on us, not him &mdash; say so, it costs nothing and it is true.</li>
+<li><b>Then the number:</b> $41,184 of BIL plus $8,267 of cash is <b>$49,451, 16.6% of the account</b>, held deliberately as Pile C.</li>
+<li><b>Then the rule we already wrote,</b> on Oct 5, before he asked: VOO closing 10% below our cost deploys $6,000&ndash;$12,000 into VOO. That level is <b>$641.09</b> against $707.43 today. His correction is roughly what it takes.</li>
+<li><b>Do not say return is not graded.</b> It is true and it is in the Guide, but to him it sounds like an excuse. Save it for the IPS, where it is the whole argument.</li>
+</ul>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">If</span><span class="d">anyone</span></div>
+<div class="body">
+<h2>&ldquo;What did we decide on Sunday?&rdquo;</h2>
+<div class="decide"><i>Say it</i> Nobody wrote it up, so nobody knows. Three decisions were routed to that call and the account proves none of them was acted on.</div>
+<ul>
+<li><b>Do not guess and do not pretend it did not happen.</b> Ratifying the BIL trim, settling Medtronic and sizing Pile C were all sent to Oct 11. The account still reads 14 of 200 trades with cash unchanged at $8,267.06, so whatever was said, nothing followed it.</li>
+<li><b>All three are on today's agenda.</b> That is the fix, and it is also the argument for Federico posting minutes within a day of every meeting from now on.</li>
+<li><b>This is graded.</b> Criterion four is how the team made decisions. Minutes are not admin, they are the evidence.</li>
+</ul>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">End</span><span class="d">2 min</span></div>
+<div class="body">
+<h2>Close it the same way every time</h2>
+<ul>
+<li><b>Read back every owner and date out loud</b> before anyone stands up. Caleb IPS draft, Federico minutes tomorrow and notes Oct 20, Dylan bear case Sunday, Joe his number today.</li>
+<li><b>Tell them what you are sending Coach P</b> so nobody is surprised by it later.</li>
+<li><b>Your two overdue items:</b> the correction to Coach P, and <b>rotate the WInS password</b> &mdash; it was spoken on a public recording on Sep 27 and is still live. That one is eighteen days old.</li>
+</ul>
+<div class="decide"><i>Done when</i> Federico has the minutes written before he goes home, not tomorrow. That is the single habit that fixes the most.</div>
+</div>
+</div>
+
+</body></html>
