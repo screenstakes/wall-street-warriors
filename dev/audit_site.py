@@ -103,6 +103,25 @@ for p, s in TEXT.items():
 if not [f for f in FAILS if f[0] == "bad figure"]:
     ok("figures", "no page asserts a figure known to be wrong")
 
+# ---------------------------------------------------------------- 4b. claims superseded by new evidence
+# Each entry is a claim the site used to make that is now known to be false. Michael's
+# screenshot of the team thread on 2026-10-14 settled the first one: the Oct 11 call was
+# cancelled at 7:56pm with 4 of 5 unable to attend, so it was never held rather than held
+# and unrecorded. Pages had said nobody knew.
+SUPERSEDED = [
+    (r"Oct 11 call,? which nobody wrote up|nobody wrote up the (Sunday )?Oct 11|"
+     r"Oct 11 call (that )?was never written up|Oct 11.{0,40}no record anywhere",
+     "the Oct 11 call was CANCELLED (4 of 5 out, 7:56pm) — it was never held, not unrecorded"),
+]
+for p, s_ in TEXT.items():
+    if p in RETRO: continue
+    plain = strip(s_)
+    for pat, why in SUPERSEDED:
+        if re.search(pat, plain, re.I):
+            fail("superseded claim", f"{p}: {why}")
+if not [f for f in FAILS if f[0] == "superseded claim"]:
+    ok("claims", "no page repeats a claim later evidence disproved")
+
 # ---------------------------------------------------------------- 5. future tense about things that happened
 PAST = [
     (r"fills? at Thursday'?s? open", "the orders filled Oct 8"),
