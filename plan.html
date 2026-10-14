@@ -52,6 +52,10 @@ main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-ove
 .top,.nav{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .screen{max-width:680px;margin:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px}
 .eyebrow{font:600 12px/1.2 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.superseded{border:1px solid var(--orange-deep);background:var(--warn-soft);border-radius:10px;padding:12px 14px;margin:0}
+.superseded .k{display:block;font:600 11px/1.2 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--orange-ink);margin-bottom:5px}
+.superseded p{margin:0;font:15px/1.45 var(--body);color:var(--ink)}
+.superseded a{color:var(--blue)}
 .eyebrow.ex{color:var(--orange-ink)}
 .eyebrow.ex::before{content:"Example";display:inline-block;background:var(--warn-soft);color:var(--orange-ink);border-radius:3px;padding:2px 6px;margin-right:8px;letter-spacing:.06em}
 h1{font:700 27px/1.18 var(--ui);margin:0;text-wrap:balance;letter-spacing:-.01em;color:var(--navy)}
@@ -242,6 +246,7 @@ tbl,.tbl{width:100%}
 <main id="main">
 
   <section class="screen" data-ch="0" aria-labelledby="p0">
+    <div class="superseded"><span class="k">This plan ran to Sep 28 — it is history</span><p>Everything in it has happened or been replaced: the ballot closed Oct 4, the orders were re-cut on Oct 6, and all 14 filled at Thursday Oct 8’s open. Current status: <a href="now.html">now.html</a>.</p></div>
     <div class="eyebrow">The thing you were scared of</div>
     <h1 id="p0" tabindex="-1">Opening day is ten orders.</h1>
     <div class="kpis">
