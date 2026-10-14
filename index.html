@@ -230,6 +230,7 @@
     <li class="nav-group" data-nav-group>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-this-week">This week<span class="nav-caret" aria-hidden="true"></span></button>
       <ul class="nav-panel" id="nav-this-week" data-nav-panel>
+        <li><a href="oct15.html"><b>Thursday's meeting</b><span>The agenda for Oct 15 lunch</span></a></li>
         <li><a href="now.html"><b>Where we are</b><span>Every open loop, with a name</span></a></li>
         <li><a href="calendar.html"><b>Calendar</b><span>Every date this season</span></a></li>
         <li><a href="oct6-minutes.html"><b>Oct 6 minutes</b><span>The last meeting</span></a></li>
@@ -274,7 +275,7 @@
 
   <div class="tiles" id="tiles">
     <div class="tile reveal" style="--i:0"><span class="dot c-orange" data-icon="clock"></span><div><div class="k">Next deadline</div><div class="v"><span id="t-next">–</span><small id="t-next-u">days</small></div><div class="sub" id="t-next-s">–</div></div></div>
-    <div class="tile reveal" style="--i:1"><span class="dot c-blue" data-icon="chart"></span><div><div class="k">Trading begins</div><div class="v"><span id="t-trade">–</span><small>days</small></div><div class="sub">Mon Sep 28 · 9:30 a.m. ET</div></div></div>
+    <div class="tile reveal" style="--i:1"><span class="dot c-blue" data-icon="chart"></span><div><div class="k">Trading ends</div><div class="v"><span id="t-trade">–</span><small>days</small></div><div class="sub">Fri Nov 6 · portfolio freezes</div></div></div>
     <div class="tile reveal" style="--i:2"><span class="dot c-green" data-icon="flag"></span><div><div class="k">Deliverables</div><div class="v"><span id="t-deliv">0</span><small>/ 4 submitted</small></div><div class="sub" id="t-deliv-s">Roster first, Oct 9</div></div></div>
     <div class="tile reveal" style="--i:3"><span class="dot c-purple" data-icon="users"></span><div><div class="k">Roster</div><div class="v"><span id="t-roster">–</span><small id="t-roster-u">confirmed</small></div><div class="sub" id="t-roster-s">Wharton allows 4 to 6</div></div></div>
     <div class="tile reveal" style="--i:4"><span class="dot c-pink" data-icon="calendar"></span><div><div class="k">Final report</div><div class="v"><span id="t-final">–</span><small>days</small></div><div class="sub">Fri Dec 4 · 5:00 p.m. ET</div></div></div>
@@ -283,6 +284,22 @@
   
 
   
+
+
+  <section class="card reveal" style="--i:1" aria-labelledby="perf-h">
+    <div class="card-head"><span class="ic" data-icon="chart"></span><h2 id="perf-h">How the portfolio is doing</h2><span class="sep"></span><span class="meta">as of Wed Oct 14 close</span></div>
+    <div style="padding:14px 16px 16px">
+      <div style="display:flex;flex-wrap:wrap;gap:18px 30px;margin-bottom:12px">
+        <div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.65">Value</div><div style="font-size:23px;font-weight:650">$297,652.53</div></div>
+        <div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.65">Return</div><div style="font-size:23px;font-weight:650;color:#B3261E">&minus;0.78%</div></div>
+        <div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.65">S&amp;P, same window</div><div style="font-size:23px;font-weight:650">+0.52%</div></div>
+        <div><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.65">Trades used</div><div style="font-size:23px;font-weight:650">14 <span style="font-size:14px;opacity:.6">/ 200</span></div></div>
+      </div>
+      <p style="margin:0 0 8px"><b>Almost all of it is one morning.</b> Oct 14 alone cost $2,528 of market value against $2,086 for the whole week, so the book was <b>up $442</b> before that session. September CPI came in at 3.7% against a 3.6% estimate and the odds of a Fed hike went from 22% to 37% in a day, which hit the long-duration industrials and the AI names together.</p>
+      <p style="margin:0 0 8px"><b>$320 of the move is commissions</b> &mdash; $25 a stock trade, $10 a bond. An equity sell-and-replace round trip is $50, about 0.60% of a typical position.</p>
+      <p style="margin:0"><b>None of this is graded.</b> The Competition Guide lists portfolio ranking, trade count, beating other teams and <i>whether the portfolio makes money</i> as things the team is explicitly not evaluated on. <a href="oct15.html">The Oct 15 agenda</a> is about the work that is.</p>
+    </div>
+  </section>
 
   <div class="grid main-rail">
     <div class="stack">
@@ -417,7 +434,7 @@
     else { W.countUp($("t-next"), n, 700); $("t-next-u").textContent = "days"; }
     $("t-next-s").textContent = SHORT[next.id] || next.title.split(";")[0];
   }
-  W.countUp($("t-trade"), Math.max(0, W.daysUntil(W.eventById("trading").date)), 700);
+  W.countUp($("t-trade"), Math.max(0, W.daysUntil(W.eventById("ips").date)), 700);
   W.countUp($("t-final"), Math.max(0, W.daysUntil(W.eventById("report").date)), 700);
   $("t-deliv").textContent = done;
   $("t-deliv-s").textContent = nextDeliv ? nextDeliv.name.replace("Comprehensive ", "").replace("Official ", "") + " next, " + W.fmtDate(nextDeliv.due) : "All four submitted";
