@@ -109,6 +109,10 @@ if not [f for f in FAILS if f[0] == "bad figure"]:
 # cancelled at 7:56pm with 4 of 5 unable to attend, so it was never held rather than held
 # and unrecorded. Pages had said nobody knew.
 SUPERSEDED = [
+    (r"Pile C moves on (three )?triggers|trigger we already wrote|the rule we already wrote|"
+     r"we wrote a rule on October 5",
+     "the Pile C trigger was DRAFTED on Oct 5 and never voted on — no page may present it as "
+     "settled, agreed, or something the team wrote"),
     (r"Oct 11 call,? which nobody wrote up|nobody wrote up the (Sunday )?Oct 11|"
      r"Oct 11 call (that )?was never written up|Oct 11.{0,40}no record anywhere",
      "the Oct 11 call was CANCELLED (4 of 5 out, 7:56pm) — it was never held, not unrecorded"),
