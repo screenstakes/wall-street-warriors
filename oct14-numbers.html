@@ -1,0 +1,136 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The numbers, checked</title>
+<style>
+:root{--navy:#1C3557;--gold:#9A7326;--ink:#23292F;--muted:#6B7280;--ground:#FCFAF6;
+      --rule:#DED6C6;--wash:#F4EFE4;--link:#1F4E8C;--good:#1E6B45;--bad:#B3261E}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ground);color:var(--ink)}
+body{font:17px/1.6 Charter,"Iowan Old Style",Georgia,serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:33px;line-height:1.15;margin:0 0 6px;color:var(--navy);font-weight:600;letter-spacing:-.01em}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+   font-family:"Avenir Next",Avenir,system-ui,sans-serif;font-weight:600;margin:44px 0 14px}
+h3{font-size:20px;line-height:1.3;margin:24px 0 6px;color:var(--navy);font-weight:600}
+p{margin:0 0 13px}
+a{color:var(--link)}
+.eyebrow{font:600 12px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.16em;
+         text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.lede{font-size:19px;line-height:1.5;color:var(--muted);margin:0 0 4px;
+      font-family:"Avenir Next",Avenir,system-ui,sans-serif}
+.verdict{background:var(--wash);border-left:4px solid var(--gold);padding:18px 20px;margin:22px 0 0;border-radius:0 6px 6px 0}
+.verdict p:last-child{margin-bottom:0}
+.navy{border-left-color:var(--navy)}
+.card{border:1px solid var(--rule);border-radius:8px;padding:17px 19px;margin:0 0 13px;background:#fff}
+.card h3{margin-top:0}.card p:last-child{margin-bottom:0}
+ul{margin:0 0 14px;padding-left:22px}li{margin:0 0 9px}
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:15px}
+th{text-align:left;font:600 11px/1.3 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.09em;
+   text-transform:uppercase;color:var(--muted);border-bottom:1.5px solid var(--navy);padding:0 10px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:10px 10px 10px 0;vertical-align:top}
+td.k{font-weight:600;color:var(--navy)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bad{color:var(--bad)}.good{color:var(--good)}
+code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--wash);padding:1px 5px;border-radius:3px}
+pre{font:15px/1.65 Charter,Georgia,serif;background:#fff;border:1px solid var(--rule);border-radius:8px;
+    padding:20px 22px;white-space:pre-wrap;margin:0 0 14px;overflow-wrap:break-word}
+.btn{display:inline-block;font:600 14px/1 "Avenir Next",Avenir,system-ui,sans-serif;background:var(--navy);
+     color:#fff;border:0;border-radius:7px;padding:13px 20px;cursor:pointer;margin:0 0 16px}
+.btn:active{transform:translateY(1px)}
+.said{font-size:14px;color:var(--muted);margin:0 0 20px}
+hr{border:0;border-top:1px solid var(--rule);margin:38px 0}
+.foot{font-size:14px;color:var(--muted);margin-top:40px}
+.back{font:600 13px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.02em;display:inline-block;margin:0 0 22px}
+@media (max-width:480px){h1{font-size:27px}.lede{font-size:17px}body{font-size:16px}
+  table,td,th{font-size:14px} pre{font-size:14px;padding:16px}}
+</style>
+</head><body><div class="wrap">
+<p class="back"><a href="oct14-report.html">&larr; Back to the Oct 14 report</a></p>
+<p class="eyebrow">Wednesday, October 14</p>
+<h1>The numbers, checked</h1>
+<p class="lede">Every figure recomputed from the four dashboard screenshots. The books reconcile to the penny.</p>
+
+<h2>Where the $300,000 went</h2>
+<table>
+<tr><th>Line</th><th class="num">Amount</th></tr>
+<tr><td class="k">Cost basis, all 14 positions</td><td class="num">$290,907.53</td></tr>
+<tr><td class="k">Commissions (12 &times; $25 + 2 &times; $10)</td><td class="num">$320.00</td></tr>
+<tr><td class="k">Accrued bond coupon paid to the seller</td><td class="num">$505.41</td></tr>
+<tr><td class="k">Cash remaining</td><td class="num">$8,267.06</td></tr>
+<tr><td class="k"><b>Total</b></td><td class="num"><b>$300,000.00</b></td></tr>
+</table>
+<p>The $505.41 was the only line that did not obviously tie out. It is the coupon a bond buyer owes the seller for the days since the last coupon date. Modelling both notes on a 15 Feb / 15 Aug schedule, 53 days accrued at the Oct 7 purchase, gives <b>$510.74</b> &mdash; within $5.33. That money is not lost, it is prepaid interest you earn back.</p>
+
+<h2>Why you are down $2,347.47</h2>
+<table>
+<tr><th>Component</th><th class="num">$</th><th class="num">% of $300k</th></tr>
+<tr><td class="k">Market P/L on positions</td><td class="num bad">&minus;2,085.76</td><td class="num bad">&minus;0.695%</td></tr>
+<tr><td class="k">Commissions</td><td class="num bad">&minus;320.00</td><td class="num bad">&minus;0.107%</td></tr>
+<tr><td class="k">Net accrued interest earned</td><td class="num good">+58.10</td><td class="num good">+0.019%</td></tr>
+<tr><td class="k"><b>Total</b></td><td class="num bad"><b>&minus;2,347.66</b></td><td class="num bad"><b>&minus;0.783%</b></td></tr>
+</table>
+<p><b>Commissions are 14% of the entire drawdown.</b> An equity sell-and-replace round trip is $50, which on a typical $8,400 position is <b>0.60% of the position</b>.</p>
+
+<h2>Almost all of it is one morning</h2>
+<p>The dashboard's day column is <b>per share, not per position</b> &mdash; VOO's &minus;7.77 on 707.43 is &minus;1.10%, against an index ticker reading &minus;1.08%. Multiplied out:</p>
+<table>
+<tr><th>Window</th><th class="num">Market P/L</th></tr>
+<tr><td class="k">Oct 14 alone</td><td class="num bad">&minus;$2,528.10</td></tr>
+<tr><td class="k">The whole week</td><td class="num bad">&minus;$2,085.76</td></tr>
+<tr><td class="k"><b>So, before Oct 14 opened</b></td><td class="num good"><b>+$442.34</b></td></tr>
+</table>
+<p>September CPI printed <b>3.7%</b> against a 3.6% estimate, core 2.6% against 2.5%, and the odds of a Fed hike went from 22% to 37% in a day. That hit long-duration industrials and the AI names together. The 10-year spiked to 5.33% and closed <b>down</b> 2bp at 5.19%, which is why the two Treasuries show no movement &mdash; that is real, not a stale simulator.</p>
+
+<h2>10% of the book caused 75% of the loss</h2>
+<table>
+<tr><th>Position</th><th class="num">Weight</th><th class="num">P/L $</th><th class="num">Drag</th></tr>
+<tr><td class="k">GEV</td><td class="num">4.43%</td><td class="num bad">&minus;633.08</td><td class="num bad">&minus;0.213%</td></tr>
+<tr><td class="k">NVDA</td><td class="num">2.97%</td><td class="num bad">&minus;524.00</td><td class="num bad">&minus;0.176%</td></tr>
+<tr><td class="k">VOO</td><td class="num">19.96%</td><td class="num bad">&minus;410.76</td><td class="num bad">&minus;0.138%</td></tr>
+<tr><td class="k">ETN</td><td class="num">2.61%</td><td class="num bad">&minus;405.46</td><td class="num bad">&minus;0.136%</td></tr>
+<tr><td class="k">IBKR</td><td class="num">2.71%</td><td class="num bad">&minus;322.56</td><td class="num bad">&minus;0.108%</td></tr>
+<tr><td class="k">JNJ</td><td class="num">4.61%</td><td class="num bad">&minus;258.66</td><td class="num bad">&minus;0.087%</td></tr>
+<tr><td class="k">GOOG</td><td class="num">2.77%</td><td class="num bad">&minus;193.44</td><td class="num bad">&minus;0.065%</td></tr>
+<tr><td class="k">VEA</td><td class="num">9.71%</td><td class="num bad">&minus;191.82</td><td class="num bad">&minus;0.064%</td></tr>
+<tr><td class="k">AMZN</td><td class="num">2.73%</td><td class="num bad">&minus;137.60</td><td class="num bad">&minus;0.046%</td></tr>
+<tr><td class="k">Treasuries</td><td class="num">24.64%</td><td class="num bad">&minus;43.29</td><td class="num bad">&minus;0.015%</td></tr>
+<tr><td class="k">BIL</td><td class="num">13.84%</td><td class="num good">+22.50</td><td class="num good">+0.008%</td></tr>
+<tr><td class="k">BKNG</td><td class="num">2.92%</td><td class="num good">+227.34</td><td class="num good">+0.076%</td></tr>
+<tr><td class="k">MDT</td><td class="num">3.13%</td><td class="num good">+785.07</td><td class="num good">+0.264%</td></tr>
+</table>
+<p><b>GEV + ETN + NVDA = 10.01% of the portfolio and 75% of the entire market loss.</b> Add IBKR and 12.73% of the book produced 90% of it.</p>
+
+<h2>Structure</h2>
+<table>
+<tr><th>Sleeve</th><th class="num">$</th><th class="num">%</th></tr>
+<tr><td class="k">Equity (VOO + VEA + 9 names)</td><td class="num">174,299.52</td><td class="num">58.56%</td></tr>
+<tr><td class="k">Treasuries + BIL + cash</td><td class="num">122,789.49</td><td class="num">41.25%</td></tr>
+<tr><td class="k">&mdash; of which actually deployable</td><td class="num">49,451.06</td><td class="num"><b>16.61%</b></td></tr>
+</table>
+
+<h2>Two screen numbers that are not what they look like</h2>
+<div class="card"><h3>&ldquo;Your Excess Returns &minus;1.30%&rdquo;</h3><p>Apples to oranges. The portfolio figure is live intraday; the benchmark is the prior close. On the chart, where both share a timestamp, the gap through Oct 13 is about 0.6 points, not 1.3.</p></div>
+<div class="card"><h3>&ldquo;Buying Power $8,267.06&rdquo;</h3><p>Not your dry powder. BIL is a 1&ndash;3 month T-bill fund &mdash; cash wearing a ticker. Real deployable is BIL $41,184 + cash $8,267 = <b>$49,451</b>. The platform files every ETF under equities, which is why Coach P cannot see Pile C.</p></div>
+
+<h2>The figure that was wrong on five pages</h2>
+<p>The order sheet predicted $7,774.89 of cash; the account settled at $8,267.06. Five pages explained the $492.17 gap by saying the fills came in <b>$1,017.58 cheaper</b>. That subtracts two totals built to different definitions &mdash; the sheet folds each bond's $10 ticket and an estimate of its accrued coupon <i>into the bond line</i>, and the cost basis excludes both.</p>
+<table>
+<tr><th>Like for like</th><th class="num">$</th></tr>
+<tr><td class="k">Order sheet at its own prices</td><td class="num">291,396.43</td></tr>
+<tr><td class="k">Actually paid</td><td class="num">290,907.53</td></tr>
+<tr><td class="k"><b>Price improvement</b></td><td class="num"><b>488.90</b></td></tr>
+<tr><td class="k">Sheet over-allowed for coupon + tickets</td><td class="num">3.27</td></tr>
+<tr><td class="k"><b>Into cash</b></td><td class="num"><b>492.17</b></td></tr>
+</table>
+<p>$7,774.89 + $492.17 = <b>$8,267.06</b>, exact. It survived because it reconciled perfectly: the identity it sat inside is algebraically true, so every check passed and every page agreed with every other page.</p>
+
+<h2>Still unverified</h2>
+<ul>
+<li><b>The 25% position limit has never been read on screen.</b> Wharton sets none &mdash; confirmed by absence across all five official PDFs. The 25% is a StockTrak default, and nobody knows whether it is 25% of portfolio value, equity, or starting capital. Two clicks: Portfolio Simulation &rarr; Portfolio Summary &rarr; Session Rules.</li>
+<li><b>The 5% / 8% / 30% rules are self-imposed</b>, not Wharton's. Do not present them as competition rules.</li>
+</ul>
+
+<p class="foot">Written Oct 14, 2026, from the account as of that day's close. <a href="oct14-plan.html">What to do about it.</a></p>
+</div></body></html>

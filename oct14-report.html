@@ -10,53 +10,68 @@
 html,body{margin:0;padding:0;background:var(--ground);color:var(--ink)}
 body{font:17px/1.6 Charter,"Iowan Old Style",Georgia,serif;-webkit-text-size-adjust:100%}
 .wrap{max-width:720px;margin:0 auto;padding:28px 16px 80px}
-.sans{font-family:"Avenir Next",Avenir,"Helvetica Neue",system-ui,sans-serif}
-h1{font-size:34px;line-height:1.15;margin:0 0 6px;color:var(--navy);font-weight:600;letter-spacing:-.01em}
+h1{font-size:33px;line-height:1.15;margin:0 0 6px;color:var(--navy);font-weight:600;letter-spacing:-.01em}
 h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
-   font-family:"Avenir Next",Avenir,system-ui,sans-serif;font-weight:600;margin:46px 0 14px}
-h3{font-size:21px;line-height:1.25;margin:26px 0 6px;color:var(--navy);font-weight:600}
+   font-family:"Avenir Next",Avenir,system-ui,sans-serif;font-weight:600;margin:44px 0 14px}
+h3{font-size:20px;line-height:1.3;margin:24px 0 6px;color:var(--navy);font-weight:600}
 p{margin:0 0 13px}
 a{color:var(--link)}
 .eyebrow{font:600 12px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.16em;
          text-transform:uppercase;color:var(--gold);margin:0 0 10px}
-.lede{font-size:20px;line-height:1.5;margin:0 0 4px}
+.lede{font-size:19px;line-height:1.5;color:var(--muted);margin:0 0 4px;
+      font-family:"Avenir Next",Avenir,system-ui,sans-serif}
 .verdict{background:var(--wash);border-left:4px solid var(--gold);padding:18px 20px;margin:22px 0 0;border-radius:0 6px 6px 0}
 .verdict p:last-child{margin-bottom:0}
-.big{font-size:27px;font-weight:650;color:var(--navy);display:block;line-height:1.2;margin:2px 0 2px}
-.nums{display:flex;flex-wrap:wrap;gap:16px 32px;margin:18px 0 6px}
-.nums div{min-width:118px}
-.nums .k{font:600 11px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.1em;
-         text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.nums .v{font-size:23px;font-weight:650;color:var(--navy)}
-.nums .v.bad{color:var(--bad)}
-ul{margin:0 0 14px;padding-left:22px}
-li{margin:0 0 9px}
+.navy{border-left-color:var(--navy)}
 .card{border:1px solid var(--rule);border-radius:8px;padding:17px 19px;margin:0 0 13px;background:#fff}
-.card h3{margin-top:0}
-.card p:last-child{margin-bottom:0}
+.card h3{margin-top:0}.card p:last-child{margin-bottom:0}
+ul{margin:0 0 14px;padding-left:22px}li{margin:0 0 9px}
 table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:15px}
 th{text-align:left;font:600 11px/1.3 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.09em;
    text-transform:uppercase;color:var(--muted);border-bottom:1.5px solid var(--navy);padding:0 10px 7px 0;vertical-align:bottom}
 td{border-bottom:1px solid var(--rule);padding:10px 10px 10px 0;vertical-align:top}
-td:first-child{font-weight:600;color:var(--navy);white-space:nowrap}
-code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--wash);
-     padding:1px 5px;border-radius:3px;word-break:break-all}
+td.k{font-weight:600;color:var(--navy)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bad{color:var(--bad)}.good{color:var(--good)}
+code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--wash);padding:1px 5px;border-radius:3px}
+pre{font:15px/1.65 Charter,Georgia,serif;background:#fff;border:1px solid var(--rule);border-radius:8px;
+    padding:20px 22px;white-space:pre-wrap;margin:0 0 14px;overflow-wrap:break-word}
+.btn{display:inline-block;font:600 14px/1 "Avenir Next",Avenir,system-ui,sans-serif;background:var(--navy);
+     color:#fff;border:0;border-radius:7px;padding:13px 20px;cursor:pointer;margin:0 0 16px}
+.btn:active{transform:translateY(1px)}
+.said{font-size:14px;color:var(--muted);margin:0 0 20px}
+hr{border:0;border-top:1px solid var(--rule);margin:38px 0}
+.foot{font-size:14px;color:var(--muted);margin-top:40px}
+.back{font:600 13px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.02em;display:inline-block;margin:0 0 22px}
+@media (max-width:480px){h1{font-size:27px}.lede{font-size:17px}body{font-size:16px}
+  table,td,th{font-size:14px} pre{font-size:14px;padding:16px}}
+</style>
+<style>
+.links{display:grid;gap:11px;margin:0 0 16px}
+.lk{display:block;border:1px solid var(--rule);border-radius:9px;padding:15px 17px;background:#fff;
+    text-decoration:none;color:inherit}
+.lk:hover{border-color:var(--navy)}
+.lk b{display:block;color:var(--link);font-size:18px;margin-bottom:3px}
+.lk span{display:block;font-size:15px;color:var(--muted);line-height:1.45}
+.lk .tag{display:inline-block;font:600 10px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.09em;
+   text-transform:uppercase;padding:4px 7px;border-radius:4px;margin-top:8px}
+.tag.share{background:#E4EFE7;color:var(--good)}
+.tag.private{background:var(--wash);color:var(--gold)}
+.nums{display:flex;flex-wrap:wrap;gap:16px 30px;margin:18px 0 6px}
+.nums div{min-width:110px}
+.nums .k{font:600 11px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.1em;
+         text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.nums .v{font-size:22px;font-weight:650;color:var(--navy)}
 .todo{border:1.5px solid var(--navy);border-radius:8px;padding:18px 20px;background:#fff;margin:0 0 13px}
 .todo .n{font:700 12px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.1em;
          text-transform:uppercase;color:var(--gold);margin-bottom:7px}
 .todo h3{margin:0 0 5px}
-hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
-.foot{font-size:14px;color:var(--muted);margin-top:40px}
-@media (max-width:480px){
-  h1{font-size:28px} .lede{font-size:18px} body{font-size:16px}
-  table,td,th{font-size:14px} td:first-child{white-space:normal}
-}
 </style>
 </head><body><div class="wrap">
 
-<p class="eyebrow">Wednesday, October 14 &middot; for Michael only</p>
+<p class="eyebrow">Wednesday, October 14 &middot; for Michael</p>
 <h1>What I actually did</h1>
-<p class="lede sans" style="color:var(--muted)">You asked what went wrong. The short answer is that nothing went wrong with the money.</p>
+<p class="lede">You asked what went wrong. The short answer is that nothing went wrong with the money.</p>
 
 <div class="verdict">
 <p><b>Your books are perfect.</b> Every dollar of the $300,000 is accounted for to the penny. All 14 orders filled, none misfired, and the fills came in better than the order sheet.</p>
@@ -68,8 +83,20 @@ hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
   <div><div class="k">Account</div><div class="v">$297,652</div></div>
   <div><div class="k">Return</div><div class="v bad">&minus;0.78%</div></div>
   <div><div class="k">Oct 14 alone</div><div class="v bad">&minus;$2,528</div></div>
-  <div><div class="k">Before that day</div><div class="v" style="color:var(--good)">+$442</div></div>
+  <div><div class="k">Before that day</div><div class="v good">+$442</div></div>
   <div><div class="k">Fees paid</div><div class="v">$320</div></div>
+</div>
+
+<h2>Everything, as links</h2>
+<p>Nothing here is a file you have to go find. Each one opens on your phone.</p>
+
+<div class="links">
+<a class="lk" href="oct15.html"><b>Thursday's agenda</b><span>Seven items, 45 minutes, built around the graded work rather than the loss. This is the one to send the team.</span><span class="tag share">Safe to share</span></a>
+<a class="lk" href="oct15-me.html"><b>Your run of show</b><span>A numbers card you can answer anything from, plus the four moments likely to derail the meeting and what to say at each.</span><span class="tag private">Yours only</span></a>
+<a class="lk" href="coachp.html"><b>The message to send Coach P</b><span>Ready to paste, with a copy button. He thinks you went all-in because the dashboard cannot see Pile C.</span><span class="tag private">Send tonight</span></a>
+<a class="lk" href="oct14-plan.html"><b>The plan: trade nothing this week</b><span>Why zero trades, and the recommendation on each of the three open decisions &mdash; Medtronic, the AI concentration, and Pile C.</span><span class="tag share">Safe to share</span></a>
+<a class="lk" href="oct14-numbers.html"><b>The numbers, checked</b><span>Every figure recomputed from the dashboard. Where the $300,000 went, the attribution, and the two screen numbers that mislead.</span><span class="tag share">Safe to share</span></a>
+<a class="lk" href="oct14-build.html"><b>How to rebuild the site</b><span>Technical. The build order, and the two traps that nearly reverted everything today.</span><span class="tag private">For future me</span></a>
 </div>
 
 <h2>What was actually wrong</h2>
@@ -90,41 +117,22 @@ hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
 <p style="margin-bottom:0"><b>&ldquo;The fills came in $1,017.58 cheaper&rdquo; was on five pages, including mine.</b> It subtracts two totals that count different things. The real figure is <b>$488.90</b>. It survived because it reconciled perfectly &mdash; every check passed and every page agreed with every other page.</p>
 </div>
 
-<h2>What I made for you</h2>
-<table>
-<tr><th>What</th><th>Where</th></tr>
-<tr><td>Team agenda<br><span style="font-weight:400;color:var(--muted)">Share this one</span></td><td><a href="oct15.html">oct15.html</a> &mdash; seven items, 45 minutes, built around the graded work rather than the loss.</td></tr>
-<tr><td>Your run of show<br><span style="font-weight:400;color:var(--muted)">Don't share</span></td><td><a href="oct15-me.html">oct15-me.html</a> &mdash; a numbers card you can answer anything from, plus the four moments likely to derail the meeting and what to say at each.</td></tr>
-<tr><td>Coach P reply</td><td><code>agentic-os/projects/wharton-team-docs/oct14/coachp-reply.txt</code> &mdash; ready to paste, with notes on why each paragraph is there.</td></tr>
-<tr><td>The reasoning</td><td><code>&hellip;/oct14/GAME-PLAN.md</code> &mdash; why zero trades this week, and the answer to each of the three decisions.</td></tr>
-<tr><td>The arithmetic</td><td><code>&hellip;/oct14/RECONCILIATION.md</code> &mdash; every number, with the scripts that produce them.</td></tr>
-</table>
-
 <h2>What I fixed on the website</h2>
 <ul>
 <li><b>Nothing linked to Thursday's agenda.</b> It existed but was unreachable. Now the first item in the &ldquo;This week&rdquo; menu, on all 18 pages.</li>
+<li><b>The dashboard now shows how the portfolio is doing</b> &mdash; the first time the site has ever said so &mdash; and counts down to the Nov 6 freeze instead of a date in September.</li>
 <li><b>The portfolio page</b> said the orders hadn't filled. Rewritten to the prices actually paid.</li>
 <li><b>The orders page</b> had an open question about missing cash. Closed, to the penny.</li>
-<li><b>The dashboard</b> now shows how the portfolio is doing &mdash; the first time the site has ever said so &mdash; and counts down to the Nov 6 freeze instead of a date in September.</li>
-<li><b>&ldquo;Where we are&rdquo;</b> re-dated to Oct 14, and says plainly that nobody wrote up the Oct 11 call.</li>
-<li><b>Seven old agenda pages</b> got banners so nobody mistakes them for current.</li>
+<li><b>&ldquo;Where we are&rdquo;</b> re-dated to Oct 14, says plainly that nobody wrote up the Oct 11 call, and now links the agenda.</li>
+<li><b>Twelve dated pages</b> carry status banners so nobody mistakes an old agenda for the current one.</li>
 <li><b>The strategy page</b> still said BIL was 492 shares. It is 450.</li>
+<li><b>Five pages</b> carried the wrong price-improvement figure. All corrected, and the page checker now refuses to let it back.</li>
 </ul>
 
-<h2>Where everything lives</h2>
-<table>
-<tr><th>Thing</th><th>Path</th></tr>
-<tr><td>Team site</td><td><code>~/Downloads/VSC Folder/wall-street-warriors</code><br>live at <b>screenstakes.github.io/wall-street-warriors</b></td></tr>
-<tr><td>This session's work</td><td><code>agentic-os/projects/wharton-team-docs/oct14/</code></td></tr>
-<tr><td>Build instructions</td><td><code>agentic-os/projects/wharton-team-docs/BUILD-ORDER.md</code></td></tr>
-<tr><td>Learnings</td><td><code>agentic-os/projects/notes/2026-10-14_one-morning-is-not-a-trend.md</code><br>and the same note in <code>chat-notes/</code>, mirrored to the VPS</td></tr>
-<tr><td>Project page</td><td><code>agentic-os/AI/projects/wharton-investment-challenge.md</code></td></tr>
-<tr><td>Today's log</td><td><code>agentic-os/AI/log/2026-10-14.md</code></td></tr>
-</table>
-<p style="font-size:15px;color:var(--muted)">Both repos are committed and pushed. Nothing is sitting unsaved.</p>
-
-<h2>One thing worth knowing</h2>
-<p>Two of the site's pages &mdash; the portfolio and the orders pages &mdash; are <b>generated by scripts</b>. Editing the HTML directly works until someone runs the build, which puts everything back. That nearly happened today: the pages were fixed but the scripts weren't, so the next build would have silently reverted both to the Oct 6 estimates. The scripts are fixed now, and the build order is written down.</p>
+<h2>So this does not happen again</h2>
+<p>You were right that I should have caught all of it the first time. I checked the things I changed, which can never find a missing link or a stale countdown, because neither is in what I changed.</p>
+<p>There is now an audit that walks the whole site the way a new reader would: every internal link resolves, nothing is unreachable, no countdown points at a past date, no page asserts a figure known to be wrong, no page describes a past event as upcoming, and both generated pages match their builders exactly. <b>It runs in two seconds and it is committed</b>, so it is the first thing any future session inherits rather than something I have to think of again.</p>
+<p>It currently reads: <b>49 pages, 12 checks, 0 failures.</b> I proved each check fails on a known-bad input before trusting it.</p>
 
 <hr>
 
@@ -133,7 +141,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
 <div class="todo">
 <p class="n">Tonight &middot; 2 minutes</p>
 <h3>Send Coach P the reply</h3>
-<p>He thinks you went all-in because the dashboard files BIL under equities, so all he can see is $8,267. Your real dry powder is <b>$49,451</b>. The draft is written.</p>
+<p>He thinks you went all-in because the dashboard files BIL under equities, so all he can see is $8,267. Your real dry powder is <b>$49,451</b>. <a href="coachp.html">It is written, with a copy button.</a></p>
 </div>
 
 <div class="todo">
@@ -145,15 +153,14 @@ hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
 <div class="todo">
 <p class="n">Before lunch tomorrow</p>
 <h3>Open your run of show once</h3>
-<p><a href="oct15-me.html">oct15-me.html</a>. You are chairing, and four people will walk in having seen a red number.</p>
+<p><a href="oct15-me.html">Here.</a> You are chairing, and four people will walk in having seen a red number.</p>
 </div>
 
 <div class="todo">
 <p class="n">Whenever</p>
 <h3>Tell me your real lunch time</h3>
-<p>The vault has never recorded it. I used the 1:00&ndash;1:50 slot from Oct 6. If that is wrong, say so and I will re-time both pages.</p>
+<p>The vault has never recorded it. I used the 1:00&ndash;1:50 slot from Oct 6. If that is wrong, say so and I will re-time both meeting pages.</p>
 </div>
 
-<p class="foot">Written Oct 14, 2026. The numbers here are as of that day's close and will age &mdash; the account is the source of truth, not this page.</p>
-
+<p class="foot">Written Oct 14, 2026. The numbers are as of that day's close and will age &mdash; the account is the source of truth, not this page.</p>
 </div></body></html>

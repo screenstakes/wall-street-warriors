@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>How to rebuild the site</title>
+<style>
+:root{--navy:#1C3557;--gold:#9A7326;--ink:#23292F;--muted:#6B7280;--ground:#FCFAF6;
+      --rule:#DED6C6;--wash:#F4EFE4;--link:#1F4E8C;--good:#1E6B45;--bad:#B3261E}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ground);color:var(--ink)}
+body{font:17px/1.6 Charter,"Iowan Old Style",Georgia,serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:33px;line-height:1.15;margin:0 0 6px;color:var(--navy);font-weight:600;letter-spacing:-.01em}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+   font-family:"Avenir Next",Avenir,system-ui,sans-serif;font-weight:600;margin:44px 0 14px}
+h3{font-size:20px;line-height:1.3;margin:24px 0 6px;color:var(--navy);font-weight:600}
+p{margin:0 0 13px}
+a{color:var(--link)}
+.eyebrow{font:600 12px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.16em;
+         text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.lede{font-size:19px;line-height:1.5;color:var(--muted);margin:0 0 4px;
+      font-family:"Avenir Next",Avenir,system-ui,sans-serif}
+.verdict{background:var(--wash);border-left:4px solid var(--gold);padding:18px 20px;margin:22px 0 0;border-radius:0 6px 6px 0}
+.verdict p:last-child{margin-bottom:0}
+.navy{border-left-color:var(--navy)}
+.card{border:1px solid var(--rule);border-radius:8px;padding:17px 19px;margin:0 0 13px;background:#fff}
+.card h3{margin-top:0}.card p:last-child{margin-bottom:0}
+ul{margin:0 0 14px;padding-left:22px}li{margin:0 0 9px}
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:15px}
+th{text-align:left;font:600 11px/1.3 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.09em;
+   text-transform:uppercase;color:var(--muted);border-bottom:1.5px solid var(--navy);padding:0 10px 7px 0;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:10px 10px 10px 0;vertical-align:top}
+td.k{font-weight:600;color:var(--navy)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bad{color:var(--bad)}.good{color:var(--good)}
+code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--wash);padding:1px 5px;border-radius:3px}
+pre{font:15px/1.65 Charter,Georgia,serif;background:#fff;border:1px solid var(--rule);border-radius:8px;
+    padding:20px 22px;white-space:pre-wrap;margin:0 0 14px;overflow-wrap:break-word}
+.btn{display:inline-block;font:600 14px/1 "Avenir Next",Avenir,system-ui,sans-serif;background:var(--navy);
+     color:#fff;border:0;border-radius:7px;padding:13px 20px;cursor:pointer;margin:0 0 16px}
+.btn:active{transform:translateY(1px)}
+.said{font-size:14px;color:var(--muted);margin:0 0 20px}
+hr{border:0;border-top:1px solid var(--rule);margin:38px 0}
+.foot{font-size:14px;color:var(--muted);margin-top:40px}
+.back{font:600 13px/1 "Avenir Next",Avenir,system-ui,sans-serif;letter-spacing:.02em;display:inline-block;margin:0 0 22px}
+@media (max-width:480px){h1{font-size:27px}.lede{font-size:17px}body{font-size:16px}
+  table,td,th{font-size:14px} pre{font-size:14px;padding:16px}}
+</style>
+</head><body><div class="wrap">
+<p class="back"><a href="oct14-report.html">&larr; Back to the Oct 14 report</a></p>
+<p class="eyebrow">For whoever builds this site next</p>
+<h1>How to rebuild the site</h1>
+<p class="lede">Two pages are generated. Getting the order wrong loses a nav link silently.</p>
+
+<div class="verdict navy">
+<p><b>The order:</b></p>
+<p style="margin-bottom:0"><code>portfolio/build.py</code> &rarr; <code>keying/build.py</code> &rarr; <code>nav/build_nav.py</code> &rarr; both <code>verify.py</code> &rarr; <code>dev/audit_site.py</code></p>
+</div>
+
+<h2>Why the order matters</h2>
+<p><code>build.py</code> emits the nav block its template last carried. <code>build_nav.py</code> is the only thing that reads the nav map. <b>Run a build after the nav builder and the page silently drops any nav item added since</b> &mdash; no error, no failing check, and the page looks perfect.</p>
+<p>That happened on Oct 14: <code>portfolio.html</code> was rebuilt after the nav builder ran and dropped the link to the Oct 15 agenda. One line.</p>
+
+<h2>The shipped HTML is not the source</h2>
+<p><b>portfolio.html and keying.html are generated.</b> Editing them in the site repo works until the next build, which reverts everything. On Oct 14 a session fixed the shipped HTML without the generators, and the next run of either builder would have put both pages back to the Oct 6 estimates.</p>
+<p>If you change what those two pages say, change it in <code>portfolio/data.py</code> or <code>keying/data.py</code> and rebuild. <b>now.html, index.html and strategy.html are not generated</b> and are edited directly.</p>
+
+<h2>verify.py defaults to the wrong file</h2>
+<p>Both verifiers default to the stale copy sitting next to them rather than the live page. Run them that way and they report a clean pass while the real page is broken &mdash; this reported &ldquo;251 checks, 0 FAILURES&rdquo; on Oct 14 while the live page had 54 errors. <b>Always pass the site path explicitly.</b></p>
+
+<h2>Then run the audit</h2>
+<p><code>dev/audit_site.py</code> checks the things a diff cannot: that every internal link resolves, that nothing is unreachable, that no countdown points at a past date, that no page asserts a figure known to be wrong, that no page describes a past event as upcoming, and that both generated pages match their builders exactly.</p>
+<p>It was written after a pass that verified its own edits carefully and still shipped a meeting agenda nothing linked to. <b>Checking what you changed cannot find what is missing.</b></p>
+
+<h2>State as of Oct 14, 2026</h2>
+<table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td class="k">portfolio/verify.py</td><td>271 checks, 0 failures</td></tr>
+<tr><td class="k">keying/verify.py</td><td>530 checks, 0 failures</td></tr>
+<tr><td class="k">nav/build_nav.py --check</td><td>no drift, 19 pages reachable</td></tr>
+<tr><td class="k">dev/audit_site.py</td><td>49 pages, 12 ok, 0 failures</td></tr>
+</table>
+</div></body></html>
