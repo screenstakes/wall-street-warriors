@@ -186,6 +186,23 @@ for p, s in TEXT.items():
 if not [f for f in FAILS if f[0] == "markup"]:
     ok("markup", f"all {len(pages)} pages are well formed")
 
+# ---------------------------------------------------------------- 7b. CSS that truncates silently
+# `.tile .sub` carried white-space:nowrap + text-overflow:ellipsis. At ordinary desktop
+# widths that cut "Trading Notes Analysis next, Oct 23" down to "...next, O" with no visible
+# ellipsis, and no automated check noticed because the element reported no scroll overflow.
+# The only reliable guard is the policy itself: those subtitles wrap, they do not truncate.
+CSS_PATH = os.path.join(ROOT, "assets", "site.css")
+if os.path.exists(CSS_PATH):
+    css = open(CSS_PATH, encoding="utf-8").read()
+    m = re.search(r"\.tile\s+\.sub\s*\{([^}]*)\}", css)
+    if not m:
+        fail("css policy", "assets/site.css has no `.tile .sub` rule to check")
+    elif "white-space:nowrap" in m.group(1).replace(" ", ""):
+        fail("css policy", "`.tile .sub` uses white-space:nowrap — tile subtitles must wrap, "
+                           "not truncate; this silently cut text on the dashboard")
+    else:
+        ok("css policy", "tile subtitles wrap rather than truncate")
+
 # ---------------------------------------------------------------- 8. the questions a reader arrives with
 MUST = [
     ("index.html", "How the portfolio is doing", "the dashboard says how the portfolio is doing"),
