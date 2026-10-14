@@ -14,7 +14,7 @@ import glob, json, os, re, subprocess, sys, tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 WIDTHS = (1280, 1440, 1600)
-MIN_GAP = 8          # anything tighter than this reads as "stuck together"
+MIN_GAP = 8          # visual gap, content edge to content edge, below which it reads as stuck
 
 JS = """<script>
 addEventListener('load', function(){ setTimeout(function(){
@@ -24,12 +24,18 @@ addEventListener('load', function(){ setTimeout(function(){
     var cs = getComputedStyle(e);
     return cs.display !== 'none' && e.getBoundingClientRect().height > 0;
   });
-  var out = [], prev = null, prevLabel = null;
+  var out = [], prev = null, prevLabel = null, prevPadBottom = 0;
   kids.forEach(function(e){
-    var r = e.getBoundingClientRect();
+    var r = e.getBoundingClientRect(), cs = getComputedStyle(e);
     var label = e.tagName.toLowerCase() + (e.className ? '.' + String(e.className).split(' ').slice(0,2).join('.') : '');
-    if (prev !== null) out.push({a: prevLabel, b: label, gap: Math.round(r.top - prev)});
-    prev = r.bottom; prevLabel = label;
+    if (prev !== null){
+      // What the eye sees is content edge to content edge. A section whose own padding
+      // does the separating is NOT flush, even though its border boxes touch -- that is
+      // how calendar.html's legend (14px padding-top, 0px box gap) read as a false alarm.
+      var visual = (r.top - prev) + parseFloat(cs.paddingTop || 0) + prevPadBottom;
+      out.push({a: prevLabel, b: label, gap: Math.round(visual), box: Math.round(r.top - prev)});
+    }
+    prev = r.bottom; prevLabel = label; prevPadBottom = parseFloat(cs.paddingBottom || 0);
   });
   document.title = 'GAPS=' + JSON.stringify(out);
 }, 2500); });

@@ -61,8 +61,13 @@
   margin-top:16px;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r);
   background:var(--well)}
 .pk{display:flex;align-items:center;gap:9px;min-width:0}
-.pkn{flex:1 1 auto;font:600 13px var(--ui);color:var(--ink);white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis}
+/* Wraps rather than truncates. This carried white-space:nowrap + ellipsis and was
+   cutting "Pile B · Growth" to "Pile B · Growt…" at 1280px — 99px of text in a 90px
+   box. The mobile override below fixed it only under the breakpoint, so the bug lived
+   exactly at the widths Michael uses. Same shape as the .tile .sub bug on the
+   dashboard; if you add a label rule here, let it wrap. */
+.pkn{flex:1 1 auto;font:600 13px var(--ui);color:var(--ink);white-space:normal;
+  overflow-wrap:break-word;line-height:1.3}
 .pkv{font:600 12px var(--mono);color:var(--ink-2);white-space:nowrap}
 .pknote{margin:10px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
 .pknote b{color:var(--ink)}
