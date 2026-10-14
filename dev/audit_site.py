@@ -109,20 +109,30 @@ if not [f for f in FAILS if f[0] == "bad figure"]:
 # cancelled at 7:56pm with 4 of 5 unable to attend, so it was never held rather than held
 # and unrecorded. Pages had said nobody knew.
 SUPERSEDED = [
-    (r"Pile C moves on (three )?triggers|trigger we already wrote|the rule we already wrote|"
-     r"we wrote a rule on October 5",
+    (r"Pile C moves on (three )?triggers|(a|the) (rule|trigger) we already wrote|"
+     r"we wrote (a|the) rule|rule we wrote|our own trigger says",
      "the Pile C trigger was DRAFTED on Oct 5 and never voted on — no page may present it as "
      "settled, agreed, or something the team wrote"),
     (r"Oct 11 call,? which nobody wrote up|nobody wrote up the (Sunday )?Oct 11|"
      r"Oct 11 call (that )?was never written up|Oct 11.{0,40}no record anywhere",
      "the Oct 11 call was CANCELLED (4 of 5 out, 7:56pm) — it was never held, not unrecorded"),
 ]
+# Some patterns describe a claim only when it is ABOUT the thing in question. "your own
+# trigger says" on oct4-me is a personal deadline, not Pile C; "a rule we wrote turning out
+# to be one we cannot follow" on answers.html is generic prose. Require the Pile C / VOO
+# trigger patterns to sit near their subject before failing.
+NEEDS_CONTEXT = {0: ("pile c", "voo", "641.09")}   # index 0 is the Pile C trigger rule
 for p, s_ in TEXT.items():
     if p in RETRO: continue
     plain = strip(s_)
-    for pat, why in SUPERSEDED:
-        if re.search(pat, plain, re.I):
+    for idx, (pat, why) in enumerate(SUPERSEDED):
+        for m in re.finditer(pat, plain, re.I):
+            near = plain[max(0, m.start() - 300): m.end() + 300].lower()
+            words = NEEDS_CONTEXT.get(idx)
+            if words and not any(w in near for w in words):
+                continue
             fail("superseded claim", f"{p}: {why}")
+            break
 if not [f for f in FAILS if f[0] == "superseded claim"]:
     ok("claims", "no page repeats a claim later evidence disproved")
 
