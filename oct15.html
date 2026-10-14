@@ -374,152 +374,187 @@
     .pre{break-inside:avoid; page-break-inside:avoid;}
     .say{break-inside:avoid; page-break-inside:avoid;}
   }
+</style><style>
+/* Priority, said on the page instead of implied by order. */
+.pri{display:inline-block;font:700 8.4pt/1 "Avenir Next",Avenir,sans-serif;letter-spacing:.11em;
+     text-transform:uppercase;padding:4.5pt 7pt;border-radius:3pt;margin:0 0 5pt}
+.pri.now{background:#B3261E;color:#fff}
+.pri.decide{background:#1C3557;color:#fff}
+.pri.quick{background:#E8E0CE;color:#6B5420}
+/* The answer, first, before any explaining. */
+.ans{background:#FFF;border:1.3pt solid var(--navy);border-radius:4pt;padding:9pt 11pt;margin:0 0 8pt}
+.ans .lbl{font:700 8.4pt/1 "Avenir Next",Avenir,sans-serif;letter-spacing:.11em;text-transform:uppercase;
+          color:var(--gold);display:block;margin-bottom:3.5pt}
+.ans p{margin:0;font-size:11.4pt;line-height:1.4;font-weight:600;color:var(--navy)}
+/* Short facts, one line each. */
+ul.plain{list-style:none;padding:0;margin:0 0 8pt}
+ul.plain li{position:relative;padding:0 0 0 13pt;margin:0 0 4.5pt;line-height:1.42}
+ul.plain li:before{content:"";position:absolute;left:0;top:.52em;width:4.5pt;height:4.5pt;
+                   border-radius:50%;background:var(--gold)}
+ul.plain li.up:before{background:#1E6B45}
+ul.plain li.down:before{background:#B3261E}
+.matters{border-left:3pt solid var(--gold);background:var(--wash);padding:7pt 10pt;margin:0 0 6pt;font-size:10.2pt}
+.matters b{color:var(--navy)}
+.num{font-variant-numeric:tabular-nums}
+.dn{color:#B3261E;font-weight:700}
+.up{color:#1E6B45;font-weight:700}
+@media print{.pri{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style></head><body>
 
-<div class="superseded"><span class="k">This meeting has not happened yet</span><p>It is Thursday Oct 15, lunch. <b>When it is over, replace this banner with a link to the minutes</b> &mdash; a page that still says &ldquo;has not happened yet&rdquo; on Friday is how <a href="oct6.html">oct6.html</a> and <a href="portfolio.html">portfolio.html</a> both went wrong. Times assume the 1:00&ndash;1:50 slot we used on Oct 6.</p></div>
+<div class="superseded"><span class="k">This meeting has not happened yet</span><p>Thursday Oct 15, lunch. <b>When it is over, replace this banner with a link to the minutes.</b> Times assume the 1:00&ndash;1:50 slot we used on Oct 6.</p></div>
 
-<header><div><p class="eyebrow">Lunch meeting &middot; Thursday, October 15 &middot; 1:00&ndash;1:45 CT</p><h1>The drawdown is noise. The deadlines are not.</h1></div><div class="who"><b>Four, probably</b><br>In person, at school<br>Michael, Dylan, Joe, Federico<br><b>Caleb has said he probably cannot</b><br>Have the <b>WInS account</b> open on a screen</div></header>
+<header><div><p class="eyebrow">Lunch meeting &middot; Thursday, October 15 &middot; 1:00&ndash;1:45 CT</p><h1>Four things to decide. Two to fix before lunch.</h1></div><div class="who"><b>Four, probably</b><br>Michael, Dylan, Joe, Federico<br><b>Caleb has said he probably cannot</b><br>Have the <b>WInS account</b> open</div></header>
 
-<div class="say"><span class="k">What today is</span>
-<p><b>The whole loss happened this morning.</b> We are down $2,347.47 since Oct 7. But $2,528 of market loss landed today alone &mdash; before this morning the book was <b>up $442</b>. One trading day is not a verdict on a six-week portfolio.</p>
-<p><b>Wharton does not grade this.</b> From the Competition Guide, word for word: <i>&ldquo;You are not being evaluated based on: your portfolio ranking &middot; how many trades you make &middot; whether you outperform other teams &middot; whether your portfolio makes money during the competition.&rdquo;</i></p>
-<p><b>What they do grade is behind.</b> Three official emails nobody has opened. A graded deliverable due Oct 23 that nobody has started, landing on homecoming. An IPS due Nov 6 with no draft. And the Sunday Oct 11 call was <b>cancelled</b> &mdash; 4 of 5 could not make it &mdash; so the three decisions routed to it were never taken at all.</p>
-<p><b>Caleb has said he probably cannot come, and that changes what this meeting can do.</b> A plan change needs <b>4 of 5</b>, so with four in the room all four must agree and there is no margin. <b>Get his one vote by text before lunch</b> &mdash; <a href="caleb.html">the message is written</a> &mdash; and it counts whether or not he is here.</p>
-<p><b>So this is not a trading meeting.</b> It is a catch-up on graded work with three real decisions inside it. We spend ten minutes on the account and thirty-five on the things that are actually scored.</p>
+<div class="say"><span class="k">Where we are</span>
+<p><b>We are down $2,347. Almost all of it was yesterday morning.</b> Before Tuesday's open we were up $442.</p>
+<p><b>Wharton does not grade this.</b> Their guide lists &ldquo;whether your portfolio makes money&rdquo; as something we are not evaluated on. Along with our ranking, our trade count, and whether we beat other teams.</p>
+<p><b>What they do grade, we are behind on.</b> Three emails nobody opened. A deliverable due Oct 23 nobody started. An IPS due Nov 6 with no draft.</p>
+<p style="margin-bottom:0"><b>So today is not about the money.</b> Ten minutes on the account, thirty-five on the work that counts.</p>
 </div>
 
-<div class="say" style="border-left-color:#1C3557"><span class="k" style="color:#1C3557">The one rule</span><p>Said out loud at 1:00: <b>nothing leaves this room as a decision unless somebody writes the reason down.</b> Not as bookkeeping &mdash; the written reason <i>is</i> the deliverable. Three of them are due on Oct 23 and the competition says it will verify them against the account.</p></div>
+<div class="say" style="border-left-color:#B3261E"><span class="k" style="color:#B3261E">Before you sit down</span>
+<p><b>Text Caleb.</b> Without his vote we cannot pass anything that needs 4 of 5, and he owns the IPS. <a href="caleb.html">The message is written.</a> One thumbs up and item 6 is safe.</p>
+<p style="margin-bottom:0"><b>Open the WInS account on a screen.</b> Items 2 and 3 are things we read off it, not things we discuss.</p>
+</div>
 
 <div class="rule3">
-<div><span>Where we actually are</span><p>$297,652.53. <b>&minus;0.78%</b>, of which $320 is commissions. <b>23 days</b> of trading left, 14 of 200 trades used.</p></div>
-<div><span>What is graded</span><p>Five criteria: strategy, client knowledge, portfolio analysis, articulation, creativity. <b>None of them is return.</b></p></div>
-<div><span>How long</span><p>45 minutes. <b>The first two items are on a screen</b> and take ten. If we run late, item 6 moves to Sunday.</p></div>
+<div><span>The number</span><p>$297,652.53. <b class="dn">&minus;0.78%</b>. <b>23 days</b> of trading left. 14 of 200 trades used.</p></div>
+<div><span>What is graded</span><p>Strategy, client knowledge, portfolio analysis, articulation, creativity. <b>Not return.</b></p></div>
+<div><span>The one rule</span><p><b>Nothing is decided unless somebody writes down why.</b> The written reason is the deliverable.</p></div>
 </div>
 
 <div class="block first">
 <div class="time"><span class="t">1:00</span><span class="d">4 min</span></div>
 <div class="body">
-<h2>The number, and what it is not</h2>
-<div class="decide"><i>Say it</i> We are down $2,347.47. Today cost $2,528 of that. Before this morning we were up. Nobody panics over one session.</div>
-<ul>
-<li><b>Why it happened, so nobody guesses:</b> September CPI printed <b>3.7%</b> against a 3.6% estimate, the hottest since April, and core came in at 2.6% against 2.5%. Odds of a Fed <i>hike</i> this month went from 22% to <b>37%</b> in a day. Higher rates hit long-duration assets hardest, which is exactly what we own on the industrial side, and they raise the financing cost of the whole AI buildout. One print, and it went straight at our two biggest tilts.</li>
-<li><b>The bonds did not move, and that is real</b>, not the simulator being lazy. The 10-year spiked to 5.33% on the print and then <b>closed down 2bp at 5.19%</b> as money rotated out of stocks and into Treasuries. Our two notes should be roughly flat today, and they are.</li>
-<li><b>This morning, line by line:</b> GEV &minus;6.6%, ETN &minus;4.8%, IBKR &minus;4.0%, NVDA &minus;3.3%, GOOG &minus;1.7%, AMZN &minus;1.8%. The tape was Nasdaq &minus;1.97% against Dow &minus;0.11% &mdash; a tech day, and we are tilted into tech.</li>
-<li><b>The other half of the book did exactly its job.</b> JNJ <b>+2.09%</b>, BKNG <b>+1.97%</b>, MDT <b>+1.29%</b>. Both Treasuries and BIL did not move at all. That is diversification working, not failing &mdash; say that to anyone who asks.</li>
-<li><b>Ignore the &ldquo;Excess Returns &minus;1.30%&rdquo; box.</b> It compares our live intraday number against a benchmark figure from last night's close. On the chart, where both share a timestamp, the real gap is about 0.6 of a point. Quote that one.</li>
-<li><b>$320 of the drawdown is commissions</b> &mdash; 14% of it. $25 a stock trade, $10 a bond trade. An equity sell-and-replace costs $50 round trip, which is <b>0.60% of a typical $8,400 position</b>. That is the bar any swap has to clear.</li>
+<span class="pri now">Everyone will ask this</span>
+<h2>Why everything went down at once</h2>
+<div class="ans"><span class="lbl">The answer</span><p>One inflation number yesterday morning. That is the whole thing.</p></div>
+<ul class="plain">
+<li>September inflation came in at <b>3.7%</b>. Everyone expected 3.6%.</li>
+<li>That small miss moved the odds of a Fed rate hike from <b>22% to 37% in one day</b>.</li>
+<li>Higher rates hurt companies that borrow money to build things. That is <b>GEV and ETN</b>.</li>
+<li>Higher rates also hurt AI, because the whole buildout is paid for with borrowed money. That is <b>NVDA</b>.</li>
+<li class="down">So they fell together: GEV <span class="dn">&minus;6.6%</span>, ETN <span class="dn">&minus;4.8%</span>, IBKR <span class="dn">&minus;4.0%</span>, NVDA <span class="dn">&minus;3.3%</span>.</li>
+<li class="up">The rest of the book went up: JNJ <span class="up">+2.1%</span>, Booking <span class="up">+2.0%</span>, Medtronic <span class="up">+1.3%</span>. Both Treasuries did not move.</li>
 </ul>
-<div class="decide"><i>Done when</i> Everyone has heard that one day is not a verdict, and we stop talking about the P/L for the rest of the meeting.</div>
+<div class="matters"><b>Why this matters:</b> five of our nine stocks are the same bet. When that bet has a bad day, most of the portfolio has a bad day. That is item 5.</div>
+<div class="decide"><i>Done when</i> Everyone understands it was one number, not nine bad companies, and we stop talking about the P/L.</div>
 </div>
 </div>
 
 <div class="block">
 <div class="time"><span class="t">1:04</span><span class="d">6 min</span></div>
 <div class="body">
-<h2>Three things we read off the screen, right now</h2>
-<div class="decide"><i>Say it</i> All three of these have been open for weeks and all three take two minutes. We are not leaving the room with them still open.</div>
-<ul>
-<li><b>Open the Week One, Week Two and Week Three emails.</b> They are sitting in Recent File Uploads on the dashboard. <b>Nobody has ever opened any of them.</b> Week Three is the one that announced the Oct 23 deliverable, which means we found out about it by accident.</li>
-<li><b>Portfolio Simulation &rarr; Portfolio Summary &rarr; Session Rules.</b> Confirm the 25% position limit and, just as importantly, <b>what it is 25% of</b> &mdash; portfolio value, equity, or starting capital. We have been sizing orders against this number for three weeks and have never read it. Wharton itself sets no position limit; the 25% is a StockTrak default we assumed.</li>
-<li><b>Confirm the commission schedule</b> on the same page: $25 a stock trade, $10 a Treasury. $320 across 14 trades fits that exactly, so this should take ten seconds.</li>
+<span class="pri quick">Two minutes each, open for weeks</span>
+<h2>Three things we read off the screen</h2>
+<div class="ans"><span class="lbl">The answer</span><p>We are not leaving with these still open. All three are on the account, right now.</p></div>
+<ul class="plain">
+<li><b>Open the Week One, Week Two and Week Three emails.</b> Nobody has ever opened any of them. Week Three is how we found out about the Oct 23 deliverable, by accident.</li>
+<li><b>Portfolio Simulation &rarr; Portfolio Summary &rarr; Session Rules.</b> Confirm the 25% position limit, and what it is 25% <i>of</i>. We have been sizing orders against it for three weeks without reading it.</li>
+<li><b>Confirm commissions:</b> $25 a stock, $10 a bond. $320 across 14 trades fits that exactly.</li>
 </ul>
-<div class="decide"><i>Done when</i> All three are read out loud and Federico has the actual wording in the minutes. If the limit is not 25%, that changes position sizing and we say so before anyone trades again.</div>
+<div class="matters"><b>Worth saying out loud:</b> Wharton sets <b>no</b> position limit at all. The 25% is a StockTrak default we assumed. Our 5% and 8% rules are ours too &mdash; do not call them competition rules.</div>
+<div class="decide"><i>Done when</i> All three are read aloud and Federico has the exact wording in the minutes.</div>
 </div>
 </div>
 
 <div class="block">
-<div class="time"><span class="t">1:10</span><span class="d">8 min</span></div>
+<div class="time"><span class="t">1:10</span><span class="d">7 min</span></div>
 <div class="body">
-<h2>Oct 23 is homecoming. Move the deliverable to Monday Oct 20.</h2>
-<div class="decide"><i>Decide</i> The Trading Notes Analysis gets finished Mon Oct 20, not Fri Oct 23. And we name the three notes today, with the account open.</div>
-<ul>
-<li><b>The collision:</b> the deliverable is due Friday Oct 23 at 5:00pm ET, which is <b>4:00pm our time</b>. That is the day of the Bishop Lynch home game, on a Special Early Release schedule. Nobody is writing a graded submission that afternoon.</li>
-<li><b>The notes are in better shape than you think.</b> The instructions say <i>&ldquo;Include each Trading Note exactly as it appears in WInS&rdquo;</i> &mdash; and WInS caps that box at <b>300 characters</b>, which it enforces by truncating mid-word with no warning and no way to edit afterwards. <b>Thirteen of our fourteen came in between 206 and 289 characters.</b> The drafts were all over the limit; somebody caught it on Oct 7 and rewrote them before keying. That save is why we have a deliverable at all.</li>
-<li><b>The one exception is VOO</b>, which was keyed before the limit was discovered. Its note in the account is cut off mid-sentence and cannot be repaired. <b>Do not pick VOO as one of the three.</b></li>
-<li><b>We still have to read them off the account</b>, because what we have on file is what we <i>meant</i> to key, not what is actually stored. Ten minutes with the account open settles it. Confirm each one matches, and flag any that does not.</li>
-<li><b>The three are already picked, and they are on <a href="keying.html">keying.html</a>.</b> One from each pile, so the submission shows the whole strategy instead of three versions of one idea: <b>the 5.375% Treasury of 2031</b> (Pile A &mdash; it repays a fixed amount on a fixed date, so Laura&rsquo;s certainty is structural rather than a probability, and Wharton&rsquo;s own example note is a Treasury), <b>GEV</b> (Pile B &mdash; the only name every one of us voted for), and <b>BIL</b> (Pile C &mdash; a reserve with a written trigger, which most teams cannot defend holding and we can). Confirm them, do not re-pick them.</li>
+<span class="pri now">Hard deadline, 8 days</span>
+<h2>Oct 23 is homecoming. Move it to Monday.</h2>
+<div class="ans"><span class="lbl">The answer</span><p>We finish the Trading Notes Analysis Monday Oct 20. Nobody is writing a graded submission on homecoming afternoon.</p></div>
+<ul class="plain">
+<li>It is due <b>Friday Oct 23 at 4:00pm our time</b>. That is the Bishop Lynch home game, on an early release schedule.</li>
+<li>Federico owns it. It has <b>not been started</b>.</li>
+<li><b>Good news:</b> the three notes are already picked and they are clean. 206 to 289 characters, all inside the 300 limit.</li>
+<li>They are <b>GEV</b> (the only name all five of us voted for), <b>the 5.375% Treasury of 2031</b> (it pays Laura on a fixed date, and Wharton's own example is a Treasury), and <b>BIL</b> (a reserve with a written trigger, which most teams cannot defend).</li>
+<li><b>Do not pick VOO.</b> It was keyed before we found the character limit and its note is cut off.</li>
+<li>Still read all 14 off the account to confirm. What is in our files is what we <i>meant</i> to type.</li>
 </ul>
-<div class="decide"><i>Done when</i> Three notes are named in the minutes, checked against the account, Federico owns the draft, and the working deadline on the calendar says Oct 20.</div>
+<div class="matters"><b>All that is left</b> is 100 words on each: why we did it, how it fit the strategy, how it helped Laura. Three hundred words total. One evening.</div>
+<div class="decide"><i>Decide</i> Three notes confirmed on screen, Federico owns the draft, calendar says Oct 20.</div>
 </div>
 </div>
 
 <div class="block">
-<div class="time"><span class="t">1:18</span><span class="d">10 min</span></div>
+<div class="time"><span class="t">1:17</span><span class="d">7 min</span></div>
 <div class="body">
-<h2>The concentration question &mdash; Dylan, this is the bear case</h2>
-<div class="decide"><i>Decide</i> Is the AI chain a deliberate bet we write down and defend, or do we trim one name? Both answers are defensible. Not writing it down is not.</div>
-<ul>
-<li><b>Five of our nine names are one chain.</b> GOOG and AMZN spend the money, NVDA sells them the chips, GEV and ETN supply the power it all runs on. <b>$48,076.81 at cost, 16% of the account.</b> This morning they moved together, which is the whole point.</li>
-<li><b>The honest counter-argument, and we should make it ourselves:</b> GOOG and AMZN sit on the <i>opposite side</i> of that trade. If AI spending disappoints, their margins improve. That is why they fell under 2% today while the suppliers fell 3&ndash;7%. It is a partial internal hedge, not amplification &mdash; but it is still one theme.</li>
-<li><b>True exposure, counting what VOO already holds for us:</b> NVDA 4.66% of the account, JNJ 4.75%, GEV 4.47%, GOOG 3.83%, AMZN 3.44%. Nothing breaches our self-imposed 5% cap. That cap is ours, by the way, not Wharton's &mdash; do not present it as a competition rule.</li>
-<li><b>There is no written theme or correlation analysis anywhere in our work.</b> Every name has a thesis; nothing groups them. A judge reading the IPS will find this concentration in about ninety seconds. Far better that we found it first and said so.</li>
+<span class="pri decide">Decide today</span>
+<h2>Medtronic: the reason we bought it is gone</h2>
+<div class="ans"><span class="lbl">The answer</span><p>We bought it for diabetes. The diabetes business left the company nine days later.</p></div>
+<ul class="plain">
+<li><b>MiniMed is Medtronic's diabetes arm.</b> It was split off on <b>Oct 9</b>. The final numbers came out <b>yesterday</b>.</li>
+<li><b>Medtronic owns none of it now.</b> Zero.</li>
+<li>The reason on our ballot was diabetes growth through 2033. That reason does not exist any more.</li>
+<li><b>Our graded record is still clean, and that was not luck.</b> Somebody caught this on Oct 7 and rewrote the note to &ldquo;its device lines sell steadily through any economy&rdquo; before we keyed. Wharton never sees the word diabetes.</li>
+<li class="up">It is our <b>best position, +9.19%</b> &mdash; and part of that is not us being right. A split-off buys shares back at a discount, which pushes up whatever is left.</li>
 </ul>
-<div class="decide"><i>Done when</i> We have a one-sentence answer that can go straight into the IPS, and Dylan owns writing the bear case up properly by Sunday.</div>
+<div class="matters"><b>The real question is not the 9%.</b> It is: would we buy Medtronic today, for what it actually is now? If yes, somebody writes the new reason down. If we only ever wanted diabetes, we sell it.</div>
+<div class="decide"><i>Decide</i> A new one-sentence reason with a name on it, or MDT goes on the sell list with a note written first.</div>
 </div>
 </div>
 
 <div class="block">
-<div class="time"><span class="t">1:28</span><span class="d">5 min</span></div>
+<div class="time"><span class="t">1:24</span><span class="d">9 min</span></div>
 <div class="body">
-<h2>Medtronic: the reason we bought it is now definitively gone</h2>
-<div class="decide"><i>Decide</i> Either somebody writes a new thesis for what Medtronic is now, or we sell it. Holding a position whose reason has left the company is the one thing we cannot defend.</div>
-<ul>
-<li><b>What happened:</b> the MiniMed exchange offer closed Fri Oct 9 and the final results were announced <b>today</b>. Medtronic now retains <b>zero</b> MiniMed. The ballot reason for buying it was diabetes.</li>
-<li><b>The graded record is clean, and that is not luck.</b> Somebody caught this on Oct 7 and rewrote the WInS note to &ldquo;its device lines sell steadily through any economy&rdquo; before keying. The note Wharton reads does not mention diabetes. That catch is worth saying out loud.</li>
-<li><b>It is also our best position, +9.19%</b> &mdash; and part of that is arithmetic rather than judgment. A split-off retires shares at a discount, which mechanically lifts what is left. Do not book it as a pick that worked.</li>
-<li><b>This is the one place Coach P's &ldquo;probe your thesis&rdquo; actually lands.</b> His other two Ps do not: only two names are up at all, and you cannot protect profits on a book that is down. Say that respectfully, with the numbers.</li>
+<span class="pri decide">Decide today &middot; Dylan leads</span>
+<h2>Five of our nine stocks are the same bet</h2>
+<div class="ans"><span class="lbl">The answer</span><p>Google and Amazon spend the money. Nvidia sells them the chips. GE Vernova and Eaton supply the power. That is one chain, $48,077, about 16% of everything.</p></div>
+<ul class="plain">
+<li>That is why they all fell together yesterday. It was not five separate pieces of bad news.</li>
+<li><b>The honest counter-argument, and we should make it ourselves:</b> Google and Amazon are on the <i>other side</i> of that trade. If AI spending slows, their costs drop. That is why they fell under 2% while the suppliers fell 3 to 7%.</li>
+<li>Counting what VOO already holds for us: NVDA is 4.66% of the account, JNJ 4.75%, GEV 4.47%.</li>
+<li><b>Nothing we own breaks our 5% rule.</b> That rule is ours, not Wharton's.</li>
+<li><b>We have never written down a theme or correlation analysis.</b> Every name has a reason; nothing groups them.</li>
 </ul>
-<div class="decide"><i>Done when</i> Either a new one-sentence thesis is in the minutes with a name next to it, or MDT is on the sell list for next week with a note written in advance.</div>
+<div class="matters"><b>Why this matters more than it sounds:</b> a judge reading our IPS finds this concentration in about ninety seconds. It is much better that we found it first and said so. <b>The fix is a paragraph, not a sale.</b></div>
+<div class="decide"><i>Decide</i> One sentence we can put straight into the IPS, and Dylan writes the bear case up properly by Sunday.</div>
 </div>
 </div>
 
 <div class="block">
-<div class="time"><span class="t">1:33</span><span class="d">6 min</span></div>
+<div class="time"><span class="t">1:33</span><span class="d">7 min</span></div>
 <div class="body">
-<h2>Coach P's flex money &mdash; and the rule nobody has actually voted on</h2>
-<div class="decide"><i>Decide</i> Ratify the Pile C trigger as written, or amend it. It needs <b>4 of 5</b> and has never been voted on, even though it is already published on our own site. <b>If Caleb&rsquo;s reply is not in by lunch, this cannot carry</b> &mdash; four in the room means all four, and if Joe is away too it is three and impossible. Chase the text first.</div>
-<ul>
-<li><b>First, correct the premise, politely.</b> He said we went all-in. We did not. <b>BIL is Pile C.</b> Real dry powder is $41,184 of BIL plus $8,267 of cash &mdash; <b>$49,451, or 16.6% of the account.</b> His screen says &ldquo;Buying Power $8,267&rdquo; because the platform files a T-bill ETF as an equity. He cannot see our flex money. That is our communication problem to fix, not his mistake.</li>
-<li><b>Second, there is a drafted answer from Oct 5 &mdash; and be straight that it is a draft.</b> It was written up and published to our own site without ever being put to the room, which is how <a href="strategy.html">strategy.html</a> came to list it under &ldquo;Settled&rdquo; beside things we did vote on. Nobody in this room should be hearing it for the first time and calling it policy. The rule: if VOO closes <b>10% or more below our cost basis</b>, deploy $6,000&ndash;$12,000 into VOO, at most twice a season. Our cost is $712.32, so <b>the trigger level is $641.09</b>. VOO closed at $707.43 today. <b>It is 9.4% away.</b> His ten-percent correction, if it comes, is roughly what it takes.</li>
-<li><b>And check Trigger 3 while the account is open</b>, because it may be closer than anyone thinks. It fires when a <b>2037&ndash;2042 Treasury yields 5.5% or better</b>. We locked roughly 4.95&ndash;5.15% on Oct 6, but the 10-year sits at <b>5.19%</b> today and touched 5.33% on the CPI print. A rung eleven to sixteen years out should yield more than the ten-year. Pull the yields off the WInS bond list and see &mdash; the one caveat is that this platform prices bonds above the real market, which pushes its yields <i>down</i>.</li>
-<li><b>And read the &ldquo;Settled&rdquo; list on <a href="strategy.html">strategy.html</a> out loud, once.</b> The Pile C trigger was sitting in it, and it was never voted on &mdash; which means the list is not a record of what the team decided, it is a record of what got written down. Three minutes: read the six items and ask who remembers voting on each. Anything nobody remembers comes off the list or goes to a vote. <b>Criterion 4 is how we made decisions</b>, so a page claiming settled things we never settled is the exact thing that costs us there.</li>
-<li><b>Two gaps to close today.</b> The trigger was never voted on. And <b>Trigger 1 cannot physically fire</b> &mdash; it needs a buy price written in advance for an approved name, and we never wrote one for any of the nine. That is nine numbers in one column, and it is the homework.</li>
-<li><b>Park the 15% &rarr; 10% shrink.</b> That one is a real plan change, not a ratification, and it deserves all five people in a conversation rather than four and a text. Put it on Sunday.</li>
-<li><b>Still undecided from Oct 6, and routed to the call that was cancelled:</b> Coach P's proposal to cut Pile C from 15% to 10%, and the BIL trim that left it at 13.72% instead of the 15% we voted for. Settle both or re-route them with a date.</li>
+<span class="pri decide">Needs 4 of 5 &middot; Caleb's vote first</span>
+<h2>Coach P, answered properly</h2>
+<div class="ans"><span class="lbl">The answer</span><p>He thinks we went all in. We did not &mdash; and that is our fault, not his.</p></div>
+<ul class="plain">
+<li><b>His screen shows &ldquo;Buying Power $8,267.&rdquo;</b> That is all he can see.</li>
+<li><b>BIL is our flex money.</b> It is a T-bill fund, so the platform files it under equities and hides it from him.</li>
+<li><b>What we could actually spend today:</b> $41,184 of BIL plus $8,267 of cash = <b>$49,451</b>, or <b>16.6%</b>. Tell him that number.</li>
+<li>He asked when we would put it to work. <b>There is a draft rule from Oct 5:</b> if VOO closes 10% below what we paid, deploy $6,000&ndash;$12,000 into VOO. That level is <b>$641.09</b>. VOO closed at <b>$707.43</b>, so we are 9.4% away.</li>
+<li><b>Say the word &ldquo;draft&rdquo;.</b> Nobody voted on that rule. It was written up and put on our own site without ever coming to the room, which is how <a href="strategy.html">strategy.html</a> ended up listing it under &ldquo;Settled&rdquo;.</li>
+<li><b>His three Ps:</b> probe your thesis, partials on gains, protect your profits. <b>Only the first one applies.</b> Two of our twelve positions are up, so there are no profits to take or protect. Medtronic is exactly where &ldquo;probe your thesis&rdquo; lands.</li>
 </ul>
-<div class="decide"><i>Done when</i> The trigger is ratified or amended on a show of hands, and somebody owns nine buy prices by Sunday.</div>
+<div class="matters"><b>Read the whole &ldquo;Settled&rdquo; list out loud while we are here.</b> Six items, three minutes. Ask who remembers voting on each. Anything nobody remembers comes off the list or goes to a vote. <b>Criterion 4 is how we made our decisions</b> &mdash; a page claiming we settled things we never settled is exactly where that score goes.</div>
+<div class="decide"><i>Decide</i> Ratify the trigger or amend it, on a show of hands. <b>If Caleb has not replied, this cannot carry</b> &mdash; four in the room means all four. Park the 15%&rarr;10% shrink for Sunday; that one is a real change and deserves all five.</div>
 </div>
 </div>
 
 <div class="block">
-<div class="time"><span class="t">1:39</span><span class="d">6 min</span></div>
+<div class="time"><span class="t">1:40</span><span class="d">5 min</span></div>
 <div class="body">
-<h2>Who does what, by when</h2>
-<div class="decide"><i>Say it</i> Every line here has a name and a date. The two graded deadlines are Oct 23 and Nov 6, and neither has a draft.</div>
+<span class="pri now">Say every name and date out loud</span>
+<h2>Who does what</h2>
 <div class="table-wrap"><table class="ord">
-<tr><th style="width:16%">Who</th><th>What</th><th style="width:20%">By when</th></tr>
-<tr><td class="tk"><b>Caleb</b><br><span style="font-weight:400;font-size:9pt;color:#6B7280">by text, not in the room</span></td><td>First draft of the IPS &mdash; 50-word elevator pitch plus 500 words. Times New Roman 12pt, double-spaced, 1in margins, PDF. No graphics, charts, links or citations are permitted, and a submission that misses the format <i>is not considered for semifinals</i>.</td><td>Draft <b>Fri Oct 23</b><br>Due Nov 6</td></tr>
-<tr><td class="tk"><b>Federico</b></td><td>Minutes for today posted. Then the Trading Notes Analysis: three notes pasted exactly as WInS shows them, plus a 100-word reflection each.</td><td>Minutes <b>Fri Oct 16</b><br>Notes <b>Mon Oct 20</b></td></tr>
-<tr><td class="tk"><b>Dylan</b></td><td>The bear case, in writing, on the portfolio we actually own &mdash; led by the AI-chain concentration. This was due Oct 11.</td><td><b>Sun Oct 18</b></td></tr>
-<tr><td class="tk"><b>Joe</b></td><td>The required-return number and the ladder, and put his reaction to the $88,500 split on the record so the minutes read 5 of 5 instead of 4.</td><td><b>Today</b></td></tr>
-<tr><td class="tk"><b>Michael</b></td><td>Send Coach P the correction. Rotate the WInS password &mdash; it was spoken on a public recording on Sep 27 and is still live.</td><td><b>Both overdue</b></td></tr>
+<tr><th style="width:15%">Who</th><th>What</th><th style="width:19%">By when</th></tr>
+<tr><td class="tk"><b>Caleb</b><br><span style="font-weight:400;font-size:9pt;color:#6B7280">by text</span></td><td><b>The IPS.</b> 50-word pitch plus 500 words. Times New Roman 12, double spaced, 1 inch margins, PDF. No charts, images, links or citations. <b>A submission that misses the format is not considered for semifinals.</b></td><td>Draft <b>Fri Oct 23</b><br>Due Nov 6</td></tr>
+<tr><td class="tk"><b>Federico</b></td><td>Minutes posted today, not tomorrow. Then the three notes plus 100 words each.</td><td>Minutes <b>Fri Oct 16</b><br>Notes <b>Mon Oct 20</b></td></tr>
+<tr><td class="tk"><b>Dylan</b></td><td>The bear case in writing, led by the five-name chain. This was due Oct 11.</td><td><b>Sun Oct 18</b></td></tr>
+<tr><td class="tk"><b>Joe</b></td><td>The required-return number and the ladder. Put his reaction to the $88,500 split on the record so the minutes read 5 of 5.</td><td><b>Today</b></td></tr>
+<tr><td class="tk"><b>Michael</b></td><td>Send Coach P the correction. Rotate the WInS password &mdash; spoken on a public recording Sep 27.</td><td class="dn"><b>Both overdue</b></td></tr>
 </table></div>
-<ul>
-<li><b>What is coming before the freeze:</b> IBKR reports <b>tomorrow</b>, Oct 15, and it is down 4% going in &mdash; which is odd, because its revenue is interest on client cash and today’s news was <i>higher</i> rate odds. Worth a question, not a trade. GEV reports Oct 28, the same day as the Fed meeting. GDP and PCE land Oct 29, midterms Nov 3, the jobs report Nov 6. <b>Eight of our ten names report inside this window</b> &mdash; and NVDA and MDT both report <i>after</i> the Nov 6 freeze, so neither will ever print earnings inside this competition.</li>
-<li><b>Nov 6 is a hard stop.</b> The IPS is due, trading ends, the portfolio freezes and we may not change our holdings. Everything after that is the Final Report, due Dec 4, whose requirements are not released until Nov 9.</li>
-</ul>
-<div class="decide"><i>Done when</i> Every row above has been said out loud with its owner in the room, and Federico has it in the minutes.</div>
+<div class="matters"><b>Before the Nov 6 freeze:</b> IBKR reports today. GEV reports Oct 28, same day as the Fed. GDP and inflation Oct 29. Midterms Nov 3. Jobs Nov 6. <b>Eight of our ten names report inside this window</b>, and NVDA and MDT both report after it, so neither ever prints earnings inside this competition.</div>
+<div class="decide"><i>Done when</i> Federico writes the minutes before he goes home. That one habit fixes the most.</div>
 </div>
 </div>
 
 <div class="links"><h3>If you are wondering</h3><div class="lgrid">
-<div><h4>The full reasoning, if you want it</h4><p><a href="oct14-plan.html">Why we are trading nothing this week</a>, with the recommendation on each of the three open decisions. And <a href="oct14-numbers.html">every number checked</a>, including where the $300,000 actually went.</p></div>
-<div><h4>Why we are not trading our way out of this</h4><p>Because we are one session into a six-week portfolio, because an equity round trip costs 0.60% of a position before it earns anything, and because the trades are graded as <i>decisions</i>, not as profit. A trade with no written reason costs us twice.</p></div>
-<div><h4>Why the return genuinely does not matter</h4><p>The Guide says it in one line: <i>&ldquo;This is not a competition to see which team can make the most money in a few weeks.&rdquo;</i> Ranking, trade count, beating other teams and whether the portfolio makes money are all listed as things we are <b>not</b> evaluated on.</p></div>
-<div><h4>Why BIL is not &ldquo;money sitting there&rdquo;</h4><p>It is a one-to-three-month Treasury bill fund &mdash; cash wearing a ticker, earning the short rate while it waits. It is Pile C, it has a written job, and the only reason it looks invested is that the platform files every ETF as an equity.</p></div>
-<div><h4>If Coach P brings up the three Ps</h4><p>Probe your thesis lands, and Medtronic is exactly where. The other two do not: only MDT and BKNG are up at all, and there are no profits to protect on a book that is down $2,347. Taking partials every time something moves also contradicts the ten-year horizon we are about to put in writing.</p></div>
-<div><h4>What the Oct 11 call decided</h4><p>Nothing &mdash; <b>it was cancelled.</b> Michael called it off at 7:56pm that Sunday with 4 of 5 unable to attend. The three decisions routed to it (ratify the BIL trim, settle Medtronic, size Pile C) were never taken, which the account confirms: still 14 of 200 trades, cash unchanged at $8,267.06. All three are on this agenda.</p></div>
-<div><h4>Where the order record actually is</h4><p><a href="keying.html">keying.html</a> &mdash; and the prices on it were the Oct 6 estimates until today. The real fills came in $488.90 cheaper than the sheet&rsquo;s prices, and the sheet over-allowed for the bond coupon and tickets by $3.27, which is why cash settled at $8,267.06 rather than the $7,774.89 we projected.</p></div>
+<div><h4>Why we are not selling anything</h4><p>One bad session is not a reason. A sell-and-replace costs $50 in commissions, about 0.60% of a position, before it earns anything. And the trades are graded as <i>decisions</i>, not as profit &mdash; a loss with a written reason scores, a gain with no reason does not.</p></div>
+<div><h4>Why the money genuinely does not matter</h4><p>Straight from the Guide: <i>&ldquo;This is not a competition to see which team can make the most money in a few weeks.&rdquo;</i> Ranking, trade count, beating other teams and whether the portfolio makes money are all listed as things we are <b>not</b> evaluated on.</p></div>
+<div><h4>What happened to the Sunday call</h4><p><b>It was cancelled.</b> Michael called it off at 7:56pm with 4 of 5 unable to make it. Its three decisions were never taken, which the account confirms &mdash; still 14 of 200 trades, cash unchanged. All three are on this agenda.</p></div>
+<div><h4>The full reasoning</h4><p><a href="oct14-plan.html">Why we are trading nothing this week</a>, and <a href="oct14-numbers.html">every number checked</a> &mdash; where the $300,000 actually went, and the two figures on the WInS screen that mislead.</p></div>
 </div></div>
 
 </body></html>
