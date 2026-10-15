@@ -399,7 +399,18 @@ ul.plain li.down:before{background:#B3261E}
 .dn{color:#B3261E;font-weight:700}
 .up{color:#1E6B45;font-weight:700}
 @media print{.pri{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style></head><body>
+</style><style>
+@media print{
+  /* Nothing may be split across a page. A block cut in half mid-meeting is useless. */
+  .block,.say,.rule3,.rule3>div,.ans,.card,.matters,.decide,.links,.lgrid>div,
+  table,tr,.table-wrap,.superseded,header{page-break-inside:avoid!important;break-inside:avoid!important}
+  h1,h2,h3,.pri{page-break-after:avoid!important;break-after:avoid!important}
+  .block{page-break-before:auto}
+  ul.plain li{page-break-inside:avoid!important;break-inside:avoid!important}
+  a{text-decoration:none;color:inherit}
+}
+</style>
+</head><body>
 
 <div class="superseded"><span class="k">Today &middot; Thursday October 15</span><p>This is the live agenda for today's lunch meeting. Figures are <b>yesterday's close, Wed Oct 14</b>. <b>When the meeting is over, replace this banner with a link to the minutes.</b> Times assume the 1:00&ndash;1:50 slot we used on Oct 6.</p></div>
 
