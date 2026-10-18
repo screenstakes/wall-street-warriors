@@ -11,7 +11,7 @@ find what is missing. Run this before telling Michael anything is done.
 import os, re, sys, html, html.parser, datetime, glob, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TODAY = datetime.date(2026, 10, 14)
+TODAY = datetime.date.today()   # was pinned to 2026-10-14; a staleness checker must not itself be stale
 QUIET = "--quiet" in sys.argv
 
 FAILS, WARNS, OKS = [], [], []
@@ -202,6 +202,26 @@ if os.path.exists(CSS_PATH):
                            "not truncate; this silently cut text on the dashboard")
     else:
         ok("css policy", "tile subtitles wrap rather than truncate")
+
+# ---------------------------------------------------------------- 7c. pages that still call themselves "today"
+# oct15.html sat for three days saying "Today - Thursday October 15". The tense check did
+# not catch it because nothing was future tense; the page was simply anchored to a day that
+# had passed. A page naming a specific date as "today" is only true for 24 hours.
+for p, s_ in TEXT.items():
+    if p in RETRO: continue
+    plain = strip(s_)
+    for m in re.finditer(r"[Tt]oday\s*(?:&middot;|·|-|\u2014)?\s*"
+                         r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\s+"
+                         r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})",
+                         plain):
+        month, day = m.group(2), int(m.group(3))
+        months = ["January","February","March","April","May","June","July","August",
+                  "September","October","November","December"]
+        named = datetime.date(TODAY.year, months.index(month) + 1, day)
+        if named != TODAY:
+            fail("stale today", f"{p}: says 'today' of {named.isoformat()}, but today is {TODAY.isoformat()}")
+if not [f for f in FAILS if f[0] == "stale today"]:
+    ok("dated pages", "no page calls a date other than today 'today'")
 
 # ---------------------------------------------------------------- 8. the questions a reader arrives with
 MUST = [
