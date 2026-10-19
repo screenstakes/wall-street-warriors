@@ -56,6 +56,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:38px 0}
 <p><b>1.</b> Go to <b>forms.new</b></p>
 <p><b>2.</b> Extensions &rarr; Apps Script</p>
 <p><b>3.</b> Paste this over everything that is there. Save. Run.</p>
+<p><b>3b.</b> <b style="color:#B3261E">Check the dropdown next to Debug says <code>buildTheBallot</code></b>, not <code>soft</code>. Apps Script picks the first function and running the wrong one completes silently with no output, which looks like it worked.</p>
 <p style="margin-bottom:0"><b>4.</b> Approve it. <i>&ldquo;Google hasn't verified this app&rdquo;</i> shows up because you wrote it &mdash; Advanced &rarr; Go to (unsafe). <b>Your link prints at the bottom.</b></p>
 </div>
 
@@ -76,7 +77,9 @@ hr{border:0;border-top:1px solid var(--rule);margin:38px 0}
  * Safe to run twice: it clears the form first.
  */
 
-function soft(fn) { try { fn(); } catch (e) {} }
+// NOTE: buildTheBallot MUST be the first function in this file. Apps Script
+// preselects the first one in the Run dropdown, and running the helper by
+// mistake completes silently with no output, which looks like success.
 
 function buildTheBallot() {
   var form = null;
@@ -171,6 +174,8 @@ function buildTheBallot() {
   Logger.log('Edit it here:     ' + form.getEditUrl());
   Logger.log('Questions added:  ' + form.getItems().length);
 }
+
+function soft(fn) { try { fn(); } catch (e) {} }
 </pre>
 
 <h2>Three things it does that matter</h2>
