@@ -1,0 +1,534 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The October ballot &mdash; Wall Street Warriors</title>
+<style>
+  /* 0.6in all round. At 0.5in the ink ran flush to the right edge and a
+     reprint through another print dialog clipped it; 0.6in clears every
+     printer's unprintable border and keeps full-width boxes centred. */
+  @page { size: letter; margin: 0.6in; }
+  :root{ --navy:#1C3557; --gold:#9A7326; --ink:#23292F; --muted:#6B7280;
+         --ground:#FCFAF6; --rule:#DED6C6; --wash:#F4EFE4; --link:#1F4E8C; }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--ground); color:var(--ink);
+       font-family:Charter,"Iowan Old Style",Georgia,serif; font-size:10.2pt; line-height:1.44;}
+  a{color:var(--link); text-decoration:none; border-bottom:.5pt solid rgba(31,78,140,.4);}
+  .sans{font-family:"Avenir Next",Avenir,"Helvetica Neue",sans-serif;}
+
+  header{border-bottom:1.6pt solid var(--navy); padding-bottom:7pt; margin-bottom:10pt;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16pt;}
+  .eyebrow{font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  h1{font-size:19pt; line-height:1.03; margin:0; color:var(--navy); font-weight:600; letter-spacing:-.012em;}
+  .who{font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt; color:var(--muted);
+    text-align:right; line-height:1.55;}
+  .who b{color:var(--navy); font-weight:600;}
+
+  .say{background:var(--wash); border-left:2.5pt solid var(--gold); padding:8pt 11pt; margin:0 0 9pt;}
+  .say .k{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:4pt;}
+  .say p{margin:0 0 4pt; font-size:10.6pt; line-height:1.4;}
+  .say p:last-child{margin-bottom:0;}
+  .say b{color:var(--navy);}
+
+  .owns{margin:0 0 10pt;}
+  .owns .cap{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.2pt; color:var(--navy);
+    font-weight:600; margin:0 0 4pt;}
+  .owns .cap span{font-weight:400; color:var(--muted);}
+  .grid{display:flex; border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);}
+  .grid div{flex:1; padding:5pt 8pt 6pt 0;}
+  .grid div + div{border-left:.6pt solid var(--rule); padding-left:8pt;}
+  .grid span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;
+    min-height:2.1em;}
+  .grid p{margin:0; font-size:8.8pt; line-height:1.3;}
+  .grid .out span{color:var(--muted);}
+  .grid .out p{color:var(--muted); font-style:italic;}
+
+  .block{display:flex; gap:11pt; padding:7.5pt 0; border-top:.6pt solid var(--rule); break-inside:avoid; page-break-inside:avoid;}
+  .block.first{border-top:1pt solid var(--navy);}
+  .time{flex:0 0 54pt; font-family:"Avenir Next",Avenir,sans-serif; padding-top:1pt;}
+  .time .t{display:block; font-size:11.5pt; font-weight:600; color:var(--navy); letter-spacing:-.01em;}
+  .time .d{display:block; font-size:7pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-top:1pt;}
+  .body{flex:1; min-width:0;}
+  h2{font-size:12.6pt; margin:0 0 3.5pt; color:var(--navy); font-weight:600; letter-spacing:-.01em;}
+  ul{margin:0; padding-left:11pt;}
+  li{margin:0 0 2.5pt;}
+  li::marker{color:var(--gold);}
+  b{color:var(--navy); font-weight:600;}
+  .decide{margin-top:5pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    background:var(--wash); padding:5pt 7pt; border-left:2pt solid var(--navy);}
+  .decide i{font-style:normal; font-weight:600; color:var(--gold); letter-spacing:.1em;
+    text-transform:uppercase; font-size:6.8pt; margin-right:5pt;}
+
+  .card{margin-top:5pt; border:.6pt solid var(--rule); background:#fff; padding:6pt 9pt;
+    font-family:"SF Mono",Menlo,Consolas,monospace; font-size:8pt; line-height:1.68;}
+  .card k{color:var(--gold); font-weight:600; display:inline-block; width:58pt;}
+  .card n{color:var(--muted); font-style:italic;}
+
+  ol{margin:0; padding-left:13pt;}
+  ol li{margin:0 0 2.5pt;}
+  ol li::marker{color:var(--gold); font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt;}
+
+  .week{display:flex; gap:9pt;}
+  .week div{flex:1; border-top:2pt solid var(--gold); padding-top:5pt;}
+  .week span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.8pt;
+    font-weight:600; color:var(--navy); margin-bottom:2pt;}
+  .week p{margin:0; font-size:8.8pt; line-height:1.32;}
+
+  .links{border-top:1pt solid var(--navy); margin-top:12pt; padding-top:8pt;}
+  .links h3{font-family:"Avenir Next",Avenir,sans-serif; font-size:9pt; color:var(--navy);
+    margin:0 0 6pt; font-weight:600;}
+  .lgrid{display:flex; gap:14pt;}
+  .lgrid > div{flex:1;}
+  .lgrid h4{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin:0 0 3pt;}
+  .lgrid p{margin:0 0 3pt; font-size:8.8pt; line-height:1.32;}
+  .lgrid p em{font-style:normal; color:var(--muted); font-size:8pt;}
+
+
+  .pb{break-before:page;}
+  .secthead{border-bottom:1.6pt solid var(--navy); padding-bottom:6pt; margin-bottom:9pt;}
+  .secthead h2{font-size:17pt; margin:0 0 2pt;}
+  .secthead p{margin:0; font-size:9pt; color:var(--muted); font-family:"Avenir Next",Avenir,sans-serif;}
+  .rule3{display:flex; gap:9pt; margin:0 0 11pt;}
+  .rule3 div{flex:1; background:var(--wash); border-left:2.5pt solid var(--gold); padding:6pt 9pt;}
+  .rule3 span{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:2pt;}
+  .rule3 p{margin:0; font-size:9pt; line-height:1.33;}
+  .rule3 b{color:var(--navy);}
+
+  .subh{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; font-weight:600;
+    color:var(--navy); margin:0 0 5pt; padding-bottom:3pt; border-bottom:.6pt solid var(--rule);}
+  .subh em{font-style:normal; font-weight:400; color:var(--muted);}
+
+  .sec{display:flex; align-items:baseline; gap:9pt; padding:5.5pt 0 5.5pt 8pt;
+    border-bottom:.6pt solid var(--rule); border-left:2.5pt solid var(--gold);}
+  .sec .nm{flex:0 0 118pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:9.4pt;
+    font-weight:600; color:var(--navy); line-height:1.25;}
+  .sec .ds{flex:1; font-size:9.2pt; line-height:1.34;}
+  .sec .ds i{font-style:normal; color:var(--muted);}
+  .sec .ow{flex:0 0 92pt; text-align:right; font-family:"Avenir Next",Avenir,sans-serif;
+    font-size:8.6pt; font-weight:600; color:var(--gold); line-height:1.25;}
+  .sec .ow em{display:block; font-style:normal; font-weight:400; font-size:7.4pt; color:var(--muted);}
+
+  .open{display:flex; flex-wrap:wrap; gap:0;}
+  .open > div{width:50%; display:flex; align-items:baseline; gap:7pt; padding:4.5pt 10pt 4.5pt 0;
+    border-bottom:.6pt solid var(--rule);}
+  .open .nm{flex:0 0 96pt; font-family:"Avenir Next",Avenir,sans-serif; font-size:8.6pt;
+    font-weight:600; color:var(--muted); line-height:1.25;}
+  .open .ds{flex:1; font-size:8.6pt; line-height:1.3; color:#3D4650;}
+  .open .ds i{font-style:normal; color:var(--muted);}
+
+  .gotcha{margin-top:10pt; border:.6pt solid var(--rule); background:#fff; padding:7pt 10pt;}
+  .gotcha span{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:3pt;}
+  .gotcha p{margin:0 0 4pt; font-size:9.2pt; line-height:1.36;}
+  .gotcha p:last-child{margin-bottom:0;}
+  .card,.decide,.week,.grid,.rule3,.gotcha,.lgrid,.sec,.owns,.say,.secthead,.open{break-inside:avoid; page-break-inside:avoid;}
+  .open > div{break-inside:avoid; page-break-inside:avoid;}
+  h2,h3,.subh{break-after:avoid; page-break-after:avoid;}
+  .superseded{border:1px solid var(--gold); background:var(--wash); border-radius:10px;
+    padding:9pt 12pt; margin:0 0 12pt;}
+  .superseded .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7.6pt;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .superseded p{margin:0; font-size:9.6pt; line-height:1.4;}
+  footer{margin-top:9pt; padding-top:6pt; border-top:.6pt solid var(--rule);
+    font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt; color:var(--muted);
+    display:flex; justify-content:space-between;}
+
+  /* ---- screen + phone. Kept last: earlier rules would otherwise win. ---- */
+  @media screen {
+    body{ padding: 22px clamp(14px,4vw,40px) 40px; max-width: 8.5in; margin: 0 auto; }
+  }
+  @media screen and (max-width: 720px) {
+    body{ font-size: 15px; line-height: 1.5; padding: 16px 16px 40px; }
+    header{ display:block; }
+    .who{ text-align:left; margin-top:6px; font-size:12px; }
+    h1{ font-size: 26px; }
+    .say p{ font-size: 16px; }
+    .grid, .week, .lgrid, .rule3{ display:block; }
+    .grid > div, .week > div, .lgrid > div, .rule3 > div{
+      width:auto; border-left:0; padding-left:0; padding-right:0;
+      border-bottom:1px solid var(--rule); padding-top:8px; padding-bottom:8px; }
+    .rule3 > div{ border-left:3px solid var(--gold); padding-left:10px; margin-bottom:8px;
+      border-bottom:0; }
+    .week > div{ border-top:2px solid var(--gold); border-bottom:0; margin-bottom:8px; }
+    .grid{ border-top:0; }
+    .block{ display:block; }
+    .time{ margin-bottom:4px; }
+    .time .t{ display:inline; font-size:17px; }
+    .time .d{ display:inline; margin-left:8px; font-size:11px; }
+    .time .d br{ display:none; }
+    h2{ font-size: 19px; }
+    ul, ol{ padding-left: 18px; }
+    li{ margin-bottom: 7px; }
+    .card{ font-size: 12px; overflow-x:auto; }
+    .card k{ width:74px; }
+    .sec{ display:block; padding:9px 0 9px 10px; }
+    .sec .nm, .sec .ds, .sec .ow{ flex:none; }
+    .sec .ow{ text-align:left; margin-top:3px; }
+    .sec .ow em{ display:inline; margin-left:6px; }
+    .open{ display:block; }
+    .open > div{ width:auto; display:block; padding:9px 0; }
+    .open .nm{ margin-bottom:2px; }
+    .lgrid p, .lgrid h4{ font-size:14px; }
+    .lgrid > div{ margin-bottom:10px; }
+    footer{ display:block; font-size:11px; }
+    footer span{ display:block; margin-bottom:4px; }
+    a{ padding: 1px 0; }
+    .eyebrow, .say .k, .grid span, .decide i, .rule3 span, .lgrid h4,
+    .gotcha span, .sec .ow em, .time .d, .secthead p, .who{ font-size: 11.5px; letter-spacing:.09em; }
+    .secthead p, .who{ letter-spacing:0; font-size:12.5px; }
+    .subh{ font-size: 13px; }
+    .owns .cap{ font-size: 13px; }
+  }
+
+  /* the opening order list */
+  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;
+    max-width:100%; min-width:0;}
+  table.vt{width:100%; border-collapse:collapse; margin:7pt 0 3pt; font-size:8.4pt;}
+  table.vt th{background:#0B2A5B; color:#fff; font-size:7.2pt; letter-spacing:.03em;
+    text-transform:uppercase; padding:4pt 5pt; text-align:left; border:.4pt solid #0B2A5B;}
+  table.vt td{padding:4pt 5pt; border:.4pt solid #D7DCE5; vertical-align:middle;}
+  table.vt td.vsec{font-size:7.4pt; color:#5B6780; white-space:nowrap;}
+  table.vt td.vnm b{font-size:9pt;}
+  table.vt .vsub{color:#5B6780; font-size:7.6pt;}
+  table.vt th.vp, table.vt td.vp{text-align:center; width:7%;}
+  table.vt td.vy{color:#1B7549; font-weight:700;}
+  table.vt td.vn{color:#B4BBC7;}
+  table.vt th.vct, table.vt td.vct{text-align:center; white-space:nowrap; font-size:8pt;}
+  table.vt th.vrs, table.vt td.vrs{text-align:center; font-weight:700; width:8%;}
+  table.vt tr.vin td{background:#E8F5EC;}
+  table.vt tr.vin td.vrs{color:#1B7549;}
+  table.vt tr.vout td{background:#FBECEA; color:#7A3A33;}
+  table.vt tr.vout td.vrs{color:#AD2A20;}
+  p.vnote{font-size:8.2pt; color:#444; margin:2pt 0 0;}
+  @media screen and (max-width:700px){
+    table.vt{font-size:12px; min-width:560px;} table.vt th{font-size:10px;}
+    table.vt td.vsec,table.vt .vsub{font-size:10px;}
+  }
+  table.ord{width:100%; border-collapse:collapse; margin-top:5pt; font-size:8.8pt;}
+  table.ord th{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; text-align:left;
+    border-bottom:.6pt solid var(--rule); padding:0 6pt 3pt 0;}
+  table.ord td{padding:3.2pt 6pt 3.2pt 0; border-bottom:.6pt solid var(--rule); vertical-align:baseline;}
+  table.ord td.n{font-family:"SF Mono",Menlo,Consolas,monospace; text-align:right; white-space:nowrap;}
+  table.ord td.tk{font-family:"Avenir Next",Avenir,sans-serif; font-weight:600; color:var(--navy);}
+  table.ord tr.sub td{border-bottom:0; color:var(--muted); font-size:8.2pt; padding-top:5pt;}
+  table.ord tr.tot td{border-top:1pt solid var(--navy); border-bottom:0; font-weight:600; color:var(--navy); padding-top:5pt;}
+  .pl{display:inline-block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+    letter-spacing:.06em; text-transform:uppercase; font-weight:600; border-radius:99px; padding:2pt 5pt;}
+  .pl.a{background:#E6EAF2; color:#3C4A66;} .pl.b{background:#FAEED8; color:#6E4209;} .pl.c{background:#E4EBF7; color:#1E4B95;}
+  .time .d i{font-style:normal;}
+  .swap{border:1.2pt solid var(--gold); background:var(--wash); padding:8pt 11pt; margin:9pt 0;}
+  .swap .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:7pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:3pt;}
+  .swap p{margin:0 0 4pt; font-size:10pt; line-height:1.4;} .swap p:last-child{margin:0;}
+  .vs{display:flex; gap:7pt; align-items:baseline; margin-top:4pt; flex-wrap:wrap;}
+  .vs .in,.vs .ch{font-family:"Avenir Next",Avenir,sans-serif; font-size:8.4pt; padding:2.5pt 7pt; border-radius:3pt;}
+  .vs .in{background:#EDEAE1; color:var(--navy); font-weight:600;}
+  .vs .ch{border:.8pt dashed var(--gold); color:var(--gold); font-weight:600;}
+  .vs em{font-style:normal; color:var(--muted); font-size:8pt;}
+  @media screen and (max-width:720px){
+    table.ord{font-size:13px;} table.ord th{font-size:11px;}
+    table.ord td{padding:6px 6px 6px 0;} .swap p{font-size:15px;}
+    .vs .in,.vs .ch{font-size:13px;}
+    .swap .k{font-size:11.5px; letter-spacing:.09em;}
+    .time .d i::before{content:"\00a0\00b7\00a0";}
+    .pl{font-size:11px; letter-spacing:.06em; padding:3px 7px;}
+  }
+
+  /* just-for-Michael additions */
+  .me{background:#1C3557; color:#EFE9DC; padding:9pt 12pt; margin:0 0 10pt; border-radius:3pt;}
+  .me .k{display:block; font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:#C6A961; font-weight:600; margin-bottom:4pt;}
+  .me p{margin:0 0 5pt; font-size:10pt; line-height:1.45; color:#EFE9DC;}
+  .me p:last-child{margin:0;} .me b{color:#fff;}
+  .copy{border:1.2pt dashed var(--gold); background:#fff; padding:9pt 12pt; margin:6pt 0 0;
+    font-size:9.6pt; line-height:1.5;}
+  .copy p{margin:0 0 7pt;} .copy p:last-child{margin:0;}
+  .copy .tag{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:6pt;}
+  .script{border-left:2.5pt solid var(--navy); padding:5pt 0 5pt 9pt; margin:5pt 0 0; font-size:10pt;
+    line-height:1.45; font-style:italic; color:#2E3742;}
+  .script b{font-style:normal;}
+  @media screen and (max-width:720px){
+    .me p,.copy{font-size:14.5px;} .script{font-size:14.5px;} .me .k,.copy .tag{font-size:11.5px;}
+  }
+
+  @media print{
+    body{font-size:9.2pt; line-height:1.34;}
+    h1{font-size:17pt;} h2{font-size:11.4pt; margin-bottom:2.5pt;}
+    .block{padding:5.5pt 0;} .say{padding:6pt 9pt; margin-bottom:7pt;}
+    .say p{font-size:9.6pt; line-height:1.34;}
+    .rule3{margin-bottom:8pt;} .rule3 div{padding:5pt 8pt;} .rule3 p{font-size:8.2pt; line-height:1.28;}
+    header{padding-bottom:5pt; margin-bottom:8pt;}
+    table.ord{font-size:8pt;} table.ord td{padding:2.3pt 6pt 2.3pt 0;}
+    .decide{font-size:8pt; padding:4pt 6pt; margin-top:4pt;}
+    .grid div{padding:4pt 7pt 4.5pt 0;} .grid p{font-size:8.2pt; line-height:1.26;}
+    .links{margin-top:8pt; padding-top:6pt;} .lgrid p{font-size:8.2pt; line-height:1.26;}
+    ul{padding-left:10pt;} li{margin-bottom:1.8pt;}
+  }
+
+  /* Phone: the agenda's job is "which names are in", not "who voted how".
+     Dropping the five per-voter columns removes the horizontal scroll that
+     was carrying the Result column off screen — the one column that is the
+     answer. The per-ballot detail lives on vote-result.html, and the note
+     below only appears when the columns are hidden. */
+  .vphone{display:none;}
+  @media screen and (max-width:720px){
+    table.vt{min-width:0; width:100%;}
+    table.vt th.vp, table.vt td.vp{display:none;}
+    table.vt td.vnm{width:auto;}
+    .vphone{display:block;}
+  }
+
+  /* ---- the ballot figure -------------------------------------------------
+     A diverging stacked bar per name. The zero line is "did anyone vote
+     against it", so everything left of the line is opposition and everything
+     right of it is support. GE Vernova is the only bar that starts at the
+     line, which is the whole point of the figure.
+     Poles validated against this page's surface #FCFAF6:
+       #2F5E9E / #AD2A20 — lightness band, chroma floor, CVD separation,
+       normal-vision floor and 3:1 contrast all pass.
+     The neutral is low-contrast by design (a diverging midpoint reads as
+     "nothing"), so every segment is also given its number in the columns at
+     the right — identity is never carried by colour alone. */
+  .fig{border:.6pt solid var(--rule); background:#fff; padding:9pt 10pt 8pt;
+       margin:8pt 0 4pt;}
+  .fig h4{font-family:"Avenir Next",Avenir,sans-serif; font-size:8pt;
+       letter-spacing:.09em; text-transform:uppercase; color:var(--navy);
+       margin:0 0 2pt; font-weight:600;}
+  .fig .cap{font-size:8.4pt; color:var(--muted); margin:0 0 7pt; line-height:1.4;}
+  .key{display:flex; flex-wrap:wrap; gap:3pt 9pt; margin:0 0 7pt;
+       font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt;
+       color:var(--muted);}
+  .key span{display:inline-flex; align-items:center; gap:3.5pt;}
+  .key i{width:9pt; height:7pt; border-radius:1.5pt; display:inline-block;}
+  .k-a{background:#2F5E9E;} .k-b{background:#BFB6A1;} .k-c{background:#AD2A20;}
+  table.bal{width:100%; min-width:0; border-collapse:collapse;
+       table-layout:fixed; font-size:8.6pt;}
+  table.bal th{font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+       letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+       font-weight:600; text-align:center; padding:0 0 3pt; border:0;}
+  table.bal th.hn{text-align:left;}
+  table.bal td{padding:2.2pt 0; border:0; border-top:.4pt solid #EFEAE0;
+       vertical-align:middle;}
+  table.bal tr:first-child td{border-top:0;}
+  table.bal td.nm{width:26%; padding-right:4pt; line-height:1.15;}
+  table.bal td.nm b{font-size:9pt; color:var(--navy);}
+  table.bal td.nm span{display:block; font-size:7pt; color:var(--muted);}
+  table.bal td.bar{width:42%;}
+  table.bal td.bar svg{display:block; width:100%; height:auto;}
+  table.bal td.n{width:10.6%; text-align:center; font-size:9.4pt;
+       font-variant-numeric:tabular-nums; font-weight:600;}
+  table.bal td.n.z{color:var(--ink); font-weight:700;}
+  table.bal td.n.a{color:#2F5E9E;} table.bal td.n.c{color:#AD2A20;}
+  table.bal td.n.b{color:#6B7280;}
+  table.bal tr.out td.nm b{color:#8A3A32;}
+  .outchip{display:block; font-style:normal; color:#AD2A20;
+       font-family:"Avenir Next",Avenir,sans-serif; font-size:6.6pt;
+       letter-spacing:.06em; font-weight:700; line-height:1.3;}
+  .fig .read{font-size:8.6pt; color:var(--ink); margin:7pt 0 0;
+       padding-top:6pt; border-top:.5pt solid var(--rule); line-height:1.45;}
+  .horiz{margin:7pt 0 0; padding-top:6pt; border-top:.5pt solid var(--rule);}
+  .horiz p{margin:0 0 4pt; font-size:8.4pt; color:var(--muted);}
+  .horiz ul{margin:0; padding:0; list-style:none;}
+  .horiz li{display:flex; gap:6pt; align-items:baseline; padding:1.6pt 0;
+       border-top:.4pt solid #F2EDE3; font-size:8.8pt;}
+  .horiz li:first-child{border-top:0;}
+  .horiz li b{font-family:"Avenir Next",Avenir,sans-serif; font-size:7.4pt;
+       letter-spacing:.05em; text-transform:uppercase; color:var(--navy);
+       min-width:52pt; font-weight:600;}
+  .horiz li i{color:var(--ink); font-style:italic;}
+  @media screen and (max-width:720px){
+    table.bal{font-size:12px;}
+    /* the bar is the point of the figure, so it gets the width on a phone.
+       Company names are dropped here — the tickers are enough, and the full
+       names are in the order table above. */
+    table.bal td.nm{width:17%;} table.bal td.bar{width:51%;}
+    table.bal td.n{width:10.6%; font-size:13.5px;}
+    table.bal td.nm b{font-size:13px;} table.bal td.nm span{display:none;}
+    .outchip{font-size:10px;}
+    table.bal th{font-size:10.5px;}
+    .key{font-size:10.5px; gap:3px 8px;} .fig .cap,.fig .read{font-size:12px;}
+    .horiz li{font-size:12px; flex-wrap:wrap;} .horiz li b{font-size:10.5px;}
+    .horiz p{font-size:12px;}
+  }
+
+  @media print{
+    /* pull the gutter in so left and right ink margins match */
+    .block{gap:8pt;}
+    .time{flex:0 0 38pt;}
+    .time .t{font-size:10.5pt;}
+  }
+
+  @media print{
+    /* a bordered card must never be severed by a page break: the rules
+       run off the bottom edge with no closure and resume headless. */
+    .gotcha{break-inside:avoid; page-break-inside:avoid;}
+    .fig{break-inside:avoid; page-break-inside:avoid;}
+    .links{break-inside:avoid; page-break-inside:avoid;}
+    .pre{break-inside:avoid; page-break-inside:avoid;}
+    .say{break-inside:avoid; page-break-inside:avoid;}
+  }
+</style><style>
+/* Priority, said on the page instead of implied by order. */
+.pri{display:inline-block;font:700 8.4pt/1 "Avenir Next",Avenir,sans-serif;letter-spacing:.11em;
+     text-transform:uppercase;padding:4.5pt 7pt;border-radius:3pt;margin:0 0 5pt}
+.pri.now{background:#B3261E;color:#fff}
+.pri.decide{background:#1C3557;color:#fff}
+.pri.quick{background:#E8E0CE;color:#6B5420}
+/* The answer, first, before any explaining. */
+.ans{background:#FFF;border:1.3pt solid var(--navy);border-radius:4pt;padding:9pt 11pt;margin:0 0 8pt}
+.ans .lbl{font:700 8.4pt/1 "Avenir Next",Avenir,sans-serif;letter-spacing:.11em;text-transform:uppercase;
+          color:var(--gold);display:block;margin-bottom:3.5pt}
+.ans p{margin:0;font-size:11.4pt;line-height:1.4;font-weight:600;color:var(--navy)}
+/* Short facts, one line each. */
+ul.plain{list-style:none;padding:0;margin:0 0 8pt}
+ul.plain li{position:relative;padding:0 0 0 13pt;margin:0 0 4.5pt;line-height:1.42}
+ul.plain li:before{content:"";position:absolute;left:0;top:.52em;width:4.5pt;height:4.5pt;
+                   border-radius:50%;background:var(--gold)}
+ul.plain li.up:before{background:#1E6B45}
+ul.plain li.down:before{background:#B3261E}
+.matters{border-left:3pt solid var(--gold);background:var(--wash);padding:7pt 10pt;margin:0 0 6pt;font-size:10.2pt}
+.matters b{color:var(--navy)}
+.num{font-variant-numeric:tabular-nums}
+.dn{color:#B3261E;font-weight:700}
+.up{color:#1E6B45;font-weight:700}
+@media print{.pri{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+
+<div class="superseded"><span class="k">Ballot &middot; opened Sunday Oct 18</span><p>Nine questions. <b>Five of them need 4 of 5 to carry</b>, which is why they cannot be settled in a meeting where three people turn up. Answer by <b>Wednesday Oct 21</b> so the result is in before Friday's deadline.</p></div>
+
+<header><div><p class="eyebrow">Ballot &middot; October 18&ndash;21, 2026</p><h1>Nine things we have been carrying unresolved.</h1></div><div class="who"><b>All five vote</b><br>Michael, Caleb, Dylan, Joe, Federico<br>Answer by <b>Wed Oct 21</b><br>Five questions need <b>4 of 5</b></div></header>
+
+<div class="say"><span class="k">Why a ballot and not another meeting</span>
+<p><b>Three meetings in a row have failed to decide these.</b> Oct 11 was cancelled. Oct 15 happened and nobody wrote it up. Tonight only three of us turned up, and <b>three cannot carry a plan change.</b></p>
+<p><b>A ballot fixes the attendance problem.</b> Everyone answers on their own time, the result is written down automatically, and nothing depends on five people being free at once.</p>
+<p style="margin-bottom:0"><b>It also fixes a scoring problem.</b> Criterion 4 is how the team made its decisions. A ballot with reasons attached is the single best evidence of that we can produce, and it costs us nothing but a Google Form.</p>
+</div>
+
+<div class="rule3">
+<div><span>What needs 4 of 5</span><p>Q1, Q2, Q3, Q4, Q5. <b>Plan changes.</b> Four yes votes or it does not carry.</p></div>
+<div><span>What needs a majority</span><p>Q6 and Q8. <b>Decisions inside the plan</b>, not changes to it.</p></div>
+<div><span>What is not a vote</span><p>Q7 is nine numbers. Q9 is an honesty check. <b>Both just need answers.</b></p></div>
+</div>
+
+<div class="block first">
+<div class="time"><span class="t">Q1</span><span class="d">Needs</span></div>
+<div class="body">
+<span class="pri now">Needs 4 of 5</span>
+<h2>Do we ratify the Pile C trigger, as written?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> It was written on Oct 5, published to our own site, and listed under &ldquo;Settled&rdquo; on <a href="strategy.html">strategy.html</a> next to things we actually voted on. <b>Nobody ever voted on it.</b> Michael found that on Oct 14.</div>
+<p style="margin:0 0 9px">Three conditions, any one fires it. (a) An approved name hits a buy price we wrote down in advance &rarr; deploy one slot, $6,000. (b) VOO closes 10% or more below our cost &rarr; deploy $6,000&ndash;$12,000 into VOO, twice a season maximum. (c) A 2037&ndash;2042 Treasury yields 5.5% or better &rarr; buy a rung. A $6,000 floor always stays uncommitted.</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Ratify it as written</li><li>Ratify it, but change something (say what)</li><li>Reject it and start over</li></ol></div>
+<div class="decide"><i>What it costs</i> If we ratify: nothing changes today. Condition (b) needs VOO at $641.09 against $707.43, so it will almost certainly never fire before Nov 6. This is for the IPS and Laura's ten-year horizon, not the next three weeks. <b>If we reject it, Pile C has no written purpose at all</b>, and an IPS cannot defend 13.72% in T-bills with no stated job.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q2</span><span class="d">Needs</span></div>
+<div class="body">
+<span class="pri now">Needs 4 of 5</span>
+<h2>Do we adopt a 20% cap on any one theme?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> Five of our nine stocks are one chain: Google and Amazon spend, Nvidia sells the chips, GE Vernova and Eaton supply the power. We have <b>never written down a theme or correlation analysis</b>. A judge finds this in about ninety seconds.</div>
+<p style="margin:0 0 9px"><b>The number is bigger than it looks.</b> The five stocks are 15.52% of the account &mdash; but VOO holds those same names for us, another 3.68%. <b>True exposure: 19.20%.</b> Cal State LA's endowment policy caps any one industry at 20% in its own words, and the standard 5/25 rebalancing band on a 16% target gives 12%/20%. <br><br><b>Proposed wording:</b> &ldquo;No single economic theme may exceed 20% of portfolio value on an index look-through basis. We come back inside the cap by directing new money elsewhere, never by selling a holding whose investment case is intact.&rdquo;</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Adopt at 20%</li><li>Adopt, but at a different number (say it)</li><li>No cap &mdash; measure and disclose it only</li></ol></div>
+<div class="decide"><i>What it costs</i> At 19.20% we are 0.8 of a point under it, so in practice this says <b>we do not add another AI name</b>. It forces no sale today. The reason it is fixed with new money rather than by trimming: a cap that forces selling is backwards, because a breach caused by prices <i>rising</i> would make us sell a winner.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q3</span><span class="d">Needs</span></div>
+<div class="body">
+<span class="pri now">Needs 4 of 5</span>
+<h2>Do we adopt this as our sell rule?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> Right now we have no written rule for when we sell anything, which means every sell would be argued from scratch in the moment &mdash; exactly when judgment is worst.</div>
+<p style="margin:0 0 9px"><b>&ldquo;We sell when the reason we bought no longer describes the company, when a holding breaches a stated weight cap, or when the money is needed for a funding obligation. A fall in price is none of these.&rdquo;</b><br><br>Three observable conditions, no forecast. Every real IPS we checked &mdash; Cal State LA, TWU, the UC endowment &mdash; triggers on a weight breach and never on a price move.</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Adopt as written</li><li>Adopt with changes (say what)</li><li>Reject</li></ol></div>
+<div class="decide"><i>What it costs</i> This is the rule that decides Medtronic, so vote on the rule before voting on the stock. It also means we do <b>not</b> sell the AI names because they fell, which some of us may disagree with &mdash; say so now rather than in November.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q4</span><span class="d">Needs</span></div>
+<div class="body">
+<span class="pri decide">Needs 4 of 5</span>
+<h2>Pile C: leave it, or cut it to 10%?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> Coach P suggested on Oct 6 cutting Pile C from 15% to 10% and putting the freed money into VEA. <b>It was never decided.</b> It went to the Oct 11 call, which was cancelled, then the Oct 15 lunch, which nobody wrote up.</div>
+<p style="margin:0 0 9px">Pile C is currently <b>13.72%</b> &mdash; 450 shares of BIL, $41,184. Cutting to 10% frees about <b>$11,073</b>. VEA is our most underweight line at 9.71% and overlaps none of our nine names, so $11,000 would take it to 13.40%.</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Leave Pile C where it is</li><li>Cut to 10%, freed money into VEA</li><li>Cut to 10%, hold the freed money as cash</li></ol></div>
+<div class="decide"><i>What it costs</i> Arguments for leaving it: trading freezes Nov 6, so anything we buy has 16 trading days to matter, and return is not graded. Argument for cutting: a reserve bigger than the biggest thing it can buy is money not working &mdash; its own largest trigger is about $30,000. <b>Arguments against cash:</b> we would be choosing to hold more idle money than the plan says, which is the one thing an IPS cannot defend.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q5</span><span class="d">Needs</span></div>
+<div class="body">
+<span class="pri decide">Needs 4 of 5</span>
+<h2>Do we ratify the BIL trim that already happened?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> We voted for Pile C at 15%. It went in at <b>13.72%</b> because the two Treasuries cost $3,097 more than the order sheet estimated, and BIL is the only line allowed to shrink. <b>That trim was never voted on.</b> It has been sitting unratified since Oct 7.</div>
+<p style="margin:0 0 9px">This is housekeeping, but it is the kind judges care about: the portfolio does not currently match the plan the team approved, and nothing on paper explains why.</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Ratify it &mdash; 13.72% is the number</li><li>Do not ratify &mdash; buy BIL back up to 15%</li></ol></div>
+<div class="decide"><i>What it costs</i> Ratifying costs nothing and closes an open item. Buying back up to 15% costs $25 and takes money away from somewhere else.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q6</span><span class="d">Simple</span></div>
+<div class="body">
+<span class="pri decide">Simple majority</span>
+<h2>Medtronic: hold or sell?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> We bought it partly for the diabetes business. MiniMed, that business, was split off on Oct 9 and Medtronic now owns none of it. The note we filed with Wharton says &ldquo;device lines&rdquo;, not diabetes, so our graded record is clean either way.</div>
+<p style="margin:0 0 9px">It is our best position, <b>+9.19%</b> &mdash; and part of that is not us being right. A split-off buys shares back at a discount, which pushes up whatever is left. <br><br><b>The question is not whether it is up.</b> It is: would we buy Medtronic today for what the company actually is now?</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Hold &mdash; and here is the one-line reason (write it)</li><li>Sell it</li><li>Hold until Nov 6, decide properly in the Final Report</li></ol></div>
+<div class="decide"><i>What it costs</i> If we hold with no written reason, we own something nobody can explain. If we sell, it costs $25 and we give up a position that is working. Note the Oct 23 submission <b>does not</b> require it to still be in the portfolio.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q7</span><span class="d">Input,</span></div>
+<div class="body">
+<span class="pri quick">Input, not a vote</span>
+<h2>Your buy price for each of the nine names</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> Our first Pile C trigger buys an approved name when it reaches a price <b>written down in advance</b>. No price was ever written, so <b>that trigger has never been able to fire.</b></div>
+<p style="margin:0 0 9px">For each name, the price you would be happy to add at. Rough is fine &mdash; a written number beats a perfect unwritten one. We take the median of whoever answers.<br><br><b>GEV &middot; JNJ &middot; NVDA &middot; BKNG &middot; GOOG &middot; IBKR &middot; MDT &middot; ETN &middot; AMZN</b></p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Nine numbers, or as many as you have a view on</li></ol></div>
+<div class="decide"><i>What it costs</i> This is not a plan change. It fills a blank the plan already has, so it needs no vote &mdash; but it only works if people actually answer.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q8</span><span class="d">Simple</span></div>
+<div class="body">
+<span class="pri now">Simple majority</span>
+<h2>Who submits the Oct 23 deliverable if Federico has not confirmed by Tuesday?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> Due <b>Friday Oct 23 at 4:00pm</b>, which is homecoming on an early release schedule. Federico owns it. All six boxes are already written at <a href="notes23.html">notes23.html</a>. Somebody still has to check the three notes against the account and press submit.</div>
+<p style="margin:0 0 9px">Also: the form says it was <b>last edited Oct 12 at 1:01am</b> and is still 0 of 1 complete. Nobody has said they opened it. Whoever takes it should look at what is already in there.</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Federico, as planned</li><li>Michael takes it Tuesday</li><li>Caleb takes it Tuesday</li></ol></div>
+<div class="decide"><i>What it costs</i> Deciding now costs nothing. Deciding on Friday morning costs the deliverable.</div>
+</div>
+</div>
+
+<div class="block">
+<div class="time"><span class="t">Q9</span><span class="d">Honesty</span></div>
+<div class="body">
+<span class="pri quick">Honesty check</span>
+<h2>Which of these do you actually remember voting on?</h2>
+<div class="matters" style="margin-bottom:10px"><b>Why this is on the ballot:</b> The Pile C trigger was sitting in the &ldquo;Settled&rdquo; list on our strategy page and had never been voted. <b>There are five other things in that list.</b> We checked the minutes and could not find votes for most of them &mdash; but absence of a record is not proof, so we are asking the people who were there.</div>
+<p style="margin:0 0 9px">Tick only the ones you genuinely remember deciding together. <b>Not remembering is a useful answer</b> and nobody is in trouble for it.</p>
+<div class="ans"><span class="lbl">Your options</span><ol style="margin:4px 0 0;padding-left:20px;font-size:10.6pt;line-height:1.5;font-weight:500"><li>Three piles, 60 / 25 / 15</li><li>Treasuries chosen by maturity date</li><li>Ten stocks, two per sector, 2% each</li><li>No REIT, no corporates, no Taiwan</li><li>&ldquo;Certainty&rdquo; means 97%</li></ol></div>
+<div class="decide"><i>What it costs</i> Criterion 4 is how the team made its decisions. A page claiming we settled things we never settled is exactly where that score goes. Anything nobody remembers comes off the list or goes to a real vote.</div>
+</div>
+</div>
+
+<div class="links"><h3>Before you answer</h3><div class="lgrid">
+<div><h4>You do not have to agree with me</h4><p>Several of these have a recommendation attached because somebody had to write one. <b>A ballot where everyone ticks the first option is worth nothing</b> as evidence of how we decide. If you disagree, say so in the box &mdash; that is the part a judge actually reads.</p></div>
+<div><h4>Why five of these need 4 of 5</h4><p>Because they change the plan rather than act within it. Our own rule. Three people agreeing is a recommendation, not a decision, which is why tonight's call could not settle any of them.</p></div>
+<div><h4>Where the numbers come from</h4><p><a href="oct14-numbers.html">Every figure checked</a> &mdash; where the $300,000 went, the attribution, and the two numbers on the WInS screen that mislead. <a href="oct18.html">Tonight's call</a> has the short version.</p></div>
+<div><h4>What happens after Wednesday</h4><p>The result gets written up the same day and posted, win or lose. <b>Whatever carries goes into the IPS</b>, which is due Nov 6 and has no draft yet.</p></div>
+</div></div>
+
+</body></html>
