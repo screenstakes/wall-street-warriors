@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>The ballot, paste-ready</title>
+<title>Make the Google Form</title>
 <style>
 :root{--navy:#1C3557;--gold:#9A7326;--ink:#23292F;--muted:#6B7280;--ground:#FCFAF6;
       --rule:#DED6C6;--wash:#F4EFE4;--link:#1F4E8C;--good:#1E6B45;--bad:#B3261E}
@@ -47,152 +47,164 @@ hr{border:0;border-top:1px solid var(--rule);margin:38px 0}
   table,td,th{font-size:14px} pre{font-size:14px;padding:16px}}
 </style>
 </head><body><div class="wrap">
-<p class="back"><a href="ballot.html">&larr; The ballot teammates read</a> &middot; <a href="oct14-report.html">the report</a></p>
-<p class="eyebrow">Michael only &middot; build the form from this</p>
-<h1>The ballot, paste-ready</h1>
-<p class="lede">Nine questions with the blurb and the options already written. Copy each into a Google Form. About ten minutes.</p>
+<p class="back"><a href="ballot.html">&larr; What the team reads</a> &middot; <a href="oct14-report.html">the report</a></p>
+<p class="eyebrow">Michael only</p>
+<h1>Make the Google Form</h1>
+<p class="lede">This script builds the whole thing. Four steps, about two minutes.</p>
 
 <div class="verdict">
-<p><b>Settings to use:</b> collect email addresses (so you know who has not answered), one response per person, <b>allow editing after submit</b> &mdash; people change their minds and you want the final view, not the first one.</p>
-<p><b>Add one free-text box at the end:</b> <i>&ldquo;Anything you disagree with, or that I got wrong?&rdquo;</i> That box is where criterion 4 lives. A ballot where everyone ticks option one is worth nothing as evidence.</p>
-<p style="margin-bottom:0"><b>Close it Wednesday Oct 21</b>, write the result up the same day, and post it win or lose. The Oct 4 ballot worked because the result got published; this one has to as well.</p>
+<p><b>1.</b> Go to <b>forms.new</b></p>
+<p><b>2.</b> Extensions &rarr; Apps Script</p>
+<p><b>3.</b> Paste this over everything that is there. Save. Run.</p>
+<p style="margin-bottom:0"><b>4.</b> Approve it. <i>&ldquo;Google hasn't verified this app&rdquo;</i> shows up because you wrote it &mdash; Advanced &rarr; Go to (unsafe). <b>Your link prints at the bottom.</b></p>
 </div>
 
+<button class="btn" id="copy" style="font-size:16px;padding:15px 24px">Copy the script</button>
+<span class="said" id="said"></span>
+
+<pre id="gs" style="font-size:12.5px;max-height:420px;overflow:auto">/** @OnlyCurrentDoc */
+/**
+ * Builds the October 18 ballot.
+ *
+ *   1. Go to forms.new
+ *   2. Extensions > Apps Script
+ *   3. Paste ALL of this over whatever is there, Save, then Run.
+ *   4. Approve it. "Google hasn't verified this app" appears because YOU
+ *      wrote it -- Advanced > Go to (unsafe). It is your own script.
+ *   5. Your link prints in the Execution log at the bottom.
+ *
+ * Safe to run twice: it clears the form first.
+ */
+
+function soft(fn) { try { fn(); } catch (e) {} }
+
+function buildTheBallot() {
+  var form = null;
+  try { form = FormApp.getActiveForm(); } catch (e) { form = null; }
+  if (!form) { form = FormApp.create("Wall Street Warriors — October ballot"); }
+
+  form.getItems().forEach(function (item) { form.deleteItem(item); });
+  form.setTitle("Wall Street Warriors — October ballot");
+  form.setDescription("Nine questions. Five need 4 of 5 to carry, which is why meetings with partial attendance keep failing to settle them.\n\nCloses Wednesday Oct 21. Reasoning for every question: screenstakes.github.io/wall-street-warriors/ballot.html");
+
+  // setPublishingSummary(false) is the one that matters. Leave it on and
+  // every responder can read everyone else's answers in full.
+  soft(function () { form.setPublishingSummary(false); });
+  soft(function () { form.setCollectEmail(false); });
+  soft(function () { form.setProgressBar(true); });
+  soft(function () { form.setAllowResponseEdits(true); });
+  soft(function () { form.setShowLinkToRespondAgain(false); });
+  soft(function () { form.setConfirmationMessage("Got it. Result posted Wednesday, win or lose."); });
+  soft(function () { form.setPublished(true); });
+
+  form.addMultipleChoiceItem()
+    .setTitle('Who are you?')
+    .setChoiceValues(["Michael", "Caleb", "Dylan", "Joe", "Federico"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Ratify the Pile C trigger, as written?")
+    .setHelpText("Written Oct 5, put on our site, never voted on. Needs 4 of 5.")
+    .setChoiceValues(["Yes, as written", "Yes, but change something", "No"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Cap any one theme at 20% of the portfolio?")
+    .setHelpText("Our AI chain is 19.2% once you count what VOO already holds. Needs 4 of 5.")
+    .setChoiceValues(["Yes, 20%", "Yes, but a different number", "No cap — just measure it"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Adopt this sell rule?")
+    .setHelpText("We sell when the reason no longer fits the company, a weight cap breaks, or we need the money. Not because the price fell. Needs 4 of 5.")
+    .setChoiceValues(["Yes, as written", "Yes, with changes", "No"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Pile C: leave it, or cut it to 10%?")
+    .setHelpText("It is 13.72% now. Cutting frees about $11,000. Needs 4 of 5.")
+    .setChoiceValues(["Leave it", "Cut to 10%, into VEA", "Cut to 10%, hold as cash"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Ratify the BIL trim?")
+    .setHelpText("We voted 15%. It went in at 13.72% because the bonds cost more. Never ratified. Needs 4 of 5.")
+    .setChoiceValues(["Yes", "No — buy BIL back to 15%"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Medtronic: hold or sell?")
+    .setHelpText("Its diabetes business was split off Oct 9. It is up 9.19%.")
+    .setChoiceValues(["Hold", "Sell", "Decide after Nov 6"])
+    .setRequired(true);
+
+  form.addMultipleChoiceItem()
+    .setTitle("Who submits Friday if Federico has not confirmed by Tuesday?")
+    .setHelpText("Due Fri Oct 23, 4:00pm. Everything is already written.")
+    .setChoiceValues(["Federico", "Michael", "Caleb"])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Your buy prices').setHelpText('The price you would add at. Rough is fine. Leave blank if you have no view.');
+  form.addTextItem().setTitle("GEV");
+  form.addTextItem().setTitle("JNJ");
+  form.addTextItem().setTitle("NVDA");
+  form.addTextItem().setTitle("BKNG");
+  form.addTextItem().setTitle("GOOG");
+  form.addTextItem().setTitle("IBKR");
+  form.addTextItem().setTitle("MDT");
+  form.addTextItem().setTitle("ETN");
+  form.addTextItem().setTitle("AMZN");
+
+  form.addCheckboxItem()
+    .setTitle('Which of these do you actually remember voting on?')
+    .setHelpText('Tick only what you remember. Not remembering is a useful answer.')
+    .setChoiceValues(["Three piles, 60 / 25 / 15", "Treasuries chosen by maturity date", "Ten stocks, two per sector", "No REIT, no corporates, no Taiwan", "'Certainty' means 97%"]);
+
+  form.addParagraphTextItem()
+    .setTitle('Anything you disagree with, or that I got wrong?')
+    .setHelpText('This box is the point. A ballot where everyone picks option one proves nothing.');
+
+  var live = form.getPublishedUrl();
+  var short = live;
+  soft(function () { short = form.shortenFormUrl(live); });
+  Logger.log('SHARE THIS LINK:  ' + short);
+  Logger.log('Edit it here:     ' + form.getEditUrl());
+  Logger.log('Questions added:  ' + form.getItems().length);
+}
+</pre>
+
+<h2>Three things it does that matter</h2>
 <div class="card">
-<h3>Question 1 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q1" style="margin:9px 0 8px;font-size:14px">Q1. Ratify the Pile C deployment trigger, as written?  [NEEDS 4 OF 5]
-
-It was written Oct 5 and published to our site under "Settled" but was never voted on. Three conditions, any one fires it: an approved name hits a buy price written down in advance ($6,000); VOO closes 10% or more below our cost ($6,000-$12,000 into VOO, max twice a season); or a 2037-2042 Treasury yields 5.5%+. A $6,000 floor always stays uncommitted.
-
-Ratify it as written
-Ratify it, but change something (say what below)
-Reject it and start over</pre>
-<button class="btn" data-copy="q1" style="margin:0">Copy question 1</button>
-<span class="said" id="s-q1"></span>
+<h3>Answers stay private</h3>
+<p><code>setPublishingSummary(false)</code> is the only setting that does this. Leave it on and <b>every person who submits can read everyone else's answers in full.</b> That is the default.</p>
 </div>
 <div class="card">
-<h3>Question 2 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q2" style="margin:9px 0 8px;font-size:14px">Q2. Adopt a 20% cap on any one theme?  [NEEDS 4 OF 5]
-
-Five of our nine stocks are one chain: Google and Amazon spend, Nvidia sells the chips, GE Vernova and Eaton supply the power. That is 15.52% directly, plus another 3.68% that VOO holds for us, so 19.20% in total. Proposed wording: "No single economic theme may exceed 20% of portfolio value on an index look-through basis. We come back inside the cap by directing new money elsewhere, never by selling a holding whose investment case is intact."
-
-Adopt at 20%
-Adopt, but at a different number (say it below)
-No cap - measure and disclose it only</pre>
-<button class="btn" data-copy="q2" style="margin:0">Copy question 2</button>
-<span class="said" id="s-q2"></span>
+<h3>Safe to run twice</h3>
+<p>It clears the form before building, so a second run does not double every question.</p>
 </div>
 <div class="card">
-<h3>Question 3 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q3" style="margin:9px 0 8px;font-size:14px">Q3. Adopt this sell rule?  [NEEDS 4 OF 5]
-
-"We sell when the reason we bought no longer describes the company, when a holding breaches a stated weight cap, or when the money is needed for a funding obligation. A fall in price is none of these."
-
-Adopt as written
-Adopt with changes (say what below)
-Reject</pre>
-<button class="btn" data-copy="q3" style="margin:0">Copy question 3</button>
-<span class="said" id="s-q3"></span>
+<h3>People can change their mind</h3>
+<p>Response editing is on. You want the final view, not the first one.</p>
 </div>
-<div class="card">
-<h3>Question 4 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q4" style="margin:9px 0 8px;font-size:14px">Q4. Pile C: leave it, or cut it to 10%?  [NEEDS 4 OF 5]
 
-Coach P suggested this on Oct 6 and it was never decided. Pile C is currently 13.72%, which is 450 shares of BIL worth $41,184. Cutting to 10% frees about $11,073. VEA is our most underweight line at 9.71% and overlaps none of our nine names.
-
-Leave Pile C where it is
-Cut to 10%, freed money into VEA
-Cut to 10%, hold the freed money as cash</pre>
-<button class="btn" data-copy="q4" style="margin:0">Copy question 4</button>
-<span class="said" id="s-q4"></span>
-</div>
-<div class="card">
-<h3>Question 5 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q5" style="margin:9px 0 8px;font-size:14px">Q5. Ratify the BIL trim that already happened?  [NEEDS 4 OF 5]
-
-We voted for Pile C at 15%. It went in at 13.72% because the two Treasuries cost $3,097 more than the order sheet estimated. That trim was never voted on and has been unratified since Oct 7.
-
-Ratify it - 13.72% is the number
-Do not ratify - buy BIL back up to 15%</pre>
-<button class="btn" data-copy="q5" style="margin:0">Copy question 5</button>
-<span class="said" id="s-q5"></span>
-</div>
-<div class="card">
-<h3>Question 6 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q6" style="margin:9px 0 8px;font-size:14px">Q6. Medtronic: hold or sell?  [MAJORITY]
-
-MiniMed, its diabetes business, was split off Oct 9 and Medtronic owns none of it now. It is our best position at +9.19%, though part of that is split-off arithmetic rather than the company doing well. The question is not whether it is up. It is whether we would buy Medtronic today for what it actually is now.
-
-Hold - and here is the one-line reason (write it below)
-Sell it
-Hold until Nov 6, decide properly in the Final Report</pre>
-<button class="btn" data-copy="q6" style="margin:0">Copy question 6</button>
-<span class="said" id="s-q6"></span>
-</div>
-<div class="card">
-<h3>Question 7 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Short answer, nine boxes</span></h3>
-<pre id="q7" style="margin:9px 0 8px;font-size:14px">Q7. Your buy price for each of the nine names  [NOT A VOTE]
-
-Our first Pile C trigger buys an approved name at a price written down in advance. No price was ever written, so it has never been able to fire. Give the price you would be happy to add at. Rough is fine. We take the median of whoever answers. Leave blank any you have no view on.
-
-GEV
-JNJ
-NVDA
-BKNG
-GOOG
-IBKR
-MDT
-ETN
-AMZN</pre>
-<button class="btn" data-copy="q7" style="margin:0">Copy question 7</button>
-<span class="said" id="s-q7"></span>
-</div>
-<div class="card">
-<h3>Question 8 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Multiple choice</span></h3>
-<pre id="q8" style="margin:9px 0 8px;font-size:14px">Q8. Who submits the Oct 23 deliverable if Federico has not confirmed by Tuesday?  [MAJORITY]
-
-Due Friday Oct 23 at 4:00pm, which is homecoming on an early release schedule. All six boxes are already written. Someone still has to check the three notes against the WInS account and press submit.
-
-Federico, as planned
-Michael takes it Tuesday
-Caleb takes it Tuesday</pre>
-<button class="btn" data-copy="q8" style="margin:0">Copy question 8</button>
-<span class="said" id="s-q8"></span>
-</div>
-<div class="card">
-<h3>Question 9 &middot; <span style="font-weight:400;color:var(--muted);font-size:15px">Checkboxes</span></h3>
-<pre id="q9" style="margin:9px 0 8px;font-size:14px">Q9. Which of these do you actually remember voting on?  [HONESTY CHECK]
-
-The Pile C trigger was listed under "Settled" on our strategy page and had never been voted on. There are five other things in that list. Tick only the ones you genuinely remember deciding together. Not remembering is a useful answer and nobody is in trouble for it.
-
-Three piles, 60 / 25 / 15
-Treasuries chosen by maturity date
-Ten stocks, two per sector, 2% each
-No REIT, no corporates, no Taiwan
-"Certainty" means 97%</pre>
-<button class="btn" data-copy="q9" style="margin:0">Copy question 9</button>
-<span class="said" id="s-q9"></span>
-</div>
-<h2>After it closes</h2>
+<h2>What is in it</h2>
 <ul>
-<li><b>Five questions need 4 of 5</b> &mdash; Q1 through Q5. Four yes votes or it does not carry. Do not round up.</li>
-<li><b>Q7 is not a vote.</b> Take the median of whoever answered and write the nine prices down. Even six is enough to make the trigger work.</li>
-<li><b>Q9 may be uncomfortable.</b> If three people do not remember voting on something that is listed as settled, that item comes off the list or goes to a real vote. That is the point.</li>
-<li><b>Whatever carries goes into the IPS</b>, due Nov 6, still with no draft.</li>
+<li><b>Seven multiple-choice questions</b> &mdash; the trigger, the 20% cap, the sell rule, Pile C's size, the BIL trim, Medtronic, who submits Friday. Five of them say <i>&ldquo;Needs 4 of 5&rdquo;</i> right in the question.</li>
+<li><b>Nine price boxes</b>, one per name. Blank is allowed.</li>
+<li><b>One checkbox question:</b> which &ldquo;Settled&rdquo; items do you actually remember voting on.</li>
+<li><b>One free-text box</b> at the end: <i>&ldquo;Anything you disagree with, or that I got wrong?&rdquo;</i> That box is the point.</li>
 </ul>
 
-<p class="foot">Written Oct 18, 2026. <a href="ballot.html">The version teammates read</a> has the reasoning behind each question; this one is just the text.</p>
+<p class="foot">Source lives in <code>wharton-team-docs/ballot-oct18/</code>. Edit <code>build.py</code> and re-run it rather than editing the script by hand. Close the ballot <b>Wednesday Oct 21</b> and post the result the same day.</p>
 
 <script>
-document.querySelectorAll('[data-copy]').forEach(function(b){
-  b.addEventListener('click', function(){
-    var id=b.getAttribute('data-copy'), el=document.getElementById(id), out=document.getElementById('s-'+id);
-    var done=function(){ out.textContent='Copied.'; };
-    function fb(){ var r=document.createRange(); r.selectNodeContents(el);
-      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      out.textContent='Selected \u2014 press Cmd+C.'; }
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(el.innerText).then(done,fb);}else{fb();}
-  });
+document.getElementById('copy').addEventListener('click', function(){
+  var el=document.getElementById('gs'), out=document.getElementById('said');
+  var done=function(){ out.textContent='Copied. Paste it into Apps Script.'; };
+  function fb(){ var r=document.createRange(); r.selectNodeContents(el);
+    var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    out.textContent='Selected \u2014 press Cmd+C.'; }
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(el.innerText).then(done,fb);}else{fb();}
 });
 </script>
 </div></body></html>
